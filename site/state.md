@@ -5,7 +5,7 @@
 **Version:** 18  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d4f6c570e1954265d76c76e47406925445e87c7bfdb3e6dd7a94b02e4989e80f`
+**Verified head:** `d2f029f6c40a57fe9b243223ae54990783e4c5665cdf4f5748d2809981c05df7`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1546,6 +1546,25 @@ _None recorded._
   "time": "2026-09-13T13:20:45.114618+00:00",
   "finished": "2026-09-13T13:21:47.442802+00:00",
   "reason": ""
+}
+```
+
+### `w-d3e6f8a4600e4fdc`
+
+```json
+{
+  "base_version": 18,
+  "charged": true,
+  "id": "w-d3e6f8a4600e4fdc",
+  "model": "gemini-3.8-flash",
+  "process_id": 2061,
+  "provider": "gemini",
+  "quota_day": "2026-09-13",
+  "request_hash": "9b4821e195212d2878c9ba7c0d38d5c12dfd32c2ef8c876ec24ad73449ec45f4",
+  "status": "deferred",
+  "time": "2026-09-13T13:53:24.407773+00:00",
+  "finished": "2026-09-13T13:55:19.476884+00:00",
+  "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"
 }
 ```
 
@@ -3451,6 +3470,47 @@ _None recorded._
 }
 ```
 
+### `source-1eb3f222852a4613`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://arxiv.org/abs/1507.00971\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"[1507.00971] Definability of derivations in the reducts of differentially closed fields\\nSkip to main content\\nSearch arXiv\\nPress Enter to search ·\\nAdvanced search\\nMathematics > Logic\\narXiv:1507.00971\\n(math)\\n[Submitted on 3 Jul 2015 (\\nv1\\n), last revised 22 Jul 2017 (this version, v4)]\\nTitle:\\nDefinability of derivations in the reducts of differentially closed fields\\nAuthors:\\nVahagn Aslanyan\\nView a PDF of the paper titled Definability of derivations in the reducts of differentially closed fields, by Vahagn Aslanyan\\nView PDF\\nHTML (experimental)\\nAbstract:\\nLet $\\\\mathcal{F}=(F;+,\\\\cdot,0,1,D)$ be a differentially closed field. We consider the question of definability of the derivation $D$ in reducts of $\\\\mathcal{F}$ of the form $\\\\mathcal{F}_{R}=(F;+,\\\\cdot,0,1,P)_{P \\\\in R}$ where $R$ is a collection of definable sets in $\\\\mathcal{F}$. We give examples and non-examples and establish some criteria for definability of $D$. Finally, using the tools developed in the paper we prove that under the assumption of inductiveness of $Th(\\\\mathcal{F}_{R})$ model completeness is a necessary condition for definability of $D$. This can be seen as part of a broader project where one is interested in finding Ax-Schanuel type inequalities (or predimension inequalities) for differential equations.\\nComments:\\n34 pages. New results and clarifications in some proofs added\\nSubjects:\\nLogic (math.LO)\\nMSC\\nclasses:\\n03C10, 03C60, 12H05, 12H20, 13N15\\nCite as:\\narXiv:1507.00971\\n[math.LO]\\n(or\\narXiv:1507.00971v4\\n[math.LO]\\nfor this version)\\nhttps://doi.org/10.48550/arXiv.1507.00971\\nFocus to learn more\\narXiv-issued DOI via DataCite\\nJournal reference:\\nThe Journal of Symbolic Logic, 82(4), 2017, pp. 1252-1277\\nRelated DOI\\n:\\nhttps://doi.org/10.1017/jsl.2017.54\\nFocus to learn more\\nDOI(s) linking to related resources\\nSubmission history\\nFrom: Vahagn Aslanyan [\\nview email\\n]\\n[v1]\\nFri, 3 Jul 2015 17:18:55 UTC (22 KB)\\n[v2]\\nTue, 9 Feb 2016 18:50:00 UTC (30 KB)\\n[v3]\\nMon, 14 Nov 2016 14:55:50 UTC (35 KB)\\n[v4]\\nSat, 22 Jul 2017 12:43:05 UTC (59 KB)\\nFull-text links:\\nAccess Paper:\\nView a PDF of the paper titled Definability of derivations in the reducts of differentially closed fields, by Vahagn Aslanyan\\nView PDF\\nHTML (experimental)\\nTeX Source\\nview license\\nCurrent browse context:\\nmath.LO\\n< prev\\n|\\nnext >\\nnew\\n|\\nrecent\\n|\\n2015-07\\nChange to browse by:\\nmath\\nReferences & Citations\\nNASA ADS\\nGoogle Scholar\\nSemantic Scholar\\nexport BibTeX citation\\nLoading...\\nBibTeX formatted citation\\n×\\nloading...\\nData provided by:\\nBookmark\\nBibliographic Tools\\nBibliographic and Citation Tools\\nBibliographic Explorer Toggle\\nBibliographic Explorer\\n(\\nWhat is the Explorer?\\n)\\nConnected Papers Toggle\\nConnected Papers\\n(\\nWhat is Connected Papers?\\n)\\nLitmaps Toggle\\nLitmaps\\n(\\nWhat is Litmaps?\\n)\\nscite.ai Toggle\\nscite Smart Citations\\n(\\nWhat are Smart Citations?\\n)\\nCode, Data, Media\\nCode, Data and Media Associated with this Article\\nalphaXiv Toggle\\nalphaXiv\\n(\\nWhat is alphaXiv?\\n)\\nLinks to Code Toggle\\nCatalyzeX Code Finder for Papers\\n(\\nWhat is CatalyzeX?\\n)\\nDagsHub Toggle\\nDagsHub\\n(\\nWhat is DagsHub?\\n)\\nGotitPub Toggle\\nGotit.pub\\n(\\nWhat is GotitPub?\\n)\\nHuggingface Toggle\\nHugging Face\\n(\\nWhat is Huggingface?\\n)\\nScienceCast Toggle\\nScienceCast\\n(\\nWhat is ScienceCast?\\n)\\nDemos\\nDemos\\nReplicate Toggle\\nReplicate\\n(\\nWhat is Replicate?\\n)\\nSpaces Toggle\\nHugging Face Spaces\\n(\\nWhat is Spaces?\\n)\\nSpaces Toggle\\nTXYZ.AI\\n(\\nWhat is TXYZ.AI?\\n)\\nRelated Papers\\nRecommenders and Search Tools\\nLink to Influence Flower\\nInfluence Flower\\n(\\nWhat are Influence Flowers?\\n)\\nCore recommender toggle\\nCORE Recommender\\n(\\nWhat is CORE?\\n)\\nAuthor\\nVenue\\nInstitution\\nTopic\\nAbout arXivLabs\\narXivLabs: experimental projects with community collaborators\\narXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.\\nBoth individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.\\nHave an idea for a project that will add value for arXiv's community?\\nLearn more about arXivLabs\\n.\\nWhich authors of this paper are endorsers?\\n|\\nDisable MathJax\\n(\\nWhat is MathJax?\\n)\", \"excerpt_truncated\": false, \"source_sha256\": \"48ccd9c240bab2c1ddc6e2b1d2e63ea1cec7ba6679ee7a302779749f42c3ac09\"}",
+  "id": "source-1eb3f222852a4613",
+  "scope": "collected",
+  "source": "https://arxiv.org/abs/1507.00971",
+  "version": 18,
+  "time": "2026-09-13T13:53:23.522207+00:00"
+}
+```
+
+### `source-ebfca05379ee43af`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://plato.stanford.edu/entries/functionalism/\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"Functionalism (Stanford Encyclopedia of Philosophy)\\nStanford Encyclopedia of Philosophy\\nMenu\\nBrowse\\nTable of Contents\\nWhat's New\\nRandom Entry\\nChronological\\nArchives\\nAbout\\nEditorial Information\\nAbout the SEP\\nEditorial Board\\nHow to Cite the SEP\\nSpecial Characters\\nAdvanced Tools\\nContact\\nSupport SEP\\nSupport the SEP\\nPDFs for SEP Friends\\nMake a Donation\\nSEPIA for Libraries\\nEntry Navigation\\nEntry Contents\\nBibliography\\nAcademic Tools\\nFriends PDF Preview\\nAuthor and Citation Info\\nBack to Top\\nFunctionalism\\nFirst published Tue Aug 24, 2004; substantive revision Tue Apr 4, 2023\\nFunctionalism in the philosophy of mind is the doctrine that what\\nmakes something a mental state of a particular type does not depend on\\nits internal constitution, but rather on the way it functions, or the\\nrole it plays, in the system of which it is a part. This doctrine is\\nrooted in Aristotle’s conception of the soul, and has\\nantecedents in Hobbes’s conception of the mind as a\\n“calculating machine”, but it has become fully articulated\\n(and popularly endorsed) only in the last third of the 20th century.\\nThough the term ‘functionalism’ is used to designate a\\nvariety of positions in a variety of other disciplines, including\\npsychology, sociology, economics, and architecture, this entry focuses\\nexclusively on functionalism as a philosophical thesis about the\\nnature of mental states.\\nThe following sections will trace the intellectual antecedents of\\ncontemporary functionalism, sketch the different types of\\nfunctionalist theories, and discuss the most serious objections to\\nthem.\\n1. What is Functionalism?\\n2. Antecedents of Functionalism\\n2.1 Early Antecedents\\n2.2 Thinking Machines and the “Turing Test”\\n2.3 Behaviorism\\n3. Varieties of Functionalism\\n3.1 Machine State Functionalism\\n3.2 Functional Definitions and Ramsey-sentences\\n3.3 Analytic Functionalism\\n3.4 Psychofunctionalism\\n3.5 Role-functionalism and Realizer-functionalism\\n4. Constructing Plausible Functional Theories\\n4.1 Characterizing Experiential States\\n4.2 Characterizing Intentional States\\n4.3 Characterizing the Inputs and Outputs of a System\\n5. Objections to Functionalism\\n5.1 Functionalism and Holism\\n5.2 Functionalism and Mental Causation\\n5.3 Functionalism and Introspective Belief\\n5.4 Functionalism and the Norms of Reason\\n5.5 Functionalism and the Problem of Qualia\\n5.5.1 Inverted and Absent Qualia\\n5.5.2 Functionalism, Zombies, and the “Explanatory Gap”\\n5.5.3 Functionalism and the Knowledge Argument\\n6. The Future of Functionalism\\nBibliography\\nAcademic Tools\\nOther Internet Resources\\nRelated Entries\\n1. What is Functionalism?\\nFunctionalism is the doctrine that what makes something a thought,\\ndesire, pain (or any other type of mental state) depends not on its\\ninternal constitution, but solely on its function, or the role it\\nplays, in the cognitive system of which it is a part. More precisely,\\nfunctionalist theories take the identity of a mental state to be\\ndetermined by its causal relations to sensory stimulations, other\\nmental states, and behavior.\\nFor (an avowedly simplistic) example, a functionalist theory might\\ncharacterize\\npain\\nas the state that tends to be caused by\\nbodily injury, to produce the belief that something is wrong with the\\nbody and the desire to be out of that state, to produce anxiety, and,\\nin the absence of any stronger, conflicting desires, to cause wincing\\nor moaning. According to this theory, all and only creatures with\\ninternal states that can meet this condition, or play this role, are\\ncapable of being in pain, and an individual is in pain at time\\nt\\nif and only if they are in a state that is playing this\\nrole at\\nt\\n.\\nSuppose that, in humans, there is some distinctive kind of neural\\nactivity (C-fiber stimulation, for example) that plays this role. If\\nso, then according to this functionalist theory, humans can be in pain\\nsimply by undergoing C-fiber stimulation. But the theory permits\\ncreatures with very different physical constitutions to have mental\\nstates as well: if there are silicon-based states of hypothetical\\nMartians or inorganic states of hypothetical androids that also meet\\nthese conditions, then these creatures, too, can be in pain. As\\nfunctionalists often put it, pain can be\\nrealized\\nby\\ndifferent types of physical states in different kinds of creatures, or\\nmultiply realized\\n. (See entry on\\nmultiple realizability\\n.)\\n Indeed, since descriptions that make explicit reference only to a\\nstate’s causal relations with stimulations, behavior, and one\\nanother are what have come to be known as “topic-neutral”\\n(Smart 1959) – that is, as imposing no logical restrictions on\\nthe nature of the items that satisfy the descriptions – then\\nit’s also logically possible for\\nnon\\n-physical states to\\nplay the relevant roles, and thus realize mental states, in some\\nsystems as well. So functionalism is compatible with the sort of\\ndualism that takes mental states to cause, and be caused by, physical\\nstates.\\nStill, though functionalism is officially neutral between materialism\\nand dualism, it has been particularly attractive to materialists,\\nsince many materialists believe (or argue; see Lewis, 1966) that it is\\noverwhelmingly likely that any states capable of playing the roles in\\nquestion will be physical states. If so, then functionalism can stand\\nas a materialistic alternative to the Psycho-Physical Identity Thesis\\n(introduced in Place 1956, Feigl 1958, and Smart 1959, and defended\\nmore recently in Hill 1991, and Polger 2011), which holds that each\\ntype of mental state is identical with a particular type of\\nneural\\nstate. This thesis seems to entail that no creatures\\nwith brains unlike ours can share our sensations, beliefs, and\\ndesires, no matter how similar their behavior and internal\\norganization may be to our own, and thus functionalism, with its claim\\nthat mental states can be multiply realized, has been regarded as\\nproviding a more inclusive, less “(species-) chauvinistic”\\n(Block 1980b) – theory of the mind that is compatible with\\nmaterialism. (More recently, however, some philosophers have contended\\nthat the identity thesis may be more inclusive than functionalists\\nassume; see Section 6 for further discussion.)\\nWithin this broad characterization of functionalism, however, a number\\nof distinctions can be made. One of particular importance is the\\ndistinction between theories in which the functional characterizations\\nof mental states purport to provide analyses of the meanings of our\\nmental state terms (or otherwise restrict themselves to a priori\\ninformation), and theories that permit functional characterizations of\\nmental states to appeal to information deriving from scientific\\nexperimentation (or speculation). (See Shoemaker 1984c, and Rey 1997,\\nfor further discussion and more fine-grained distinctions.) There are\\nother important differences among functionalist theories as well.\\nThese (sometimes orthogonal) differences, and the motivations for\\nthem, can best be appreciated by examining the origins of\\nfunctionalism and tracing its evolution in response both to explicit\\ncriticisms of the thesis and changing views about the nature of\\npsychological explanation.\\n2. Antecedents of Functionalism\\nAlthough functionalism attained its greatest prominence as a theory of\\nmental states in the last third of the 20th century, it has\\nantecedents in both modern and ancient philosophy, as well as in early\\ntheories of computation and artificial intelligence.\\n2.1 Early Antecedents\\nThe earliest view in the Western canon that can be considered an\\nancestor of functionalism is Aristotle’s theory of the soul (350\\nBCE). In contrast to Plato’s claim that the soul can exist apart\\nfrom the body, Aristotle argued (\\nDe Anima\\nBk. II, Ch. 1) that\\nthe (human) soul is the\\nform\\nof a natural, organized human\\nbody – the set of powers or capacities that enable it to express\\nits “essential whatness”, which for Aristotle is a matter\\nof fulfilling the function or purpose that defines it as the kind of\\nthing it is. Just as the form of an axe is whatever enables it to cut,\\nand the form of an eye is whatever enables it to see, the (human) soul\\nis to be identified with whichever powers and capacities enable a\\nnatural, organized human body to fulfill its defining function, which,\\naccording to Aristotle, is to survive and flourish as a living,\\nacting, perceiving, and reasoning being. So, Aristotle argues, the\\nsoul is inseparable from the body, and comprises whichever capacities\\nare required for a body to live, perceive, reason, and act. (See\\nShields, 1990, and Nelson, 1990, for further debate about whether\\nAristotle’s view can be considered to be a version of\\nfunctionalism.)\\nA second, relatively early, ancestor of contemporary functionalism is\\nHobbes’s (1651) account of reasoning as a kind of computation\\nthat proceeds by mechanistic principles comparable to the rules of\\narithmetic. Reasoning, he argues, is “nothing but\\nreckoning\\n, that is adding and subtracting, of the\\nconsequences of general names agreed upon for the\\nmarking\\nand\\nsignifying\\nof our thoughts.” (\\nLeviathan\\n, Ch.\\n5) In addition, Hobbes suggests that reasoning – along with\\nimagining, sensing, and deliberating about action, all of which\\nproceed according to mechanistic principles – can be performed\\nby systems of various physical types. As he puts it in his\\nIntroduction to\\nLeviathan\\n, where he likens a commonwealth to\\nan individual human, “why may we not say that all automata\\n(engines that move themselves by springs and wheels…) have an\\nartificial life? For what is the heart but a spring; and the nerves\\nbut so many strings, and the joints but so many wheels…”.\\nIt was not until the middle of the 20th century, however, that it\\nbecame common to speculate that thinking may be nothing more than\\nrule-governed computation that can be carried out by creatures of\\nvarious physical types.\\n2.2 Thinking Machines and the “Turing Test”\\nIn a seminal paper (Turing 1950), A.M. Turing proposed that the\\nquestion, “Can machines think?” can be replaced by the\\nquestion, “Is it theoretically possible f\", \"excerpt_truncated\": true, \"source_sha256\": \"3453c4cb265d4e42d41f56968c405f2c6e08ae68c6061af6e4021ca4348eca91\"}",
+  "id": "source-ebfca05379ee43af",
+  "scope": "collected",
+  "source": "https://plato.stanford.edu/entries/functionalism/",
+  "version": 18,
+  "time": "2026-09-13T13:53:24.142170+00:00"
+}
+```
+
+### `r-d3e6f8a4600e4fdc`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":18,\"inherited_commitments\":[],\"invocation\":\"w-d3e6f8a4600e4fdc\",\"previous_head\":\"a621449032c99ed4fdfff3b32fea5d47659fa02ea18f59e25b76ff7316471368\",\"process_id\":2061,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d3e6f8a4600e4fdc",
+  "source": "runtime:continuity",
+  "version": 18,
+  "time": "2026-09-13T13:53:24.343737+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping research on non-classical correlation signatures and philosophical frameworks
@@ -4216,8 +4276,9 @@ _None recorded._
   "reason": "Directly fetch the abstract of arXiv:1507.00971 on temporal quantum steering and open quantum dynamics using an approved arXiv URL to avoid export API search failures.",
   "type": "research",
   "url": "https://arxiv.org/abs/1507.00971",
-  "status": "queued",
-  "created_by": "w-8e576828a2ed4142"
+  "status": "collected",
+  "created_by": "w-8e576828a2ed4142",
+  "evidence": "source-1eb3f222852a4613"
 }
 ```
 
@@ -4232,8 +4293,9 @@ _None recorded._
   "reason": "Retrieve the SEP entry on Functionalism to assess functional accounts of mental states versus higher-order consciousness.",
   "type": "research",
   "url": "https://plato.stanford.edu/entries/functionalism/",
-  "status": "queued",
-  "created_by": "w-8e576828a2ed4142"
+  "status": "collected",
+  "created_by": "w-8e576828a2ed4142",
+  "evidence": "source-ebfca05379ee43af"
 }
 ```
 
