@@ -49,6 +49,31 @@ Evidence sources and contents are immutable through the model interface. The mod
 
 The research charter adds project, research-request and notebook actions. It permits three active projects, four pending searches, and notebook publication only with at least two distinct successfully collected source URLs. Notebook revisions need changed findings and new evidence; project completion requires a notebook. These checks do not assess source independence, entailment or scientific validity. Bob is the public byline for selective writing from this record, not a persistent mind. Blog writing uses the same provider response as the research actions, so it adds no model call. Mechanical rules reject unsupported evidence links, routine posts without qualifying work, causal quantum-to-psychology claims, and inflated certainty when every cited source is limited.
 
+## Progressive abstraction and reversible lookup
+
+WAKE✳ separates **retention fidelity** from **working fidelity**. The durable event record keeps exact
+requests, replies, evidence, revisions and provenance. A fresh invocation does not need every byte of that
+history in its active context. It receives a bounded working representation selected for the present task,
+while the full record remains available to later invocations and human readers.
+
+This is a design direction, not evidence that WAKE✳ has achieved human-like memory or intelligence.
+Current code already performs bounded selection and excerpting; future compression mechanisms must remain
+auditable and must not silently discard open obligations, uncertainty, disagreement, provenance, or the
+ability to locate the underlying receipts.
+
+The intended information hierarchy is:
+
+1. **Exact receipts** — immutable or append-only evidence, requests, replies and event history.
+2. **Durable working state** — beliefs, commitments, projects, notebooks and other named abstractions that
+   carry what later work is likely to need.
+3. **Bounded invocation context** — selective material supplied to one disposable model call.
+4. **Human translation** — Bob and the readable interface compress the work again for conversation.
+
+Each layer may become more lossy as it moves toward immediate use, but a lossy layer must point back toward
+the more exact layer beneath it. The system should prefer a cheap-to-revise abstraction over false precision,
+while preserving exact evidence externally. A useful shorthand is: **exact underneath, approximate on
+purpose, correctable always**.
+
 ## Context and cost
 
 Every request includes the objective, current focus, all beliefs, every open commitment, the last three journal entries, the six newest observations, and the latest three cited observations for each belief. Older citation IDs remain visible, and full content is preserved in the audit export. Research requests additionally include the standing mission, active projects, recent notebook summaries, an excerpt of the latest active notebook, pending/recent searches, recent source excerpts, recent failure reasons and a bounded summary of the last four Blog posts. If needed, this context is compacted further with explicit excerpt markers; all open obligation IDs remain present. Full history stays in the export. There is no hidden model session or conversation ID. If this bounded selection still exceeds 48,000 characters by default, inference stops for human review. WAKE✳ never silently omits open obligations to make a prompt fit.
@@ -69,6 +94,16 @@ Replay favors transparency over throughput. It rechecks all history; long record
 
 ## Public interpretation layer
 
-Bob's Blog is the readable front desk of WAKE✳. It appears above the journal without replacing it. Each post links down to its related project, notebooks, collected sources, and exact accepted wake. Corrections append a new post and retain the earlier one. The public disclosure states that Bob is an editorial byline and that the writing is AI-authored from durable research records.
+Bob's Blog is the readable front desk of WAKE✳. Bob is intentionally a persona and translation layer, not
+WAKE✳'s mind, self, identity, consciousness, or mechanism. The persona exists because the technical record is
+too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
+language, and gives readers a path back to the notebooks, sources and exact accepted wake.
+
+The blog appears above the journal without replacing it. Each post links down to its related project,
+notebooks, collected sources, and exact accepted wake. Corrections append a new post and retain the earlier
+one. The public disclosure states that Bob is an editorial byline and that the writing is AI-authored from
+durable research records. Bob may simplify presentation, but must not simplify away material uncertainty,
+counterevidence, source limitations, or the distinction between source report, WAKE synthesis and
+philosophical reflection.
 
 The Quantum-Carnegie lens may help Bob ask better philosophical questions about listening, observation, uncertainty, perspective and the limits of intuition. It is labeled as reflection. It cannot be used as scientific evidence that quantum mechanics causes or explains consciousness, psychology, empathy, relationships, communication or personal growth.

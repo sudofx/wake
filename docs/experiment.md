@@ -2,6 +2,18 @@
 
 The hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The experiment does not attempt to establish consciousness or an enduring internal self.
 
+## Interpretation boundary
+
+The experiment is about externally scaffolded continuity and correction across disposable model calls.
+It is not a test for consciousness, qualia, personhood, a persistent internal self, or whether a model
+"really understands" in a phenomenal sense. Intelligent-looking behavior and subjective experience are
+separate questions here.
+
+The emerging architectural hypothesis is narrower: exact records can remain external while later calls work
+from progressively more useful abstractions, retrieve detail when needed, and revise those abstractions when
+evidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove
+that the resulting behavior is reliable or intelligent.
+
 ## Reproducible offline harness
 
 Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site` in a new directory. The runner creates each invocation using a separate `subprocess.run`, with no inherited Python state, provider object or chat history. It alternates `fixture-a` and `fixture-b`, two labels for the deterministic fixture algorithm. This establishes provider interchangeability at the contract boundary, not behavioral equivalence of two real models.

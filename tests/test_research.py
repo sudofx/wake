@@ -381,4 +381,10 @@ class CloudPersistenceTests(unittest.TestCase):
             finally: reopened.store.close()
 
 
+    def test_public_persona_is_explicitly_a_translation_layer(self):
+        from wake.providers import RESEARCH_SYSTEM
+        self.assertIn("public-facing translation layer", RESEARCH_SYSTEM)
+        self.assertIn("persona must never be presented as the mechanism", RESEARCH_SYSTEM)
+        self.assertIn("Optimize for signal over exhaustiveness", RESEARCH_SYSTEM)
+        self.assertIn("re-expand the compressed explanation into the exact receipts", RESEARCH_SYSTEM)
 if __name__ == "__main__": unittest.main()

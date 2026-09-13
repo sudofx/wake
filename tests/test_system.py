@@ -246,6 +246,16 @@ class SystemTests(unittest.TestCase):
         with self.assertRaises(IntegrityError):
             verify_history(log, (self.root/"site/head.txt").read_text())
 
+    def test_progressive_abstraction_is_documented_without_personhood_claims(self):
+        root = Path(__file__).resolve().parents[1]
+        readme = (root / "README.md").read_text()
+        architecture = (root / "docs/architecture.md").read_text()
+        experiment = (root / "docs/experiment.md").read_text()
+        self.assertIn("progressive abstraction with reversible lookup", readme.lower())
+        self.assertIn("Exact receipts", architecture)
+        self.assertIn("exact underneath, approximate on", architecture.lower())
+        self.assertIn("not a test for consciousness, qualia, personhood", experiment)
+
     def test_report_display_polish_is_embedded(self):
         export(self.engine.store, self.root / "site")
         page = (self.root / "site/index.html").read_text()

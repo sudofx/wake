@@ -6,7 +6,9 @@
 
 Disposable models. Durable state. Receipts for everything.
 
-WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. It chooses small useful research projects in **quantum physics, philosophy, psychology, AI and their intersections**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob writes a public note about WAKE✳︎ only when that work produces something worth discussing.
+WAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
+
+WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. It chooses small useful research projects in **quantum physics, philosophy, psychology, AI and their intersections**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.
 
 **[Open WAKE✳︎’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
 
@@ -93,12 +95,20 @@ For iPhone, iPad and Mac access away from the host, opt into publishing the stat
 ## How it works
 
 ```text
-SQLite event history → fresh request → replaceable provider → untrusted proposal
-        ↑                                                        ↓
-atomic event + projection ← deterministic governance ← accept / reject
-        ↓
-Bob's Blog → journal / lab notes → notebooks → evidence / raw history
+exact receipts / event history
+          ↓
+durable projection → bounded context → fresh provider → untrusted proposal
+          ↑                                              ↓
+          └──── deterministic governance ← accept / reject
+                           ↓
+               working abstractions
+                           ↓
+         Bob / human-readable interface
+                           ↓
+               links back to receipts
 ```
+
+The design principle is **progressive abstraction with reversible lookup**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Reversible” here means the external record remains available for lookup; it does not mean a lossy summary contains enough information to reconstruct discarded detail by itself.
 
 - `wake/store.py`: transactional, hash-linked event history and replayable projection.
 - `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.
