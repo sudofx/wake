@@ -1811,7 +1811,47 @@ _None recorded._
   "status": "failed",
   "time": "2026-09-13T15:40:02.616360+00:00",
   "finished": "2026-09-13T15:40:04.711121+00:00",
-  "reason": "Gemini HTTP 429; wake attempt counted"
+  "reason": "Gemini HTTP 429; wake attempt counted",
+  "provider_error": {
+    "elapsed_ms": 189,
+    "http_status": 429,
+    "provider_error": {
+      "code": 429,
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.Help",
+          "links": [
+            {
+              "description": "Learn more about Gemini API quotas",
+              "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+          "violations": [
+            {
+              "quotaDimensions": {
+                "location": "[truncated]",
+                "model": "[truncated]"
+              },
+              "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+              "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+              "quotaValue": "20"
+            }
+          ]
+        },
+        {
+          "@type": "type.googleapis.com/google.rpc.RetryInfo",
+          "retryDelay": "55s"
+        }
+      ],
+      "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 55.35960536s.",
+      "status": "RESOURCE_EXHAUSTED"
+    },
+    "request_payload_bytes": 44155,
+    "response_bytes_captured": 1362
+  }
 }
 ```
 
