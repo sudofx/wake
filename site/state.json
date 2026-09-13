@@ -1355,6 +1355,23 @@
       "source": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published",
       "version": 17,
       "time": "2026-09-13T06:05:13.817470+00:00"
+    },
+    "source-8d0bebc516664a28": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21428/e2759450.c403b8e7\\\", \\\"title\\\": [\\\"Metacognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.21428/e2759450.c403b8e7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 10]]}}, {\\\"DOI\\\": \\\"10.4324/9780203062685-12\\\", \\\"title\\\": [\\\"What's All the Fuss about Metacognition?\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203062685-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 4, 3]]}}, {\\\"DOI\\\": \\\"10.1002/9780470713662.ch1\\\", \\\"title\\\": [\\\"Setting the Stage Metacognition and Cognitive Therapy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9780470713662.ch1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 1]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-642-45190-4_17\\\", \\\"title\\\": [\\\"Metacognition in Alzheimer’s Disease\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-642-45190-4_17\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4b1cce17640c7613a5669cf431b231636bacae961d243f3fc952ffd55c05a341\"}",
+      "id": "source-8d0bebc516664a28",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published",
+      "version": 17,
+      "time": "2026-09-13T11:42:19.645326+00:00"
+    },
+    "r-47908dc96df94b3f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":17,\"inherited_commitments\":[],\"invocation\":\"w-47908dc96df94b3f\",\"previous_head\":\"9fa618cb18656a6283f4b7a961feea3c46dbc0b55b5e6cde82106fc54fc2111f\",\"process_id\":2284,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-47908dc96df94b3f",
+      "source": "runtime:continuity",
+      "version": 17,
+      "time": "2026-09-13T11:42:19.860320+00:00"
     }
   },
   "journal": [
@@ -2260,6 +2277,20 @@
       "time": "2026-09-13T00:02:35.936291+00:00",
       "finished": "2026-09-13T00:02:43.316732+00:00",
       "reason": ""
+    },
+    "w-47908dc96df94b3f": {
+      "base_version": 17,
+      "charged": true,
+      "id": "w-47908dc96df94b3f",
+      "model": "gemini-3.8-flash",
+      "process_id": 2284,
+      "provider": "gemini",
+      "quota_day": "2026-09-13",
+      "request_hash": "2458ba31f32856f6b04920fea790ef556b055a34e5466cc33317733d99c6cc8c",
+      "status": "failed",
+      "time": "2026-09-13T11:42:19.931017+00:00",
+      "finished": "2026-09-13T11:42:56.379931+00:00",
+      "reason": "Gemini HTTP 503 after one delayed retry; wake attempt counted"
     }
   },
   "pending": null,
