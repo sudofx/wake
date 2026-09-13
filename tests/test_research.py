@@ -221,6 +221,33 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), inflated])["status"], "rejected")
         self.assertEqual(self.engine.store.load()["posts"], {})
 
+    def test_blog_rejects_contested_synthesis_presented_as_established_fact(self):
+        self.source("s1")
+        self.source("s2")
+        for body in (
+            "The literature separates agency and consciousness along clean functional fault lines. " * 6,
+            "External scaffolding allows genuine epistemic self-governance without consciousness. " * 6,
+            "The collected literature demonstrates that agency does not require consciousness. " * 6,
+        ):
+            with self.subTest(body=body[:50]):
+                result = self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])
+                self.assertEqual(result["status"], "rejected")
+                self.assertEqual(self.engine.store.load()["posts"], {})
+
+    def test_blog_allows_explicitly_calibrated_synthesis(self):
+        self.source("s1")
+        self.source("s2")
+        body = (
+            "Our reading of the collected sources suggests a useful functional distinction between "
+            "metacognitive regulation and phenomenal consciousness. The notebook treats that as a "
+            "provisional synthesis rather than proof that the concepts are cleanly separable in every "
+            "theory or implementation. One interpretation is that external records can support some "
+            "forms of error regulation without settling whether that deserves the stronger label of "
+            "epistemic agency. The distinction is useful precisely because the broader philosophical "
+            "question remains open."
+        )
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])["status"], "accepted")
+
     def test_correction_preserves_the_original_post(self):
         self.source("s1")
         self.source("s2")

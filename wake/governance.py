@@ -62,6 +62,19 @@ def _blog_language(action, evidence):
                         r".{0,100}(is|are).{0,40}quantum", lower)
     require(not bridge and not reverse,
             "Quantum-Carnegie connections must remain philosophical metaphor, not scientific causation")
+    # Bob is an explainer, not an authority that upgrades interpretation into fact.
+    # Reject a small set of high-risk formulations even when source provenance is valid.
+    # This is intentionally narrow: ordinary confident prose remains allowed.
+    overclaim = re.search(
+        r"\b(genuine|real)\s+(epistemic\s+)?(agency|self-governance|consciousness|intelligence)\b"
+        r"|\b(clean|clear|sharp)\s+(functional\s+)?(fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
+        r"|\b(cleanly|sharply)\s+(separates?|demarcates?|distinguishes?)\b"
+        r"|\b(proves?|demonstrates?|establishes?|confirms?)\s+that\b",
+        lower,
+    )
+    require(not overclaim,
+            "Blog prose must not present contested synthesis or interpretation as established fact")
+
     if _limited_sources(evidence):
         calibrated = re.sub(r"\b(not|isn't|is not|has not been|cannot be)\s+"
                             r"(rigorous|confirmed|settled|proven|definitive|conclusive)\b", "", lower)
