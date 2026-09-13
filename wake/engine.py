@@ -9,7 +9,10 @@ import uuid
 from zoneinfo import ZoneInfo
 
 from .governance import Rejected, require, text, transition
-from .providers import SYSTEM, ProviderRequestError, TransientProviderError
+from .providers import (
+    SYSTEM, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
+    is_free_tier_daily_quota,
+)
 from .store import Store, canonical, digest
 
 
@@ -127,6 +130,19 @@ class Engine:
         state = self.store.load()
         require(state["pending"] is None, "An invocation is already pending")
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
+        if charged:
+            exhausted = [
+                item for item in state["invocations"].values()
+                if item.get("charged")
+                and item.get("provider") == provider
+                and item.get("model") == model
+                and item.get("quota_day") == day
+                and is_free_tier_daily_quota(item.get("provider_error", {}))
+            ]
+            require(
+                not exhausted,
+                "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent",
+            )
         used = sum(i["charged"] and i["quota_day"] == day for i in state["invocations"].values())
         require(not charged or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         invocation = "w-" + uuid.uuid4().hex[:16]
@@ -200,6 +216,15 @@ class Engine:
                 if checkpoint:
                     checkpoint()
                 return {"status": "deferred", "id": invocation, "reason": reason}
+            except DailyQuotaExceeded as exc:
+                reason = str(exc)[:1000]
+                payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
+                           "quota_exhausted": "free_tier_daily"}
+                self.store.append("deferred", payload)
+                if checkpoint:
+                    checkpoint()
+                return {"status": "deferred", "id": invocation, "reason": reason,
+                        "provider_error": exc.details, "quota_exhausted": "free_tier_daily"}
             except ProviderRequestError as exc:
                 reason = str(exc)[:1000]
                 self.store.append("failed", {"id": invocation, "reason": reason,

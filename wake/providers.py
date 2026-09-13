@@ -188,6 +188,29 @@ class ProviderRequestError(Rejected):
         self.details = details or {}
 
 
+FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+
+
+class DailyQuotaExceeded(ProviderRequestError):
+    """Gemini reported the exact per-day free-tier project/model quota."""
+
+
+def _quota_ids(value):
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if key == "quotaId" and isinstance(item, str):
+                yield item
+            yield from _quota_ids(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _quota_ids(item)
+
+
+def is_free_tier_daily_quota(details):
+    """Classify only Google's exact free-tier daily quota identifier."""
+    return FREE_TIER_DAILY_QUOTA_ID in set(_quota_ids(details or {}))
+
+
 def _safe_provider_value(value, depth=0):
     """Bound provider error JSON and drop fields that could plausibly contain credentials."""
     if depth > 5:
@@ -282,6 +305,11 @@ class Gemini:
                         f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
                     ) from None
                 diagnostics = _http_error_details(exc, elapsed_ms, len(payload))
+                if is_free_tier_daily_quota(diagnostics):
+                    raise DailyQuotaExceeded(
+                        "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
+                        diagnostics,
+                    ) from None
                 raise ProviderRequestError(
                     f"Gemini HTTP {exc.code}; wake attempt counted",
                     diagnostics,

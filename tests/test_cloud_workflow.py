@@ -133,6 +133,39 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertFalse(due)
         self.assertEqual(next_eligible, now + timedelta(minutes=5))
 
+    def test_scheduled_daily_quota_waits_until_pacific_midnight(self):
+        # 2026-09-14 06:50 UTC is 2026-09-13 23:50 Pacific.
+        item = {
+            "charged": True,
+            "provider": "gemini",
+            "model": "gemini-3.8-flash",
+            "status": "failed",
+            "quota_day": "2026-09-13",
+            "time": datetime(2026, 9, 14, 6, 50, tzinfo=timezone.utc).isoformat(),
+            "reason": "Gemini HTTP 429; wake attempt counted",
+            "provider_error": {
+                "http_status": 429,
+                "provider_error": {
+                    "details": [{"violations": [{
+                        "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                        "quotaValue": "20",
+                    }]}],
+                },
+            },
+        }
+        state = {"invocations": {"wake": item}}
+        before = datetime(2026, 9, 14, 6, 55, tzinfo=timezone.utc)
+        due, next_eligible = github_wake.scheduled_wake_due(state, now=before)
+        self.assertFalse(due)
+        self.assertEqual(next_eligible, datetime(2026, 9, 14, 7, 0, tzinfo=timezone.utc))
+
+        # Once Pacific midnight passes, the quota guard releases immediately rather
+        # than imposing the ordinary 55-minute wake spacing.
+        after = datetime(2026, 9, 14, 7, 1, tzinfo=timezone.utc)
+        due, next_eligible = github_wake.scheduled_wake_due(state, now=after)
+        self.assertTrue(due)
+        self.assertEqual(next_eligible, datetime(2026, 9, 14, 7, 0, tzinfo=timezone.utc))
+
     def test_failed_checkpoint_never_exports_or_calls_provider(self):
         class NeverCall(Fixture):
             def propose(self, request): raise AssertionError("Provider must not be called")

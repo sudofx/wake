@@ -70,7 +70,12 @@ def reduce_event(state, event, historical=False):
             fields = p.get("hash_fields", ["version", "beliefs", "commitments", "journal"])
             require(digest({k: state[k] for k in fields}) == p["result_hash"],
                     "Transition result hash mismatch")
-        state["invocations"][p["id"]].update(status=kind, finished=event["time"], reason=p.get("reason", ""))
+        terminal = {"status": kind, "finished": event["time"], "reason": p.get("reason", "")}
+        if "provider_error" in p:
+            terminal["provider_error"] = p["provider_error"]
+        if "quota_exhausted" in p:
+            terminal["quota_exhausted"] = p["quota_exhausted"]
+        state["invocations"][p["id"]].update(terminal)
         state["pending"] = None
     else:
         raise Rejected(f"Unknown event kind: {kind}")

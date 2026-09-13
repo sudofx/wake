@@ -3,6 +3,7 @@
 
 import argparse
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 import json
 import os
 from pathlib import Path
@@ -14,13 +15,25 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from wake.engine import Engine, config
 from wake.governance import Rejected
-from wake.providers import Gemini
+from wake.providers import Gemini, is_free_tier_daily_quota
 from wake.research import collect
 from wake.report import export, atomic_write
 
 
 SCHEDULED_WAKE_INTERVAL = timedelta(minutes=55)
 SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=10)
+PACIFIC = ZoneInfo("America/Los_Angeles")
+
+
+def daily_quota_next_eligible(item):
+    """Return the next Pacific midnight for an exact Gemini daily-quota result."""
+    if not is_free_tier_daily_quota(item.get("provider_error", {})):
+        return None
+    quota_day = item.get("quota_day")
+    if not quota_day:
+        return None
+    reset = datetime.fromisoformat(quota_day).replace(tzinfo=PACIFIC) + timedelta(days=1)
+    return reset.astimezone(timezone.utc)
 
 
 def transient_provider_deferred(item):
@@ -41,6 +54,9 @@ def scheduled_wake_due(state, now=None):
     if not charged:
         return True, None
     latest = max(charged, key=lambda item: datetime.fromisoformat(item["time"]))
+    quota_reset = daily_quota_next_eligible(latest)
+    if quota_reset is not None:
+        return now >= quota_reset, quota_reset
     interval = (SCHEDULED_TRANSIENT_RETRY_INTERVAL
                 if transient_provider_deferred(latest) else SCHEDULED_WAKE_INTERVAL)
     next_eligible = datetime.fromisoformat(latest["time"]) + interval
@@ -101,7 +117,8 @@ def main(publish_only=False, scheduled=False):
             if scheduled:
                 due, next_eligible = scheduled_wake_due(engine.store.load())
                 if not due:
-                    result = {"status": "waiting", "reason": "A recent wake already covered this hour.",
+                    result = {"status": "waiting",
+                              "reason": "A recent wake or provider quota window suppresses this call.",
                               "next_eligible": next_eligible.isoformat()}
                     set_step_output("skipped", "true")
                     print(json.dumps(result))

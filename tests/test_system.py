@@ -168,6 +168,45 @@ class SystemTests(unittest.TestCase):
             clock.now.return_value = datetime(2026, 9, 10, 0, 1, tzinfo=ZoneInfo("America/Los_Angeles"))
             self.assertEqual(self.engine.run(Charged())["status"], "accepted")
 
+    def test_exact_daily_quota_is_deferred_and_blocks_same_day_recall(self):
+        from wake.providers import DailyQuotaExceeded
+        details = {
+            "http_status": 429,
+            "provider_error": {
+                "status": "RESOURCE_EXHAUSTED",
+                "details": [{"violations": [{
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20",
+                }]}],
+            },
+        }
+
+        class Exhausted:
+            name = "gemini"
+            model = "gemini-3.8-flash"
+            charged = True
+            def propose(self, request):
+                raise DailyQuotaExceeded(
+                    "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
+                    details,
+                )
+
+        result = self.engine.run(Exhausted())
+        self.assertEqual(result["status"], "deferred")
+        self.assertEqual(result["quota_exhausted"], "free_tier_daily")
+        invocation = self.engine.store.load()["invocations"][result["id"]]
+        self.assertEqual(invocation["status"], "deferred")
+        self.assertEqual(invocation["provider_error"]["http_status"], 429)
+
+        class NeverCall(Exhausted):
+            def propose(self, request):
+                raise AssertionError("Daily quota guard must suppress the provider call")
+
+        with self.assertRaisesRegex(Rejected, "daily quota exhausted"):
+            self.engine.run(NeverCall())
+        self.assertEqual(len(self.engine.store.load()["invocations"]), 1)
+
     def test_context_ceiling_prevents_call(self):
         self.engine.config["max_context_chars"] = 10
         class NoCall(Fixture):
