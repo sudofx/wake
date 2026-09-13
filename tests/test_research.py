@@ -140,9 +140,13 @@ class ResearchTests(unittest.TestCase):
         export(self.engine.store, self.root/"site")
         markdown = (self.root/"site/blog/post-one.md").read_text()
         html = (self.root/"site/index.html").read_text()
+        standalone = (self.root/"site/blog/post-one.html").read_text()
         self.assertIn("Bob's Lens — philosophical reflection", markdown)
         self.assertIn("Exact wake and decision", markdown)
         self.assertIn("The useful disagreement", html)
+        self.assertIn("font-variant-emoji:text", html)
+        self.assertIn("font-variant-emoji:text", standalone)
+        self.assertIn("WAKE✳︎", standalone)
 
     def test_unsupported_blog_claims_are_rejected_atomically(self):
         self.source("s1")
