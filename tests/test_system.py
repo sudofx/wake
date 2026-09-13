@@ -235,7 +235,7 @@ class SystemTests(unittest.TestCase):
             self.assertEqual(json.loads(request.data)["generationConfig"]["responseMimeType"], "application/json")
 
 
-    def test_gemini_waits_once_and_retries_a_503(self):
+    def test_gemini_retries_a_transient_503(self):
         class Response:
             def __enter__(self): return self
             def __exit__(self, *args): pass
@@ -249,19 +249,21 @@ class SystemTests(unittest.TestCase):
             raw, _ = Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
         self.assertEqual(raw, "{}")
         self.assertEqual(network.call_count, 2)
-        wait.assert_called_once_with(30)
+        wait.assert_called_once_with(15)
         busy.close()
 
-    def test_gemini_stops_after_one_503_retry(self):
-        busy = urllib.error.HTTPError("https://example.invalid", 503, "busy", Message(), None)
+    def test_gemini_defers_after_transient_503_retries_are_exhausted(self):
+        from wake.providers import TransientProviderError
+        busy = [urllib.error.HTTPError("https://example.invalid", 503, "busy", Message(), None) for _ in range(4)]
         with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=[busy, busy]) as network, \
+             patch("urllib.request.urlopen", side_effect=busy) as network, \
              patch("wake.providers.time.sleep") as wait:
-            with self.assertRaisesRegex(Rejected, "503 after one delayed retry"):
+            with self.assertRaisesRegex(TransientProviderError, "temporarily unavailable"):
                 Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
-        self.assertEqual(network.call_count, 2)
-        wait.assert_called_once_with(30)
-        busy.close()
+        self.assertEqual(network.call_count, 4)
+        self.assertEqual([c.args[0] for c in wait.call_args_list], [15, 30, 60])
+        for item in busy:
+            item.close()
 
     def test_gemini_does_not_retry_a_nontransient_http_error(self):
         denied = urllib.error.HTTPError("https://example.invalid", 403, "denied", Message(), None)

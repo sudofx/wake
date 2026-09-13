@@ -132,10 +132,15 @@ def load_env(path=Path(".env")):
                 os.environ[key] = value.strip().strip("\"'")
 
 
+class TransientProviderError(RuntimeError):
+    "Temporary provider/network outage; the wake should be retried later."
+
+
 class Gemini:
     name = "gemini"
     charged = True
-    retry_503_delay_seconds = 30
+    transient_http_codes = frozenset({500, 502, 503, 504})
+    transient_retry_delays_seconds = (15, 30, 60)
 
     def __init__(self, config, model=None):
         load_env()
@@ -161,22 +166,31 @@ class Gemini:
             f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent",
             data=json.dumps(body).encode(), headers={"Content-Type": "application/json",
                                                    "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
-        for transport_attempt in range(2):
+        attempts = len(self.transient_retry_delays_seconds) + 1
+        for transport_attempt in range(attempts):
             try:
                 with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
                     data = json.loads(response.read(1_000_001))
                 break
             except urllib.error.HTTPError as exc:
-                # A 503 means Gemini is temporarily busy. Wait once and resend the
-                # same durable request; all other HTTP failures remain final.
-                if exc.code == 503 and transport_attempt == 0:
-                    time.sleep(self.retry_503_delay_seconds)
-                    continue
+                # Temporary server-side failures get bounded retries. Access,
+                # quota and request errors remain final and visible.
+                if exc.code in self.transient_http_codes:
+                    if transport_attempt < len(self.transient_retry_delays_seconds):
+                        time.sleep(self.transient_retry_delays_seconds[transport_attempt])
+                        continue
+                    raise TransientProviderError(
+                        f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
+                    ) from None
                 # Neither request headers nor provider error bodies belong in the public journal.
-                suffix = " after one delayed retry" if exc.code == 503 else ""
-                raise Rejected(f"Gemini HTTP {exc.code}{suffix}; wake attempt counted") from None
+                raise Rejected(f"Gemini HTTP {exc.code}; wake attempt counted") from None
             except (urllib.error.URLError, TimeoutError):
-                raise Rejected("Gemini network failure; wake attempt counted") from None
+                if transport_attempt < len(self.transient_retry_delays_seconds):
+                    time.sleep(self.transient_retry_delays_seconds[transport_attempt])
+                    continue
+                raise TransientProviderError(
+                    f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
+                ) from None
         candidates = data.get("candidates", [])
         require(candidates and candidates[0].get("finishReason") == "STOP", "Gemini did not return a complete answer")
         raw = "".join(part.get("text", "") for part in candidates[0].get("content", {}).get("parts", [])

@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from scripts import github_wake
 from wake.audit import verify_history
@@ -41,13 +41,13 @@ class CloudWorkflowTests(unittest.TestCase):
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
             return github_wake.main(publish_only=publish_only, scheduled=scheduled)
 
-    def test_failure_is_counted_once_exported_pushed_and_followed_by_recovery(self):
+    def test_access_limit_failure_is_counted_exported_and_stays_visible(self):
         class Failure(Fixture):
             charged = True
             calls = 0
             def propose(self, request):
                 self.calls += 1
-                raise Rejected("Gemini HTTP 503; attempt counted, no automatic retry")
+                raise Rejected("Gemini HTTP 429; wake attempt counted")
         provider = Failure()
         self.assertEqual(self.run_cloud(provider), 2)
         self.assertEqual(provider.calls, 1)
@@ -56,13 +56,29 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertTrue(next(iter(public["invocations"].values()))["charged"])
         operation = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
         self.assertEqual(operation["status"], "failed")
-        self.assertIn("503", operation["reason"])
+        self.assertIn("429", operation["reason"])
         self.assertTrue((self.project/"site/index.html").is_file())
         verify_history(self.project/"site/events.jsonl", (self.project/"site/head.txt").read_text())
-        self.assertEqual(self.run_cloud(Fixture()), 0)
-        public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
-        self.assertEqual(public["version"], 1)
-        self.assertEqual([i["status"] for i in public["invocations"].values()], ["failed", "accepted"])
+
+    def test_transient_provider_outage_is_deferred_not_failed(self):
+        from wake.providers import TransientProviderError
+        class Busy(Fixture):
+            charged = True
+            calls = 0
+            def propose(self, request):
+                self.calls += 1
+                raise TransientProviderError("Gemini temporarily unavailable after 4 attempts; wake deferred")
+        provider = Busy()
+        self.assertEqual(self.run_cloud(provider), 0)
+        self.assertEqual(provider.calls, 1)
+        public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/state.json").stdout)
+        invocation = next(iter(public["invocations"].values()))
+        self.assertEqual(invocation["status"], "deferred")
+        self.assertIsNone(public["pending"])
+        operation = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
+        self.assertEqual(operation["status"], "deferred")
+        self.assertIn("temporarily unavailable", operation["reason"])
+        verify_history(self.project/"site/events.jsonl", (self.project/"site/head.txt").read_text())
 
     def test_republishing_preserves_the_accepted_wake_without_calling_gemini(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
@@ -91,15 +107,31 @@ class CloudWorkflowTests(unittest.TestCase):
         public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
         self.assertEqual(len(public["invocations"]), 1)
 
-    def test_scheduled_due_uses_the_durable_charged_invocation_time(self):
-        old = (datetime.now(timezone.utc) - timedelta(minutes=56)).isoformat()
-        state = {"invocations": {"wake": {"charged": True, "time": old}}}
-        due, _ = github_wake.scheduled_wake_due(state)
+    def test_scheduled_due_uses_normal_guard_but_retries_deferred_outages_soon(self):
+        now = datetime.now(timezone.utc)
+        state = {"invocations": {"wake": {
+            "charged": True, "status": "accepted",
+            "time": (now - timedelta(minutes=56)).isoformat(), "reason": ""
+        }}}
+        due, _ = github_wake.scheduled_wake_due(state, now=now)
         self.assertTrue(due)
-        state["invocations"]["wake"]["time"] = datetime.now(timezone.utc).isoformat()
-        due, next_eligible = github_wake.scheduled_wake_due(state)
+
+        state["invocations"]["wake"].update(status="accepted", time=now.isoformat(), reason="")
+        due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
         self.assertFalse(due)
-        self.assertGreater(next_eligible, datetime.now(timezone.utc))
+        self.assertEqual(next_eligible, now + timedelta(minutes=55))
+
+        state["invocations"]["wake"].update(
+            status="deferred",
+            reason="Gemini temporarily unavailable after 4 attempts; wake deferred",
+            time=(now - timedelta(minutes=11)).isoformat())
+        due, _ = github_wake.scheduled_wake_due(state, now=now)
+        self.assertTrue(due)
+
+        state["invocations"]["wake"]["time"] = (now - timedelta(minutes=5)).isoformat()
+        due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
+        self.assertFalse(due)
+        self.assertEqual(next_eligible, now + timedelta(minutes=5))
 
     def test_failed_checkpoint_never_exports_or_calls_provider(self):
         class NeverCall(Fixture):
@@ -129,6 +161,33 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("git push --force", workflow)
         self.assertFalse((root/".github/workflows/static.yml").exists())
         self.assertFalse((root/".github/workflows/jekyll-gh-pages.yml").exists())
+
+    def test_gemini_retries_transient_503s_before_succeeding(self):
+        class Response:
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def read(self, maximum):
+                return json.dumps({"candidates":[{"finishReason":"STOP", "content":{"parts":[{"text":"{}"}]}}]}).encode()
+
+        import urllib.error
+        first = urllib.error.HTTPError("https://example", 503, "busy", None, None)
+        second = urllib.error.HTTPError("https://example", 503, "busy", None, None)
+        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
+             patch("urllib.request.urlopen", side_effect=[first, second, Response()]) as network, \
+             patch("wake.providers.time.sleep") as sleep:
+            Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
+        self.assertEqual(network.call_count, 3)
+        self.assertEqual(sleep.call_args_list, [call(15), call(30)])
+
+    def test_gemini_defers_after_transient_retries_are_exhausted(self):
+        from wake.providers import TransientProviderError
+        import urllib.error
+        failures = [urllib.error.HTTPError("https://example", 503, "busy", None, None) for _ in range(4)]
+        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
+             patch("urllib.request.urlopen", side_effect=failures), \
+             patch("wake.providers.time.sleep"):
+            with self.assertRaisesRegex(TransientProviderError, "temporarily unavailable"):
+                Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
 
     def test_provider_schema_prevents_the_observed_mixed_project_shape(self):
         class Response:

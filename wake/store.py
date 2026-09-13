@@ -63,7 +63,7 @@ def reduce_event(state, event):
         state["pending"] = p["id"]
         state["invocations"][p["id"]] = {k: v for k, v in p.items() if k != "request"}
         state["invocations"][p["id"]].update(status="pending", time=event["time"])
-    elif kind in ("accepted", "rejected", "failed", "recovered"):
+    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered"):
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
             state = transition(state, p["proposal"], p["id"])

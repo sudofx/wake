@@ -9,7 +9,7 @@ import uuid
 from zoneinfo import ZoneInfo
 
 from .governance import Rejected, require, text, transition
-from .providers import SYSTEM
+from .providers import SYSTEM, TransientProviderError
 from .store import Store, canonical, digest
 
 
@@ -177,6 +177,12 @@ class Engine:
                 os._exit(85)
             try:
                 raw, metadata = provider.propose(request)
+            except TransientProviderError as exc:
+                reason = str(exc)[:1000]
+                self.store.append("deferred", {"id": invocation, "reason": reason})
+                if checkpoint:
+                    checkpoint()
+                return {"status": "deferred", "id": invocation, "reason": reason}
             except Exception as exc:
                 reason = str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry"
                 self.store.append("failed", {"id": invocation, "reason": reason})

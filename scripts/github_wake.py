@@ -20,6 +20,12 @@ from wake.report import export, atomic_write
 
 
 SCHEDULED_WAKE_INTERVAL = timedelta(minutes=55)
+SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=10)
+
+
+def transient_provider_deferred(item):
+    return (item.get("status") == "deferred"
+            and str(item.get("reason", "")).startswith("Gemini temporarily unavailable"))
 
 
 def scheduled_wake_due(state, now=None):
@@ -31,11 +37,13 @@ def scheduled_wake_due(state, now=None):
     scheduled or manual Gemini call.
     """
     now = now or datetime.now(timezone.utc)
-    charged = [datetime.fromisoformat(item["time"]) for item in state["invocations"].values()
-               if item.get("charged")]
+    charged = [item for item in state["invocations"].values() if item.get("charged")]
     if not charged:
         return True, None
-    next_eligible = max(charged) + SCHEDULED_WAKE_INTERVAL
+    latest = max(charged, key=lambda item: datetime.fromisoformat(item["time"]))
+    interval = (SCHEDULED_TRANSIENT_RETRY_INTERVAL
+                if transient_provider_deferred(latest) else SCHEDULED_WAKE_INTERVAL)
+    next_eligible = datetime.fromisoformat(latest["time"]) + interval
     return now >= next_eligible, next_eligible
 
 
@@ -126,7 +134,7 @@ def main(publish_only=False, scheduled=False):
         finally:
             engine.store.close()
     print(json.dumps(result))
-    return 0 if publish_only or result["status"] == "accepted" else 2
+    return 0 if publish_only or result["status"] in ("accepted", "deferred") else 2
 
 
 if __name__ == "__main__":
