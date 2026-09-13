@@ -1608,6 +1608,23 @@
       "source": "runtime:continuity",
       "version": 19,
       "time": "2026-09-13T15:16:56.032593+00:00"
+    },
+    "source-71fd8b4891bf4358": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"error\": \"TimeoutError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-71fd8b4891bf4358",
+      "scope": "failed",
+      "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+      "version": 19,
+      "time": "2026-09-13T15:21:10.086450+00:00"
+    },
+    "r-2f0a517f49f2432a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":19,\"inherited_commitments\":[],\"invocation\":\"w-2f0a517f49f2432a\",\"previous_head\":\"c6a99fbfbb523bf2320ee52ae1d82a3e3ef37c78bf8f17d917815591d05bb56f\",\"process_id\":2272,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-2f0a517f49f2432a",
+      "source": "runtime:continuity",
+      "version": 19,
+      "time": "2026-09-13T15:21:10.375000+00:00"
     }
   },
   "journal": [
@@ -2732,6 +2749,20 @@
       "status": "failed",
       "time": "2026-09-13T15:16:56.123328+00:00",
       "finished": "2026-09-13T15:16:58.301109+00:00",
+      "reason": "Gemini HTTP 429; wake attempt counted"
+    },
+    "w-2f0a517f49f2432a": {
+      "base_version": 19,
+      "charged": true,
+      "id": "w-2f0a517f49f2432a",
+      "model": "gemini-3.8-flash",
+      "process_id": 2272,
+      "provider": "gemini",
+      "quota_day": "2026-09-13",
+      "request_hash": "8bbf3472f1381f5242a34307cf53b055a51e23ef841c0768c05defc07523bc58",
+      "status": "failed",
+      "time": "2026-09-13T15:21:10.473843+00:00",
+      "finished": "2026-09-13T15:21:29.668192+00:00",
       "reason": "Gemini HTTP 429; wake attempt counted"
     }
   },
