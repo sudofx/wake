@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from email.message import Message
+import io
 import json
 from pathlib import Path
 import subprocess
@@ -275,6 +276,66 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(network.call_count, 1)
         wait.assert_not_called()
         denied.close()
+
+    def test_gemini_429_exposes_safe_structured_diagnostics(self):
+        from wake.providers import ProviderRequestError
+        headers = Message()
+        headers["Retry-After"] = "37"
+        body = {
+            "error": {
+                "code": 429,
+                "status": "RESOURCE_EXHAUSTED",
+                "message": "Quota exceeded for requests per minute.",
+                "details": [
+                    {"@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                     "violations": [{"quotaMetric": "generativelanguage.googleapis.com/generate_content_requests",
+                                     "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+                                     "quotaValue": "10"}]},
+                    {"@type": "type.googleapis.com/google.rpc.RetryInfo", "retryDelay": "37s"},
+                ],
+                "apiKey": "must-not-persist",
+            }
+        }
+        limited = urllib.error.HTTPError(
+            "https://example.invalid", 429, "limited", headers,
+            io.BytesIO(json.dumps(body).encode()),
+        )
+        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
+             patch("urllib.request.urlopen", side_effect=limited), \
+             patch("wake.providers.time.monotonic", side_effect=[10.0, 11.25]):
+            with self.assertRaises(ProviderRequestError) as caught:
+                Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
+        detail = caught.exception.details
+        self.assertEqual(detail["http_status"], 429)
+        self.assertEqual(detail["retry_after"], "37")
+        self.assertEqual(detail["elapsed_ms"], 1250)
+        self.assertGreater(detail["request_payload_bytes"], 0)
+        self.assertEqual(detail["provider_error"]["status"], "RESOURCE_EXHAUSTED")
+        self.assertEqual(detail["provider_error"]["details"][0]["violations"][0]["quotaId"],
+                         "GenerateRequestsPerMinutePerProjectPerModel")
+        self.assertNotIn("apiKey", detail["provider_error"])
+
+    def test_gemini_429_diagnostics_are_durable_on_failed_invocation(self):
+        headers = Message()
+        headers["Retry-After"] = "12"
+        body = {"error": {"code": 429, "status": "RESOURCE_EXHAUSTED",
+                          "message": "capacity or quota condition",
+                          "details": [{"quotaMetric": "example.metric", "quotaId": "example-id"}]}}
+        limited = urllib.error.HTTPError(
+            "https://example.invalid", 429, "limited", headers,
+            io.BytesIO(json.dumps(body).encode()),
+        )
+        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
+             patch("urllib.request.urlopen", side_effect=limited):
+            provider = Gemini({**DEFAULTS, "free_tier_confirmed":True})
+            result = self.engine.run(provider)
+        self.assertEqual(result["status"], "failed")
+        self.assertEqual(result["provider_error"]["http_status"], 429)
+        failed = [e for e in self.engine.store.events() if e["kind"] == "failed"][-1]
+        self.assertEqual(failed["payload"]["provider_error"]["retry_after"], "12")
+        self.assertEqual(failed["payload"]["provider_error"]["provider_error"]["status"],
+                         "RESOURCE_EXHAUSTED")
+        self.assertEqual(self.engine.store.load()["invocations"][result["id"]]["status"], "failed")
 
 
 if __name__ == "__main__":

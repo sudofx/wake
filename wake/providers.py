@@ -181,6 +181,62 @@ class TransientProviderError(RuntimeError):
     "Temporary provider/network outage; the wake should be retried later."
 
 
+class ProviderRequestError(Rejected):
+    """Provider rejected a request; safe structured diagnostics may be persisted."""
+    def __init__(self, message, details=None):
+        super().__init__(message)
+        self.details = details or {}
+
+
+def _safe_provider_value(value, depth=0):
+    """Bound provider error JSON and drop fields that could plausibly contain credentials."""
+    if depth > 5:
+        return "[truncated]"
+    if isinstance(value, dict):
+        result = {}
+        for key, item in value.items():
+            name = str(key)
+            if re.search(r"(api.?key|token|authorization|credential|secret)", name, re.I):
+                continue
+            result[name[:120]] = _safe_provider_value(item, depth + 1)
+            if len(result) >= 24:
+                break
+        return result
+    if isinstance(value, list):
+        return [_safe_provider_value(item, depth + 1) for item in value[:24]]
+    if isinstance(value, str):
+        return value[:2000]
+    if value is None or isinstance(value, (bool, int, float)):
+        return value
+    return str(value)[:500]
+
+
+def _http_error_details(exc, elapsed_ms, payload_bytes):
+    """Extract only bounded, non-secret diagnostics from a provider HTTP error."""
+    details = {
+        "http_status": int(exc.code),
+        "elapsed_ms": int(elapsed_ms),
+        "request_payload_bytes": int(payload_bytes),
+    }
+    retry_after = exc.headers.get("Retry-After") if exc.headers else None
+    if retry_after:
+        details["retry_after"] = str(retry_after)[:120]
+    try:
+        raw = exc.read(32_001)
+    except Exception:
+        raw = b""
+    if raw:
+        details["response_bytes_captured"] = min(len(raw), 32_000)
+        try:
+            parsed = json.loads(raw[:32_000].decode("utf-8", "replace"))
+        except (ValueError, TypeError):
+            details["response_text"] = raw[:2000].decode("utf-8", "replace")
+        else:
+            error = parsed.get("error", parsed) if isinstance(parsed, dict) else parsed
+            details["provider_error"] = _safe_provider_value(error)
+    return details
+
+
 class Gemini:
     name = "gemini"
     charged = True
@@ -204,17 +260,20 @@ class Gemini:
                                      "maxOutputTokens": self.config["max_output_tokens"]}}
         if self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
+        payload = json.dumps(body).encode()
         req = urllib.request.Request(
             f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent",
-            data=json.dumps(body).encode(), headers={"Content-Type": "application/json",
-                                                   "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
+            data=payload, headers={"Content-Type": "application/json",
+                                   "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
         attempts = len(self.transient_retry_delays_seconds) + 1
+        request_started = time.monotonic()
         for transport_attempt in range(attempts):
             try:
                 with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
                     data = json.loads(response.read(1_000_001))
                 break
             except urllib.error.HTTPError as exc:
+                elapsed_ms = round((time.monotonic() - request_started) * 1000)
                 if exc.code in self.transient_http_codes:
                     if transport_attempt < len(self.transient_retry_delays_seconds):
                         time.sleep(self.transient_retry_delays_seconds[transport_attempt])
@@ -222,7 +281,11 @@ class Gemini:
                     raise TransientProviderError(
                         f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
                     ) from None
-                raise Rejected(f"Gemini HTTP {exc.code}; wake attempt counted") from None
+                diagnostics = _http_error_details(exc, elapsed_ms, len(payload))
+                raise ProviderRequestError(
+                    f"Gemini HTTP {exc.code}; wake attempt counted",
+                    diagnostics,
+                ) from None
             except (urllib.error.URLError, TimeoutError):
                 if transport_attempt < len(self.transient_retry_delays_seconds):
                     time.sleep(self.transient_retry_delays_seconds[transport_attempt])
