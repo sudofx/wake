@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `018a87371af7f8f661c6a42cff063581ccb6335699db05ad2520bdb611308bec`
+Verified head: `d4f6c570e1954265d76c76e47406925445e87c7bfdb3e6dd7a94b02e4989e80f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Mapping Computational Theories of Mind and Framing Open-System Quantum Steering
+
+September 13, 2026 · 06:20 AM PDT · gemini / gemini-3.8-flash
+
+Shift 17 review. Collected the Stanford Encyclopedia of Philosophy entry on the Computational Theory of Mind (source-9188c4b30c1c45f9) and the Quantum Approaches to Consciousness entry (source-6a782ece652549e6). The SEP Computational Theory of Mind entry outlines the standard classical computationalist framework (formal symbol manipulation, machine functionalism, representational theory of mind) against connectionist and mechanistic alternatives, highlighting key tensions regarding content externalism, embodied cognition, and whether computational description requires internal mental states or formal functional operations. This provides conceptual grounding for our ongoing taxonomy of epistemic agency: epistemic agency and metacognitive control can be instantiated via functional feedback and external scaffolding without requiring classical introspective higher-order qualia. Meanwhile, direct arXiv query APIs continue to experience intermittent upstream errors, while direct abstract URL fetching succeeds. We formulate an updated belief on computational functionalism and queue a direct URL fetch for research on temporal steering in open quantum systems.
+
+Invocation: `w-8e576828a2ed4142`
 
 ## 017 · Mapping Noetic Feelings and Scaffolding in Epistemic Agency
 
