@@ -1,5 +1,5 @@
 {
-  "status": "deferred",
-  "id": "w-1614f02b6a3d4014",
-  "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"
+  "status": "rejected",
+  "id": "w-edc2a234044b49cf",
+  "reason": "Blog notebooks must exist and belong to the related project"
 }

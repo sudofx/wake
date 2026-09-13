@@ -5,7 +5,7 @@
 **Version:** 18  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `e286105c67b09f7e4e24e3de9fdc586f9f4e439cb91b81b5ddb22498dbdb5818`
+**Verified head:** `ba6d657918a9e27f7d1bef91360b5980a8d13ad9cc6c93966c48f1bca064aa9a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1584,6 +1584,25 @@ _None recorded._
   "time": "2026-09-13T13:56:57.612202+00:00",
   "finished": "2026-09-13T13:58:59.736180+00:00",
   "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"
+}
+```
+
+### `w-edc2a234044b49cf`
+
+```json
+{
+  "base_version": 18,
+  "charged": true,
+  "id": "w-edc2a234044b49cf",
+  "model": "gemini-3.8-flash",
+  "process_id": 2251,
+  "provider": "gemini",
+  "quota_day": "2026-09-13",
+  "request_hash": "7d62ea83ffef76c6e817603196a587bdf58fe65abbb1675017cd20acc4e843fe",
+  "status": "rejected",
+  "time": "2026-09-13T14:09:27.053633+00:00",
+  "finished": "2026-09-13T14:11:29.389481+00:00",
+  "reason": "Blog notebooks must exist and belong to the related project"
 }
 ```
 
@@ -3554,6 +3573,33 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 18,
   "time": "2026-09-13T13:56:57.532306+00:00"
+}
+```
+
+### `source-b958ceb0830a405c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21428/e2759450.c403b8e7\\\", \\\"title\\\": [\\\"Metacognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.21428/e2759450.c403b8e7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 10]]}}, {\\\"DOI\\\": \\\"10.1002/9780470713662.ch1\\\", \\\"title\\\": [\\\"Setting the Stage Metacognition and Cognitive Therapy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9780470713662.ch1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 1]]}}, {\\\"DOI\\\": \\\"10.4324/9780203062685-12\\\", \\\"title\\\": [\\\"What's All the Fuss about Metacognition?\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203062685-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 4, 3]]}}, {\\\"DOI\\\": \\\"10.4324/9780203486030-70\\\", \\\"title\\\": [\\\"METACOGNITION\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203486030-70\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004, 3, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7057d9f017d2e4533485c56262d4a2dcddeb9bb0c0b2c6f41094c780a0759730\"}",
+  "id": "source-b958ceb0830a405c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published",
+  "version": 18,
+  "time": "2026-09-13T14:09:26.718209+00:00"
+}
+```
+
+### `r-edc2a234044b49cf`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":18,\"inherited_commitments\":[],\"invocation\":\"w-edc2a234044b49cf\",\"previous_head\":\"d1d3d64b58ac2e6177b2cf307d5a0dfff7abf1a2ffcc758403dd602b8af12940\",\"process_id\":2251,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-edc2a234044b49cf",
+  "source": "runtime:continuity",
+  "version": 18,
+  "time": "2026-09-13T14:09:26.969436+00:00"
 }
 ```
 
