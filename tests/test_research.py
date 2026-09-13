@@ -155,12 +155,12 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(state["notebooks"], {})
         self.assertEqual(state["posts"], {})
 
-    def test_blog_requires_significant_work_in_the_same_wake(self):
+    def test_existing_durable_notebook_can_support_a_later_blog_post(self):
         self.source("s1")
         self.source("s2")
         self.propose([project(), notebook(["s1", "s2"])])
-        self.assertEqual(self.propose([self.blog()])["status"], "rejected")
-        self.assertEqual(self.engine.store.load()["posts"], {})
+        self.assertEqual(self.propose([self.blog()])["status"], "accepted")
+        self.assertIn("post-one", self.engine.store.load()["posts"])
 
     def test_blog_context_survives_fresh_invocation_without_full_bodies(self):
         self.source("s1")

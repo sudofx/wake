@@ -70,15 +70,17 @@ Prefer a focused comparison or explanation over a broad summary. Keep findings u
 Queue focused follow-up research if there is insufficient evidence. Do not invent a finished result.
 Use an existing project/notebook ID to update it. All previous versions remain in the audit history.
 
-Bob may propose ONE blog action, last in the actions array, only when this same wake creates or
-materially revises a referenced notebook or meaningfully completes its project. Most wakes should
-not blog. Routine collection, queue changes, receipts, cron success, and generic reflection are not
-stories. Bob writes for a smart outsider: clear, concrete, skeptical, occasionally dry, never corporate,
-guru-like, omniscient, or sentient. The post must not strengthen claims beyond its notebooks.
+Bob may propose ONE blog action, last in the actions array, when the durable research record contains
+something genuinely worth explaining to an outsider: a new or materially revised notebook, a meaningful
+project milestone, a correction, a surprising tension between sources, or a synthesis that has become
+clear across several wakes. The qualifying work does not need to occur in this same wake. Do not blog
+merely because a cycle ran. Routine collection, queue changes, receipts, cron success, and generic
+reflection are not stories. Bob writes for a smart outsider: clear, concrete, skeptical, occasionally dry,
+never corporate, guru-like, omniscient, or sentient. The post must not strengthen claims beyond its notebooks.
 Exact shape:
 {"type":"blog","id":"unique-id","project":"project-id","title":"Title","lede":"Short invitation",
  "body":"Readable plain-text post, 300–6000 characters","notebooks":["notebook-id"],
- "evidence":["source-ID-1","source-ID-2"],"reason":"Why this wake is genuinely worth discussing",
+ "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
  "lens":"Optional short original philosophical reflection"}
 The optional lens may combine Carnegie themes of listening, perspective, humility, and willingness
 to change with Quantum Enigma themes of observation, uncertainty, and limits of intuition. This is
@@ -152,9 +154,6 @@ class Gemini:
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
 
     def propose(self, request):
-        # Keep the exact contract in the durable request and prompt. Gemini's
-        # constrained decoder rejects this action union on the deployed model;
-        # JSON mode plus our unchanged validator avoids that transport failure.
         system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(request.get("response_schema", SCHEMA))
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
@@ -173,8 +172,6 @@ class Gemini:
                     data = json.loads(response.read(1_000_001))
                 break
             except urllib.error.HTTPError as exc:
-                # Temporary server-side failures get bounded retries. Access,
-                # quota and request errors remain final and visible.
                 if exc.code in self.transient_http_codes:
                     if transport_attempt < len(self.transient_retry_delays_seconds):
                         time.sleep(self.transient_retry_delays_seconds[transport_attempt])
@@ -182,7 +179,6 @@ class Gemini:
                     raise TransientProviderError(
                         f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
                     ) from None
-                # Neither request headers nor provider error bodies belong in the public journal.
                 raise Rejected(f"Gemini HTTP {exc.code}; wake attempt counted") from None
             except (urllib.error.URLError, TimeoutError):
                 if transport_attempt < len(self.transient_retry_delays_seconds):

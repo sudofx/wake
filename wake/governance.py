@@ -53,8 +53,6 @@ def _limited_sources(evidence):
 def _blog_language(action, evidence):
     prose = " ".join(str(action.get(key, "")) for key in ("title", "lede", "body", "lens", "reason"))
     lower = prose.lower()
-    # Explicitly stating the scientific boundary is responsible writing, not a
-    # prohibited bridge. Remove those statements before looking for causal ones.
     lower = re.sub(r"quantum.{0,40}(does not|doesn't|cannot|can't|is not).{0,50}"
                    r"(prove|explain|cause|validate).{0,70}"
                    r"(consciousness|psychology|empathy|relationships?|communication|personal growth)", "", lower)
@@ -228,12 +226,6 @@ def transition(state, proposal, invocation):
             notebook_evidence = {item for notebook in notebooks for item in notebook["evidence"]}
             require(set(action["evidence"]) <= notebook_evidence,
                     "Blog evidence must be traceable through its referenced notebooks")
-            qualifying_notebooks = {item["id"] for item in proposal["actions"]
-                                    if item.get("type") == "notebook" and item.get("project") == action["project"]}
-            completed = any(item.get("type") == "project" and item.get("id") == action["project"]
-                            and item.get("status") == "completed" for item in proposal["actions"])
-            require(bool(qualifying_notebooks & set(action["notebooks"])) or completed,
-                    "A blog post requires a new/revised notebook or meaningful project completion in this wake")
             supersedes = action.get("supersedes")
             if supersedes:
                 require(supersedes in result["posts"], "A correction must reference an existing blog post")
