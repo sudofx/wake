@@ -5,7 +5,7 @@
 **Version:** 17  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5e33a04ddfd04e4190ec53e065fd492f62204818dc77b712fc01b3e5115e6022`
+**Verified head:** `018a87371af7f8f661c6a42cff063581ccb6335699db05ad2520bdb611308bec`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1488,6 +1488,25 @@ _None recorded._
   "status": "failed",
   "time": "2026-09-13T11:42:19.931017+00:00",
   "finished": "2026-09-13T11:42:56.379931+00:00",
+  "reason": "Gemini HTTP 503 after one delayed retry; wake attempt counted"
+}
+```
+
+### `w-2e9c40cfc3b84fb7`
+
+```json
+{
+  "base_version": 17,
+  "charged": true,
+  "id": "w-2e9c40cfc3b84fb7",
+  "model": "gemini-3.8-flash",
+  "process_id": 2054,
+  "provider": "gemini",
+  "quota_day": "2026-09-13",
+  "request_hash": "82397d323a0f0664a71bc7c5fee838833bb53a9d592c6abbfbcc6975fc93a83b",
+  "status": "failed",
+  "time": "2026-09-13T12:55:37.587893+00:00",
+  "finished": "2026-09-13T12:57:36.347421+00:00",
   "reason": "Gemini HTTP 503 after one delayed retry; wake attempt counted"
 }
 ```
@@ -3337,6 +3356,33 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 17,
   "time": "2026-09-13T11:42:19.860320+00:00"
+}
+```
+
+### `source-9c7d524422504c93`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:cs.AI&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-9c7d524422504c93",
+  "scope": "failed",
+  "source": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+  "version": 17,
+  "time": "2026-09-13T12:55:37.302962+00:00"
+}
+```
+
+### `r-2e9c40cfc3b84fb7`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":17,\"inherited_commitments\":[],\"invocation\":\"w-2e9c40cfc3b84fb7\",\"previous_head\":\"eefe297f5290c6990a070a68d9426c8348ac0960ce436a781cdbc0c735bea05a\",\"process_id\":2054,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2e9c40cfc3b84fb7",
+  "source": "runtime:continuity",
+  "version": 17,
+  "time": "2026-09-13T12:55:37.519592+00:00"
 }
 ```
 
