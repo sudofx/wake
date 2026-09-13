@@ -246,6 +246,16 @@ class SystemTests(unittest.TestCase):
         with self.assertRaises(IntegrityError):
             verify_history(log, (self.root/"site/head.txt").read_text())
 
+    def test_report_display_polish_is_embedded(self):
+        export(self.engine.store, self.root / "site")
+        page = (self.root / "site/index.html").read_text()
+        self.assertIn("b.confidence-a.confidence", page)
+        self.assertIn('href="./" aria-label="Reload WAKE✳︎ from the site root"', page)
+        self.assertIn("className='wake-mark'", page)
+        self.assertIn("text-shadow:0 0 7px", page)
+        self.assertNotIn("a:hover{text-decoration:underline", page)
+        self.assertIn("# **WAKE✳︎** — The journal", (self.root / "site/journal.md").read_text())
+
     def test_html_embedded_data_does_not_allow_script_injection(self):
         with self.engine.store.lock():
             self.engine.observe('</script><script>alert("xss")</script>', "human:test")

@@ -30,6 +30,16 @@ def _display_text(value):
     return str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
 
 
+def _md_text(value):
+    text = _display_text(value).replace("**WAKE✳︎**", "WAKE✳︎")
+    return text.replace("WAKE✳︎", "**WAKE✳︎**")
+
+
+def _html_text(value):
+    escaped = html.escape(_display_text(value))
+    return escaped.replace("WAKE✳︎", '<strong class="wake-mark">WAKE✳︎</strong>')
+
+
 def _md_code(value, language="json"):
     text = value if isinstance(value, str) else _pretty(value)
     text = _display_text(text)
@@ -49,7 +59,7 @@ def _html_pre(value):
 
 def _human_events_markdown(events, head):
     lines = [
-        "# WAKE✳︎ — Human-readable event history",
+        "# **WAKE✳︎** — Human-readable event history",
         "",
         "> A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.",
         "",
@@ -119,7 +129,7 @@ def _human_events_markdown(events, head):
 
 def _human_state_markdown(state, head):
     lines = [
-        "# WAKE✳︎ — Human-readable durable state",
+        "# **WAKE✳︎** — Human-readable durable state",
         "",
         "> A presentation layer over `state.json`. The JSON file remains the canonical state export.",
         "",
@@ -170,7 +180,7 @@ def _human_page(title, subtitle, body, head, raw_href, markdown_href):
 <style>
 :root{{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}}
 :root[data-theme=dark]{{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}}
-*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}}a{{color:inherit;text-decoration:none}}a:hover{{text-decoration:underline;text-underline-offset:5px}}button,summary{{font:inherit;color:inherit}}button{{cursor:pointer}}main{{max-width:1120px;margin:auto;padding:32px 28px 90px}}header{{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font-size:30px;font-weight:900;letter-spacing:-1.7px}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}}.eyebrow{{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}}h1{{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}}h2{{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}}h3{{font-size:14px;margin:24px 0 10px}}nav{{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:10px var(--mono);color:var(--muted)}}.meta{{color:var(--muted);font:11px/1.6 var(--mono)}}details{{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}}summary{{cursor:pointer;padding:15px 0;font:11px var(--mono);color:var(--green)}}.inside{{border-top:1px solid var(--line);padding:14px 0 18px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}}code{{font-family:var(--mono);overflow-wrap:anywhere}}.tag{{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}}.event-links{{font-size:.9rem;color:var(--muted)}}hr{{border:0;border-top:1px solid var(--line);margin:28px 0}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}.topline{{align-items:flex-start}}}}
+*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}}a{{color:inherit;text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}}}button,summary{{font:inherit;color:inherit}}button{{cursor:pointer}}main{{max-width:1120px;margin:auto;padding:32px 28px 90px}}header{{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font-size:30px;font-weight:900;letter-spacing:-1.7px}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}}.eyebrow{{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}}h1{{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}}h2{{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}}h3{{font-size:14px;margin:24px 0 10px}}nav{{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:10px var(--mono);color:var(--muted)}}.meta{{color:var(--muted);font:11px/1.6 var(--mono)}}details{{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}}summary{{cursor:pointer;padding:15px 0;font:11px var(--mono);color:var(--green)}}.inside{{border-top:1px solid var(--line);padding:14px 0 18px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}}code{{font-family:var(--mono);overflow-wrap:anywhere}}.tag{{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}}.event-links{{font-size:.9rem;color:var(--muted)}}hr{{border:0;border-top:1px solid var(--line);margin:28px 0}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}.topline{{align-items:flex-start}}}}
 </style></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"index.html\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\">DARK</button></div><div class=\"eyebrow\">READABLE EXPORT</div><h1>{html.escape(title)}</h1><p>{html.escape(subtitle)}</p><p class=\"meta\">Verified head: <code>{html.escape(head)}</code></p><nav><a href=\"index.html\">Main journal</a><a href=\"{html.escape(markdown_href)}\">Markdown source</a><a href=\"{html.escape(raw_href)}\">Raw data</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
 
 def _human_events_html(events, head):
@@ -249,7 +259,7 @@ def _reading_page(title, eyebrow, body, source_href, back_href="../index.html"):
 <style>
 :root{{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}}
 :root[data-theme=dark]{{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}}
-*{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:17px/1.72 var(--serif);font-variant-emoji:text}}main{{max-width:840px;margin:auto;padding:34px 22px 90px}}header{{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:34px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font:900 29px/1 var(--sans);letter-spacing:-1.7px;color:inherit;text-decoration:none}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em;cursor:pointer}}h1{{font:400 clamp(2.4rem,7vw,4.8rem)/1.02 var(--serif);letter-spacing:-.035em;margin:.18em 0 .3em}}h2{{font:400 1.8rem/1.2 var(--serif);margin-top:2.2em}}h3{{font:700 14px var(--sans);margin-top:2em}}a{{color:var(--green)}}nav{{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;font:10px var(--mono)}}.eyebrow,.meta{{font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}}.eyebrow{{color:var(--green);margin-top:24px}}.lede{{font-size:1.25rem;line-height:1.55}}.note{{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:28px 0}}.sources{{font-family:var(--sans);font-size:.95rem}}code{{font-family:var(--mono)}}hr{{border:0;border-top:1px solid var(--line);margin:34px 0}}small{{color:var(--muted)}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:17px/1.72 var(--serif);font-variant-emoji:text}}main{{max-width:840px;margin:auto;padding:34px 22px 90px}}header{{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:34px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font:900 29px/1 var(--sans);letter-spacing:-1.7px;color:inherit;text-decoration:none}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em;cursor:pointer}}h1{{font:400 clamp(2.4rem,7vw,4.8rem)/1.02 var(--serif);letter-spacing:-.035em;margin:.18em 0 .3em}}h2{{font:400 1.8rem/1.2 var(--serif);margin-top:2.2em}}h3{{font:700 14px var(--sans);margin-top:2em}}a{{color:var(--green);text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}}}nav{{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;font:10px var(--mono)}}.eyebrow,.meta{{font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}}.eyebrow{{color:var(--green);margin-top:24px}}.lede{{font-size:1.25rem;line-height:1.55}}.note{{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:28px 0}}.sources{{font-family:var(--sans);font-size:.95rem}}code{{font-family:var(--mono)}}hr{{border:0;border-top:1px solid var(--line);margin:34px 0}}small{{color:var(--muted)}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}}}
 </style></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"{html.escape(back_href)}\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\">DARK</button></div><div class=\"eyebrow\">{html.escape(eyebrow)}</div><h1>{html.escape(title)}</h1><nav><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"{html.escape(source_href)}\">Markdown source</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
 
 def _notebook_html(notebook, state):
@@ -258,10 +268,10 @@ def _notebook_html(notebook, state):
         evidence = state["evidence"][eid]
         source_items.append(f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a></li>')
     body = (
-        f'<p class="lede">{html.escape(notebook["summary"])}</p>'
-        f'<h2>Findings</h2><p>{html.escape(notebook["findings"])}</p>'
-        f'<h2>Limitations and competing views</h2><p>{html.escape(notebook["limitations"])}</p>'
-        f'<h2>Next questions</h2><p>{html.escape(notebook["next_questions"])}</p>'
+        f'<p class="lede">{_html_text(notebook["summary"])}</p>'
+        f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
+        f'<h2>Limitations and competing views</h2><p>{_html_text(notebook["limitations"])}</p>'
+        f'<h2>Next questions</h2><p>{_html_text(notebook["next_questions"])}</p>'
         f'<h2>Collected sources</h2><ul class="sources">{"".join(source_items)}</ul>'
         f'<hr><p class="meta">Revision {notebook["revision"]} · AI-authored research synthesis; see source scopes in the journal.</p>'
     )
@@ -269,8 +279,8 @@ def _notebook_html(notebook, state):
 
 
 def _blog_html(post, state):
-    paragraphs = "".join(f"<p>{html.escape(_display_text(part))}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
-    lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{html.escape(_display_text(post["lens"]))}</p></div>' if post.get("lens") else ""
+    paragraphs = "".join(f"<p>{_html_text(part)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
+    lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{_html_text(post["lens"])}</p></div>' if post.get("lens") else ""
     notebooks = "".join(
         f'<li><a href="../notebooks/{html.escape(nid)}.html">{html.escape(state["notebooks"][nid]["title"])}</a> <small>· <a href="../notebooks/{html.escape(nid)}.md">Markdown source</a></small></li>'
         for nid in post["notebooks"])
@@ -281,7 +291,7 @@ def _blog_html(post, state):
     if post.get("superseded_by"):
         correction = f'<p class="note">Superseded by <a href="{html.escape(post["superseded_by"])}.html">{html.escape(post["superseded_by"])}</a>.</p>'
     body = (
-        f'<p class="lede">{html.escape(_display_text(post["lede"]))}</p>{correction}{paragraphs}{lens}'
+        f'<p class="lede">{_html_text(post["lede"])}</p>{correction}{paragraphs}{lens}'
         f'<h2>Follow the receipts</h2><h3>Research notebooks</h3><ul class="sources">{notebooks}</ul>'
         f'<h3>Collected sources</h3><ul class="sources">{sources}</ul>'
         f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>'
@@ -316,15 +326,15 @@ def export(store, destination="site", experiment=None, operation=None):
         page = page.replace('<a href="state.json">State →</a><a href="events.jsonl">History →</a><a href="journal.md">Markdown →</a>',
                             '<a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a>')
         page = page.replace("'.md'>Markdown ↓</a>", "'.html'>Standalone HTML →</a> · <a class=\"subtle\" href=\"blog/'+encodeURIComponent(post.id)+'.md\">Markdown source ↓</a>")
-        lines = ["# WAKE✳︎ — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
-                 f"Objective: {state['objective']}", "", f"Verified head: `{head}`", "",
+        lines = ["# **WAKE✳︎** — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
+                 f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
                  "Fixture entries are deterministic simulations, not live model experiments.", ""]
         for item in reversed(state["journal"]):
             invocation = state["invocations"][item["invocation"]]
             date = datetime.fromisoformat(invocation["time"]).astimezone(ZoneInfo("America/Los_Angeles"))
-            lines += [f"## {item['cycle']:03d} · {item['title']}", "",
+            lines += [f"## {item['cycle']:03d} · {_md_text(item['title'])}", "",
                       f"{date:%B %d, %Y · %I:%M %p %Z} · {invocation['provider']} / {invocation['model']}", "",
-                      item["summary"], "", f"Invocation: `{item['invocation']}`", ""]
+                      _md_text(item["summary"]), "", f"Invocation: `{item['invocation']}`", ""]
         atomic_write(target / "journal.md", "\n".join(lines))
         atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
         atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
@@ -335,9 +345,9 @@ def export(store, destination="site", experiment=None, operation=None):
         atomic_write(target / "head.txt", head + "\n")
         for notebook in state.get("notebooks", {}).values():
             sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
-            markdown = (f"# {notebook['title']}\n\n{notebook['summary']}\n\n## Findings\n\n{notebook['findings']}\n\n"
-                        f"## Limitations and competing views\n\n{notebook['limitations']}\n\n"
-                        f"## Next questions\n\n{notebook['next_questions']}\n\n## Collected sources\n\n{sources}\n\n"
+            markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
+                        f"## Limitations and competing views\n\n{_md_text(notebook['limitations'])}\n\n"
+                        f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
                         f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
             atomic_write(target / "notebooks" / (notebook["id"] + ".md"), markdown)
             atomic_write(target / "notebooks" / (notebook["id"] + ".html"), _notebook_html(notebook, state))
@@ -348,15 +358,15 @@ def export(store, destination="site", experiment=None, operation=None):
                 for item in post["notebooks"])
             source_links = newline.join(
                 f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
-            parts = [f"# {_display_text(post['title'])}", "", _display_text(post["lede"]), "", _display_text(post["body"])]
+            parts = [f"# {_md_text(post['title'])}", "", _md_text(post["lede"]), "", _md_text(post["body"])]
             if post.get("lens"):
-                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_display_text(post['lens'])}"]
+                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_md_text(post['lens'])}"]
             if post.get("superseded_by"):
                 parts += ["", f"This post was superseded by [{post['superseded_by']}](../index.html#blog/{post['superseded_by']})."]
             parts += ["", "## Follow the receipts", "", "### Research notebooks", "", notebook_links, "",
                       "### Collected sources", "", source_links, "",
                       f"[Exact wake and decision](../index.html#history/{post['created_by']})", "",
-                      "AI-authored from WAKE✳︎'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
+                      "AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
             atomic_write(target / "blog" / (post["id"] + ".md"), newline.join(parts))
             atomic_write(target / "blog" / (post["id"] + ".html"), _blog_html(post, state))
         if experiment:

@@ -165,8 +165,8 @@ class ResearchTests(unittest.TestCase):
         standalone = (self.root/"site/blog/post-one.html").read_text()
         markdown = (self.root/"site/blog/post-one.md").read_text()
         index = (self.root/"site/index.html").read_text()
-        self.assertIn("WAKE✳︎.", standalone)
-        self.assertIn("WAKE✳︎.", markdown)
+        self.assertIn('<strong class="wake-mark">WAKE✳︎</strong>.', standalone)
+        self.assertIn("**WAKE✳︎**.", markdown)
         self.assertIn("replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎')", index)
 
     def test_unsupported_blog_claims_are_rejected_atomically(self):
