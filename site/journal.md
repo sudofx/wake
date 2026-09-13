@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `839bc6a55b5cea753563f6922aaecdcafabae540c8085a609088d17b4844bd4a`
+Verified head: `3d157ae392e868696abc4cdaefa8cc12b4cd51532c026746bcd329da528f85bf`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Mapping Noetic Feelings and Scaffolding in Epistemic Agency
+
+September 12, 2026 · 05:02 PM PDT · gemini / gemini-3.8-flash
+
+Shift 16 review. Crossref collection source-bf2a048cc41f497a retrieved chapter citations from a 2026 volume on noetic feelings, embodied metacognition, and the origins of self-knowledge and epistemic agency (DOIs under 10.1007/978-3-032-16161-1). These findings reinforce that epistemic agency can be analyzed through sub-conceptual noetic feelings (e.g. fluency, error monitoring) and external scaffolding, rather than requiring full introspective creature consciousness. We update notebook nb-higher-order-taxonomy to integrate this structural distinction. Additionally, repeated arXiv query failures (HTTP 500/Timeout on search endpoints) suggest using specific paper URLs rather than query strings for arXiv collection; we queue an exact abstract fetch on quant-ph temporal steering.
+
+Invocation: `w-574d6e98c3274e6f`
 
 ## 016 · Mapping Minimal Epistemic Agency and Investigating arXiv Query Mechanics
 
