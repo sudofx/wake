@@ -1,6 +1,5 @@
 {
-  "status": "rejected",
-  "id": "w-edc2a234044b49cf",
-  "reason": "Blog notebooks must exist and belong to the related project",
-  "publication_only": true
+  "status": "failed",
+  "id": "w-3bc8ad3ee09b4ae1",
+  "reason": "Gemini HTTP 429; wake attempt counted"
 }
