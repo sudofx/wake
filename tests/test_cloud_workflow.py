@@ -41,7 +41,7 @@ class CloudWorkflowTests(unittest.TestCase):
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
             return github_wake.main(publish_only=publish_only, scheduled=scheduled)
 
-    def test_access_limit_failure_is_counted_exported_and_stays_visible(self):
+    def test_access_limit_failure_is_counted_exported_visible_but_not_action_failure(self):
         class Failure(Fixture):
             charged = True
             calls = 0
@@ -49,7 +49,7 @@ class CloudWorkflowTests(unittest.TestCase):
                 self.calls += 1
                 raise Rejected("Gemini HTTP 429; wake attempt counted")
         provider = Failure()
-        self.assertEqual(self.run_cloud(provider), 2)
+        self.assertEqual(self.run_cloud(provider), 0)
         self.assertEqual(provider.calls, 1)
         public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/state.json").stdout)
         self.assertEqual(len(public["invocations"]), 1)
@@ -59,6 +59,30 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("429", operation["reason"])
         self.assertTrue((self.project/"site/index.html").is_file())
         verify_history(self.project/"site/events.jsonl", (self.project/"site/head.txt").read_text())
+
+    def test_attention_policy_keeps_expected_provider_pressure_green(self):
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "failed", "reason": "Gemini HTTP 429; wake attempt counted"}))
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "failed", "reason": "quota",
+             "provider_error": {"http_status": 429}}))
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "deferred", "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"}))
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "paused", "reason": "Daily call ceiling reached; no request sent"}))
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "paused", "reason": "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent"}))
+
+    def test_attention_policy_still_fails_auth_and_unexpected_runtime_conditions(self):
+        self.assertTrue(github_wake.requires_operator_attention(
+            {"status": "failed", "reason": "Gemini HTTP 401; wake attempt counted",
+             "provider_error": {"http_status": 401}}))
+        self.assertTrue(github_wake.requires_operator_attention(
+            {"status": "paused", "reason": "GEMINI_API_KEY is missing"}))
+        self.assertTrue(github_wake.requires_operator_attention(
+            {"status": "failed", "reason": "Provider failed (ValueError); no automatic retry"}))
+        self.assertTrue(github_wake.requires_operator_attention(
+            {"status": "rejected", "reason": "Invalid proposal"}))
 
     def test_transient_provider_outage_is_deferred_not_failed(self):
         from wake.providers import TransientProviderError
@@ -182,6 +206,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("test -f site/index.html", report)
         self.assertIn("needs.wake.outputs.report_ready == 'true'", workflow)
         self.assertIn("if: always() && steps.cycle.outcome == 'failure'", workflow)
+        self.assertIn("Fail only when operator attention is required", workflow)
         self.assertIn("path: site", workflow)
         self.assertIn("github-pages-${{ github.run_id }}-${{ github.run_attempt }}", workflow)
         self.assertIn("cron: '12,27,42,57 * * * *'", workflow)

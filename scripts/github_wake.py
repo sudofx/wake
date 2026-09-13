@@ -70,6 +70,28 @@ def set_step_output(name, value):
             stream.write(f"{name}={value}\n")
 
 
+def requires_operator_attention(result):
+    """Separate research/provider outcomes from infrastructure failures worth paging a human."""
+    status = result.get("status")
+    if status in ("accepted", "deferred", "waiting", "not_started"):
+        return False
+
+    provider_error = result.get("provider_error", {})
+    if provider_error.get("http_status") == 429:
+        return False
+
+    reason = str(result.get("reason", ""))
+    quiet_prefixes = (
+        "Gemini HTTP 429",
+        "Gemini free-tier daily quota exhausted",
+        "Daily call ceiling reached",
+    )
+    if reason.startswith(quiet_prefixes):
+        return False
+
+    return True
+
+
 class StateBranch:
     def __init__(self, repository, checkout, branch="wake-state"):
         self.repository, self.checkout, self.branch = Path(repository), Path(checkout), branch
@@ -151,7 +173,7 @@ def main(publish_only=False, scheduled=False):
         finally:
             engine.store.close()
     print(json.dumps(result))
-    return 0 if publish_only or result["status"] in ("accepted", "deferred") else 2
+    return 0 if publish_only or not requires_operator_attention(result) else 2
 
 
 if __name__ == "__main__":
