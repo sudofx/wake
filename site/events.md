@@ -2,9 +2,38 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `81c64ab1fe29a74a356dbb495cfdd7db854cdc0a0c3a8127333c7738b61cfcb8`
+Verified head: `d5b62edeca8c7a608060f71b03cb253de5a9ef685539097e4c99cb593dc90495`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0328 · `research_collected`
+
+**Time:** 2026-09-13T06:05:13.878422+00:00  
+**ID:** `discovery-57`  
+**Hash:** `d5b62edeca8c7a608060f71b03cb253de5a9ef685539097e4c99cb593dc90495`  
+**Previous hash:** `b549f5784ee11788a6318c7ec43cbe6ed2056da5ea33a078ff8bab87148e018e`
+
+### Payload
+
+```json
+{
+  "evidence": "source-78684c830ce04ebf",
+  "id": "discovery-57",
+  "status": "collected"
+}
+```
+
+## Event 0327 · `observation`
+
+**Time:** 2026-09-13T06:05:13.817470+00:00  
+**ID:** `source-78684c830ce04ebf`  
+**Hash:** `b549f5784ee11788a6318c7ec43cbe6ed2056da5ea33a078ff8bab87148e018e`  
+**Previous hash:** `81c64ab1fe29a74a356dbb495cfdd7db854cdc0a0c3a8127333c7738b61cfcb8`
+
+**Source:** `https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.21428/e2759450.c403b8e7\", \"title\": [\"Metacognition\"], \"URL\": \"https://doi.org/10.21428/e2759450.c403b8e7\", \"published\": {\"date-parts\": [[2025, 2, 10]]}}, {\"DOI\": \"10.4324/9780203062685-12\", \"title\": [\"What's All the Fuss about Metacognition?\"], \"URL\": \"https://doi.org/10.4324/9780203062685-12\", \"published\": {\"date-parts\": [[2013, 4, 3]]}}, {\"DOI\": \"10.1002/9780470713662.ch1\", \"title\": [\"Setting the Stage Metacognition and Cognitive Therapy\"], \"URL\": \"https://doi.org/10.1002/9780470713662.ch1\", \"published\": {\"date-parts\": [[2002, 1]]}}, {\"DOI\": \"10.1007/978-3-642-45190-4_17\", \"title\": [\"Metacognition in Alzheimer’s Disease\"], \"URL\": \"https://doi.org/10.1007/978-3-642-45190-4_17\", \"published\": {\"date-parts\": [[2014]]}}]", "excerpt_truncated": false, "source_sha256": "36fc22802f1e5c1e54181ab54bdb03aaefeff16c6a4902e4fd30df63c5ebd98a"}
 
 ## Event 0326 · `research_collected`
 
