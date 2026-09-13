@@ -5,7 +5,7 @@
 **Version:** 17  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c0d7aa9db483d5e44dd9c6be0b71bc232a18b3018c28f15ed2ab0475618a391f`
+**Verified head:** `81c64ab1fe29a74a356dbb495cfdd7db854cdc0a0c3a8127333c7738b61cfcb8`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -3263,6 +3263,20 @@ _None recorded._
   "source": "https://plato.stanford.edu/entries/computational-mind/",
   "version": 17,
   "time": "2026-09-13T01:03:54.368358+00:00"
+}
+```
+
+### `source-1516aa011abd43ff`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21428/e2759450.c403b8e7\\\", \\\"title\\\": [\\\"Metacognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.21428/e2759450.c403b8e7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 10]]}}, {\\\"DOI\\\": \\\"10.1002/9780470713662.ch1\\\", \\\"title\\\": [\\\"Setting the Stage Metacognition and Cognitive Therapy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9780470713662.ch1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 1]]}}, {\\\"DOI\\\": \\\"10.4324/9780203062685-12\\\", \\\"title\\\": [\\\"What's All the Fuss about Metacognition?\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203062685-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 4, 3]]}}, {\\\"DOI\\\": \\\"10.4324/9780203486030-70\\\", \\\"title\\\": [\\\"METACOGNITION\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203486030-70\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004, 3, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"58ed7cef7e49036bef26c3f0b484ac9e066ffd81585a5310362a93ba702eba70\"}",
+  "id": "source-1516aa011abd43ff",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published",
+  "version": 17,
+  "time": "2026-09-13T01:09:54.337327+00:00"
 }
 ```
 

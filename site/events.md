@@ -2,9 +2,38 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `c0d7aa9db483d5e44dd9c6be0b71bc232a18b3018c28f15ed2ab0475618a391f`
+Verified head: `81c64ab1fe29a74a356dbb495cfdd7db854cdc0a0c3a8127333c7738b61cfcb8`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0326 · `research_collected`
+
+**Time:** 2026-09-13T01:09:54.395683+00:00  
+**ID:** `discovery-57`  
+**Hash:** `81c64ab1fe29a74a356dbb495cfdd7db854cdc0a0c3a8127333c7738b61cfcb8`  
+**Previous hash:** `b44d05b66037a3c5a7c38ce2904eb06ec9cc1a68bd261359430813d893a38b8f`
+
+### Payload
+
+```json
+{
+  "evidence": "source-1516aa011abd43ff",
+  "id": "discovery-57",
+  "status": "collected"
+}
+```
+
+## Event 0325 · `observation`
+
+**Time:** 2026-09-13T01:09:54.337327+00:00  
+**ID:** `source-1516aa011abd43ff`  
+**Hash:** `b44d05b66037a3c5a7c38ce2904eb06ec9cc1a68bd261359430813d893a38b8f`  
+**Previous hash:** `c0d7aa9db483d5e44dd9c6be0b71bc232a18b3018c28f15ed2ab0475618a391f`
+
+**Source:** `https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.21428/e2759450.c403b8e7\", \"title\": [\"Metacognition\"], \"URL\": \"https://doi.org/10.21428/e2759450.c403b8e7\", \"published\": {\"date-parts\": [[2025, 2, 10]]}}, {\"DOI\": \"10.1002/9780470713662.ch1\", \"title\": [\"Setting the Stage Metacognition and Cognitive Therapy\"], \"URL\": \"https://doi.org/10.1002/9780470713662.ch1\", \"published\": {\"date-parts\": [[2002, 1]]}}, {\"DOI\": \"10.4324/9780203062685-12\", \"title\": [\"What's All the Fuss about Metacognition?\"], \"URL\": \"https://doi.org/10.4324/9780203062685-12\", \"published\": {\"date-parts\": [[2013, 4, 3]]}}, {\"DOI\": \"10.4324/9780203486030-70\", \"title\": [\"METACOGNITION\"], \"URL\": \"https://doi.org/10.4324/9780203486030-70\", \"published\": {\"date-parts\": [[2004, 3, 1]]}}]", "excerpt_truncated": false, "source_sha256": "58ed7cef7e49036bef26c3f0b484ac9e066ffd81585a5310362a93ba702eba70"}
 
 ## Event 0324 · `research_collected`
 
