@@ -1,4 +1,4 @@
-# WAKE✳︎ — Human-readable event history
+# **WAKE✳︎** — Human-readable event history
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
