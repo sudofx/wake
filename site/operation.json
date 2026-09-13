@@ -1,7 +1,5 @@
 {
-  "status": "accepted",
-  "id": "w-5e2fdab0b7ae4e30",
-  "reason": "",
-  "cycle": 19,
-  "publication_only": true
+  "status": "failed",
+  "id": "w-aef28b2e356c4ca9",
+  "reason": "Gemini HTTP 429; wake attempt counted"
 }
