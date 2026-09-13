@@ -171,6 +171,9 @@ class ResearchTests(unittest.TestCase):
             context = request["context"]["recent_blog"]
             self.assertEqual(context[0]["id"], "post-one")
             self.assertNotIn("body", context[0])
+            available = request["context"]["blog_notebooks"]
+            self.assertEqual(available["p"][0]["id"], "n")
+            self.assertEqual(available["p"][0]["evidence"], ["s1", "s2"])
             self.engine.store.append("failed", {"id": invocation, "reason": "test cleanup"})
 
     def test_blog_does_not_add_a_provider_call(self):

@@ -88,6 +88,14 @@ class Engine:
             context["projects"] = [p for p in projects if p["status"] == "active"] + [p for p in projects if p["status"] != "active"][-8:]
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
                                     for n in list(state["notebooks"].values())[-8:]]
+            # Give editorial actions a canonical project -> notebook map. This is
+            # intentionally metadata-only: Bob can select real durable IDs without
+            # guessing relationships or needing full notebook bodies in context.
+            context["blog_notebooks"] = {}
+            for notebook in state["notebooks"].values():
+                context["blog_notebooks"].setdefault(notebook["project"], []).append(
+                    {k:notebook[k] for k in ("id", "title", "revision", "evidence")}
+                )
             working = [n for n in state["notebooks"].values() if state["projects"][n["project"]]["status"] == "active"]
             context["working_notebook"] = ({**working[-1], "findings": working[-1]["findings"][:3000],
                                            "context_excerpt": True} if working else None)
