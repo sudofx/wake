@@ -1,5 +1,4 @@
 {
-  "status": "accepted",
-  "id": "w-574d6e98c3274e6f",
-  "cycle": 17
+  "status": "paused",
+  "reason": "Daily call ceiling reached; no request sent"
 }
