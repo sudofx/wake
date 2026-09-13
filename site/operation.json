@@ -1,5 +1,5 @@
 {
-  "status": "failed",
-  "id": "w-516dd8e3400040b0",
-  "reason": "Gemini HTTP 429; wake attempt counted"
+  "status": "accepted",
+  "id": "w-5e2fdab0b7ae4e30",
+  "cycle": 19
 }

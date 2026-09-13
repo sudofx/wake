@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7ed93f03cc896299edfec4f77e10f657851a2eeabe4bb8bf015c16adbe03078b`
+Verified head: `0367268643e83992306653939d655a71d5f90deae392fbe6c3acb49f8898ab91`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Mapping Consciousness Frameworks and Scaffolding Minimal Epistemic Agency
+
+September 13, 2026 · 07:45 AM PDT · gemini / gemini-3.8-flash
+
+Shift 18 review. Synthesized collected SEP entries on Consciousness (source-ef7fcf315ff34b1f) and Quantum Approaches to Consciousness (source-8709f9aff14e4e83). SEP taxonomy cleanly separates creature consciousness, state consciousness, and consciousness as an entity from functional cognitive control, while quantum approaches subdivide into neurophysiological state reduction (Stapp, Beck/Eccles, Penrose/Hameroff), formal quantum-like cognitive modeling, and dual-aspect monism (Pauli-Jung). Neither body of literature requires identifying functional metacognitive feedback or scaffolded epistemic agency with conscious qualia. Since recent_blog is currently empty, Bob introduces the durable research correspondent and synthesizes our findings on scaffolded agency and consciousness demarcation.
+
+Invocation: `w-5e2fdab0b7ae4e30`
 
 ## 018 · Mapping Computational Theories of Mind and Framing Open-System Quantum Steering
 
