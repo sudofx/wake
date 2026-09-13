@@ -5,7 +5,7 @@
 **Version:** 18  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1e3bfabf0f772fc54869bb6deac709a1f4b791b626183f0de553d0c598a6c83b`
+**Verified head:** `794ab4243bc42427e7efb32d12d17eeeaeaa348f770a51f9b521ceb84b789f6d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1640,6 +1640,25 @@ _None recorded._
   "status": "failed",
   "time": "2026-09-13T14:34:13.308664+00:00",
   "finished": "2026-09-13T14:34:15.660307+00:00",
+  "reason": "Gemini HTTP 429; wake attempt counted"
+}
+```
+
+### `w-fa3b6b0f1694451a`
+
+```json
+{
+  "base_version": 18,
+  "charged": true,
+  "id": "w-fa3b6b0f1694451a",
+  "model": "gemini-3.8-flash",
+  "process_id": 2324,
+  "provider": "gemini",
+  "quota_day": "2026-09-13",
+  "request_hash": "04bf03339858e72352a0a58c1e8fb3a40d1e1769e6c2f7fa1cdb1a08e76b5c7b",
+  "status": "failed",
+  "time": "2026-09-13T14:39:26.662463+00:00",
+  "finished": "2026-09-13T14:39:28.717303+00:00",
   "reason": "Gemini HTTP 429; wake attempt counted"
 }
 ```
@@ -3692,6 +3711,33 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 18,
   "time": "2026-09-13T14:34:12.874474+00:00"
+}
+```
+
+### `source-399ee0455baf4deb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-399ee0455baf4deb",
+  "scope": "failed",
+  "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+  "version": 18,
+  "time": "2026-09-13T14:39:26.319585+00:00"
+}
+```
+
+### `r-fa3b6b0f1694451a`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":18,\"inherited_commitments\":[],\"invocation\":\"w-fa3b6b0f1694451a\",\"previous_head\":\"82f3da969b0de5bcba920d01df8742824c1a0ac6fb578d24ba3427a51fa62893\",\"process_id\":2324,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-fa3b6b0f1694451a",
+  "source": "runtime:continuity",
+  "version": 18,
+  "time": "2026-09-13T14:39:26.578063+00:00"
 }
 ```
 
