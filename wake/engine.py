@@ -13,6 +13,7 @@ from .providers import (
     SYSTEM, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota,
 )
+from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
 
 
@@ -217,6 +218,7 @@ class Engine:
         from .providers import RESEARCH_SYSTEM, SCHEMA
         delivered_context = self.context(state, receipt)
         working_set_shadow = self.working_set(state)
+        retrieval_shadow = build_retrieval_shadow(state, working_set_shadow)
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
                    "context": delivered_context, "response_schema": SCHEMA}
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
@@ -241,11 +243,15 @@ class Engine:
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
             "request_hash": digest(request), "process_id": os.getpid(),
             "working_set_shadow": working_set_shadow,
+            "retrieval_shadow": retrieval_shadow,
             "working_set_metrics": {
                 "mode": "shadow",
                 "working_set_chars": shadow_chars,
                 "delivered_context_chars": delivered_chars,
                 "working_to_delivered_ratio": round(shadow_chars / max(delivered_chars, 1), 4),
+                "retrieval_candidate_count": retrieval_shadow["metrics"]["candidate_count"],
+                "retrieval_evidence_count": retrieval_shadow["metrics"]["evidence_count"],
+                "retrieval_trigger_counts": retrieval_shadow["metrics"]["trigger_counts"],
             }})
         return invocation, request
 
