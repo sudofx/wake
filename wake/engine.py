@@ -77,6 +77,67 @@ class Engine:
         return self.store.append("observation", {"id": evidence_id or "e-" + uuid.uuid4().hex[:16],
                                                  "source": source, "content": content, "actor": "human"})
 
+    def working_set(self, state):
+        """Build a deliberately lossy, traceable shadow of the durable state.
+
+        Shadow mode does not replace the provider context yet. It lets WAKE measure
+        what a purpose-conditioned working representation would look like without
+        changing live-model behavior before a controlled comparison exists.
+        """
+        def excerpt(value, limit):
+            value = str(value)
+            return value if len(value) <= limit else value[:limit - 1] + "…"
+
+        beliefs = []
+        for belief in state["beliefs"].values():
+            beliefs.append({
+                "id": belief["id"],
+                "claim": excerpt(belief["statement"], 320),
+                "confidence": belief["confidence"],
+                "status": belief["status"],
+                "why_retained": excerpt(belief["reason"], 220),
+                "provenance": list(belief["evidence"]),
+            })
+
+        commitments = [{
+            "id": item["id"],
+            "task": excerpt(item["task"], 320),
+            "due_cycle": item["due_cycle"],
+            "reason": excerpt(item["reason"], 220),
+        } for item in state["commitments"].values() if item["status"] == "open"]
+
+        working = {
+            "mode": "shadow",
+            "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+            "retrieval_triggers": [
+                "material belief revision or retraction",
+                "new contradiction or counterevidence",
+                "high-consequence decision",
+                "request for justification",
+                "sign that an excerpt may hide a material distinction",
+            ],
+            "beliefs": beliefs,
+            "open_commitments": commitments,
+        }
+
+        if state.get("charter"):
+            working["active_projects"] = [{
+                "id": project["id"],
+                "title": excerpt(project["title"], 160),
+                "question": excerpt(project["question"], 320),
+                "next_step": excerpt(project["next_step"], 260),
+            } for project in state["projects"].values() if project["status"] == "active"]
+            working["recent_notebooks"] = [{
+                "id": notebook["id"],
+                "project": notebook["project"],
+                "title": excerpt(notebook["title"], 160),
+                "summary": excerpt(notebook["summary"], 320),
+                "revision": notebook["revision"],
+                "provenance": list(notebook["evidence"]),
+            } for notebook in list(state["notebooks"].values())[-6:]]
+
+        return working
+
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
@@ -154,8 +215,10 @@ class Engine:
                 "inherited_commitments": [k for k, v in state["commitments"].items() if v["status"] == "open"],
                 "scope": "Receipt proves state delivery to the provider boundary, not model comprehension."})})
         from .providers import RESEARCH_SYSTEM, SCHEMA
+        delivered_context = self.context(state, receipt)
+        working_set_shadow = self.working_set(state)
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
-                   "context": self.context(state, receipt), "response_schema": SCHEMA}
+                   "context": delivered_context, "response_schema": SCHEMA}
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
             request["context"]["recent_journal"] = []
             request["context"]["notebooks"] = request["context"]["notebooks"][-4:]
@@ -172,9 +235,18 @@ class Engine:
                 evidence["context_excerpt"] = True
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
+        shadow_chars = len(canonical(working_set_shadow))
+        delivered_chars = len(canonical(request["context"]))
         self.store.append("invocation_started", {"id": invocation, "provider": provider, "model": model,
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
-            "request_hash": digest(request), "process_id": os.getpid()})
+            "request_hash": digest(request), "process_id": os.getpid(),
+            "working_set_shadow": working_set_shadow,
+            "working_set_metrics": {
+                "mode": "shadow",
+                "working_set_chars": shadow_chars,
+                "delivered_context_chars": delivered_chars,
+                "working_to_delivered_ratio": round(shadow_chars / max(delivered_chars, 1), 4),
+            }})
         return invocation, request
 
     def finish(self, invocation, raw, metadata=None, crash=False):

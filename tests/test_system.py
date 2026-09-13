@@ -246,12 +246,50 @@ class SystemTests(unittest.TestCase):
         with self.assertRaises(IntegrityError):
             verify_history(log, (self.root/"site/head.txt").read_text())
 
+    def test_working_set_shadow_is_lossy_traceable_and_not_delivered(self):
+        with self.engine.store.lock():
+            self.engine.observe("X" * 2000, "human:detail", evidence_id="e-detail")
+            invocation, request = self.engine.start("fixture", "shadow-test")
+            proposal = {
+                "base_version": 0,
+                "title": "Create a test belief",
+                "summary": "Use one exact observation to seed a belief.",
+                "actions": [{
+                    "type": "belief",
+                    "id": "shadow-belief",
+                    "statement": "A deliberately verbose working claim " + ("Y" * 500),
+                    "confidence": 0.6,
+                    "status": "active",
+                    "evidence": ["e-detail"],
+                    "reason": "Retain the decision-relevant lesson while exact detail stays in evidence.",
+                }],
+            }
+            self.engine.finish(invocation, json.dumps(proposal))
+
+            second, second_request = self.engine.start("fixture", "shadow-test-2")
+            state = self.engine.store.load()
+            item = state["invocations"][second]
+            shadow = item["working_set_shadow"]
+            metrics = item["working_set_metrics"]
+
+        self.assertEqual(shadow["mode"], "shadow")
+        self.assertEqual(shadow["beliefs"][0]["id"], "shadow-belief")
+        self.assertIn("e-detail", shadow["beliefs"][0]["provenance"])
+        self.assertNotIn("X" * 200, canonical(shadow))
+        self.assertLess(len(shadow["beliefs"][0]["claim"]), 340)
+        self.assertGreater(metrics["delivered_context_chars"], 0)
+        self.assertGreater(metrics["working_set_chars"], 0)
+        self.assertNotIn("working_set_shadow", second_request["context"])
+        self.assertNotIn("working_set_metrics", second_request["context"])
+
     def test_progressive_abstraction_is_documented_without_personhood_claims(self):
         root = Path(__file__).resolve().parents[1]
         readme = (root / "README.md").read_text()
         architecture = (root / "docs/architecture.md").read_text()
         experiment = (root / "docs/experiment.md").read_text()
-        self.assertIn("progressive abstraction with reversible lookup", readme.lower())
+        self.assertIn("progressive abstraction with recoverable provenance", readme.lower())
+        self.assertIn("working abstractions keep evidence", readme.lower())
+        self.assertIn("shadow working set", architecture.lower())
         self.assertIn("Exact receipts", architecture)
         self.assertIn("exact underneath, approximate on", architecture.lower())
         self.assertIn("not a test for consciousness, qualia, personhood", experiment)

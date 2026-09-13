@@ -6,6 +6,8 @@
 
 Disposable models. Durable state. Receipts for everything.
 
+**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**
+
 WAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
 
 WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. It chooses small useful research projects in **quantum physics, philosophy, psychology, AI and their intersections**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.
@@ -108,7 +110,9 @@ durable projection → bounded context → fresh provider → untrusted proposal
                links back to receipts
 ```
 
-The design principle is **progressive abstraction with reversible lookup**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Reversible” here means the external record remains available for lookup; it does not mean a lossy summary contains enough information to reconstruct discarded detail by itself.
+The design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.
+
+The first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.
 
 - `wake/store.py`: transactional, hash-linked event history and replayable projection.
 - `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.

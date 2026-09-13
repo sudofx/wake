@@ -14,6 +14,29 @@ from progressively more useful abstractions, retrieve detail when needed, and re
 evidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove
 that the resulting behavior is reliable or intelligent.
 
+### Working-set shadow phase
+
+Before replacing any live context, WAKE✳ records a deterministic `working_set_shadow` beside each invocation.
+It compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,
+and carries compact active-project and recent-notebook pointers. Raw evidence contents remain only in the
+authoritative record and the richer provider context. `working_set_metrics` records shadow size versus the
+context actually delivered.
+
+This phase is observational. The model does not receive the shadow as a substitute for its current context,
+so changes in behavior cannot yet be attributed to compression.
+
+After enough baseline invocations exist, run a controlled offline/manual comparison from the same durable
+starting state:
+
+- **A — rich context:** current bounded provider context.
+- **B — working abstraction:** the shadow working set plus deterministic rehydration of exact receipts when
+  contradiction, major revision, high consequence, or a justification request raises the required resolution.
+- **C — overcompressed control:** identifiers, claims and confidence with provenance/uncertainty detail removed.
+
+Primary outcome: whether B preserves contradiction detection and appropriate evidence-backed revision while
+using materially less active context than A. C is expected to reveal where compression starts making
+correction harder. Do not activate B for unattended live wakes until that comparison has been run and scored.
+
 ## Reproducible offline harness
 
 Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site` in a new directory. The runner creates each invocation using a separate `subprocess.run`, with no inherited Python state, provider object or chat history. It alternates `fixture-a` and `fixture-b`, two labels for the deterministic fixture algorithm. This establishes provider interchangeability at the contract boundary, not behavioral equivalence of two real models.

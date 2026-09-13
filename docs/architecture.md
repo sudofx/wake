@@ -57,9 +57,15 @@ history in its active context. It receives a bounded working representation sele
 while the full record remains available to later invocations and human readers.
 
 This is a design direction, not evidence that WAKE✳ has achieved human-like memory or intelligence.
-Current code already performs bounded selection and excerpting; future compression mechanisms must remain
-auditable and must not silently discard open obligations, uncertainty, disagreement, provenance, or the
-ability to locate the underlying receipts.
+Current code already performs bounded selection and excerpting. It now also creates a deterministic
+**shadow working set** for every invocation: a lossy projection of beliefs, open commitments, active projects
+and recent notebook summaries that retains IDs, uncertainty signals and provenance pointers while omitting
+raw source contents and journal detail. The shadow is stored in the invocation receipt with its character
+size relative to the richer context actually delivered to the provider. Shadow mode does **not** replace or
+alter the provider context, so it introduces measurement without yet introducing a behavioral confound.
+
+Any future activation of compressed context must remain auditable and must not silently discard open
+obligations, uncertainty, disagreement, provenance, or the ability to locate the underlying receipts.
 
 The intended information hierarchy is:
 
@@ -72,7 +78,9 @@ The intended information hierarchy is:
 Each layer may become more lossy as it moves toward immediate use, but a lossy layer must point back toward
 the more exact layer beneath it. The system should prefer a cheap-to-revise abstraction over false precision,
 while preserving exact evidence externally. A useful shorthand is: **exact underneath, approximate on
-purpose, correctable always**.
+purpose, correctable always**. In this architecture, “reversible lookup” is more precisely **recoverable
+provenance**: the abstraction carries enough identity and provenance to return to exact receipts when its
+resolution is no longer sufficient.
 
 ## Context and cost
 
