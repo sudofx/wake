@@ -33,7 +33,7 @@ def empty():
             "invocations": {}, "pending": None}
 
 
-def reduce_event(state, event):
+def reduce_event(state, event, historical=False):
     p, kind = event["payload"], event["kind"]
     if kind == "initialized":
         require(not state["objective"], "Duplicate initialization")
@@ -66,7 +66,7 @@ def reduce_event(state, event):
     elif kind in ("accepted", "rejected", "failed", "deferred", "recovered"):
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
-            state = transition(state, p["proposal"], p["id"])
+            state = transition(state, p["proposal"], p["id"], historical=historical)
             fields = p.get("hash_fields", ["version", "beliefs", "commitments", "journal"])
             require(digest({k: state[k] for k in fields}) == p["result_hash"],
                     "Transition result hash mismatch")
@@ -124,7 +124,9 @@ class Store:
                 body = {k: v for k, v in event.items() if k != "hash"}
                 if event["seq"] != expected or event["prev_hash"] != head or digest(body) != event["hash"]:
                     raise IntegrityError(f"Event {expected}: broken hash chain; restore a known-good backup")
-                state = reduce_event(state, event)
+                # Reconstruct historical decisions under replay-compatible policy.
+                # New acceptance-time editorial rules must not invalidate old accepted events.
+                state = reduce_event(state, event, historical=True)
                 head = event["hash"]
         except (ValueError, KeyError, TypeError, sqlite3.DatabaseError) as exc:
             raise IntegrityError(f"Invalid history: {exc}") from exc

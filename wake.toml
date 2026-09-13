@@ -13,4 +13,7 @@ free_tier_confirmed = true
 publish_reports = true
 pet_name = "WAKE✳"
 mission = "Independently choose small, useful research projects in quantum physics, philosophy, psychology, AI, and connections between these fields. Develop a specialty through source-backed notebooks, comparisons of competing ideas, explicit uncertainty, and revisions. Finish useful work and choose the next step without waiting for human assignments. Distinguish established findings, interpretations, and speculation."
+editorial_notes = [
+  "Review Bob post blog-demarcating-agency-consciousness for possible overstatement. The phrases 'agency and consciousness separate along clean functional fault lines' and 'allows genuine epistemic self-governance' appear stronger than the cited durable record establishes. Do not rewrite the original. If the notebooks and evidence support a narrower formulation, publish a transparent correction that supersedes the post; otherwise keep investigating."
+]
 repository = "sudofx/wake"

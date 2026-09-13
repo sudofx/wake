@@ -5,6 +5,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from scripts.github_wake import StateBranch
 from wake.audit import verify_history
@@ -198,7 +199,24 @@ class ResearchTests(unittest.TestCase):
             available = request["context"]["blog_notebooks"]
             self.assertEqual(available["p"][0]["id"], "n")
             self.assertEqual(available["p"][0]["evidence"], ["s1", "s2"])
+            self.assertIn("status", context[0])
+            self.assertEqual(request["context"]["editorial_notes"], [])
             self.engine.store.append("failed", {"id": invocation, "reason": "test cleanup"})
+
+    def test_editorial_review_notes_reach_fresh_invocations_without_becoming_evidence(self):
+        note = ("Review Bob post post-one for possible overstatement; if evidence supports a narrower "
+                "claim, publish a transparent correction rather than rewriting history.")
+        engine = Engine(self.root/"editorial", {**DEFAULTS, "mission":"Explore.", "editorial_notes":[note]})
+        try:
+            with engine.store.lock():
+                engine.initialize()
+                invocation, request = engine.start("fixture", "editorial-test")
+                self.assertEqual(request["context"]["editorial_notes"], [note])
+                self.assertFalse(any(item.get("source") == "operator:editorial"
+                                     for item in request["context"]["evidence"]))
+                engine.store.append("failed", {"id": invocation, "reason": "test cleanup"})
+        finally:
+            engine.store.close()
 
     def test_blog_does_not_add_a_provider_call(self):
         self.source("s1")
@@ -267,6 +285,18 @@ class ResearchTests(unittest.TestCase):
             "question remains open."
         )
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])["status"], "accepted")
+
+    def test_stricter_blog_policy_does_not_invalidate_accepted_history_on_replay(self):
+        self.source("s1")
+        self.source("s2")
+        body = ("External scaffolding allows genuine epistemic self-governance without consciousness. " * 6)
+        # Simulate an event accepted before the newer overclaim policy existed.
+        with patch("wake.governance._blog_language", return_value=None):
+            result = self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])
+        self.assertEqual(result["status"], "accepted")
+        replayed, _ = self.engine.store.replay()
+        self.assertIn("post-one", replayed["posts"])
+        self.assertIn("genuine epistemic self-governance", replayed["posts"]["post-one"]["body"])
 
     def test_correction_preserves_the_original_post(self):
         self.source("s1")

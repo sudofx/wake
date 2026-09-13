@@ -30,6 +30,11 @@ def config(path="wake.toml"):
     if result.get("mission"):
         text(result["mission"], "Research mission", 3000)
         text(result.get("pet_name", "WAKE✳"), "Pet name", 80)
+        notes = result.get("editorial_notes", [])
+        require(isinstance(notes, list) and len(notes) <= 8,
+                "editorial_notes must be a list of at most 8 notes")
+        for note in notes:
+            text(note, "Editorial note", 1200)
     return result
 
 
@@ -101,9 +106,13 @@ class Engine:
                                            "context_excerpt": True} if working else None)
             context["research"] = list(state["research"].values())[-8:]
             context["recent_blog"] = [
-                {key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version")}
+                {key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version",
+                                                "status", "supersedes", "superseded_by")}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
+            # Source-controlled operator review notes are editorial context, not research evidence.
+            # They can flag prior public wording for reconsideration without rewriting history.
+            context["editorial_notes"] = list(self.config.get("editorial_notes", []))
             # Research excerpts are bounded. Full snapshots remain available in the lab.
             sources = [v for v in state["evidence"].values() if v.get("actor") == "collector"][-6:]
             context["evidence"] = [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000}

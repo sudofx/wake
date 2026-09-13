@@ -50,7 +50,7 @@ def _limited_sources(evidence):
     return bool(scopes) and all(any(word in scope for word in limited) for scope in scopes)
 
 
-def _blog_language(action, evidence):
+def _blog_language(action, evidence, historical=False):
     prose = " ".join(str(action.get(key, "")) for key in ("title", "lede", "body", "lens", "reason"))
     lower = prose.lower()
     lower = re.sub(r"quantum.{0,40}(does not|doesn't|cannot|can't|is not).{0,50}"
@@ -62,18 +62,19 @@ def _blog_language(action, evidence):
                         r".{0,100}(is|are).{0,40}quantum", lower)
     require(not bridge and not reverse,
             "Quantum-Carnegie connections must remain philosophical metaphor, not scientific causation")
-    # Bob is an explainer, not an authority that upgrades interpretation into fact.
-    # Reject a small set of high-risk formulations even when source provenance is valid.
-    # This is intentionally narrow: ordinary confident prose remains allowed.
-    overclaim = re.search(
-        r"\b(genuine|real)\s+(epistemic\s+)?(agency|self-governance|consciousness|intelligence)\b"
-        r"|\b(clean|clear|sharp)\s+(functional\s+)?(fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
-        r"|\b(cleanly|sharply)\s+(separates?|demarcates?|distinguishes?)\b"
-        r"|\b(proves?|demonstrates?|establishes?|confirms?)\s+that\b",
-        lower,
-    )
-    require(not overclaim,
-            "Blog prose must not present contested synthesis or interpretation as established fact")
+    # Current editorial calibration is an acceptance-time policy, not a retroactive
+    # rewrite of already accepted history. Historical replay still checks the hash chain,
+    # structural transition, result hash, source provenance, and older safety boundaries.
+    if not historical:
+        overclaim = re.search(
+            r"\b(genuine|real)\s+(epistemic\s+)?(agency|self-governance|consciousness|intelligence)\b"
+            r"|\b(clean|clear|sharp)\s+(functional\s+)?(fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
+            r"|\b(cleanly|sharply)\s+(separates?|demarcates?|distinguishes?)\b"
+            r"|\b(proves?|demonstrates?|establishes?|confirms?)\s+that\b",
+            lower,
+        )
+        require(not overclaim,
+                "Blog prose must not present contested synthesis or interpretation as established fact")
 
     if _limited_sources(evidence):
         calibrated = re.sub(r"\b(not|isn't|is not|has not been|cannot be)\s+"
@@ -82,7 +83,7 @@ def _blog_language(action, evidence):
         require(not inflated, "Limited or abstract-only sources cannot support certainty language")
 
 
-def transition(state, proposal, invocation):
+def transition(state, proposal, invocation, historical=False):
     """Return a new projection or reject the entire proposal, never a partial write."""
     keys(proposal, "base_version title summary actions", "Proposal")
     require(type(proposal["base_version"]) is int and proposal["base_version"] == state["version"],
@@ -244,7 +245,7 @@ def transition(state, proposal, invocation):
                 require(supersedes in result["posts"], "A correction must reference an existing blog post")
                 require(not result["posts"][supersedes].get("superseded_by"),
                         "The earlier blog post is already superseded")
-            _blog_language(action, cited)
+            _blog_language(action, cited, historical=historical)
             post = {**action, "created_by": invocation, "created_version": state["version"] + 1,
                     "status": "current"}
             result["posts"][action["id"]] = post
