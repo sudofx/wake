@@ -25,9 +25,14 @@ def _pretty(value):
     return json.dumps(value, indent=2, ensure_ascii=False, sort_keys=False)
 
 
+def _display_text(value):
+    """Presentation-only WAKE wordmark normalization; canonical state stays untouched."""
+    return str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
+
+
 def _md_code(value, language="json"):
     text = value if isinstance(value, str) else _pretty(value)
-    text = text.replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
+    text = _display_text(text)
     fence = "```"
     while fence in text:
         fence += "`"
@@ -38,7 +43,7 @@ def _html_pre(value):
     text = value if isinstance(value, str) else _pretty(value)
     # Presentation-only normalization: keep canonical JSON untouched while forcing
     # the text-style asterisk in readable exports, including historical prompts.
-    text = text.replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
+    text = _display_text(text)
     return f"<pre>{html.escape(text)}</pre>"
 
 
@@ -264,8 +269,8 @@ def _notebook_html(notebook, state):
 
 
 def _blog_html(post, state):
-    paragraphs = "".join(f"<p>{html.escape(part)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
-    lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{html.escape(post["lens"])}</p></div>' if post.get("lens") else ""
+    paragraphs = "".join(f"<p>{html.escape(_display_text(part))}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
+    lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{html.escape(_display_text(post["lens"]))}</p></div>' if post.get("lens") else ""
     notebooks = "".join(
         f'<li><a href="../notebooks/{html.escape(nid)}.html">{html.escape(state["notebooks"][nid]["title"])}</a> <small>· <a href="../notebooks/{html.escape(nid)}.md">Markdown source</a></small></li>'
         for nid in post["notebooks"])
@@ -276,7 +281,7 @@ def _blog_html(post, state):
     if post.get("superseded_by"):
         correction = f'<p class="note">Superseded by <a href="{html.escape(post["superseded_by"])}.html">{html.escape(post["superseded_by"])}</a>.</p>'
     body = (
-        f'<p class="lede">{html.escape(post["lede"])}</p>{correction}{paragraphs}{lens}'
+        f'<p class="lede">{html.escape(_display_text(post["lede"]))}</p>{correction}{paragraphs}{lens}'
         f'<h2>Follow the receipts</h2><h3>Research notebooks</h3><ul class="sources">{notebooks}</ul>'
         f'<h3>Collected sources</h3><ul class="sources">{sources}</ul>'
         f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>'
@@ -343,9 +348,9 @@ def export(store, destination="site", experiment=None, operation=None):
                 for item in post["notebooks"])
             source_links = newline.join(
                 f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
-            parts = [f"# {post['title']}", "", post["lede"], "", post["body"]]
+            parts = [f"# {_display_text(post['title'])}", "", _display_text(post["lede"]), "", _display_text(post["body"])]
             if post.get("lens"):
-                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {post['lens']}"]
+                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_display_text(post['lens'])}"]
             if post.get("superseded_by"):
                 parts += ["", f"This post was superseded by [{post['superseded_by']}](../index.html#blog/{post['superseded_by']})."]
             parts += ["", "## Follow the receipts", "", "### Research notebooks", "", notebook_links, "",

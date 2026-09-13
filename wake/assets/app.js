@@ -15,7 +15,8 @@
   setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
   themeToggle.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
   const help = key => window.WakeHelp.button(key);
-  const esc = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const display = value => String(value ?? '').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
+  const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const fmt = time => new Date(time).toLocaleString('en-US', {timeZone:data.timezone,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
   const invocations = Object.values(s.invocations);
   const posts = Object.values(s.posts || {}).sort((a,b)=>b.created_version-a.created_version);

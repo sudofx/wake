@@ -148,6 +148,26 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("font-variant-emoji:text", standalone)
         self.assertIn("WAKE✳︎", standalone)
 
+    def test_historical_blog_wordmark_is_normalized_only_in_presentation(self):
+        self.source("s1")
+        self.source("s2")
+        body = (
+            "Hello. I'm Bob, the public correspondent for WAKE✳. "
+            "This historical record deliberately stores the bare mark while the browser export "
+            "normalizes it to the text presentation. " * 4
+        )
+        result = self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])
+        self.assertEqual(result["status"], "accepted")
+        state = self.engine.store.load()
+        self.assertIn("WAKE✳.", state["posts"]["post-one"]["body"])
+        export(self.engine.store, self.root/"site")
+        standalone = (self.root/"site/blog/post-one.html").read_text()
+        markdown = (self.root/"site/blog/post-one.md").read_text()
+        index = (self.root/"site/index.html").read_text()
+        self.assertIn("WAKE✳︎.", standalone)
+        self.assertIn("WAKE✳︎.", markdown)
+        self.assertIn("replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎')", index)
+
     def test_unsupported_blog_claims_are_rejected_atomically(self):
         self.source("s1")
         self.source("s2")
