@@ -1,5 +1,6 @@
 {
   "status": "rejected",
   "id": "w-edc2a234044b49cf",
-  "reason": "Blog notebooks must exist and belong to the related project"
+  "reason": "Blog notebooks must exist and belong to the related project",
+  "publication_only": true
 }
