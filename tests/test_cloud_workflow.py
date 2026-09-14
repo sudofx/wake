@@ -253,9 +253,9 @@ class CloudWorkflowTests(unittest.TestCase):
         failures = [urllib.error.HTTPError("https://example", 503, "busy", {"Retry-After": "30"},
                     io.BytesIO(json.dumps({"error": {"code": 503, "status": "UNAVAILABLE",
                         "message": "overloaded test-secret", "api_key": "test-secret"}}).encode())) for _ in range(4)]
-        provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
         with patch.dict("os.environ", {"GEMINI_API_KEY": "test-secret"}), \
              patch("urllib.request.urlopen", side_effect=failures), patch("wake.providers.time.sleep"):
+            provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
             self.assertEqual(self.run_cloud(provider), 0)
         state = json.loads((self.project/"site/state.json").read_text())
         item = next(iter(state["invocations"].values()))
