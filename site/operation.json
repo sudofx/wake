@@ -1,6 +1,5 @@
 {
-  "status": "failed",
-  "id": "w-de78a37e16ec4536",
-  "reason": "Gemini HTTP 429; wake attempt counted",
-  "publication_only": true
+  "status": "rejected",
+  "id": "w-6713ab60dddb497d",
+  "reason": "Blog prose must not present contested synthesis or interpretation as established fact"
 }
