@@ -1787,6 +1787,15 @@
       "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
       "version": 19,
       "time": "2026-09-14T11:10:27.473646+00:00"
+    },
+    "source-3aa9409885094873": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-3aa9409885094873",
+      "scope": "failed",
+      "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+      "version": 19,
+      "time": "2026-09-14T12:02:14.196506+00:00"
     }
   },
   "journal": [
