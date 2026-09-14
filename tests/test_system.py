@@ -298,7 +298,7 @@ class SystemTests(unittest.TestCase):
         export(self.engine.store, self.root / "site")
         page = (self.root / "site/index.html").read_text()
         self.assertIn("b.confidence-a.confidence", page)
-        self.assertIn('href="./" aria-label="Reload WAKE✳︎ from the site root"', page)
+        self.assertIn('href="https://sudofx.github.io/wake" aria-label="Reload WAKE✳︎ from the site root"', page)
         self.assertIn("className='wake-mark'", page)
         self.assertIn("text-shadow:0 0 7px", page)
         self.assertNotIn("a:hover{text-decoration:underline", page)
