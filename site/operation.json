@@ -1,5 +1,27 @@
 {
   "status": "deferred",
   "id": "w-4a5dcb5678004c1b",
-  "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"
+  "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred",
+  "publication_only": true,
+  "wake_status": {
+    "last_accepted": {
+      "id": "w-5e2fdab0b7ae4e30",
+      "time": "2026-09-13T14:45:15.081364+00:00",
+      "finished": "2026-09-13T14:45:45.839716+00:00",
+      "status": "accepted",
+      "reason": ""
+    },
+    "latest_attempt": {
+      "id": "w-4a5dcb5678004c1b",
+      "time": "2026-09-14T09:57:06.400959+00:00",
+      "finished": "2026-09-14T09:59:07.450194+00:00",
+      "status": "deferred",
+      "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"
+    },
+    "accepted_cycles": 19,
+    "next_eligible": "2026-09-14T10:07:06.400959+00:00",
+    "pending": false,
+    "attempts_today": 4,
+    "daily_call_limit": 20
+  }
 }
