@@ -20,47 +20,10 @@ from wake.research import collect
 from wake.report import export, atomic_write
 
 
-SCHEDULED_WAKE_INTERVAL = timedelta(minutes=55)
-SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=10)
-PACIFIC = ZoneInfo("America/Los_Angeles")
-
-
-def daily_quota_next_eligible(item):
-    """Return the next Pacific midnight for an exact Gemini daily-quota result."""
-    if not is_free_tier_daily_quota(item.get("provider_error", {})):
-        return None
-    quota_day = item.get("quota_day")
-    if not quota_day:
-        return None
-    reset = datetime.fromisoformat(quota_day).replace(tzinfo=PACIFIC) + timedelta(days=1)
-    return reset.astimezone(timezone.utc)
-
-
-def transient_provider_deferred(item):
-    return (item.get("status") == "deferred"
-            and str(item.get("reason", "")).startswith("Gemini temporarily unavailable"))
-
-
-def scheduled_wake_due(state, now=None):
-    """Collapse redundant GitHub cron deliveries into roughly one hourly wake.
-
-    GitHub's scheduler can delay or drop events, so the workflow asks at several
-    off-minute times. The last charged invocation is the cross-run authority:
-    a backup may replace a missing wake, but it cannot duplicate a recent
-    scheduled or manual Gemini call.
-    """
-    now = now or datetime.now(timezone.utc)
-    charged = [item for item in state["invocations"].values() if item.get("charged")]
-    if not charged:
-        return True, None
-    latest = max(charged, key=lambda item: datetime.fromisoformat(item["time"]))
-    quota_reset = daily_quota_next_eligible(latest)
-    if quota_reset is not None:
-        return now >= quota_reset, quota_reset
-    interval = (SCHEDULED_TRANSIENT_RETRY_INTERVAL
-                if transient_provider_deferred(latest) else SCHEDULED_WAKE_INTERVAL)
-    next_eligible = datetime.fromisoformat(latest["time"]) + interval
-    return now >= next_eligible, next_eligible
+from wake.scheduling import (
+    SCHEDULED_WAKE_INTERVAL, SCHEDULED_TRANSIENT_RETRY_INTERVAL,
+    daily_quota_next_eligible, transient_provider_deferred, scheduled_wake_due, wake_status,
+)
 
 
 def set_step_output(name, value):
@@ -159,6 +122,7 @@ def main(publish_only=False, scheduled=False):
                     result = engine.run(provider, checkpoint=branch.checkpoint, collector=collect)
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
+            result["wake_status"] = wake_status(engine.store.load(), settings["daily_call_limit"])
             export(engine.store, ROOT / "site", operation=result)
             atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
             atomic_write(ROOT / "site/.nojekyll", "")

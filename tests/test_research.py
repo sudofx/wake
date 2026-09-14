@@ -169,16 +169,37 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("**WAKE✳︎**.", markdown)
         self.assertIn("replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎')", index)
 
-    def test_unsupported_blog_claims_are_rejected_atomically(self):
+    def test_invalid_blog_is_withheld_while_research_is_accepted_and_replayable(self):
         self.source("s1")
         self.source("s2")
         bad = self.blog(["s1", "missing"])
         result = self.propose([project(), notebook(["s1", "s2"]), bad])
-        self.assertEqual(result["status"], "rejected")
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["editorial"]["status"], "withheld")
         state = self.engine.store.load()
-        self.assertEqual(state["projects"], {})
-        self.assertEqual(state["notebooks"], {})
+        self.assertIn("p", state["projects"])
+        self.assertIn("n", state["notebooks"])
         self.assertEqual(state["posts"], {})
+        receipt = self.engine.store.events()[-1]["payload"]
+        self.assertEqual(receipt["editorial"]["action"], bad)
+        self.assertEqual(len(receipt["proposal"]["actions"]), 2)
+        self.assertEqual(len(json.loads(receipt["raw_response"])["actions"]), 3)
+        self.assertIn("withheld", state["journal"][-1]["summary"])
+        export(self.engine.store, self.root/"site")
+        reconstructed, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
+        self.assertEqual(reconstructed, state)
+
+    def test_blog_withholding_never_bypasses_research_or_envelope_validation(self):
+        self.source("s1")
+        self.source("s2")
+        for actions in ([project(), notebook(["s1", "missing"]), self.blog()],
+                        [self.blog(), project()], [project(), self.blog(), self.blog()],
+                        [project(str(i)) for i in range(12)] + [self.blog()],
+                        [self.blog()]):
+            with self.subTest(actions=actions):
+                self.assertEqual(self.propose(actions)["status"], "rejected")
+                self.assertEqual(self.engine.store.load()["version"], 0)
+                self.assertEqual(self.engine.store.load()["projects"], {})
 
     def test_existing_durable_notebook_can_support_a_later_blog_post(self):
         self.source("s1")
@@ -239,7 +260,7 @@ class ResearchTests(unittest.TestCase):
         self.source("s1")
         self.source("s2")
         bad = self.blog(body=("Quantum mechanics proves empathy and explains relationships. " * 20))
-        self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), bad])["status"], "rejected")
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), bad])["status"], "accepted")
         self.assertEqual(self.engine.store.load()["posts"], {})
 
     def test_honest_quantum_boundary_is_allowed(self):
@@ -256,20 +277,22 @@ class ResearchTests(unittest.TestCase):
         self.source("s1", source_scope="abstract only")
         self.source("s2", source_scope="preprint abstract")
         inflated = self.blog(body=("The sources provide definitive and conclusive proof. " * 10))
-        self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), inflated])["status"], "rejected")
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), inflated])["status"], "accepted")
         self.assertEqual(self.engine.store.load()["posts"], {})
 
     def test_blog_rejects_contested_synthesis_presented_as_established_fact(self):
         self.source("s1")
         self.source("s2")
+        self.propose([project(), notebook(["s1", "s2"])])
         for body in (
             "The literature separates agency and consciousness along clean functional fault lines. " * 6,
             "External scaffolding allows genuine epistemic self-governance without consciousness. " * 6,
             "The collected literature demonstrates that agency does not require consciousness. " * 6,
         ):
             with self.subTest(body=body[:50]):
-                result = self.propose([project(), notebook(["s1", "s2"]), self.blog(body=body)])
-                self.assertEqual(result["status"], "rejected")
+                result = self.propose([project(), self.blog(body=body)])
+                self.assertEqual(result["status"], "accepted")
+                self.assertEqual(result["editorial"]["status"], "withheld")
                 self.assertEqual(self.engine.store.load()["posts"], {})
 
     def test_blog_allows_explicitly_calibrated_synthesis(self):

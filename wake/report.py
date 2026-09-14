@@ -8,6 +8,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .store import canonical, now
+from .scheduling import wake_status
 
 
 def atomic_write(path, content):
@@ -102,6 +103,8 @@ def _human_events_markdown(events, head):
                 "",
             ]
         elif kind == "accepted":
+            if payload.get("editorial"):
+                lines += ["### Withheld blog post", "", _md_code(payload["editorial"]), ""]
             lines += ["### Accepted proposal", "", _md_code(payload.get("proposal", {})), ""]
             if payload.get("raw_response") is not None:
                 lines += ["### Raw model response", "", _md_code(payload["raw_response"], "json"), ""]
@@ -201,6 +204,8 @@ def _human_events_html(events, head):
                 "<h3>Response schema</h3>" + _html_pre(request.get("response_schema", {})),
             ]
         elif kind == "accepted":
+            if payload.get("editorial"):
+                blocks += ["<h3>Withheld blog post</h3>" + _html_pre(payload["editorial"])]
             blocks += ["<h3>Accepted proposal</h3>" + _html_pre(payload.get("proposal", {}))]
             if payload.get("raw_response") is not None:
                 blocks += ["<h3>Raw model response</h3>" + _html_pre(payload["raw_response"])]
@@ -309,7 +314,8 @@ def export(store, destination="site", experiment=None, operation=None):
             evidence_file = store.directory / "experiment.json"
             experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
         data = {"state": state, "events": events, "head": head, "generated": now(),
-                "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation}
+                "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
+                "wake_status": (operation or {}).get("wake_status") or wake_status(state)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"

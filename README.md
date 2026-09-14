@@ -61,7 +61,7 @@ python3 -m wake export
 python3 -m wake serve
 ```
 
-One wake normally makes one Gemini request. If Gemini reports HTTP 503 because it is temporarily unavailable, WAKE✳︎ waits 30 seconds and retries that same durable request once. The local ceiling is 20 wake attempts per Pacific calendar day, including failed and interrupted wakes; a 503 retry may also count toward Google's provider quota. There is no paid fallback or hidden second model task. Token and context ceilings bound each request. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).
+One wake normally makes one Gemini request. For temporary server errors, timeouts, or connection failures, WAKE✳︎ retries the same durable request after 15, 30, and 60 seconds, then defers the wake. Each failed transport attempt retains bounded diagnostics; HTTP errors include the status and provider message. The local ceiling is 20 wake attempts per Pacific calendar day, including failed and interrupted wakes; a retry may also count toward Google's provider quota. There is no paid fallback or hidden second model task. Token and context ceilings bound each request. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).
 
 The rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.
 

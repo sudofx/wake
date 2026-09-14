@@ -186,6 +186,8 @@ class Engine:
             context["beliefs"] = [{**b, "evidence": b["evidence"][-6:]} for b in context["beliefs"]]
             outcomes = [e for e in self.store.events() if e["kind"] in ("rejected", "failed")][-2:]
             context["recent_problems"] = [e["payload"].get("reason", "") for e in outcomes]
+            withheld = [i["editorial"] for i in state["invocations"].values() if i.get("editorial")][-2:]
+            context["recent_problems"] += ["Blog withheld: " + note["reason"] for note in withheld]
         return context
 
     def start(self, provider, model, charged=False):
@@ -261,7 +263,24 @@ class Engine:
         try:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
-            result = transition(state, proposal, invocation)
+            editorial = None
+            try:
+                result = transition(state, proposal, invocation)
+            except Rejected as exc:
+                actions = proposal.get("actions") if isinstance(proposal, dict) else None
+                # Only the single optional final blog can be withheld. Research and
+                # the original proposal envelope still cross the full governance boundary.
+                if not (state.get("charter") and isinstance(actions, list) and 2 <= len(actions) <= 12
+                        and all(isinstance(a, dict) and a.get("type") != "blog" for a in actions[:-1])
+                        and isinstance(actions[-1], dict) and actions[-1].get("type") == "blog"):
+                    raise
+                accepted_proposal = {**proposal, "actions": actions[:-1]}
+                transition(state, accepted_proposal, invocation)  # Research must validate independently.
+                editorial = {"status": "withheld", "reason": str(exc)[:1000], "action": actions[-1]}
+                accepted_proposal["summary"] = (proposal["summary"][:2100] +
+                    "\n\nEditorial note: the proposed blog post was withheld. " + str(exc)[:180])
+                proposal = accepted_proposal
+                result = transition(state, proposal, invocation)
         except (ValueError, TypeError, KeyError) as exc:
             reason = str(exc)[:1000]
             self.store.append("rejected", {"id": invocation, "reason": reason,
@@ -272,8 +291,10 @@ class Engine:
             fields += ["projects", "notebooks", "research", "posts"]
         result_hash = digest({k: result[k] for k in fields})
         self.store.append("accepted", {"id": invocation, "proposal": proposal, "raw_response": raw,
-                                       "metadata": metadata or {}, "result_hash": result_hash, "hash_fields": fields}, crash=crash)
-        return {"status": "accepted", "id": invocation, "cycle": result["version"]}
+                                       "metadata": metadata or {}, "result_hash": result_hash, "hash_fields": fields,
+                                       **({"editorial": editorial} if editorial else {})}, crash=crash)
+        return {"status": "accepted", "id": invocation, "cycle": result["version"],
+                **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {})}
 
     def run(self, provider, crash_at=None, checkpoint=None, collector=None):
         with self.store.lock():
@@ -290,10 +311,10 @@ class Engine:
                 raw, metadata = provider.propose(request)
             except TransientProviderError as exc:
                 reason = str(exc)[:1000]
-                self.store.append("deferred", {"id": invocation, "reason": reason})
+                self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": exc.details})
                 if checkpoint:
                     checkpoint()
-                return {"status": "deferred", "id": invocation, "reason": reason}
+                return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": exc.details}
             except DailyQuotaExceeded as exc:
                 reason = str(exc)[:1000]
                 payload = {"id": invocation, "reason": reason, "provider_error": exc.details,

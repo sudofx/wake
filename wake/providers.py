@@ -78,11 +78,12 @@ Use an existing project/notebook ID to update it. All previous versions remain i
 Bob is WAKE✳'s public correspondent. His job is to explain both what WAKE✳ is finding and what
 WAKE✳ is doing: the research, uncertainty, disagreements, corrections, current questions, and enough
 of the durable-process experiment for an outsider to understand why the work matters. Bob may propose
-ONE blog action, last in the actions array, when the durable research record contains something genuinely
+ONE optional blog action, last in the actions array, when the durable research record contains something genuinely
 worth explaining to an outsider: a new or materially revised notebook, a meaningful project milestone,
 a correction, a surprising tension between sources, or a synthesis that has become clear across several
 wakes. The qualifying work does not need to occur in this same wake. Do not blog merely because a cycle
-ran. Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
+ran. Valid research can be accepted while an invalid final blog action is withheld with an editorial receipt.
+Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
 
 If recent_blog in the supplied context is empty, this is Bob's first public post. The first post's body
 must begin with a brief, natural introduction in Bob's voice before the regular article: greet the reader,
@@ -189,6 +190,9 @@ def load_env(path=Path(".env")):
 
 class TransientProviderError(RuntimeError):
     "Temporary provider/network outage; the wake should be retried later."
+    def __init__(self, message, details=None):
+        super().__init__(message)
+        self.details = details or {}
 
 
 class ProviderRequestError(Rejected):
@@ -238,6 +242,10 @@ def _safe_provider_value(value, depth=0):
     if isinstance(value, list):
         return [_safe_provider_value(item, depth + 1) for item in value[:24]]
     if isinstance(value, str):
+        secret = os.environ.get("GEMINI_API_KEY")
+        if secret:
+            value = value.replace(secret, "[redacted]")
+        value = re.sub(r"(?i)([?&](?:key|api_key|token)=)[^&\s]+", r"\1[redacted]", value)
         return value[:2000]
     if value is None or isinstance(value, (bool, int, float)):
         return value
@@ -263,7 +271,7 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
         try:
             parsed = json.loads(raw[:32_000].decode("utf-8", "replace"))
         except (ValueError, TypeError):
-            details["response_text"] = raw[:2000].decode("utf-8", "replace")
+            details["response_text"] = _safe_provider_value(raw[:32_000].decode("utf-8", "replace"))
         else:
             error = parsed.get("error", parsed) if isinstance(parsed, dict) else parsed
             details["provider_error"] = _safe_provider_value(error)
@@ -300,6 +308,7 @@ class Gemini:
                                    "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
         attempts = len(self.transient_retry_delays_seconds) + 1
         request_started = time.monotonic()
+        failures = []
         for transport_attempt in range(attempts):
             try:
                 with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
@@ -307,14 +316,19 @@ class Gemini:
                 break
             except urllib.error.HTTPError as exc:
                 elapsed_ms = round((time.monotonic() - request_started) * 1000)
+                diagnostics = _http_error_details(exc, elapsed_ms, len(payload))
+                exc.close()
+                diagnostics.update(category="server" if exc.code in self.transient_http_codes else "http",
+                                   attempt=transport_attempt + 1)
                 if exc.code in self.transient_http_codes:
+                    failures.append(diagnostics)
                     if transport_attempt < len(self.transient_retry_delays_seconds):
                         time.sleep(self.transient_retry_delays_seconds[transport_attempt])
                         continue
                     raise TransientProviderError(
-                        f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
+                        f"Gemini temporarily unavailable after {attempts} attempts; wake deferred",
+                        {**diagnostics, "attempts": failures}
                     ) from None
-                diagnostics = _http_error_details(exc, elapsed_ms, len(payload))
                 if is_free_tier_daily_quota(diagnostics):
                     raise DailyQuotaExceeded(
                         "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
@@ -324,12 +338,23 @@ class Gemini:
                     f"Gemini HTTP {exc.code}; wake attempt counted",
                     diagnostics,
                 ) from None
-            except (urllib.error.URLError, TimeoutError):
+            except (urllib.error.URLError, TimeoutError) as exc:
+                cause = getattr(exc, "reason", exc)
+                diagnostics = {
+                    "category": "timeout" if isinstance(cause, TimeoutError) else "connection",
+                    "error_type": type(cause).__name__,
+                    "elapsed_ms": round((time.monotonic() - request_started) * 1000),
+                    "request_payload_bytes": len(payload), "attempt": transport_attempt + 1,
+                }
+                if isinstance(getattr(cause, "errno", None), int):
+                    diagnostics["errno"] = cause.errno
+                failures.append(diagnostics)
                 if transport_attempt < len(self.transient_retry_delays_seconds):
                     time.sleep(self.transient_retry_delays_seconds[transport_attempt])
                     continue
                 raise TransientProviderError(
-                    f"Gemini temporarily unavailable after {attempts} attempts; wake deferred"
+                    f"Gemini temporarily unavailable after {attempts} attempts; wake deferred",
+                    {**diagnostics, "attempts": failures}
                 ) from None
         candidates = data.get("candidates", [])
         require(candidates and candidates[0].get("finishReason") == "STOP", "Gemini did not return a complete answer")

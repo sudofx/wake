@@ -247,6 +247,44 @@ class CloudWorkflowTests(unittest.TestCase):
             with self.assertRaisesRegex(TransientProviderError, "temporarily unavailable"):
                 Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
 
+    def test_transient_diagnostics_survive_cloud_export_and_redact_credentials(self):
+        import io
+        import urllib.error
+        failures = [urllib.error.HTTPError("https://example", 503, "busy", {"Retry-After": "30"},
+                    io.BytesIO(json.dumps({"error": {"code": 503, "status": "UNAVAILABLE",
+                        "message": "overloaded test-secret", "api_key": "test-secret"}}).encode())) for _ in range(4)]
+        provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-secret"}), \
+             patch("urllib.request.urlopen", side_effect=failures), patch("wake.providers.time.sleep"):
+            self.assertEqual(self.run_cloud(provider), 0)
+        state = json.loads((self.project/"site/state.json").read_text())
+        item = next(iter(state["invocations"].values()))
+        error = item["provider_error"]
+        self.assertEqual(error["http_status"], 503)
+        self.assertEqual(error["category"], "server")
+        self.assertEqual(error["retry_after"], "30")
+        self.assertEqual(len(error["attempts"]), 4)
+        self.assertEqual(error["provider_error"]["status"], "UNAVAILABLE")
+        self.assertNotIn("test-secret", (self.project/"site/events.jsonl").read_text())
+        self.assertNotIn("api_key", error["provider_error"])
+        operation = json.loads((self.project/"site/operation.json").read_text())
+        self.assertEqual(operation["wake_status"]["latest_attempt"]["status"], "deferred")
+        self.assertIsNone(operation["wake_status"]["last_accepted"])
+        self.assertIsNotNone(operation["wake_status"]["next_eligible"])
+
+    def test_timeout_and_connection_diagnostics_are_distinct(self):
+        import urllib.error
+        from wake.providers import TransientProviderError
+        for failure, category in ((TimeoutError("private text"), "timeout"),
+                                  (urllib.error.URLError(ConnectionRefusedError(61, "private text")), "connection")):
+            with self.subTest(category=category), patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
+                 patch("urllib.request.urlopen", side_effect=failure), patch("wake.providers.time.sleep"):
+                with self.assertRaises(TransientProviderError) as caught:
+                    Gemini({**DEFAULTS, "free_tier_confirmed": True}).propose({"system": "rules", "context": {}})
+                self.assertEqual(caught.exception.details["category"], category)
+                self.assertEqual(len(caught.exception.details["attempts"]), 4)
+                self.assertNotIn("private text", json.dumps(caught.exception.details))
+
     def test_provider_schema_prevents_the_observed_mixed_project_shape(self):
         class Response:
             def __enter__(self): return self
