@@ -5,7 +5,7 @@
 **Version:** 19  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `b5a43fea0c83a755510f39816cc6c1d503f298c395eae46957aaa83e48d76733`
+**Verified head:** `af4cc62e0248d0eb624cb12061e0c7913a37697177a96ba62e9578f78bf180ba`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -7108,6 +7108,20 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 19,
   "time": "2026-09-14T10:41:55.271643+00:00"
+}
+```
+
+### `source-603e3d95d5a847a7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-603e3d95d5a847a7",
+  "scope": "failed",
+  "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+  "version": 19,
+  "time": "2026-09-14T11:10:27.473646+00:00"
 }
 ```
 

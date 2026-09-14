@@ -2,9 +2,38 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `b5a43fea0c83a755510f39816cc6c1d503f298c395eae46957aaa83e48d76733`
+Verified head: `af4cc62e0248d0eb624cb12061e0c7913a37697177a96ba62e9578f78bf180ba`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0449 · `research_collected`
+
+**Time:** 2026-09-14T11:10:27.563857+00:00  
+**ID:** `discovery-80`  
+**Hash:** `af4cc62e0248d0eb624cb12061e0c7913a37697177a96ba62e9578f78bf180ba`  
+**Previous hash:** `a55ca9018627778a97326acddfce2d1866e6a9eaeaf23d60a0dcec40f562484e`
+
+### Payload
+
+```json
+{
+  "evidence": "source-603e3d95d5a847a7",
+  "id": "discovery-80",
+  "status": "failed"
+}
+```
+
+## Event 0448 · `observation`
+
+**Time:** 2026-09-14T11:10:27.473646+00:00  
+**ID:** `source-603e3d95d5a847a7`  
+**Hash:** `a55ca9018627778a97326acddfce2d1866e6a9eaeaf23d60a0dcec40f562484e`  
+**Previous hash:** `b5a43fea0c83a755510f39816cc6c1d503f298c395eae46957aaa83e48d76733`
+
+**Source:** `https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending`  
+**Actor:** `collector`
+
+{"url": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending", "error": "HTTPError", "scope": "fetch failed; no evidence obtained"}
 
 ## Event 0447 · `deferred`
 
