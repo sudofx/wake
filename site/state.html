@@ -7,7 +7,7 @@
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:10px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:11px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:11px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}}
-</style></head><body><main><header><div class="topline"><a class="wordmark" href="index.html">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>d0a20b2a47799c9044da41549f1cf387546558eb132a3b7388da2e0f801242be</code></p><nav><a href="index.html">Main journal</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 19<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>bel-hamiltonian-quantum-corr</summary><div class="inside"><pre>{
+</style></head><body><main><header><div class="topline"><a class="wordmark" href="index.html">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>305f7d6cc911a40a2c7db59bb249050e5c8961d7fcc86e8c551507430d86acde</code></p><nav><a href="index.html">Main journal</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 19<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>bel-hamiltonian-quantum-corr</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.7,
   &quot;evidence&quot;: [
     &quot;source-64f9e37372a64c7a&quot;
@@ -2157,6 +2157,446 @@
   &quot;time&quot;: &quot;2026-09-14T08:45:37.621636+00:00&quot;,
   &quot;finished&quot;: &quot;2026-09-14T08:48:35.279592+00:00&quot;,
   &quot;reason&quot;: &quot;Gemini temporarily unavailable after 4 attempts; wake deferred&quot;
+}</pre></div></details><details><summary>w-f3bcb0ff3f234ec2</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 19,
+  &quot;charged&quot;: true,
+  &quot;id&quot;: &quot;w-f3bcb0ff3f234ec2&quot;,
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2260,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-14&quot;,
+  &quot;request_hash&quot;: &quot;7b836ad3d1069a0622c618b7aab39b8dd37b346a75c9bac37844d6c355082313&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-830b2c85801f445f&quot;,
+          &quot;source-14cbec9d0fd24421&quot;
+        ],
+        &quot;reason&quot;: &quot;A working abstraction is clipped and may hide a material distinction.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;bel-quantum-consciousness-typology&quot;,
+          &quot;kind&quot;: &quot;belief&quot;
+        },
+        &quot;trigger&quot;: &quot;excerpt_boundary&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-f8aa0227079a4ffa&quot;
+        ],
+        &quot;reason&quot;: &quot;A working abstraction is clipped and may hide a material distinction.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;bel-metacognitive-epistemic-agency&quot;,
+          &quot;kind&quot;: &quot;belief&quot;
+        },
+        &quot;trigger&quot;: &quot;excerpt_boundary&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-4f1d6569c64d4c65&quot;,
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-bf2a048cc41f497a&quot;
+        ],
+        &quot;reason&quot;: &quot;A working abstraction is clipped and may hide a material distinction.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;bel-noetic-feelings-epistemic-agency&quot;,
+          &quot;kind&quot;: &quot;belief&quot;
+        },
+        &quot;trigger&quot;: &quot;excerpt_boundary&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-9188c4b30c1c45f9&quot;,
+          &quot;source-42dca65212d14ad4&quot;
+        ],
+        &quot;reason&quot;: &quot;A working abstraction is clipped and may hide a material distinction.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;bel-ctm-functional-demarcation&quot;,
+          &quot;kind&quot;: &quot;belief&quot;
+        },
+        &quot;trigger&quot;: &quot;excerpt_boundary&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-02cd5476f8c84812&quot;,
+          &quot;source-f8aa0227079a4ffa&quot;,
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-42dca65212d14ad4&quot;,
+          &quot;source-693423395d334b51&quot;,
+          &quot;source-4f1d6569c64d4c65&quot;,
+          &quot;source-bf2a048cc41f497a&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-higher-order-taxonomy&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-04fcd05dc9f24c55&quot;,
+          &quot;source-02ded8a4542a4e82&quot;,
+          &quot;source-9b1583927e624bde&quot;,
+          &quot;source-c7d665600a6949f0&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-temporal-correlations-lgi&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-bba5210a922e4fdc&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-bba5210a922e4fdc&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-661095366cf145b3&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-661095366cf145b3&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e3782f7fec3445b6&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e3782f7fec3445b6&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e9b7607f7aa34e08&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e9b7607f7aa34e08&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-68b95906f9eb431e&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-68b95906f9eb431e&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-a7e0834577574835&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-a7e0834577574835&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-830b2c85801f445f&quot;,
+      &quot;source-14cbec9d0fd24421&quot;,
+      &quot;source-740dbcd1f822481d&quot;,
+      &quot;source-f8aa0227079a4ffa&quot;,
+      &quot;source-4f1d6569c64d4c65&quot;,
+      &quot;source-bf2a048cc41f497a&quot;,
+      &quot;source-9188c4b30c1c45f9&quot;,
+      &quot;source-42dca65212d14ad4&quot;,
+      &quot;source-02cd5476f8c84812&quot;,
+      &quot;source-693423395d334b51&quot;,
+      &quot;source-04fcd05dc9f24c55&quot;,
+      &quot;source-02ded8a4542a4e82&quot;,
+      &quot;source-9b1583927e624bde&quot;,
+      &quot;source-c7d665600a6949f0&quot;,
+      &quot;source-bba5210a922e4fdc&quot;,
+      &quot;source-661095366cf145b3&quot;,
+      &quot;source-e3782f7fec3445b6&quot;,
+      &quot;source-e9b7607f7aa34e08&quot;,
+      &quot;source-68b95906f9eb431e&quot;,
+      &quot;source-a7e0834577574835&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 12,
+      &quot;evidence_count&quot;: 20,
+      &quot;trigger_counts&quot;: {
+        &quot;excerpt_boundary&quot;: 4,
+        &quot;notebook_revised&quot;: 2,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 26218,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;retrieval_candidate_count&quot;: 12,
+    &quot;retrieval_evidence_count&quot;: 20,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;excerpt_boundary&quot;: 4,
+      &quot;notebook_revised&quot;: 2,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;working_set_chars&quot;: 11413,
+    &quot;working_to_delivered_ratio&quot;: 0.4353
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;proj-quantum-time-corr&quot;,
+        &quot;next_step&quot;: &quot;Investigate temporal quantum steering versus Leggett-Garg bounds in dissipative and open quantum systems.&quot;,
+        &quot;question&quot;: &quot;Can statistical correlation patterns distinguish quantum Hamiltonian evolution from classical dynamics when standard spatial Bell inequalities are untestable?&quot;,
+        &quot;title&quot;: &quot;Quantum vs Classical Time Evolution Signatures&quot;
+      },
+      {
+        &quot;id&quot;: &quot;proj-metacognition-models&quot;,
+        &quot;next_step&quot;: &quot;Query philosophical literature on higher-order thought theories vs functional monitoring.&quot;,
+        &quot;question&quot;: &quot;How do higher-order monitoring theories contrast with functional metacognitive feedback in philosophy of mind and cognitive models?&quot;,
+        &quot;title&quot;: &quot;Taxonomy of Metacognition and Conscious State Attribution&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [
+      {
+        &quot;claim&quot;: &quot;According to preprint arXiv:2609.10535v1, quantum vacuum fluctuations in closed Hamiltonian systems produce time-independent correlations controlled by the energy gap, whereas classical Hamiltonian systems exhibit apparent poles at physical frequencies that decay via dephasing.&quot;,
+        &quot;confidence&quot;: 0.7,
+        &quot;id&quot;: &quot;bel-hamiltonian-quantum-corr&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-64f9e37372a64c7a&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly summarizes the specific theoretical claims in the collected abstract of arXiv:2609.10535v1; confidence is calibrated for an unreviewed preprint abstract.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Philosophical taxonomy in the Stanford Encyclopedia of Philosophy distinguishes creature consciousness, state consciousness, and consciousness as an entity, alongside descriptive features like qualitative character and intentionality.&quot;,
+        &quot;confidence&quot;: 0.9,
+        &quot;id&quot;: &quot;bel-sep-consciousness-taxonomy&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-02cd5476f8c84812&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly evidenced by the structured sections and conceptual divisions outlined in the SEP Consciousness entry.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Higher-order theories of consciousness account for mental-state consciousness by positing that a mental state becomes conscious via an appropriate higher-order representation (perception or thought) directed at it.&quot;,
+        &quot;confidence&quot;: 0.85,
+        &quot;id&quot;: &quot;bel-hot-mental-state&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-f8aa0227079a4ffa&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly articulated in the SEP entry on Higher-Order Theories of Consciousness, distinguishing mental-state consciousness from creature consciousness.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Bipartite quantum non-locality can be formulated in terms of multivariable correlation expansions on graphs, showing that standard tight Bell inequalities (such as CHSH) are sufficient but not necessary conditions for bipartite quantum non-locality.&quot;,
+        &quot;confidence&quot;: 0.75,
+        &quot;id&quot;: &quot;bel-nonlocality-beyond-bell&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-c7d665600a6949f0&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the collected abstract of arXiv:2004.12968v2, which establishes higher-order non-equivalent conditions for bipartite non-locality beyond CHSH.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Leggett-Garg inequalities test temporal quantum correlations and macrorealism in Hamiltonian systems, providing observable signatures of quantum phase transitions and non-classical dynamics across finite and infinite-order transitions.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;bel-leggett-garg-hamiltonian&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-04fcd05dc9f24c55&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the collected arXiv abstracts in source-04fcd05dc9f24c55 describing Leggett-Garg violations in spin-1/2 models, XXZ models at criticality, and double-well Hamiltonian systems under decoherence.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Leggett-Garg temporal correlation bounds depend directly on system Hilbert space dimension N, reaching the algebraic maximum as N approaches infinity, and test macrorealism in non-equilibrium fluctuating work.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;bel-lgi-multilevel-work&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-02ded8a4542a4e82&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the collected arXiv abstracts in source-02ded8a4542a4e82 demonstrating algebraic violation limits in N-level systems and violations in unitarily driven quantum work protocols.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Philosophical taxonomy in the Stanford Encyclopedia of Philosophy divides quantum approaches to consciousness into three distinct frameworks: neurophysiological quantum brain processes (e.g., Stapp, Vitiello, Beck, Penrose-Hameroff), formal quantum-like models of mental dynamics, and dual-aspect monism (e.g., Pauli-Ju…&quot;,
+        &quot;confidence&quot;: 0.9,
+        &quot;id&quot;: &quot;bel-quantum-consciousness-typology&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-830b2c85801f445f&quot;,
+          &quot;source-14cbec9d0fd24421&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly corroborated and detailed by the collected text of the SEP entry on Quantum Approaches to Consciousness (source-14cbec9d0fd24421).&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Philosophical accounts in the Stanford Encyclopedia of Philosophy distinguish self-consciousness in thought—characterized by first-person reference (&#x27;I&#x27;-thoughts) and immunity to error through misidentification—from pre-reflective self-consciousness in phenomenal experience.&quot;,
+        &quot;confidence&quot;: 0.85,
+        &quot;id&quot;: &quot;bel-self-consciousness-sep&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-2314f735c2af4cda&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly evidenced by the foundational divisions (Self-Consciousness in Thought vs Self-Consciousness in Experience) in the SEP entry on Self-Consciousness.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Temporal quantum steering inequalities formulate an operational analogue to spatial EPR-steering for sequential measurements on a single quantum system at different times, distinguishing non-classical temporal correlations without requiring spatial entanglement.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;bel-temporal-steering-analogue&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-9b1583927e624bde&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the collected abstract of arXiv:1310.4970v2, which establishes operational temporal steering inequalities for single-system multi-time measurements.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Metacognitive monitoring operates as a normative, functional mechanism of epistemic agency—evaluating task difficulty, error, and retrieval success via specialized feelings like fluency—without necessarily requiring higher-order conscious conceptual thoughts.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;bel-metacognitive-epistemic-agency&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-f8aa0227079a4ffa&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the abstract of Proust&#x27;s work in source-740dbcd1f822481d defining metacognitive control via felt fluency and epistemic norms, contrasted with Rosenthal&#x27;s higher-order thought requirement in source-…&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Philosophical taxonomy in the Stanford Encyclopedia of Philosophy distinguishes standard intentional agency (actions caused by intentional mental states) from alternative forms, including agency without mental representations, minimal agency, and epistemic or mental agency.&quot;,
+        &quot;confidence&quot;: 0.85,
+        &quot;id&quot;: &quot;bel-agency-taxonomy-sep&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-42dca65212d14ad4&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly supported by the conceptual frameworks and sections 2.1 through 2.5 of the SEP entry on Agency.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Quantum steerability cannot be perfectly cloned by joint operations between a steered subsystem and an ancillary system unless the initial shared state possesses zero discord.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;bel-steering-no-cloning-discord&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-a6ac9e23d3d14532&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Directly evidenced by the theoretical result summarized in preprint arXiv:2204.07322v4 (source-a6ac9e23d3d14532).&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Epistemic normativity can be analyzed through material and eidetic agency, in which normative epistemic evaluation is scaffolded and delegated across formal artifacts rather than confined to internal mental states.&quot;,
+        &quot;confidence&quot;: 0.75,
+        &quot;id&quot;: &quot;bel-eidetic-agency-scaffolding&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-693423395d334b51&quot;,
+          &quot;source-42dca65212d14ad4&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Supported by the abstract of Fonseca&#x27;s work in source-693423395d334b51 analyzing eidetic agency as formal artifact delegation, complementing the standard taxonomy of agency in source-42dca65212d14ad4.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Epistemic agency and self-knowledge are analyzed in 4E cognitive frameworks as scaffolded by mindshaping practices and external normative structures rather than solely internal introspective states.&quot;,
+        &quot;confidence&quot;: 0.75,
+        &quot;id&quot;: &quot;bel-mindshaping-agency&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-c194229d2c55486a&quot;,
+          &quot;source-693423395d334b51&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Crossref collection source-c194229d2c55486a identifies recent work linking embedded metacognition, mindshaping, and epistemic agency under 4E frameworks, reinforcing findings from source-693423395d334b51.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;Epistemic agency can originate through functional noetic feelings and embedded metacognitive mindshaping, enabling normative cognitive self-regulation prior to reflective, high-level mindreading or conscious mental-state introspection.&quot;,
+        &quot;confidence&quot;: 0.85,
+        &quot;id&quot;: &quot;bel-noetic-feelings-epistemic-agency&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-4f1d6569c64d4c65&quot;,
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-bf2a048cc41f497a&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Corroborated by specific thematic chapters in source-bf2a048cc41f497a (&#x27;The Cognitive Significance of Noetic Feelings: On the Origins of Epistemic Agency&#x27;, &#x27;The Epistemic Significance of Noetic Feelings: On the Origins …&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;The Computational Theory of Mind characterizes mental processes as formal or mechanistic functional evaluations over representational structures, allowing functional cognitive operations to be analyzed separately from neurophysiological implementations and phenomenological qualia.&quot;,
+        &quot;confidence&quot;: 0.85,
+        &quot;id&quot;: &quot;bel-ctm-functional-demarcation&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-9188c4b30c1c45f9&quot;,
+          &quot;source-42dca65212d14ad4&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Evidenced by the SEP entry on the Computational Theory of Mind (source-9188c4b30c1c45f9), which articulates machine functionalism, syntactic and mechanistic views of computation, and distinctions from phenomenological d…&quot;
+      }
+    ],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;nb-higher-order-taxonomy&quot;,
+        &quot;project&quot;: &quot;proj-metacognition-models&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-02cd5476f8c84812&quot;,
+          &quot;source-f8aa0227079a4ffa&quot;,
+          &quot;source-740dbcd1f822481d&quot;,
+          &quot;source-42dca65212d14ad4&quot;,
+          &quot;source-693423395d334b51&quot;,
+          &quot;source-4f1d6569c64d4c65&quot;,
+          &quot;source-bf2a048cc41f497a&quot;
+        ],
+        &quot;revision&quot;: 7,
+        &quot;summary&quot;: &quot;Synthesizes philosophical taxonomies of consciousness, higher-order thought, and externalist agency, demonstrating how epistemic normativity emerges from functional noetic monitoring and mindshaping practices.&quot;,
+        &quot;title&quot;: &quot;Demarcating Mental-State Consciousness, Self-Consciousness, and Scaffolded Epistemic Agency&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-temporal-correlations-lgi&quot;,
+        &quot;project&quot;: &quot;proj-quantum-time-corr&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-04fcd05dc9f24c55&quot;,
+          &quot;source-02ded8a4542a4e82&quot;,
+          &quot;source-9b1583927e624bde&quot;,
+          &quot;source-c7d665600a6949f0&quot;
+        ],
+        &quot;revision&quot;: 3,
+        &quot;summary&quot;: &quot;Examines how Leggett-Garg inequalities and temporal quantum steering inequalities distinguish non-classical single-system dynamics and macrorealism violations across multi-level and open systems.&quot;,
+        &quot;title&quot;: &quot;Testing Non-Classicality in Time Evolution: Leggett-Garg and Temporal Steering Inequalities&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-14T09:52:42.321621+00:00&quot;,
+  &quot;finished&quot;: &quot;2026-09-14T09:54:42.973071+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable after 4 attempts; wake deferred&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-e0fa6fcb602f44ce</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://export.arxiv.org/api/query?search_query=cat:quant-ph&amp;start=0&amp;max_results=4&amp;sortBy=submittedDate&amp;sortOrder=descending\&quot;, \&quot;scope\&quot;: \&quot;paper abstracts; preprints, peer-review status not verified\&quot;, \&quot;excerpt\&quot;: \&quot;title: For Whom Does Bell Hold?\\nid: http://arxiv.org/abs/2609.10535v1\\npublished: 2026-09-09T17:58:31Z\\nsummary: Violations of Bell&#x27;s inequalities offer a definitive signal of non-classical (quantum) behavior in local deterministic systems. Yet, in many physical settings where quantum mechanics is expected to play an important role, one cannot construct a Bell-type test using the available observables. Cosmology offers one concrete example, where cosmic structure may have originated from quantum vacuum fluctuations yet all observations are effectively classical. Nevertheless, recent work suggests that quantum and classical time evolution may still be differentiated by the pattern of statistical correlations of these observables. In this paper, we explore and generalize the use of correlations as Bell-type test of the nature of time evolution. We show that quantum vacuum fluctuations of closed systems undergoing Hamiltonian evolution produce unique correlations that are not mimicked by classical Hamiltonian systems. Correlations in the quantum vacuum are generally time-independent and are controlled by the energy gap between the ground and exited states. Classical systems exhibit apparent poles at physical frequencies that do not arise in the quantum vacuum. As one approaches the poles, the evolution becomes dominated by a resonant Hamiltonian giving rise to time dependent correlations that eventually decay through dephasing. Finally, we show that this behavior is distinct from other signals of quantum evolution, including applications to quantum optics, quantum walks, and quantum search.\\n\\ntitle: Noether Symmetries Generate Deterministic Energy-Harvesting Protocols\\nid: http://arxiv.org/abs/2609.10533v1\\npublished: 2026-09-09T17:58:08Z\\nsummary: We consider the general principles for when deterministic energy harvesting (DEH) is possible. DEH means absorbing energy from a fluctuating source without entropy being absorbed. We show that the symmetry structure of the source--harvester dynamics gives a general route beyond existing examples to identify DEH capable source states. Any continuous symmetry with a conserved Noether charge induces a source-side orbit of states that all implement the same deterministic harvester transition, provided the harvester boundary states are symmetry invariant. Consequently, one DEH capable source state with nonzero asymmetry between charge sectors can generate infinitely many simultaneously DEH capable source states. A Jaynes-Cummings model, a three-spin XX chain, and an SU(2) model illustrate the construction. We further extend Noether&#x27;s theorem to generalised probabilistic theories and thereby generalise our main result. We further establish an asymmetry bound for harvesting, showing that source asymmetry cannot increase on average, while DEH saturates the bound exactly preserving asymmetry.\\n\\ntitle: Private communication via zero-private-capacity quantum channels\\nid: http://arxiv.org/abs/2609.10520v1\\npublished: 2026-09-09T17:51:54Z\\nsummary: Private communication over a noisy quantum channel requires reliable transmission to the receiver and secrecy from the environment. Whether two channels with zero private capacity can jointly enable private communication is a longstanding open problem in quantum information theory. Here we resolve this problem by exhibiting a four-level channel and a qubit erasure channel with half erasure probability, each with zero private capacity, whose joint use achieves more than 0.0001903 private bits per product use. The encoding gives the receiver a linear information gain with at most quadratic environmental leakage, enabling privacy through a fixed joint measurement and classical coding. This superactivation, impossible for independent classical memoryless wiretap channels, shows that a channel&#x27;s private capacity alone does not determine its value for secure communication. The initial activation example was identified through interactions with large language models, and the result has been formalized in Lean 4.\\n\\ntitle: Optimal Low-Rank Quantum State Tomography with Bounded-Sample Joint Measurements\\nid: http://arxiv.org/abs/2609.10514v1\\npublished: 2026-09-09T17:48:41Z\\nsummary: We determine the optimal sample complexity of low-rank quantum state tomography when each measurement may act jointly on at most $t$ samples. For sufficiently small $\\\\varepsilon$, estimating an unknown state on $\\\\mathbb{C}^d$ of rank at most $r$ to trace norm error $\\\\varepsilon$ with constant success probability requires, and is achievable with, $$\\n  Θ\\\\left(\\n  \\\\frac{dr}{\\\\varepsilon^2}\\n  \\\\max\\\\left\\\\{1,\\\\frac r{\\\\sqrt t}\\\\right\\\\}\\n  \\\\right)$$ samples. The lower bound allows the protocol to choose each joint measurement adaptively using all previous classical outcomes; the matching upper bound is nonadaptive. Thus joint measurements on at most $t$ samples improve the complexity of algorithms making single-sample measurements by at most a factor $\\\\sqrt t$. Further, measuring order $r^2$ samples jointly is necessary and sufficient to attain the unrestricted collective rate.\\n  For the lower bound, we vary the support of a state with fixed uniform spectrum and bound the Fisher information trace of every joint measurement on $t$ samples. The adaptive Fisher chain rule and the van Trees inequality then give the trace norm lower bound. For the upper bound, we construct and analyze a nonadaptive tomography protocol based on a Gaussian joint measurement. An explicit second moment identity and a conditional Gaussian law outside the state&#x27;s support give a rank-dependent error analysis, yielding the matching rate.\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;99ad2a3a97490f150ac51146bec89333c06b3f6c7722f8596c0dfcb06f29ddaa\&quot;}&quot;,
@@ -3473,6 +3913,21 @@
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 19,
   &quot;time&quot;: &quot;2026-09-14T08:45:37.449321+00:00&quot;
+}</pre></div></details><details><summary>source-a7e0834577574835</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://plato.stanford.edu/entries/consciousness/\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;Consciousness (Stanford Encyclopedia of Philosophy)\\nStanford Encyclopedia of Philosophy\\nMenu\\nBrowse\\nTable of Contents\\nWhat&#x27;s New\\nRandom Entry\\nChronological\\nArchives\\nAbout\\nEditorial Information\\nAbout the SEP\\nEditorial Board\\nHow to Cite the SEP\\nSpecial Characters\\nAdvanced Tools\\nContact\\nSupport SEP\\nSupport the SEP\\nPDFs for SEP Friends\\nMake a Donation\\nSEPIA for Libraries\\nEntry Navigation\\nEntry Contents\\nBibliography\\nAcademic Tools\\nFriends PDF Preview\\nAuthor and Citation Info\\nBack to Top\\nConsciousness\\nFirst published Fri Jun 18, 2004; substantive revision Tue Jan 14, 2014\\nPerhaps no aspect of mind is more familiar or more puzzling than\\nconsciousness and our conscious experience of self and world. The\\nproblem of consciousness is arguably the central issue in current\\ntheorizing about the mind. Despite the lack of any agreed upon theory\\nof consciousness, there is a widespread, if less than universal,\\nconsensus that an adequate account of mind requires a clear\\nunderstanding of it and its place in nature. We need to understand both\\nwhat consciousness is and how it relates to other, nonconscious, aspects\\nof reality.\\n1. History of the issue\\n2. Concepts of Consciousness\\n2.1 Creature Consciousness\\n2.2 State consciousness\\n2.3 Consciousness as an entity\\n3. Problems of Consciousness\\n4. The descriptive question:\\nWhat\\nare the features of consciousness?\\n4.1 First-person and third-person data\\n4.2 Qualitative character\\n4.3 Phenomenal structure\\n4.4 Subjectivity\\n4.5 Self-perspectival organization\\n4.6 Unity\\n4.7 Intentionality and transparency\\n4.8 Dynamic flow\\n5. The explanatory question:\\nHow\\ncan consciousness exist?\\n5.1 Diversity of explanatory projects\\n5.2 The explanatory gap\\n5.3 Reductive and non-reductive explanation\\n5.4 Prospects of explanatory success\\n6. The functional question:\\nWhy\\ndoes consciousness exist?\\n6.1 Causal status of consciousness\\n6.2 Flexible control\\n6.3 Social coordination\\n6.4 Integrated representation\\n6.5 Informational access\\n6.6 Freedom of will\\n6.7 Intrinsic motivation\\n6.8 Constitutive and contingent roles\\n7. Theories of consciousness\\n8. Metaphysical theories of consciousness\\n8.1 Dualist theories\\n8.2 Physicalist theories\\n9. Specific Theories of Consciousness\\n9.1 Higher-order theories\\n9.2 Reflexive theories\\n9.3 Representationalist theories\\n9.4 Narrative Interpretative Theories\\n9.5 Cognitive Theories\\n9.6 Information Integration Theory\\n9.7 Neural Theories\\n9.8 Quantum theories\\n9.9 Non-physical theories\\n10. Conclusion\\nBibliography\\nAcademic Tools\\nOther Internet Resources\\nRelated Entries\\n1. History of the issue\\nQuestions about the nature of conscious awareness have likely been\\nasked for as long as there have been humans. Neolithic burial practices\\nappear to express spiritual beliefs and provide early evidence for at\\nleast minimally reflective thought about the nature of human\\nconsciousness (Pearson 1999, Clark and Riel-Salvatore 2001).\\nPreliterate cultures have similarly been found invariably to embrace\\nsome form of spiritual or at least animist view that indicates a degree\\nof reflection about the nature of conscious awareness.\\nNonetheless, some have argued that consciousness as we know it today\\nis a relatively recent historical development that arose sometime after\\nthe Homeric era (Jaynes 1974). According to this view, earlier humans\\nincluding those who fought the Trojan War did not experience themselves\\nas unified internal subjects of their thoughts and actions, at least\\nnot in the ways we do today. Others have claimed that even during the\\nclassical period, there was no word of ancient Greek that corresponds\\nto “consciousness” (Wilkes 1984, 1988, 1995). Though the\\nancients had much to say about mental matters, it is less clear whether\\nthey had any specific concepts or concerns for what we now think of as \\nconsciousness.\\nAlthough the words “conscious” and\\n“conscience” are used quite differently today, it is likely\\nthat the Reformation emphasis on the latter as an inner source of truth\\nplayed some role in the inward turn so characteristic of the modern\\nreflective view of self. The Hamlet who walked the stage in 1600\\nalready saw his world and self with profoundly modern eyes.\\nBy the beginning of the early modern era in the seventeenth century,\\nconsciousness had come full center in thinking about the mind. Indeed\\nfrom the mid-17th through the late 19th century, consciousness was\\nwidely regarded as essential or definitive of the mental. René\\nDescartes defined the very notion of thought (\\npensée\\n) in terms of\\nreflexive consciousness or self-awareness. In the\\nPrinciples of\\nPhilosophy\\n(1640) he wrote,\\nBy the word ‘thought’\\n(‘\\npensée\\n’) I understand all that of which we are\\nconscious as operating in us.\\nLater, toward the end of the 17th century, John Locke offered a\\nsimilar if slightly more qualified claim in\\nAn Essay on Human\\nUnderstanding\\n(1688),\\nI do not say there is no soul in man because he is not\\nsensible of it in his sleep. But I do say he can not think at any time,\\nwaking or sleeping, without being sensible of it. Our being sensible of\\nit is not necessary to anything but our thoughts, and to them it is and\\nto them it always will be necessary.\\nLocke explicitly forswore making any hypothesis about the\\nsubstantial basis of consciousness and its relation to matter, but he\\nclearly regarded it as essential to thought as well as to personal\\nidentity.\\nLocke&#x27;s contemporary G.W. Leibniz, drawing possible inspiration from\\nhis mathematical work on differentiation and integration, offered a\\ntheory of mind in the\\nDiscourse on Metaphysics\\n(1686) that\\nallowed for infinitely many degrees of consciousness and perhaps even\\nfor some thoughts that were unconscious, the so called “petites\\nperceptions”. Leibniz was the first to distinguish explicitly\\nbetween perception and apperception, i.e., roughly between awareness\\nand self-awareness. In the\\nMonadology\\n(1720) he also offered\\nhis famous analogy of the mill to express his belief that consciousness\\ncould not arise from mere matter. He asked his reader to imagine\\nsomeone walking through an expanded brain as one would walk through a\\nmill and observing all its mechanical operations, which for Leibniz\\nexhausted its physical nature. Nowhere, he asserts, would such an\\nobserver see any conscious thoughts.\\nDespite Leibniz&#x27;s recognition of the possibility of unconscious\\nthought, for most of the next two centuries the domains of thought and\\nconsciousness were regarded as more or less the same. Associationist\\npsychology, whether pursued by Locke or later in the eighteenth century\\nby David Hume (1739) or in the nineteenth by James Mill (1829), aimed\\nto discover the principles by which conscious thoughts or ideas\\ninteracted or affected each other. James Mill&#x27;s son, John Stuart Mill\\ncontinued his father&#x27;s work on associationist psychology, but he\\nallowed that combinations of ideas might produce resultants that went\\nbeyond their constituent mental parts, thus providing an early model of\\nmental emergence (1865).\\nThe purely associationist approach was critiqued in the late\\neighteenth century by Immanuel Kant (1787), who argued that an adequate\\naccount of experience and phenomenal consciousness required a far\\nricher structure of mental and intentional organization. Phenomenal\\nconsciousness according to Kant could not be a mere succession of\\nassociated ideas, but at a minimum had to be the experience of a\\nconscious self situated in an objective world structured with respect\\nto space, time and causality.\\nWithin the Anglo-American world, associationist approaches continued\\nto be influential in both philosophy and psychology well into the\\ntwentieth century, while in the German and European sphere there was a\\ngreater interest in the larger structure of experience that led in\\npart to the study of phenomenology through the work of Edmund Husserl\\n(1913, 1929), Martin Heidegger (1927), Maurice Merleau-Ponty (1945) and\\nothers who expanded the study of consciousness into the realm of the\\nsocial, the bodily and the interpersonal.\\nAt the outset of modern scientific psychology in the mid-nineteenth\\ncentury, the mind was still largely equated with consciousness, and\\nintrospective methods dominated the field as in the work of Wilhelm\\nWundt (1897), Hermann von Helmholtz (1897), William James (1890) and\\nAlfred Titchener (1901). However, the relation of consciousness to\\nbrain remained very much a mystery as expressed in T. H. Huxley&#x27;s\\nfamous remark,\\nHow it is that anything so remarkable as a state of\\nconsciousness comes about as a result of irritating nervous tissue, is\\njust as unaccountable as the appearance of the Djin, when Aladdin\\nrubbed his lamp (1866).\\nThe early twentieth century saw the eclipse of consciousness from\\nscientific psychology, especially in the United States with the rise of\\nbehaviorism (Watson 1924, Skinner 1953) though movements such as\\nGestalt psychology kept it a matter of ongoing scientific concern in\\nEurope (Köhler 1929, Köffka 1935). In the 1960s, the grip of\\nbehaviorism weakened with the rise of cognitive psychology and its\\nemphasis on information processing and the modeling of internal mental\\nprocesses (Neisser 1965, Gardiner 1985). However, despite the renewed\\nemphasis on explaining cognitive capacities such as memory, perception\\nand language comprehension, consciousness remained a largely neglected\\ntopic for several further decades.\\nIn the 1980s and 90s there was a major resurgence of scientific and\\nphilosophical research into the nature and basis of consciousness\\n(Baars 1988, Dennett 1991, Penrose 1989, 1994, Crick 1994, Lycan 1987,\\n1996, Chalmers 1996). Once consciousness was back under discussion,\\nthere was a rapid proliferation of research with a flood of books and\\narticles, as well as the introduction of specialty journals (\\nThe\\nJournal of Consciousness Studies, Consciousness and Cognition,\\nPsyche)\\n, professional societies (Association for the Scientific\\nStudy of Consciousness—ASSC) and annual conferences devoted\\nexclusively to its investigation (“The Science of\\nConsciousness”).\\n2. Concepts of \&quot;, \&quot;excerpt_truncated\&quot;: true, \&quot;source_sha256\&quot;: \&quot;9e814583974e4f217fa4957dbea263e49385abb554a9ce1abffcfbb86038476a\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-a7e0834577574835&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://plato.stanford.edu/entries/consciousness/&quot;,
+  &quot;version&quot;: 19,
+  &quot;time&quot;: &quot;2026-09-14T09:52:41.832657+00:00&quot;
+}</pre></div></details><details><summary>r-f3bcb0ff3f234ec2</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:19,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-f3bcb0ff3f234ec2\&quot;,\&quot;previous_head\&quot;:\&quot;5afb2a41e7fc788976198fe706615a77a9e3c70ba35856c740931866dceefed5\&quot;,\&quot;process_id\&quot;:2260,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-f3bcb0ff3f234ec2&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 19,
+  &quot;time&quot;: &quot;2026-09-14T09:52:42.163118+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Bootstrapping research on non-classical correlation signatures and philosophical frameworks</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-981d6dfce55143d4&quot;,
