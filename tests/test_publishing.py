@@ -50,7 +50,7 @@ class PublishingTests(unittest.TestCase):
                     ".nojekyll", "index.html", "journal.md",
                     "state.json", "state.md", "state.html",
                     "events.jsonl", "events.md", "events.html",
-                    "head.txt", "map.html", "map-data.json",
+                    "head.txt", "map.html", "map-data.json", "blog.xml", "journal.xml", "journal",
                 })
                 self.assertFalse((project/"index.html").exists())
                 map_path = project/"site/map-data.json"

@@ -182,3 +182,16 @@ savings or proven behavioral equivalence.
 
 **WAKE✳︎ has demonstrated durable continuity of research state, not yet durable
 correctness of research reasoning.**
+
+### Subscribe via RSS
+
+- [Bob’s blog](https://sudofx.github.io/wake/blog.xml): published blog posts, with full text and philosophical reflections.
+- [The journal](https://sudofx.github.io/wake/journal.xml): accepted wake entries, with their full summaries and permanent reading pages.
+
+Subscribe to either URL, or both, in your RSS reader. Links are also in the
+**Read** menu and on the blog and journal pages. Each feed contains its latest
+100 entries, newest first. Stable entry IDs and original acceptance dates keep
+ordinary site refreshes from creating duplicates. Corrections are separate
+posts; superseded posts retain their original identity. Withheld blog proposals
+and failed/deferred attempts are not published as feed items. Feeds update with
+every normal site export and deployment, without another provider call.

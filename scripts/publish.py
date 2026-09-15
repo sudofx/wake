@@ -27,7 +27,7 @@ def publish(directory):
     if not all((source / name).is_file() for name in names):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
-    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json"):
+    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "blog.xml", "journal.xml"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():
@@ -50,6 +50,10 @@ def publish(directory):
             raise SystemExit("Invalid map export; export again before publishing.") from exc
         if canonical(map_data) != canonical(expected_map) or canonical(embedded_map) != canonical(expected_map):
             raise SystemExit("Map does not match the verified export; export again before publishing.")
+    for entry in reconstructed["journal"]:
+        name = f"journal/{entry['invocation']}.html"
+        if (source / name).is_file():
+            names.append(name)
     for item in reconstructed.get("notebooks", {}).values():
         names.extend((f"notebooks/{item['id']}.md", f"notebooks/{item['id']}.html"))
     for item in reconstructed.get("posts", {}).values():
