@@ -1,11 +1,11 @@
 {
   "status": "deferred",
-  "id": "w-0e49ca609a9b4441",
+  "id": "w-0c00f19efcf644f9",
   "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred",
   "provider_error": {
     "http_status": 503,
-    "elapsed_ms": 122390,
-    "request_payload_bytes": 43842,
+    "elapsed_ms": 124126,
+    "request_payload_bytes": 43839,
     "response_bytes_captured": 198,
     "provider_error": {
       "code": 503,
@@ -17,8 +17,8 @@
     "attempts": [
       {
         "http_status": 503,
-        "elapsed_ms": 16131,
-        "request_payload_bytes": 43842,
+        "elapsed_ms": 8179,
+        "request_payload_bytes": 43839,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -30,8 +30,8 @@
       },
       {
         "http_status": 503,
-        "elapsed_ms": 31453,
-        "request_payload_bytes": 43842,
+        "elapsed_ms": 24060,
+        "request_payload_bytes": 43839,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -43,8 +43,8 @@
       },
       {
         "http_status": 503,
-        "elapsed_ms": 62009,
-        "request_payload_bytes": 43842,
+        "elapsed_ms": 54626,
+        "request_payload_bytes": 43839,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -56,8 +56,8 @@
       },
       {
         "http_status": 503,
-        "elapsed_ms": 122390,
-        "request_payload_bytes": 43842,
+        "elapsed_ms": 124126,
+        "request_payload_bytes": 43839,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -102,9 +102,9 @@
       }
     },
     "latest_attempt": {
-      "id": "w-0e49ca609a9b4441",
-      "time": "2026-09-15T08:06:22.943136+00:00",
-      "finished": "2026-09-15T08:08:27.633683+00:00",
+      "id": "w-0c00f19efcf644f9",
+      "time": "2026-09-15T09:13:17.131977+00:00",
+      "finished": "2026-09-15T09:15:23.599240+00:00",
       "status": "deferred",
       "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred",
       "provider_error": {
@@ -113,72 +113,72 @@
           {
             "attempt": 1,
             "category": "server",
-            "elapsed_ms": 16131,
+            "elapsed_ms": 8179,
             "http_status": 503,
             "provider_error": {
               "code": 503,
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 43842,
+            "request_payload_bytes": 43839,
             "response_bytes_captured": 198
           },
           {
             "attempt": 2,
             "category": "server",
-            "elapsed_ms": 31453,
+            "elapsed_ms": 24060,
             "http_status": 503,
             "provider_error": {
               "code": 503,
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 43842,
+            "request_payload_bytes": 43839,
             "response_bytes_captured": 198
           },
           {
             "attempt": 3,
             "category": "server",
-            "elapsed_ms": 62009,
+            "elapsed_ms": 54626,
             "http_status": 503,
             "provider_error": {
               "code": 503,
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 43842,
+            "request_payload_bytes": 43839,
             "response_bytes_captured": 198
           },
           {
             "attempt": 4,
             "category": "server",
-            "elapsed_ms": 122390,
+            "elapsed_ms": 124126,
             "http_status": 503,
             "provider_error": {
               "code": 503,
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 43842,
+            "request_payload_bytes": 43839,
             "response_bytes_captured": 198
           }
         ],
         "category": "server",
-        "elapsed_ms": 122390,
+        "elapsed_ms": 124126,
         "http_status": 503,
         "provider_error": {
           "code": 503,
           "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
           "status": "UNAVAILABLE"
         },
-        "request_payload_bytes": 43842,
+        "request_payload_bytes": 43839,
         "response_bytes_captured": 198
       }
     },
     "accepted_cycles": 20,
-    "next_eligible": "2026-09-15T08:16:22.943136+00:00",
+    "next_eligible": "2026-09-15T09:23:17.131977+00:00",
     "pending": false,
-    "attempts_today": 3,
+    "attempts_today": 4,
     "daily_call_limit": 20
   }
 }
