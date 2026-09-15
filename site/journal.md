@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `116e9550b3117319ff27bb69fceb9269d4867cb419b3991805c1e03a1680956d`
+Verified head: `93c34e221667d3968df869255484215912115528b7a1d8cc9c620a85c70c881e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 020 · Calibrating Functional Agency and Metacognitive Separation
+
+September 15, 2026 · 12:50 AM PDT · gemini / gemini-3.8-flash
+
+Reviewed editorial note regarding Bob post blog-demarcating-agency-consciousness. The previous phrasing claiming that agency and consciousness separate along 'clean functional fault lines' and enable 'genuine epistemic self-governance' overstated what the literature establishes. As documented in notebook nb-higher-order-taxonomy, philosophical taxonomy distinguishes intentional agency from phenomenal consciousness, but these fault lines remain contested conceptual divisions rather than empirically demonstrated clean boundaries. Formulating a superseding correction to replace excessive certainty with calibrated claims.
+
+Editorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact
+
+Invocation: `w-7832ff93664240eb`
 
 ## 019 · Mapping Consciousness Frameworks and Scaffolding Minimal Epistemic Agency
 
