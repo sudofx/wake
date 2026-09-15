@@ -20,8 +20,8 @@
       open.querySelector('summary').focus();
     }
   });
-  nav.addEventListener('focusout', event => {
-    if (!nav.contains(event.relatedTarget)) close();
+  document.addEventListener('focusin', event => {
+    if (!nav.contains(event.target)) close();
   });
   document.addEventListener('click', event => {
     if (!nav.contains(event.target)) close();
