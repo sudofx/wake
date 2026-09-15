@@ -12,9 +12,37 @@
 .provenance-lines{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}.provenance-lines path{fill:none;stroke:var(--green);stroke-width:1;opacity:.28}.artifact-group,.bloom-context{position:relative;z-index:1}.artifact-group{border-left:0}.browse-artifacts{display:none}@media(max-width:720px){.browse-artifacts{display:block;font-size:11px!important}}
 
 .provenance-lines path.edge-hot{stroke:var(--hot);stroke-width:2;opacity:1}.provenance-lines path.edge-dim{opacity:.05}
+
+/* Shared compact navigation for the main journal and MAP. */
+nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;flex:0 1 auto;font:14px/1.4 var(--sans);white-space:nowrap}
+.compact-nav>a,.compact-nav summary{display:flex;align-items:center;gap:7px;min-height:44px;padding:10px 0;color:var(--muted);font:inherit;cursor:pointer}
+.compact-nav .nav-group{position:relative;margin:0;padding:0;border:0;background:none;overflow:visible}
+.compact-nav summary{list-style:none;border:0}
+.compact-nav summary::-webkit-details-marker{display:none}
+.compact-nav summary::after{content:'';width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.compact-nav .nav-group[open]>summary::after{transform:translateY(1px) rotate(225deg)}
+.compact-nav .nav-dropdown{position:absolute;top:calc(100% + 5px);left:-16px;z-index:30;min-width:175px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 28px #0002}
+.compact-nav .nav-dropdown a{display:flex;align-items:center;min-height:44px;padding:10px 12px;border:0;border-radius:4px;color:var(--muted);font:14px/1.4 var(--sans)}
+.compact-nav .nav-dropdown .nav-external{border-top:1px solid var(--line);border-radius:0;margin-top:5px;padding-top:14px}
+.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--green);font-weight:700}
+.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+@media(hover:hover){.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{color:var(--hot);text-shadow:0 0 12px #a827ff55}.compact-nav .nav-dropdown a:hover{background:var(--paper)}}
+@media(max-width:1100px){.masthead{flex-wrap:wrap}.masthead .status{display:none}.masthead nav.compact-nav{gap:18px}}
+@media(max-width:700px){.masthead nav.compact-nav,nav.compact-nav{display:flex;order:3;flex-basis:100%;justify-content:space-between;gap:14px;font-size:14px}.compact-nav .nav-dropdown{left:0}.compact-nav .nav-group:last-of-type .nav-dropdown{left:auto;right:-12px}}
 </style></head><body>
 <a class="skip" href="#map-field">Skip to map</a>
-<header><a class="wordmark" href="index.html"><strong>WAKE✳︎</strong></a><nav aria-label="Main navigation"><a href="index.html#journal">Journal</a><a href="index.html#blog">Blog</a><a href="map.html" aria-current="page">MAP</a><a href="events.html">History</a></nav><button id="theme-toggle">DARK</button></header>
+<header><a class="wordmark" href="index.html"><strong>WAKE✳︎</strong></a><nav class="compact-nav" aria-label="Main navigation">
+    <a href="index.html#home">Home</a>
+    <details class="nav-group"><summary>Read</summary><div class="nav-dropdown">
+      <a href="index.html#blog">Blog</a><a href="index.html#journal">Journal</a>
+    </div></details>
+    <details class="nav-group"><summary>Research</summary><div class="nav-dropdown">
+      <a href="index.html#projects">Projects</a><a href="index.html#lab">Lab</a>
+      <a href="index.html#evidence">Evidence</a><a href="index.html#history">History</a>
+      <a class="nav-external" href="https://github.com/sudofx/wake">GitHub</a>
+    </div></details>
+    <a href="map.html" aria-current="page">MAP</a>
+  </nav><button id="theme-toggle">DARK</button></header>
 <main><div class="intro"><p class="eyebrow">THE DURABLE RECORD / MAP</p><h1>Follow the thread<span>.</span></h1><p>From a public post to the wake that produced it. From a wake to its evidence.</p></div>
 <div class="toolbar"><p id="counts" role="status"></p><button id="clear" disabled>Clear selection · Esc</button></div>
 <div class="workspace"><section id="map-field" tabindex="-1" aria-label="Provenance map"><div class="field-head"><span>○ JOURNAL &nbsp; ▣ BLOG</span><span>EXPLICIT RELATIONSHIPS ONLY</span></div><div class="spatial"><div id="timeline" aria-label="Chronological journal and blog posts"></div><section id="constellation" aria-label="Selected wake artifacts"><div class="empty"><p class="eyebrow">SELECT A WAKE</p><h2>A small view.<br>A recoverable record.</h2><p>Select a journal entry or blog post to reveal its recorded relationships.</p><p>Beliefs · Notebooks · Sources<br>Projects · Commitments · Receipts</p></div></section></div></section>
@@ -67,5 +95,35 @@ function select(id){if(!nodes.has(id))return;lastFocus=document.querySelector(`[
 function clear(){selected=null;context=null;constellation.innerHTML=emptyConstellation;details.innerHTML=emptyDetails;details.classList.remove('active');clearButton.disabled=true;emphasis();if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});else timeline.querySelector('button')?.focus({preventScroll:true})}
 clearButton.addEventListener('click',clear);document.addEventListener('keydown',e=>{if(e.key==='Escape')clear()});document.getElementById('map-field').addEventListener('click',e=>{if(e.target.id==='map-field'||e.target.classList.contains('spatial')||e.target.id==='timeline'||e.target.id==='constellation')clear()});
 const theme=document.getElementById('theme-toggle');function syncTheme(){const dark=document.documentElement.dataset.theme==='dark';theme.textContent=dark?'LIGHT':'DARK';theme.setAttribute('aria-label',dark?'Use light theme':'Use dark theme')}syncTheme();theme.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme==='dark';if(dark)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme',dark?'light':'dark')}catch{}syncTheme()});
+})();
+</script><script>(() => {
+  const nav = document.querySelector('.compact-nav');
+  if (!nav) return;
+  const groups = [...nav.querySelectorAll('.nav-group')];
+  function close(except) {
+    groups.forEach(group => { if (group !== except) group.open = false; });
+  }
+  groups.forEach(group => {
+    group.addEventListener('toggle', () => { if (group.open) close(group); });
+  });
+  nav.addEventListener('click', event => {
+    if (event.target.closest('a')) close();
+  });
+  nav.addEventListener('keydown', event => {
+    const open = groups.find(group => group.open);
+    if (event.key === 'Escape' && open) {
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+      open.querySelector('summary').focus();
+    }
+  });
+  nav.addEventListener('focusout', event => {
+    if (!nav.contains(event.relatedTarget)) close();
+  });
+  document.addEventListener('click', event => {
+    if (!nav.contains(event.target)) close();
+  });
+  window.addEventListener('hashchange', () => close());
 })();
 </script></body></html>
