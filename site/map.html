@@ -29,12 +29,15 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 @media(hover:hover){.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{color:var(--hot);text-shadow:0 0 12px #a827ff55}.compact-nav .nav-dropdown a:hover{background:var(--paper)}}
 @media(max-width:1100px){.masthead{flex-wrap:wrap}.masthead .status{display:none}.masthead nav.compact-nav{gap:18px}}
 @media(max-width:700px){.masthead nav.compact-nav,nav.compact-nav{display:flex;order:3;flex-basis:100%;justify-content:space-between;gap:14px;font-size:14px}.compact-nav .nav-dropdown{left:0}.compact-nav .nav-group:last-of-type .nav-dropdown{left:auto;right:-12px}}
-</style></head><body>
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml">
+<link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml">
+</head><body>
 <a class="skip" href="#map-field">Skip to map</a>
 <header><a class="wordmark" href="https://sudofx.github.io/wake/"><strong>WAKE✳︎</strong></a><nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html#home">Home</a>
     <details class="nav-group"><summary>Read</summary><div class="nav-dropdown">
       <a href="index.html#blog">Blog</a><a href="index.html#journal">Journal</a>
+      <a class="nav-external" href="blog.xml">Blog RSS</a><a href="journal.xml">Journal RSS</a>
     </div></details>
     <details class="nav-group"><summary>Research</summary><div class="nav-dropdown">
       <a href="index.html#projects">Projects</a><a href="index.html#lab">Lab</a>
