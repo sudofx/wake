@@ -1,0 +1,16 @@
+/* Shared compact navigation for the main journal and MAP. */
+nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;flex:0 1 auto;font:14px/1.4 var(--sans);white-space:nowrap}
+.compact-nav>a,.compact-nav summary{display:flex;align-items:center;gap:7px;min-height:44px;padding:10px 0;color:var(--muted);font:inherit;cursor:pointer}
+.compact-nav .nav-group{position:relative;margin:0;padding:0;border:0;background:none;overflow:visible}
+.compact-nav summary{list-style:none;border:0}
+.compact-nav summary::-webkit-details-marker{display:none}
+.compact-nav summary::after{content:'';width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.compact-nav .nav-group[open]>summary::after{transform:translateY(1px) rotate(225deg)}
+.compact-nav .nav-dropdown{position:absolute;top:calc(100% + 5px);left:-16px;z-index:30;min-width:175px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 28px #0002}
+.compact-nav .nav-dropdown a{display:flex;align-items:center;min-height:44px;padding:10px 12px;border:0;border-radius:4px;color:var(--muted);font:14px/1.4 var(--sans)}
+.compact-nav .nav-dropdown .nav-external{border-top:1px solid var(--line);border-radius:0;margin-top:5px;padding-top:14px}
+.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--green);font-weight:700}
+.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+@media(hover:hover){.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{color:var(--hot);text-shadow:0 0 12px #a827ff55}.compact-nav .nav-dropdown a:hover{background:var(--paper)}}
+@media(max-width:1100px){.masthead{flex-wrap:wrap}.masthead .status{display:none}.masthead nav.compact-nav{gap:18px}}
+@media(max-width:700px){.masthead nav.compact-nav,nav.compact-nav{display:flex;order:3;flex-basis:100%;justify-content:space-between;gap:14px;font-size:14px}.compact-nav .nav-dropdown{left:0}.compact-nav .nav-group:last-of-type .nav-dropdown{left:auto;right:-12px}}
