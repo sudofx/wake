@@ -84,7 +84,7 @@ jobs:
           fi
       # scripts/github_wake.py returns nonzero only for conditions that deserve
       # operator attention. Expected provider pressure (429/quota exhaustion and
-      # exhausted transient 5xx retries) remains durably recorded without paging.
+      # single-attempt transient 5xx deferrals) remains durably recorded without paging.
       - name: Fail only when operator attention is required
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1

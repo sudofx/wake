@@ -67,7 +67,7 @@ class CloudWorkflowTests(unittest.TestCase):
             {"status": "failed", "reason": "quota",
              "provider_error": {"http_status": 429}}))
         self.assertFalse(github_wake.requires_operator_attention(
-            {"status": "deferred", "reason": "Gemini temporarily unavailable after 4 attempts; wake deferred"}))
+            {"status": "deferred", "reason": "Gemini temporarily unavailable; wake deferred"}))
         self.assertFalse(github_wake.requires_operator_attention(
             {"status": "paused", "reason": "Daily call ceiling reached; no request sent"}))
         self.assertFalse(github_wake.requires_operator_attention(
@@ -91,7 +91,7 @@ class CloudWorkflowTests(unittest.TestCase):
             calls = 0
             def propose(self, request):
                 self.calls += 1
-                raise TransientProviderError("Gemini temporarily unavailable after 4 attempts; wake deferred")
+                raise TransientProviderError("Gemini temporarily unavailable; wake deferred")
         provider = Busy()
         self.assertEqual(self.run_cloud(provider), 0)
         self.assertEqual(provider.calls, 1)
@@ -147,7 +147,7 @@ class CloudWorkflowTests(unittest.TestCase):
 
         state["invocations"]["wake"].update(
             status="deferred",
-            reason="Gemini temporarily unavailable after 4 attempts; wake deferred",
+            reason="Gemini temporarily unavailable; wake deferred",
             time=(now - timedelta(minutes=11)).isoformat())
         due, _ = github_wake.scheduled_wake_due(state, now=now)
         self.assertTrue(due)
@@ -220,33 +220,6 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertFalse((root/".github/workflows/static.yml").exists())
         self.assertFalse((root/".github/workflows/jekyll-gh-pages.yml").exists())
 
-    def test_gemini_retries_transient_503s_before_succeeding(self):
-        class Response:
-            def __enter__(self): return self
-            def __exit__(self, *args): pass
-            def read(self, maximum):
-                return json.dumps({"candidates":[{"finishReason":"STOP", "content":{"parts":[{"text":"{}"}]}}]}).encode()
-
-        import urllib.error
-        first = urllib.error.HTTPError("https://example", 503, "busy", None, None)
-        second = urllib.error.HTTPError("https://example", 503, "busy", None, None)
-        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=[first, second, Response()]) as network, \
-             patch("wake.providers.time.sleep") as sleep:
-            Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
-        self.assertEqual(network.call_count, 3)
-        self.assertEqual(sleep.call_args_list, [call(15), call(30)])
-
-    def test_gemini_defers_after_transient_retries_are_exhausted(self):
-        from wake.providers import TransientProviderError
-        import urllib.error
-        failures = [urllib.error.HTTPError("https://example", 503, "busy", None, None) for _ in range(4)]
-        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=failures), \
-             patch("wake.providers.time.sleep"):
-            with self.assertRaisesRegex(TransientProviderError, "temporarily unavailable"):
-                Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
-
     def test_transient_diagnostics_survive_cloud_export_and_redact_credentials(self):
         import io
         import urllib.error
@@ -254,16 +227,19 @@ class CloudWorkflowTests(unittest.TestCase):
                     io.BytesIO(json.dumps({"error": {"code": 503, "status": "UNAVAILABLE",
                         "message": "overloaded test-secret", "api_key": "test-secret"}}).encode())) for _ in range(4)]
         with patch.dict("os.environ", {"GEMINI_API_KEY": "test-secret"}), \
-             patch("urllib.request.urlopen", side_effect=failures), patch("wake.providers.time.sleep"):
+             patch("urllib.request.urlopen", side_effect=failures) as network:
             provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
             self.assertEqual(self.run_cloud(provider), 0)
+            self.assertEqual(network.call_count, 1)
         state = json.loads((self.project/"site/state.json").read_text())
         item = next(iter(state["invocations"].values()))
         error = item["provider_error"]
         self.assertEqual(error["http_status"], 503)
         self.assertEqual(error["category"], "server")
         self.assertEqual(error["retry_after"], "30")
-        self.assertEqual(len(error["attempts"]), 4)
+        self.assertEqual(error["provider_requests_sent"], 1)
+        self.assertEqual(item["provider_requests_sent"], 1)
+        self.assertEqual(state["version"], 0)
         self.assertEqual(error["provider_error"]["status"], "UNAVAILABLE")
         self.assertNotIn("test-secret", (self.project/"site/events.jsonl").read_text())
         self.assertNotIn("api_key", error["provider_error"])
@@ -278,11 +254,12 @@ class CloudWorkflowTests(unittest.TestCase):
         for failure, category in ((TimeoutError("private text"), "timeout"),
                                   (urllib.error.URLError(ConnectionRefusedError(61, "private text")), "connection")):
             with self.subTest(category=category), patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), \
-                 patch("urllib.request.urlopen", side_effect=failure), patch("wake.providers.time.sleep"):
+                 patch("urllib.request.urlopen", side_effect=failure) as network:
                 with self.assertRaises(TransientProviderError) as caught:
                     Gemini({**DEFAULTS, "free_tier_confirmed": True}).propose({"system": "rules", "context": {}})
                 self.assertEqual(caught.exception.details["category"], category)
-                self.assertEqual(len(caught.exception.details["attempts"]), 4)
+                self.assertEqual(caught.exception.details["provider_requests_sent"], 1)
+                self.assertEqual(network.call_count, 1)
                 self.assertNotIn("private text", json.dumps(caught.exception.details))
 
     def test_provider_schema_prevents_the_observed_mixed_project_shape(self):

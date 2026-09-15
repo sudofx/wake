@@ -333,35 +333,17 @@ class SystemTests(unittest.TestCase):
             self.assertEqual(json.loads(request.data)["generationConfig"]["responseMimeType"], "application/json")
 
 
-    def test_gemini_retries_a_transient_503(self):
-        class Response:
-            def __enter__(self): return self
-            def __exit__(self, *args): pass
-            def read(self, maximum):
-                return json.dumps({"candidates":[{"finishReason":"STOP", "content":{"parts":[{"text":"{}"}]}}]}).encode()
-
-        busy = urllib.error.HTTPError("https://example.invalid", 503, "busy", Message(), None)
-        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=[busy, Response()]) as network, \
-             patch("wake.providers.time.sleep") as wait:
-            raw, _ = Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
-        self.assertEqual(raw, "{}")
-        self.assertEqual(network.call_count, 2)
-        wait.assert_called_once_with(15)
-        busy.close()
-
-    def test_gemini_defers_after_transient_503_retries_are_exhausted(self):
+    def test_gemini_sends_one_request_for_each_transient_http_failure(self):
         from wake.providers import TransientProviderError
-        busy = [urllib.error.HTTPError("https://example.invalid", 503, "busy", Message(), None) for _ in range(4)]
-        with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=busy) as network, \
-             patch("wake.providers.time.sleep") as wait:
-            with self.assertRaisesRegex(TransientProviderError, "temporarily unavailable"):
-                Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
-        self.assertEqual(network.call_count, 4)
-        self.assertEqual([c.args[0] for c in wait.call_args_list], [15, 30, 60])
-        for item in busy:
-            item.close()
+        for status in (500, 502, 503, 504):
+            with self.subTest(status=status):
+                busy = urllib.error.HTTPError("https://example.invalid", status, "busy", Message(), None)
+                with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), patch(
+                        "urllib.request.urlopen", side_effect=[busy, AssertionError("unexpected retry")]) as network:
+                    with self.assertRaises(TransientProviderError) as caught:
+                        Gemini({**DEFAULTS, "free_tier_confirmed": True}).propose({"system": "rules", "context": {}})
+                self.assertEqual(network.call_count, 1)
+                self.assertEqual(caught.exception.details["provider_requests_sent"], 1)
 
     def test_gemini_does_not_retry_a_nontransient_http_error(self):
         denied = urllib.error.HTTPError("https://example.invalid", 403, "denied", Message(), None)
@@ -374,8 +356,43 @@ class SystemTests(unittest.TestCase):
         wait.assert_not_called()
         denied.close()
 
+    def test_real_adapter_daily_quota_makes_one_request_then_preflight_blocks(self):
+        body = {"error": {"details": [{"violations": [{
+            "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}]}}
+        failure = urllib.error.HTTPError("https://example.invalid", 429, "limited", Message(),
+                                         io.BytesIO(json.dumps(body).encode()))
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), patch(
+                "urllib.request.urlopen", side_effect=failure) as network:
+            provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
+            result = self.engine.run(provider)
+            self.assertEqual(result["status"], "deferred")
+            with self.assertRaisesRegex(Rejected, "daily quota exhausted"):
+                self.engine.run(provider)
+            self.assertEqual(network.call_count, 1)
+        state = self.engine.store.load()
+        self.assertEqual(state["version"], 0)
+        self.assertEqual(state["invocations"][result["id"]]["provider_requests_sent"], 1)
+
+    def test_successful_charged_wake_records_one_request(self):
+        class Response:
+            def __init__(self, req): self.req = req
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def read(self, maximum):
+                context = json.loads(json.loads(self.req.data)["contents"][0]["parts"][0]["text"])
+                raw, _ = Fixture().propose({"context": context})
+                return json.dumps({"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": raw}]}}]}).encode()
+        with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), patch(
+                "urllib.request.urlopen", side_effect=lambda req, **kw: Response(req)) as network:
+            result = self.engine.run(Gemini({**DEFAULTS, "free_tier_confirmed": True}))
+            self.assertEqual(network.call_count, 1)
+        self.assertEqual(result["status"], "accepted")
+        state = self.engine.store.load()
+        self.assertEqual(state["invocations"][result["id"]]["provider_requests_sent"], 1)
+        self.assertEqual(sum(i["charged"] for i in state["invocations"].values()), 1)
+
     def test_gemini_429_exposes_safe_structured_diagnostics(self):
-        from wake.providers import ProviderRequestError
+        from wake.providers import ProviderRequestError, DailyQuotaExceeded
         headers = Message()
         headers["Retry-After"] = "37"
         body = {
@@ -398,10 +415,12 @@ class SystemTests(unittest.TestCase):
             io.BytesIO(json.dumps(body).encode()),
         )
         with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
-             patch("urllib.request.urlopen", side_effect=limited), \
+             patch("urllib.request.urlopen", side_effect=limited) as network, \
              patch("wake.providers.time.monotonic", side_effect=[10.0, 11.25]):
             with self.assertRaises(ProviderRequestError) as caught:
                 Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
+        self.assertNotIsInstance(caught.exception, DailyQuotaExceeded)
+        self.assertEqual(network.call_count, 1)
         detail = caught.exception.details
         self.assertEqual(detail["http_status"], 429)
         self.assertEqual(detail["retry_after"], "37")

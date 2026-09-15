@@ -284,17 +284,26 @@ class Engine:
         except (ValueError, TypeError, KeyError) as exc:
             reason = str(exc)[:1000]
             self.store.append("rejected", {"id": invocation, "reason": reason,
-                                          "raw_response": str(raw)[:64000], "metadata": metadata or {}})
+                                          "raw_response": str(raw)[:64000], "metadata": metadata or {},
+                                          **({"provider_requests_sent": metadata["provider_requests_sent"]}
+                                             if metadata and "provider_requests_sent" in metadata else {})})
             return {"status": "rejected", "id": invocation, "reason": reason}
         fields = ["version", "beliefs", "commitments", "journal"]
         if state.get("charter"):
             fields += ["projects", "notebooks", "research", "posts"]
         result_hash = digest({k: result[k] for k in fields})
         self.store.append("accepted", {"id": invocation, "proposal": proposal, "raw_response": raw,
-                                       "metadata": metadata or {}, "result_hash": result_hash, "hash_fields": fields,
+                                       "metadata": metadata or {},
+                                       **({"provider_requests_sent": metadata["provider_requests_sent"]}
+                                          if metadata and "provider_requests_sent" in metadata else {}), "result_hash": result_hash, "hash_fields": fields,
                                        **({"editorial": editorial} if editorial else {})}, crash=crash)
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {})}
+
+    @staticmethod
+    def _request_count(provider):
+        count = getattr(provider, "provider_requests_sent", None)
+        return {"provider_requests_sent": count} if count is not None else {}
 
     def run(self, provider, crash_at=None, checkpoint=None, collector=None):
         with self.store.lock():
@@ -311,30 +320,30 @@ class Engine:
                 raw, metadata = provider.propose(request)
             except TransientProviderError as exc:
                 reason = str(exc)[:1000]
-                self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": exc.details})
+                self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)})
                 if checkpoint:
                     checkpoint()
-                return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": exc.details}
+                return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)}
             except DailyQuotaExceeded as exc:
                 reason = str(exc)[:1000]
                 payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
-                           "quota_exhausted": "free_tier_daily"}
+                           "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
                 self.store.append("deferred", payload)
                 if checkpoint:
                     checkpoint()
                 return {"status": "deferred", "id": invocation, "reason": reason,
-                        "provider_error": exc.details, "quota_exhausted": "free_tier_daily"}
+                        "provider_error": exc.details, "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
             except ProviderRequestError as exc:
                 reason = str(exc)[:1000]
                 self.store.append("failed", {"id": invocation, "reason": reason,
-                                             "provider_error": exc.details})
+                                             "provider_error": exc.details, **self._request_count(provider)})
                 if checkpoint:
                     checkpoint()
                 return {"status": "failed", "id": invocation, "reason": reason,
-                        "provider_error": exc.details}
+                        "provider_error": exc.details, **self._request_count(provider)}
             except Exception as exc:
                 reason = str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry"
-                self.store.append("failed", {"id": invocation, "reason": reason})
+                self.store.append("failed", {"id": invocation, "reason": reason, **self._request_count(provider)})
                 if checkpoint:
                     checkpoint()
                 return {"status": "failed", "id": invocation, "reason": reason}

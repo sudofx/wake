@@ -71,6 +71,8 @@ def reduce_event(state, event, historical=False):
             require(digest({k: state[k] for k in fields}) == p["result_hash"],
                     "Transition result hash mismatch")
         terminal = {"status": kind, "finished": event["time"], "reason": p.get("reason", "")}
+        if "provider_requests_sent" in p:
+            terminal["provider_requests_sent"] = p["provider_requests_sent"]
         if "editorial" in p:
             terminal["editorial"] = p["editorial"]
         if "provider_error" in p:

@@ -282,7 +282,6 @@ class Gemini:
     name = "gemini"
     charged = True
     transient_http_codes = frozenset({500, 502, 503, 504})
-    transient_retry_delays_seconds = (15, 30, 60)
 
     def __init__(self, config, model=None):
         load_env()
@@ -294,6 +293,7 @@ class Gemini:
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
 
     def propose(self, request):
+        self.provider_requests_sent = 0
         system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(request.get("response_schema", SCHEMA))
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
@@ -306,61 +306,44 @@ class Gemini:
             f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent",
             data=payload, headers={"Content-Type": "application/json",
                                    "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
-        attempts = len(self.transient_retry_delays_seconds) + 1
         request_started = time.monotonic()
-        failures = []
-        for transport_attempt in range(attempts):
-            try:
-                with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
-                    data = json.loads(response.read(1_000_001))
-                break
-            except urllib.error.HTTPError as exc:
-                elapsed_ms = round((time.monotonic() - request_started) * 1000)
-                diagnostics = _http_error_details(exc, elapsed_ms, len(payload))
-                exc.close()
-                diagnostics.update(category="server" if exc.code in self.transient_http_codes else "http",
-                                   attempt=transport_attempt + 1)
-                if exc.code in self.transient_http_codes:
-                    failures.append(diagnostics)
-                    if transport_attempt < len(self.transient_retry_delays_seconds):
-                        time.sleep(self.transient_retry_delays_seconds[transport_attempt])
-                        continue
-                    raise TransientProviderError(
-                        f"Gemini temporarily unavailable after {attempts} attempts; wake deferred",
-                        {**diagnostics, "attempts": failures}
-                    ) from None
-                if is_free_tier_daily_quota(diagnostics):
-                    raise DailyQuotaExceeded(
-                        "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
-                        diagnostics,
-                    ) from None
-                raise ProviderRequestError(
-                    f"Gemini HTTP {exc.code}; wake attempt counted",
-                    diagnostics,
-                ) from None
-            except (urllib.error.URLError, TimeoutError) as exc:
-                cause = getattr(exc, "reason", exc)
-                diagnostics = {
-                    "category": "timeout" if isinstance(cause, TimeoutError) else "connection",
-                    "error_type": type(cause).__name__,
-                    "elapsed_ms": round((time.monotonic() - request_started) * 1000),
-                    "request_payload_bytes": len(payload), "attempt": transport_attempt + 1,
-                }
-                if isinstance(getattr(cause, "errno", None), int):
-                    diagnostics["errno"] = cause.errno
-                failures.append(diagnostics)
-                if transport_attempt < len(self.transient_retry_delays_seconds):
-                    time.sleep(self.transient_retry_delays_seconds[transport_attempt])
-                    continue
+        # One network attempt per invocation. The durable scheduler handles retries.
+        self.provider_requests_sent = 1
+        try:
+            with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
+                data = json.loads(response.read(1_000_001))
+        except urllib.error.HTTPError as exc:
+            diagnostics = _http_error_details(
+                exc, round((time.monotonic() - request_started) * 1000), len(payload))
+            exc.close()
+            diagnostics.update(category="server" if exc.code in self.transient_http_codes else "http",
+                               provider_requests_sent=1)
+            if exc.code in self.transient_http_codes:
                 raise TransientProviderError(
-                    f"Gemini temporarily unavailable after {attempts} attempts; wake deferred",
-                    {**diagnostics, "attempts": failures}
-                ) from None
+                    "Gemini temporarily unavailable; wake deferred", diagnostics) from None
+            if exc.code == 429 and is_free_tier_daily_quota(diagnostics):
+                raise DailyQuotaExceeded(
+                    "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
+                    diagnostics) from None
+            raise ProviderRequestError(
+                f"Gemini HTTP {exc.code}; wake attempt counted", diagnostics) from None
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+            cause = getattr(exc, "reason", exc)
+            diagnostics = {
+                "category": "timeout" if isinstance(cause, TimeoutError) else "connection",
+                "error_type": type(cause).__name__,
+                "elapsed_ms": round((time.monotonic() - request_started) * 1000),
+                "request_payload_bytes": len(payload), "provider_requests_sent": 1,
+            }
+            if isinstance(getattr(cause, "errno", None), int):
+                diagnostics["errno"] = cause.errno
+            raise TransientProviderError(
+                "Gemini temporarily unavailable; wake deferred", diagnostics) from None
         candidates = data.get("candidates", [])
         require(candidates and candidates[0].get("finishReason") == "STOP", "Gemini did not return a complete answer")
         raw = "".join(part.get("text", "") for part in candidates[0].get("content", {}).get("parts", [])
                       if not part.get("thought"))
-        return raw, {"usage": data.get("usageMetadata", {}), "model_version": data.get("modelVersion", self.model)}
+        return raw, {"provider_requests_sent": 1, "usage": data.get("usageMetadata", {}), "model_version": data.get("modelVersion", self.model)}
 
 
 class Fixture:
