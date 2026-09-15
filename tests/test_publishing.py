@@ -1,6 +1,7 @@
 """Exercise publishing against a disposable local Git remote, never GitHub."""
 
 import importlib.util
+import json
 from pathlib import Path
 import shutil
 import subprocess
@@ -49,9 +50,17 @@ class PublishingTests(unittest.TestCase):
                     ".nojekyll", "index.html", "journal.md",
                     "state.json", "state.md", "state.html",
                     "events.jsonl", "events.md", "events.html",
-                    "head.txt",
+                    "head.txt", "map.html", "map-data.json",
                 })
                 self.assertFalse((project/"index.html").exists())
+                map_path = project/"site/map-data.json"
+                original_map = map_path.read_text()
+                tampered_map = json.loads(original_map)
+                tampered_map["edges"] = []
+                map_path.write_text(json.dumps(tampered_map))
+                with self.assertRaisesRegex(SystemExit, "Map does not match"):
+                    module.publish(project/"site")
+                map_path.write_text(original_map)
                 (project/"site/state.json").write_text('{}')
                 with self.assertRaises(SystemExit):
                     module.publish(project/"site")

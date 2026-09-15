@@ -13,7 +13,7 @@ def verify_history(path, expected_head=None):
             event = json.loads(line)
             if event["seq"] != seq or event["prev_hash"] != head or digest({k:v for k,v in event.items() if k != "hash"}) != event["hash"]:
                 raise IntegrityError(f"Exported event {seq} failed verification")
-            state = reduce_event(state, event)
+            state = reduce_event(state, event, historical=True)
             head = event["hash"]
         except (ValueError, KeyError, TypeError) as exc:
             raise IntegrityError(f"Exported event {seq} is invalid: {exc}") from exc

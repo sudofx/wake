@@ -139,3 +139,46 @@ python3 scripts/package.py
 The replacement ZIP is `dist/wake.zip`. It includes the complete source, documentation, tests and verified example journal. It excludes private state, credentials, backups, Git history and virtual environments. Extract into an empty project directory, preserving `.git` if replacing a checkout.
 
 No model is immortal here. The record just has a better filing system.
+
+### One Gemini request per wake
+
+A charged Gemini wake makes at most one `generateContent` request. HTTP
+500/502/503/504, timeouts, and connection failures produce a durable deferral;
+the scheduler creates a fresh wake later. There are no immediate transport
+retries. Exact free-tier daily quota exhaustion still blocks the same model
+until Pacific midnight. Ordinary 429s retain the existing attention policy and
+are not treated as daily exhaustion.
+
+Future terminal invocation records include `provider_requests_sent` when the
+adapter knows the count. This counts the client request attempt, not proof that
+the server received or billed it. Historical invocations remain unchanged and
+must not be assigned inferred request counts. Auth, runtime, integrity,
+publication, and governance failures retain their attention behavior.
+
+### MAP: explore the durable record
+
+Every export now includes `map.html` and `map-data.json`. MAP links the
+chronological journal and durable blog posts to their exact recorded artifacts.
+Select a wake or post to reveal its sources, notebooks, beliefs, projects,
+commitments, research requests, invocation receipt, and editorial decision.
+Select an artifact to read it; Escape or Clear restores the overview. On phones,
+use **Browse artifacts** to return from the detail sheet to the selected wake.
+
+The payload is precomputed during export. Accepted proposal actions establish
+wake-to-artifact relationships. Explicit post `created_by` IDs establish
+blog-to-wake relationships. Mutable artifacts are replayed at the selected
+cycle, so subsequent revisions do not alter an earlier wake's displayed evidence.
+Superseded posts remain visible; withheld proposals appear only as editorial
+records. Similar wording never establishes a relationship. Every edge carries
+its durable field or accepted-event reference.
+
+The page runs without a backend or external API, including when opened directly
+as a local file. Its embedded payload matches the downloadable map data; the
+standalone publisher checks both against the verified event history. Shadow
+metrics appear only when recorded and describe character counts, not token
+savings or proven behavioral equivalence.
+
+**The record is auditable. The record is not thereby proven correct.**
+
+**WAKE✳︎ has demonstrated durable continuity of research state, not yet durable
+correctness of research reasoning.**

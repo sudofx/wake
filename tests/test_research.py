@@ -320,6 +320,11 @@ class ResearchTests(unittest.TestCase):
         replayed, _ = self.engine.store.replay()
         self.assertIn("post-one", replayed["posts"])
         self.assertIn("genuine epistemic self-governance", replayed["posts"]["post-one"]["body"])
+        export(self.engine.store, self.root/"site")
+        audited, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
+        self.assertEqual(audited, replayed)
+        graph = json.loads((self.root/"site/map-data.json").read_text())
+        self.assertIn("blog:post-one", graph["blogs"])
 
     def test_correction_preserves_the_original_post(self):
         self.source("s1")
