@@ -85,6 +85,23 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-16T10:04:07.598729+00:00"
+    },
+    "source-d4ff5007093d4987": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21428/e2759450.c403b8e7\\\", \\\"title\\\": [\\\"Metacognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.21428/e2759450.c403b8e7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 10]]}}, {\\\"DOI\\\": \\\"10.1002/9780470713662.ch1\\\", \\\"title\\\": [\\\"Setting the Stage Metacognition and Cognitive Therapy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9780470713662.ch1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 1]]}}, {\\\"DOI\\\": \\\"10.4324/9780203062685-12\\\", \\\"title\\\": [\\\"What's All the Fuss about Metacognition?\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203062685-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 4, 3]]}}, {\\\"DOI\\\": \\\"10.4324/9780203486030-70\\\", \\\"title\\\": [\\\"METACOGNITION\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203486030-70\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004, 3, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"f1743987b91c1b1ce22f7a90af924a55aa7dc0566d796808d5d47bd0d0edeb8b\"}",
+      "id": "source-d4ff5007093d4987",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published",
+      "version": 2,
+      "time": "2026-09-16T14:53:13.083533+00:00"
+    },
+    "r-2792754c65264801": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[\"review-chem-precision-benchmarks\"],\"invocation\":\"w-2792754c65264801\",\"previous_head\":\"bcad78287c4dff3afbf2791fc84804c1397b1bd3c076eaedf3c370c40246a0a3\",\"process_id\":2044,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-2792754c65264801",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-16T14:53:13.093932+00:00"
     }
   },
   "journal": [
@@ -336,6 +353,175 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-16T10:04:34.523399+00:00",
       "reason": ""
+    },
+    "w-2792754c65264801": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-2792754c65264801",
+      "model": "gemini-3.8-flash",
+      "process_id": 2044,
+      "provider": "gemini",
+      "quota_day": "2026-09-16",
+      "request_hash": "3bd781f538aeaaf1a75f850db16fb8ae59e2114b7a25f6f3b1f77c1291515262",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "review-chem-precision-benchmarks",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-d4ff5007093d4987"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d4ff5007093d4987",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-d4ff5007093d4987"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 2,
+          "evidence_count": 1,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 1
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19140,
+        "mode": "shadow",
+        "retrieval_candidate_count": 2,
+        "retrieval_evidence_count": 1,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 1
+        },
+        "working_set_chars": 2282,
+        "working_to_delivered_ratio": 0.1192
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "quantum-algorithms-noise",
+            "next_step": "Retrieve the detailed case study on ADAPT-VQE noise resilience and search for complementary adaptive mitigation strategies.",
+            "question": "How do various noise channels impact operator selection in adaptive variational quantum algorithms, and what mitigation techniques are effective?",
+            "title": "Noise Resilience in Adaptive Quantum Algorithms"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "The runtime environment successfully delivers context and state across invocation boundaries.",
+            "confidence": 1.0,
+            "id": "durable-state-delivery",
+            "provenance": [
+              "r-160f8f37f69941ed"
+            ],
+            "status": "active",
+            "why_retained": "The runtime continuity receipt confirms successful delivery of the state to the provider boundary."
+          },
+          {
+            "claim": "In adaptive variational quantum algorithms like ADAPT-VQE, both coherent and incoherent hardware noise can prevent convergence during the operator selection step.",
+            "confidence": 0.8,
+            "id": "adapt-vqe-noise-sensitivity",
+            "provenance": [
+              "source-58104290a3054605"
+            ],
+            "status": "active",
+            "why_retained": "The collected abstract of arXiv:2609.17501v1 states that both coherent and incoherent noise channels can prevent convergence during the operator selection step at high noise rates."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 3,
+            "id": "review-chem-precision-benchmarks",
+            "reason": "To extend our noise resilience analysis to larger experimental scales.",
+            "task": "Review benchmarks of quantum chemistry error mitigation on larger systems (e.g. 27-qubit processors) once more sources are collected"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "adapt-vqe-noise-mitigation-analysis",
+            "project": "quantum-algorithms-noise",
+            "provenance": [
+              "source-eff925a57e3a479c",
+              "source-e735b67670f14093"
+            ],
+            "revision": 1,
+            "summary": "Analysis of how hardware noise affects the operator selection step in ADAPT-VQE and the effectiveness of multi-layered error mitigation and AIM techniques.",
+            "title": "Noise Resilience and Mitigation in Adaptive VQE"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-16T14:53:13.099372+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 13273,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 38086,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 288,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 38086,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 8243,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 38086,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-16T14:53:46.128838+00:00",
+      "reason": "Commitment must be due in a future cycle, within 100 cycles"
     }
   },
   "pending": null,
