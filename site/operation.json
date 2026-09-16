@@ -1,40 +1,6 @@
 {
-  "status": "deferred",
-  "id": "w-ad60e0de23f84861",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.8-flash",
-    "request_payload_bytes": 46341,
-    "http_status": null,
-    "result": "transient_failure",
-    "category": "timeout",
-    "error_type": "TimeoutError",
-    "elapsed_ms": 60144,
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.8-flash",
-        "request_payload_bytes": 46341,
-        "http_status": null,
-        "result": "transient_failure",
-        "category": "timeout",
-        "error_type": "TimeoutError",
-        "elapsed_ms": 60144
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.8-flash",
-      "request_payload_bytes": 46341,
-      "http_status": null,
-      "result": "transient_failure",
-      "category": "timeout",
-      "error_type": "TimeoutError",
-      "elapsed_ms": 60144
-    }
-  ],
+  "status": "paused",
+  "reason": "Daily call ceiling reached; no request sent",
   "wake_status": {
     "last_accepted": {
       "id": "w-b1e528a3c5d74916",

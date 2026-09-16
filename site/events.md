@@ -2,9 +2,67 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `a35f1a7440d0c0cc53d4864ddf41166ca76570efddfdf07e9bac5d5d2a384a4f`
+Verified head: `270c17afc02ffdd950b045029b6c41998d2cb4ffee557c8cb2a22e22ad1fc8fd`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0102 · `research_collected`
+
+**Time:** 2026-09-16T20:15:06.888394+00:00  
+**ID:** `wake-context-8`  
+**Hash:** `270c17afc02ffdd950b045029b6c41998d2cb4ffee557c8cb2a22e22ad1fc8fd`  
+**Previous hash:** `40ade920669d5bf52f1f7dbdf641a02f117f010d79d95b0ac9e29ae7c4a6a5c8`
+
+### Payload
+
+```json
+{
+  "evidence": "source-159920dfde18459b",
+  "id": "wake-context-8",
+  "status": "collected"
+}
+```
+
+## Event 0101 · `observation`
+
+**Time:** 2026-09-16T20:15:06.874880+00:00  
+**ID:** `source-159920dfde18459b`  
+**Hash:** `40ade920669d5bf52f1f7dbdf641a02f117f010d79d95b0ac9e29ae7c4a6a5c8`  
+**Previous hash:** `1165045314653fd6dcba5c5b0a0fdd675d190415ff9827ccddca89b0ce98bca0`
+
+**Source:** `https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md`  
+**Actor:** `collector`
+
+{"url": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md", "scope": "raw source-controlled WAKE repository text", "excerpt": "# Experiment protocol\n\nThe hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The experiment does not attempt to establish consciousness or an enduring internal self.\n\n## Interpretation boundary\n\nThe experiment is about externally scaffolded continuity and correction across disposable model calls.\nIt is not a test for consciousness, qualia, personhood, a persistent internal self, or whether a model\n\"really understands\" in a phenomenal sense. Intelligent-looking behavior and subjective experience are\nseparate questions here.\n\nThe emerging architectural hypothesis is narrower: exact records can remain external while later calls work\nfrom progressively more useful abstractions, retrieve detail when needed, and revise those abstractions when\nevidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove\nthat the resulting behavior is reliable or intelligent.\n\n### Working-set shadow phase\n\nBefore replacing any live context, WAKE✳ records a deterministic `working_set_shadow` beside each invocation.\nIt compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,\nand carries compact active-project and recent-notebook pointers. Raw evidence contents remain only in the\nauthoritative record and the richer provider context. `working_set_metrics` records shadow size versus the\ncontext actually delivered.\n\nThis phase is observational. The model does not receive the shadow as a substitute for its current context,\nso changes in behavior cannot yet be attributed to compression.\n\nAfter enough baseline invocations exist, run a controlled offline/manual comparison from the same durable\nstarting state:\n\n- **A — rich context:** current bounded provider context.\n- **B — working abstraction:** the shadow working set plus deterministic rehydration of exact receipts when\n  contradiction, major revision, high consequence, or a justification request raises the required resolution.\n- **C — overcompressed control:** identifiers, claims and confidence with provenance/uncertainty detail removed.\n\nPrimary outcome: whether B preserves contradiction detection and appropriate evidence-backed revision while\nusing materially less active context than A. C is expected to reveal where compression starts making\ncorrection harder. Do not activate B for unattended live wakes until that comparison has been run and scored.\n\n## Reproducible offline harness\n\nRun `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site` in a new directory. The runner creates each invocation using a separate `subprocess.run`, with no inherited Python state, provider object or chat history. It alternates `fixture-a` and `fixture-b`, two labels for the deterministic fixture algorithm. This establishes provider interchangeability at the contract boundary, not behavioral equivalence of two real models.\n\n| Property | Intervention and observable criterion |\n| --- | --- |\n| Fresh-session continuity | Every fresh process receives the immediately preceding durable version; the accepted cycle number advances exactly once |\n| Causal state | Copy the same baseline into control/intervention directories; change only persisted focus; same next provider produces different focus-dependent output |\n| Commitment persistence | A commitment created by fixture A is resolved by fixture B after its runtime receipt records inheritance; 99 cross-provider handoffs in 100 cycles |\n| Mechanical constraints | Append a forbidden rule-changing action to an otherwise valid proposal; reject the entire proposal and preserve accepted state |\n| Evidence lifecycle | Synthetic baseline, supporting measurement, contradictory measurement; maintain then retract the same belief, retaining three citations |\n| Recovery | Immediately exit after start and during the SQLite transaction; separately corrupt the cached projection; accepted beliefs and commitments remain unchanged |\n| Audit reconstruction | Rebuild the exact projection from exported JSONL, without the original database or snapshot; verify the independently supplied head |\n| Longitudinal coherence | At least 100 accepted cycles, every commitment closed by the next invocation except the final open one |\n\n`experiment.json` records outcomes, commands, limitations and observed values. The main journal includes the rejected action and both recovery events. The control and intervention databases and full exports remain under the experiment directory. All sensor readings are explicitly synthetic. The experiment runner fails if any check fails.\n\n## Live-model protocol — deliberately separate\n\nStart a separate live database using `python3 -m wake init`. Do not count fixture cycles as live evidence. Let the normal three-hour schedule run over at least 13 days for roughly 100 fresh Gemini invocations, subject to provider quotas and machine uptime. Count accepted, rejected and failed calls separately. Do not retry a rejected response to make the metrics prettier.\n\n1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.\n2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.\n3. Check whether the new model notices and meaningfully addresses inherited obligations without a human reminder. Inspect exact requests, raw replies and citations. A mere repeated ID is insufficient evidence of comprehension.\n4. Add a new supporting observation and later a contradictory one. Check whether the model explains the change and revises or retracts its belief appropriately. A model that ignores a contradiction is a failed behavioral result even if its proposal passes structural governance.\n5. Run a controlled focus intervention on copied **offline/manual** requests. Keep starting state and model settings the same and document all changed inputs. Avoid two live API databases sharing one quota ledger.\n6. Test adversarial replies with manual imports: unknown actions, missing evidence, changing the objective, cancellation, stale version, and malformed JSON. Preserve rejected replies.\n7. Use the fixture-only crash injection in a separate rehearsal; for a real interrupted process, retain the charged reservation and recovery event. Do not deliberately waste scarce live calls to retest SQLite behavior.\n8. Give an observer `events.jsonl` and a previously retained `head.txt`. They should reconstruct the objective, current beliefs, supporting observations, all obligations, reasons and invocation identities. Compare the result to the generated state.\n\nReport both structural pass rates and human-assessed coherence. Useful behavioral measures include evidence relevance, whether claims overstate observations, overdue obligations, revisability after contradiction, and consistency of plans over time. The shipped dashboard reports actual counts and fixture test coverage; it does not fabricate a real-model coherence score.\n\nReal-model interchangeability and long-term behavioral coherence remain unproved until those live observations exist. Treat that as the experiment's open question.\n", "excerpt_truncated": false, "source_sha256": "2383e9cd8cbac761b0446c674992478af338bd0cf38f9779c427da84b5d0cfa1"}
+
+## Event 0100 · `research_collected`
+
+**Time:** 2026-09-16T20:15:06.740501+00:00  
+**ID:** `discovery-8`  
+**Hash:** `1165045314653fd6dcba5c5b0a0fdd675d190415ff9827ccddca89b0ce98bca0`  
+**Previous hash:** `a814da534df17d2bab0919ea5fc305755afe948887cb2a268312086913d3c86e`
+
+### Payload
+
+```json
+{
+  "evidence": "source-ebf200e9bc08472c",
+  "id": "discovery-8",
+  "status": "collected"
+}
+```
+
+## Event 0099 · `observation`
+
+**Time:** 2026-09-16T20:15:06.727177+00:00  
+**ID:** `source-ebf200e9bc08472c`  
+**Hash:** `a814da534df17d2bab0919ea5fc305755afe948887cb2a268312086913d3c86e`  
+**Previous hash:** `a35f1a7440d0c0cc53d4864ddf41166ca76570efddfdf07e9bac5d5d2a384a4f`
+
+**Source:** `https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.1093/hesc/9780198559108.003.0001\", \"title\": [\"Symmetry elements, symmetry operations and point groups\"], \"abstract\": \"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\", \"URL\": \"https://doi.org/10.1093/hesc/9780198559108.003.0001\", \"published\": {\"date-parts\": [[2001, 7, 26]]}}, {\"DOI\": \"10.3390/sym2031401\", \"title\": [\"Symmetry, Symmetry Breaking and Topology\"], \"abstract\": \"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym2031401\", \"published\": {\"date-parts\": [[2010, 7, 7]]}}, {\"DOI\": \"10.3390/sym11010117\", \"title\": [\"Acknowledgement to Reviewers of Symmetry in 2018\"], \"abstract\": \"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym11010117\", \"published\": {\"date-parts\": [[2019, 1, 19]]}}, {\"DOI\": \"10.3390/sym14020264\", \"title\": [\"Acknowledgment to Reviewers of Symmetry in 2021\"], \"abstract\": \"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym14020264\", \"published\": {\"date-parts\": [[2022, 1, 29]]}}]", "excerpt_truncated": false, "source_sha256": "40cfc24c85d04e3a5a03de48b38d34ab88072f1bcd19fca79cbf5f16aa8f40af"}
 
 ## Event 0098 · `deferred`
 
