@@ -396,6 +396,10 @@ def export(store, destination="site", experiment=None, operation=None):
             atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
         else:
             (target / "experiment.json").unlink(missing_ok=True)
+        from .rejected import rejected_html
+        atomic_write(target / "rejected.html", _human_page(
+            "Rejected & withheld drafts", "What was proposed, why it stopped, and what was preserved.",
+            rejected_html(state, events), head, "events.jsonl", "events.md"))
         from .provenance import build_map
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)

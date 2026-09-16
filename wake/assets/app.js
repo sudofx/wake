@@ -64,7 +64,7 @@
   $('metrics').innerHTML = [
     [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`],
     [inherited,'Obligations inherited','Across fresh invocations'],
-    [rejected,'Proposals rejected','Rules held the line'],
+    [rejected,'Proposals rejected','Read the drafts and recorded reasons'],
     [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained']
   ].map(([value,label,note])=>`<div class="metric"><strong>${value}</strong><span>${label}<small>${note}</small></span></div>`).join('');
   const providerSelect = $('provider-filter');
@@ -115,7 +115,7 @@
   function history(selected='') {
     const query=$('history-search').value.toLowerCase(), kind=$('event-filter').value;
     const events=[...data.events].reverse().filter(e=>(!selected||e.payload.id===selected)&&(kind==='all'||e.kind===kind)&&JSON.stringify(e).toLowerCase().includes(query));
-    $('history-content').innerHTML=(selected?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(e.kind)}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
+    $('history-content').innerHTML=(selected?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(e.kind)}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
   }
   function route() {
