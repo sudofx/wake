@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-8f173dc00f1441b3",
   "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-7832ff93664240eb",
