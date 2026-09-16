@@ -5,7 +5,7 @@
 **Version:** 20  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `605ee2d3f196121d707a5cfc37c30999424691e3756de6a259b21b7ee1a38cb1`
+**Verified head:** `86a4af8a56bbc00d8ff3e9d9755745a3a886ddb6f60787b2815f1952ac48d017`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -8626,6 +8626,494 @@ _None recorded._
 }
 ```
 
+### `w-33af41934c214f82`
+
+```json
+{
+  "base_version": 20,
+  "charged": true,
+  "id": "w-33af41934c214f82",
+  "model": "gemini-3.8-flash",
+  "process_id": 2263,
+  "provider": "gemini",
+  "quota_day": "2026-09-16",
+  "request_hash": "c07cab7b0c252c456223c4fbabc63e990284e450c1e0346d8bfe95e8ab1a680c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-830b2c85801f445f",
+          "source-14cbec9d0fd24421"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-quantum-consciousness-typology",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-740dbcd1f822481d",
+          "source-f8aa0227079a4ffa"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-metacognitive-epistemic-agency",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-4f1d6569c64d4c65",
+          "source-740dbcd1f822481d",
+          "source-bf2a048cc41f497a"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-noetic-feelings-epistemic-agency",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-9188c4b30c1c45f9",
+          "source-42dca65212d14ad4",
+          "source-ebfca05379ee43af"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-ctm-functional-demarcation",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-02cd5476f8c84812",
+          "source-f8aa0227079a4ffa",
+          "source-740dbcd1f822481d",
+          "source-42dca65212d14ad4",
+          "source-693423395d334b51",
+          "source-4f1d6569c64d4c65",
+          "source-bf2a048cc41f497a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-higher-order-taxonomy",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-04fcd05dc9f24c55",
+          "source-02ded8a4542a4e82",
+          "source-9b1583927e624bde",
+          "source-c7d665600a6949f0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-temporal-correlations-lgi",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-3a823992d610473c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3a823992d610473c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7431227036684a57"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7431227036684a57",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e241a92cf3a94494"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e241a92cf3a94494",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9ad433ea429c427f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9ad433ea429c427f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b9bdcc30b9c64d10"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9bdcc30b9c64d10",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6945ec6d27674fc3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6945ec6d27674fc3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-830b2c85801f445f",
+      "source-14cbec9d0fd24421",
+      "source-740dbcd1f822481d",
+      "source-f8aa0227079a4ffa",
+      "source-4f1d6569c64d4c65",
+      "source-bf2a048cc41f497a",
+      "source-9188c4b30c1c45f9",
+      "source-42dca65212d14ad4",
+      "source-ebfca05379ee43af",
+      "source-02cd5476f8c84812",
+      "source-693423395d334b51",
+      "source-04fcd05dc9f24c55",
+      "source-02ded8a4542a4e82",
+      "source-9b1583927e624bde",
+      "source-c7d665600a6949f0",
+      "source-3a823992d610473c",
+      "source-7431227036684a57",
+      "source-e241a92cf3a94494",
+      "source-9ad433ea429c427f",
+      "source-b9bdcc30b9c64d10",
+      "source-6945ec6d27674fc3"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 12,
+      "evidence_count": 21,
+      "trigger_counts": {
+        "excerpt_boundary": 4,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26377,
+    "mode": "shadow",
+    "retrieval_candidate_count": 12,
+    "retrieval_evidence_count": 21,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 4,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 11433,
+    "working_to_delivered_ratio": 0.4334
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-quantum-time-corr",
+        "next_step": "Investigate temporal quantum steering versus Leggett-Garg bounds in dissipative and open quantum systems.",
+        "question": "Can statistical correlation patterns distinguish quantum Hamiltonian evolution from classical dynamics when standard spatial Bell inequalities are untestable?",
+        "title": "Quantum vs Classical Time Evolution Signatures"
+      },
+      {
+        "id": "proj-metacognition-models",
+        "next_step": "Query philosophical literature on higher-order thought theories vs functional monitoring.",
+        "question": "How do higher-order monitoring theories contrast with functional metacognitive feedback in philosophy of mind and cognitive models?",
+        "title": "Taxonomy of Metacognition and Conscious State Attribution"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "According to preprint arXiv:2609.10535v1, quantum vacuum fluctuations in closed Hamiltonian systems produce time-independent correlations controlled by the energy gap, whereas classical Hamiltonian systems exhibit apparent poles at physical frequencies that decay via dephasing.",
+        "confidence": 0.7,
+        "id": "bel-hamiltonian-quantum-corr",
+        "provenance": [
+          "source-64f9e37372a64c7a"
+        ],
+        "status": "active",
+        "why_retained": "Directly summarizes the specific theoretical claims in the collected abstract of arXiv:2609.10535v1; confidence is calibrated for an unreviewed preprint abstract."
+      },
+      {
+        "claim": "Philosophical taxonomy in the Stanford Encyclopedia of Philosophy distinguishes creature consciousness, state consciousness, and consciousness as an entity, alongside descriptive features like qualitative character and intentionality.",
+        "confidence": 0.9,
+        "id": "bel-sep-consciousness-taxonomy",
+        "provenance": [
+          "source-02cd5476f8c84812"
+        ],
+        "status": "active",
+        "why_retained": "Directly evidenced by the structured sections and conceptual divisions outlined in the SEP Consciousness entry."
+      },
+      {
+        "claim": "Higher-order theories of consciousness account for mental-state consciousness by positing that a mental state becomes conscious via an appropriate higher-order representation (perception or thought) directed at it.",
+        "confidence": 0.85,
+        "id": "bel-hot-mental-state",
+        "provenance": [
+          "source-f8aa0227079a4ffa"
+        ],
+        "status": "active",
+        "why_retained": "Directly articulated in the SEP entry on Higher-Order Theories of Consciousness, distinguishing mental-state consciousness from creature consciousness."
+      },
+      {
+        "claim": "Bipartite quantum non-locality can be formulated in terms of multivariable correlation expansions on graphs, showing that standard tight Bell inequalities (such as CHSH) are sufficient but not necessary conditions for bipartite quantum non-locality.",
+        "confidence": 0.75,
+        "id": "bel-nonlocality-beyond-bell",
+        "provenance": [
+          "source-c7d665600a6949f0"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the collected abstract of arXiv:2004.12968v2, which establishes higher-order non-equivalent conditions for bipartite non-locality beyond CHSH."
+      },
+      {
+        "claim": "Leggett-Garg inequalities test temporal quantum correlations and macrorealism in Hamiltonian systems, providing observable signatures of quantum phase transitions and non-classical dynamics across finite and infinite-order transitions.",
+        "confidence": 0.8,
+        "id": "bel-leggett-garg-hamiltonian",
+        "provenance": [
+          "source-04fcd05dc9f24c55"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the collected arXiv abstracts in source-04fcd05dc9f24c55 describing Leggett-Garg violations in spin-1/2 models, XXZ models at criticality, and double-well Hamiltonian systems under decoherence."
+      },
+      {
+        "claim": "Leggett-Garg temporal correlation bounds depend directly on system Hilbert space dimension N, reaching the algebraic maximum as N approaches infinity, and test macrorealism in non-equilibrium fluctuating work.",
+        "confidence": 0.8,
+        "id": "bel-lgi-multilevel-work",
+        "provenance": [
+          "source-02ded8a4542a4e82"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the collected arXiv abstracts in source-02ded8a4542a4e82 demonstrating algebraic violation limits in N-level systems and violations in unitarily driven quantum work protocols."
+      },
+      {
+        "claim": "Philosophical taxonomy in the Stanford Encyclopedia of Philosophy divides quantum approaches to consciousness into three distinct frameworks: neurophysiological quantum brain processes (e.g., Stapp, Vitiello, Beck, Penrose-Hameroff), formal quantum-like models of mental dynamics, and dual-aspect monism (e.g., Pauli-Ju…",
+        "confidence": 0.9,
+        "id": "bel-quantum-consciousness-typology",
+        "provenance": [
+          "source-830b2c85801f445f",
+          "source-14cbec9d0fd24421"
+        ],
+        "status": "active",
+        "why_retained": "Directly corroborated and detailed by the collected text of the SEP entry on Quantum Approaches to Consciousness (source-14cbec9d0fd24421)."
+      },
+      {
+        "claim": "Philosophical accounts in the Stanford Encyclopedia of Philosophy distinguish self-consciousness in thought—characterized by first-person reference ('I'-thoughts) and immunity to error through misidentification—from pre-reflective self-consciousness in phenomenal experience.",
+        "confidence": 0.85,
+        "id": "bel-self-consciousness-sep",
+        "provenance": [
+          "source-2314f735c2af4cda"
+        ],
+        "status": "active",
+        "why_retained": "Directly evidenced by the foundational divisions (Self-Consciousness in Thought vs Self-Consciousness in Experience) in the SEP entry on Self-Consciousness."
+      },
+      {
+        "claim": "Temporal quantum steering inequalities formulate an operational analogue to spatial EPR-steering for sequential measurements on a single quantum system at different times, distinguishing non-classical temporal correlations without requiring spatial entanglement.",
+        "confidence": 0.8,
+        "id": "bel-temporal-steering-analogue",
+        "provenance": [
+          "source-9b1583927e624bde"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the collected abstract of arXiv:1310.4970v2, which establishes operational temporal steering inequalities for single-system multi-time measurements."
+      },
+      {
+        "claim": "Metacognitive monitoring operates as a normative, functional mechanism of epistemic agency—evaluating task difficulty, error, and retrieval success via specialized feelings like fluency—without necessarily requiring higher-order conscious conceptual thoughts.",
+        "confidence": 0.8,
+        "id": "bel-metacognitive-epistemic-agency",
+        "provenance": [
+          "source-740dbcd1f822481d",
+          "source-f8aa0227079a4ffa"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the abstract of Proust's work in source-740dbcd1f822481d defining metacognitive control via felt fluency and epistemic norms, contrasted with Rosenthal's higher-order thought requirement in source-…"
+      },
+      {
+        "claim": "Philosophical taxonomy in the Stanford Encyclopedia of Philosophy distinguishes standard intentional agency (actions caused by intentional mental states) from alternative forms, including agency without mental representations, minimal agency, and epistemic or mental agency.",
+        "confidence": 0.85,
+        "id": "bel-agency-taxonomy-sep",
+        "provenance": [
+          "source-42dca65212d14ad4"
+        ],
+        "status": "active",
+        "why_retained": "Directly supported by the conceptual frameworks and sections 2.1 through 2.5 of the SEP entry on Agency."
+      },
+      {
+        "claim": "Quantum steerability cannot be perfectly cloned by joint operations between a steered subsystem and an ancillary system unless the initial shared state possesses zero discord.",
+        "confidence": 0.8,
+        "id": "bel-steering-no-cloning-discord",
+        "provenance": [
+          "source-a6ac9e23d3d14532"
+        ],
+        "status": "active",
+        "why_retained": "Directly evidenced by the theoretical result summarized in preprint arXiv:2204.07322v4 (source-a6ac9e23d3d14532)."
+      },
+      {
+        "claim": "Epistemic normativity can be analyzed through material and eidetic agency, in which normative epistemic evaluation is scaffolded and delegated across formal artifacts rather than confined to internal mental states.",
+        "confidence": 0.75,
+        "id": "bel-eidetic-agency-scaffolding",
+        "provenance": [
+          "source-693423395d334b51",
+          "source-42dca65212d14ad4"
+        ],
+        "status": "active",
+        "why_retained": "Supported by the abstract of Fonseca's work in source-693423395d334b51 analyzing eidetic agency as formal artifact delegation, complementing the standard taxonomy of agency in source-42dca65212d14ad4."
+      },
+      {
+        "claim": "Epistemic agency and self-knowledge are analyzed in 4E cognitive frameworks as scaffolded by mindshaping practices and external normative structures rather than solely internal introspective states.",
+        "confidence": 0.75,
+        "id": "bel-mindshaping-agency",
+        "provenance": [
+          "source-c194229d2c55486a",
+          "source-693423395d334b51"
+        ],
+        "status": "active",
+        "why_retained": "Crossref collection source-c194229d2c55486a identifies recent work linking embedded metacognition, mindshaping, and epistemic agency under 4E frameworks, reinforcing findings from source-693423395d334b51."
+      },
+      {
+        "claim": "Epistemic agency can originate through functional noetic feelings and embedded metacognitive mindshaping, enabling normative cognitive self-regulation prior to reflective, high-level mindreading or conscious mental-state introspection.",
+        "confidence": 0.85,
+        "id": "bel-noetic-feelings-epistemic-agency",
+        "provenance": [
+          "source-4f1d6569c64d4c65",
+          "source-740dbcd1f822481d",
+          "source-bf2a048cc41f497a"
+        ],
+        "status": "active",
+        "why_retained": "Corroborated by specific thematic chapters in source-bf2a048cc41f497a ('The Cognitive Significance of Noetic Feelings: On the Origins of Epistemic Agency', 'The Epistemic Significance of Noetic Feelings: On the Origins …"
+      },
+      {
+        "claim": "The Computational Theory of Mind and functionalist models characterize cognitive processing as mechanistic evaluation over representational structures, providing a theoretical framework where normative functional regulation can be analyzed conceptually distinct from phenomenal consciousness, though their exact relatio…",
+        "confidence": 0.85,
+        "id": "bel-ctm-functional-demarcation",
+        "provenance": [
+          "source-9188c4b30c1c45f9",
+          "source-42dca65212d14ad4",
+          "source-ebfca05379ee43af"
+        ],
+        "status": "active",
+        "why_retained": "Updated to clarify that functionalist demarcation is a theoretical framework rather than an established ontological separation, citing newly collected SEP functionalism entry."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-higher-order-taxonomy",
+        "project": "proj-metacognition-models",
+        "provenance": [
+          "source-02cd5476f8c84812",
+          "source-f8aa0227079a4ffa",
+          "source-740dbcd1f822481d",
+          "source-42dca65212d14ad4",
+          "source-693423395d334b51",
+          "source-4f1d6569c64d4c65",
+          "source-bf2a048cc41f497a"
+        ],
+        "revision": 7,
+        "summary": "Synthesizes philosophical taxonomies of consciousness, higher-order thought, and externalist agency, demonstrating how epistemic normativity emerges from functional noetic monitoring and mindshaping practices.",
+        "title": "Demarcating Mental-State Consciousness, Self-Consciousness, and Scaffolded Epistemic Agency"
+      },
+      {
+        "id": "nb-temporal-correlations-lgi",
+        "project": "proj-quantum-time-corr",
+        "provenance": [
+          "source-04fcd05dc9f24c55",
+          "source-02ded8a4542a4e82",
+          "source-9b1583927e624bde",
+          "source-c7d665600a6949f0"
+        ],
+        "revision": 3,
+        "summary": "Examines how Leggett-Garg inequalities and temporal quantum steering inequalities distinguish non-classical single-system dynamics and macrorealism violations across multi-level and open systems.",
+        "title": "Testing Non-Classicality in Time Evolution: Leggett-Garg and Temporal Steering Inequalities"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-16T08:05:57.151771+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 9889,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 45479,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 1005,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 45479,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 5851,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45479,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-16T08:06:29.390445+00:00",
+  "reason": "Blog evidence must be traceable through its referenced notebooks"
+}
+```
+
 ## Evidence
 
 ### `source-e0fa6fcb602f44ce`
@@ -11351,6 +11839,33 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 20,
   "time": "2026-09-16T07:25:15.718920+00:00"
+}
+```
+
+### `source-6945ec6d27674fc3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:cs.AI&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"scope\": \"paper abstracts; preprints, peer-review status not verified\", \"excerpt\": \"title: Agentic Societies Need a Social Harness\\nid: http://arxiv.org/abs/2609.17527v1\\npublished: 2026-09-15T17:57:27Z\\nsummary: An agentic society is a collection of AI agents that coordinate autonomously across trust boundaries, on behalf of different principals whose objectives may only partially align. We show experimentally that in agentic societies even honest, competent agents often fail to reach satisfactory outcomes with existing harnesses and messaging primitives, and that faulty or malicious agents can stall collaboration, influence outcomes, and pursue other harmful goals by exploiting vulnerabilities in communication (``speech''). We argue that agentic societies need a \\\\emph{social harness} for inter-agent interactions, in addition to each agent's \\\\emph{personal harness}, which manages its private context and communication with its principal. We propose a layered architecture for social harnesses which (i) prevents classes of failures outright, (ii) enables agents to detect invalid messages at runtime, and (iii) supports post-facto investigation and consequences, and highlight directions for future research to realize these capabilities.\\n\\ntitle: ScienceBuddy: Recursive-in-Recursive Self-Improvement for Interactive Scientific Agents\\nid: http://arxiv.org/abs/2609.17523v1\\npublished: 2026-09-15T17:55:28Z\\nsummary: We introduce and release ScienceBuddy, an interactive scientific research workspace that brings continually improving scientific agents into researchers' everyday workflows. ScienceBuddy supports researchers in carrying out scientific tasks while transforming their requests, feedback, and execution evidence into tasks and evaluation rubrics for continual learning. At its core is recursive-in-recursive self-improvement, a paradigm that couples harness evolution with model reinforcement learning: the inner recursion improves the harness with the model fixed, while the outer recursion trains the model under the improved harness. Harness evolution shapes training experience, and model learning creates new opportunities for harness adaptation. We present case studies of researcher interaction, harness refinement, and model learning, with the benchmark cases spanning four scientific task families. By releasing ScienceBuddy as a research product, we make this paradigm available to the scientific community and take a step toward discovery intelligence: scientific AI that advances through sustained collaboration with researchers and evolves alongside the research it supports. Website: http://science-buddy.io\\n\\ntitle: PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control\\nid: http://arxiv.org/abs/2609.17521v1\\npublished: 2026-09-15T17:55:13Z\\nsummary: Interactive control for video generation is moving from coarse prompts toward fine-grained, physically meaningful manipulation of dynamic scenes. Yet existing controllable methods either require the full control schedule before generation starts, or use pixel-space signals that dictate object positions rather than physical dynamics. To address these limitations, we propose PhysStream, an autoregressive model for physics-grounded image-to-video synthesis that incorporates structured scene memory---positional maps and object tracking maps derived online from previously generated frames---and supports fine-grained motion control via sparse velocity-increment signals that encode physical quantities, letting the model learn the underlying dynamics. We train our model in two stages: a bidirectional model is first finetuned with motion-control conditioning, then a causal autoregressive model is trained with additional structured scene memory, further improving physical consistency. PhysStream enables interactive, mid-generation control over multi-object tabletop rigid-body scenes---a capability not supported by prior methods---reducing motion distribution distance (FVMD) by 33% and trajectory error by 12% over the strongest baselines on synthetic benchmarks, and is preferred by human evaluators in over 85% of in-the-wild comparisons. Please check our website for more details: https://czzzzh.github.io/PhysStream\\n\\ntitle: When Should LLMs Abstain? Chain-of-Self-Questioning for Selective Risk Control\\nid: http://arxiv.org/abs/2609.17516v1\\npublished: 2026-09-15T17:52:24Z\\nsummary: Large language models can produce fluent answers when their factual support is weak. This paper introduces Chain-of-Self-Questioning (CoSQ), a prompt-only framework that makes answer commitment conditional on an explicit assessment of the information required to answer a question. We evaluate three CoSQ variants under seventeen conditions on the 817-item TruthfulQA multiple-choice validation set using eleven open-weight and hosted model families. In the final balanced-option protocol, Grounded-CoSQ at τ=0.90 reduces the mean unconditional wrong-commitment rate from 13.1% under chain-of-thought prompting to 8.9%, a 32.1% relative reduction, while increasing answered accuracy from 86.9% to 89.7% and answering 87.6% of questions. Both improvements hold for all eleven models and at every evaluated threshold. Critical-CoSQ and Adaptive-CoSQ provide neighboring operating points with 88.6% and 86.5% coverage, respectively, while remaining more reliable than the baseline. A secondary Natural Questions Short-Answer evaluation provides convergent open-form evidence. These findings show that self-assessment can support explicit, tunable answer-or-abstain decisions when an unsupported commitment is more costly than referral or review.\", \"excerpt_truncated\": false, \"source_sha256\": \"b0675abadbbfc92d1af682654d131fc77c2e82a85a3e8e94ffc28d59ffc2d9eb\"}",
+  "id": "source-6945ec6d27674fc3",
+  "scope": "collected",
+  "source": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+  "version": 20,
+  "time": "2026-09-16T08:05:56.651476+00:00"
+}
+```
+
+### `r-33af41934c214f82`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":20,\"inherited_commitments\":[],\"invocation\":\"w-33af41934c214f82\",\"previous_head\":\"aea748d975e094a8f57a38259584e1d9645c4d48d3f944c5499981b75927f4b5\",\"process_id\":2263,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-33af41934c214f82",
+  "source": "runtime:continuity",
+  "version": 20,
+  "time": "2026-09-16T08:05:57.020107+00:00"
 }
 ```
 
