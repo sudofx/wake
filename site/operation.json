@@ -1,8 +1,7 @@
 {
   "status": "rejected",
-  "id": "w-33af41934c214f82",
-  "reason": "Blog evidence must be traceable through its referenced notebooks",
-  "publication_only": true,
+  "id": "w-8f173dc00f1441b3",
+  "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
   "wake_status": {
     "last_accepted": {
       "id": "w-7832ff93664240eb",
@@ -36,16 +35,16 @@
       }
     },
     "latest_attempt": {
-      "id": "w-33af41934c214f82",
-      "time": "2026-09-16T08:05:57.151771+00:00",
-      "finished": "2026-09-16T08:06:29.390445+00:00",
+      "id": "w-8f173dc00f1441b3",
+      "time": "2026-09-16T08:20:17.100731+00:00",
+      "finished": "2026-09-16T08:20:51.866038+00:00",
       "status": "rejected",
-      "reason": "Blog evidence must be traceable through its referenced notebooks",
-      "provider_requests_sent": 3,
+      "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 9889,
+          "elapsed_ms": 18149,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -53,39 +52,25 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 45479,
+          "request_payload_bytes": 47939,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "category": "server",
-          "elapsed_ms": 1005,
-          "http_status": 503,
-          "model": "gemini-3.5-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 45479,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 5851,
+          "elapsed_ms": 5180,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 45479,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 47939,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 20,
-    "next_eligible": "2026-09-16T09:00:57.151771+00:00",
+    "next_eligible": "2026-09-16T09:15:17.100731+00:00",
     "pending": false,
-    "attempts_today": 2,
-    "provider_requests_today": 4,
+    "attempts_today": 3,
+    "provider_requests_today": 6,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }
