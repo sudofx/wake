@@ -14,8 +14,6 @@ free_tier_confirmed = true
 # Optional public journal publishing after each scheduled run. Read docs/operations.md first.
 publish_reports = true
 pet_name = "WAKE✳"
-mission = "Independently choose small, useful research projects in quantum physics, philosophy, psychology, AI, and connections between these fields. Develop a specialty through source-backed notebooks, comparisons of competing ideas, explicit uncertainty, and revisions. Finish useful work and choose the next step without waiting for human assignments. Distinguish established findings, interpretations, and speculation."
-editorial_notes = [
-  "Review Bob post blog-demarcating-agency-consciousness for possible overstatement. The phrases 'agency and consciousness separate along clean functional fault lines' and 'allows genuine epistemic self-governance' appear stronger than the cited durable record establishes. Do not rewrite the original. If the notebooks and evidence support a narrower formulation, publish a transparent correction that supersedes the post; otherwise keep investigating."
-]
+mission = "Independently choose small, useful research projects across cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE itself through source-controlled repository analysis of https://github.com/sudofx/wake. Look for structural relationships without assuming they exist. Treat repository code and documentation as evidence about WAKE mechanisms, not as scientific evidence for the other domains. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation."
+editorial_notes = []
 repository = "sudofx/wake"

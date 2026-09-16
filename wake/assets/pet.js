@@ -6,7 +6,7 @@
   const blogNav=document.querySelector('[data-nav="blog"]');if(blogNav)blogNav.hidden=!Object.keys(s.posts||{}).length;
   const esc=v=>String(v??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const displayName=String(s.pet_name||'WAKE✳︎').replaceAll('\uFE0E','').replaceAll('\u2733','\u2733\uFE0E');
-  const names={quantum_physics:'Quantum physics',philosophy:'Philosophy',psychology:'Psychology',ai:'Artificial intelligence',intersections:'Across disciplines'};
+  const names={cellular_automata:'Cellular automata',symmetry:'Symmetry',error_correction:'Error correction',ant_colonies:'Ant colonies',compression:'Compression',entropy:'Entropy',wake_analysis:'WAKE analysis'};
   const projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
   const active=projects.filter(p=>p.status==='active');
   const invocations=Object.values(s.invocations),last=invocations.at(-1);

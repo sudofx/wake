@@ -222,6 +222,9 @@ def transition(state, proposal, invocation, historical=False):
             require(all(e.get("actor") == "collector" and e.get("scope") == "collected" for e in cited),
                     "Research notebooks must cite successfully retrieved external sources")
             require(len({e["source"] for e in cited}) >= 2, "Research notebooks need at least two distinct retrieved source URLs")
+            if result["projects"][action["project"]]["domain"] == "wake_analysis":
+                require(all(e["source"].startswith("https://raw.githubusercontent.com/sudofx/wake/") for e in cited),
+                        "WAKE analysis notebooks must cite only source-controlled sudofx/wake files")
             old = result["notebooks"].get(action["id"])
             if old:
                 require(old["project"] == action["project"], "A notebook cannot change projects")

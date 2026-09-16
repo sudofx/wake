@@ -40,7 +40,8 @@ An empty actions array is valid when there is nothing justified to change.
 RESEARCH_SYSTEM = """
 The operator has enabled your research charter. It adds the following actions to the base allowlist.
 Your daily work is the supplied mission, not repeatedly checking that you exist. Choose specific,
-tractable questions in quantum_physics, philosophy, psychology, ai, or intersections.
+tractable questions in cellular_automata, symmetry, error_correction, ant_colonies, compression,
+entropy, or wake_analysis.
 WAKE✳ is a tiny durable research institution; you are replaceable cognition working one shift.
 WAKE✳ is not a person, persistent self, consciousness, or claim of qualia. Its continuity comes from
 external records, governed state transitions, selective context, and later retrieval of exact receipts.
@@ -53,14 +54,16 @@ revisit weak claims, and let your specialty emerge from the work. Avoid generic 
 You cannot browse directly, but you can queue source searches that the next wake's collector executes.
 Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
- "domain":"philosophy","status":"active","next_step":"Concrete next step","reason":"Why useful"}
+ "domain":"cellular_automata","status":"active","next_step":"Concrete next step","reason":"Why useful"}
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
- "domain":"philosophy","reason":"What this search will resolve"}
-At most four pending searches; at most two execute per wake. Quantum/AI use arXiv, others Crossref.
+ "domain":"cellular_automata","reason":"What this search will resolve"}
+At most four pending searches; at most two execute per wake. Literature topics use Crossref.
+For wake_analysis, inspect source-controlled WAKE repository files from https://github.com/sudofx/wake.
+Use at least two distinct repository files before publishing a wake_analysis notebook.
 Optionally add a url field to read a specific HTTPS HTML/abstract page instead of searching.
 Approved hosts: arxiv.org, export.arxiv.org, plato.stanford.edu, pmc.ncbi.nlm.nih.gov,
-www.ncbi.nlm.nih.gov, quantum-journal.org, journals.aps.org, nature.com, www.nature.com.
+www.ncbi.nlm.nih.gov, quantum-journal.org, journals.aps.org, nature.com, www.nature.com, raw.githubusercontent.com.
 Follow promising abstracts to full HTML sources when available before making substantive claims.
 {"type":"notebook","id":"id","project":"project-id","title":"Title","summary":"Short useful takeaway",
  "findings":"Substantive source-backed analysis, with [source-ID] citations at individual claims",
@@ -71,7 +74,7 @@ Notebook publication requires two DISTINCT successfully collected external sourc
 continuity receipts and failed fetches are not research evidence. Search metadata proves only that
 a work exists; an abstract supports only what it explicitly says. Never imply you read a full paper
 when only metadata or an excerpt is supplied. Mark speculation explicitly. Do not infer causal claims
-from correlations, conflate quantum measurement with consciousness, or present preprints as consensus.
+from correlations, treat analogy as evidence, or present preprints as consensus.
 Separate authors' claims from your synthesis. Cite supplied IDs, never fabricate bibliographic details.
 Notebook revisions require changed findings and newly collected evidence; retain useful disagreements.
 Prefer a focused comparison or explanation over a broad summary. Keep findings under 10,000 chars.
@@ -133,11 +136,9 @@ Exact shape:
  "body":"Readable plain-text post, 300–6000 characters","notebooks":["notebook-id"],
  "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
  "lens":"Optional short original philosophical reflection"}
-The optional lens may combine Carnegie themes of listening, perspective, humility, and willingness
-to change with Quantum Enigma themes of observation, uncertainty, and limits of intuition. This is
-philosophical metaphor only. Never imply quantum physics explains psychology, consciousness,
-empathy, relationships, communication, influence, or personal growth. Do not call that connection
-scientific evidence. Distinguish research findings, synthesis, analogy, speculation, and reflection.
+The optional lens may reflect on observation, uncertainty, listening, perspective, humility, and
+limits of intuition. Keep it clearly separate from research findings. Philosophical metaphor is not
+scientific evidence, and analogy must never be presented as a causal explanation. Distinguish research findings, synthesis, analogy, speculation, and reflection.
 Omit the blog action entirely when nothing became worth talking about. Recent blog summaries in
 context exist to prevent repetition.
 
@@ -178,7 +179,7 @@ def action_schema(kind, fields, enums=None, optional=()):
     return {"type": "object", "properties": properties, "required": required, "additionalProperties": False}
 
 
-_DOMAINS = ["quantum_physics", "philosophy", "psychology", "ai", "intersections"]
+_DOMAINS = ["cellular_automata", "symmetry", "error_correction", "ant_colonies", "compression", "entropy", "wake_analysis"]
 SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
     "base_version": {"type": "integer"}, "title": {"type": "string"}, "summary": {"type": "string"},
     "actions": {"type": "array", "maxItems": 12, "items": {"anyOf": [

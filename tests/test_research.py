@@ -18,7 +18,7 @@ from wake.report import export
 
 def project(identifier="p", status="active"):
     return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
-                domain="philosophy", status=status, next_step="Compare collected sources", reason="A tractable question")
+                domain="cellular_automata", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
 def notebook(evidence, findings="A bounded comparison [s1] [s2]."):
@@ -84,6 +84,31 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(self.propose([notebook(["s1", "s2"])])["status"], "rejected")
         receipt = next(e["id"] for e in self.engine.store.load()["evidence"].values() if e["actor"] == "runtime")
         self.assertEqual(self.propose([notebook(["s1", receipt])])["status"], "rejected")
+
+    def test_wake_repository_urls_are_repo_scoped(self):
+        good = "https://raw.githubusercontent.com/sudofx/wake/master/README.md"
+        self.assertEqual(allowed_url(good), good)
+        with self.assertRaises(ValueError):
+            allowed_url("https://raw.githubusercontent.com/other/repo/master/README.md")
+
+    def test_wake_analysis_notebook_requires_wake_repository_sources(self):
+        self.source("r1", "https://raw.githubusercontent.com/sudofx/wake/master/README.md")
+        self.source("r2", "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md")
+        action = project(); action["domain"] = "wake_analysis"
+        self.assertEqual(self.propose([action, notebook(["r1", "r2"])])["status"], "accepted")
+
+        other = Engine(self.root/"other", {**DEFAULTS, "mission":"test"})
+        original = self.engine
+        try:
+            with other.store.lock(): other.initialize()
+            self.engine = other
+            self.source("s1")
+            self.source("s2", "https://api.crossref.org/works?query=test")
+            action = project(); action["domain"] = "wake_analysis"
+            self.assertEqual(self.propose([action, notebook(["s1", "s2"])])["status"], "rejected")
+        finally:
+            self.engine = original
+            other.store.close()
 
     def test_two_fetches_of_same_url_are_not_two_sources(self):
         self.propose([project()])
@@ -346,7 +371,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(posts["post-two"]["supersedes"], "post-one")
 
     def test_collector_attempts_two_requests_and_records_failures(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="philosophy", reason="Compare") for i in range(4)]
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="cellular_automata", reason="Compare") for i in range(4)]
         self.propose(actions)
         calls=[]
         def fetch(url):

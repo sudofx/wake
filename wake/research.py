@@ -8,16 +8,26 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
-DOMAINS = {"quantum_physics", "philosophy", "psychology", "ai", "intersections"}
+DOMAINS = {"cellular_automata", "symmetry", "error_correction", "ant_colonies", "compression", "entropy", "wake_analysis"}
 ALLOWED_HOSTS = {"arxiv.org", "export.arxiv.org", "rss.arxiv.org", "plato.stanford.edu",
                  "api.crossref.org", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
-                 "quantum-journal.org", "journals.aps.org", "www.nature.com", "nature.com"}
+                 "quantum-journal.org", "journals.aps.org", "www.nature.com", "nature.com", "raw.githubusercontent.com"}
+WAKE_SOURCES = {
+    "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+    "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
+    "experiment": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
+    "spec": "https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md",
+    "providers": "https://raw.githubusercontent.com/sudofx/wake/master/wake/providers.py",
+    "research": "https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py",
+}
 SEEDS = [
-    ("quantum_physics", "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending"),
-    ("philosophy", "https://plato.stanford.edu/entries/consciousness/"),
-    ("psychology", "https://api.crossref.org/works?query=cognitive%20science%20metacognition&rows=4&select=DOI,title,abstract,URL,published"),
-    ("ai", "https://export.arxiv.org/api/query?search_query=cat:cs.AI&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending"),
-    ("intersections", "https://plato.stanford.edu/entries/qt-consciousness/"),
+    ("cellular_automata", "https://api.crossref.org/works?query=cellular%20automata&rows=4&select=DOI,title,abstract,URL,published"),
+    ("symmetry", "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published"),
+    ("error_correction", "https://api.crossref.org/works?query=error%20correction&rows=4&select=DOI,title,abstract,URL,published"),
+    ("ant_colonies", "https://api.crossref.org/works?query=ant%20colonies&rows=4&select=DOI,title,abstract,URL,published"),
+    ("compression", "https://api.crossref.org/works?query=information%20compression&rows=4&select=DOI,title,abstract,URL,published"),
+    ("entropy", "https://api.crossref.org/works?query=entropy&rows=4&select=DOI,title,abstract,URL,published"),
+    ("wake_analysis", WAKE_SOURCES["architecture"]),
 ]
 
 
@@ -27,6 +37,8 @@ def allowed_url(url):
     parsed = urllib.parse.urlsplit(url)
     if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None, 443):
         raise ValueError("Source must use HTTPS on an approved research host")
+    if parsed.hostname == "raw.githubusercontent.com" and not parsed.path.startswith("/sudofx/wake/"):
+        raise ValueError("Repository research must stay within sudofx/wake")
     return url
 
 
@@ -74,6 +86,9 @@ def fetch_source(url):
         ns = {"a": "http://www.w3.org/2005/Atom"}
         text = "\n\n".join("\n".join(f"{key}: {entry.findtext('a:'+key, default='', namespaces=ns).strip()}" for key in ("title", "id", "published", "summary")) for entry in root.findall("a:entry", ns))
         scope = "paper abstracts; preprints, peer-review status not verified"
+    elif "raw.githubusercontent.com" in url:
+        text = decoded
+        scope = "raw source-controlled WAKE repository text"
     elif "pdf" in content_type:
         raise ValueError("PDF extraction is not available; request the paper's abstract or HTML page")
     else:
@@ -89,10 +104,19 @@ def fetch_source(url):
 
 
 def query_url(query, domain):
-    if domain in ("quantum_physics", "ai"):
-        category = "quant-ph" if domain == "quantum_physics" else "cs.AI"
-        params = {"search_query": f"cat:{category} AND all:{query}", "start": 0, "max_results": 4}
-        return "https://export.arxiv.org/api/query?" + urllib.parse.urlencode(params)
+    if domain == "wake_analysis":
+        q = query.lower()
+        choices = [
+            (("architecture", "state", "continuity", "memory", "store"), "architecture"),
+            (("experiment", "hypothesis", "test"), "experiment"),
+            (("governance", "rule", "validation", "invariant", "spec"), "spec"),
+            (("provider", "prompt", "gemini", "model"), "providers"),
+            (("collector", "research", "source", "evidence"), "research"),
+        ]
+        for needles, source in choices:
+            if any(needle in q for needle in needles):
+                return WAKE_SOURCES[source]
+        return WAKE_SOURCES["default"]
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
