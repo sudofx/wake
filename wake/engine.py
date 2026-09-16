@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 from .governance import Rejected, require, text, transition
 from .providers import (
     SYSTEM, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
-    is_free_tier_daily_quota,
+    is_free_tier_daily_quota, retractable_quotes, schema_for_context,
 )
 from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
@@ -172,8 +172,9 @@ class Engine:
                                            "context_excerpt": True} if working else None)
             context["research"] = list(state["research"].values())[-8:]
             context["recent_blog"] = [
-                {key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version",
-                                                "status", "supersedes", "superseded_by")}
+                {**{key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version",
+                                                  "status", "supersedes", "superseded_by")},
+                 "retractable_quotes": retractable_quotes(post)}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
             # Source-controlled operator review notes are editorial context, not research evidence.
@@ -224,7 +225,8 @@ class Engine:
         working_set_shadow = self.working_set(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow)
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
-                   "context": delivered_context, "response_schema": SCHEMA}
+                   "context": delivered_context,
+                   "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
             request["context"]["recent_journal"] = []
             request["context"]["notebooks"] = request["context"]["notebooks"][-4:]

@@ -50,7 +50,23 @@ def _limited_sources(evidence):
     return bool(scopes) and all(any(word in scope for word in limited) for scope in scopes)
 
 
-def _blog_language(action, evidence, historical=False):
+def _correction_language(action, prior_post):
+    """Exclude only a fixed, explicit retraction of exact previously published words.
+
+    Other prose, quoted endorsements, and invented quotes retain every language check.
+    This exclusion applies only to the overclaim check, never provenance or bridge rules.
+    """
+    body = action.get("body", "")
+    if not prior_post:
+        return body
+    previous = "\n".join(str(prior_post.get(k, "")) for k in ("title", "lede", "body", "lens"))
+    pattern = r'^Retracted wording: "([^"\n]{1,300})"\. This was an overstatement\.$'
+    def retract(match):
+        return "[Explicit retraction of prior wording]" if match[1] in previous else match[0]
+    return re.sub(pattern, retract, body, flags=re.M)
+
+
+def _blog_language(action, evidence, historical=False, prior_post=None):
     prose = " ".join(str(action.get(key, "")) for key in ("title", "lede", "body", "lens", "reason"))
     lower = prose.lower()
     lower = re.sub(r"quantum.{0,40}(does not|doesn't|cannot|can't|is not).{0,50}"
@@ -66,12 +82,15 @@ def _blog_language(action, evidence, historical=False):
     # rewrite of already accepted history. Historical replay still checks the hash chain,
     # structural transition, result hash, source provenance, and older safety boundaries.
     if not historical:
+        claim_text = " ".join(str(action.get(key, "")) if key != "body"
+                              else _correction_language(action, prior_post)
+                              for key in ("title", "lede", "body", "lens", "reason")).lower()
         overclaim = re.search(
             r"\b(genuine|real)\s+(epistemic\s+)?(agency|self-governance|consciousness|intelligence)\b"
             r"|\b(clean|clear|sharp)\s+(functional\s+)?(fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
             r"|\b(cleanly|sharply)\s+(separates?|demarcates?|distinguishes?)\b"
             r"|\b(proves?|demonstrates?|establishes?|confirms?)\s+that\b",
-            lower,
+            claim_text,
         )
         require(not overclaim,
                 "Blog prose must not present contested synthesis or interpretation as established fact")
@@ -245,7 +264,8 @@ def transition(state, proposal, invocation, historical=False):
                 require(supersedes in result["posts"], "A correction must reference an existing blog post")
                 require(not result["posts"][supersedes].get("superseded_by"),
                         "The earlier blog post is already superseded")
-            _blog_language(action, cited, historical=historical)
+            _blog_language(action, cited, historical=historical,
+                           prior_post=result["posts"].get(supersedes))
             post = {**action, "created_by": invocation, "created_version": state["version"] + 1,
                     "status": "current"}
             result["posts"][action["id"]] = post

@@ -196,6 +196,22 @@ that wake's model chain. Its HTTP count is incomplete, not guessed.
 Historical wakes acquire no fabricated model history or HTTP counts; they retain
 one conservative slot each solely for the local ceiling calculation.
 
+### Citation eligibility and explicit corrections
+
+Research requests put the current notebook-backed project, notebook, and evidence
+IDs into the blog action's JSON contract. Belief citations and research-queue
+sources do not become blog evidence merely by existing. The final governance
+check still verifies that every citation belongs to the notebooks actually selected;
+WAKE never silently substitutes evidence to rescue a response.
+
+A correction with `supersedes` may retract exact words from the earlier post using
+a standalone paragraph: `Retracted wording: "EXACT PREVIOUS WORDS". This was an overstatement.`
+The request supplies short exact phrases under `recent_blog.retractable_quotes`.
+Only that paragraph's verified prior quotation is excluded from the overclaim
+phrase check. New claims, arbitrary quotations, invented quotations, and claims
+elsewhere still undergo the check. Evidence lineage, quantum-bridge, and
+limited-source safeguards remain in force. Historical posts are not rewritten.
+
 ### MAP: explore the durable record
 
 Every export now includes `map.html` and `map-data.json`. MAP links the

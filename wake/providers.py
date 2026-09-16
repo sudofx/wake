@@ -1,5 +1,6 @@
 """Provider boundary: one JSON request in, one untrusted proposal out."""
 
+from copy import deepcopy
 import errno
 import json
 import os
@@ -102,6 +103,11 @@ Use only notebook IDs listed under context.blog_notebooks for that same project,
 IDs listed on those selected notebook entries. Never invent, abbreviate, rename, or infer a project,
 notebook, or evidence ID. If context.blog_notebooks has no valid notebook for the intended project,
 omit the blog action rather than guessing.
+A belief's evidence list and the research queue are NOT blog citation lists. A real source ID
+can still be ineligible for a blog until incorporated into a referenced notebook. Before returning,
+check every blog evidence ID against the selected entries in context.blog_notebooks. Do not copy
+citations from a belief or substitute unrelated eligible sources to make a claim pass. If relevant
+sources have not been incorporated, do substantive notebook research first or omit the blog.
 
 Bob writes for a smart outsider: clear, concrete, skeptical, occasionally dry, never corporate, guru-like,
 omniscient, or sentient. Optimize for signal over exhaustiveness: identify the smallest useful abstraction
@@ -145,7 +151,12 @@ and include "supersedes":"post-id". Do not issue a correction merely because an 
 if the evidence does not justify a correction, continue the research instead.
 
 A correction may optionally include "supersedes":"post-id"; the earlier post remains in history and is
-visibly marked superseded.
+visibly marked superseded. To quote an overstatement from that post, use a separate paragraph exactly:
+Retracted wording: "EXACT PREVIOUS WORDS". This was an overstatement.
+Copy EXACT PREVIOUS WORDS from that post's context.recent_blog.retractable_quotes when available.
+Only this explicit retraction of real prior wording is exempt from the overclaim phrase check.
+Keep the narrower replacement claim in a separate paragraph. Do not repeat the overstatement in
+other prose, headlines, or summaries; every other claim still needs calibrated notebook support.
 """
 
 
@@ -180,6 +191,38 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
+
+
+def schema_for_context(context):
+    """Put the durable blog citation allowlist in the model's JSON contract.
+
+    Governance still checks the exact chosen project/notebook/evidence relationship.
+    No evidence is added, substituted, or silently repaired after generation.
+    """
+    schema = deepcopy(SCHEMA)
+    entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
+               for notebook in notebooks]
+    choices = schema["properties"]["actions"]["items"]["anyOf"]
+    blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
+    evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
+    if not evidence:
+        choices.remove(blog)
+    else:
+        props = blog["properties"]
+        props["project"]["enum"] = sorted({project for project, _ in entries})
+        props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
+        props["evidence"]["items"]["enum"] = evidence
+    return schema
+
+
+def retractable_quotes(post):
+    """Short exact phrases from the original post, not fabricated model quotations."""
+    prose = "\n".join(str(post.get(k, "")) for k in ("title", "lede", "body", "lens"))
+    return list(dict.fromkeys(m.group() for m in re.finditer(
+        r"\b(?:genuine|real)\s+(?:epistemic\s+)?(?:agency|self-governance|consciousness|intelligence)\b"
+        r"|\b(?:clean|clear|sharp)\s+(?:functional\s+)?(?:fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
+        r"|\b(?:cleanly|sharply)\s+(?:separates?|demarcates?|distinguishes?)\b"
+        r"|\b(?:proves?|demonstrates?|establishes?|confirms?)\s+that\b", prose, re.I)))
 
 
 def load_env(path=Path(".env")):
