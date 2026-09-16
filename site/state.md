@@ -2,16 +2,50 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 0  
+**Version:** 1  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `716541e1ea4d7b82a9c22da012951b8a86cdbf4fdf8fd4d18dd95317d1785ff7`
+**Verified head:** `70a8923ca29910bc5261ef0ca0a5ac8833369898209ed2aae54395884ede72fd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
 ## Beliefs
 
-_None recorded._
+### `durable-state-delivery`
+
+```json
+{
+  "confidence": 1.0,
+  "evidence": [
+    "r-160f8f37f69941ed"
+  ],
+  "id": "durable-state-delivery",
+  "reason": "The runtime continuity receipt confirms successful delivery of the state to the provider boundary.",
+  "statement": "The runtime environment successfully delivers context and state across invocation boundaries.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-160f8f37f69941ed",
+  "updated_version": 1
+}
+```
+
+### `adapt-vqe-noise-sensitivity`
+
+```json
+{
+  "confidence": 0.8,
+  "evidence": [
+    "source-58104290a3054605"
+  ],
+  "id": "adapt-vqe-noise-sensitivity",
+  "reason": "The collected abstract of arXiv:2609.17501v1 states that both coherent and incoherent noise channels can prevent convergence during the operator selection step at high noise rates.",
+  "statement": "In adaptive variational quantum algorithms like ADAPT-VQE, both coherent and incoherent hardware noise can prevent convergence during the operator selection step.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-160f8f37f69941ed",
+  "updated_version": 1
+}
+```
 
 ## Commitments
 
@@ -19,7 +53,23 @@ _None recorded._
 
 ## Projects
 
-_None recorded._
+### `quantum-algorithms-noise` · Noise Resilience in Adaptive Quantum Algorithms
+
+```json
+{
+  "domain": "quantum_physics",
+  "id": "quantum-algorithms-noise",
+  "next_step": "Retrieve the detailed case study on ADAPT-VQE noise resilience and search for complementary adaptive mitigation strategies.",
+  "question": "How do various noise channels impact operator selection in adaptive variational quantum algorithms, and what mitigation techniques are effective?",
+  "reason": "Near-term quantum hardware is highly prone to noise; understanding its exact impact on the operator selection step is critical for successful algorithmic execution.",
+  "status": "active",
+  "title": "Noise Resilience in Adaptive Quantum Algorithms",
+  "type": "project",
+  "created_version": 1,
+  "updated_version": 1,
+  "updated_by": "w-160f8f37f69941ed"
+}
+```
 
 ## Notebooks
 
@@ -27,19 +77,182 @@ _None recorded._
 
 ## Invocations
 
-_None recorded._
+### `w-160f8f37f69941ed`
+
+```json
+{
+  "base_version": 0,
+  "charged": true,
+  "id": "w-160f8f37f69941ed",
+  "model": "gemini-3.8-flash",
+  "process_id": 2253,
+  "provider": "gemini",
+  "quota_day": "2026-09-16",
+  "request_hash": "30fdaa020f1abd3148810aa382953ce338cbf3106674d23f39d28f48e1ee0f07",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-58104290a3054605"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-58104290a3054605",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-58104290a3054605"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 1,
+      "evidence_count": 1,
+      "trigger_counts": {
+        "unincorporated_evidence": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 5200,
+    "mode": "shadow",
+    "retrieval_candidate_count": 1,
+    "retrieval_evidence_count": 1,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 1
+    },
+    "working_set_chars": 422,
+    "working_to_delivered_ratio": 0.0812
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-16T08:49:09.423258+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 1332,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 22043,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 14431,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 22043,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-16T08:49:31.553253+00:00",
+  "reason": ""
+}
+```
 
 ## Evidence
 
-_None recorded._
+### `source-58104290a3054605`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending\", \"scope\": \"paper abstracts; preprints, peer-review status not verified\", \"excerpt\": \"title: Regularized barycentric Rényi divergences\\nid: http://arxiv.org/abs/2609.17517v1\\npublished: 2026-09-15T17:53:27Z\\nsummary: Barycentric Rényi divergences were introduced in [Mosonyi, Bunth, Vrana, Linear Algebra and its Applications, 2024] as an alternative to standard Kubo-Ando constructions to define multivariate quantum Rényi divergences. They are defined via a variational expression and depend on a finite collection of quantum relative entropies $D^{q_x}$. When all the relative entropies are monotone under CPTP maps then so are the corresponding barycentric Rényi divergences, and when all the relative entropies are additive then the corresponding barycentric Rényi divergences are subadditive under tensor product. Additivity has only been established before for the case where all $D^{q_x}$ are chosen to be the Umegaki relative entropy, which is also the only case where the barycentric Rényi divergence (called the minimal one) admits an explicit expression.\\n  Here we settle the problem of additivity by showing that for any choice of additive and monotone quantum relative entropies, the regularized barycentric Rényi divergence coincides with the minimal barycentric Rényi divergence on strictly positive inputs. This in turn implies that the only additive barycentric Rényi divergence is the minimal one.\\n\\ntitle: A Case Study on Noise Resilient Operator Selection in Adaptive Variational Quantum Algorithms\\nid: http://arxiv.org/abs/2609.17501v1\\npublished: 2026-09-15T17:42:37Z\\nsummary: Hardware noise has been shown to significantly impact the accuracy of ADAPT-VQE, a ground state preparation algorithm. While previous work has studied the impact of noise on its parameter optimization step, its impact on the critical operator selection step remains comparatively unexplored. In this work, we examine the impact of a variety of noise channels on this step, using a linear H$_3$ molecule as a test case. We show that, despite the selection criterion's natural resilience to some noise, both coherent and incoherent noise can prevent convergence for sufficiently high noise rates. We employ quantum error mitigation techniques--dynamical decoupling, zero noise extrapolation, and Pauli twirling--and show that when combined appropriately, these techniques are capable of restoring a successful convergence profile. Our results highlight how error mitigation can improve the performance of ADAPT-VQE and enable convergence in the presence of hardware noise, offering valuable insights into the implementation of the algorithm on near-term quantum hardware.\\n\\ntitle: Antidistinguishability of states in General Probabilistic Theories\\nid: http://arxiv.org/abs/2609.17498v1\\npublished: 2026-09-15T17:37:48Z\\nsummary: We investigate antidistinguishability of states within the framework of general probabilistic theories (GPTs). We formulate antidistinguishability, strong and equal antidistinguishability as refined notions that imposed additional constraint on the measurement effects. We establish general results relating these notions of antidistinguishability and derive an upper bound on the cardinality of equally antidistinguishable sets in terms of the affine dimension of the state space. We then study antidistinguishability in polygonal theories, obtaining conditions for antidistinguishability of a set of states. In consequence, we show that the set of all pure states in a polygon model is antidistinguishable. Additionally, we identify broad families of strongly and equally antidistinguishable states. Finally, using Random Exclusion Codes, whose success probability is governed by the antidistinguishability of different sets of encoding states, we probe the nonclassicality of polygon theories. We find that certain polygon models can outperform the optimal quantum value, while their optimal performance converges to the quantum limit in the large-polygon limit.\\n\\ntitle: Beyond Hardware: Adaptive Algorithmic Control by State-Proxy Equalization\\nid: http://arxiv.org/abs/2609.17497v1\\npublished: 2026-09-15T17:37:39Z\\nsummary: Recent advances in quantum computing have been driven primarily by improvements in hardware. Here we show that substantial gains can instead arise from how finite computational resources are allocated throughout a quantum computation. We introduce Adaptive Algorithmic Control (A2C), a software paradigm founded on a State-Proxy Equalization theorem, which proves that the optimal allocation for a state-derived proxy-error functional equalizes cumulative computational hardness rather than physical time. The required computational hardness is inferred directly from the evolving quantum state, avoiding explicit reconstruction of the exponentially large many-body spectrum. Across quantum optimization problems containing up to 156 qubits, combining exact simulations, large-scale supercomputer computations and IBM quantum hardware experiments, A2C improves the low-energy sampling probabilities by $22\\\\%$ to over $100,000\\\\%$ under matched circuit depths and measurement budgets. These results demonstrate that quantum computational performance depends not only on hardware capabilities, but also on how finite computational resources are organized, establishing adaptive algorithmic control as a complementary software pathway for advancing quantum computation.\", \"excerpt_truncated\": false, \"source_sha256\": \"b13cf1689ff3e757ff4f710eb8ecfe68f8dcc641fa658ead8a974e010fcca8fd\"}",
+  "id": "source-58104290a3054605",
+  "scope": "collected",
+  "source": "https://export.arxiv.org/api/query?search_query=cat:quant-ph&start=0&max_results=4&sortBy=submittedDate&sortOrder=descending",
+  "version": 0,
+  "time": "2026-09-16T08:49:09.417694+00:00"
+}
+```
+
+### `r-160f8f37f69941ed`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-160f8f37f69941ed\",\"previous_head\":\"25a49b2e830507f8ce740169ce8bff47396e33d24092584cf2b18bb471f5d1a2\",\"process_id\":2253,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-160f8f37f69941ed",
+  "source": "runtime:continuity",
+  "version": 0,
+  "time": "2026-09-16T08:49:09.421213+00:00"
+}
+```
 
 ## Journal
 
-_None recorded._
+### 001 · Establishing State and Probing Quantum Noise Resilience
+
+```json
+{
+  "cycle": 1,
+  "invocation": "w-160f8f37f69941ed",
+  "title": "Establishing State and Probing Quantum Noise Resilience",
+  "summary": "We initiate our durable research process by establishing baseline beliefs on state continuity and defining our first research project. Guided by recent arXiv data, we are investigating the vulnerabilities of adaptive variational quantum algorithms to hardware noise."
+}
+```
 
 ## Research
 
-_None recorded._
+### `fetch-adapt-vqe-noise`
+
+```json
+{
+  "domain": "quantum_physics",
+  "id": "fetch-adapt-vqe-noise",
+  "project": "quantum-algorithms-noise",
+  "query": "id:2609.17501v1",
+  "reason": "To retrieve the complete details and results of the case study on ADAPT-VQE operator selection under noise.",
+  "type": "research",
+  "url": "https://export.arxiv.org/api/query?id_list=2609.17501v1",
+  "status": "queued",
+  "created_by": "w-160f8f37f69941ed"
+}
+```
+
+### `search-adapt-vqe-noise-mitigation`
+
+```json
+{
+  "domain": "quantum_physics",
+  "id": "search-adapt-vqe-noise-mitigation",
+  "project": "quantum-algorithms-noise",
+  "query": "ADAPT-VQE error mitigation",
+  "reason": "To locate a second distinct source analyzing error mitigation techniques specifically applied to adaptive quantum algorithms.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-160f8f37f69941ed"
+}
+```
 
 ## Blog posts
 
