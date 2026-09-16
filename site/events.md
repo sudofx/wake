@@ -2,9 +2,25 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `6e71bf4706eb085d6a566a8b5b538227c83e8951bbd56ce4f9ab4a2d5613ebae`
+Verified head: `2d8097b927fe9c8184d26846f4bf01cdc1e25e3eef0768638180bfd4e9df8bf2`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0107 · `pet_renamed`
+
+**Time:** 2026-09-16T23:05:44.314976+00:00  
+**ID:** `system`  
+**Hash:** `2d8097b927fe9c8184d26846f4bf01cdc1e25e3eef0768638180bfd4e9df8bf2`  
+**Previous hash:** `6e71bf4706eb085d6a566a8b5b538227c83e8951bbd56ce4f9ab4a2d5613ebae`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "pet_name": "WAKE✳︎"
+}
+```
 
 ## Event 0106 · `research_collected`
 

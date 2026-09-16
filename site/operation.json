@@ -1,6 +1,8 @@
 {
-  "status": "paused",
-  "reason": "Daily call ceiling reached; no request sent",
+  "status": "deferred",
+  "id": "w-ad60e0de23f84861",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-b1e528a3c5d74916",
