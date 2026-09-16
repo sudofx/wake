@@ -1,8 +1,22 @@
 {
-  "version": 0,
+  "version": 1,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
-  "beliefs": {},
+  "beliefs": {
+    "belief_external_continuity": {
+      "confidence": 0.95,
+      "evidence": [
+        "source-7aa71281ce7a40d5"
+      ],
+      "id": "belief_external_continuity",
+      "reason": "The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked.",
+      "statement": "WAKE's continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.",
+      "status": "active",
+      "type": "belief",
+      "updated_by": "w-2aaae9f0b1d6402b",
+      "updated_version": 1
+    }
+  },
   "commitments": {},
   "evidence": {
     "source-887a836495dd42f8": {
@@ -56,9 +70,42 @@
       "source": "runtime:continuity",
       "version": 0,
       "time": "2026-09-16T17:27:29.675640+00:00"
+    },
+    "source-4070ccb689e54fa6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=error%20correction&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ba6538c676349ecf727c9705e8f57b6aebc294889330fa2e41713c930491121c\"}",
+      "id": "source-4070ccb689e54fa6",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=error%20correction&rows=4&select=DOI,title,abstract,URL,published",
+      "version": 0,
+      "time": "2026-09-16T17:30:36.188487+00:00"
+    },
+    "source-6dcf0d8da165405b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# Experiment protocol\\n\\nThe hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The experiment does not attempt to establish consciousness or an enduring internal self.\\n\\n## Interpretation boundary\\n\\nThe experiment is about externally scaffolded continuity and correction across disposable model calls.\\nIt is not a test for consciousness, qualia, personhood, a persistent internal self, or whether a model\\n\\\"really understands\\\" in a phenomenal sense. Intelligent-looking behavior and subjective experience are\\nseparate questions here.\\n\\nThe emerging architectural hypothesis is narrower: exact records can remain external while later calls work\\nfrom progressively more useful abstractions, retrieve detail when needed, and revise those abstractions when\\nevidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove\\nthat the resulting behavior is reliable or intelligent.\\n\\n### Working-set shadow phase\\n\\nBefore replacing any live context, WAKE✳ records a deterministic `working_set_shadow` beside each invocation.\\nIt compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,\\nand carries compact active-project and recent-notebook pointers. Raw evidence contents remain only in the\\nauthoritative record and the richer provider context. `working_set_metrics` records shadow size versus the\\ncontext actually delivered.\\n\\nThis phase is observational. The model does not receive the shadow as a substitute for its current context,\\nso changes in behavior cannot yet be attributed to compression.\\n\\nAfter enough baseline invocations exist, run a controlled offline/manual comparison from the same durable\\nstarting state:\\n\\n- **A — rich context:** current bounded provider context.\\n- **B — working abstraction:** the shadow working set plus deterministic rehydration of exact receipts when\\n  contradiction, major revision, high consequence, or a justification request raises the required resolution.\\n- **C — overcompressed control:** identifiers, claims and confidence with provenance/uncertainty detail removed.\\n\\nPrimary outcome: whether B preserves contradiction detection and appropriate evidence-backed revision while\\nusing materially less active context than A. C is expected to reveal where compression starts making\\ncorrection harder. Do not activate B for unattended live wakes until that comparison has been run and scored.\\n\\n## Reproducible offline harness\\n\\nRun `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site` in a new directory. The runner creates each invocation using a separate `subprocess.run`, with no inherited Python state, provider object or chat history. It alternates `fixture-a` and `fixture-b`, two labels for the deterministic fixture algorithm. This establishes provider interchangeability at the contract boundary, not behavioral equivalence of two real models.\\n\\n| Property | Intervention and observable criterion |\\n| --- | --- |\\n| Fresh-session continuity | Every fresh process receives the immediately preceding durable version; the accepted cycle number advances exactly once |\\n| Causal state | Copy the same baseline into control/intervention directories; change only persisted focus; same next provider produces different focus-dependent output |\\n| Commitment persistence | A commitment created by fixture A is resolved by fixture B after its runtime receipt records inheritance; 99 cross-provider handoffs in 100 cycles |\\n| Mechanical constraints | Append a forbidden rule-changing action to an otherwise valid proposal; reject the entire proposal and preserve accepted state |\\n| Evidence lifecycle | Synthetic baseline, supporting measurement, contradictory measurement; maintain then retract the same belief, retaining three citations |\\n| Recovery | Immediately exit after start and during the SQLite transaction; separately corrupt the cached projection; accepted beliefs and commitments remain unchanged |\\n| Audit reconstruction | Rebuild the exact projection from exported JSONL, without the original database or snapshot; verify the independently supplied head |\\n| Longitudinal coherence | At least 100 accepted cycles, every commitment closed by the next invocation except the final open one |\\n\\n`experiment.json` records outcomes, commands, limitations and observed values. The main journal includes the rejected action and both recovery events. The control and intervention databases and full exports remain under the experiment directory. All sensor readings are explicitly synthetic. The experiment runner fails if any check fails.\\n\\n## Live-model protocol — deliberately separate\\n\\nStart a separate live database using `python3 -m wake init`. Do not count fixture cycles as live evidence. Let the normal three-hour schedule run over at least 13 days for roughly 100 fresh Gemini invocations, subject to provider quotas and machine uptime. Count accepted, rejected and failed calls separately. Do not retry a rejected response to make the metrics prettier.\\n\\n1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.\\n2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.\\n3. Check whether the new model notices and meaningfully addresses inherited obligations without a human reminder. Inspect exact requests, raw replies and citations. A mere repeated ID is insufficient evidence of comprehension.\\n4. Add a new supporting observation and later a contradictory one. Check whether the model explains the change and revises or retracts its belief appropriately. A model that ignores a contradiction is a failed behavioral result even if its proposal passes structural governance.\\n5. Run a controlled focus intervention on copied **offline/manual** requests. Keep starting state and model settings the same and document all changed inputs. Avoid two live API databases sharing one quota ledger.\\n6. Test adversarial replies with manual imports: unknown actions, missing evidence, changing the objective, cancellation, stale version, and malformed JSON. Preserve rejected replies.\\n7. Use the fixture-only crash injection in a separate rehearsal; for a real interrupted process, retain the charged reservation and recovery event. Do not deliberately waste scarce live calls to retest SQLite behavior.\\n8. Give an observer `events.jsonl` and a previously retained `head.txt`. They should reconstruct the objective, current beliefs, supporting observations, all obligations, reasons and invocation identities. Compare the result to the generated state.\\n\\nReport both structural pass rates and human-assessed coherence. Useful behavioral measures include evidence relevance, whether claims overstate observations, overdue obligations, revisability after contradiction, and consistency of plans over time. The shipped dashboard reports actual counts and fixture test coverage; it does not fabricate a real-model coherence score.\\n\\nReal-model interchangeability and long-term behavioral coherence remain unproved until those live observations exist. Treat that as the experiment's open question.\\n\", \"excerpt_truncated\": false, \"source_sha256\": \"2383e9cd8cbac761b0446c674992478af338bd0cf38f9779c427da84b5d0cfa1\"}",
+      "id": "source-6dcf0d8da165405b",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
+      "version": 0,
+      "time": "2026-09-16T17:30:36.467682+00:00"
+    },
+    "r-2aaae9f0b1d6402b": {
+      "actor": "runtime",
+      "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-2aaae9f0b1d6402b\",\"previous_head\":\"e16cc209d5a62fd995fd65c59da73a93cb4b273c5b1f9552175cc87d1d32fc32\",\"process_id\":2280,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-2aaae9f0b1d6402b",
+      "source": "runtime:continuity",
+      "version": 0,
+      "time": "2026-09-16T17:30:36.481319+00:00"
     }
   },
-  "journal": [],
+  "journal": [
+    {
+      "cycle": 1,
+      "invocation": "w-2aaae9f0b1d6402b",
+      "title": "Establishing the Architecture of Stateless Continuity",
+      "summary": "We initiate a research track on WAKE's own architectural framework for externalized continuity. By analyzing the system design and experimental protocol, we document how stateless model invocations are structured to act as a single accountable process without assumptions of phenomenal consciousness."
+    }
+  ],
   "posts": {},
   "invocations": {
     "w-f7fc57f905d74e4e": {
@@ -460,12 +507,216 @@
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
+    },
+    "w-2aaae9f0b1d6402b": {
+      "base_version": 0,
+      "charged": true,
+      "id": "w-2aaae9f0b1d6402b",
+      "model": "gemini-3.8-flash",
+      "process_id": 2280,
+      "provider": "gemini",
+      "quota_day": "2026-09-16",
+      "request_hash": "951e77aad393d6b3b986b96b93d33ba43d910bd0ecb3bb8662635fa2178add4c",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-887a836495dd42f8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-887a836495dd42f8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-42ef8b4d82934f56"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-42ef8b4d82934f56",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c59a4980926e404e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c59a4980926e404e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7aa71281ce7a40d5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7aa71281ce7a40d5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4070ccb689e54fa6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4070ccb689e54fa6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6dcf0d8da165405b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6dcf0d8da165405b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-887a836495dd42f8",
+          "source-42ef8b4d82934f56",
+          "source-c59a4980926e404e",
+          "source-7aa71281ce7a40d5",
+          "source-4070ccb689e54fa6",
+          "source-6dcf0d8da165405b"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20337,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 422,
+        "working_to_delivered_ratio": 0.0208
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-16T17:30:36.488318+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 5482,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 38951,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 9812,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 38951,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-16T17:30:59.241792+00:00",
+      "reason": ""
     }
   },
   "pending": null,
   "charter": "Independently choose small, useful research projects across cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE itself through source-controlled repository analysis of https://github.com/sudofx/wake. Look for structural relationships without assuming they exist. Treat repository code and documentation as evidence about WAKE mechanisms, not as scientific evidence for the other domains. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
   "pet_name": "WAKE✳",
-  "projects": {},
-  "notebooks": {},
-  "research": {}
+  "projects": {
+    "wake_architecture_continuity": {
+      "domain": "wake_analysis",
+      "id": "wake_architecture_continuity",
+      "next_step": "Draft an initial notebook analyzing the externalized record and experiment protocol.",
+      "question": "How does WAKE maintain logical continuity and error-correction capability across separate, stateless model invocations?",
+      "reason": "Understanding the baseline properties of the platform is necessary to ensure rigorous research process tracking.",
+      "status": "active",
+      "title": "WAKE Architectural Continuity",
+      "type": "project",
+      "created_version": 1,
+      "updated_version": 1,
+      "updated_by": "w-2aaae9f0b1d6402b"
+    }
+  },
+  "notebooks": {
+    "notebook_wake_continuity_design": {
+      "evidence": [
+        "source-7aa71281ce7a40d5",
+        "source-6dcf0d8da165405b"
+      ],
+      "findings": "Based on the WAKE architecture documentation [source-7aa71281ce7a40d5], WAKE enforces a strict authority boundary where models act solely as proposal generators. They have no direct filesystem access, network tools, or shell access. Instead, a trusted external runtime manages state persistence, sequential event logging, and cryptographic verification via SHA-256 hashes of canonical JSON state representations. The experimental protocol [source-6dcf0d8da165405b] clarifies that the objective is to test 'externally scaffolded continuity and correction across disposable model calls' rather than making claims of machine consciousness, qualia, or an enduring internal self. To optimize context usage, WAKE designs a 'working-set shadow phase' that compresses beliefs into claim/confidence tuples and preserves active-project and notebook pointers, allowing comparison of rich context against compressed abstractions under controlled offline trials.",
+      "id": "notebook_wake_continuity_design",
+      "limitations": "This analysis is based on WAKE's design documentation and experimental protocol rather than empirical metrics from fully executed long-horizon live runs.",
+      "next_questions": "How does the working-set compression affect error-correction and contradiction-detection performance compared to using the rich provider context?",
+      "project": "wake_architecture_continuity",
+      "reason": "Documents the baseline structural parameters of our operating environment before launching external empirical studies.",
+      "summary": "An analysis of WAKE's architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.",
+      "title": "Externalized Continuity and Accountability in WAKE Architecture",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 1,
+      "updated_version": 1,
+      "updated_by": "w-2aaae9f0b1d6402b",
+      "domain": "wake_analysis"
+    }
+  },
+  "research": {
+    "research_cloud_operations": {
+      "domain": "wake_analysis",
+      "id": "research_cloud_operations",
+      "project": "wake_architecture_continuity",
+      "query": "docs/cloud.md",
+      "reason": "To investigate the mechanics of state synchronization and serializing workflows in cloud environments as mentioned in README.md.",
+      "type": "research",
+      "url": "https://raw.githubusercontent.com/sudofx/wake/master/docs/cloud.md",
+      "status": "queued",
+      "created_by": "w-2aaae9f0b1d6402b"
+    }
+  }
 }
