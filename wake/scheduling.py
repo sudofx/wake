@@ -9,6 +9,16 @@ SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=10)
 PACIFIC = ZoneInfo("America/Los_Angeles")
 
 
+def charged_request_slots(item):
+    """Known calls plus unresolved reservations; legacy wakes retain one budget slot.
+
+    This is a conservative ceiling calculation, never invented historical HTTP counts.
+    """
+    if "provider_attempts" in item:
+        return len(item["provider_attempts"])
+    return item.get("provider_requests_sent", 1)
+
+
 def daily_quota_next_eligible(item):
     """Return the next Pacific midnight for an exact Gemini daily-quota result."""
     if not is_free_tier_daily_quota(item.get("provider_error", {})):
@@ -57,14 +67,15 @@ def wake_status(state, daily_call_limit=20, now=None):
     def brief(item):
         if item is None:
             return None
-        return {key: item[key] for key in ("id", "time", "finished", "status", "reason", "provider_error", "editorial")
+        return {key: item[key] for key in ("id", "time", "finished", "status", "reason", "provider_error", "editorial",
+                                           "provider_requests_sent", "provider_attempts", "successful_model")
                 if key in item}
     _, eligible = scheduled_wake_due(state, now)
     day = now.astimezone(PACIFIC).date().isoformat()
     charged_today = [i for i in items if i.get("charged") and i.get("quota_day") == day]
     quota_resets = [daily_quota_next_eligible(i) for i in charged_today]
     resets = [reset for reset in quota_resets if reset is not None]
-    if len(charged_today) >= daily_call_limit:
+    if sum(charged_request_slots(i) for i in charged_today) >= daily_call_limit:
         resets.append(datetime.fromisoformat(day).replace(tzinfo=PACIFIC) + timedelta(days=1))
     if resets:
         eligible = max(([eligible] if eligible else []) + resets)
@@ -72,4 +83,7 @@ def wake_status(state, daily_call_limit=20, now=None):
             "latest_attempt": brief(latest), "accepted_cycles": state["version"],
             "next_eligible": eligible.isoformat() if eligible and not state.get("pending") else None,
             "pending": bool(state.get("pending")), "attempts_today": len(charged_today),
+            "provider_requests_today": sum(i.get("provider_requests_sent", 0) for i in charged_today),
+            "provider_request_counts_incomplete": any("provider_requests_sent" not in i or
+                any(a["result"] == "unknown" for a in i.get("provider_attempts", [])) for i in charged_today),
             "daily_call_limit": daily_call_limit}

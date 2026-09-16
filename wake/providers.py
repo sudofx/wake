@@ -1,9 +1,11 @@
 """Provider boundary: one JSON request in, one untrusted proposal out."""
 
+import errno
 import json
 import os
 from pathlib import Path
 import re
+import socket
 import time
 import urllib.error
 import urllib.request
@@ -287,7 +289,19 @@ class Gemini:
         load_env()
         self.config = config
         self.model = model or config["model"]
-        require(re.fullmatch(r"[a-zA-Z0-9._-]+", self.model), "Invalid model name")
+        fallbacks = config.get("gemini_fallback_models", [])
+        require(isinstance(fallbacks, list), "gemini_fallback_models must be a list")
+        for name in [self.model, *fallbacks]:
+            require(isinstance(name, str) and re.fullmatch(r"[a-zA-Z0-9._-]+", name), "Invalid model name")
+        self.models = list(dict.fromkeys([self.model, *fallbacks]))
+        # Fail closed for unverified feature compatibility, before any HTTP call.
+        low_thinking_models = {"gemini-3.8-flash", "gemini-3.7-flash",
+                               "gemini-3.5-flash", "gemini-3.1-flash-lite"}
+        require(not fallbacks or (self.model in low_thinking_models
+                                  and set(self.models) <= low_thinking_models),
+                "Gemini fallback chain requires verified low-thinking request compatibility")
+        self.request_limit = len(self.models)
+        self.record_attempt = None
         require(config["free_tier_confirmed"] is True,
                 "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled")
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
@@ -299,51 +313,86 @@ class Gemini:
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
                 "generationConfig": {"responseMimeType": "application/json",
                                      "maxOutputTokens": self.config["max_output_tokens"]}}
-        if self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
+        if len(self.models) > 1 or self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
         payload = json.dumps(body).encode()
-        req = urllib.request.Request(
-            f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent",
-            data=payload, headers={"Content-Type": "application/json",
-                                   "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
-        request_started = time.monotonic()
-        # One network attempt per invocation. The durable scheduler handles retries.
-        self.provider_requests_sent = 1
-        try:
-            with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
-                data = json.loads(response.read(1_000_001))
-        except urllib.error.HTTPError as exc:
-            diagnostics = _http_error_details(
-                exc, round((time.monotonic() - request_started) * 1000), len(payload))
-            exc.close()
-            diagnostics.update(category="server" if exc.code in self.transient_http_codes else "http",
-                               provider_requests_sent=1)
-            if exc.code in self.transient_http_codes:
-                raise TransientProviderError(
-                    "Gemini temporarily unavailable; wake deferred", diagnostics) from None
-            if exc.code == 429 and is_free_tier_daily_quota(diagnostics):
-                raise DailyQuotaExceeded(
-                    "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight",
-                    diagnostics) from None
-            raise ProviderRequestError(
-                f"Gemini HTTP {exc.code}; wake attempt counted", diagnostics) from None
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
-            cause = getattr(exc, "reason", exc)
-            diagnostics = {
-                "category": "timeout" if isinstance(cause, TimeoutError) else "connection",
-                "error_type": type(cause).__name__,
-                "elapsed_ms": round((time.monotonic() - request_started) * 1000),
-                "request_payload_bytes": len(payload), "provider_requests_sent": 1,
-            }
-            if isinstance(getattr(cause, "errno", None), int):
-                diagnostics["errno"] = cause.errno
-            raise TransientProviderError(
-                "Gemini temporarily unavailable; wake deferred", diagnostics) from None
-        candidates = data.get("candidates", [])
-        require(candidates and candidates[0].get("finishReason") == "STOP", "Gemini did not return a complete answer")
-        raw = "".join(part.get("text", "") for part in candidates[0].get("content", {}).get("parts", [])
-                      if not part.get("thought"))
-        return raw, {"provider_requests_sent": 1, "usage": data.get("usageMetadata", {}), "model_version": data.get("modelVersion", self.model)}
+        self.provider_attempts = []
+        self.successful_model = None
+        for model in self.models[:self.request_limit]:
+            req = urllib.request.Request(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                data=payload, headers={"Content-Type": "application/json",
+                                       "x-goog-api-key": os.environ["GEMINI_API_KEY"]})
+            attempt = {"model": model, "request_payload_bytes": len(payload),
+                       "http_status": None, "result": "unknown"}
+            if self.record_attempt:
+                self.record_attempt("started", attempt.copy())
+            request_started = time.monotonic()
+            self.provider_requests_sent += 1
+            error = None
+            try:
+                with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
+                    attempt["http_status"] = getattr(response, "status", 200)
+                    data = json.loads(response.read(1_000_001))
+                candidates = data.get("candidates", [])
+                require(candidates and candidates[0].get("finishReason") == "STOP",
+                        "Gemini did not return a complete answer")
+                raw = "".join(part.get("text", "") for part in candidates[0].get("content", {}).get("parts", [])
+                              if not part.get("thought"))
+                attempt["result"] = "success"
+                self.successful_model = model
+            except urllib.error.HTTPError as exc:
+                attempt.update(_http_error_details(
+                    exc, round((time.monotonic() - request_started) * 1000), len(payload)))
+                exc.close()
+                transient = exc.code in self.transient_http_codes
+                attempt.update(category="server" if transient else "http",
+                               result="transient_failure" if transient else "http_failure")
+                if transient:
+                    error = TransientProviderError("Gemini temporarily unavailable; wake deferred")
+                elif exc.code == 429 and is_free_tier_daily_quota(attempt):
+                    attempt["result"] = "daily_quota"
+                    error = DailyQuotaExceeded(
+                        "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight")
+                else:
+                    error = ProviderRequestError(f"Gemini HTTP {exc.code}; wake attempt counted")
+            except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
+                cause = getattr(exc, "reason", exc)
+                transient = (isinstance(cause, (TimeoutError, ConnectionError))
+                             or getattr(cause, "errno", None) in {
+                                 errno.ETIMEDOUT, errno.ECONNRESET, errno.ECONNREFUSED,
+                                 errno.ECONNABORTED, errno.EHOSTUNREACH, errno.ENETUNREACH,
+                                 socket.EAI_AGAIN})
+                attempt.update(category="timeout" if isinstance(cause, TimeoutError) else "connection",
+                               error_type=type(cause).__name__,
+                               result="transient_failure" if transient else "connection_failure")
+                if isinstance(getattr(cause, "errno", None), int):
+                    attempt["errno"] = cause.errno
+                error = (TransientProviderError("Gemini temporarily unavailable; wake deferred") if transient
+                         else ProviderRequestError("Gemini connection failed; wake attempt counted"))
+            except Exception as exc:
+                attempt.update(result="invalid_response" if isinstance(exc, (Rejected, ValueError)) else "runtime_failure",
+                               error_type=type(exc).__name__)
+                error = exc
+            if "elapsed_ms" not in attempt:
+                attempt["elapsed_ms"] = round((time.monotonic() - request_started) * 1000)
+            self.provider_attempts.append(attempt)
+            # Persist/checkpoint outside transport handlers: persistence failure must stop the chain.
+            if self.record_attempt:
+                self.record_attempt("finished", attempt.copy())
+            if error is None:
+                return raw, {**self.diagnostics(), "usage": data.get("usageMetadata", {}),
+                             "model_version": data.get("modelVersion", model)}
+            if isinstance(error, (ProviderRequestError, TransientProviderError)):
+                error.details = {**attempt, **self.diagnostics()}
+            if not isinstance(error, TransientProviderError):
+                raise error
+        raise error
+
+    def diagnostics(self):
+        return {"provider_requests_sent": self.provider_requests_sent,
+                "provider_attempts": list(self.provider_attempts),
+                **({"successful_model": self.successful_model} if self.successful_model else {})}
 
 
 class Fixture:

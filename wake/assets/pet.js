@@ -21,9 +21,9 @@
   const diagnostics=attempt?.provider_error||{};
   const problem=attempt?.reason||'';
   const summarizeProblem=reason=>{
-    if(diagnostics.category==='server')return `Gemini returned HTTP ${diagnostics.http_status}. The attempt was deferred after ${diagnostics.attempts?.length||1} requests; the saved research is intact.`;
-    if(diagnostics.category==='timeout')return 'The Gemini request timed out after retries. The saved research is intact.';
-    if(diagnostics.category==='connection')return 'WAKE could not connect to Gemini after retries. The saved research is intact.';
+    if(diagnostics.category==='server')return `Gemini returned HTTP ${diagnostics.http_status}. The attempt was deferred after ${diagnostics.provider_requests_sent??diagnostics.attempts?.length??1} requests; the saved research is intact.`;
+    if(diagnostics.category==='timeout')return 'Gemini timed out before this wake could complete. The saved research is intact.';
+    if(diagnostics.category==='connection')return 'WAKE could not connect to Gemini. The saved research is intact.';
     if(/quota|daily call ceiling|HTTP 429/i.test(reason))return 'The API quota or daily attempt limit paused new research. The saved research is intact.';
     if(attempt?.status==='rejected')return 'The proposal did not pass validation. No research or blog changes from that attempt were accepted.';
     if(attempt?.status==='pending')return 'This attempt has not finished. Its request is saved.';

@@ -13,6 +13,7 @@ from .providers import (
     SYSTEM, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota,
 )
+from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
 
@@ -20,7 +21,7 @@ from .store import Store, canonical, digest
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20,
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
-            "free_tier_confirmed": False}
+            "free_tier_confirmed": False, "gemini_fallback_models": []}
 
 
 def config(path="wake.toml"):
@@ -207,7 +208,8 @@ class Engine:
                 not exhausted,
                 "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent",
             )
-        used = sum(i["charged"] and i["quota_day"] == day for i in state["invocations"].values())
+        used = sum(charged_request_slots(i) for i in state["invocations"].values()
+                   if i["charged"] and i["quota_day"] == day)
         require(not charged or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         invocation = "w-" + uuid.uuid4().hex[:16]
         receipt = "r-" + invocation[2:]
@@ -302,6 +304,8 @@ class Engine:
 
     @staticmethod
     def _request_count(provider):
+        if hasattr(provider, "provider_attempts"):
+            return provider.diagnostics()
         count = getattr(provider, "provider_requests_sent", None)
         return {"provider_requests_sent": count} if count is not None else {}
 
@@ -312,6 +316,18 @@ class Engine:
             if collector:
                 collector(self)
             invocation, request = self.start(provider.name, provider.model, provider.charged)
+            if hasattr(provider, "record_attempt"):
+                state = self.store.load()
+                day = state["invocations"][invocation]["quota_day"]
+                used = sum(charged_request_slots(i) for i in state["invocations"].values()
+                           if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
+                provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
+
+                def record_attempt(phase, attempt):
+                    self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
+                    if checkpoint:
+                        checkpoint()
+                provider.record_attempt = record_attempt
             if checkpoint:
                 checkpoint()  # Remote reservation must succeed before the model call.
             if crash_at == "after-start":

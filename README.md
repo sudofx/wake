@@ -140,20 +140,61 @@ The replacement ZIP is `dist/wake.zip`. It includes the complete source, documen
 
 No model is immortal here. The record just has a better filing system.
 
-### One Gemini request per wake
+### Gemini model failover without transport retries
 
-A charged Gemini wake makes at most one `generateContent` request. HTTP
-500/502/503/504, timeouts, and connection failures produce a durable deferral;
-the scheduler creates a fresh wake later. There are no immediate transport
-retries. Exact free-tier daily quota exhaustion still blocks the same model
-until Pacific midnight. Ordinary 429s retain the existing attention policy and
-are not treated as daily exhaustion.
+The explicit `gemini_fallback_models` order in `wake.toml` is:
+`gemini-3.8-flash` (primary) → `gemini-3.5-flash` → `gemini-3.1-flash-lite`.
+These are the two fallbacks from immediately before the rebuild at `e6237d`.
+Google's model pages still document
+[3.5 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash) and
+[3.1 Flash-Lite](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite),
+including structured output and sufficient input/output limits; its
+[GenerateContent thinking guide](https://ai.google.dev/gemini-api/docs/generate-content/thinking)
+confirms `thinkingLevel: low` support (checked September 16, 2026).
+The same serialized request goes to every model: prompt, research context,
+JSON contract, low thinking setting, and output ceiling are unchanged.
+Unverified fallback feature combinations fail before sending a request;
+there is no silent feature downgrade. An empty fallback list disables failover.
 
-Future terminal invocation records include `provider_requests_sent` when the
-adapter knows the count. This counts the client request attempt, not proof that
-the server received or billed it. Historical invocations remain unchanged and
-must not be assigned inferred request counts. Auth, runtime, integrity,
-publication, and governance failures retain their attention behavior.
+Each distinct model is attempted at most once per durable wake, with no sleeps
+or immediate same-model retries. Only HTTP 500/502/503/504, timeouts, connection
+reset/refusal/abort, unreachable host/network, and temporary DNS failure allow
+moving to the next model. TLS certificate failures, other connection errors,
+all other HTTP errors (including every 429), invalid/incomplete responses,
+authentication, runtime, governance, and persistence failures stop the chain.
+
+The exact `GenerateRequestsPerDayPerProjectPerModel-FreeTier` quota ID still
+produces a daily-quota deferral. Ordinary 429s retain the existing attention
+policy. Google's [quota documentation](https://ai.google.dev/gemini-api/docs/rate-limits)
+describes project-level limits varying by model; it does not establish that
+another model has usable quota for this project. No 429 triggers failover.
+Conservatively, an exact daily-quota result anywhere in the chain pauses wakes
+using that primary route until Pacific midnight, retaining the scheduler's
+existing daily-quota pause. The receipt identifies the actual exhausted model.
+
+One wake now sends at most **three** requests with this configuration, and fewer
+when the remaining local `daily_call_limit` budget is smaller. That ceiling
+counts requests/reservations, including unsuccessful fallback calls. Exhausting
+the available chain leaves one deferred wake and no research-version or journal
+advance. A successful fallback supplies one proposal to unchanged governance;
+only acceptance advances research once. Expected transient deferrals remain quiet.
+These offline guarantees do not establish improved live reliability.
+
+Append-only `provider_attempt_started` and `provider_attempt_finished` events
+record each model reservation and outcome, checkpointed remotely when running
+in GitHub Actions. Invocation and operation diagnostics expose ordered
+`provider_attempts` (model, HTTP status or null, result, elapsed milliseconds,
+payload bytes), `successful_model`, and total `provider_requests_sent`.
+This counts client HTTP attempts, not proof of receipt or billing by Google.
+An interruption between reservation and persisted outcome leaves an explicit
+`unknown` attempt; its budget slot stays reserved, and recovery never resumes
+that wake's model chain. Its HTTP count is incomplete, not guessed.
+
+`attempts_today` continues to count durable wakes. The separate
+`provider_requests_today` counts recorded HTTP attempts, with
+`provider_request_counts_incomplete` flagging historical or interrupted unknowns.
+Historical wakes acquire no fabricated model history or HTTP counts; they retain
+one conservative slot each solely for the local ceiling calculation.
 
 ### MAP: explore the durable record
 

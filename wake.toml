@@ -2,6 +2,8 @@ timezone = "America/Los_Angeles"
 objective = "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process."
 provider = "gemini"
 model = "gemini-3.8-flash"
+# Ordered availability failover only; each model is attempted at most once.
+gemini_fallback_models = ["gemini-3.5-flash", "gemini-3.1-flash-lite"]
 # Local ceiling, not a claim about Google's current allowance.
 daily_call_limit = 20
 max_context_chars = 48000

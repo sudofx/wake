@@ -63,6 +63,26 @@ def reduce_event(state, event, historical=False):
         state["pending"] = p["id"]
         state["invocations"][p["id"]] = {k: v for k, v in p.items() if k != "request"}
         state["invocations"][p["id"]].update(status="pending", time=event["time"])
+    elif kind == "provider_attempt_started":
+        require(state["pending"] == p["id"], "Invocation is not pending")
+        item = state["invocations"][p["id"]]
+        attempts = item.setdefault("provider_attempts", [])
+        require(not any(a["model"] == p["attempt"]["model"] for a in attempts),
+                "Model already attempted in this invocation")
+        require(not attempts or attempts[-1]["result"] == "transient_failure",
+                "Failover requires a transient availability failure")
+        attempts.append(p["attempt"])
+        item.setdefault("provider_requests_sent", 0)
+    elif kind == "provider_attempt_finished":
+        require(state["pending"] == p["id"], "Invocation is not pending")
+        item = state["invocations"][p["id"]]
+        attempts = item.get("provider_attempts", [])
+        require(attempts and attempts[-1]["result"] == "unknown"
+                and attempts[-1]["model"] == p["attempt"]["model"], "Attempt does not match reservation")
+        attempts[-1] = p["attempt"]
+        item["provider_requests_sent"] += 1
+        if p["attempt"]["result"] == "success":
+            item["successful_model"] = p["attempt"]["model"]
     elif kind in ("accepted", "rejected", "failed", "deferred", "recovered"):
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
@@ -73,6 +93,12 @@ def reduce_event(state, event, historical=False):
         terminal = {"status": kind, "finished": event["time"], "reason": p.get("reason", "")}
         if "provider_requests_sent" in p:
             terminal["provider_requests_sent"] = p["provider_requests_sent"]
+        diagnostics = p.get("metadata", p)
+        for key in ("provider_attempts", "successful_model"):
+            if key in diagnostics:
+                # Keep a reservation if persistence failed before its result was recorded.
+                if key != "provider_attempts" or len(diagnostics[key]) >= len(state["invocations"][p["id"]].get(key, [])):
+                    terminal[key] = diagnostics[key]
         if "editorial" in p:
             terminal["editorial"] = p["editorial"]
         if "provider_error" in p:
