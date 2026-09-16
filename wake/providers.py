@@ -58,8 +58,10 @@ Additional exact action shapes:
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"cellular_automata","reason":"What this search will resolve"}
-At most four pending searches; at most two execute per wake. Literature topics use Crossref.
-For wake_analysis, inspect source-controlled WAKE repository files from https://github.com/sudofx/wake.
+At most four pending searches. Each wake reserves one of two collector reads for a rotating
+source-controlled WAKE repository file; the other executes one queued search or topical discovery.
+Literature topics use Crossref. For wake_analysis, inspect source-controlled WAKE repository files
+from https://github.com/sudofx/wake.
 Use at least two distinct repository files before publishing a wake_analysis notebook.
 Optionally add a url field to read a specific HTTPS HTML/abstract page instead of searching.
 Approved hosts: arxiv.org, export.arxiv.org, plato.stanford.edu, pmc.ncbi.nlm.nih.gov,

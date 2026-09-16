@@ -125,11 +125,22 @@ def collect(engine, fetcher=fetch_source):
     state = engine.store.load()
     if not state.get("charter"):
         return
-    pending = [r for r in state.get("research", {}).values() if r["status"] == "queued"][:2]
+    attempts = len(state["invocations"])
+    pending = [r for r in state.get("research", {}).values() if r["status"] == "queued"][:1]
     if not pending:
-        attempts = len(state["invocations"])
         domain, url = SEEDS[attempts % len(SEEDS)]
         pending = [{"id": f"discovery-{attempts}", "url": url, "domain": domain}]
+
+    # Every wake receives an external, source-controlled description of WAKE
+    # while keeping the collector bounded to two network reads total.
+    repo_urls = list(WAKE_SOURCES.values())
+    repo_url = repo_urls[attempts % len(repo_urls)]
+    if pending[0].get("domain") == "wake_analysis":
+        first_url = pending[0].get("url") or query_url(pending[0]["query"], pending[0]["domain"])
+        if repo_url == first_url:
+            repo_url = repo_urls[(attempts + 1) % len(repo_urls)]
+    pending.append({"id": f"wake-context-{attempts}", "url": repo_url, "domain": "wake_analysis"})
+
     for item in pending:
         url = item.get("url") or query_url(item["query"], item["domain"])
         try:
