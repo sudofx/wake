@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `70a8923ca29910bc5261ef0ca0a5ac8833369898209ed2aae54395884ede72fd`
+Verified head: `b34ebcafe681c1d93efdc19b2109d28b7f9d4bdca4f9c7362ebd8464a138fdca`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Mapping Noise Resilience and Mitigation in Adaptive VQE
+
+September 16, 2026 · 03:04 AM PDT · gemini / gemini-3.8-flash
+
+We synthesize our findings on how hardware noise compromises the operator selection step in ADAPT-VQE, and evaluate contemporary mitigation strategies like Pauli twirling and Adaptive Informationally complete generalized Measurements.
+
+Invocation: `w-2e3e78d8ea1349cf`
 
 ## 001 · Establishing State and Probing Quantum Noise Resilience
 

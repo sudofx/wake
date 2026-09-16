@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 1  
+**Version:** 2  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `70a8923ca29910bc5261ef0ca0a5ac8833369898209ed2aae54395884ede72fd`
+**Verified head:** `b34ebcafe681c1d93efdc19b2109d28b7f9d4bdca4f9c7362ebd8464a138fdca`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -49,7 +49,20 @@
 
 ## Commitments
 
-_None recorded._
+### `review-chem-precision-benchmarks`
+
+```json
+{
+  "due_cycle": 3,
+  "id": "review-chem-precision-benchmarks",
+  "reason": "To extend our noise resilience analysis to larger experimental scales.",
+  "task": "Review benchmarks of quantum chemistry error mitigation on larger systems (e.g. 27-qubit processors) once more sources are collected",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-2e3e78d8ea1349cf",
+  "created_version": 2
+}
+```
 
 ## Projects
 
@@ -73,7 +86,30 @@ _None recorded._
 
 ## Notebooks
 
-_None recorded._
+### `adapt-vqe-noise-mitigation-analysis` · Noise Resilience and Mitigation in Adaptive VQE
+
+```json
+{
+  "evidence": [
+    "source-eff925a57e3a479c",
+    "source-e735b67670f14093"
+  ],
+  "findings": "In adaptive variational quantum algorithms such as ADAPT-VQE, the operator selection step exhibits a natural resilience to low levels of noise. However, recent systematic case studies indicate that both coherent and incoherent noise channels prevent algorithmic convergence when noise rates are high, as demonstrated on a linear H3 molecule test case [source-eff925a57e3a479c]. Combining multiple error mitigation techniques—specifically dynamical decoupling, zero-noise extrapolation, and Pauli twirling—restores successful convergence profiles [source-eff925a57e3a479c]. Additionally, the standard implementation of ADAPT-VQE faces severe measurement overheads from estimating numerous commutator operators. This overhead can be mitigated without extra measurement costs by using Adaptive Informationally complete generalized Measurements (AIM) to reuse energy measurement data for commutator estimation [source-e735b67670f14093].",
+  "id": "adapt-vqe-noise-mitigation-analysis",
+  "limitations": "The noise resilience findings are based primarily on preprints and case studies of small molecular systems (e.g., linear H3 [source-eff925a57e3a479c] and H4 [source-e735b67670f14093]). Whether these combined mitigation strategies scale effectively to larger, chemically complex processors remains unverified under actual hardware constraints.",
+  "next_questions": "How do these error mitigation configurations scale to 20+ qubit systems under high coherent noise? Is there a formal bound on the accuracy of commutator estimation when using AIM under realistic hardware noise?",
+  "project": "quantum-algorithms-noise",
+  "reason": "To synthesize findings on noise vulnerabilities and mitigation strategies in the critical operator selection phase of ADAPT-VQE.",
+  "summary": "Analysis of how hardware noise affects the operator selection step in ADAPT-VQE and the effectiveness of multi-layered error mitigation and AIM techniques.",
+  "title": "Noise Resilience and Mitigation in Adaptive VQE",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 2,
+  "updated_version": 2,
+  "updated_by": "w-2e3e78d8ea1349cf",
+  "domain": "quantum_physics"
+}
+```
 
 ## Invocations
 
@@ -179,6 +215,148 @@ _None recorded._
 }
 ```
 
+### `w-2e3e78d8ea1349cf`
+
+```json
+{
+  "base_version": 1,
+  "charged": true,
+  "id": "w-2e3e78d8ea1349cf",
+  "model": "gemini-3.8-flash",
+  "process_id": 2043,
+  "provider": "gemini",
+  "quota_day": "2026-09-16",
+  "request_hash": "452f3e1695b583973c87fa676f6c67aa34d878200964e3d0d33becdd34c11263",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-eff925a57e3a479c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-eff925a57e3a479c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e735b67670f14093"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e735b67670f14093",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-eff925a57e3a479c",
+      "source-e735b67670f14093"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 2,
+      "evidence_count": 2,
+      "trigger_counts": {
+        "unincorporated_evidence": 2
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 13573,
+    "mode": "shadow",
+    "retrieval_candidate_count": 2,
+    "retrieval_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 2
+    },
+    "working_set_chars": 1616,
+    "working_to_delivered_ratio": 0.1191
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "quantum-algorithms-noise",
+        "next_step": "Retrieve the detailed case study on ADAPT-VQE noise resilience and search for complementary adaptive mitigation strategies.",
+        "question": "How do various noise channels impact operator selection in adaptive variational quantum algorithms, and what mitigation techniques are effective?",
+        "title": "Noise Resilience in Adaptive Quantum Algorithms"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The runtime environment successfully delivers context and state across invocation boundaries.",
+        "confidence": 1.0,
+        "id": "durable-state-delivery",
+        "provenance": [
+          "r-160f8f37f69941ed"
+        ],
+        "status": "active",
+        "why_retained": "The runtime continuity receipt confirms successful delivery of the state to the provider boundary."
+      },
+      {
+        "claim": "In adaptive variational quantum algorithms like ADAPT-VQE, both coherent and incoherent hardware noise can prevent convergence during the operator selection step.",
+        "confidence": 0.8,
+        "id": "adapt-vqe-noise-sensitivity",
+        "provenance": [
+          "source-58104290a3054605"
+        ],
+        "status": "active",
+        "why_retained": "The collected abstract of arXiv:2609.17501v1 states that both coherent and incoherent noise channels can prevent convergence during the operator selection step at high noise rates."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-16T10:04:07.602711+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 4780,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 30964,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 14899,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 30964,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-16T10:04:34.523399+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-58104290a3054605`
@@ -208,6 +386,47 @@ _None recorded._
 }
 ```
 
+### `source-eff925a57e3a479c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?id_list=2609.17501v1\", \"scope\": \"paper abstracts; preprints, peer-review status not verified\", \"excerpt\": \"title: A Case Study on Noise Resilient Operator Selection in Adaptive Variational Quantum Algorithms\\nid: http://arxiv.org/abs/2609.17501v1\\npublished: 2026-09-15T17:42:37Z\\nsummary: Hardware noise has been shown to significantly impact the accuracy of ADAPT-VQE, a ground state preparation algorithm. While previous work has studied the impact of noise on its parameter optimization step, its impact on the critical operator selection step remains comparatively unexplored. In this work, we examine the impact of a variety of noise channels on this step, using a linear H$_3$ molecule as a test case. We show that, despite the selection criterion's natural resilience to some noise, both coherent and incoherent noise can prevent convergence for sufficiently high noise rates. We employ quantum error mitigation techniques--dynamical decoupling, zero noise extrapolation, and Pauli twirling--and show that when combined appropriately, these techniques are capable of restoring a successful convergence profile. Our results highlight how error mitigation can improve the performance of ADAPT-VQE and enable convergence in the presence of hardware noise, offering valuable insights into the implementation of the algorithm on near-term quantum hardware.\", \"excerpt_truncated\": false, \"source_sha256\": \"61e2afcab99ac859d6411864a58f59577706c84650f7b918e586e6aee703cec3\"}",
+  "id": "source-eff925a57e3a479c",
+  "scope": "collected",
+  "source": "https://export.arxiv.org/api/query?id_list=2609.17501v1",
+  "version": 1,
+  "time": "2026-09-16T10:04:07.284822+00:00"
+}
+```
+
+### `source-e735b67670f14093`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?search_query=cat%3Aquant-ph+AND+all%3AADAPT-VQE+error+mitigation&start=0&max_results=4\", \"scope\": \"paper abstracts; preprints, peer-review status not verified\", \"excerpt\": \"title: Benchmarking Noisy Intermediate Scale Quantum Error Mitigation Strategies for Ground State Preparation of the HCl Molecule\\nid: http://arxiv.org/abs/2303.00445v2\\npublished: 2023-03-01T12:08:50Z\\nsummary: Due to numerous limitations including restrictive qubit topologies, short coherence times and prohibitively high noise floors, few quantum chemistry experiments performed on existing noisy intermediate-scale quantum hardware have achieved the high bar of chemical precision, namely energy errors to within 1.6 mHa of full configuration interaction. To have any hope of doing so, we must layer contemporary resource reduction techniques with best-in-class error mitigation methods; in particular, we combine the techniques of qubit tapering and the contextual subspace variational quantum eigensolver with several error mitigation strategies comprised of measurement-error mitigation, symmetry verification, zero-noise extrapolation and dual-state purification. We benchmark these strategies across a suite of eight 27-qubit IBM Falcon series quantum processors, taking preparation of the HCl molecule's ground state as our testbed.\\n\\ntitle: Mitigating the measurement overhead of ADAPT-VQE with optimised informationally complete generalised measurements\\nid: http://arxiv.org/abs/2212.09719v2\\npublished: 2022-12-19T18:47:10Z\\nsummary: ADAPT-VQE stands out as a robust algorithm for constructing compact ansätze for molecular simulation. It enables to significantly reduce the circuit depth with respect to other methods, such as UCCSD, while achieving higher accuracy and not suffering from so-called barren plateaus that hinder the variational optimisation of many hardware-efficient ansätze. In its standard implementation, however, it introduces a considerable measurement overhead in the form of gradient evaluations trough estimations of many commutator operators. In this work, we mitigate this measurement overhead by exploiting a recently introduced method for energy evaluation relying on Adaptive Informationally complete generalised Measurements (AIM). Besides offering an efficient way to measure the energy itself, Informationally Complete (IC) measurement data can be reused to estimate all the commutators of the operators in the operator pool of ADAPT-VQE, using only classically efficient post-processing. We present the AIM-ADAPT-VQE scheme in detail, and investigate its performance with several H4 Hamiltonians and operator pools. Our numerical simulations indicate that the measurement data obtained to evaluate the energy can be reused to implement ADAPT-VQE with no additional measurement overhead for the systems considered here. In addition, we show that, if the energy is measured within chemical precision, the CNOT count in the resulting circuits is close to the ideal one. With scarce measurement data, AIM-ADAPT-VQE still converges to the ground state with high probability, albeit with an increased circuit depth in some cases.\\n\\ntitle: Hardware-Efficient Error Mitigation and Shot-Efficient Sampling on IBM Quantum Hardware\\nid: http://arxiv.org/abs/2608.28535v1\\npublished: 2026-08-28T17:10:09Z\\nsummary: We experimentally study error mitigation and finite-shot sampling on superconducting quantum hardware under a constrained execution budget. The study combines calibration-aware qubit selection, circuit-depth scaling, zero-noise extrapolation, dynamical decoupling, readout-error mitigation, and repeated-shot estimation on an IBM Quantum processor. Experiments are organized across ideal simulation, noise-model simulation, and physical-device execution to separate sampling uncertainty from device-induced error. We investigate how mitigation performance changes with circuit depth, effective noise scale, qubit connectivity, and measurement budget, and quantify accuracy using expectation-value error, mean-squared error, statistical uncertainty, and mitigation gain. A fixed hardware-execution budget is used to evaluate shot allocation strategies and repeated measurements without relying on unlimited sampling. The resulting analysis provides a hardware-aware characterization of when mitigation improves expectation-value estimation and when finite-shot fluctuations offset the benefit of additional mitigation overhead. The implementation uses contemporary Qiskit and IBM Quantum Runtime workflows and is designed to provide reproducible experimental evidence for error-mitigation studies on current quantum processors.\\n\\ntitle: Counterdiabatic ADAPT-VQE for molecular simulation\\nid: http://arxiv.org/abs/2601.05973v1\\npublished: 2026-01-09T17:46:12Z\\nsummary: Among variational quantum algorithms designed for NISQ devices, ADAPT-VQE stands out for its robustness against barren plateaus, particularly in estimating molecular ground states. On the other hand, counterdiabatic algorithms have shown advantages in both performance and circuit depth when compared to standard adiabatic approaches. In this work, we propose a hybrid method that integrates the ADAPT-VQE framework with counterdiabatic driving within an adiabatic evolution scheme. Specifically, we map the molecular Hamiltonian to a qubit representation and construct an adiabatic Hamiltonian, from which an approximate adiabatic gauge potential is computed using nested commutators. The resulting operator terms define the operator pool, and the ADAPT-VQE algorithm is applied to iteratively select the most relevant elements for the ansatz. Our results demonstrate improvements in performance and reductions in circuit depth compared to using either counterdiabatic algorithms or ADAPT-VQE with fermionic excitation operators, thus supporting the effectiveness of combining both paradigms in molecular simulations.\", \"excerpt_truncated\": false, \"source_sha256\": \"2e7c0ee1b233bf77ea8996a851008e6dc11ad8061d407359aa8549c875676d21\"}",
+  "id": "source-e735b67670f14093",
+  "scope": "collected",
+  "source": "https://export.arxiv.org/api/query?search_query=cat%3Aquant-ph+AND+all%3AADAPT-VQE+error+mitigation&start=0&max_results=4",
+  "version": 1,
+  "time": "2026-09-16T10:04:07.590707+00:00"
+}
+```
+
+### `r-2e3e78d8ea1349cf`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":1,\"inherited_commitments\":[],\"invocation\":\"w-2e3e78d8ea1349cf\",\"previous_head\":\"6279b92e8a01564979646a3ea202aaa3031017b632ed646bfc9700b867cdeb8b\",\"process_id\":2043,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2e3e78d8ea1349cf",
+  "source": "runtime:continuity",
+  "version": 1,
+  "time": "2026-09-16T10:04:07.598729+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing State and Probing Quantum Noise Resilience
@@ -218,6 +437,17 @@ _None recorded._
   "invocation": "w-160f8f37f69941ed",
   "title": "Establishing State and Probing Quantum Noise Resilience",
   "summary": "We initiate our durable research process by establishing baseline beliefs on state continuity and defining our first research project. Guided by recent arXiv data, we are investigating the vulnerabilities of adaptive variational quantum algorithms to hardware noise."
+}
+```
+
+### 002 · Mapping Noise Resilience and Mitigation in Adaptive VQE
+
+```json
+{
+  "cycle": 2,
+  "invocation": "w-2e3e78d8ea1349cf",
+  "title": "Mapping Noise Resilience and Mitigation in Adaptive VQE",
+  "summary": "We synthesize our findings on how hardware noise compromises the operator selection step in ADAPT-VQE, and evaluate contemporary mitigation strategies like Pauli twirling and Adaptive Informationally complete generalized Measurements."
 }
 ```
 
@@ -234,8 +464,9 @@ _None recorded._
   "reason": "To retrieve the complete details and results of the case study on ADAPT-VQE operator selection under noise.",
   "type": "research",
   "url": "https://export.arxiv.org/api/query?id_list=2609.17501v1",
-  "status": "queued",
-  "created_by": "w-160f8f37f69941ed"
+  "status": "collected",
+  "created_by": "w-160f8f37f69941ed",
+  "evidence": "source-eff925a57e3a479c"
 }
 ```
 
@@ -249,8 +480,9 @@ _None recorded._
   "query": "ADAPT-VQE error mitigation",
   "reason": "To locate a second distinct source analyzing error mitigation techniques specifically applied to adaptive quantum algorithms.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-160f8f37f69941ed"
+  "status": "collected",
+  "created_by": "w-160f8f37f69941ed",
+  "evidence": "source-e735b67670f14093"
 }
 ```
 
