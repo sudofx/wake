@@ -33,13 +33,42 @@ class CloudWorkflowTests(unittest.TestCase):
     def git(self, *args):
         return subprocess.run(["git", *map(str,args)], check=True, capture_output=True, text=True)
 
-    def run_cloud(self, provider, publish_only=False, scheduled=False):
+    def run_cloud(self, provider, publish_only=False, scheduled=False, reset=False):
         with patch.object(github_wake, "ROOT", self.project), \
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
              patch.object(github_wake, "Gemini", return_value=provider), \
              patch.object(github_wake, "collect", lambda engine: None), \
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
-            return github_wake.main(publish_only=publish_only, scheduled=scheduled)
+            return github_wake.main(publish_only=publish_only, scheduled=scheduled, reset=reset)
+
+    def test_cloud_reset_returns_to_zero_without_calling_provider(self):
+        self.assertEqual(self.run_cloud(Fixture()), 0)
+        before = json.loads(
+            self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
+        self.assertGreater(before["version"], 0)
+
+        stale = self.project / "site" / "blog" / "stale.html"
+        stale.parent.mkdir(parents=True, exist_ok=True)
+        stale.write_text("old artifact")
+
+        class NeverCall(Fixture):
+            def propose(self, request):
+                raise AssertionError("Reset must not call a model")
+
+        self.assertEqual(self.run_cloud(NeverCall(), reset=True), 0)
+
+        state = json.loads(
+            self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
+        self.assertEqual(state["version"], 0)
+        self.assertEqual(state["journal"], [])
+        self.assertEqual(state["posts"], {})
+        self.assertEqual(state["invocations"], {})
+        self.assertFalse(stale.exists())
+
+        operation = json.loads(
+            self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
+        self.assertTrue(operation["reset"])
+        self.assertEqual(operation["status"], "not_started")
 
     def test_access_limit_failure_is_counted_exported_visible_but_not_action_failure(self):
         class Failure(Fixture):
@@ -211,6 +240,8 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("github-pages-${{ github.run_id }}-${{ github.run_attempt }}", workflow)
         self.assertIn("cron: '12,27,42,57 * * * *'", workflow)
         self.assertIn("python scripts/github_wake.py --scheduled", workflow)
+        self.assertIn("python scripts/github_wake.py --reset --confirm-reset", workflow)
+        self.assertIn("Irreversibly reset durable research/history to WAKE 0", workflow)
         self.assertIn("artifact_name: ${{ needs.wake.outputs.artifact_name }}", workflow)
         self.assertNotIn("rotate-cover", workflow)
         self.assertNotIn("rotate_cover", workflow)

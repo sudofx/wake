@@ -17,6 +17,10 @@ on:
         description: Refresh the website without calling Gemini
         type: boolean
         default: false
+      reset:
+        description: Irreversibly reset durable research/history to WAKE 0 and republish
+        type: boolean
+        default: false
 
 concurrency:
   group: wake-durable-state
@@ -50,7 +54,9 @@ jobs:
         # Code updates refresh the record, scheduled ticks use the durable
         # hourly guard, and manual wakes always run when requested.
         run: |
-          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+          if [[ "${{ inputs.reset }}" == "true" ]]; then
+            python scripts/github_wake.py --reset --confirm-reset
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python scripts/github_wake.py --scheduled
           elif [[ "${{ github.event_name }}" == "push" || "${{ inputs.publish_only }}" == "true" ]]; then
             python scripts/github_wake.py --publish-only

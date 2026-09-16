@@ -178,6 +178,16 @@ class Store:
                 self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, canonical(state)))
         return state
 
+    def reset(self):
+        """Irreversibly clear durable history and rebuild the empty projection."""
+        with self.db:
+            self.db.execute("DELETE FROM events")
+            self.db.execute("DELETE FROM snapshot")
+        # Rewrite the SQLite file so deleted records are not left in free pages.
+        self.db.execute("VACUUM")
+        (self.directory / "experiment.json").unlink(missing_ok=True)
+        return self.load(repair=True)
+
     def append(self, kind, payload, crash=False):
         state, head = self.replay()
         seq = self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0] + 1

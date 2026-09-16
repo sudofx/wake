@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import sqlite3
 import sys
+import shutil
 
 from .audit import verify_history
 from .engine import Engine, config
@@ -27,6 +28,11 @@ def parser():
     wake.add_argument("--model")
     wake.add_argument("--crash-at", choices=["after-start", "during-commit"], help="Fixture-only crash experiment")
     sub.add_parser("status")
+    reset = sub.add_parser("reset", help="Irreversibly return durable state to WAKE 0")
+    reset.add_argument("--confirm", action="store_true",
+                       help="Confirm deletion of all accumulated WAKE state")
+    reset.add_argument("--output", default="site",
+                       help="Generated report directory to replace (default: site)")
     recover = sub.add_parser("recover", help="Rebuild a corrupt projection; close an interrupted invocation")
     observe = sub.add_parser("observe", help="Add a human-supplied observation")
     observe.add_argument("--source", required=True)
@@ -96,6 +102,23 @@ def execute(args):
             return engine.run(provider, args.crash_at, collector=collect if name == "gemini" and settings.get("mission") else None)
         if args.command == "export":
             return export(engine.store, args.output)
+        if args.command == "reset":
+            require(args.confirm, "Reset requires --confirm")
+            target = Path(args.output).resolve()
+            cwd = Path.cwd().resolve()
+            data_dir = engine.store.directory.resolve()
+            require(target != cwd and target not in cwd.parents,
+                    "Refusing to delete the repository or one of its parent directories")
+            require(target != data_dir and target not in data_dir.parents and data_dir not in target.parents,
+                    "Refusing to use the durable state directory or one of its parents/children as reset output")
+            with engine.store.lock():
+                engine.store.reset()
+                state = engine.initialize()
+            if target.exists():
+                shutil.rmtree(target)
+            published = export(engine.store, target)
+            return {"reset": True, "cycles": state["version"],
+                    "head": published["head"], "path": published["path"]}
         with engine.store.lock():
             if args.command == "init":
                 state = engine.initialize()

@@ -41,6 +41,26 @@ class SystemTests(unittest.TestCase):
             result = self.engine.finish(invocation, json.dumps(proposal))
         return result
 
+    def test_reset_returns_to_cycle_zero_and_erases_accumulated_state(self):
+        self.engine.run(Fixture("before-reset"))
+        (self.root / "data" / "experiment.json").write_text('{"old": true}')
+        self.assertGreater(self.engine.store.load()["version"], 0)
+
+        with self.engine.store.lock():
+            self.engine.store.reset()
+            state = self.engine.initialize()
+
+        self.assertEqual(state["version"], 0)
+        self.assertEqual(state["beliefs"], {})
+        self.assertEqual(state["commitments"], {})
+        self.assertEqual(state["evidence"], {})
+        self.assertEqual(state["journal"], [])
+        self.assertEqual(state["posts"], {})
+        self.assertEqual(state["invocations"], {})
+        self.assertIsNone(state["pending"])
+        self.assertFalse((self.root / "data" / "experiment.json").exists())
+        self.assertEqual([event["kind"] for event in self.engine.store.events()], ["initialized"])
+
     def test_new_provider_inherits_commitment(self):
         first = self.engine.run(Fixture("a"))
         second = self.engine.run(Fixture("b"))

@@ -10,6 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -84,7 +85,7 @@ class StateBranch:
         self.git("push", "origin", f"HEAD:refs/heads/{self.branch}", cwd=self.checkout)
 
 
-def main(publish_only=False, scheduled=False):
+def main(publish_only=False, scheduled=False, reset=False):
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("This entry point runs in GitHub Actions. Use python -m wake for local work.")
     settings = config(ROOT / "wake.toml")
@@ -96,10 +97,14 @@ def main(publish_only=False, scheduled=False):
         try:
             # Initialize/recover and publish a valid empty or recovered journal even if setup fails.
             with engine.store.lock():
+                if reset:
+                    engine.store.reset()
                 engine.initialize()
                 engine.recover(explicit=True)
-                branch.checkpoint()
-            if scheduled:
+                # A reset is committed only after its fresh export is ready.
+                if not reset:
+                    branch.checkpoint()
+            if scheduled and not reset:
                 due, next_eligible = scheduled_wake_due(engine.store.load())
                 if not due:
                     result = {"status": "waiting",
@@ -109,7 +114,13 @@ def main(publish_only=False, scheduled=False):
                     print(json.dumps(result))
                     return 0
             try:
-                if publish_only:
+                if reset:
+                    state = engine.store.load()
+                    result = {"status": "not_started",
+                              "reason": "WAKE reset to zero",
+                              "reset": True,
+                              "cycle": state["version"]}
+                elif publish_only:
                     state = engine.store.load()
                     latest = next(reversed(state["invocations"].values()), None)
                     result = ({"status": latest["status"], "id": latest["id"], "reason": latest.get("reason", "")}
@@ -123,6 +134,8 @@ def main(publish_only=False, scheduled=False):
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
             result["wake_status"] = wake_status(engine.store.load(), settings["daily_call_limit"])
+            if reset:
+                shutil.rmtree(ROOT / "site", ignore_errors=True)
             export(engine.store, ROOT / "site", operation=result)
             atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
             atomic_write(ROOT / "site/.nojekyll", "")
@@ -130,8 +143,8 @@ def main(publish_only=False, scheduled=False):
             for name in ("events.jsonl", "state.json", "head.txt"):
                 atomic_write(branch.checkout/name, (ROOT/"site"/name).read_text())
             # This fallback stays readable through htmlpreview even before Pages is enabled.
-            import shutil
-            shutil.copytree(ROOT/"site", branch.checkout/"site", dirs_exist_ok=True)
+            shutil.rmtree(branch.checkout/"site", ignore_errors=True)
+            shutil.copytree(ROOT/"site", branch.checkout/"site")
             branch.git("add", "events.jsonl", "state.json", "head.txt", "site", cwd=branch.checkout)
             branch.checkpoint()
         finally:
@@ -144,8 +157,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--publish-only", action="store_true", help="Publish the existing record without a model call")
     parser.add_argument("--scheduled", action="store_true", help="Skip duplicate cron events covered by a recent wake")
+    parser.add_argument("--reset", action="store_true",
+                        help="Irreversibly reset durable cloud state to WAKE 0")
+    parser.add_argument("--confirm-reset", action="store_true",
+                        help="Required confirmation for --reset")
     args = parser.parse_args()
+    if args.reset and not args.confirm_reset:
+        raise SystemExit("--reset requires --confirm-reset")
     try:
-        sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled))
+        sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled, reset=args.reset))
     except subprocess.CalledProcessError:
         raise SystemExit("Git state persistence failed. No force push or automatic model retry was attempted.") from None
