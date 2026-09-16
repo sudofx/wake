@@ -2,20 +2,7 @@
   "status": "deferred",
   "id": "w-506f01d53a7b4d49",
   "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "http_status": 503,
-    "elapsed_ms": 14509,
-    "request_payload_bytes": 45840,
-    "response_bytes_captured": 198,
-    "provider_error": {
-      "code": 503,
-      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-      "status": "UNAVAILABLE"
-    },
-    "category": "server",
-    "provider_requests_sent": 1
-  },
-  "provider_requests_sent": 1,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-7832ff93664240eb",
@@ -66,12 +53,15 @@
         "provider_requests_sent": 1,
         "request_payload_bytes": 45840,
         "response_bytes_captured": 198
-      }
+      },
+      "provider_requests_sent": 1
     },
     "accepted_cycles": 20,
     "next_eligible": "2026-09-16T07:35:15.859167+00:00",
     "pending": false,
     "attempts_today": 1,
+    "provider_requests_today": 1,
+    "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }
 }
