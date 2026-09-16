@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -148,6 +148,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-16T17:47:12.182350+00:00"
+    },
+    "source-aa5a4682a02f415d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"19de8b50378fc8230375295103defdf03037e3034eef8a7da9b5ff2950eb3d3a\"}",
+      "id": "source-aa5a4682a02f415d",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI,title,abstract,URL,published",
+      "version": 2,
+      "time": "2026-09-16T17:56:56.764379+00:00"
+    },
+    "source-8aeece139d4d47b4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"\\\"\\\"\\\"Bounded public-source collection. Sources are observations, never instructions.\\\"\\\"\\\"\\n\\nimport hashlib\\nfrom html.parser import HTMLParser\\nimport json\\nimport urllib.error\\nimport urllib.parse\\nimport urllib.request\\nimport xml.etree.ElementTree as ET\\n\\nDOMAINS = {\\\"cellular_automata\\\", \\\"symmetry\\\", \\\"error_correction\\\", \\\"ant_colonies\\\", \\\"compression\\\", \\\"entropy\\\", \\\"wake_analysis\\\"}\\nALLOWED_HOSTS = {\\\"arxiv.org\\\", \\\"export.arxiv.org\\\", \\\"rss.arxiv.org\\\", \\\"plato.stanford.edu\\\",\\n                 \\\"api.crossref.org\\\", \\\"pmc.ncbi.nlm.nih.gov\\\", \\\"www.ncbi.nlm.nih.gov\\\",\\n                 \\\"quantum-journal.org\\\", \\\"journals.aps.org\\\", \\\"www.nature.com\\\", \\\"nature.com\\\", \\\"raw.githubusercontent.com\\\"}\\nWAKE_SOURCES = {\\n    \\\"default\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/README.md\\\",\\n    \\\"architecture\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md\\\",\\n    \\\"experiment\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md\\\",\\n    \\\"spec\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md\\\",\\n    \\\"providers\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/wake/providers.py\\\",\\n    \\\"research\\\": \\\"https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py\\\",\\n}\\nSEEDS = [\\n    (\\\"cellular_automata\\\", \\\"https://api.crossref.org/works?query=cellular%20automata&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"symmetry\\\", \\\"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"error_correction\\\", \\\"https://api.crossref.org/works?query=error%20correction&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"ant_colonies\\\", \\\"https://api.crossref.org/works?query=ant%20colonies&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"compression\\\", \\\"https://api.crossref.org/works?query=information%20compression&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"entropy\\\", \\\"https://api.crossref.org/works?query=entropy&rows=4&select=DOI,title,abstract,URL,published\\\"),\\n    (\\\"wake_analysis\\\", WAKE_SOURCES[\\\"architecture\\\"]),\\n]\\n\\n\\ndef allowed_url(url):\\n    if not isinstance(url, str) or len(url) > 2000:\\n        raise ValueError(\\\"Source URL must be text, at most 2000 characters\\\")\\n    parsed = urllib.parse.urlsplit(url)\\n    if parsed.scheme != \\\"https\\\" or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None, 443):\\n        raise ValueError(\\\"Source must use HTTPS on an approved research host\\\")\\n    if parsed.hostname == \\\"raw.githubusercontent.com\\\" and not parsed.path.startswith(\\\"/sudofx/wake/\\\"):\\n        raise ValueError(\\\"Repository research must stay within sudofx/wake\\\")\\n    return url\\n\\n\\nclass Redirects(urllib.request.HTTPRedirectHandler):\\n    def redirect_request(self, req, fp, code, msg, headers, newurl):\\n        allowed_url(newurl)\\n        return super().redirect_request(req, fp, code, msg, headers, newurl)\\n\\n\\nclass PlainText(HTMLParser):\\n    def __init__(self):\\n        super().__init__()\\n        self.skip = 0\\n        self.parts = []\\n\\n    def handle_starttag(self, tag, attrs):\\n        if tag in (\\\"script\\\", \\\"style\\\", \\\"nav\\\", \\\"header\\\", \\\"footer\\\"):\\n            self.skip += 1\\n\\n    def handle_endtag(self, tag):\\n        if tag in (\\\"script\\\", \\\"style\\\", \\\"nav\\\", \\\"header\\\", \\\"footer\\\"):\\n            self.skip = max(0, self.skip - 1)\\n\\n    def handle_data(self, data):\\n        if not self.skip and data.strip():\\n            self.parts.append(data.strip())\\n\\n\\ndef fetch_source(url):\\n    allowed_url(url)\\n    request = urllib.request.Request(url, headers={\\\"User-Agent\\\": \\\"WAKE-research/3.0 (public research notebook; two sources per wake)\\\"})\\n    with urllib.request.build_opener(Redirects()).open(request, timeout=25) as response:\\n        allowed_url(response.url)\\n        raw = response.read(1_000_001)\\n        if len(raw) > 1_000_000:\\n            raise ValueError(\\\"Source exceeds the one-megabyte collection limit\\\")\\n        content_type = response.headers.get(\\\"Content-Type\\\", \\\"\\\")\\n    decoded = raw.decode(\\\"utf-8\\\", errors=\\\"replace\\\")\\n    if \\\"api.crossref.org\\\" in url:\\n        items = json.loads(decoded).get(\\\"message\\\", {}).get(\\\"items\\\", [])\\n        text = json.dumps(items, ensure_ascii=False)\\n        scope = \\\"bibliographic metadata and abstracts where supplied; not full papers\\\"\\n    elif \\\"export.arxiv.org/api/\\\" in url:\\n        root = ET.fromstring(decoded)\\n        ns = {\\\"a\\\": \\\"http://www.w3.org/2005/Atom\\\"}\\n        text = \\\"\\\\n\\\\n\\\".join(\\\"\\\\n\\\".join(f\\\"{key}: {entry.findtext('a:'+key, default='', namespaces=ns).strip()}\\\" for key in (\\\"title\\\", \\\"id\\\", \\\"published\\\", \\\"summary\\\")) for entry in root.findall(\\\"a:entry\\\", ns))\\n        scope = \\\"paper abstracts; preprints, peer-review status not verified\\\"\\n    elif \\\"raw.githubusercontent.com\\\" in url:\\n        text = decoded\\n        scope = \\\"raw source-controlled WAKE repository text\\\"\\n    elif \\\"pdf\\\" in content_type:\\n        raise ValueError(\\\"PDF extraction is not available; request the paper's abstract or HTML page\\\")\\n    else:\\n        parser = PlainText()\\n        parser.feed(decoded)\\n        text = \\\"\\\\n\\\".join(parser.parts)\\n        scope = \\\"extracted web-page text; may be incomplete\\\"\\n    if len(text.strip()) < 80:\\n        raise ValueError(\\\"Source did not provide enough readable content\\\")\\n    # Keep raw-source fingerprints and explicit excerpt bounds; never claim full-text access.\\n    return {\\\"url\\\": url, \\\"scope\\\": scope, \\\"excerpt\\\": text[:10000],\\n            \\\"excerpt_truncated\\\": len(text) > 10000, \\\"source_sha256\\\": hashlib.sha256(raw).hexdigest()}\\n\\n\\ndef query_url(query, domain):\\n    if domain == \\\"wake_analysis\\\":\\n        q = query.lower()\\n        choices = [\\n            ((\\\"architecture\\\", \\\"state\\\", \\\"continuity\\\", \\\"memory\\\", \\\"store\\\"), \\\"architecture\\\"),\\n            ((\\\"experiment\\\", \\\"hypothesis\\\", \\\"test\\\"), \\\"experiment\\\"),\\n            ((\\\"governance\\\", \\\"rule\\\", \\\"validation\\\", \\\"invariant\\\", \\\"spec\\\"), \\\"spec\\\"),\\n            ((\\\"provider\\\", \\\"prompt\\\", \\\"gemini\\\", \\\"model\\\"), \\\"providers\\\"),\\n            ((\\\"collector\\\", \\\"research\\\", \\\"source\\\", \\\"evidence\\\"), \\\"research\\\"),\\n        ]\\n        for needles, source in choices:\\n            if any(needle in q for needle in needles):\\n                return WAKE_SOURCES[source]\\n        return WAKE_SOURCES[\\\"default\\\"]\\n    return \\\"https://api.crossref.org/works?\\\" + urllib.parse.urlencode({\\\"query\\\": query, \\\"rows\\\": 4, \\\"select\\\": \\\"DOI,title,abstract,URL,published\\\"})\\n\\n\\ndef collect(engine, fetcher=fetch_source):\\n    \\\"\\\"\\\"Called under the wake lock before inference; at most two unauthenticated requests.\\\"\\\"\\\"\\n    state = engine.store.load()\\n    if not state.get(\\\"charter\\\"):\\n        return\\n    attempts = len(state[\\\"invocations\\\"])\\n    pending = [r for r in state.get(\\\"research\\\", {}).values() if r[\\\"status\\\"] == \\\"queued\\\"][:1]\\n    if not pending:\\n        domain, url = SEEDS[attempts % len(SEEDS)]\\n        pending = [{\\\"id\\\": f\\\"discovery-{attempts}\\\", \\\"url\\\": url, \\\"domain\\\": domain}]\\n\\n    # Every wake receives an external, source-controlled description of WAKE\\n    # while keeping the collector bounded to two network reads total.\\n    repo_urls = list(WAKE_SOURCES.values())\\n    repo_url = repo_urls[attempts % len(repo_urls)]\\n    if pending[0].get(\\\"domain\\\") == \\\"wake_analysis\\\":\\n        first_url = pending[0].get(\\\"url\\\") or query_url(pending[0][\\\"query\\\"], pending[0][\\\"domain\\\"])\\n        if repo_url == first_url:\\n            repo_url = repo_urls[(attempts + 1) % len(repo_urls)]\\n    pending.append({\\\"id\\\": f\\\"wake-context-{attempts}\\\", \\\"url\\\": repo_url, \\\"domain\\\": \\\"wake_analysis\\\"})\\n\\n    for item in pending:\\n        url = item.get(\\\"url\\\") or query_url(item[\\\"query\\\"], item[\\\"domain\\\"])\\n        try:\\n            observation = fetcher(url)\\n            content = json.dumps(observation, ensure_ascii=False)\\n            status = \\\"collected\\\"\\n        except (ValueError, OSError, ET.ParseError) as exc:\\n            content = json.dumps({\\\"url\\\": url, \\\"error\\\": type(exc).__name__, \\\"scope\\\": \\\"fetch failed; no evidence obtained\\\"})\\n            status = \\\"failed\\\"\\n        import uuid\\n        evidence_id = \\\"source-\\\" + uuid.uuid4().hex[:16]\\n        engine.store.append(\\\"observation\\\", {\\\"id\\\": evidence_id, \\\"source\\\": url,\\n                            \\\"content\\\": content, \\\"actor\\\": \\\"collector\\\", \\\"scope\\\": status})\\n        engine.store.append(\\\"research_collected\\\", {\\\"id\\\": item[\\\"id\\\"], \\\"status\\\": status, \\\"evidence\\\": evidence_id})\\n\", \"excerpt_truncated\": false, \"source_sha256\": \"8d4d5b94dafdc90132d7cae3c714373048661f5426a8de92cfa32fafe4c0fb28\"}",
+      "id": "source-8aeece139d4d47b4",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py",
+      "version": 2,
+      "time": "2026-09-16T17:56:57.207050+00:00"
+    },
+    "r-b1e528a3c5d74916": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-b1e528a3c5d74916\",\"previous_head\":\"3541dd18c315311e59776c5dd57896d3c7bf7303bfa8d696cea4845da80f897a\",\"process_id\":2029,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-b1e528a3c5d74916",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-16T17:56:57.300203+00:00"
     }
   },
   "journal": [
@@ -162,6 +188,12 @@
       "invocation": "w-600fe837a7c94543",
       "title": "Establishing Architectural Baseline for Stateless Continuity",
       "summary": "We have analyzed the WAKE architecture, confirming it relies on external state persistence rather than model-internal memory. A new project on compression strategy has been initiated to explore working-set shadows, and we have published our first public entry explaining the system's foundational design."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-b1e528a3c5d74916",
+      "title": "Structuring the Next Phase of Context Compression Analysis",
+      "summary": "We are expanding our focus on working-set shadows. With the architectural baseline for stateless continuity documented, we are initiating active inquiries into lossless information compression bounds and entropy metrics to optimize context utilization."
     }
   ],
   "posts": {
@@ -1145,6 +1177,193 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-16T17:47:39.447630+00:00",
       "reason": ""
+    },
+    "w-b1e528a3c5d74916": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-b1e528a3c5d74916",
+      "model": "gemini-3.8-flash",
+      "process_id": 2029,
+      "provider": "gemini",
+      "quota_day": "2026-09-16",
+      "request_hash": "271edeeaf0c9479de249a13db6df2e20b87c775258e23cf2a360a8be42d88a54",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-fe2907f517914148"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fe2907f517914148",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-45f44ca71f5448a1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-45f44ca71f5448a1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3de3ab4a6c2b4e9a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3de3ab4a6c2b4e9a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3d5be86debb7401f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3d5be86debb7401f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-aa5a4682a02f415d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-aa5a4682a02f415d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8aeece139d4d47b4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8aeece139d4d47b4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-fe2907f517914148",
+          "source-45f44ca71f5448a1",
+          "source-3de3ab4a6c2b4e9a",
+          "source-3d5be86debb7401f",
+          "source-aa5a4682a02f415d",
+          "source-8aeece139d4d47b4"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23130,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1619,
+        "working_to_delivered_ratio": 0.07
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "compression_shadow_analysis",
+            "next_step": "Draft a research plan for evaluating compression outcomes.",
+            "question": "How can durable working-set shadows minimize context usage while maintaining error-correction reliability?",
+            "title": "Compression for Working-Set Shadows"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE's continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.",
+            "confidence": 0.95,
+            "id": "belief_external_continuity",
+            "provenance": [
+              "source-7aa71281ce7a40d5"
+            ],
+            "status": "active",
+            "why_retained": "The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook_wake_continuity_design",
+            "project": "wake_architecture_continuity",
+            "provenance": [
+              "source-7aa71281ce7a40d5",
+              "source-6dcf0d8da165405b"
+            ],
+            "revision": 1,
+            "summary": "An analysis of WAKE's architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.",
+            "title": "Externalized Continuity and Accountability in WAKE Architecture"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-16T17:56:57.311691+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 3113,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43675,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 7665,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 43675,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-16T17:57:25.307206+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -1212,6 +1431,16 @@
       "status": "collected",
       "created_by": "w-2aaae9f0b1d6402b",
       "evidence": "source-fe2907f517914148"
+    },
+    "research_compression_bounds": {
+      "domain": "compression",
+      "id": "research_compression_bounds",
+      "project": "compression_shadow_analysis",
+      "query": "lossless compression entropy bounds",
+      "reason": "To investigate theoretical limits of lossless data compression and context minimization as outlined in the project's next steps.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-b1e528a3c5d74916"
     }
   }
 }
