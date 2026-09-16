@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-33af41934c214f82",
   "reason": "Blog evidence must be traceable through its referenced notebooks",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-7832ff93664240eb",
