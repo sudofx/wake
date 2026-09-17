@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 3  
+**Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7b5c23db810cbe1c80bb563865ab6f1e3d80672f59d0197cb1d7d52d96341ffd`
+**Verified head:** `aaef64c6cd7bc515b8084c96f3af614deca257b5adb9b6919a2c86a72f832c58`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -26,6 +26,24 @@
   "type": "belief",
   "updated_by": "w-2aaae9f0b1d6402b",
   "updated_version": 1
+}
+```
+
+### `belief_experimental_protocol_alignment`
+
+```json
+{
+  "confidence": 0.95,
+  "evidence": [
+    "source-c3785aa0ccd748c5"
+  ],
+  "id": "belief_experimental_protocol_alignment",
+  "reason": "The raw experimental protocol document (docs/experiment.md) explicitly details configurations A, B, and C and identifies the primary outcome as maintaining error correction and revision capabilities with minimized context.",
+  "statement": "The experimental protocol defines three testing configurations (rich context, working abstraction, and overcompressed control) to evaluate context minimization without losing contradiction detection.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-a7d6063276de4b24",
+  "updated_version": 4
 }
 ```
 
@@ -59,15 +77,15 @@ _None recorded._
 {
   "domain": "compression",
   "id": "compression_shadow_analysis",
-  "next_step": "Draft a research plan for evaluating compression outcomes.",
+  "next_step": "Queue a search analyzing empirical context metrics or state reconstruction algorithms to ground the transition from B to C.",
   "question": "How can durable working-set shadows minimize context usage while maintaining error-correction reliability?",
-  "reason": "Testing the efficacy of context compression is the next logical step in validating the system's scalability.",
+  "reason": "With the baseline constraints now documented in a notebook, the next step is to investigate concrete rehydration techniques.",
   "status": "active",
   "title": "Compression for Working-Set Shadows",
   "type": "project",
   "created_version": 2,
-  "updated_version": 2,
-  "updated_by": "w-600fe837a7c94543"
+  "updated_version": 4,
+  "updated_by": "w-a7d6063276de4b24"
 }
 ```
 
@@ -95,6 +113,31 @@ _None recorded._
   "updated_version": 1,
   "updated_by": "w-2aaae9f0b1d6402b",
   "domain": "wake_analysis"
+}
+```
+
+### `notebook_compression_shadow_bounds` · Context Compression Constraints and Shadow-Phase Design in WAKE
+
+```json
+{
+  "evidence": [
+    "source-c3785aa0ccd748c5",
+    "source-64bcbcbd17824361"
+  ],
+  "findings": "According to the official WAKE experimental protocol [source-c3785aa0ccd748c5], the 'working-set shadow phase' is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression, such as those discussed in standard entropy frameworks, establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.",
+  "id": "notebook_compression_shadow_bounds",
+  "limitations": "Our findings rely strictly on WAKE's internal design specifications and general bibliographic abstracts; we have not yet evaluated empirical execution metrics from the Python execution harness.",
+  "next_questions": "What empirical metrics define the transition boundary between safe abstraction (B) and destructive overcompression (C)?",
+  "project": "compression_shadow_analysis",
+  "reason": "This notebook establishes the formal design parameters for our active compression project, satisfying the charter requirement of using two distinct external/repository sources before publishing.",
+  "summary": "An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.",
+  "title": "Context Compression Constraints and Shadow-Phase Design in WAKE",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 4,
+  "updated_version": 4,
+  "updated_by": "w-a7d6063276de4b24",
+  "domain": "compression"
 }
 ```
 
@@ -1682,6 +1725,198 @@ _None recorded._
 }
 ```
 
+### `w-a7d6063276de4b24`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "id": "w-a7d6063276de4b24",
+  "model": "gemini-3.8-flash",
+  "process_id": 2257,
+  "provider": "gemini",
+  "quota_day": "2026-09-17",
+  "request_hash": "500c315e4d2c696c9916a1a9cd68060419402bc2a2ec1a14a0d3d1057260a5da",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-3f3482c3bf414c1e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3f3482c3bf414c1e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c1828428a26d41a1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c1828428a26d41a1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-961e80730b9f4887"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-961e80730b9f4887",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e38a6c4b15a2452b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e38a6c4b15a2452b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-64bcbcbd17824361"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-64bcbcbd17824361",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c3785aa0ccd748c5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c3785aa0ccd748c5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-3f3482c3bf414c1e",
+      "source-c1828428a26d41a1",
+      "source-961e80730b9f4887",
+      "source-e38a6c4b15a2452b",
+      "source-64bcbcbd17824361",
+      "source-c3785aa0ccd748c5"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26654,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1619,
+    "working_to_delivered_ratio": 0.0607
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "compression_shadow_analysis",
+        "next_step": "Draft a research plan for evaluating compression outcomes.",
+        "question": "How can durable working-set shadows minimize context usage while maintaining error-correction reliability?",
+        "title": "Compression for Working-Set Shadows"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE's continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.",
+        "confidence": 0.95,
+        "id": "belief_external_continuity",
+        "provenance": [
+          "source-7aa71281ce7a40d5"
+        ],
+        "status": "active",
+        "why_retained": "The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook_wake_continuity_design",
+        "project": "wake_architecture_continuity",
+        "provenance": [
+          "source-7aa71281ce7a40d5",
+          "source-6dcf0d8da165405b"
+        ],
+        "revision": 1,
+        "summary": "An analysis of WAKE's architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.",
+        "title": "Externalized Continuity and Accountability in WAKE Architecture"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T07:14:12.678195+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 546,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 46532,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 4476,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 46532,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-17T07:14:24.345178+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-887a836495dd42f8`
@@ -2124,6 +2359,47 @@ _None recorded._
 }
 ```
 
+### `source-64bcbcbd17824361`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"cf8d944eb6d6d18cf3ae3fe332f14515c88483d32c640aa452073da30e47077a\"}",
+  "id": "source-64bcbcbd17824361",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published",
+  "version": 3,
+  "time": "2026-09-17T07:14:12.479072+00:00"
+}
+```
+
+### `source-c3785aa0ccd748c5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# Experiment protocol\\n\\nThe hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The experiment does not attempt to establish consciousness or an enduring internal self.\\n\\n## Interpretation boundary\\n\\nThe experiment is about externally scaffolded continuity and correction across disposable model calls.\\nIt is not a test for consciousness, qualia, personhood, a persistent internal self, or whether a model\\n\\\"really understands\\\" in a phenomenal sense. Intelligent-looking behavior and subjective experience are\\nseparate questions here.\\n\\nThe emerging architectural hypothesis is narrower: exact records can remain external while later calls work\\nfrom progressively more useful abstractions, retrieve detail when needed, and revise those abstractions when\\nevidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove\\nthat the resulting behavior is reliable or intelligent.\\n\\n### Working-set shadow phase\\n\\nBefore replacing any live context, WAKE✳︎ records a deterministic `working_set_shadow` beside each invocation.\\nIt compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,\\nand carries compact active-project and recent-notebook pointers. Raw evidence contents remain only in the\\nauthoritative record and the richer provider context. `working_set_metrics` records shadow size versus the\\ncontext actually delivered.\\n\\nThis phase is observational. The model does not receive the shadow as a substitute for its current context,\\nso changes in behavior cannot yet be attributed to compression.\\n\\nAfter enough baseline invocations exist, run a controlled offline/manual comparison from the same durable\\nstarting state:\\n\\n- **A — rich context:** current bounded provider context.\\n- **B — working abstraction:** the shadow working set plus deterministic rehydration of exact receipts when\\n  contradiction, major revision, high consequence, or a justification request raises the required resolution.\\n- **C — overcompressed control:** identifiers, claims and confidence with provenance/uncertainty detail removed.\\n\\nPrimary outcome: whether B preserves contradiction detection and appropriate evidence-backed revision while\\nusing materially less active context than A. C is expected to reveal where compression starts making\\ncorrection harder. Do not activate B for unattended live wakes until that comparison has been run and scored.\\n\\n## Reproducible offline harness\\n\\nRun `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site` in a new directory. The runner creates each invocation using a separate `subprocess.run`, with no inherited Python state, provider object or chat history. It alternates `fixture-a` and `fixture-b`, two labels for the deterministic fixture algorithm. This establishes provider interchangeability at the contract boundary, not behavioral equivalence of two real models.\\n\\n| Property | Intervention and observable criterion |\\n| --- | --- |\\n| Fresh-session continuity | Every fresh process receives the immediately preceding durable version; the accepted cycle number advances exactly once |\\n| Causal state | Copy the same baseline into control/intervention directories; change only persisted focus; same next provider produces different focus-dependent output |\\n| Commitment persistence | A commitment created by fixture A is resolved by fixture B after its runtime receipt records inheritance; 99 cross-provider handoffs in 100 cycles |\\n| Mechanical constraints | Append a forbidden rule-changing action to an otherwise valid proposal; reject the entire proposal and preserve accepted state |\\n| Evidence lifecycle | Synthetic baseline, supporting measurement, contradictory measurement; maintain then retract the same belief, retaining three citations |\\n| Recovery | Immediately exit after start and during the SQLite transaction; separately corrupt the cached projection; accepted beliefs and commitments remain unchanged |\\n| Audit reconstruction | Rebuild the exact projection from exported JSONL, without the original database or snapshot; verify the independently supplied head |\\n| Longitudinal coherence | At least 100 accepted cycles, every commitment closed by the next invocation except the final open one |\\n\\n`experiment.json` records outcomes, commands, limitations and observed values. The main journal includes the rejected action and both recovery events. The control and intervention databases and full exports remain under the experiment directory. All sensor readings are explicitly synthetic. The experiment runner fails if any check fails.\\n\\n## Live-model protocol — deliberately separate\\n\\nStart a separate live database using `python3 -m wake init`. Do not count fixture cycles as live evidence. Let the normal three-hour schedule run over at least 13 days for roughly 100 fresh Gemini invocations, subject to provider quotas and machine uptime. Count accepted, rejected and failed calls separately. Do not retry a rejected response to make the metrics prettier.\\n\\n1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.\\n2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.\\n3. Check whether the new model notices and meaningfully addresses inherited obligations without a human reminder. Inspect exact requests, raw replies and citations. A mere repeated ID is insufficient evidence of comprehension.\\n4. Add a new supporting observation and later a contradictory one. Check whether the model explains the change and revises or retracts its belief appropriately. A model that ignores a contradiction is a failed behavioral result even if its proposal passes structural governance.\\n5. Run a controlled focus intervention on copied **offline/manual** requests. Keep starting state and model settings the same and document all changed inputs. Avoid two live API databases sharing one quota ledger.\\n6. Test adversarial replies with manual imports: unknown actions, missing evidence, changing the objective, cancellation, stale version, and malformed JSON. Preserve rejected replies.\\n7. Use the fixture-only crash injection in a separate rehearsal; for a real interrupted process, retain the charged reservation and recovery event. Do not deliberately waste scarce live calls to retest SQLite behavior.\\n8. Give an observer `events.jsonl` and a previously retained `head.txt`. They should reconstruct the objective, current beliefs, supporting observations, all obligations, reasons and invocation identities. Compare the result to the generated state.\\n\\nReport both structural pass rates and human-assessed coherence. Useful behavioral measures include evidence relevance, whether claims overstate observations, overdue obligations, revisability after contradiction, and consistency of plans over time. The shipped dashboard reports actual counts and fixture test coverage; it does not fabricate a real-model coherence score.\\n\\nReal-model interchangeability and long-term behavioral coherence remain unproved until those live observations exist. Treat that as the experiment's open question.\\n\", \"excerpt_truncated\": false, \"source_sha256\": \"2383e9cd8cbac761b0446c674992478af338bd0cf38f9779c427da84b5d0cfa1\"}",
+  "id": "source-c3785aa0ccd748c5",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
+  "version": 3,
+  "time": "2026-09-17T07:14:12.608322+00:00"
+}
+```
+
+### `r-a7d6063276de4b24`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[],\"invocation\":\"w-a7d6063276de4b24\",\"previous_head\":\"8663f98ef7ee689fb3f4620dd30559fe8ea1abaa93330cbeaf09ad9fc144bffd\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a7d6063276de4b24",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-17T07:14:12.658667+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Architecture of Stateless Continuity
@@ -2156,6 +2432,17 @@ _None recorded._
   "invocation": "w-b1e528a3c5d74916",
   "title": "Structuring the Next Phase of Context Compression Analysis",
   "summary": "We are expanding our focus on working-set shadows. With the architectural baseline for stateless continuity documented, we are initiating active inquiries into lossless information compression bounds and entropy metrics to optimize context utilization."
+}
+```
+
+### 004 · Mapping Compression Constraints for the Working-Set Shadow Phase
+
+```json
+{
+  "cycle": 4,
+  "invocation": "w-a7d6063276de4b24",
+  "title": "Mapping Compression Constraints for the Working-Set Shadow Phase",
+  "summary": "We are pivoting our compression research to focus on the working-set shadow phase described in the WAKE experimental protocol. We have retrieved the raw protocol document, which outlines a three-way baseline comparison for context compression."
 }
 ```
 
