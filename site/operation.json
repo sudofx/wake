@@ -1,25 +1,25 @@
 {
   "status": "accepted",
-  "id": "w-7af4926adf87419d",
+  "id": "w-6d1ff2700bc5401a",
   "reason": "",
-  "cycle": 6,
+  "cycle": 7,
   "publication_only": true,
   "wake_status": {
     "last_accepted": {
-      "id": "w-7af4926adf87419d",
-      "time": "2026-09-17T18:52:07.305975+00:00",
-      "finished": "2026-09-17T18:55:30.719282+00:00",
+      "id": "w-6d1ff2700bc5401a",
+      "time": "2026-09-17T19:08:45.471904+00:00",
+      "finished": "2026-09-17T19:10:46.431029+00:00",
       "status": "accepted",
       "reason": ""
     },
     "latest_attempt": {
-      "id": "w-7af4926adf87419d",
-      "time": "2026-09-17T18:52:07.305975+00:00",
-      "finished": "2026-09-17T18:55:30.719282+00:00",
+      "id": "w-6d1ff2700bc5401a",
+      "time": "2026-09-17T19:08:45.471904+00:00",
+      "finished": "2026-09-17T19:10:46.431029+00:00",
       "status": "accepted",
       "reason": ""
     },
-    "accepted_cycles": 6,
+    "accepted_cycles": 7,
     "next_eligible": "2026-09-18T00:00:00-07:00",
     "pending": false,
     "attempts_today": 9,
