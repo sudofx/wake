@@ -2,9 +2,67 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `54a700deb290437da1d4c504f635b51543718c785d05ef0fc2cdbea5e9c7a3f1`
+Verified head: `abef20818051ae10d49787a4d6caabd78c153a0990b6642d4023d433ec62d8b4`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0134 · `research_collected`
+
+**Time:** 2026-09-17T19:20:08.182140+00:00  
+**ID:** `discovery-12-0`  
+**Hash:** `abef20818051ae10d49787a4d6caabd78c153a0990b6642d4023d433ec62d8b4`  
+**Previous hash:** `8c02dc7fc5d5355cf00904f067881a1e3eb53a9ffe35122e24b73bfafb9cd822`
+
+### Payload
+
+```json
+{
+  "evidence": "source-1d4591d049ee4439",
+  "id": "discovery-12-0",
+  "status": "failed"
+}
+```
+
+## Event 0133 · `observation`
+
+**Time:** 2026-09-17T19:20:08.163369+00:00  
+**ID:** `source-1d4591d049ee4439`  
+**Hash:** `8c02dc7fc5d5355cf00904f067881a1e3eb53a9ffe35122e24b73bfafb9cd822`  
+**Previous hash:** `0287df5e72118ca5ba98e9599605d6e8de74b7110b51d470309073589574ebc0`
+
+**Source:** `https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "error": "HTTPError", "scope": "fetch failed; no evidence obtained"}
+
+## Event 0132 · `research_collected`
+
+**Time:** 2026-09-17T19:20:08.108282+00:00  
+**ID:** `res-toom-noise-stability`  
+**Hash:** `0287df5e72118ca5ba98e9599605d6e8de74b7110b51d470309073589574ebc0`  
+**Previous hash:** `1d951f3c02ba8a1df4c06bbf1216ac910e4f2759e6c32b659e62a1aa838006a5`
+
+### Payload
+
+```json
+{
+  "evidence": "source-1e52615715954ce6",
+  "id": "res-toom-noise-stability",
+  "status": "collected"
+}
+```
+
+## Event 0131 · `observation`
+
+**Time:** 2026-09-17T19:20:08.089094+00:00  
+**ID:** `source-1e52615715954ce6`  
+**Hash:** `1d951f3c02ba8a1df4c06bbf1216ac910e4f2759e6c32b659e62a1aa838006a5`  
+**Previous hash:** `54a700deb290437da1d4c504f635b51543718c785d05ef0fc2cdbea5e9c7a3f1`
+
+**Source:** `https://api.crossref.org/works?query=Toom+rule+probabilistic+cellular+automata+positive+noise+stability+erosion+phase+transition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=Toom+rule+probabilistic+cellular+automata+positive+noise+stability+erosion+phase+transition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.1093/oso/9780195137170.003.0017\", \"title\": [\"Phase Transition via Cellular Automata\"], \"abstract\": \"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\", \"URL\": \"https://doi.org/10.1093/oso/9780195137170.003.0017\", \"published\": {\"date-parts\": [[2003, 3, 27]]}}, {\"DOI\": \"10.1214/24-bjps605\", \"title\": [\"Probabilistic cellular automata with Andrei Toom\"], \"URL\": \"https://doi.org/10.1214/24-bjps605\", \"published\": {\"date-parts\": [[2024, 6, 1]]}}, {\"DOI\": \"10.1007/978-3-319-65558-1_15\", \"title\": [\"Phase Transitions of Cellular Automata\"], \"URL\": \"https://doi.org/10.1007/978-3-319-65558-1_15\", \"published\": {\"date-parts\": [[2018]]}}, {\"DOI\": \"10.1103/physreve.55.6582\", \"title\": [\"Gibbsian versus non-Gibbsian nature of stationary states for Toom probabilistic cellular automata via simulations\"], \"URL\": \"https://doi.org/10.1103/physreve.55.6582\", \"published\": {\"date-parts\": [[1997, 6, 1]]}}]", "excerpt_truncated": false, "source_sha256": "d666edc1a7e9b32e454d0110cfed388bfb094d7e8f2a8f88c23bbe4609825a37"}
 
 ## Event 0130 · `accepted`
 
