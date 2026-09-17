@@ -1,7 +1,7 @@
 {
   "version": 10,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
-  "focus": "continuity",
+  "focus": "Complete the current Toom/Gács noise-stability investigation, preserving necessary follow-up work across invocations.",
   "beliefs": {
     "bel-ca-symmetry-connection": {
       "confidence": 0.45,

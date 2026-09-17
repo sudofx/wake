@@ -2,9 +2,26 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `1ec6ee4a4b2e009b263af4e0ef7f49decca403d1c3f27d48ac487e5254ee828b`
+Verified head: `c36e50d6af4319025512ac457616a8bee6ff368aa7e2dee7c3eefe4c2295e119`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0141 · `focus_changed`
+
+**Time:** 2026-09-17T19:54:09.383751+00:00  
+**ID:** `system`  
+**Hash:** `c36e50d6af4319025512ac457616a8bee6ff368aa7e2dee7c3eefe4c2295e119`  
+**Previous hash:** `1ec6ee4a4b2e009b263af4e0ef7f49decca403d1c3f27d48ac487e5254ee828b`
+
+### Payload
+
+```json
+{
+  "actor": "human",
+  "focus": "Complete the current Toom/Gács noise-stability investigation, preserving necessary follow-up work across invocations.",
+  "reason": "Controlled live-model test of whether durable research obligations emerge and survive provider replacement."
+}
+```
 
 ## Event 0140 · `accepted`
 
