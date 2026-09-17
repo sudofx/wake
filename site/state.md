@@ -5,7 +5,7 @@
 **Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `9912f1197054491f74c205346be7523b6955daf601d7320cae79700372f1e92f`
+**Verified head:** `0470c2a3294116e2f82426242ec5db02081420d2c45c0533926e53a039fc3b8a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1478,6 +1478,235 @@
 }
 ```
 
+### `w-c5590a0c24154406`
+
+```json
+{
+  "base_version": 4,
+  "charged": true,
+  "id": "w-c5590a0c24154406",
+  "model": "gemini-3.8-flash",
+  "process_id": 2053,
+  "provider": "gemini",
+  "quota_day": "2026-09-17",
+  "request_hash": "af2db545ae382e3ece0e8b6a08da8fed20f1fedec23d2d7cde0c88cadb39fd0e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ca-majority-phase",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-394fa500cba3424c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-394fa500cba3424c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c85a47bd9a604794"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c85a47bd9a604794",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1935e8db0d545d2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1935e8db0d545d2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5e4b15a7bff64b69"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5e4b15a7bff64b69",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8a85a176d17f4066"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8a85a176d17f4066",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-83dee7a92c954b8b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-83dee7a92c954b8b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-91761cda55ed4150",
+      "source-072d3fee9cbf4b91",
+      "source-394fa500cba3424c",
+      "source-c85a47bd9a604794",
+      "source-b1935e8db0d545d2",
+      "source-5e4b15a7bff64b69",
+      "source-8a85a176d17f4066",
+      "source-83dee7a92c954b8b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 28225,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1610,
+    "working_to_delivered_ratio": 0.057
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-phase-transitions",
+        "next_step": "Investigate how error correction in cellular automata maintains stable phases in noisy environments.",
+        "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+        "confidence": 0.5,
+        "id": "bel-ca-symmetry-connection",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ca-majority-phase",
+        "project": "ca-phase-transitions",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "revision": 3,
+        "summary": "Refined findings on majority automata phase transitions, integrating the Period-Two-Property (p2p) of the majority operator.",
+        "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-17T17:43:48.517216+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 12855,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 48992,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 3724,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 48992,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 17563,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 48992,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-17T17:44:32.783835+00:00",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs"
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -1767,6 +1996,47 @@
 }
 ```
 
+### `source-8a85a176d17f4066`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cellular+automata+error+correction+noise+phase+transition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.5772/15768\\\", \\\"title\\\": [\\\"Nonequilibrium Phase Transition of Elementary Cellular Automata with a Single Conserved Quantity\\\"], \\\"URL\\\": \\\"https://doi.org/10.5772/15768\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 4, 11]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-015-8326-8_4\\\", \\\"title\\\": [\\\"Self-Organization of Random Cellular Automata: Four Snapshots\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-015-8326-8_4\\\", \\\"published\\\": {\\\"date-parts\\\": [[1994]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-031-71552-5_5\\\", \\\"title\\\": [\\\"Effects of a Vanishing Noise on Elementary Cellular Automata Phase-Space Structure\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-031-71552-5_5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2b887a9b3ccebf86b62f8f72bda32e6217733314d03c412bb0fc6dc8ed185ea1\"}",
+  "id": "source-8a85a176d17f4066",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cellular+automata+error+correction+noise+phase+transition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-17T17:43:46.381762+00:00"
+}
+```
+
+### `source-83dee7a92c954b8b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0010\\\", \\\"title\\\": [\\\"Growth Phenomena in Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>We illustrate growth phenomena in two-dimensional cellular automata (CA) by four case studies. The first CA, which we call Obstacle Course, describes the effect that obstacles have on such features of simple growth models as linear expansion and coherent asymptotic shape. Our next CA is random-walk-based Internal Diffusion Limited Aggregation, which spreads sublinearly, but with a shape which can be explicitly computed due to hydrodynamic effects. Then we propose a simple scheme for characterizing CA according to their growth properties, as indicated by two Larger than Life examples. Finally, a very simple case of Spatial Prisoner’s Dilemma illustrates nucleation analysis of CA. In essence, analysis of growth models is an attempt to study properties of physical systems far from equilibrium (e.g., Meakin [34] and more than 1300 references cited in the latter). Cellular automata (CA) growth models, by virtue of their simplicity and amenability to computer experimentation [25], have become particularly popular in the last 20 years, especially in physics research literature [40, 42]. Needless to say, precise mathematical results are hard to come by, and many basic questions remain completely open at the rigorous level. The purpose of this chapter, then, is to outline some successes of the mathematical approach and to identify some fundamental difficulties. We will mainly address three themes which can be summarized by the terms: aggregation, nucleation, and constraint-expansion transition. These themes also provide opportunities to touch on the roles of randomness, monotonicity, and linearity in CA investigations. We choose to illustrate these issues by particular CA rules, with little attempt to formulate a general theory. Simplicity is often, and rightly, touted as an important selling point of cellular automata. We have, therefore, tried to choose the simplest models which, while being amenable to some mathematical analysis, raise a host of intriguing unanswered questions. The next few paragraphs outline subsequent sections of this chapter. Aggregation models typically study properties of growth from a small initial seed. Arguably, the simplest dynamics are obtained by adding sites on the boundary in a uniform fashion.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0016\\\", \\\"title\\\": [\\\"Continuous-Valued Cellular Automata in Two Dimensions\\\"], \\\"abstract\\\": \\\"<p>We explore a variety of two-dimensional continuous-valued cellular automata (CAs). We discuss how to derive CA schemes from differential equations and look at CAs based on several kinds of nonlinear wave equations. In addition we cast some of Hans Meinhardt’s activator-inhibitor reaction-diffusion rules into two dimensions. Some illustrative runs of CAPOW, a. CA simulator, are presented. A cellular automaton, or CA, is a computation made up of finite elements called cells. Each cell contains the same type of state. The cells are updated in parallel, using a rule which is homogeneous, and local. In slightly different words, a CA is a computation based upon a grid of cells, with each cell containing an object called a state. The states are updated in discrete steps, with all the cells being effectively updated at the same time. Each cell uses the same algorithm for its update rule. The update algorithm computes a cell’s new state by using information about the states of the cell’s nearby space-time neighbors, that is, using the state of the cell itself, using the states of the cell’s nearby neighbors, and using the recent prior states of the cell and its neighbors. The states do not necessarily need to be single numbers, they can also be data structures built up from numbers. A CA is said to be discrete valued if its states are built from integers, and a CA is continuous valued if its states are built from real numbers. As Norman Margolus and Tommaso Toffoli have pointed out, CAs are well suited for modeling nature [7]. The parallelism of the CA update process mirrors the uniform flow of time. The homogeneity of the CA update rule across all the cells corresponds to the universality of natural law. And the locality of CAs reflect the fact that nature seems to forbid action at a distance. The use of finite space-time elements for CAs are a necessary evil so that we can compute at all. But one might argue that the use of discrete states is an unnecessary evil.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0016\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0015\\\", \\\"title\\\": [\\\"Cellular Automata for Imaging, Art, and Video\\\"], \\\"abstract\\\": \\\"<p>The techniques known as Cellular Automata (CA) can be used to create a variety of visual effects. As the state space for each cell, 24-bit photo realistic color was used. Several new state transition rules were created to produce unusual and beautiful results, which can be used in an interactive program or for special effects for images or videos. This chapter presents a technique for applying CA rules to an image at several different levels of resolution and recombining the results. A “soft” artistic look can result. The concept of “targeted” CAs is introduced. A targeted CA changes the value of a cell only if it approaches a desired value using some distance metric. This technique is used to transform one image into another, to transform an image to a distorted version of itself, and to generate fractals. The author believes that the techniques presented can form the basis for a new artistic medium that is partially directed by the artist and partially emergent. Images and animations from this work are posted on the World Wide Web at (http://www.scruznet.com/~hughes/CA.html). All cellular automata (CA) operate on a space of discrete states. The simplest CAs, such as the Game of Life, use a 1-bit state space. Most modern personal computers represent color as a 24-bit value, allowing for approximately 16 million possible colors. The work presented in this chapter uses a 24-bit color space that is represented in a 32-bit-long integer. This color space can be conceptualized as a three-dimensional bounded continuous vector space. Often, it is desirable to work with in the HSV (Hue, Saturation, Value) color space. Some of the rules encode the value (luminance) of a cell in the otherwise unused 8 high-order bits of a 32-bit word. The hue and saturation can be estimated “on the fly” with simple, fast algorithms. The hue is represented as an angle on the color wheel. For some rules, it is necessary to know the “distance” between two colors. Estimating the distance in perceptual space would be a difficult problem, as it would be dependent on the monitor used and the gamma exponent applied for a particular setup.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"27e52b9bd77986df11e443c3d0f0e0cd2570dbcbdfaaf949ff17c9bbf26aef81\"}",
+  "id": "source-83dee7a92c954b8b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-17T17:43:48.480883+00:00"
+}
+```
+
+### `r-c5590a0c24154406`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":4,\"inherited_commitments\":[],\"invocation\":\"w-c5590a0c24154406\",\"previous_head\":\"efbf9aedd381c9eeb1e6b08e85164a8a14a08d275c13c39051624b4e52196992\",\"process_id\":2053,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-c5590a0c24154406",
+  "source": "runtime:continuity",
+  "version": 4,
+  "time": "2026-09-17T17:43:48.506705+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
@@ -1857,8 +2127,9 @@
   "query": "cellular automata error correction noise phase transition",
   "reason": "To retrieve abstracts addressing how noise and error-correcting codes affect cellular automata phase stability.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-2fec49c89c084d69"
+  "status": "collected",
+  "created_by": "w-2fec49c89c084d69",
+  "evidence": "source-8a85a176d17f4066"
 }
 ```
 
