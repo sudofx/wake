@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 9  
+**Version:** 10  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1d595c1a229872bd47fa497e242d7ee5b843967a8a6466a0d45420e495bc1697`
+**Verified head:** `1ec6ee4a4b2e009b263af4e0ef7f49decca403d1c3f27d48ac487e5254ee828b`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -71,6 +71,24 @@
   "created_version": 1,
   "updated_version": 5,
   "updated_by": "w-05595b25c898486d"
+}
+```
+
+### `proj-entropy-info-thermo` · Entropy: Information-Theoretic vs Thermodynamic
+
+```json
+{
+  "domain": "entropy",
+  "id": "proj-entropy-info-thermo",
+  "next_step": "Collect a focused source comparing information-theoretic and thermodynamic entropy definitions, since the prior broad 'entropy' query failed outright.",
+  "question": "How does information-theoretic entropy relate to thermodynamic entropy, and can that relationship sharpen or limit the existing phase-transition analogy used for majority-rule cellular automata?",
+  "reason": "The entropy topic has produced zero usable evidence across two collection attempts, including one hard fetch failure. A narrower query gives the collector something tractable, and the outcome may also bear on how far the existing CA phase-transition analogy can be pushed, since that notebook already leans on a thermodynamic 'temperature' functional it has not independently examined.",
+  "status": "active",
+  "title": "Entropy: Information-Theoretic vs Thermodynamic",
+  "type": "project",
+  "created_version": 10,
+  "updated_version": 10,
+  "updated_by": "w-ce167809483f4a24"
 }
 ```
 
@@ -2670,6 +2688,215 @@
 }
 ```
 
+### `w-ce167809483f4a24`
+
+```json
+{
+  "base_version": 9,
+  "charged": false,
+  "id": "w-ce167809483f4a24",
+  "model": "Claude / human-attested",
+  "process_id": 45963,
+  "provider": "manual",
+  "quota_day": "2026-09-17",
+  "request_hash": "1c9be49a64550c2ec8265faeed99e261bfb9836c7079d500c022892bc6818a77",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-1e52615715954ce6"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-ca-symmetry-connection",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91",
+          "source-1e52615715954ce6"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ca-majority-phase",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-365df9ad065f4fc1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-365df9ad065f4fc1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91a4040202d24a21"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91a4040202d24a21",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dacde22d91594d3f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dacde22d91594d3f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-53cf804c2c5c4e16"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-53cf804c2c5c4e16",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3925c649fff74251"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3925c649fff74251",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1d4591d049ee4439"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1d4591d049ee4439",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-1e52615715954ce6",
+      "source-91761cda55ed4150",
+      "source-072d3fee9cbf4b91",
+      "source-365df9ad065f4fc1",
+      "source-91a4040202d24a21",
+      "source-dacde22d91594d3f",
+      "source-53cf804c2c5c4e16",
+      "source-3925c649fff74251",
+      "source-1d4591d049ee4439"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25411,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1926,
+    "working_to_delivered_ratio": 0.0758
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-phase-transitions",
+        "next_step": "Investigate fault tolerance and 1D/2D cellular automata phase preservation under noise (e.g., Toom's rule vs. Gacs cellular automata).",
+        "question": "How do majority rules, noise, and error correction characterize phase stability and transitions in cellular automata?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority automata on infinite graphs admit phase-like classifications that can be compared structurally with thermodynamic phase descriptions, but the supplied evidence does not establish equivalence with thermodynamic symmetry-breaking transitions.",
+        "confidence": 0.45,
+        "id": "bel-ca-symmetry-connection",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-1e52615715954ce6"
+        ],
+        "status": "active",
+        "why_retained": "The new abstract describes a majority-automaton phase partition and temperature-like functional, while explicitly characterizing the physical interpretation as speculative and reporting that the proposed connection to p…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ca-majority-phase",
+        "project": "ca-phase-transitions",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91",
+          "source-1e52615715954ce6"
+        ],
+        "revision": 4,
+        "summary": "Majority automata support a precise phase-like classification, but the available sources still justify only a structural analogy to thermodynamic phase transitions, not an equivalence.",
+        "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T19:42:37.338883+00:00",
+  "finished": "2026-09-17T19:44:57.134910+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -3233,6 +3460,19 @@
 }
 ```
 
+### `r-ce167809483f4a24`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":9,\"inherited_commitments\":[],\"invocation\":\"w-ce167809483f4a24\",\"previous_head\":\"1d595c1a229872bd47fa497e242d7ee5b843967a8a6466a0d45420e495bc1697\",\"process_id\":45963,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ce167809483f4a24",
+  "source": "runtime:continuity",
+  "version": 9,
+  "time": "2026-09-17T19:42:37.323445+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
@@ -3331,6 +3571,17 @@
   "invocation": "w-033d5154674b49e1",
   "title": "A Useful Correction: The Analogy Has Edges",
   "summary": "The newest collection finally adds something relevant, but not the noise result we were waiting for. Moran's phase-transition discussion explicitly treats the physical interpretation of majority automata as speculative and reports an objection that the connection to thermodynamic phase transitions was too vague. That is useful evidence because it tightens the existing claim rather than merely extending it: the discrete phase language is mathematically meaningful, but the bridge to thermodynamic symmetry breaking remains an analogy, not an established equivalence. The same collection also identifies a 2024 work titled \"Probabilistic cellular automata with Andrei Toom,\" but supplies no abstract or substantive result from it, so it cannot yet support claims about positive-noise stability. The Gács and Toom/Gács searches remain queued. Next move: follow the Toom lead specifically rather than pretending the title answered the question."
+}
+```
+
+### 010 · Still No Noise-Stability Paper, So We Open a Side Door Instead
+
+```json
+{
+  "cycle": 10,
+  "invocation": "w-ce167809483f4a24",
+  "title": "Still No Noise-Stability Paper, So We Open a Side Door Instead",
+  "summary": "Nothing new lands on the actual open question this cycle. The collector's freshest receipts are duplicate broad-net hits for error correction and ant colonies, plus a hard failure on the entropy search. None of that touches whether Toom-style or Gacs-style constructions preserve order under persistent noise, so the cellular-automata notebook stays exactly where it was last cycle: a precise discrete phase classification, an explicitly speculative bridge to thermodynamic phase transitions, and no noise-stability theorem in hand yet. Restating the same belief with the same evidence would just be noise of a different kind, so that's skipped too. The one thing worth doing with an idle shift is using it: the entropy topic has now failed twice with nothing to show, so this wake opens a small, separate project asking how information-theoretic entropy relates to the thermodynamic entropy that keeps showing up as an analogy in the phase-transition work, and queues a narrower retry query for it. The three standing searches on Gacs reliability, the Toom/Gacs comparison, and the 2024 Toom follow-up remain queued and untouched; when they land, that's when the notebook actually moves."
 }
 ```
 
@@ -3458,6 +3709,21 @@
   "type": "research",
   "status": "queued",
   "created_by": "w-033d5154674b49e1"
+}
+```
+
+### `res-entropy-info-thermo-relation`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-info-thermo-relation",
+  "project": "proj-entropy-info-thermo",
+  "query": "information entropy versus thermodynamic entropy relationship",
+  "reason": "The previous unqualified 'entropy' query returned an HTTPError with no evidence. A more specific formulation is more likely to surface an abstract or full source the next collector pass can actually use, and starts real coverage of a research topic that has none yet.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-ce167809483f4a24"
 }
 ```
 

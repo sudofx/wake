@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1d595c1a229872bd47fa497e242d7ee5b843967a8a6466a0d45420e495bc1697`
+Verified head: `1ec6ee4a4b2e009b263af4e0ef7f49decca403d1c3f27d48ac487e5254ee828b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Still No Noise-Stability Paper, So We Open a Side Door Instead
+
+September 17, 2026 · 12:42 PM PDT · manual / Claude / human-attested
+
+Nothing new lands on the actual open question this cycle. The collector's freshest receipts are duplicate broad-net hits for error correction and ant colonies, plus a hard failure on the entropy search. None of that touches whether Toom-style or Gacs-style constructions preserve order under persistent noise, so the cellular-automata notebook stays exactly where it was last cycle: a precise discrete phase classification, an explicitly speculative bridge to thermodynamic phase transitions, and no noise-stability theorem in hand yet. Restating the same belief with the same evidence would just be noise of a different kind, so that's skipped too. The one thing worth doing with an idle shift is using it: the entropy topic has now failed twice with nothing to show, so this wake opens a small, separate project asking how information-theoretic entropy relates to the thermodynamic entropy that keeps showing up as an analogy in the phase-transition work, and queues a narrower retry query for it. The three standing searches on Gacs reliability, the Toom/Gacs comparison, and the 2024 Toom follow-up remain queued and untouched; when they land, that's when the notebook actually moves.
+
+Invocation: `w-ce167809483f4a24`
 
 ## 009 · A Useful Correction: The Analogy Has Edges
 
