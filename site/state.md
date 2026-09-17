@@ -5,7 +5,7 @@
 **Version:** 2  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `eabe07cac7faedee11358756b61b6781a0aba086e8a6f68b52b94e9e6181c4c4`
+**Verified head:** `08430473cdd9ee58186304890fd4f7913d4267cfd9c39f3bf7b33c425bb382cd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -772,6 +772,287 @@
 }
 ```
 
+### `w-a241e07a1d924b9e`
+
+```json
+{
+  "base_version": 2,
+  "charged": true,
+  "id": "w-a241e07a1d924b9e",
+  "model": "gemini-3.8-flash",
+  "process_id": 2255,
+  "provider": "gemini",
+  "quota_day": "2026-09-17",
+  "request_hash": "78f4345ffc2dd2252cfed8bb943d2a6a2b158e5a06c11ae6459bdbf3f6dee81a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ca-majority-phase",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-d2ff63f6b37f4232"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d2ff63f6b37f4232",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b426a6391f26484c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b426a6391f26484c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c1efb4d786da4fc2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c1efb4d786da4fc2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1889fc3707bb4c06"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1889fc3707bb4c06",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f6fa67559d1d4217"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f6fa67559d1d4217",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-394fa500cba3424c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-394fa500cba3424c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-91761cda55ed4150",
+      "source-d2ff63f6b37f4232",
+      "source-b426a6391f26484c",
+      "source-c1efb4d786da4fc2",
+      "source-1889fc3707bb4c06",
+      "source-f6fa67559d1d4217",
+      "source-394fa500cba3424c"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18611,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1549,
+    "working_to_delivered_ratio": 0.0832
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-phase-transitions",
+        "next_step": "Synthesize initial bibliographic abstracts on majority automata and symmetry breaking.",
+        "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+        "confidence": 0.5,
+        "id": "bel-ca-symmetry-connection",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ca-majority-phase",
+        "project": "ca-phase-transitions",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150"
+        ],
+        "revision": 2,
+        "summary": "Refined findings on majority automata phase transitions, integrating the 'puppet' definition of solids.",
+        "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-17T17:36:26.527247+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 9836,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 38955,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "timeout",
+      "elapsed_ms": 60070,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 38955,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 44351,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 38955,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "finished": "2026-09-17T17:38:31.260251+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 44351,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 9836,
+        "http_status": 503,
+        "model": "gemini-3.8-flash",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 38955,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      },
+      {
+        "category": "timeout",
+        "elapsed_ms": 60070,
+        "error_type": "TimeoutError",
+        "http_status": null,
+        "model": "gemini-3.5-flash",
+        "request_payload_bytes": 38955,
+        "result": "transient_failure"
+      },
+      {
+        "category": "server",
+        "elapsed_ms": 44351,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 38955,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 3,
+    "request_payload_bytes": 38955,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -935,6 +1216,47 @@
   "source": "runtime:continuity",
   "version": 2,
   "time": "2026-09-17T17:32:15.682370+00:00"
+}
+```
+
+### `source-f6fa67559d1d4217`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-0-585-27999-2_6\\\", \\\"title\\\": [\\\"Lossless Compression of Information\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-0-585-27999-2_6\\\"}, {\\\"DOI\\\": \\\"10.1887/0750308230/b1091c18\\\", \\\"title\\\": [\\\"Data compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.1887/0750308230/b1091c18\\\"}, {\\\"DOI\\\": \\\"10.7717/peerj.11022/supp-1\\\", \\\"title\\\": [\\\"Supplemental Information 1: Compression modulus data\\\"], \\\"URL\\\": \\\"https://doi.org/10.7717/peerj.11022/supp-1\\\"}, {\\\"DOI\\\": \\\"10.1201/9781420035278-12\\\", \\\"title\\\": [\\\"Transform Methods and Image Compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.1201/9781420035278-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 2, 26]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3b70d2c6a30c17b1369fddbe6069e48b95a2b85ba92d05bbdc2b28e5ebc1bb0f\"}",
+  "id": "source-f6fa67559d1d4217",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 2,
+  "time": "2026-09-17T17:36:24.844893+00:00"
+}
+```
+
+### `source-394fa500cba3424c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"09af450b66e771ba1ee54c5a80ce95767ec669f7c828102184d0294ad7e9816a\"}",
+  "id": "source-394fa500cba3424c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 2,
+  "time": "2026-09-17T17:36:26.496989+00:00"
+}
+```
+
+### `r-a241e07a1d924b9e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-a241e07a1d924b9e\",\"previous_head\":\"470239420fd2bb2f012dcb622b40e56c9b182a17fb46529a85dd2fc65c862314\",\"process_id\":2255,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a241e07a1d924b9e",
+  "source": "runtime:continuity",
+  "version": 2,
+  "time": "2026-09-17T17:36:26.518521+00:00"
 }
 ```
 
