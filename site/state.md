@@ -2,28 +2,97 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 0  
+**Version:** 1  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `39d124ec5f3bbc42514539a2acb3ab1648bec256e6ee3fa75dfa0e19b1a1a08f`
+**Verified head:** `d0cde05fd3e53a79b2add0917a552a9f35fad2d48531c1bea724f72e7f5c369f`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
 ## Beliefs
 
-_None recorded._
+### `bel-ca-symmetry-connection`
+
+```json
+{
+  "confidence": 0.5,
+  "evidence": [
+    "source-08eb2daf70064d50",
+    "source-995ce8fe2cec4326"
+  ],
+  "id": "bel-ca-symmetry-connection",
+  "reason": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups.",
+  "statement": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-c9dae11f39d64590",
+  "updated_version": 1
+}
+```
 
 ## Commitments
 
-_None recorded._
+### `commit-review-phase-data`
+
+```json
+{
+  "due_cycle": 2,
+  "id": "commit-review-phase-data",
+  "reason": "Allows the next cycle to refine the notebook once additional search terms complete.",
+  "task": "Review newly collected majority rule cellular automata papers for quantitative phase transition criteria",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-c9dae11f39d64590",
+  "created_version": 1
+}
+```
 
 ## Projects
 
-_None recorded._
+### `ca-phase-transitions` · Phase Transitions in Cellular Automata
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "ca-phase-transitions",
+  "next_step": "Synthesize initial bibliographic abstracts on majority automata and symmetry breaking.",
+  "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
+  "reason": "Establishes a baseline mathematical connection between cellular automata dynamics and thermodynamic limits.",
+  "status": "active",
+  "title": "Phase Transitions in Cellular Automata",
+  "type": "project",
+  "created_version": 1,
+  "updated_version": 1,
+  "updated_by": "w-c9dae11f39d64590"
+}
+```
 
 ## Notebooks
 
-_None recorded._
+### `nb-ca-majority-phase` · Majority Rules, Phase Transitions, and Symmetry Breaking
+
+```json
+{
+  "evidence": [
+    "source-08eb2daf70064d50",
+    "source-995ce8fe2cec4326"
+  ],
+  "findings": "In the context of cellular automata, Moran [source-08eb2daf70064d50] proposed a majority automaton operating on countably infinite graphs to study phase transitions. Configurations are divided into 'solids' (where dynamics decay into a time period of at most 2) versus other phases. A 'temperature' functional is suggested, with negative temperatures indicating solid phases. In parallel, symmetry breaking and phase transitions are studied using group-theoretic and topological methods to define selection rules forbidding specific transitions [source-995ce8fe2cec4326].",
+  "id": "nb-ca-majority-phase",
+  "limitations": "The findings are based entirely on abstract metadata. The exact connection between graph majority rules (Moran) and Landau group symmetry breaking has not been mathematically established.",
+  "next_questions": "Can we find specific instances of majority automata that model Landau-type vs non-Landau-type phase transitions?",
+  "project": "ca-phase-transitions",
+  "reason": "Provides a clear first synthesis of graph automata phases alongside traditional symmetry transitions.",
+  "summary": "Synthesizing early findings on cellular automata phase transitions under majority rules and symmetry group transitions.",
+  "title": "Majority Rules, Phase Transitions, and Symmetry Breaking",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 1,
+  "updated_version": 1,
+  "updated_by": "w-c9dae11f39d64590",
+  "domain": "cellular_automata"
+}
+```
 
 ## Invocations
 
@@ -141,6 +210,144 @@ _None recorded._
 }
 ```
 
+### `w-c9dae11f39d64590`
+
+```json
+{
+  "base_version": 0,
+  "charged": true,
+  "id": "w-c9dae11f39d64590",
+  "model": "gemini-3.8-flash",
+  "process_id": 2072,
+  "provider": "gemini",
+  "quota_day": "2026-09-17",
+  "request_hash": "69c6b09cf8554c93e5f222d8ac44763bfe278db1f6a2e98cc305f96f857bddd7",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-08eb2daf70064d50",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-995ce8fe2cec4326"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-995ce8fe2cec4326",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4f97cd08cccb40eb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4f97cd08cccb40eb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d2ff63f6b37f4232"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d2ff63f6b37f4232",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-4f97cd08cccb40eb",
+      "source-d2ff63f6b37f4232"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 4,
+      "evidence_count": 4,
+      "trigger_counts": {
+        "unincorporated_evidence": 4
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 14126,
+    "mode": "shadow",
+    "retrieval_candidate_count": 4,
+    "retrieval_evidence_count": 4,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 4
+    },
+    "working_set_chars": 422,
+    "working_to_delivered_ratio": 0.0299
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T16:16:02.206730+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 1627,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 32382,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 12754,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 32382,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-17T16:16:24.097373+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -184,13 +391,76 @@ _None recorded._
 }
 ```
 
+### `source-4f97cd08cccb40eb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"20176d9e4c05a5392918ce2a06e1eb62a30d3dacf83b4a6511801d0569d8ccbd\"}",
+  "id": "source-4f97cd08cccb40eb",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 0,
+  "time": "2026-09-17T16:16:00.742347+00:00"
+}
+```
+
+### `source-d2ff63f6b37f4232`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"1ca814d34763b1bfa779bf49a2be9b94e9b69b0e00f0c76625241315348aacf5\"}",
+  "id": "source-d2ff63f6b37f4232",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 0,
+  "time": "2026-09-17T16:16:02.196618+00:00"
+}
+```
+
+### `r-c9dae11f39d64590`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-c9dae11f39d64590\",\"previous_head\":\"b79bd25e7c7918693e98a4a8a9950a5820ee684a4ddcce93365a69ff725fb17c\",\"process_id\":2072,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-c9dae11f39d64590",
+  "source": "runtime:continuity",
+  "version": 0,
+  "time": "2026-09-17T16:16:02.203159+00:00"
+}
+```
+
 ## Journal
 
-_None recorded._
+### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
+
+```json
+{
+  "cycle": 1,
+  "invocation": "w-c9dae11f39d64590",
+  "title": "Mapping Cellular Phase Transitions and Symmetry Limits",
+  "summary": "Initiating our first research cycle by analyzing structural relationships between graph-based majority automata phase transitions and group-theoretic symmetry breaking. We synthesize findings from newly retrieved abstracts."
+}
+```
 
 ## Research
 
-_None recorded._
+### `res-ca-majority-phase-detail`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "res-ca-majority-phase-detail",
+  "project": "ca-phase-transitions",
+  "query": "majority rule cellular automata phase transition",
+  "reason": "To retrieve full-text details of Moran's majority rule model on infinite graphs.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-c9dae11f39d64590"
+}
+```
 
 ## Blog posts
 
