@@ -1,91 +1,49 @@
 {
-  "status": "rejected",
-  "id": "w-c5590a0c24154406",
-  "reason": "Research notebooks need at least two distinct retrieved source URLs",
+  "status": "accepted",
+  "id": "w-05595b25c898486d",
+  "cycle": 5,
   "wake_status": {
     "last_accepted": {
-      "id": "w-2fec49c89c084d69",
-      "time": "2026-09-17T17:42:34.171074+00:00",
-      "finished": "2026-09-17T17:42:53.277640+00:00",
+      "id": "w-05595b25c898486d",
+      "time": "2026-09-17T17:46:40.375464+00:00",
+      "finished": "2026-09-17T17:46:53.028751+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 2,
+      "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 2065,
-          "http_status": 503,
-          "model": "gemini-3.8-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 44687,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 10040,
+          "elapsed_ms": 8529,
           "http_status": 200,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 44687,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 48721,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.5-flash"
+      "successful_model": "gemini-3.8-flash"
     },
     "latest_attempt": {
-      "id": "w-c5590a0c24154406",
-      "time": "2026-09-17T17:43:48.517216+00:00",
-      "finished": "2026-09-17T17:44:32.783835+00:00",
-      "status": "rejected",
-      "reason": "Research notebooks need at least two distinct retrieved source URLs",
-      "provider_requests_sent": 3,
+      "id": "w-05595b25c898486d",
+      "time": "2026-09-17T17:46:40.375464+00:00",
+      "finished": "2026-09-17T17:46:53.028751+00:00",
+      "status": "accepted",
+      "reason": "",
+      "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 12855,
-          "http_status": 503,
-          "model": "gemini-3.8-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 48992,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "category": "server",
-          "elapsed_ms": 3724,
-          "http_status": 503,
-          "model": "gemini-3.5-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 48992,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 17563,
+          "elapsed_ms": 8529,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 48992,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 48721,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.8-flash"
     },
-    "accepted_cycles": 4,
-    "next_eligible": "2026-09-17T18:38:48.517216+00:00",
+    "accepted_cycles": 5,
+    "next_eligible": "2026-09-18T00:00:00-07:00",
     "pending": false,
-    "attempts_today": 8,
-    "provider_requests_today": 19,
+    "attempts_today": 9,
+    "provider_requests_today": 20,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }

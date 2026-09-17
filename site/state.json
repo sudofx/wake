@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -244,6 +244,32 @@
       "source": "runtime:continuity",
       "version": 4,
       "time": "2026-09-17T17:43:48.506705+00:00"
+    },
+    "source-79c5eea7175d43dc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"62b5c14b2378a2a4e6bc2e36c567e8251637f69ac9026c7687a9b43beab3ed14\"}",
+      "id": "source-79c5eea7175d43dc",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-17T17:46:38.662765+00:00"
+    },
+    "source-7b5f37ee17c74034": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"362cc43d0fc66c91077a74304cd2404f29e71851ab8971c55543bf900f42088f\"}",
+      "id": "source-7b5f37ee17c74034",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-17T17:46:40.313336+00:00"
+    },
+    "r-05595b25c898486d": {
+      "actor": "runtime",
+      "content": "{\"base_version\":4,\"inherited_commitments\":[],\"invocation\":\"w-05595b25c898486d\",\"previous_head\":\"814a80bf73651936cc185f6ddb8ed9064acccdf434cf34f1306e8d0c7da5f510\",\"process_id\":2289,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-05595b25c898486d",
+      "source": "runtime:continuity",
+      "version": 4,
+      "time": "2026-09-17T17:46:40.357435+00:00"
     }
   },
   "journal": [
@@ -270,6 +296,12 @@
       "invocation": "w-2fec49c89c084d69",
       "title": "Mapping the Period-Two-Property in Infinite Graphs",
       "summary": "We updated our active cellular automata project by integrating newly acquired bibliographic details on Moran's Period-Two-Property. This mathematical feature underpins the formalization of stable periodic behavior in majority-rule dynamics."
+    },
+    {
+      "cycle": 5,
+      "invocation": "w-05595b25c898486d",
+      "title": "Investigating Noise and Error Correction in Cellular Automata Phases",
+      "summary": "We reviewed recent collection receipts on cellular automata error correction and noise (source-8a85a176d17f4066). The abstract confirms investigations into non-equilibrium phase transitions and cellular automata stability. We update the project's next step and queue a focused query on fault-tolerant cellular automata and noisy phase boundaries."
     }
   ],
   "posts": {
@@ -1858,6 +1890,202 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-17T17:44:32.783835+00:00",
       "reason": "Research notebooks need at least two distinct retrieved source URLs"
+    },
+    "w-05595b25c898486d": {
+      "base_version": 4,
+      "charged": true,
+      "id": "w-05595b25c898486d",
+      "model": "gemini-3.8-flash",
+      "process_id": 2289,
+      "provider": "gemini",
+      "quota_day": "2026-09-17",
+      "request_hash": "12030895bb64ec99ac02db534cd041a28d26498cd552da63f8d97f94774d6d39",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150",
+              "source-072d3fee9cbf4b91"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ca-majority-phase",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-b1935e8db0d545d2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1935e8db0d545d2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5e4b15a7bff64b69"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5e4b15a7bff64b69",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8a85a176d17f4066"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8a85a176d17f4066",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-83dee7a92c954b8b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-83dee7a92c954b8b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-79c5eea7175d43dc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-79c5eea7175d43dc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7b5f37ee17c74034"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7b5f37ee17c74034",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91",
+          "source-b1935e8db0d545d2",
+          "source-5e4b15a7bff64b69",
+          "source-8a85a176d17f4066",
+          "source-83dee7a92c954b8b",
+          "source-79c5eea7175d43dc",
+          "source-7b5f37ee17c74034"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27994,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1610,
+        "working_to_delivered_ratio": 0.0575
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca-phase-transitions",
+            "next_step": "Investigate how error correction in cellular automata maintains stable phases in noisy environments.",
+            "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
+            "title": "Phase Transitions in Cellular Automata"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+            "confidence": 0.5,
+            "id": "bel-ca-symmetry-connection",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326"
+            ],
+            "status": "active",
+            "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ca-majority-phase",
+            "project": "ca-phase-transitions",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150",
+              "source-072d3fee9cbf4b91"
+            ],
+            "revision": 3,
+            "summary": "Refined findings on majority automata phase transitions, integrating the Period-Two-Property (p2p) of the majority operator.",
+            "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-17T17:46:40.375464+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 8529,
+          "http_status": 200,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 48721,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.8-flash",
+      "finished": "2026-09-17T17:46:53.028751+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -1867,15 +2095,15 @@
     "ca-phase-transitions": {
       "domain": "cellular_automata",
       "id": "ca-phase-transitions",
-      "next_step": "Investigate how error correction in cellular automata maintains stable phases in noisy environments.",
-      "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
-      "reason": "Transitions the investigation from clean mathematical graphs to noisy systems where error correction becomes necessary to preserve phase boundaries.",
+      "next_step": "Investigate fault tolerance and 1D/2D cellular automata phase preservation under noise (e.g., Toom's rule vs. Gacs cellular automata).",
+      "question": "How do majority rules, noise, and error correction characterize phase stability and transitions in cellular automata?",
+      "reason": "Examines whether error correction can sustain distinct phases against noise, addressing the limits of discrete phase analogies.",
       "status": "active",
       "title": "Phase Transitions in Cellular Automata",
       "type": "project",
       "created_version": 1,
-      "updated_version": 4,
-      "updated_by": "w-2fec49c89c084d69"
+      "updated_version": 5,
+      "updated_by": "w-05595b25c898486d"
     }
   },
   "notebooks": {
@@ -1935,6 +2163,16 @@
       "status": "collected",
       "created_by": "w-2fec49c89c084d69",
       "evidence": "source-8a85a176d17f4066"
+    },
+    "res-ca-fault-tolerance-noise": {
+      "domain": "cellular_automata",
+      "id": "res-ca-fault-tolerance-noise",
+      "project": "ca-phase-transitions",
+      "query": "fault tolerant cellular automata noise phase transition Toom",
+      "reason": "To examine how error-correcting cellular automata maintain order under positive noise rates.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-05595b25c898486d"
     }
   },
   "research_topics": [

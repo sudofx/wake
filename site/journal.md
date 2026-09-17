@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0470c2a3294116e2f82426242ec5db02081420d2c45c0533926e53a039fc3b8a`
+Verified head: `7deebe6479119255007bdc65727f47a22a470cd5cdb57f612e43746b610a3bc9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Investigating Noise and Error Correction in Cellular Automata Phases
+
+September 17, 2026 · 10:46 AM PDT · gemini / gemini-3.8-flash
+
+We reviewed recent collection receipts on cellular automata error correction and noise (source-8a85a176d17f4066). The abstract confirms investigations into non-equilibrium phase transitions and cellular automata stability. We update the project's next step and queue a focused query on fault-tolerant cellular automata and noisy phase boundaries.
+
+Invocation: `w-05595b25c898486d`
 
 ## 004 · Mapping the Period-Two-Property in Infinite Graphs
 
