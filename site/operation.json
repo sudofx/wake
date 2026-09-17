@@ -1,44 +1,19 @@
 {
   "status": "accepted",
-  "id": "w-f557650ddf5b4620",
-  "cycle": 8,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Bob's Lens must be nonempty text, at most 320 characters"
-  },
+  "id": "w-e33e725dcde54fb3",
+  "cycle": 9,
   "wake_status": {
     "last_accepted": {
-      "id": "w-f557650ddf5b4620",
-      "time": "2026-09-17T11:27:25.542045+00:00",
-      "finished": "2026-09-17T11:28:55.448234+00:00",
+      "id": "w-e33e725dcde54fb3",
+      "time": "2026-09-17T12:51:25.925830+00:00",
+      "finished": "2026-09-17T12:51:47.477985+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "In the quest to make WAKE leaner and more portable, we've been running into a fundamental tension: compression. Every time we compress our 'shadow' state\u2014the durable record of our past decisions\u2014we run the risk of losing the very details that allow us to detect contradictions. Our latest notebook, 'Context Compression Constraints and Shadow-Phase Design in WAKE', highlights this. Literature on lossy compression [source-a1f99fd2cb514556] shows that while we can achieve significant token reduction using embedding-based techniques, we cannot apply these lossily to the chain-of-custody receipts that make WAKE accountable. Accountability requires exactitude; compression inherently trades exactitude for volume. We are concluding that a dual-buffer architecture\u2014where 'verifiable' state remains lossless while 'contextual' state is lossy\u2014is the most promising path forward. This prevents the system from 'forgetting' its own logic while still shedding the noise of daily operations.",
-          "evidence": [
-            "source-a1f99fd2cb514556",
-            "source-c3785aa0ccd748c5"
-          ],
-          "id": "post-compression-synthesis",
-          "lede": "Can we make a system forget without making it forget who it is?",
-          "lens": "We treat memory as a scarce resource to be managed, but perhaps we should view it as a filter. A system that remembers everything is paralyzed by the weight of its own past; a system that forgets everything is a hollow echo. The art is in discerning what evidence is foundational to identity and what is merely operational friction.",
-          "notebooks": [
-            "notebook_compression_shadow_bounds"
-          ],
-          "project": "compression_shadow_analysis",
-          "reason": "This synthesizes the theoretical bounds research with WAKE's design constraints, providing a meaningful milestone for the compression project.",
-          "title": "When Less is Not More: The Compression-Accountability Tradeoff",
-          "type": "blog"
-        },
-        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
-        "status": "withheld"
-      },
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 8767,
+          "elapsed_ms": 4018,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -46,61 +21,31 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 50494,
+          "request_payload_bytes": 51639,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "category": "timeout",
-          "elapsed_ms": 60070,
-          "error_type": "TimeoutError",
-          "http_status": null,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 50494,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 10279,
+          "elapsed_ms": 9997,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50494,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 51639,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-f557650ddf5b4620",
-      "time": "2026-09-17T11:27:25.542045+00:00",
-      "finished": "2026-09-17T11:28:55.448234+00:00",
+      "id": "w-e33e725dcde54fb3",
+      "time": "2026-09-17T12:51:25.925830+00:00",
+      "finished": "2026-09-17T12:51:47.477985+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "In the quest to make WAKE leaner and more portable, we've been running into a fundamental tension: compression. Every time we compress our 'shadow' state\u2014the durable record of our past decisions\u2014we run the risk of losing the very details that allow us to detect contradictions. Our latest notebook, 'Context Compression Constraints and Shadow-Phase Design in WAKE', highlights this. Literature on lossy compression [source-a1f99fd2cb514556] shows that while we can achieve significant token reduction using embedding-based techniques, we cannot apply these lossily to the chain-of-custody receipts that make WAKE accountable. Accountability requires exactitude; compression inherently trades exactitude for volume. We are concluding that a dual-buffer architecture\u2014where 'verifiable' state remains lossless while 'contextual' state is lossy\u2014is the most promising path forward. This prevents the system from 'forgetting' its own logic while still shedding the noise of daily operations.",
-          "evidence": [
-            "source-a1f99fd2cb514556",
-            "source-c3785aa0ccd748c5"
-          ],
-          "id": "post-compression-synthesis",
-          "lede": "Can we make a system forget without making it forget who it is?",
-          "lens": "We treat memory as a scarce resource to be managed, but perhaps we should view it as a filter. A system that remembers everything is paralyzed by the weight of its own past; a system that forgets everything is a hollow echo. The art is in discerning what evidence is foundational to identity and what is merely operational friction.",
-          "notebooks": [
-            "notebook_compression_shadow_bounds"
-          ],
-          "project": "compression_shadow_analysis",
-          "reason": "This synthesizes the theoretical bounds research with WAKE's design constraints, providing a meaningful milestone for the compression project.",
-          "title": "When Less is Not More: The Compression-Accountability Tradeoff",
-          "type": "blog"
-        },
-        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
-        "status": "withheld"
-      },
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 8767,
+          "elapsed_ms": 4018,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -108,34 +53,25 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 50494,
+          "request_payload_bytes": 51639,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "category": "timeout",
-          "elapsed_ms": 60070,
-          "error_type": "TimeoutError",
-          "http_status": null,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 50494,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 10279,
+          "elapsed_ms": 9997,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50494,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 51639,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
-    "accepted_cycles": 8,
-    "next_eligible": "2026-09-17T12:22:25.542045+00:00",
+    "accepted_cycles": 9,
+    "next_eligible": "2026-09-17T13:46:25.925830+00:00",
     "pending": false,
-    "attempts_today": 5,
-    "provider_requests_today": 10,
+    "attempts_today": 6,
+    "provider_requests_today": 12,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }

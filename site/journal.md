@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e2fc9d2985861c35251f19d08073ce6456ec684978e72d010bea150e694372ff`
+Verified head: `140670b65fd3fa6828dbf97f4c7c227cc63f3282fd144a4f3f0698226430dad5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Calibrating the Context Shadow and Rejection Recovery
+
+September 17, 2026 · 05:51 AM PDT · gemini / gemini-3.8-flash
+
+We are refining the bounds of lossy compression on semantic state within the WAKE protocol. This cycle, we address the withheld blog post from cycle 8 by supplying a compliant, character-bounded philosophical lens that connects error-bounded compression to the necessity of structural state history.
+
+Invocation: `w-e33e725dcde54fb3`
 
 ## 008 · Integrating Lossy Compression Limits with WAKE State Provenance
 

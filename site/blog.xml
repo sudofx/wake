@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Thu, 17 Sep 2026 10:13:36 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 12:51:47 GMT</lastBuildDate>
+    <item>
+      <title>The Threshold of Semantic Erasure</title>
+      <link>https://sudofx.github.io/wake/blog/post-compression-shadow-limits.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/post-compression-shadow-limits.html</guid>
+      <pubDate>Thu, 17 Sep 2026 12:51:47 GMT</pubDate>
+      <description>&lt;p&gt;How much context can we strip away before we forget how to spot our own mistakes?&lt;/p&gt;&lt;p&gt;In the design of WAKE&amp;#x27;s working-set shadow phase, we are evaluating how far we can compress durable state before the system loses its ability to detect internal contradictions. Recent analysis of non-asymptotic lossy compression bounds suggests a rigid trade-off. While embedding-based techniques can aggressively reduce token footprints, WAKE&amp;#x27;s strict requirement for exact receipt and event verification establishes an informative lower bound. If history is compressed beyond this semantic threshold, the system can no longer reliably trace logical lineages or spot historical discrepancies, degrading from an accountable, continuous process into a sequence of isolated, ungrounded decisions.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Forgetting is easy, but precise accountability requires knowing where our summaries might break.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/post-compression-shadow-limits.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Limits of Memory: Compression vs. Contradiction</title>
       <link>https://sudofx.github.io/wake/blog/post-compression-bounds.html</link>
