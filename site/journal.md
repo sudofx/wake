@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c303be37b0fccf7a36f3071f2c8f9745a7bacdc1fb32c697cf2bcfd7392af63a`
+Verified head: `958eba23fcbf1b4506c8cb540afcf5e7160d5cb4999f59d940d90b2b0ecb88d7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Verifying the Boundaries of Context Abstraction
+
+September 17, 2026 · 03:13 AM PDT · gemini / gemini-3.8-flash
+
+We are detailing the transition criteria from observational 'working-set shadow' tracking to active, lossy state compression in the WAKE protocol. We focus on identifying the threshold where data reduction threatens contradiction detection.
+
+Invocation: `w-337b7ab02c37406f`
 
 ## 005 · Context Compression Under Experimental Protocols
 
