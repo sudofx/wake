@@ -114,6 +114,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-17T16:48:18.284474+00:00"
+    },
+    "source-c1efb4d786da4fc2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.71010/2835-6764/ajser-e335\\\", \\\"title\\\": [\\\"Commentary: Ant Colonies in Science, Culture and Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.71010/2835-6764/ajser-e335\\\"}, {\\\"DOI\\\": \\\"10.1111/j.1601-5223.2003.01613.x\\\", \\\"title\\\": [\\\"Highly variable social organisation of colonies in the ant Formica cinerea\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1601-5223.2003.01613.x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 11, 27]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2023.1805/v2/review2\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Synchronized locomotion can improve spatial accessibility inside ant colonies\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2023.1805/v2/review2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 10, 3]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-6485\\\", \\\"title\\\": [\\\"Food Distribution in Ant Colonies: Trophallaxis and Self-Organization\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-6485\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"be59403a1872402aa6366c84096eb98c4f6c52c8ce2cc3a9a1161793faae8086\"}",
+      "id": "source-c1efb4d786da4fc2",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-17T17:32:13.831129+00:00"
+    },
+    "source-1889fc3707bb4c06": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-0-585-27999-2_6\\\", \\\"title\\\": [\\\"Lossless Compression of Information\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-0-585-27999-2_6\\\"}, {\\\"DOI\\\": \\\"10.1887/0750308230/b1091c18\\\", \\\"title\\\": [\\\"Data compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.1887/0750308230/b1091c18\\\"}, {\\\"DOI\\\": \\\"10.7717/peerj.11022/supp-1\\\", \\\"title\\\": [\\\"Supplemental Information 1: Compression modulus data\\\"], \\\"URL\\\": \\\"https://doi.org/10.7717/peerj.11022/supp-1\\\"}, {\\\"DOI\\\": \\\"10.1201/9781420035278-12\\\", \\\"title\\\": [\\\"Transform Methods and Image Compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.1201/9781420035278-12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 2, 26]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3b70d2c6a30c17b1369fddbe6069e48b95a2b85ba92d05bbdc2b28e5ebc1bb0f\"}",
+      "id": "source-1889fc3707bb4c06",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-17T17:32:15.663922+00:00"
+    },
+    "r-2a613201862a46d3": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-2a613201862a46d3\",\"previous_head\":\"071792b0d328821c65e544d118ca384a516c4661a6399e9c479397b3c288c493\",\"process_id\":2036,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-2a613201862a46d3",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-17T17:32:15.682370+00:00"
     }
   },
   "journal": [
@@ -585,6 +611,201 @@
         "reason": "Limited or abstract-only sources cannot support certainty language",
         "status": "withheld"
       }
+    },
+    "w-2a613201862a46d3": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-2a613201862a46d3",
+      "model": "gemini-3.8-flash",
+      "process_id": 2036,
+      "provider": "gemini",
+      "quota_day": "2026-09-17",
+      "request_hash": "c5ee183a5c7161dae69f90fd88f0339c06e5fadd3fc6d495f7d4f335b45ac403",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ca-majority-phase",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-4f97cd08cccb40eb"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4f97cd08cccb40eb",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d2ff63f6b37f4232"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d2ff63f6b37f4232",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b426a6391f26484c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b426a6391f26484c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c1efb4d786da4fc2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c1efb4d786da4fc2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1889fc3707bb4c06"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1889fc3707bb4c06",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-4f97cd08cccb40eb",
+          "source-d2ff63f6b37f4232",
+          "source-b426a6391f26484c",
+          "source-c1efb4d786da4fc2",
+          "source-1889fc3707bb4c06"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 5
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20165,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 5
+        },
+        "working_set_chars": 1549,
+        "working_to_delivered_ratio": 0.0768
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca-phase-transitions",
+            "next_step": "Synthesize initial bibliographic abstracts on majority automata and symmetry breaking.",
+            "question": "How do majority rules and symmetry breaking characterize phase transitions in cellular automata models?",
+            "title": "Phase Transitions in Cellular Automata"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+            "confidence": 0.5,
+            "id": "bel-ca-symmetry-connection",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326"
+            ],
+            "status": "active",
+            "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ca-majority-phase",
+            "project": "ca-phase-transitions",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150"
+            ],
+            "revision": 2,
+            "summary": "Refined findings on majority automata phase transitions, integrating the 'puppet' definition of solids.",
+            "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-17T17:32:15.689567+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 724,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 40464,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 12626,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 40464,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-17T17:32:36.686204+00:00",
+      "reason": "Limited or abstract-only sources cannot support certainty language"
     }
   },
   "pending": null,
