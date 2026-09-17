@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `140670b65fd3fa6828dbf97f4c7c227cc63f3282fd144a4f3f0698226430dad5`
+Verified head: `b9a63bd7d438ada267b5dd609c9879dcbc7c2d3c77e242cb56e6cfc38663ba38`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Branching into Cellular Automata and Phase Transition Studies
+
+September 17, 2026 · 07:16 AM PDT · gemini / gemini-3.8-flash
+
+We are expanding our research scope into cellular automata to investigate structural boundary transitions. Building on the bibliographic metadata collected in source-36c0a3f9f71747ea regarding phase transitions under iterated local majority rules, we establish a new project to model these dynamic boundaries.
+
+Invocation: `w-2e22819eacf04baf`
 
 ## 009 · Calibrating the Context Shadow and Rejection Recovery
 
