@@ -36,6 +36,11 @@ label = "Entropy"
 query = "entropy"
 
 [[topics]]
+id = "information_theory"
+label = "Information theory"
+query = "information theory"
+
+[[topics]]
 id = "wake_analysis"
 label = "WAKE✳︎"
 query = "WAKE"
