@@ -68,6 +68,23 @@ git fetch origin "+refs/heads/$STATE_BRANCH:refs/remotes/origin/$STATE_BRANCH"
 
 START_REMOTE="$(git rev-parse "origin/$STATE_BRANCH")"
 
+echo "→ Checking local durable state..."
+
+REMOTE_HEAD="$(git show "origin/$STATE_BRANCH:head.txt" | tr -d '[:space:]')"
+LOCAL_HEAD=""
+
+if [[ -f data/wake.sqlite3 ]]; then
+    LOCAL_HEAD="$(python3 -m wake status | python3 -c 'import json,sys; print(json.load(sys.stdin)["head"])')"
+fi
+
+if [[ -n "$LOCAL_HEAD" && "$LOCAL_HEAD" != "$REMOTE_HEAD" ]]; then
+    echo "ERROR: Local WAKE durable state differs from origin/$STATE_BRANCH." >&2
+    echo "  local:  $LOCAL_HEAD" >&2
+    echo "  remote: $REMOTE_HEAD" >&2
+    echo "Run ./scripts/checkpoint-state.sh or ./scripts/sync-cloud-state.sh deliberately." >&2
+    exit 1
+fi
+
 echo "→ Synchronizing data/ and site/..."
 
 rm -rf data site
