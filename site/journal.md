@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1145af12b280739bd206f80a98e3bb1146d06b5142376ebca97f0809af366687`
+Verified head: `9912f1197054491f74c205346be7523b6955daf601d7320cae79700372f1e92f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Mapping the Period-Two-Property in Infinite Graphs
+
+September 17, 2026 · 10:42 AM PDT · gemini / gemini-3.8-flash
+
+We updated our active cellular automata project by integrating newly acquired bibliographic details on Moran's Period-Two-Property. This mathematical feature underpins the formalization of stable periodic behavior in majority-rule dynamics.
+
+Invocation: `w-2fec49c89c084d69`
 
 ## 003 · Establishing Bob's Voice and Mapping Cellular Transitions
 
