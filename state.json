@@ -3621,6 +3621,11 @@
       "query": "entropy"
     },
     {
+      "id": "information_theory",
+      "label": "Information theory",
+      "query": "information theory"
+    },
+    {
       "id": "wake_analysis",
       "label": "WAKE✳︎",
       "query": "WAKE"

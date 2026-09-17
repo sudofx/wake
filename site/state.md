@@ -5,7 +5,7 @@
 **Version:** 11  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** Complete the current Toom/Gács noise-stability investigation, preserving necessary follow-up work across invocations.  
-**Verified head:** `ee3e580894943eef64386e8ed539756d1cdec8187a6bfa4b524ba410bd6beb30`
+**Verified head:** `40c05686a56ade0101d218772debeb7c0e278cbb629ebf240075f4be740af849`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 

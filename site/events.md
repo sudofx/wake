@@ -2,9 +2,66 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `ee3e580894943eef64386e8ed539756d1cdec8187a6bfa4b524ba410bd6beb30`
+Verified head: `40c05686a56ade0101d218772debeb7c0e278cbb629ebf240075f4be740af849`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0149 · `research_topics_changed`
+
+**Time:** 2026-09-17T23:00:10.633630+00:00  
+**ID:** `system`  
+**Hash:** `40c05686a56ade0101d218772debeb7c0e278cbb629ebf240075f4be740af849`  
+**Previous hash:** `ee3e580894943eef64386e8ed539756d1cdec8187a6bfa4b524ba410bd6beb30`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topics": [
+    {
+      "id": "cellular_automata",
+      "label": "Cellular automata",
+      "query": "cellular automata"
+    },
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "query": "symmetry"
+    },
+    {
+      "id": "error_correction",
+      "label": "Error correction",
+      "query": "error correction"
+    },
+    {
+      "id": "ant_colonies",
+      "label": "Ant colonies",
+      "query": "ant colonies"
+    },
+    {
+      "id": "compression",
+      "label": "Compression",
+      "query": "information compression"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    },
+    {
+      "id": "information_theory",
+      "label": "Information theory",
+      "query": "information theory"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE"
+    }
+  ]
+}
+```
 
 ## Event 0148 · `research_collected`
 
