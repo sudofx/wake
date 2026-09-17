@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-fb1614977d16442d",
   "reason": "Research must use its project's topic",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": null,
     "latest_attempt": {
