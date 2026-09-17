@@ -212,8 +212,11 @@ def transition(state, proposal, invocation, historical=False):
                 from .research import allowed_url
                 allowed_url(action["url"])
             require(action["project"] in result["projects"], "Research needs an existing project")
-            require(action["domain"] == result["projects"][action["project"]]["domain"],
-                    "Research must use its project's topic")
+            domains = ({topic["id"] for topic in state["research_topics"]}
+                       if "research_topics" in state else LEGACY_RESEARCH_TOPICS)
+            project_domain = result["projects"][action["project"]]["domain"]
+            require(action["domain"] in domains or action["domain"] == project_domain,
+                    "Research must use a configured topic or its project's retained topic")
             require(action["id"] not in result["research"], "Research request ID already exists")
             require(sum(r["status"] == "queued" for r in result["research"].values()) < 4, "At most four queued source searches")
             result["research"][action["id"]] = {**action, "status": "queued", "created_by": invocation}

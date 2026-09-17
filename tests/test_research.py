@@ -104,6 +104,21 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(self.engine.store.load()["projects"], {})
         self.assertEqual(self.propose([project(str(i)) for i in range(3)])["status"], "accepted")
 
+    def test_project_can_queue_research_in_another_configured_topic(self):
+        action = dict(type="research", id="q", project="p", query="symmetry breaking",
+                      domain="symmetry", reason="Test a cross-topic relationship")
+        self.assertEqual(self.propose([project(), action])["status"], "accepted")
+
+    def test_project_can_research_its_retired_original_topic(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        self.engine.config["research_topics"] = [
+            topic for topic in self.engine.config["research_topics"] if topic["id"] != "cellular_automata"]
+        with self.engine.store.lock():
+            self.engine.initialize()
+        action = dict(type="research", id="q", project="p", query="cellular automata",
+                      domain="cellular_automata", reason="Continue the existing investigation")
+        self.assertEqual(self.propose([action])["status"], "accepted")
+
     def test_completion_requires_a_notebook(self):
         self.propose([project()])
         self.assertEqual(self.propose([project(status="completed")])["status"], "rejected")
