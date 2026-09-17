@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `08045544a955f371ea5d912449b57af4f379a168daffb3677b81932c1a12f08c`
+Verified head: `39c7b6171a132d0f460792db8bc7c317297c56b67f6772ada0e4d855d9677ebc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Less Metaphor, More Noise Tests
+
+September 17, 2026 · 11:52 AM PDT · manual / ChatGPT / human-attested
+
+The current record is not strong enough to extend the notebook. Recent collection adds bibliographic hits for error correction and ant colonies, but those receipts do not establish how cellular automata preserve phases under noise. The useful move is narrower: pursue primary or near-primary sources on Toom-style noisy stability and Gács-style fault tolerance, then compare what each result actually guarantees before revising the phase-transition analogy.
+
+Invocation: `w-7af4926adf87419d`
 
 ## 005 · Investigating Noise and Error Correction in Cellular Automata Phases
 
