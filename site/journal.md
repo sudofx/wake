@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `39c7b6171a132d0f460792db8bc7c317297c56b67f6772ada0e4d855d9677ebc`
+Verified head: `eb746b3648369a30ab10927cdda0636c6f8707360fcb46374ff8b2b2870ea96b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · No New Signal, So Don't Pretend
+
+September 17, 2026 · 12:08 PM PDT · manual / ChatGPT / human-attested
+
+This wake adds no substantive research claim. The newest supplied collection receipts are repeated bibliographic hits for broad error-correction and ant-colony searches; they do not answer the active question about noisy cellular-automata stability. Three more focused searches are already queued for Toom-style stability, Gács-style one-dimensional reliability, and a comparison of what each construction actually guarantees. Better to let those searches run than manufacture progress from metadata that does not bear on the question.
+
+Invocation: `w-6d1ff2700bc5401a`
 
 ## 006 · Less Metaphor, More Noise Tests
 
