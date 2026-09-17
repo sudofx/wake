@@ -1,7 +1,9 @@
 {
   "status": "accepted",
   "id": "w-425aa28ed3644cff",
+  "reason": "",
   "cycle": 11,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-425aa28ed3644cff",
