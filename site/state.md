@@ -5,7 +5,7 @@
 **Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7deebe6479119255007bdc65727f47a22a470cd5cdb57f612e43746b610a3bc9`
+**Verified head:** `1c9656bb89d2419732a359f6426429cb1b4ae05d5eea5cead18a3971b90614ef`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2279,6 +2279,34 @@
 }
 ```
 
+### `source-e230b8849896423f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=fault+tolerant+cellular+automata+noise+phase+transition+Toom&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.5772/15768\\\", \\\"title\\\": [\\\"Nonequilibrium Phase Transition of Elementary Cellular Automata with a Single Conserved Quantity\\\"], \\\"URL\\\": \\\"https://doi.org/10.5772/15768\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 4, 11]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.4525741\\\", \\\"title\\\": [\\\"Fault-Tolerant Quantum-Dot Cellular Automata (Qca) Based Linear Feedback Shift Register (Lfsr) for Nano Communication Applications\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.4525741\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023]]}}, {\\\"DOI\\\": \\\"10.1007/978-1-4471-0709-5_9\\\", \\\"title\\\": [\\\"Fault Tolerant Parallel Pattern Recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-1-4471-0709-5_9\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7d5f49732021c0d594754f92275fc15e6b96748b3bc74b6a64c6c656ca6c41de\"}",
+  "id": "source-e230b8849896423f",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=fault+tolerant+cellular+automata+noise+phase+transition+Toom&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-17T17:48:12.815071+00:00"
+}
+```
+
+### `source-f119c9bb3e9e416e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"362cc43d0fc66c91077a74304cd2404f29e71851ab8971c55543bf900f42088f\"}",
+  "id": "source-f119c9bb3e9e416e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-17T17:48:15.899753+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
@@ -2396,8 +2424,9 @@
   "query": "fault tolerant cellular automata noise phase transition Toom",
   "reason": "To examine how error-correcting cellular automata maintain order under positive noise rates.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-05595b25c898486d"
+  "status": "collected",
+  "created_by": "w-05595b25c898486d",
+  "evidence": "source-e230b8849896423f"
 }
 ```
 

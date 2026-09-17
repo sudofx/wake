@@ -1,7 +1,6 @@
 {
-  "status": "accepted",
-  "id": "w-05595b25c898486d",
-  "cycle": 5,
+  "status": "paused",
+  "reason": "Daily call ceiling reached; no request sent",
   "wake_status": {
     "last_accepted": {
       "id": "w-05595b25c898486d",
