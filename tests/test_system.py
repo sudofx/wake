@@ -301,6 +301,38 @@ class SystemTests(unittest.TestCase):
         self.assertGreater(metrics["working_set_chars"], 0)
         self.assertNotIn("working_set_shadow", second_request["context"])
         self.assertNotIn("working_set_metrics", second_request["context"])
+        self.assertNotIn("inquiry_drive_shadow", second_request["context"])
+        self.assertEqual(item["inquiry_drive_shadow"]["mode"], "shadow")
+        self.assertFalse(item["inquiry_drive_shadow"]["enabled"])
+
+    def test_inquiry_drive_shadow_is_deterministic_and_ranks_productive_continuation(self):
+        state = {
+            "charter": "Explore carefully.",
+            "projects": {
+                "thin": {"id": "thin", "title": "Thin project", "status": "active",
+                         "question": "What is missing?", "next_step": "Find a source."},
+                "supported": {"id": "supported", "title": "Supported project", "status": "active",
+                              "question": "What changes the model?", "next_step": "Compare sources."},
+                "parked": {"id": "parked", "title": "Parked", "status": "parked",
+                           "question": "Ignored?", "next_step": "Do not score."},
+            },
+            "research": {
+                "r1": {"project": "supported", "status": "collected"},
+                "r2": {"project": "supported", "status": "collected"},
+                "r3": {"project": "supported", "status": "queued"},
+            },
+            "notebooks": {
+                "n1": {"project": "supported", "next_questions": "Test the disagreement.",
+                       "limitations": "The sample is small.", "evidence": ["e1", "e2"]},
+            },
+        }
+        shadow = self.engine.inquiry_drive_shadow(state)
+        self.assertEqual(shadow["mode"], "shadow")
+        self.assertTrue(shadow["enabled"])
+        self.assertEqual([item["id"] for item in shadow["projects"]], ["supported", "thin"])
+        self.assertGreater(shadow["projects"][0]["score"], shadow["projects"][1]["score"])
+        self.assertEqual(shadow["projects"][0]["components"]["self_correction"], 1.0)
+        self.assertIn("not preservation", shadow["principle"])
 
     def test_progressive_abstraction_is_documented_without_personhood_claims(self):
         root = Path(__file__).resolve().parents[1]

@@ -64,6 +64,12 @@ raw source contents and journal detail. The shadow is stored in the invocation r
 size relative to the richer context actually delivered to the provider. Shadow mode does **not** replace or
 alter the provider context, so it introduces measurement without yet introducing a behavioral confound.
 
+Chartered invocations additionally retain an **inquiry-drive shadow**. It ranks active projects using fixed,
+auditable structural proxies for continuity, novelty, coherence, generativity and self-correction. It is an
+observation of what a later selection policy might favor; it is not in provider context and has no ability to
+preserve WAKE, its database, its rules, or its own existence. The target of any future intervention is
+continuation of source-backed, revisable inquiry—not self-preservation.
+
 Any future activation of compressed context must remain auditable and must not silently discard open
 obligations, uncertainty, disagreement, provenance, or the ability to locate the underlying receipts.
 

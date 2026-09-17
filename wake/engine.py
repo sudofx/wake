@@ -185,6 +185,60 @@ class Engine:
 
         return working
 
+    def inquiry_drive_shadow(self, state):
+        """Score durable research work without granting it any decision authority.
+
+        This is deliberately an observational intervention.  The score is made
+        only from auditable record structure, rather than sentiment inferred
+        from model prose, and is retained with the invocation that calculated
+        it.  It is not included in the provider request.
+        """
+        if not state.get("charter"):
+            return {"mode": "shadow", "enabled": False, "projects": [],
+                    "principle": "No research charter is active."}
+
+        research = list(state["research"].values())
+        notebooks = list(state["notebooks"].values())
+        projects = []
+        for project in state["projects"].values():
+            if project["status"] != "active":
+                continue
+            project_research = [item for item in research if item["project"] == project["id"]]
+            collected = [item for item in project_research if item["status"] == "collected"]
+            queued = [item for item in project_research if item["status"] == "queued"]
+            project_notebooks = [item for item in notebooks if item["project"] == project["id"]]
+            latest = project_notebooks[-1] if project_notebooks else None
+
+            # Each component is a transparent 0–1 proxy, not a claim about an
+            # internal motive, importance, truth, or consciousness.
+            components = {
+                "continuity": 1.0 if project.get("next_step", "").strip() else 0.0,
+                "novelty": min(1.0, (len(queued) + len(collected)) / 2),
+                "coherence": min(1.0, len(collected) / 2),
+                "generativity": min(1.0, (1 if project.get("question", "").strip() else 0)
+                                      + (0.5 if latest and latest.get("next_questions", "").strip() else 0)),
+                "self_correction": min(1.0, (0.5 if latest and latest.get("limitations", "").strip() else 0)
+                                        + (0.5 if latest and len(latest.get("evidence", [])) >= 2 else 0)),
+            }
+            weights = {"continuity": 0.30, "novelty": 0.15, "coherence": 0.20,
+                       "generativity": 0.20, "self_correction": 0.15}
+            score = round(sum(components[key] * weights[key] for key in weights), 3)
+            projects.append({
+                "id": project["id"], "title": project["title"], "score": score,
+                "components": components,
+                "signals": {"collected_research": len(collected), "queued_research": len(queued),
+                            "notebooks": len(project_notebooks)},
+            })
+
+        projects.sort(key=lambda item: (-item["score"], item["id"]))
+        return {
+            "mode": "shadow", "enabled": True,
+            "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+            "weights": {"continuity": 0.30, "novelty": 0.15, "coherence": 0.20,
+                        "generativity": 0.20, "self_correction": 0.15},
+            "projects": projects,
+        }
+
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
@@ -270,6 +324,7 @@ class Engine:
         delivered_context = self.context(state, receipt)
         working_set_shadow = self.working_set(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow)
+        inquiry_drive_shadow = self.inquiry_drive_shadow(state)
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
                    "context": delivered_context,
                    "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
@@ -296,6 +351,7 @@ class Engine:
             "request_hash": digest(request), "process_id": os.getpid(),
             "working_set_shadow": working_set_shadow,
             "retrieval_shadow": retrieval_shadow,
+            "inquiry_drive_shadow": inquiry_drive_shadow,
             "working_set_metrics": {
                 "mode": "shadow",
                 "working_set_chars": shadow_chars,
@@ -304,6 +360,7 @@ class Engine:
                 "retrieval_candidate_count": retrieval_shadow["metrics"]["candidate_count"],
                 "retrieval_evidence_count": retrieval_shadow["metrics"]["evidence_count"],
                 "retrieval_trigger_counts": retrieval_shadow["metrics"]["trigger_counts"],
+                "inquiry_drive_project_count": len(inquiry_drive_shadow["projects"]),
             }})
         return invocation, request
 

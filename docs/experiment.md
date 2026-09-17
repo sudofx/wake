@@ -25,6 +25,19 @@ context actually delivered.
 This phase is observational. The model does not receive the shadow as a substitute for its current context,
 so changes in behavior cannot yet be attributed to compression.
 
+### Inquiry-drive shadow phase
+
+Each chartered invocation also records an `inquiry_drive_shadow`: a deterministic, project-level scorecard
+for continuity, novelty, coherence, generativity and self-correction. Its inputs are only durable record
+structure—active next steps, queued or collected research, notebooks, stated limitations and linked
+evidence. The scorecard is retained in the invocation receipt but is not supplied to the model and has no
+authority to select work, change policy, preserve the process, or block an operator.
+
+This deliberately tests a narrower intervention than an "ego" or survival objective: whether a transparent
+mechanical preference for productive, correctable inquiry would be useful. Before activating it, compare its
+rankings against human review over at least 20–100 cycles and inspect for shallow-question or
+evidence-count gaming.
+
 After enough baseline invocations exist, run a controlled offline/manual comparison from the same durable
 starting state:
 
