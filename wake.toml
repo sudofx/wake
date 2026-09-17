@@ -17,4 +17,6 @@ pet_name = "WAKE✳︎"
 research_topics_file = "research-topics.toml"
 mission = "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation."
 editorial_notes = []
+# Leave observational until 20 accepted scored charter cycles have been reviewed.
+inquiry_drive_enabled = false
 repository = "sudofx/wake"

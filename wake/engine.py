@@ -29,11 +29,14 @@ LEGACY_TOPICS = [
     {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"},
 ]
 
+INQUIRY_DRIVE_MIN_CYCLES = 20
+
 
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20,
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
+            "inquiry_drive_enabled": False,
             "research_topics": LEGACY_TOPICS}
 
 
@@ -69,6 +72,8 @@ def config(path="wake.toml"):
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
+    require(type(result["inquiry_drive_enabled"]) is bool,
+            "inquiry_drive_enabled must be true or false")
     text(result["objective"], "Objective", 2000)
     if result.get("mission"):
         text(result["mission"], "Research mission", 3000)
@@ -193,9 +198,20 @@ class Engine:
         from model prose, and is retained with the invocation that calculated
         it.  It is not included in the provider request.
         """
+        completed_scored_cycles = sum(
+            1 for item in state.get("invocations", {}).values()
+            if item.get("status") == "accepted" and "inquiry_drive_shadow" in item
+        )
+        activation = {
+            "operator_enabled": self.config["inquiry_drive_enabled"],
+            "completed_scored_cycles": completed_scored_cycles,
+            "minimum_completed_scored_cycles": INQUIRY_DRIVE_MIN_CYCLES,
+            "active": bool(self.config["inquiry_drive_enabled"]
+                           and completed_scored_cycles >= INQUIRY_DRIVE_MIN_CYCLES),
+        }
         if not state.get("charter"):
             return {"mode": "shadow", "enabled": False, "projects": [],
-                    "principle": "No research charter is active."}
+                    "principle": "No research charter is active.", "activation": activation}
 
         research = list(state["research"].values())
         notebooks = list(state["notebooks"].values())
@@ -236,6 +252,7 @@ class Engine:
             "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
             "weights": {"continuity": 0.30, "novelty": 0.15, "coherence": 0.20,
                         "generativity": 0.20, "self_correction": 0.15},
+            "activation": activation,
             "projects": projects,
         }
 
@@ -325,6 +342,12 @@ class Engine:
         working_set_shadow = self.working_set(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow)
         inquiry_drive_shadow = self.inquiry_drive_shadow(state)
+        if inquiry_drive_shadow["activation"]["active"]:
+            delivered_context["inquiry_drive"] = {
+                "mode": "operator-activated advisory ranking",
+                "boundary": "Favor productive, correctable inquiry only. This does not authorize self-preservation, rule changes, or work outside existing governance.",
+                "projects": inquiry_drive_shadow["projects"],
+            }
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
                    "context": delivered_context,
                    "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}

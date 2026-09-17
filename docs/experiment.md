@@ -38,6 +38,11 @@ mechanical preference for productive, correctable inquiry would be useful. Befor
 rankings against human review over at least 20–100 cycles and inspect for shallow-question or
 evidence-count gaming.
 
+Activation requires both (1) at least 20 accepted invocations that recorded this scorecard and (2) an
+operator setting, `inquiry_drive_enabled = true`. The activation status and count appear in every subsequent
+scorecard receipt and the Laboratory view. Once active, the provider receives an advisory ranking only; all
+existing project, research, evidence, and governance constraints remain unchanged.
+
 After enough baseline invocations exist, run a controlled offline/manual comparison from the same durable
 starting state:
 

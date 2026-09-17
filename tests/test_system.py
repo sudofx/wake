@@ -334,6 +334,23 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(shadow["projects"][0]["components"]["self_correction"], 1.0)
         self.assertIn("not preservation", shadow["principle"])
 
+    def test_inquiry_drive_requires_operator_enablement_and_twenty_completed_scores(self):
+        state = {"charter": "Explore carefully.", "projects": {}, "research": {}, "notebooks": {},
+                 "invocations": {f"w-{index}": {"status": "accepted", "inquiry_drive_shadow": {}}
+                                 for index in range(20)}}
+        inactive = self.engine.inquiry_drive_shadow(state)
+        self.assertFalse(inactive["activation"]["active"])
+        self.assertEqual(inactive["activation"]["completed_scored_cycles"], 20)
+
+        activated_engine = Engine(self.root / "activation", {**DEFAULTS, "inquiry_drive_enabled": True})
+        try:
+            active = activated_engine.inquiry_drive_shadow(state)
+            self.assertTrue(active["activation"]["active"])
+            state["invocations"].pop("w-19")
+            self.assertFalse(activated_engine.inquiry_drive_shadow(state)["activation"]["active"])
+        finally:
+            activated_engine.store.close()
+
     def test_progressive_abstraction_is_documented_without_personhood_claims(self):
         root = Path(__file__).resolve().parents[1]
         readme = (root / "README.md").read_text()

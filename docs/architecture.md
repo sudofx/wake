@@ -70,6 +70,10 @@ observation of what a later selection policy might favor; it is not in provider 
 preserve WAKE, its database, its rules, or its own existence. The target of any future intervention is
 continuation of source-backed, revisable inquiry—not self-preservation.
 
+The scorecard remains absent from provider context until an operator sets `inquiry_drive_enabled = true` and
+the record contains at least 20 accepted scored charter cycles. Passing both gates adds only an advisory
+ranking to the request; it does not alter the action schema or any governance constraint.
+
 Any future activation of compressed context must remain auditable and must not silently discard open
 obligations, uncertainty, disagreement, provenance, or the ability to locate the underlying receipts.
 

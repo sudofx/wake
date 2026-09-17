@@ -79,6 +79,17 @@ python3 -m wake export
 
 The exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.
 
+## Inquiry-drive experiment
+
+Every chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,
+novelty, coherence, generativity and self-correction. It is observational by default and does not reach the
+model. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.
+
+Only after reviewing at least 20 accepted scored cycles may an operator set
+`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.
+When unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants
+self-preservation, rule-changing, external-action, or data-retention authority.
+
 ## Optional local schedule
 
 ```sh
