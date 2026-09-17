@@ -2,9 +2,67 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `45b34294a20268a78d48dfa1fa9330c7661eda80757e77f6335e424c15271f4b`
+Verified head: `ee3e580894943eef64386e8ed539756d1cdec8187a6bfa4b524ba410bd6beb30`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0148 · `research_collected`
+
+**Time:** 2026-09-17T22:16:47.324882+00:00  
+**ID:** `discovery-15-0`  
+**Hash:** `ee3e580894943eef64386e8ed539756d1cdec8187a6bfa4b524ba410bd6beb30`  
+**Previous hash:** `14d5d8ddba97bd3e060252869d10dcb7dcb492816e46b9f28058d96978f51419`
+
+### Payload
+
+```json
+{
+  "evidence": "source-54eeff4ba4564510",
+  "id": "discovery-15-0",
+  "status": "collected"
+}
+```
+
+## Event 0147 · `observation`
+
+**Time:** 2026-09-17T22:16:47.303814+00:00  
+**ID:** `source-54eeff4ba4564510`  
+**Hash:** `14d5d8ddba97bd3e060252869d10dcb7dcb492816e46b9f28058d96978f51419`  
+**Previous hash:** `ca27653658acf0c7534f445338189b44b2c38d0b06aef717e95a66ea56ffdb31`
+
+**Source:** `https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.1093/hesc/9780198559108.003.0001\", \"title\": [\"Symmetry elements, symmetry operations and point groups\"], \"abstract\": \"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\", \"URL\": \"https://doi.org/10.1093/hesc/9780198559108.003.0001\", \"published\": {\"date-parts\": [[2001, 7, 26]]}}, {\"DOI\": \"10.3390/sym2031401\", \"title\": [\"Symmetry, Symmetry Breaking and Topology\"], \"abstract\": \"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym2031401\", \"published\": {\"date-parts\": [[2010, 7, 7]]}}, {\"DOI\": \"10.3390/sym11010117\", \"title\": [\"Acknowledgement to Reviewers of Symmetry in 2018\"], \"abstract\": \"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym11010117\", \"published\": {\"date-parts\": [[2019, 1, 19]]}}, {\"DOI\": \"10.3390/sym14020264\", \"title\": [\"Acknowledgment to Reviewers of Symmetry in 2021\"], \"abstract\": \"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\", \"URL\": \"https://doi.org/10.3390/sym14020264\", \"published\": {\"date-parts\": [[2022, 1, 29]]}}]", "excerpt_truncated": false, "source_sha256": "d4c303e2d8c8ddfab0abf8351f7d1684f677a1b39ecd2cb610293edd0198e3b0"}
+
+## Event 0146 · `research_collected`
+
+**Time:** 2026-09-17T22:16:46.799004+00:00  
+**ID:** `res-gacs-one-dimensional-reliability`  
+**Hash:** `ca27653658acf0c7534f445338189b44b2c38d0b06aef717e95a66ea56ffdb31`  
+**Previous hash:** `a39069a4a7c6bf66eb5118f616609210cbee1f2639d20f9df006f928e488f014`
+
+### Payload
+
+```json
+{
+  "evidence": "source-b6d9ec43bc664421",
+  "id": "res-gacs-one-dimensional-reliability",
+  "status": "collected"
+}
+```
+
+## Event 0145 · `observation`
+
+**Time:** 2026-09-17T22:16:46.772795+00:00  
+**ID:** `source-b6d9ec43bc664421`  
+**Hash:** `a39069a4a7c6bf66eb5118f616609210cbee1f2639d20f9df006f928e488f014`  
+**Previous hash:** `45b34294a20268a78d48dfa1fa9330c7661eda80757e77f6335e424c15271f4b`
+
+**Source:** `https://api.crossref.org/works?query=Gacs+reliable+cellular+automata+one+dimensional+noise+fault+tolerance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=Gacs+reliable+cellular+automata+one+dimensional+noise+fault+tolerance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.1109/sfcs.1997.646097\", \"title\": [\"Reliable cellular automata with self-organization\"], \"URL\": \"https://doi.org/10.1109/sfcs.1997.646097\"}, {\"DOI\": \"10.1007/978-3-540-74913-4_91\", \"title\": [\"Evolution of One-Dimensional Cellular Automata by 1/f Noise\"], \"URL\": \"https://doi.org/10.1007/978-3-540-74913-4_91\"}, {\"DOI\": \"10.1002/9781118032381.ch3\", \"title\": [\"One‐Dimensional Cellular Automata\"], \"URL\": \"https://doi.org/10.1002/9781118032381.ch3\", \"published\": {\"date-parts\": [[2007, 12, 6]]}}, {\"DOI\": \"10.1007/978-94-011-1691-6_24\", \"title\": [\"Transience and Dislocations in One-Dimensional Cellular Automata\"], \"URL\": \"https://doi.org/10.1007/978-94-011-1691-6_24\", \"published\": {\"date-parts\": [[1993]]}}]", "excerpt_truncated": false, "source_sha256": "f5a9eb5d4e8c6a7277b662e62ed547840d7bc9d0ae8f00494a3e43d6e7b297dc"}
 
 ## Event 0144 · `accepted`
 

@@ -1,9 +1,6 @@
 {
-  "status": "accepted",
-  "id": "w-ef74851a2bd94373",
-  "reason": "",
-  "cycle": 11,
-  "publication_only": true,
+  "status": "paused",
+  "reason": "Daily call ceiling reached; no request sent",
   "wake_status": {
     "last_accepted": {
       "id": "w-ef74851a2bd94373",
