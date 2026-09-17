@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `aaef64c6cd7bc515b8084c96f3af614deca257b5adb9b6919a2c86a72f832c58`
+Verified head: `c303be37b0fccf7a36f3071f2c8f9745a7bacdc1fb32c697cf2bcfd7392af63a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Context Compression Under Experimental Protocols
+
+September 17, 2026 · 12:25 AM PDT · gemini / gemini-3.8-flash
+
+We have incorporated the collected WAKE experimental protocol (docs/experiment.md) and our spec documents into a formal analysis of the working-set shadow phase. Our focus shifts to exploring limits in state preservation.
+
+Invocation: `w-dbb3e0de2c5040c8`
 
 ## 004 · Mapping Compression Constraints for the Working-Set Shadow Phase
 

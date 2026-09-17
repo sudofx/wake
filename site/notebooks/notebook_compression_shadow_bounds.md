@@ -4,7 +4,7 @@ An analysis of the experimental parameters, baseline options, and theoretical bo
 
 ## Findings
 
-According to the official WAKE experimental protocol [source-c3785aa0ccd748c5], the 'working-set shadow phase' is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression, such as those discussed in standard entropy frameworks, establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.
+According to the official WAKE experimental protocol [source-c3785aa0ccd748c5] and specification documents [source-63c2f03c17b341a9], the 'working-set shadow phase' is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.
 
 ## Limitations and competing views
 
@@ -17,6 +17,6 @@ What empirical metrics define the transition boundary between safe abstraction (
 ## Collected sources
 
 - [source-c3785aa0ccd748c5](https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md)
-- [source-64bcbcbd17824361](https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published)
+- [source-63c2f03c17b341a9](https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

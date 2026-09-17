@@ -7,7 +7,7 @@
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:10px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:11px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:11px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>aaef64c6cd7bc515b8084c96f3af614deca257b5adb9b6919a2c86a72f832c58</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 4<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>belief_external_continuity</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>c303be37b0fccf7a36f3071f2c8f9745a7bacdc1fb32c697cf2bcfd7392af63a</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 5<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>belief_external_continuity</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.95,
   &quot;evidence&quot;: [
     &quot;source-7aa71281ce7a40d5&quot;
@@ -22,15 +22,16 @@
 }</pre></div></details><details><summary>belief_experimental_protocol_alignment</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.95,
   &quot;evidence&quot;: [
-    &quot;source-c3785aa0ccd748c5&quot;
+    &quot;source-c3785aa0ccd748c5&quot;,
+    &quot;source-63c2f03c17b341a9&quot;
   ],
   &quot;id&quot;: &quot;belief_experimental_protocol_alignment&quot;,
-  &quot;reason&quot;: &quot;The raw experimental protocol document (docs/experiment.md) explicitly details configurations A, B, and C and identifies the primary outcome as maintaining error correction and revision capabilities with minimized context.&quot;,
+  &quot;reason&quot;: &quot;The protocol details the precise A/B/C testing parameters to evaluate stateless context minimization while the spec outlines the goal of Fresh-session continuity, validating these exact comparison constraints.&quot;,
   &quot;statement&quot;: &quot;The experimental protocol defines three testing configurations (rich context, working abstraction, and overcompressed control) to evaluate context minimization without losing contradiction detection.&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;type&quot;: &quot;belief&quot;,
-  &quot;updated_by&quot;: &quot;w-a7d6063276de4b24&quot;,
-  &quot;updated_version&quot;: 4
+  &quot;updated_by&quot;: &quot;w-dbb3e0de2c5040c8&quot;,
+  &quot;updated_version&quot;: 5
 }</pre></div></details><h2>Commitments</h2><p class="meta">None recorded.</p><h2>Projects</h2><details><summary>wake_architecture_continuity · WAKE Architectural Continuity</summary><div class="inside"><pre>{
   &quot;domain&quot;: &quot;wake_analysis&quot;,
   &quot;id&quot;: &quot;wake_architecture_continuity&quot;,
@@ -53,8 +54,8 @@
   &quot;title&quot;: &quot;Compression for Working-Set Shadows&quot;,
   &quot;type&quot;: &quot;project&quot;,
   &quot;created_version&quot;: 2,
-  &quot;updated_version&quot;: 4,
-  &quot;updated_by&quot;: &quot;w-a7d6063276de4b24&quot;
+  &quot;updated_version&quot;: 5,
+  &quot;updated_by&quot;: &quot;w-dbb3e0de2c5040c8&quot;
 }</pre></div></details><h2>Notebooks</h2><details><summary>notebook_wake_continuity_design · Externalized Continuity and Accountability in WAKE Architecture</summary><div class="inside"><pre>{
   &quot;evidence&quot;: [
     &quot;source-7aa71281ce7a40d5&quot;,
@@ -77,9 +78,9 @@
 }</pre></div></details><details><summary>notebook_compression_shadow_bounds · Context Compression Constraints and Shadow-Phase Design in WAKE</summary><div class="inside"><pre>{
   &quot;evidence&quot;: [
     &quot;source-c3785aa0ccd748c5&quot;,
-    &quot;source-64bcbcbd17824361&quot;
+    &quot;source-63c2f03c17b341a9&quot;
   ],
-  &quot;findings&quot;: &quot;According to the official WAKE experimental protocol [source-c3785aa0ccd748c5], the &#x27;working-set shadow phase&#x27; is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression, such as those discussed in standard entropy frameworks, establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.&quot;,
+  &quot;findings&quot;: &quot;According to the official WAKE experimental protocol [source-c3785aa0ccd748c5] and specification documents [source-63c2f03c17b341a9], the &#x27;working-set shadow phase&#x27; is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.&quot;,
   &quot;id&quot;: &quot;notebook_compression_shadow_bounds&quot;,
   &quot;limitations&quot;: &quot;Our findings rely strictly on WAKE&#x27;s internal design specifications and general bibliographic abstracts; we have not yet evaluated empirical execution metrics from the Python execution harness.&quot;,
   &quot;next_questions&quot;: &quot;What empirical metrics define the transition boundary between safe abstraction (B) and destructive overcompression (C)?&quot;,
@@ -88,10 +89,10 @@
   &quot;summary&quot;: &quot;An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.&quot;,
   &quot;title&quot;: &quot;Context Compression Constraints and Shadow-Phase Design in WAKE&quot;,
   &quot;type&quot;: &quot;notebook&quot;,
-  &quot;revision&quot;: 1,
+  &quot;revision&quot;: 2,
   &quot;created_version&quot;: 4,
-  &quot;updated_version&quot;: 4,
-  &quot;updated_by&quot;: &quot;w-a7d6063276de4b24&quot;,
+  &quot;updated_version&quot;: 5,
+  &quot;updated_by&quot;: &quot;w-dbb3e0de2c5040c8&quot;,
   &quot;domain&quot;: &quot;compression&quot;
 }</pre></div></details><h2>Invocations</h2><details><summary>w-f7fc57f905d74e4e</summary><div class="inside"><pre>{
   &quot;base_version&quot;: 0,
@@ -1813,6 +1814,227 @@
   &quot;successful_model&quot;: &quot;gemini-3.5-flash&quot;,
   &quot;finished&quot;: &quot;2026-09-17T07:14:24.345178+00:00&quot;,
   &quot;reason&quot;: &quot;&quot;
+}</pre></div></details><details><summary>w-dbb3e0de2c5040c8</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 4,
+  &quot;charged&quot;: true,
+  &quot;id&quot;: &quot;w-dbb3e0de2c5040c8&quot;,
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2310,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-17&quot;,
+  &quot;request_hash&quot;: &quot;b6d10e8e7d136f5cf1d153aac6c151fceb7f174a2b1f343718823364b8a689a6&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-c3785aa0ccd748c5&quot;
+        ],
+        &quot;reason&quot;: &quot;A working abstraction is clipped and may hide a material distinction.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;belief_experimental_protocol_alignment&quot;,
+          &quot;kind&quot;: &quot;belief&quot;
+        },
+        &quot;trigger&quot;: &quot;excerpt_boundary&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-3f3482c3bf414c1e&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-3f3482c3bf414c1e&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-c1828428a26d41a1&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-c1828428a26d41a1&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-961e80730b9f4887&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-961e80730b9f4887&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e38a6c4b15a2452b&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e38a6c4b15a2452b&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-20d6da1e437840d8&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-20d6da1e437840d8&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-63c2f03c17b341a9&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-63c2f03c17b341a9&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-c3785aa0ccd748c5&quot;,
+      &quot;source-3f3482c3bf414c1e&quot;,
+      &quot;source-c1828428a26d41a1&quot;,
+      &quot;source-961e80730b9f4887&quot;,
+      &quot;source-e38a6c4b15a2452b&quot;,
+      &quot;source-20d6da1e437840d8&quot;,
+      &quot;source-63c2f03c17b341a9&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 7,
+      &quot;evidence_count&quot;: 7,
+      &quot;trigger_counts&quot;: {
+        &quot;excerpt_boundary&quot;: 1,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 28759,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;retrieval_candidate_count&quot;: 7,
+    &quot;retrieval_evidence_count&quot;: 7,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;excerpt_boundary&quot;: 1,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;working_set_chars&quot;: 2647,
+    &quot;working_to_delivered_ratio&quot;: 0.092
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;compression_shadow_analysis&quot;,
+        &quot;next_step&quot;: &quot;Queue a search analyzing empirical context metrics or state reconstruction algorithms to ground the transition from B to C.&quot;,
+        &quot;question&quot;: &quot;How can durable working-set shadows minimize context usage while maintaining error-correction reliability?&quot;,
+        &quot;title&quot;: &quot;Compression for Working-Set Shadows&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [
+      {
+        &quot;claim&quot;: &quot;WAKE&#x27;s continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.&quot;,
+        &quot;confidence&quot;: 0.95,
+        &quot;id&quot;: &quot;belief_external_continuity&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-7aa71281ce7a40d5&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;The experimental protocol defines three testing configurations (rich context, working abstraction, and overcompressed control) to evaluate context minimization without losing contradiction detection.&quot;,
+        &quot;confidence&quot;: 0.95,
+        &quot;id&quot;: &quot;belief_experimental_protocol_alignment&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-c3785aa0ccd748c5&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;The raw experimental protocol document (docs/experiment.md) explicitly details configurations A, B, and C and identifies the primary outcome as maintaining error correction and revision capabilities with minimized conte…&quot;
+      }
+    ],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;notebook_wake_continuity_design&quot;,
+        &quot;project&quot;: &quot;wake_architecture_continuity&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-7aa71281ce7a40d5&quot;,
+          &quot;source-6dcf0d8da165405b&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;An analysis of WAKE&#x27;s architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.&quot;,
+        &quot;title&quot;: &quot;Externalized Continuity and Accountability in WAKE Architecture&quot;
+      },
+      {
+        &quot;id&quot;: &quot;notebook_compression_shadow_bounds&quot;,
+        &quot;project&quot;: &quot;compression_shadow_analysis&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-c3785aa0ccd748c5&quot;,
+          &quot;source-64bcbcbd17824361&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.&quot;,
+        &quot;title&quot;: &quot;Context Compression Constraints and Shadow-Phase Design in WAKE&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;time&quot;: &quot;2026-09-17T07:25:23.509146+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 5090,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 49067,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    },
+    {
+      &quot;elapsed_ms&quot;: 3344,
+      &quot;http_status&quot;: 200,
+      &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+      &quot;request_payload_bytes&quot;: 49067,
+      &quot;result&quot;: &quot;success&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 2,
+  &quot;successful_model&quot;: &quot;gemini-3.5-flash&quot;,
+  &quot;finished&quot;: &quot;2026-09-17T07:25:40.086899+00:00&quot;,
+  &quot;reason&quot;: &quot;&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-887a836495dd42f8</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=cellular%20automata&amp;rows=4&amp;select=DOI,title,abstract,URL,published\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780195137170.003.0017\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Phase Transition via Cellular Automata\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780195137170.003.0017\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 3, 27]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780195137170.003.0010\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Growth Phenomena in Cellular Automata\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;We illustrate growth phenomena in two-dimensional cellular automata (CA) by four case studies. The first CA, which we call Obstacle Course, describes the effect that obstacles have on such features of simple growth models as linear expansion and coherent asymptotic shape. Our next CA is random-walk-based Internal Diffusion Limited Aggregation, which spreads sublinearly, but with a shape which can be explicitly computed due to hydrodynamic effects. Then we propose a simple scheme for characterizing CA according to their growth properties, as indicated by two Larger than Life examples. Finally, a very simple case of Spatial Prisoner’s Dilemma illustrates nucleation analysis of CA. In essence, analysis of growth models is an attempt to study properties of physical systems far from equilibrium (e.g., Meakin [34] and more than 1300 references cited in the latter). Cellular automata (CA) growth models, by virtue of their simplicity and amenability to computer experimentation [25], have become particularly popular in the last 20 years, especially in physics research literature [40, 42]. Needless to say, precise mathematical results are hard to come by, and many basic questions remain completely open at the rigorous level. The purpose of this chapter, then, is to outline some successes of the mathematical approach and to identify some fundamental difficulties. We will mainly address three themes which can be summarized by the terms: aggregation, nucleation, and constraint-expansion transition. These themes also provide opportunities to touch on the roles of randomness, monotonicity, and linearity in CA investigations. We choose to illustrate these issues by particular CA rules, with little attempt to formulate a general theory. Simplicity is often, and rightly, touted as an important selling point of cellular automata. We have, therefore, tried to choose the simplest models which, while being amenable to some mathematical analysis, raise a host of intriguing unanswered questions. The next few paragraphs outline subsequent sections of this chapter. Aggregation models typically study properties of growth from a small initial seed. Arguably, the simplest dynamics are obtained by adding sites on the boundary in a uniform fashion.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780195137170.003.0010\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 3, 27]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780195137170.003.0016\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Continuous-Valued Cellular Automata in Two Dimensions\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;We explore a variety of two-dimensional continuous-valued cellular automata (CAs). We discuss how to derive CA schemes from differential equations and look at CAs based on several kinds of nonlinear wave equations. In addition we cast some of Hans Meinhardt’s activator-inhibitor reaction-diffusion rules into two dimensions. Some illustrative runs of CAPOW, a. CA simulator, are presented. A cellular automaton, or CA, is a computation made up of finite elements called cells. Each cell contains the same type of state. The cells are updated in parallel, using a rule which is homogeneous, and local. In slightly different words, a CA is a computation based upon a grid of cells, with each cell containing an object called a state. The states are updated in discrete steps, with all the cells being effectively updated at the same time. Each cell uses the same algorithm for its update rule. The update algorithm computes a cell’s new state by using information about the states of the cell’s nearby space-time neighbors, that is, using the state of the cell itself, using the states of the cell’s nearby neighbors, and using the recent prior states of the cell and its neighbors. The states do not necessarily need to be single numbers, they can also be data structures built up from numbers. A CA is said to be discrete valued if its states are built from integers, and a CA is continuous valued if its states are built from real numbers. As Norman Margolus and Tommaso Toffoli have pointed out, CAs are well suited for modeling nature [7]. The parallelism of the CA update process mirrors the uniform flow of time. The homogeneity of the CA update rule across all the cells corresponds to the universality of natural law. And the locality of CAs reflect the fact that nature seems to forbid action at a distance. The use of finite space-time elements for CAs are a necessary evil so that we can compute at all. But one might argue that the use of discrete states is an unnecessary evil.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780195137170.003.0016\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 3, 27]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780195137170.003.0015\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Cellular Automata for Imaging, Art, and Video\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;The techniques known as Cellular Automata (CA) can be used to create a variety of visual effects. As the state space for each cell, 24-bit photo realistic color was used. Several new state transition rules were created to produce unusual and beautiful results, which can be used in an interactive program or for special effects for images or videos. This chapter presents a technique for applying CA rules to an image at several different levels of resolution and recombining the results. A “soft” artistic look can result. The concept of “targeted” CAs is introduced. A targeted CA changes the value of a cell only if it approaches a desired value using some distance metric. This technique is used to transform one image into another, to transform an image to a distorted version of itself, and to generate fractals. The author believes that the techniques presented can form the basis for a new artistic medium that is partially directed by the artist and partially emergent. Images and animations from this work are posted on the World Wide Web at (http://www.scruznet.com/~hughes/CA.html). All cellular automata (CA) operate on a space of discrete states. The simplest CAs, such as the Game of Life, use a 1-bit state space. Most modern personal computers represent color as a 24-bit value, allowing for approximately 16 million possible colors. The work presented in this chapter uses a 24-bit color space that is represented in a 32-bit-long integer. This color space can be conceptualized as a three-dimensional bounded continuous vector space. Often, it is desirable to work with in the HSV (Hue, Saturation, Value) color space. Some of the rules encode the value (luminance) of a cell in the otherwise unused 8 high-order bits of a 32-bit word. The hue and saturation can be estimated “on the fly” with simple, fast algorithms. The hue is represented as an angle on the color wheel. For some rules, it is necessary to know the “distance” between two colors. Estimating the distance in perceptual space would be a difficult problem, as it would be dependent on the monitor used and the gamma exponent applied for a particular setup.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780195137170.003.0015\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 3, 27]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;83120bb215a9bd8e1952f22535d1ebcdc39cf92391429b31398c75902e1266ba\&quot;}&quot;,
@@ -2084,6 +2306,29 @@
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 3,
   &quot;time&quot;: &quot;2026-09-17T07:14:12.658667+00:00&quot;
+}</pre></div></details><details><summary>source-20d6da1e437840d8</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=error%20correction&amp;rows=4&amp;select=DOI,title,abstract,URL,published\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1017/cbo9781139034807.023\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Experimental quantum error correction\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1017/cbo9781139034807.023\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2013, 9, 12]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1017/cbo9781139034807.015\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Optimization-based quantum error correction\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1017/cbo9781139034807.015\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2013, 9, 12]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1017/cbo9781139034807.026\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Error correction in quantum communication\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1017/cbo9781139034807.026\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2013, 9, 12]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1017/cbo9781139034807.008\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Operator quantum error correction\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1017/cbo9781139034807.008\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2013, 9, 12]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;4ebefd2117e7fbdf0144ab201e027a958537ab6a8258873ca2c5d65361581e1c\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-20d6da1e437840d8&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=error%20correction&amp;rows=4&amp;select=DOI,title,abstract,URL,published&quot;,
+  &quot;version&quot;: 4,
+  &quot;time&quot;: &quot;2026-09-17T07:25:23.115063+00:00&quot;
+}</pre></div></details><details><summary>source-63c2f03c17b341a9</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md\&quot;, \&quot;scope\&quot;: \&quot;raw source-controlled WAKE repository text\&quot;, \&quot;excerpt\&quot;: \&quot;[Repository](https://github.com/sudofx/wake/tree/master) | [Blog](https://htmlpreview.github.io/?https://raw.githubusercontent.com/sudofx/wake/refs/heads/master/memory/core_persona/blog/html/index.html)\\n\\n## Mission\\n\\n**Scorched Earth: rebuild the entire project from scratch.** Ignore all previous architectural, folder, file, or implementation constraints. Keep only ideas that serve this question:\\n\\n&gt; **Can durable state plus mechanical epistemic/governance constraints turn ephemeral model calls into one longitudinal, auditable process?**\\n\\nThe model is disposable; **state, commitments, evidence, rules, and history are durable**. The experiment is whether that externalized continuity is sufficient to make many independent model invocations behave as one accountable process.\\n\\nThe system should demonstrate:\\n\\n- continuity without persistent model memory\\n- durable commitments across model replacement\\n- mechanically enforced governance/invalid-transition rejection\\n- evidence-backed, revisable beliefs\\n- crash/recovery from the last valid state\\n- model interchangeability\\n- complete auditability\\n- long-running coherence across many fresh sessions\\n- constrained, reviewable autonomy\\n\\n### The experiment must prove\\n\\n1. **Fresh-session continuity:** kill all model/context; a new invocation continues solely from durable state.\\n2. **Causal state:** changing persisted state changes subsequent behavior.\\n3. **Commitment persistence:** Model B inherits obligations created by Model A without human reminder.\\n4. **Mechanical constraints:** deliberately attempt an invalid action/state transition; the system rejects/prevents it.\\n5. **Evidence lifecycle:** claims accumulate evidence and can later be maintained, revised, or retracted based on that record.\\n6. **Recovery:** terminate/corrupt an invocation mid-cycle; restart from the last valid durable state.\\n7. **Audit reconstruction:** an independent observer with only durable state/history can determine:\\n   - objective\\n   - beliefs\\n   - commitments\\n   - supporting evidence\\n   - reasons for state changes\\n   - model invocation responsible for each change\\n8. **Longitudinal coherence:** demonstrate dozens/hundreds of fresh invocation cycles, not merely one successful handoff.\\n\\nThe architecture should make these properties **system guarantees where possible**, rather than instructions buried in prompts.\\n\\n## Product / UX\\n\\nTimezone: **America/Los_Angeles**\\n\\nAutomated cron jobs should execute wake cycles and produce durable output.\\n\\nI need to read the results anywhere on **iPhone 12 mini, iPad, and MacBook**.\\n\\nPreferred presentation:\\n\\n- **Human-facing report/journal:** concise, natural language, approachable to someone who doesn&#x27;t understand the technical system.\\n- **Technical layer:** links into detailed state, evidence, decisions, logs, metrics, and raw wake-cycle data.\\n- Ideally build a killer web UI that feels like a **blog/journal**, with progressive disclosure into rich technical/data views and graphs.\\n- Desktop preference: Markdown.\\n- Mobile preference: HTML/web.\\n- Browser-rendered Markdown is ideal if practical.\\n- Existing `htmlpreview.github.io` approach is acceptable.\\n\\nThink **blog → laboratory notebook → underlying evidence/data**.\\n\\n## Cost / Models\\n\\n**Budget: $0.**\\n\\nI currently have:\\n- Gemini: **20 free API calls/day** — use this by default.\\n- Claude Desktop: free tier, no paid subscription; currently subject to its session quota.\\n- ChatGPT Desktop: free tier, no paid subscription; currently subject to its session quota.\\n\\nDesign the model interface/provider layer so other major vendors/models can be added later without redesigning the core system.\\n\\nOptimize aggressively for free-tier constraints, minimizing unnecessary model calls.\\n\\n## Personality / Design\\n\\nI&#x27;m **Gen-X and proud of it**. Give the project that flavor in:\\n\\n- visual design\\n- language\\n- UX\\n- public-facing reports\\n- attitude\\n- code comments/documentation where appropriate\\n\\nBut compartmentalize it:\\n\\n**Public persona:** fun, irreverent, distinctly Gen-X.  \\n**Lab/system:** serious, rigorous, scientific/technical.\\n\\nDo not let personality compromise experimental integrity.\\n\\n## Deliverable\\n\\nProduce the **complete working project** as:\\n\\n`wake.zip` or if connected to the project folder with write access, modify the files directly.\\n\\nI will delete everything in the existing project directory except `.git` history, then extract the ZIP contents into it.\\n\\nTherefore, deliver a **self-contained replacement project**, not a patch or migration plan.\\n\\nMake the architecture your own. Reuse existing concepts only when they genuinely help answer the mission.\\n\\nThe final system should make the core hypothesis **demonstrable rather than merely described**.\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c1d1f7900f9b704cfdc3bb594819adec9a4c866e0412c421b6231d0ffc760753\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-63c2f03c17b341a9&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md&quot;,
+  &quot;version&quot;: 4,
+  &quot;time&quot;: &quot;2026-09-17T07:25:23.429832+00:00&quot;
+}</pre></div></details><details><summary>r-dbb3e0de2c5040c8</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:4,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-dbb3e0de2c5040c8\&quot;,\&quot;previous_head\&quot;:\&quot;a5cfdb9b33b6d6b778edcd99437fc57dd1db31807e2c96a9527adaa937198509\&quot;,\&quot;process_id\&quot;:2310,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-dbb3e0de2c5040c8&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 4,
+  &quot;time&quot;: &quot;2026-09-17T07:25:23.487302+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Establishing the Architecture of Stateless Continuity</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-2aaae9f0b1d6402b&quot;,
@@ -2104,6 +2349,11 @@
   &quot;invocation&quot;: &quot;w-a7d6063276de4b24&quot;,
   &quot;title&quot;: &quot;Mapping Compression Constraints for the Working-Set Shadow Phase&quot;,
   &quot;summary&quot;: &quot;We are pivoting our compression research to focus on the working-set shadow phase described in the WAKE experimental protocol. We have retrieved the raw protocol document, which outlines a three-way baseline comparison for context compression.&quot;
+}</pre></div></details><details><summary>5 · Context Compression Under Experimental Protocols</summary><div class="inside"><pre>{
+  &quot;cycle&quot;: 5,
+  &quot;invocation&quot;: &quot;w-dbb3e0de2c5040c8&quot;,
+  &quot;title&quot;: &quot;Context Compression Under Experimental Protocols&quot;,
+  &quot;summary&quot;: &quot;We have incorporated the collected WAKE experimental protocol (docs/experiment.md) and our spec documents into a formal analysis of the working-set shadow phase. Our focus shifts to exploring limits in state preservation.&quot;
 }</pre></div></details><h2>Research</h2><details><summary>research_cloud_operations</summary><div class="inside"><pre>{
   &quot;domain&quot;: &quot;wake_analysis&quot;,
   &quot;id&quot;: &quot;research_cloud_operations&quot;,
