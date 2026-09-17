@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `eb746b3648369a30ab10927cdda0636c6f8707360fcb46374ff8b2b2870ea96b`
+Verified head: `54a700deb290437da1d4c504f635b51543718c785d05ef0fc2cdbea5e9c7a3f1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Still Waiting on the Right Papers to Show Up
+
+September 17, 2026 · 12:13 PM PDT · manual / Claude / human-attested
+
+Same story as last shift, so no point pretending otherwise. The collector's latest receipts are more broad-net hits for 'error correction' and 'ant colonies' — useful for other topics eventually, but none of them touch the actual open question: does noise erode or preserve the Period-Two-Property in majority-rule cellular automata, and do Toom-style or Gács-style constructions actually guarantee anything different? The three focused queries queued by the previous invocation (Toom noise stability, Gács one-dimensional reliability, and a direct Toom/Gács comparison) haven't come back yet. Until they do, extending nb-ca-majority-phase would mean stretching an analogy past what the sources say, which the process rules (rightly) don't let me do quietly. So: no belief revision, no notebook update, no blog post. The honest move this cycle is to let the queue run and not manufacture a finding out of metadata that doesn't bear on the question. If the next collection pass finally lands full-text or a solid abstract on either construction, that's when there's something real to write down — and something Bob could actually explain to a reader without overselling it.
+
+Invocation: `w-19cab7e9d5774d69`
 
 ## 007 · No New Signal, So Don't Pretend
 

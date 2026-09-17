@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 7  
+**Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `eb746b3648369a30ab10927cdda0636c6f8707360fcb46374ff8b2b2870ea96b`
+**Verified head:** `54a700deb290437da1d4c504f635b51543718c785d05ef0fc2cdbea5e9c7a3f1`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2288,6 +2288,196 @@
 }
 ```
 
+### `w-19cab7e9d5774d69`
+
+```json
+{
+  "base_version": 7,
+  "charged": false,
+  "id": "w-19cab7e9d5774d69",
+  "model": "Claude / human-attested",
+  "process_id": 40309,
+  "provider": "manual",
+  "quota_day": "2026-09-17",
+  "request_hash": "9e1128b05028a5895ed2d764c00cb73216cb5615d1224a424e003df1e4481ac2",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ca-majority-phase",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-607218d61c9641a0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-607218d61c9641a0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-365df9ad065f4fc1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-365df9ad065f4fc1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91a4040202d24a21"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91a4040202d24a21",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dacde22d91594d3f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dacde22d91594d3f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-53cf804c2c5c4e16"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-53cf804c2c5c4e16",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3925c649fff74251"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3925c649fff74251",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-91761cda55ed4150",
+      "source-072d3fee9cbf4b91",
+      "source-607218d61c9641a0",
+      "source-365df9ad065f4fc1",
+      "source-91a4040202d24a21",
+      "source-dacde22d91594d3f",
+      "source-53cf804c2c5c4e16",
+      "source-3925c649fff74251"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21441,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1658,
+    "working_to_delivered_ratio": 0.0773
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-phase-transitions",
+        "next_step": "Investigate fault tolerance and 1D/2D cellular automata phase preservation under noise (e.g., Toom's rule vs. Gacs cellular automata).",
+        "question": "How do majority rules, noise, and error correction characterize phase stability and transitions in cellular automata?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+        "confidence": 0.5,
+        "id": "bel-ca-symmetry-connection",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ca-majority-phase",
+        "project": "ca-phase-transitions",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "revision": 3,
+        "summary": "Refined findings on majority automata phase transitions, integrating the Period-Two-Property (p2p) of the majority operator.",
+        "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T19:13:15.933319+00:00",
+  "finished": "2026-09-17T19:14:13.977435+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -2797,6 +2987,19 @@
 }
 ```
 
+### `r-19cab7e9d5774d69`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-19cab7e9d5774d69\",\"previous_head\":\"eb746b3648369a30ab10927cdda0636c6f8707360fcb46374ff8b2b2870ea96b\",\"process_id\":40309,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-19cab7e9d5774d69",
+  "source": "runtime:continuity",
+  "version": 7,
+  "time": "2026-09-17T19:13:15.918717+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
@@ -2873,6 +3076,17 @@
   "invocation": "w-6d1ff2700bc5401a",
   "title": "No New Signal, So Don't Pretend",
   "summary": "This wake adds no substantive research claim. The newest supplied collection receipts are repeated bibliographic hits for broad error-correction and ant-colony searches; they do not answer the active question about noisy cellular-automata stability. Three more focused searches are already queued for Toom-style stability, Gács-style one-dimensional reliability, and a comparison of what each construction actually guarantees. Better to let those searches run than manufacture progress from metadata that does not bear on the question."
+}
+```
+
+### 008 · Still Waiting on the Right Papers to Show Up
+
+```json
+{
+  "cycle": 8,
+  "invocation": "w-19cab7e9d5774d69",
+  "title": "Still Waiting on the Right Papers to Show Up",
+  "summary": "Same story as last shift, so no point pretending otherwise. The collector's latest receipts are more broad-net hits for 'error correction' and 'ant colonies' — useful for other topics eventually, but none of them touch the actual open question: does noise erode or preserve the Period-Two-Property in majority-rule cellular automata, and do Toom-style or Gács-style constructions actually guarantee anything different? The three focused queries queued by the previous invocation (Toom noise stability, Gács one-dimensional reliability, and a direct Toom/Gács comparison) haven't come back yet. Until they do, extending nb-ca-majority-phase would mean stretching an analogy past what the sources say, which the process rules (rightly) don't let me do quietly. So: no belief revision, no notebook update, no blog post. The honest move this cycle is to let the queue run and not manufacture a finding out of metadata that doesn't bear on the question. If the next collection pass finally lands full-text or a solid abstract on either construction, that's when there's something real to write down — and something Bob could actually explain to a reader without overselling it."
 }
 ```
 
