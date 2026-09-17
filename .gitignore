@@ -8,4 +8,3 @@ site/
 dist/
 *.sqlite*
 *.lock
-.scripts/
