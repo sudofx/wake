@@ -12,6 +12,7 @@ from wake.engine import DEFAULTS, Engine, config
 from wake.governance import Rejected
 from wake.providers import Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID
 from wake.scheduling import wake_status
+from wake.report import export
 
 
 class Response:
@@ -95,6 +96,11 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(status["attempts_today"], 1)
         self.assertEqual(status["provider_requests_today"], 2)
         self.assertEqual(status["latest_attempt"]["provider_requests_sent"], 2)
+        export(self.engine.store, Path(self.temp.name) / "site")
+        page = (Path(self.temp.name) / "site" / "index.html").read_text()
+        self.assertIn("Which version answers?", page)
+        self.assertIn("gemini-3.8-flash", page)
+        self.assertIn("gemini-3.5-flash", page)
 
     def test_all_unavailable_deduplicates_and_defers_without_research(self):
         self.settings["gemini_fallback_models"] += [self.settings["model"], "gemini-3.5-flash"]
@@ -231,3 +237,4 @@ class FailoverTests(unittest.TestCase):
         settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.assertEqual(settings["model"], "gemini-3.8-flash")
         self.assertEqual(settings["gemini_fallback_models"], ["gemini-3.5-flash", "gemini-3.1-flash-lite"])
+        self.assertEqual([topic["label"] for topic in settings["research_topics"]][-1], "WAKE✳︎")

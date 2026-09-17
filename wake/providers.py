@@ -40,8 +40,7 @@ An empty actions array is valid when there is nothing justified to change.
 RESEARCH_SYSTEM = """
 The operator has enabled your research charter. It adds the following actions to the base allowlist.
 Your daily work is the supplied mission, not repeatedly checking that you exist. Choose specific,
-tractable questions in cellular_automata, symmetry, error_correction, ant_colonies, compression,
-entropy, or wake_analysis.
+tractable questions from context.research_topics, using the supplied topic ID as the domain.
 WAKE✳ is a tiny durable research institution; you are replaceable cognition working one shift.
 WAKE✳ is not a person, persistent self, consciousness, or claim of qualia. Its continuity comes from
 external records, governed state transitions, selective context, and later retrieval of exact receipts.
@@ -58,11 +57,8 @@ Additional exact action shapes:
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"cellular_automata","reason":"What this search will resolve"}
-At most four pending searches. Each wake reserves one of two collector reads for a rotating
-source-controlled WAKE repository file; the other executes one queued search or topical discovery.
-Literature topics use Crossref. For wake_analysis, inspect source-controlled WAKE repository files
-from https://github.com/sudofx/wake.
-Use at least two distinct repository files before publishing a wake_analysis notebook.
+At most four pending searches. The collector executes queued searches and rotates neutral discovery
+across the configured topics. Follow useful evidence where it leads rather than forcing a connection.
 Optionally add a url field to read a specific HTTPS HTML/abstract page instead of searching.
 Approved hosts: arxiv.org, export.arxiv.org, plato.stanford.edu, pmc.ncbi.nlm.nih.gov,
 www.ncbi.nlm.nih.gov, quantum-journal.org, journals.aps.org, nature.com, www.nature.com, raw.githubusercontent.com.
@@ -206,6 +202,12 @@ def schema_for_context(context):
     entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
                for notebook in notebooks]
     choices = schema["properties"]["actions"]["items"]["anyOf"]
+    domains = list(dict.fromkeys([topic["id"] for topic in context.get("research_topics", [])]
+                                 + [project["domain"] for project in context.get("projects", [])]))
+    if domains:
+        for kind in ("project", "research"):
+            action = next(a for a in choices if a["properties"]["type"]["enum"] == [kind])
+            action["properties"]["domain"]["enum"] = domains
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
     if not evidence:

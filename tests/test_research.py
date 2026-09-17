@@ -11,7 +11,7 @@ from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
-from wake.providers import Fixture
+from wake.providers import Fixture, RESEARCH_SYSTEM
 from wake.research import allowed_url, collect
 from wake.report import export
 
@@ -66,6 +66,37 @@ class ResearchTests(unittest.TestCase):
             self.assertEqual(reconstructed, state)
         finally:
             legacy.store.close()
+
+    def test_topic_file_changes_become_audited_configuration(self):
+        changed = [*self.engine.config["research_topics"],
+                   {"id": "new_topic", "label": "A new topic", "query": "new topic"}]
+        self.engine.config["research_topics"] = changed
+        with self.engine.store.lock():
+            state = self.engine.initialize()
+            invocation, request = self.engine.start("fixture", "topic-test")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+        self.assertEqual(state["research_topics"], changed)
+        self.assertEqual([event["kind"] for event in self.engine.store.events()].count("research_topics_changed"), 1)
+        self.assertIn("new_topic", [topic["id"] for topic in request["context"]["research_topics"]])
+        variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
+        project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
+        self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
+
+    def test_wake_topic_is_a_rotating_breadcrumb_not_a_system_instruction(self):
+        settings = {**DEFAULTS, "mission": "Follow useful questions.",
+                    "research_topics": [{"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"}]}
+        engine = Engine(self.root/"breadcrumb", settings)
+        calls = []
+        try:
+            with engine.store.lock():
+                engine.initialize()
+                collect(engine, fetcher=lambda url: calls.append(url) or
+                        {"url": url, "scope": "fixture", "excerpt": "A sufficiently long test source excerpt for collection."})
+            self.assertEqual(calls, ["https://raw.githubusercontent.com/sudofx/wake/master/README.md"])
+            self.assertNotIn("source-controlled", RESEARCH_SYSTEM.lower())
+            self.assertNotIn("wake_analysis", RESEARCH_SYSTEM.lower())
+        finally:
+            engine.store.close()
 
     def test_new_projects_are_bounded_and_rejection_is_atomic(self):
         result = self.propose([project(str(i)) for i in range(4)])
@@ -381,7 +412,7 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock(): collect(self.engine, fetcher=fetch)
         state=self.engine.store.load()
         self.assertEqual(len(calls), 2)
-        self.assertTrue(calls[1].startswith("https://raw.githubusercontent.com/sudofx/wake/"))
+        self.assertIn("query=symmetry", calls[1])
         self.assertEqual([r["status"] for r in state["research"].values()], ["failed","queued","queued","queued"])
 
     def test_source_url_allowlist_and_input_types(self):

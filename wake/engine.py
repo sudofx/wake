@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 import os
 from pathlib import Path
+import re
 import tomllib
 import uuid
 from zoneinfo import ZoneInfo
@@ -18,14 +19,51 @@ from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
 
 
+LEGACY_TOPICS = [
+    {"id": "cellular_automata", "label": "Cellular automata", "query": "cellular automata"},
+    {"id": "symmetry", "label": "Symmetry", "query": "symmetry"},
+    {"id": "error_correction", "label": "Error correction", "query": "error correction"},
+    {"id": "ant_colonies", "label": "Ant colonies", "query": "ant colonies"},
+    {"id": "compression", "label": "Compression", "query": "information compression"},
+    {"id": "entropy", "label": "Entropy", "query": "entropy"},
+    {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"},
+]
+
+
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20,
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
-            "free_tier_confirmed": False, "gemini_fallback_models": []}
+            "free_tier_confirmed": False, "gemini_fallback_models": [],
+            "research_topics": LEGACY_TOPICS}
+
+
+def _topics(settings, config_path=None):
+    topics = settings.get("research_topics")
+    filename = settings.get("research_topics_file")
+    if filename and config_path is not None:
+        topic_path = Path(filename)
+        if not topic_path.is_absolute():
+            topic_path = config_path.parent / topic_path
+        require(topic_path.is_file(), f"Research topics file not found: {topic_path}")
+        topics = tomllib.loads(topic_path.read_text()).get("topics")
+    require(isinstance(topics, list) and 1 <= len(topics) <= 24,
+            "Research topics must contain 1–24 entries")
+    normalized = []
+    for item in topics:
+        require(isinstance(item, dict) and set(item) == {"id", "label", "query"},
+                "Each research topic needs exactly id, label, and query")
+        require(isinstance(item["id"], str) and re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", item["id"]),
+                "Research topic IDs must use letters, digits, underscores or hyphens")
+        text(item["label"], "Research topic label", 120)
+        text(item["query"], "Research topic query", 200)
+        normalized.append({key: item[key] for key in ("id", "label", "query")})
+    require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
+    return normalized
 
 
 def config(path="wake.toml"):
-    result = {**DEFAULTS, **(tomllib.loads(Path(path).read_text()) if Path(path).exists() else {})}
+    config_path = Path(path)
+    result = {**DEFAULTS, **(tomllib.loads(config_path.read_text()) if config_path.exists() else {})}
     require(type(result["daily_call_limit"]) is int and 1 <= result["daily_call_limit"] <= 20,
             "daily_call_limit must be between 1 and 20")
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
@@ -40,12 +78,15 @@ def config(path="wake.toml"):
                 "editorial_notes must be a list of at most 8 notes")
         for note in notes:
             text(note, "Editorial note", 1200)
+        result["research_topics"] = _topics(result, config_path)
     return result
 
 
 class Engine:
     def __init__(self, directory="data", settings=None):
         self.config = settings or config()
+        if self.config.get("mission"):
+            self.config["research_topics"] = _topics(self.config)
         self.store = Store(directory)
 
     def initialize(self):
@@ -54,12 +95,16 @@ class Engine:
             state = self.store.append("initialized", {"objective": self.config["objective"], "governance": 1})
         if self.config.get("mission") and not state.get("charter"):
             state = self.store.append("charter_adopted", {"mission": self.config["mission"],
-                                     "pet_name": self.config.get("pet_name", "WAKE✳"), "actor": "operator"})
+                                     "pet_name": self.config.get("pet_name", "WAKE✳"),
+                                     "topics": self.config["research_topics"], "actor": "operator"})
         # A branding change is part of the durable identity. Record it as an
         # auditable event instead of rewriting the original charter or history.
         desired_name = self.config.get("pet_name", "WAKE✳")
         if state.get("charter") and state.get("pet_name") != desired_name:
-            self.store.append("pet_renamed", {"pet_name": desired_name, "actor": "operator"})
+            state = self.store.append("pet_renamed", {"pet_name": desired_name, "actor": "operator"})
+        desired_topics = self.config.get("research_topics", [])
+        if state.get("charter") and state.get("research_topics") != desired_topics:
+            self.store.append("research_topics_changed", {"topics": desired_topics, "actor": "operator"})
         return self.store.load(repair=True)
 
     def recover(self, explicit=False):
@@ -155,6 +200,7 @@ class Engine:
         if state.get("charter"):
             context["mission"] = state["charter"]
             context["pet_name"] = state["pet_name"]
+            context["research_topics"] = state.get("research_topics", LEGACY_TOPICS)
             projects = list(state["projects"].values())
             context["projects"] = [p for p in projects if p["status"] == "active"] + [p for p in projects if p["status"] != "active"][-8:]
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}

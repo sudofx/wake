@@ -8,7 +8,6 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
-DOMAINS = {"cellular_automata", "symmetry", "error_correction", "ant_colonies", "compression", "entropy", "wake_analysis"}
 ALLOWED_HOSTS = {"arxiv.org", "export.arxiv.org", "rss.arxiv.org", "plato.stanford.edu",
                  "api.crossref.org", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
                  "quantum-journal.org", "journals.aps.org", "www.nature.com", "nature.com", "raw.githubusercontent.com"}
@@ -16,19 +15,11 @@ WAKE_SOURCES = {
     "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
     "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
     "experiment": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
-    "spec": "https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md",
+    "governance": "https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py",
+    "engine": "https://raw.githubusercontent.com/sudofx/wake/master/wake/engine.py",
     "providers": "https://raw.githubusercontent.com/sudofx/wake/master/wake/providers.py",
     "research": "https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py",
 }
-SEEDS = [
-    ("cellular_automata", "https://api.crossref.org/works?query=cellular%20automata&rows=4&select=DOI,title,abstract,URL,published"),
-    ("symmetry", "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI,title,abstract,URL,published"),
-    ("error_correction", "https://api.crossref.org/works?query=error%20correction&rows=4&select=DOI,title,abstract,URL,published"),
-    ("ant_colonies", "https://api.crossref.org/works?query=ant%20colonies&rows=4&select=DOI,title,abstract,URL,published"),
-    ("compression", "https://api.crossref.org/works?query=information%20compression&rows=4&select=DOI,title,abstract,URL,published"),
-    ("entropy", "https://api.crossref.org/works?query=entropy&rows=4&select=DOI,title,abstract,URL,published"),
-    ("wake_analysis", WAKE_SOURCES["architecture"]),
-]
 
 
 def allowed_url(url):
@@ -109,7 +100,8 @@ def query_url(query, domain):
         choices = [
             (("architecture", "state", "continuity", "memory", "store"), "architecture"),
             (("experiment", "hypothesis", "test"), "experiment"),
-            (("governance", "rule", "validation", "invariant", "spec"), "spec"),
+            (("governance", "rule", "validation", "invariant"), "governance"),
+            (("engine", "cycle", "context", "working set"), "engine"),
             (("provider", "prompt", "gemini", "model"), "providers"),
             (("collector", "research", "source", "evidence"), "research"),
         ]
@@ -120,26 +112,33 @@ def query_url(query, domain):
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
+def discovery_url(topic):
+    """Map neutral topic rotation to a bounded source without exposing routing as a model instruction."""
+    if topic["id"] == "wake_analysis":
+        return WAKE_SOURCES["default"]
+    return query_url(topic["query"], topic["id"])
+
+
 def collect(engine, fetcher=fetch_source):
     """Called under the wake lock before inference; at most two unauthenticated requests."""
     state = engine.store.load()
     if not state.get("charter"):
         return
     attempts = len(state["invocations"])
+    topics = state.get("research_topics", [])
     pending = [r for r in state.get("research", {}).values() if r["status"] == "queued"][:1]
-    if not pending:
-        domain, url = SEEDS[attempts % len(SEEDS)]
-        pending = [{"id": f"discovery-{attempts}", "url": url, "domain": domain}]
-
-    # Every wake receives an external, source-controlled description of WAKE
-    # while keeping the collector bounded to two network reads total.
-    repo_urls = list(WAKE_SOURCES.values())
-    repo_url = repo_urls[attempts % len(repo_urls)]
-    if pending[0].get("domain") == "wake_analysis":
-        first_url = pending[0].get("url") or query_url(pending[0]["query"], pending[0]["domain"])
-        if repo_url == first_url:
-            repo_url = repo_urls[(attempts + 1) % len(repo_urls)]
-    pending.append({"id": f"wake-context-{attempts}", "url": repo_url, "domain": "wake_analysis"})
+    # One neutral discovery accompanies queued work. With no queue, use the two
+    # adjacent topics in the rotation. WAKE✳︎ is treated like every other topic;
+    # its turn supplies the public README as a breadcrumb, not a directive.
+    discovery_count = 1 if pending else min(2, len(topics))
+    used_urls = {item.get("url") or query_url(item["query"], item["domain"]) for item in pending}
+    for offset in range(discovery_count):
+        topic = topics[(attempts + offset) % len(topics)]
+        url = discovery_url(topic)
+        if url in used_urls:
+            continue
+        pending.append({"id": f"discovery-{attempts}-{offset}", "url": url, "domain": topic["id"]})
+        used_urls.add(url)
 
     for item in pending:
         url = item.get("url") or query_url(item["query"], item["domain"])

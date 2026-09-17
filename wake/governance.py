@@ -10,6 +10,12 @@ class Rejected(ValueError):
     pass
 
 
+LEGACY_RESEARCH_TOPICS = {
+    "cellular_automata", "symmetry", "error_correction", "ant_colonies",
+    "compression", "entropy", "wake_analysis",
+}
+
+
 def require(condition, message):
     if not condition:
         raise Rejected(message)
@@ -175,15 +181,17 @@ def transition(state, proposal, invocation, historical=False):
                 "resolved_version": state["version"] + 1,
             }
         elif kind == "project":
-            from .research import DOMAINS
             require(bool(state.get("charter")), "Research charter is not enabled")
             keys(action, "type id title question domain status next_step reason", "Project")
             identifier(action["id"])
             for key in ("title", "question", "next_step", "reason"):
                 text(action[key], key, 1000)
-            require(action["domain"] in DOMAINS, "Choose a charter research domain")
+            domains = ({topic["id"] for topic in state["research_topics"]}
+                       if "research_topics" in state else LEGACY_RESEARCH_TOPICS)
             require(action["status"] in ("active", "parked", "completed"), "Invalid project status")
             old = result["projects"].get(action["id"])
+            require((old and action["domain"] == old["domain"]) or (not old and action["domain"] in domains),
+                    "New projects must use a configured topic; existing projects keep their original topic")
             if not old:
                 require(action["status"] == "active", "A new project starts active")
             if action["status"] == "active":
@@ -195,7 +203,6 @@ def transition(state, proposal, invocation, historical=False):
             result["projects"][action["id"]] = {**action, "created_version": (old or {}).get("created_version", state["version"] + 1),
                 "updated_version": state["version"] + 1, "updated_by": invocation}
         elif kind == "research":
-            from .research import DOMAINS
             require(bool(state.get("charter")), "Research charter is not enabled")
             keys(action, "type id project query domain reason" + (" url" if "url" in action else ""), "Research request")
             identifier(action["id"])
@@ -204,8 +211,9 @@ def transition(state, proposal, invocation, historical=False):
             if "url" in action:
                 from .research import allowed_url
                 allowed_url(action["url"])
-            require(action["domain"] in DOMAINS, "Invalid research domain")
             require(action["project"] in result["projects"], "Research needs an existing project")
+            require(action["domain"] == result["projects"][action["project"]]["domain"],
+                    "Research must use its project's topic")
             require(action["id"] not in result["research"], "Research request ID already exists")
             require(sum(r["status"] == "queued" for r in result["research"].values()) < 4, "At most four queued source searches")
             result["research"][action["id"]] = {**action, "status": "queued", "created_by": invocation}

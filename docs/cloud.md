@@ -1,6 +1,6 @@
 # WAKE✳’s independent research life
 
-WAKE✳ chooses small, useful projects in cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE itself through source-controlled repository analysis. Its specialty emerges from completed work. No daily assignments are needed.
+WAKE✳ chooses small, useful projects from the topics in `research-topics.toml`. The initial set is cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎. Its specialty emerges from completed work. No daily assignments are needed.
 
 ## Read or wake it
 
@@ -22,7 +22,11 @@ The workflow uses the existing public repository and GitHub Pages. No paid fallb
 
 ## A wake's work
 
-A small collector retrieves at most two approved public sources, then one Gemini request chooses the next actions. One collector read every wake is reserved for a rotating raw file from WAKE's source-controlled repository, giving the model an external description of the system it is operating within. The other read executes one queued search or, when the queue is empty, a discovery source rotating among the seven research domains. Queued literature searches use Crossref; WAKE-analysis requests can retrieve approved raw repository files. Specific approved source pages can also be requested. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
+A small collector retrieves at most two approved public sources, then one Gemini request chooses the next actions. It executes one queued search when available and uses the remaining read for neutral discovery rotating through `research-topics.toml`; with no queue, two adjacent topics receive discovery reads. The WAKE✳︎ topic's discovery turn supplies the public README as a breadcrumb. The model is not instructed to inspect itself or the repository; any deeper connection or repository inquiry must arise from what later wakes choose to pursue. Queued literature searches use Crossref, and specific approved source pages can also be requested. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
+
+## Changing research topics
+
+Edit `research-topics.toml` on `master`. Each topic has a stable machine `id`, a public `label`, and a neutral discovery `query`. Add, rename, remove, or reorder entries there; the next cloud run records the new list as an auditable configuration event before doing research. Keep an ID unchanged when renaming a topic that already owns projects. Removing a topic prevents new projects in it, while existing projects remain reviewable and can be completed or parked.
 
 WAKE✳ can start, update, park and complete projects; queue research; publish or revise notebooks; and use the existing belief/commitment system. At most three projects are active and four searches are pending. Completion requires a notebook. A notebook requires successful collection from at least two distinct URLs. Revisions require changed findings and newly collected evidence. Previous revisions remain in the event history.
 

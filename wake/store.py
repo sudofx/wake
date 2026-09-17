@@ -41,10 +41,18 @@ def reduce_event(state, event, historical=False):
     elif kind == "charter_adopted":
         require(not state.get("charter"), "Charter is already established")
         state.update(charter=p["mission"], pet_name=p["pet_name"], projects={}, notebooks={}, research={})
+        # Older charter events predate configurable topics. Keep their replayed
+        # projection byte-for-byte compatible; initialize records adoption later.
+        if "topics" in p:
+            state["research_topics"] = p["topics"]
     elif kind == "pet_renamed":
         require(state.get("charter"), "WAKE must exist before it can be renamed")
         require(p["pet_name"] != state.get("pet_name"), "Pet already has this name")
         state["pet_name"] = p["pet_name"]
+    elif kind == "research_topics_changed":
+        require(state.get("charter"), "Research charter is not enabled")
+        require(isinstance(p.get("topics"), list) and p["topics"], "Research topics cannot be empty")
+        state["research_topics"] = p["topics"]
     elif kind == "research_collected":
         if p["id"] in state.get("research", {}):
             state["research"][p["id"]].update(status=p["status"], evidence=p["evidence"])

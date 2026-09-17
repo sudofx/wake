@@ -3,7 +3,7 @@ name: WAKE✳︎ — research & journal
 on:
   push:
     branches: [master]
-    paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', '.github/workflows/wake.yml']
+    paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
   schedule:
     # GitHub documents scheduled Actions as best effort: they can start late or
     # be dropped when the service is busy. :42 remains the Hitchhiker's Guide

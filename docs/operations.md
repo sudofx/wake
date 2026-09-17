@@ -4,6 +4,8 @@
 
 ## Everyday commands
 
+Research topics are configured in `research-topics.toml`, not embedded in model prompts. Topic-file changes are adopted as durable operator events the next time WAKE initializes.
+
 Global options precede the command: `python3 -m wake --data data/another-record status`.
 
 ```sh

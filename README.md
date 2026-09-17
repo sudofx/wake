@@ -10,7 +10,7 @@ Disposable models. Durable state. Receipts for everything.
 
 WAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
 
-WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. It chooses small useful research projects in **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE itself through analysis of its source-controlled repository**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.
+WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.
 
 **[Open WAKE✳︎’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
 
@@ -118,6 +118,7 @@ The first implementation is intentionally **shadow mode**. Each wake now builds 
 - `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.
 - `wake/engine.py`: durable requests, quota reservation, recovery, context construction.
 - `wake/research.py`: bounded collection of public research sources.
+- `research-topics.toml`: editable topic names and neutral discovery queries; changes are adopted as audited events.
 - `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.
 - `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.
 - `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML and Markdown reports.
@@ -127,7 +128,7 @@ The first implementation is intentionally **shadow mode**. Each wake now builds 
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
 - `examples/journal/`: published evidence of the included offline experiment.
 
-Read [architecture and limits](docs/architecture.md), [experiment protocol](docs/experiment.md), or [operations](docs/operations.md) for details. The original research requirements are preserved as [docs/spec.md](docs/spec.md).
+Read [architecture and limits](docs/architecture.md), [experiment protocol](docs/experiment.md), or [operations](docs/operations.md) for details.
 
 ## Verify and package
 

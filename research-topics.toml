@@ -1,0 +1,41 @@
+# WAKE✳︎ research topics
+#
+# Edit this file to add, rename, remove, or reorder research topics. Changes are
+# adopted as an audited configuration event the next time WAKE starts. IDs must
+# remain stable if existing projects already use them. `query` is the neutral
+# discovery phrase used when no project has queued a more focused search.
+
+[[topics]]
+id = "cellular_automata"
+label = "Cellular automata"
+query = "cellular automata"
+
+[[topics]]
+id = "symmetry"
+label = "Symmetry"
+query = "symmetry"
+
+[[topics]]
+id = "error_correction"
+label = "Error correction"
+query = "error correction"
+
+[[topics]]
+id = "ant_colonies"
+label = "Ant colonies"
+query = "ant colonies"
+
+[[topics]]
+id = "compression"
+label = "Compression"
+query = "information compression"
+
+[[topics]]
+id = "entropy"
+label = "Entropy"
+query = "entropy"
+
+[[topics]]
+id = "wake_analysis"
+label = "WAKE✳︎"
+query = "WAKE"
