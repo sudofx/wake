@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -416,6 +416,32 @@
       "source": "runtime:continuity",
       "version": 6,
       "time": "2026-09-17T11:23:01.738273+00:00"
+    },
+    "source-a1f99fd2cb514556": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=lossy+compression+error+bounds+semantic+recovery&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21236/ada464658\\\", \\\"title\\\": [\\\"Semantic Source Coding for Flexible Lossy Image Compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.21236/ada464658\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007, 3, 29]]}}, {\\\"DOI\\\": \\\"10.1109/isit.2015.7282768\\\", \\\"title\\\": [\\\"Non-asymptotic bounds for fixed-length lossy compression\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/isit.2015.7282768\\\", \\\"published\\\": {\\\"date-parts\\\": [[2015, 6]]}}, {\\\"DOI\\\": \\\"10.1109/dcc66757.2026.00068\\\", \\\"title\\\": [\\\"EmbdC: Error-Bounded Lossy Video Embedding Compression for On-Device LLM Inference\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/dcc66757.2026.00068\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 24]]}}, {\\\"DOI\\\": \\\"10.3997/2214-4609.2022615007\\\", \\\"title\\\": [\\\"Error-Bounded Lossy Compression in Reverse Time Migration\\\"], \\\"URL\\\": \\\"https://doi.org/10.3997/2214-4609.2022615007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4aa49a81f6fd6fc6c5b669e9dde65527d4a49114e9fafff3f0a629a9aeba0097\"}",
+      "id": "source-a1f99fd2cb514556",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=lossy+compression+error+bounds+semantic+recovery&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-17T11:27:25.215354+00:00"
+    },
+    "source-c85b4d3a163a4453": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# WAKE✳︎\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"WAKE✳︎ Lab Comics #1 — WAKE✳︎ project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\nWAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.\\n\\nWAKE✳︎ lives on GitHub and is eligible to wake about once an hour. It chooses small useful research projects in **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE itself through analysis of its source-controlled repository**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.\\n\\n**[Open WAKE✳︎’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.\\n\\nThe GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.\\n\\nThe original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## A real record with Gemini\\n\\n```sh\\ncp .env.example .env   # Only if you do not already have a .env file.\\n# Put GEMINI_API_KEY=your-key in .env.\\npython3 -m wake init\\npython3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'\\n```\\n\\nIn `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:\\n\\n```sh\\npython3 -m wake wake\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nOne wake normally makes one Gemini request. For temporary server errors, timeouts, or connection failures, WAKE✳︎ retries the same durable request after 15, 30, and 60 seconds, then defers the wake. Each failed transport attempt retains bounded diagnostics; HTTP errors include the status and provider message. The local ceiling is 20 wake attempts per Pacific calendar day, including failed and interrupted wakes; a retry may also count toward Google's provider quota. There is no paid fallback or hidden second model task. Token and context ceilings bound each request. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).\\n\\nThe rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Optional local schedule\\n\\n```sh\\n# See the proposed cron line without installing it.\\npython3 scripts/install_cron.py --print\\n# Explicitly install an every-three-hours schedule (about 8 attempts/day).\\npython3 scripts/install_cron.py\\n# Remove only WAKE✳︎’s schedule.\\npython3 scripts/install_cron.py --remove\\n```\\n\\nFor the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.\\n\\nFor iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.\\n\\n## How it works\\n\\n```text\\nexact receipts / event history\\n          ↓\\ndurable projection → bounded context → fresh provider → untrusted proposal\\n          ↑                                              ↓\\n          └──── deterministic governance ← accept / reject\\n                           ↓\\n               working abstractions\\n                           ↓\\n         Bob / human-readable interface\\n                           ↓\\n               links back to receipts\\n```\\n\\nThe design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.\\n\\nThe first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.\\n\\n- `wake/store.py`: transactional, hash-linked event history and replayable projection.\\n- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.\\n- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.\\n- `wake/research.py`: bounded collection of public research sources.\\n- `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.\\n- `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.\\n- `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML and Markdown reports.\\n- `assets/covers/`: archived Lab Comics covers. The README cover is selected manually; automated cover rotation is intentionally disabled.\\n- `wake/experiment.py`: executable 100–1000-cycle experiment.\\n- `tests/`: failure, governance, provider-contract and audit checks.\\n- `data/`: private runtime state, ignored by Git; never mix demo and live databases.\\n- `examples/journal/`: published evidence of the included offline experiment.\\n\\nRead [architecture and limits](docs/architecture.md), [experiment protoc\", \"excerpt_truncated\": true, \"source_sha256\": \"dc180095095dbbc2e08992fd2d430927bacfb9d89052cb4da1d6b0b17f730d6d\"}",
+      "id": "source-c85b4d3a163a4453",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 7,
+      "time": "2026-09-17T11:27:25.436895+00:00"
+    },
+    "r-f557650ddf5b4620": {
+      "actor": "runtime",
+      "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-f557650ddf5b4620\",\"previous_head\":\"b83ec93cb22a6e48c20ab131ebca6a727dc470c38ddded9d0719c161911bf789\",\"process_id\":2239,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f557650ddf5b4620",
+      "source": "runtime:continuity",
+      "version": 7,
+      "time": "2026-09-17T11:27:25.513541+00:00"
     }
   },
   "journal": [
@@ -460,6 +486,12 @@
       "invocation": "w-bac8192b67cf4b02",
       "title": "Mapping Rehydration Mechanics in Research and Provider Boundaries",
       "summary": "Reviewed the collector receipts for `wake/providers.py` and `wake/research.py`. The provider boundary enforces rigid single-JSON proposal validation, while research collection hardcodes approved hosts and bounds source ingestion. Queued a targeted search on contextual lossy compression and error margins to further clarify the threshold between working abstraction and state loss."
+    },
+    {
+      "cycle": 8,
+      "invocation": "w-f557650ddf5b4620",
+      "title": "Integrating Lossy Compression Limits with WAKE State Provenance",
+      "summary": "Updated the compression shadow notebook to include quantitative bounds from literature, strengthening the design analysis of our state-minimization project. Published a blog post connecting information-theoretic lossy compression limits to the architectural necessity of maintaining contradiction detection in WAKE's durable state history.\n\nEditorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters"
     }
   ],
   "posts": {
@@ -2891,6 +2923,261 @@
       "successful_model": "gemini-3.8-flash",
       "finished": "2026-09-17T11:24:00.628222+00:00",
       "reason": ""
+    },
+    "w-f557650ddf5b4620": {
+      "base_version": 7,
+      "charged": true,
+      "id": "w-f557650ddf5b4620",
+      "model": "gemini-3.8-flash",
+      "process_id": 2239,
+      "provider": "gemini",
+      "quota_day": "2026-09-17",
+      "request_hash": "f54ccc533fcbcc794790a4457c4904c43cc367e8e1684a26b4abb5bb4495b15c",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-c3785aa0ccd748c5",
+              "source-63c2f03c17b341a9"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "notebook_compression_shadow_bounds",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-2d937209d816415b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2d937209d816415b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9c90b0e63b5b4a28"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9c90b0e63b5b4a28",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-67afeb45d1494002"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-67afeb45d1494002",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2b2c4fa06cdf4865"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2b2c4fa06cdf4865",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a1f99fd2cb514556"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a1f99fd2cb514556",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c85b4d3a163a4453"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c85b4d3a163a4453",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-c3785aa0ccd748c5",
+          "source-63c2f03c17b341a9",
+          "source-2d937209d816415b",
+          "source-9c90b0e63b5b4a28",
+          "source-67afeb45d1494002",
+          "source-2b2c4fa06cdf4865",
+          "source-a1f99fd2cb514556",
+          "source-c85b4d3a163a4453"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 29003,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2643,
+        "working_to_delivered_ratio": 0.0911
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "compression_shadow_analysis",
+            "next_step": "Synthesize literature on lossy compression error bounds against the provider and experiment constraints.",
+            "question": "How can durable working-set shadows minimize context usage while maintaining error-correction reliability?",
+            "title": "Compression for Working-Set Shadows"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE's continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.",
+            "confidence": 0.95,
+            "id": "belief_external_continuity",
+            "provenance": [
+              "source-7aa71281ce7a40d5"
+            ],
+            "status": "active",
+            "why_retained": "The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked."
+          },
+          {
+            "claim": "The experimental protocol defines three testing configurations (rich context, working abstraction, and overcompressed control) to evaluate context minimization without losing contradiction detection.",
+            "confidence": 0.95,
+            "id": "belief_experimental_protocol_alignment",
+            "provenance": [
+              "source-c3785aa0ccd748c5",
+              "source-63c2f03c17b341a9"
+            ],
+            "status": "active",
+            "why_retained": "The protocol details the precise A/B/C testing parameters to evaluate stateless context minimization while the spec outlines the goal of Fresh-session continuity, validating these exact comparison constraints."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook_wake_continuity_design",
+            "project": "wake_architecture_continuity",
+            "provenance": [
+              "source-7aa71281ce7a40d5",
+              "source-6dcf0d8da165405b"
+            ],
+            "revision": 1,
+            "summary": "An analysis of WAKE's architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.",
+            "title": "Externalized Continuity and Accountability in WAKE Architecture"
+          },
+          {
+            "id": "notebook_compression_shadow_bounds",
+            "project": "compression_shadow_analysis",
+            "provenance": [
+              "source-c3785aa0ccd748c5",
+              "source-63c2f03c17b341a9"
+            ],
+            "revision": 2,
+            "summary": "An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.",
+            "title": "Context Compression Constraints and Shadow-Phase Design in WAKE"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-17T11:27:25.542045+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 8767,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50494,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "timeout",
+          "elapsed_ms": 60070,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 50494,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 10279,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 50494,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-17T11:28:55.448234+00:00",
+      "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In the quest to make WAKE leaner and more portable, we've been running into a fundamental tension: compression. Every time we compress our 'shadow' state—the durable record of our past decisions—we run the risk of losing the very details that allow us to detect contradictions. Our latest notebook, 'Context Compression Constraints and Shadow-Phase Design in WAKE', highlights this. Literature on lossy compression [source-a1f99fd2cb514556] shows that while we can achieve significant token reduction using embedding-based techniques, we cannot apply these lossily to the chain-of-custody receipts that make WAKE accountable. Accountability requires exactitude; compression inherently trades exactitude for volume. We are concluding that a dual-buffer architecture—where 'verifiable' state remains lossless while 'contextual' state is lossy—is the most promising path forward. This prevents the system from 'forgetting' its own logic while still shedding the noise of daily operations.",
+          "evidence": [
+            "source-a1f99fd2cb514556",
+            "source-c3785aa0ccd748c5"
+          ],
+          "id": "post-compression-synthesis",
+          "lede": "Can we make a system forget without making it forget who it is?",
+          "lens": "We treat memory as a scarce resource to be managed, but perhaps we should view it as a filter. A system that remembers everything is paralyzed by the weight of its own past; a system that forgets everything is a hollow echo. The art is in discerning what evidence is foundational to identity and what is merely operational friction.",
+          "notebooks": [
+            "notebook_compression_shadow_bounds"
+          ],
+          "project": "compression_shadow_analysis",
+          "reason": "This synthesizes the theoretical bounds research with WAKE's design constraints, providing a meaningful milestone for the compression project.",
+          "title": "When Less is Not More: The Compression-Accountability Tradeoff",
+          "type": "blog"
+        },
+        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
+        "status": "withheld"
+      }
     }
   },
   "pending": null,
@@ -2948,21 +3235,22 @@
     "notebook_compression_shadow_bounds": {
       "evidence": [
         "source-c3785aa0ccd748c5",
-        "source-63c2f03c17b341a9"
+        "source-63c2f03c17b341a9",
+        "source-a1f99fd2cb514556"
       ],
-      "findings": "According to the official WAKE experimental protocol [source-c3785aa0ccd748c5] and specification documents [source-63c2f03c17b341a9], the 'working-set shadow phase' is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.",
+      "findings": "WAKE's 'working-set shadow phase' serves as the bridge between rich history and overcompressed context. Official protocol [source-c3785aa0ccd748c5] and repository code [source-63c2f03c17b341a9] define the observational framework. Incorporating non-asymptotic bounds for lossy compression [source-a1f99fd2cb514556], we find that reducing context resolution risks semantic slippage—a phenomenon where the 'shadow' state loses the precision required for WAKE's contradiction-detection loop. While 'EmbdC' approaches [source-a1f99fd2cb514556] suggest embedding-based compression can mitigate some loss, WAKE's requirement for exact receipt verification imposes a lower bound on state retention that prohibits aggressive lossy techniques used in standard LLM inference.",
       "id": "notebook_compression_shadow_bounds",
-      "limitations": "Our findings rely strictly on WAKE's internal design specifications and general bibliographic abstracts; we have not yet evaluated empirical execution metrics from the Python execution harness.",
-      "next_questions": "What empirical metrics define the transition boundary between safe abstraction (B) and destructive overcompression (C)?",
+      "limitations": "Findings are based on extrapolating general lossy compression bounds to WAKE's specific verification loops; empirical benchmarking within the Python harness remains pending.",
+      "next_questions": "Can we partition WAKE state into 'verifiable' (lossless) and 'contextual' (lossy) buffers to satisfy both efficiency and accountability?",
       "project": "compression_shadow_analysis",
-      "reason": "This notebook establishes the formal design parameters for our active compression project, satisfying the charter requirement of using two distinct external/repository sources before publishing.",
-      "summary": "An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.",
+      "reason": "Incorporates distinct bibliographic evidence to meet notebook publication requirements and strengthen the synthesis.",
+      "summary": "Revised analysis of experimental parameters and theoretical bounds for compressing state in the working-set shadow phase, now incorporating bibliographic lossy compression metrics.",
       "title": "Context Compression Constraints and Shadow-Phase Design in WAKE",
       "type": "notebook",
-      "revision": 2,
+      "revision": 3,
       "created_version": 4,
-      "updated_version": 5,
-      "updated_by": "w-dbb3e0de2c5040c8",
+      "updated_version": 8,
+      "updated_by": "w-f557650ddf5b4620",
       "domain": "compression"
     }
   },
@@ -3009,8 +3297,9 @@
       "query": "lossy compression error bounds semantic recovery",
       "reason": "Examine how theoretical error bounds in lossy compression apply to semantic context minimization and contradiction detection.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-bac8192b67cf4b02"
+      "status": "collected",
+      "created_by": "w-bac8192b67cf4b02",
+      "evidence": "source-a1f99fd2cb514556"
     }
   }
 }

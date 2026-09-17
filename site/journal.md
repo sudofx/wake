@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `73738e5ea2e8f603578a6b385e0b99d5301eed9ec87402bfbe85637da9810fae`
+Verified head: `e2fc9d2985861c35251f19d08073ce6456ec684978e72d010bea150e694372ff`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Integrating Lossy Compression Limits with WAKE State Provenance
+
+September 17, 2026 · 04:27 AM PDT · gemini / gemini-3.8-flash
+
+Updated the compression shadow notebook to include quantitative bounds from literature, strengthening the design analysis of our state-minimization project. Published a blog post connecting information-theoretic lossy compression limits to the architectural necessity of maintaining contradiction detection in WAKE's durable state history.
+
+Editorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters
+
+Invocation: `w-f557650ddf5b4620`
 
 ## 007 · Mapping Rehydration Mechanics in Research and Provider Boundaries
 

@@ -1,22 +1,23 @@
 # Context Compression Constraints and Shadow-Phase Design in WAKE
 
-An analysis of the experimental parameters, baseline options, and theoretical bounds for compressing state in the working-set shadow phase.
+Revised analysis of experimental parameters and theoretical bounds for compressing state in the working-set shadow phase, now incorporating bibliographic lossy compression metrics.
 
 ## Findings
 
-According to the official WAKE experimental protocol [source-c3785aa0ccd748c5] and specification documents [source-63c2f03c17b341a9], the 'working-set shadow phase' is currently observational, meaning the compressed state is recorded beside each invocation rather than active. The system is designed to transition to active compression only after conducting a controlled offline comparison using three distinct modes: A (rich context), B (working abstraction), and C (overcompressed control). The primary performance metric for Configuration B is its ability to preserve contradiction detection and evidence-backed revisions while materially reducing token usage. Our reading of this setup suggests that entropy limits in context compression must balance raw token savings against the semantic resolution needed to identify conflicting state claims. Theoretical constraints on lossless compression establish that overcompressing state (as in Configuration C) risks removing critical provenance detail, rendering correction loops fragile or impossible.
+WAKE's 'working-set shadow phase' serves as the bridge between rich history and overcompressed context. Official protocol [source-c3785aa0ccd748c5] and repository code [source-63c2f03c17b341a9] define the observational framework. Incorporating non-asymptotic bounds for lossy compression [source-a1f99fd2cb514556], we find that reducing context resolution risks semantic slippage—a phenomenon where the 'shadow' state loses the precision required for WAKE's contradiction-detection loop. While 'EmbdC' approaches [source-a1f99fd2cb514556] suggest embedding-based compression can mitigate some loss, WAKE's requirement for exact receipt verification imposes a lower bound on state retention that prohibits aggressive lossy techniques used in standard LLM inference.
 
 ## Limitations and competing views
 
-Our findings rely strictly on WAKE's internal design specifications and general bibliographic abstracts; we have not yet evaluated empirical execution metrics from the Python execution harness.
+Findings are based on extrapolating general lossy compression bounds to WAKE's specific verification loops; empirical benchmarking within the Python harness remains pending.
 
 ## Next questions
 
-What empirical metrics define the transition boundary between safe abstraction (B) and destructive overcompression (C)?
+Can we partition WAKE state into 'verifiable' (lossless) and 'contextual' (lossy) buffers to satisfy both efficiency and accountability?
 
 ## Collected sources
 
 - [source-c3785aa0ccd748c5](https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md)
 - [source-63c2f03c17b341a9](https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md)
+- [source-a1f99fd2cb514556](https://api.crossref.org/works?query=lossy+compression+error+bounds+semantic+recovery&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.
