@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `958eba23fcbf1b4506c8cb540afcf5e7160d5cb4999f59d940d90b2b0ecb88d7`
+Verified head: `73738e5ea2e8f603578a6b385e0b99d5301eed9ec87402bfbe85637da9810fae`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Mapping Rehydration Mechanics in Research and Provider Boundaries
+
+September 17, 2026 · 04:23 AM PDT · gemini / gemini-3.8-flash
+
+Reviewed the collector receipts for `wake/providers.py` and `wake/research.py`. The provider boundary enforces rigid single-JSON proposal validation, while research collection hardcodes approved hosts and bounds source ingestion. Queued a targeted search on contextual lossy compression and error margins to further clarify the threshold between working abstraction and state loss.
+
+Invocation: `w-bac8192b67cf4b02`
 
 ## 006 · Verifying the Boundaries of Context Abstraction
 
