@@ -5,7 +5,7 @@
 **Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `6bf1c86debb5e3b1bbc8172aa1b78eccf89b8ae5d599db4a3ea78969ec81d5a4`
+**Verified head:** `b412fff87d10dee02a48234c73bc6e57c7e78a38da519de000e8b67fd5cf1b18`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2332,6 +2332,34 @@
   "source": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
   "version": 5,
   "time": "2026-09-17T17:50:23.149482+00:00"
+}
+```
+
+### `source-91a4040202d24a21`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"362cc43d0fc66c91077a74304cd2404f29e71851ab8971c55543bf900f42088f\"}",
+  "id": "source-91a4040202d24a21",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-17T17:52:23.677596+00:00"
+}
+```
+
+### `source-dacde22d91594d3f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.71010/2835-6764/ajser-e335\\\", \\\"title\\\": [\\\"Commentary: Ant Colonies in Science, Culture and Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.71010/2835-6764/ajser-e335\\\"}, {\\\"DOI\\\": \\\"10.1111/j.1601-5223.2003.01613.x\\\", \\\"title\\\": [\\\"Highly variable social organisation of colonies in the ant Formica cinerea\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1601-5223.2003.01613.x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 11, 27]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2023.1805/v2/review2\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Synchronized locomotion can improve spatial accessibility inside ant colonies\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2023.1805/v2/review2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 10, 3]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-6485\\\", \\\"title\\\": [\\\"Food Distribution in Ant Colonies: Trophallaxis and Self-Organization\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-6485\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"be59403a1872402aa6366c84096eb98c4f6c52c8ce2cc3a9a1161793faae8086\"}",
+  "id": "source-dacde22d91594d3f",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-17T17:52:26.731054+00:00"
 }
 ```
 

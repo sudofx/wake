@@ -2,9 +2,67 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `6bf1c86debb5e3b1bbc8172aa1b78eccf89b8ae5d599db4a3ea78969ec81d5a4`
+Verified head: `b412fff87d10dee02a48234c73bc6e57c7e78a38da519de000e8b67fd5cf1b18`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0117 · `research_collected`
+
+**Time:** 2026-09-17T17:52:26.745528+00:00  
+**ID:** `discovery-9-1`  
+**Hash:** `b412fff87d10dee02a48234c73bc6e57c7e78a38da519de000e8b67fd5cf1b18`  
+**Previous hash:** `f7a01eb3391c5b3a6318798fedee7cacad22fcb94f398446033da709c5d1d68a`
+
+### Payload
+
+```json
+{
+  "evidence": "source-dacde22d91594d3f",
+  "id": "discovery-9-1",
+  "status": "collected"
+}
+```
+
+## Event 0116 · `observation`
+
+**Time:** 2026-09-17T17:52:26.731054+00:00  
+**ID:** `source-dacde22d91594d3f`  
+**Hash:** `f7a01eb3391c5b3a6318798fedee7cacad22fcb94f398446033da709c5d1d68a`  
+**Previous hash:** `39f8905f900394a18e050438f0dcaa7ebcded0d2c9c9d23dd5af7a49ef724335`
+
+**Source:** `https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.71010/2835-6764/ajser-e335\", \"title\": [\"Commentary: Ant Colonies in Science, Culture and Education\"], \"URL\": \"https://doi.org/10.71010/2835-6764/ajser-e335\"}, {\"DOI\": \"10.1111/j.1601-5223.2003.01613.x\", \"title\": [\"Highly variable social organisation of colonies in the ant Formica cinerea\"], \"URL\": \"https://doi.org/10.1111/j.1601-5223.2003.01613.x\", \"published\": {\"date-parts\": [[2003, 11, 27]]}}, {\"DOI\": \"10.1098/rspb.2023.1805/v2/review2\", \"title\": [\"Review for \\\"Synchronized locomotion can improve spatial accessibility inside ant colonies\\\"\"], \"URL\": \"https://doi.org/10.1098/rspb.2023.1805/v2/review2\", \"published\": {\"date-parts\": [[2023, 10, 3]]}}, {\"DOI\": \"10.53846/goediss-6485\", \"title\": [\"Food Distribution in Ant Colonies: Trophallaxis and Self-Organization\"], \"URL\": \"https://doi.org/10.53846/goediss-6485\"}]", "excerpt_truncated": false, "source_sha256": "be59403a1872402aa6366c84096eb98c4f6c52c8ce2cc3a9a1161793faae8086"}
+
+## Event 0115 · `research_collected`
+
+**Time:** 2026-09-17T17:52:23.694533+00:00  
+**ID:** `discovery-9-0`  
+**Hash:** `39f8905f900394a18e050438f0dcaa7ebcded0d2c9c9d23dd5af7a49ef724335`  
+**Previous hash:** `f5341713c10da5a9c1daabc430bc9f5eec0abaf82a3ca91991e912df899b5251`
+
+### Payload
+
+```json
+{
+  "evidence": "source-91a4040202d24a21",
+  "id": "discovery-9-0",
+  "status": "collected"
+}
+```
+
+## Event 0114 · `observation`
+
+**Time:** 2026-09-17T17:52:23.677596+00:00  
+**ID:** `source-91a4040202d24a21`  
+**Hash:** `f5341713c10da5a9c1daabc430bc9f5eec0abaf82a3ca91991e912df899b5251`  
+**Previous hash:** `6bf1c86debb5e3b1bbc8172aa1b78eccf89b8ae5d599db4a3ea78969ec81d5a4`
+
+**Source:** `https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished", "scope": "bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"DOI\": \"10.1017/cbo9781139034807.023\", \"title\": [\"Experimental quantum error correction\"], \"URL\": \"https://doi.org/10.1017/cbo9781139034807.023\", \"published\": {\"date-parts\": [[2013, 9, 12]]}}, {\"DOI\": \"10.1017/cbo9781139034807.015\", \"title\": [\"Optimization-based quantum error correction\"], \"URL\": \"https://doi.org/10.1017/cbo9781139034807.015\", \"published\": {\"date-parts\": [[2013, 9, 12]]}}, {\"DOI\": \"10.1017/cbo9781139034807.026\", \"title\": [\"Error correction in quantum communication\"], \"URL\": \"https://doi.org/10.1017/cbo9781139034807.026\", \"published\": {\"date-parts\": [[2013, 9, 12]]}}, {\"DOI\": \"10.1017/cbo9781139034807.008\", \"title\": [\"Operator quantum error correction\"], \"URL\": \"https://doi.org/10.1017/cbo9781139034807.008\", \"published\": {\"date-parts\": [[2013, 9, 12]]}}]", "excerpt_truncated": false, "source_sha256": "362cc43d0fc66c91077a74304cd2404f29e71851ab8971c55543bf900f42088f"}
 
 ## Event 0113 · `research_collected`
 
