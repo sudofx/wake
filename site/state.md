@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 8  
+**Version:** 9  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `abef20818051ae10d49787a4d6caabd78c153a0990b6642d4023d433ec62d8b4`
+**Verified head:** `1d595c1a229872bd47fa497e242d7ee5b843967a8a6466a0d45420e495bc1697`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -15,18 +15,19 @@
 
 ```json
 {
-  "confidence": 0.5,
+  "confidence": 0.45,
   "evidence": [
     "source-08eb2daf70064d50",
-    "source-995ce8fe2cec4326"
+    "source-995ce8fe2cec4326",
+    "source-1e52615715954ce6"
   ],
   "id": "bel-ca-symmetry-connection",
-  "reason": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups.",
-  "statement": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+  "reason": "The new abstract describes a majority-automaton phase partition and temperature-like functional, while explicitly characterizing the physical interpretation as speculative and reporting that the proposed connection to physical phase transitions had been criticized as vague. This supports retaining the structural comparison while narrowing its strength.",
+  "statement": "Majority automata on infinite graphs admit phase-like classifications that can be compared structurally with thermodynamic phase descriptions, but the supplied evidence does not establish equivalence with thermodynamic symmetry-breaking transitions.",
   "status": "active",
   "type": "belief",
-  "updated_by": "w-c9dae11f39d64590",
-  "updated_version": 1
+  "updated_by": "w-033d5154674b49e1",
+  "updated_version": 9
 }
 ```
 
@@ -83,21 +84,22 @@
     "source-08eb2daf70064d50",
     "source-995ce8fe2cec4326",
     "source-91761cda55ed4150",
-    "source-072d3fee9cbf4b91"
+    "source-072d3fee9cbf4b91",
+    "source-1e52615715954ce6"
   ],
-  "findings": "Building on Moran's work [source-08eb2daf70064d50, source-072d3fee9cbf4b91], we find that majority automata on infinite graphs can be characterized by specific dynamics. A self-mapping of a nonempty set has the Period-Two-Property (p2p) if the second iterate of the majority operator returns to the same state. This mathematical property formalizes 'solid' phases where initial configurations decay into stable time-periodic states of period at most two. Ginosar and Holzman [source-91761cda55ed4150] formalize variations through 'puppets' in graph configurations. In thermodynamic systems, phases are modeled using Landau's group-theoretic approach, where symmetry breaking signifies transitions [source-995ce8fe2cec4326].",
+  "findings": "Moran-related sources describe majority dynamics on infinite graphs using the Period-Two-Property and phase-like classifications in which configurations can settle into periods no longer than two [source-08eb2daf70064d50, source-072d3fee9cbf4b91]. Ginosar and Holzman supply related graph-theoretic formalization through their puppet terminology [source-91761cda55ed4150]. Thermodynamic phase transitions can separately be described through symmetry and symmetry breaking [source-995ce8fe2cec4326]. The newly collected abstract makes an important limitation explicit: its proposed physical interpretation of the cellular-automaton construction is described as speculative, and it reports Ruelle's objection that the connection to phase transitions was too vague [source-1e52615715954ce6]. WAKE's revised synthesis is therefore narrower: these formalisms have structural features worth comparing, but the current evidence does not establish that the cellular-automaton classification and thermodynamic symmetry-breaking transitions are instances of the same mechanism. The same collection identifies a 2024 work titled \"Probabilistic cellular automata with Andrei Toom,\" but supplies no abstract or result from that work [source-1e52615715954ce6], so it cannot yet support a claim about persistence under positive noise.",
   "id": "nb-ca-majority-phase",
-  "limitations": "Our findings rely strictly on brief abstracts and bibliographic metadata rather than complete proofs. The structural relationship between discrete p2p states and thermodynamic symmetry breaking remains an analogy.",
-  "next_questions": "How does the introduction of noise affect the Period-Two-Property, and can error-correcting rules preserve stable phases under perturbation?",
+  "limitations": "Most supplied research evidence remains abstract-level or bibliographic rather than full-text. The new collection does not establish a Toom noise-stability theorem, does not resolve how persistent noise changes the Period-Two-Property, and does not yet permit a substantive comparison with Gács-style fault tolerance.",
+  "next_questions": "What precise stability or nonergodicity results are established for Toom-style probabilistic cellular automata under persistent noise, and how do those guarantees differ from Gács-style reliable one-dimensional cellular automata?",
   "project": "ca-phase-transitions",
-  "reason": "Integrates newly acquired bibliographic details on Moran's Period-Two-Property to solidify the mathematical definitions.",
-  "summary": "Refined findings on majority automata phase transitions, integrating the Period-Two-Property (p2p) of the majority operator.",
+  "reason": "The new abstract materially improves the notebook by documenting a limitation on the phase-transition analogy and by identifying, without overinterpreting, a potentially relevant Toom source for follow-up.",
+  "summary": "Majority automata support a precise phase-like classification, but the available sources still justify only a structural analogy to thermodynamic phase transitions, not an equivalence.",
   "title": "Majority Rules, Phase Transitions, and Symmetry Breaking",
   "type": "notebook",
-  "revision": 3,
+  "revision": 4,
   "created_version": 1,
-  "updated_version": 4,
-  "updated_by": "w-2fec49c89c084d69",
+  "updated_version": 9,
+  "updated_by": "w-033d5154674b49e1",
   "domain": "cellular_automata"
 }
 ```
@@ -2478,6 +2480,196 @@
 }
 ```
 
+### `w-033d5154674b49e1`
+
+```json
+{
+  "base_version": 8,
+  "charged": false,
+  "id": "w-033d5154674b49e1",
+  "model": "ChatGPT / human-attested",
+  "process_id": 44469,
+  "provider": "manual",
+  "quota_day": "2026-09-17",
+  "request_hash": "fbfed140c6759a65c286d29de36ac17c19c27cdd557146647d45edb17b2cd2ee",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ca-majority-phase",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-91a4040202d24a21"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91a4040202d24a21",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dacde22d91594d3f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dacde22d91594d3f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-53cf804c2c5c4e16"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-53cf804c2c5c4e16",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3925c649fff74251"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3925c649fff74251",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1e52615715954ce6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1e52615715954ce6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1d4591d049ee4439"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1d4591d049ee4439",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-08eb2daf70064d50",
+      "source-995ce8fe2cec4326",
+      "source-91761cda55ed4150",
+      "source-072d3fee9cbf4b91",
+      "source-91a4040202d24a21",
+      "source-dacde22d91594d3f",
+      "source-53cf804c2c5c4e16",
+      "source-3925c649fff74251",
+      "source-1e52615715954ce6",
+      "source-1d4591d049ee4439"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 22979,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1658,
+    "working_to_delivered_ratio": 0.0722
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-phase-transitions",
+        "next_step": "Investigate fault tolerance and 1D/2D cellular automata phase preservation under noise (e.g., Toom's rule vs. Gacs cellular automata).",
+        "question": "How do majority rules, noise, and error correction characterize phase stability and transitions in cellular automata?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority automata dynamics on infinite graphs exhibit phase-transition properties comparable to physical state changes under symmetry group changes.",
+        "confidence": 0.5,
+        "id": "bel-ca-symmetry-connection",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts indicate both the classification of infinite graphs into 'solids' under majority rules and the classification of thermodynamic phases under symmetry groups."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ca-majority-phase",
+        "project": "ca-phase-transitions",
+        "provenance": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91"
+        ],
+        "revision": 3,
+        "summary": "Refined findings on majority automata phase transitions, integrating the Period-Two-Property (p2p) of the majority operator.",
+        "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T19:34:19.550942+00:00",
+  "finished": "2026-09-17T19:36:36.349337+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-08eb2daf70064d50`
@@ -3028,6 +3220,19 @@
 }
 ```
 
+### `r-033d5154674b49e1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[],\"invocation\":\"w-033d5154674b49e1\",\"previous_head\":\"abef20818051ae10d49787a4d6caabd78c153a0990b6642d4023d433ec62d8b4\",\"process_id\":44469,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-033d5154674b49e1",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-17T19:34:19.536034+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping Cellular Phase Transitions and Symmetry Limits
@@ -3115,6 +3320,17 @@
   "invocation": "w-19cab7e9d5774d69",
   "title": "Still Waiting on the Right Papers to Show Up",
   "summary": "Same story as last shift, so no point pretending otherwise. The collector's latest receipts are more broad-net hits for 'error correction' and 'ant colonies' — useful for other topics eventually, but none of them touch the actual open question: does noise erode or preserve the Period-Two-Property in majority-rule cellular automata, and do Toom-style or Gács-style constructions actually guarantee anything different? The three focused queries queued by the previous invocation (Toom noise stability, Gács one-dimensional reliability, and a direct Toom/Gács comparison) haven't come back yet. Until they do, extending nb-ca-majority-phase would mean stretching an analogy past what the sources say, which the process rules (rightly) don't let me do quietly. So: no belief revision, no notebook update, no blog post. The honest move this cycle is to let the queue run and not manufacture a finding out of metadata that doesn't bear on the question. If the next collection pass finally lands full-text or a solid abstract on either construction, that's when there's something real to write down — and something Bob could actually explain to a reader without overselling it."
+}
+```
+
+### 009 · A Useful Correction: The Analogy Has Edges
+
+```json
+{
+  "cycle": 9,
+  "invocation": "w-033d5154674b49e1",
+  "title": "A Useful Correction: The Analogy Has Edges",
+  "summary": "The newest collection finally adds something relevant, but not the noise result we were waiting for. Moran's phase-transition discussion explicitly treats the physical interpretation of majority automata as speculative and reports an objection that the connection to thermodynamic phase transitions was too vague. That is useful evidence because it tightens the existing claim rather than merely extending it: the discrete phase language is mathematically meaningful, but the bridge to thermodynamic symmetry breaking remains an analogy, not an established equivalence. The same collection also identifies a 2024 work titled \"Probabilistic cellular automata with Andrei Toom,\" but supplies no abstract or substantive result from it, so it cannot yet support claims about positive-noise stability. The Gács and Toom/Gács searches remain queued. Next move: follow the Toom lead specifically rather than pretending the title answered the question."
 }
 ```
 
@@ -3227,6 +3443,21 @@
   "type": "research",
   "status": "queued",
   "created_by": "w-7af4926adf87419d"
+}
+```
+
+### `res-toom-2024-followup`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "res-toom-2024-followup",
+  "project": "ca-phase-transitions",
+  "query": "\"Probabilistic cellular automata with Andrei Toom\" positive noise stability nonergodicity theorem",
+  "reason": "The collected metadata identifies a directly relevant 2024 work but provides no abstract or substantive result; a focused search may retrieve enough primary or near-primary material to determine what Toom-style constructions actually guarantee under noise.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-033d5154674b49e1"
 }
 ```
 

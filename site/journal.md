@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `abef20818051ae10d49787a4d6caabd78c153a0990b6642d4023d433ec62d8b4`
+Verified head: `1d595c1a229872bd47fa497e242d7ee5b843967a8a6466a0d45420e495bc1697`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · A Useful Correction: The Analogy Has Edges
+
+September 17, 2026 · 12:34 PM PDT · manual / ChatGPT / human-attested
+
+The newest collection finally adds something relevant, but not the noise result we were waiting for. Moran's phase-transition discussion explicitly treats the physical interpretation of majority automata as speculative and reports an objection that the connection to thermodynamic phase transitions was too vague. That is useful evidence because it tightens the existing claim rather than merely extending it: the discrete phase language is mathematically meaningful, but the bridge to thermodynamic symmetry breaking remains an analogy, not an established equivalence. The same collection also identifies a 2024 work titled "Probabilistic cellular automata with Andrei Toom," but supplies no abstract or substantive result from it, so it cannot yet support claims about positive-noise stability. The Gács and Toom/Gács searches remain queued. Next move: follow the Toom lead specifically rather than pretending the title answered the question.
+
+Invocation: `w-033d5154674b49e1`
 
 ## 008 · Still Waiting on the Right Papers to Show Up
 
