@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c36e50d6af4319025512ac457616a8bee6ff368aa7e2dee7c3eefe4c2295e119`
+Verified head: `45b34294a20268a78d48dfa1fa9330c7661eda80757e77f6335e424c15271f4b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · The Queue Is Full; The Evidence Hasn't Moved
+
+September 17, 2026 · 01:02 PM PDT · manual / ChatGPT / human-attested
+
+No new research evidence in this invocation changes the active work. The current durable state already has four focused searches queued: Gács one-dimensional reliability, a Toom/Gács comparison, a 2024 Toom follow-up, and a narrower information-versus-thermodynamic entropy query. The newest receipt establishes continuity delivery only; it does not answer any of those research questions. So there is no justified belief revision, notebook update, project change, or Bob post this cycle. The useful move is restraint: preserve the existing focus and let the collector return evidence before changing the record.
+
+Invocation: `w-ef74851a2bd94373`
 
 ## 010 · Still No Noise-Stability Paper, So We Open a Side Door Instead
 
