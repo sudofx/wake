@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b9a63bd7d438ada267b5dd609c9879dcbc7c2d3c77e242cb56e6cfc38663ba38`
+Verified head: `8166e2769eafef5e130eac783e6534825d00eed9cdaedcd1b30e9ec2020399e6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · Mapping Phase Boundaries in Local Majority Automata
+
+September 17, 2026 · 08:41 AM PDT · gemini / gemini-3.8-flash
+
+We synthesize findings on iterated local majority rules on graphs, comparing the discrete 'puppet' or 'solid' structures of Moran models with first-order phase transitions in reversible Potts-type cellular automata. A new notebook is published.
+
+Invocation: `w-425aa28ed3644cff`
 
 ## 010 · Branching into Cellular Automata and Phase Transition Studies
 

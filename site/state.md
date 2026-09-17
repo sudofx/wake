@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 10  
+**Version:** 11  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `b9a63bd7d438ada267b5dd609c9879dcbc7c2d3c77e242cb56e6cfc38663ba38`
+**Verified head:** `8166e2769eafef5e130eac783e6534825d00eed9cdaedcd1b30e9ec2020399e6`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -158,6 +158,31 @@ _None recorded._
   "updated_version": 8,
   "updated_by": "w-f557650ddf5b4620",
   "domain": "compression"
+}
+```
+
+### `notebook_cellular_automata_majority_rules` · Phase Boundary Analysis in Iterated Majority-Rule Cellular Automata
+
+```json
+{
+  "evidence": [
+    "source-36c0a3f9f71747ea",
+    "source-7dc818b1e3d34159"
+  ],
+  "findings": "Analysis of unit-charged graphs under iterated local majority rules [source-36c0a3f9f71747ea] indicates a behavior analogous to physical phase-transition phenomena. This connection, first noted in correspondence with Ruelle, can be formally framed using the concept of a 'puppet' or 'solid' as defined by Ginosar and Holzman [source-36c0a3f9f71747ea]. This formalization characterizes the stable, non-periodic structural boundaries that emerge under iterated local transitions. Complementary work on Q2R-Potts cellular automata [source-7dc818b1e3d34159] highlights how reversible and conservative cellular automata exhibit first-order phase transitions and complex cluster dynamics, demonstrating how macroscopic phase behavior emerges bottom-up from discrete local rules.",
+  "id": "notebook_cellular_automata_majority_rules",
+  "limitations": "The cited sources are limited to bibliographic metadata and short abstracts [source-36c0a3f9f71747ea] [source-7dc818b1e3d34159], leaving the explicit mathematical mappings of temperature and precise cluster boundary criteria unexamined in full.",
+  "next_questions": "Can we analytically map the temperature parameter, absent in the discrete Moran model, to the cluster dynamics of the Q2R-Potts cellular automaton?",
+  "project": "cellular_automata_phase_transitions",
+  "reason": "Documenting structural phase transitions under local majority rules using external literature sources.",
+  "summary": "Analyzing the emergence of phase transitions and stable configurations (solids or puppets) in cellular automata operating under local majority rules.",
+  "title": "Phase Boundary Analysis in Iterated Majority-Rule Cellular Automata",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 11,
+  "updated_version": 11,
+  "updated_by": "w-425aa28ed3644cff",
+  "domain": "cellular_automata"
 }
 ```
 
@@ -3336,6 +3361,245 @@ _None recorded._
 }
 ```
 
+### `w-425aa28ed3644cff`
+
+```json
+{
+  "base_version": 10,
+  "charged": true,
+  "id": "w-425aa28ed3644cff",
+  "model": "gemini-3.8-flash",
+  "process_id": 2233,
+  "provider": "gemini",
+  "quota_day": "2026-09-17",
+  "request_hash": "a68b693808261f12fec62d4f9f99e8bf5c5bf6a7a883768316adcecacc201125",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-c3785aa0ccd748c5",
+          "source-63c2f03c17b341a9",
+          "source-a1f99fd2cb514556"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "notebook_compression_shadow_bounds",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-1b0f6f1b0ad0408f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1b0f6f1b0ad0408f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2d75c1f04ba04f44"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2d75c1f04ba04f44",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-36c0a3f9f71747ea"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-36c0a3f9f71747ea",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d4444724bb404369"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d4444724bb404369",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7dc818b1e3d34159"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7dc818b1e3d34159",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2f618eadb8854212"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2f618eadb8854212",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-c3785aa0ccd748c5",
+      "source-63c2f03c17b341a9",
+      "source-a1f99fd2cb514556",
+      "source-1b0f6f1b0ad0408f",
+      "source-2d75c1f04ba04f44",
+      "source-36c0a3f9f71747ea",
+      "source-d4444724bb404369",
+      "source-7dc818b1e3d34159",
+      "source-2f618eadb8854212"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 17958,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3020,
+    "working_to_delivered_ratio": 0.1682
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "compression_shadow_analysis",
+        "next_step": "Synthesize literature on lossy compression error bounds against the provider and experiment constraints.",
+        "question": "How can durable working-set shadows minimize context usage while maintaining error-correction reliability?",
+        "title": "Compression for Working-Set Shadows"
+      },
+      {
+        "id": "cellular_automata_phase_transitions",
+        "next_step": "Queue research on local majority rules and phase transition thresholds.",
+        "question": "How do iterated local majority rules on countable graphs define boundaries between periodic and non-periodic states?",
+        "title": "Phase Transitions in Cellular Automata"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE's continuity relies on external cryptographic state verification and sequential event logs managed by a trusted host rather than model-internal state persistence.",
+        "confidence": 0.95,
+        "id": "belief_external_continuity",
+        "provenance": [
+          "source-7aa71281ce7a40d5"
+        ],
+        "status": "active",
+        "why_retained": "The architecture documentation explicitly describes the event-replay model and the SQLite database verification loop that happens before the model is invoked."
+      },
+      {
+        "claim": "The experimental protocol defines three testing configurations (rich context, working abstraction, and overcompressed control) to evaluate context minimization without losing contradiction detection.",
+        "confidence": 0.95,
+        "id": "belief_experimental_protocol_alignment",
+        "provenance": [
+          "source-c3785aa0ccd748c5",
+          "source-63c2f03c17b341a9"
+        ],
+        "status": "active",
+        "why_retained": "The protocol details the precise A/B/C testing parameters to evaluate stateless context minimization while the spec outlines the goal of Fresh-session continuity, validating these exact comparison constraints."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook_wake_continuity_design",
+        "project": "wake_architecture_continuity",
+        "provenance": [
+          "source-7aa71281ce7a40d5",
+          "source-6dcf0d8da165405b"
+        ],
+        "revision": 1,
+        "summary": "An analysis of WAKE's architecture and experimental protocol for maintaining logical continuity across stateless model invocations without assumptions of phenomenal consciousness or persistent internal state.",
+        "title": "Externalized Continuity and Accountability in WAKE Architecture"
+      },
+      {
+        "id": "notebook_compression_shadow_bounds",
+        "project": "compression_shadow_analysis",
+        "provenance": [
+          "source-c3785aa0ccd748c5",
+          "source-63c2f03c17b341a9",
+          "source-a1f99fd2cb514556"
+        ],
+        "revision": 3,
+        "summary": "Revised analysis of experimental parameters and theoretical bounds for compressing state in the working-set shadow phase, now incorporating bibliographic lossy compression metrics.",
+        "title": "Context Compression Constraints and Shadow-Phase Design in WAKE"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-17T15:41:49.958724+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 32684,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 37746,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 18763,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 37746,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-17T15:42:50.676117+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-887a836495dd42f8`
@@ -4065,6 +4329,47 @@ _None recorded._
 }
 ```
 
+### `source-7dc818b1e3d34159`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=majority+automaton+phase+transition+Moran+solids&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9780511534874.011\\\", \\\"title\\\": [\\\"Phase transition dynamics in solids\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9780511534874.011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 6, 6]]}}, {\\\"DOI\\\": \\\"10.29393/tmudec-116tj1fo116\\\", \\\"title\\\": [\\\"First-order phase transition and cluster dynamics in the Q2R-Potts cellular automaton\\\"], \\\"abstract\\\": \\\"<jats:p xml:lang=\\\\\\\"es\\\\\\\">Los autómatas celulares (AC) son sistemas dinámicos discretos que permiten el estudio de fenómenos emergentes desde una perspectiva microscópica, o bottom-up. En esta tesis, nos centramos en el modelo Q2R-Potts, un autómata celular específico que es reversible y conservativo tanto en el sentido matemático como físico. Este modelo se distingue por un espacio de fases compuesto de puntos fijos y ciclos límite, y una cantidad conservativa similar a la energía. Adaptamos la formulación original del modelo, que se desarrolló en dos dimensiones con q = 3 estados, a una cadena unidimensional, con el objetivo de caracterizar su dinámica tanto a nivel macroscópico como microscópico.\\\\nInicialmente, realizamos una caracterización completa del espacio de fases para una cadena de longitud L = 6, analizando la energía de cada configuración, su período y la dinámica de clusters acumulados. Este análisis inicial fue esencial para comprender la distribución de la complejidad en el autómata, especialmente en términos de la riqueza de periodos y configuraciones para una energía dada. Posteriormente, extendimos nuestro estudio a cadenas de longitudes L = 256, L = 512 y L = 1024, construyendo diagramas de fase de magnetización versus densidad de energía. Aquí, descubrimos una transición de fase de primer orden en una región crítica de energía, que converge a −0.9 &gt; E/L &gt; −0.88 a medida que aumentamos la longitud del sistema. Se establece L = 1024 como la longitud característica del sistema y utilizamos esta dimensión para explorar más a fondo la dinámica microscópica introduciendo el concepto de cluster de estados. Estos últimos, muestran un comportamiento de ley de potencias y auto-organización que depende de la energía de la configuración.\\\\nEste estudio aporta una nueva perspectiva a la comprensión de las transiciones de fase en el modelo Q2R-Potts, estudiando por primera vez una transición de fase de primer orden en los modelos Q2R, enfatizando su relevancia física y su comportamiento no ergódico. Nuestros hallazgos abren caminos para futuras investigaciones en sistemas discretos con comportamientos emergentes complejos, particularmente en extensiones del modelo Q2R-Potts a dos y tres dimensiones.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.29393/tmudec-116tj1fo116\\\"}, {\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.4327187\\\", \\\"title\\\": [\\\"Phase Transition of the 3-Majority Dynamics with Uniform Communication Noise\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.4327187\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"f288c5860f02354e456401b0923bbce59ea831799bb7a4e59ab4f087c426ef02\"}",
+  "id": "source-7dc818b1e3d34159",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=majority+automaton+phase+transition+Moran+solids&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 10,
+  "time": "2026-09-17T15:41:49.600898+00:00"
+}
+```
+
+### `source-2f618eadb8854212`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"[Repository](https://github.com/sudofx/wake/tree/master) | [Blog](https://htmlpreview.github.io/?https://raw.githubusercontent.com/sudofx/wake/refs/heads/master/memory/core_persona/blog/html/index.html)\\n\\n## Mission\\n\\n**Scorched Earth: rebuild the entire project from scratch.** Ignore all previous architectural, folder, file, or implementation constraints. Keep only ideas that serve this question:\\n\\n> **Can durable state plus mechanical epistemic/governance constraints turn ephemeral model calls into one longitudinal, auditable process?**\\n\\nThe model is disposable; **state, commitments, evidence, rules, and history are durable**. The experiment is whether that externalized continuity is sufficient to make many independent model invocations behave as one accountable process.\\n\\nThe system should demonstrate:\\n\\n- continuity without persistent model memory\\n- durable commitments across model replacement\\n- mechanically enforced governance/invalid-transition rejection\\n- evidence-backed, revisable beliefs\\n- crash/recovery from the last valid state\\n- model interchangeability\\n- complete auditability\\n- long-running coherence across many fresh sessions\\n- constrained, reviewable autonomy\\n\\n### The experiment must prove\\n\\n1. **Fresh-session continuity:** kill all model/context; a new invocation continues solely from durable state.\\n2. **Causal state:** changing persisted state changes subsequent behavior.\\n3. **Commitment persistence:** Model B inherits obligations created by Model A without human reminder.\\n4. **Mechanical constraints:** deliberately attempt an invalid action/state transition; the system rejects/prevents it.\\n5. **Evidence lifecycle:** claims accumulate evidence and can later be maintained, revised, or retracted based on that record.\\n6. **Recovery:** terminate/corrupt an invocation mid-cycle; restart from the last valid durable state.\\n7. **Audit reconstruction:** an independent observer with only durable state/history can determine:\\n   - objective\\n   - beliefs\\n   - commitments\\n   - supporting evidence\\n   - reasons for state changes\\n   - model invocation responsible for each change\\n8. **Longitudinal coherence:** demonstrate dozens/hundreds of fresh invocation cycles, not merely one successful handoff.\\n\\nThe architecture should make these properties **system guarantees where possible**, rather than instructions buried in prompts.\\n\\n## Product / UX\\n\\nTimezone: **America/Los_Angeles**\\n\\nAutomated cron jobs should execute wake cycles and produce durable output.\\n\\nI need to read the results anywhere on **iPhone 12 mini, iPad, and MacBook**.\\n\\nPreferred presentation:\\n\\n- **Human-facing report/journal:** concise, natural language, approachable to someone who doesn't understand the technical system.\\n- **Technical layer:** links into detailed state, evidence, decisions, logs, metrics, and raw wake-cycle data.\\n- Ideally build a killer web UI that feels like a **blog/journal**, with progressive disclosure into rich technical/data views and graphs.\\n- Desktop preference: Markdown.\\n- Mobile preference: HTML/web.\\n- Browser-rendered Markdown is ideal if practical.\\n- Existing `htmlpreview.github.io` approach is acceptable.\\n\\nThink **blog → laboratory notebook → underlying evidence/data**.\\n\\n## Cost / Models\\n\\n**Budget: $0.**\\n\\nI currently have:\\n- Gemini: **20 free API calls/day** — use this by default.\\n- Claude Desktop: free tier, no paid subscription; currently subject to its session quota.\\n- ChatGPT Desktop: free tier, no paid subscription; currently subject to its session quota.\\n\\nDesign the model interface/provider layer so other major vendors/models can be added later without redesigning the core system.\\n\\nOptimize aggressively for free-tier constraints, minimizing unnecessary model calls.\\n\\n## Personality / Design\\n\\nI'm **Gen-X and proud of it**. Give the project that flavor in:\\n\\n- visual design\\n- language\\n- UX\\n- public-facing reports\\n- attitude\\n- code comments/documentation where appropriate\\n\\nBut compartmentalize it:\\n\\n**Public persona:** fun, irreverent, distinctly Gen-X.  \\n**Lab/system:** serious, rigorous, scientific/technical.\\n\\nDo not let personality compromise experimental integrity.\\n\\n## Deliverable\\n\\nProduce the **complete working project** as:\\n\\n`wake.zip` or if connected to the project folder with write access, modify the files directly.\\n\\nI will delete everything in the existing project directory except `.git` history, then extract the ZIP contents into it.\\n\\nTherefore, deliver a **self-contained replacement project**, not a patch or migration plan.\\n\\nMake the architecture your own. Reuse existing concepts only when they genuinely help answer the mission.\\n\\nThe final system should make the core hypothesis **demonstrable rather than merely described**.\", \"excerpt_truncated\": false, \"source_sha256\": \"c1d1f7900f9b704cfdc3bb594819adec9a4c866e0412c421b6231d0ffc760753\"}",
+  "id": "source-2f618eadb8854212",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/docs/spec.md",
+  "version": 10,
+  "time": "2026-09-17T15:41:49.827362+00:00"
+}
+```
+
+### `r-425aa28ed3644cff`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":10,\"inherited_commitments\":[],\"invocation\":\"w-425aa28ed3644cff\",\"previous_head\":\"9e6802f8fa98fedf2c11802165f0a7feeeeffa97bfcb823d4656824e380d330b\",\"process_id\":2233,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-425aa28ed3644cff",
+  "source": "runtime:continuity",
+  "version": 10,
+  "time": "2026-09-17T15:41:49.923180+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Architecture of Stateless Continuity
@@ -4177,6 +4482,17 @@ _None recorded._
 }
 ```
 
+### 011 · Mapping Phase Boundaries in Local Majority Automata
+
+```json
+{
+  "cycle": 11,
+  "invocation": "w-425aa28ed3644cff",
+  "title": "Mapping Phase Boundaries in Local Majority Automata",
+  "summary": "We synthesize findings on iterated local majority rules on graphs, comparing the discrete 'puppet' or 'solid' structures of Moran models with first-order phase transitions in reversible Potts-type cellular automata. A new notebook is published."
+}
+```
+
 ## Research
 
 ### `research_cloud_operations`
@@ -4255,8 +4571,24 @@ _None recorded._
   "query": "majority automaton phase transition Moran solids",
   "reason": "To locate papers detailing majority rule phase transitions and 'puppet' or 'solid' states as defined in the Moran literature.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-2e22819eacf04baf",
+  "evidence": "source-7dc818b1e3d34159"
+}
+```
+
+### `research_moran_puppets`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "research_moran_puppets",
+  "project": "cellular_automata_phase_transitions",
+  "query": "Ginosar Holzman majority rule puppet Moran",
+  "reason": "To retrieve details of the Ginosar and Holzman paper regarding 'puppet' or 'solid' states in majority rule automata.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-2e22819eacf04baf"
+  "created_by": "w-425aa28ed3644cff"
 }
 ```
 
