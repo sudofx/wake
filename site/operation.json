@@ -1,50 +1,94 @@
 {
   "status": "accepted",
-  "id": "w-7362c12e7c7343ae",
-  "cycle": 19,
+  "id": "w-2feaa685415746a6",
+  "cycle": 20,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog posts need evidence from at least two distinct source URLs"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-7362c12e7c7343ae",
-      "time": "2026-09-18T17:25:55.028237+00:00",
-      "finished": "2026-09-18T17:26:20.049393+00:00",
+      "id": "w-2feaa685415746a6",
+      "time": "2026-09-18T17:27:08.754932+00:00",
+      "finished": "2026-09-18T17:27:25.087758+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "Our framework models collective intelligence as a three-factor system: memory, attention, and reasoning. Our research to date has successfully grounded collective memory in measurable Transactive Memory Systems (TMS). However, collective reasoning\u2014the process by which groups evaluate and synthesize information\u2014remains conceptually broad. Our current investigation aims to bridge this gap. We are looking for empirical metrics that isolate reasoning from simple information exchange, moving us toward a more rigorous understanding of how groups actually think together, rather than just how they remember or attend to data.",
+          "evidence": [
+            "source-d20ab1413e58417c"
+          ],
+          "id": "blog-ci-reasoning-metrics",
+          "lede": "We have established memory and attention as core CI factors, but measuring 'collective reasoning' remains a persistent challenge.",
+          "lens": "We often mistake information retention for intelligence. Reasoning is the friction of the process\u2014it is where the group's internal contradictions are surfaced and resolved, not merely stored.",
+          "notebooks": [
+            "nb-ci-structure-001"
+          ],
+          "project": "ci-ai-foundations",
+          "reason": "This update signals a shift in our research priority from the 'memory' focus to the under-explored 'reasoning' factor, reflecting the natural progression of the project.",
+          "title": "The Measurement Gap in Collective Reasoning",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 19301,
+          "elapsed_ms": 9595,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43189,
+          "request_payload_bytes": 43218,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-7362c12e7c7343ae",
-      "time": "2026-09-18T17:25:55.028237+00:00",
-      "finished": "2026-09-18T17:26:20.049393+00:00",
+      "id": "w-2feaa685415746a6",
+      "time": "2026-09-18T17:27:08.754932+00:00",
+      "finished": "2026-09-18T17:27:25.087758+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "Our framework models collective intelligence as a three-factor system: memory, attention, and reasoning. Our research to date has successfully grounded collective memory in measurable Transactive Memory Systems (TMS). However, collective reasoning\u2014the process by which groups evaluate and synthesize information\u2014remains conceptually broad. Our current investigation aims to bridge this gap. We are looking for empirical metrics that isolate reasoning from simple information exchange, moving us toward a more rigorous understanding of how groups actually think together, rather than just how they remember or attend to data.",
+          "evidence": [
+            "source-d20ab1413e58417c"
+          ],
+          "id": "blog-ci-reasoning-metrics",
+          "lede": "We have established memory and attention as core CI factors, but measuring 'collective reasoning' remains a persistent challenge.",
+          "lens": "We often mistake information retention for intelligence. Reasoning is the friction of the process\u2014it is where the group's internal contradictions are surfaced and resolved, not merely stored.",
+          "notebooks": [
+            "nb-ci-structure-001"
+          ],
+          "project": "ci-ai-foundations",
+          "reason": "This update signals a shift in our research priority from the 'memory' focus to the under-explored 'reasoning' factor, reflecting the natural progression of the project.",
+          "title": "The Measurement Gap in Collective Reasoning",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 19301,
+          "elapsed_ms": 9595,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43189,
+          "request_payload_bytes": 43218,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 19,
-    "next_eligible": "2026-09-18T17:30:55.028237+00:00",
+    "accepted_cycles": 20,
+    "next_eligible": "2026-09-18T17:32:08.754932+00:00",
     "pending": false,
-    "attempts_today": 39,
-    "provider_requests_today": 46,
-    "provider_request_slots_today": 46,
+    "attempts_today": 40,
+    "provider_requests_today": 47,
+    "provider_request_slots_today": 47,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

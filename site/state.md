@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 19  
+**Version:** 20  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `4d34b3691df5dee23a91e3fc55972f937f26fbc68b8d7977c8aa37c14c61d0ef`
+**Verified head:** `46b20e5b1016f679795a530fb21c57c48b9eb6b1a4f5f8ca79957208d89dc309`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -144,15 +144,15 @@
 {
   "domain": "collective_intelligence",
   "id": "ci-ai-foundations",
-  "next_step": "Analyze empirical trade-offs in AI-mediated cognitive load for group reasoning based on queued research findings.",
-  "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
-  "reason": "The mapping phase is mature; the project must now address the performance trade-offs identified as the next logical step.",
+  "next_step": "Synthesize empirical reasoning metrics from collected literature into a new notebook.",
+  "question": "How can we operationalize and quantify 'collective reasoning' in teams, and do AI interventions enhance or obstruct this process?",
+  "reason": "The 'reasoning' factor lacks the empirical maturity of our 'memory' work; this focus is necessary to complete the three-factor model.",
   "status": "active",
   "title": "AI and Collective Intelligence",
   "type": "project",
   "created_version": 1,
-  "updated_version": 16,
-  "updated_by": "w-08f09b6bc7d64dbb"
+  "updated_version": 20,
+  "updated_by": "w-2feaa685415746a6"
 }
 ```
 
@@ -10956,6 +10956,302 @@
 }
 ```
 
+### `w-2feaa685415746a6`
+
+```json
+{
+  "base_version": 19,
+  "charged": true,
+  "id": "w-2feaa685415746a6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 19,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 7,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2113,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "01aa726dd008517c599e7467be5175a352dbc090f034826d8f7135fe86aacbd7",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e19f832718544fff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e19f832718544fff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-13d0d0ceba6344e8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-13d0d0ceba6344e8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-24137787db2a41a8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-24137787db2a41a8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-48fb99b1d28f4e52"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-48fb99b1d28f4e52",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d20ab1413e58417c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d20ab1413e58417c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2b7adac07f614afd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2b7adac07f614afd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-e19f832718544fff",
+      "source-13d0d0ceba6344e8",
+      "source-24137787db2a41a8",
+      "source-48fb99b1d28f4e52",
+      "source-d20ab1413e58417c",
+      "source-2b7adac07f614afd"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 22312,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3465,
+    "working_to_delivered_ratio": 0.1553
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Analyze empirical trade-offs in AI-mediated cognitive load for group reasoning based on queued research findings.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      },
+      {
+        "id": "nb-ci-cognitive-load-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-86b820b68e784d3c",
+          "source-8626e58cc64f468c"
+        ],
+        "revision": 1,
+        "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+        "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T17:27:08.754932+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9595,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 43218,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T17:27:25.087758+00:00",
+  "reason": "",
+  "editorial": {
+    "action": {
+      "body": "Our framework models collective intelligence as a three-factor system: memory, attention, and reasoning. Our research to date has successfully grounded collective memory in measurable Transactive Memory Systems (TMS). However, collective reasoning—the process by which groups evaluate and synthesize information—remains conceptually broad. Our current investigation aims to bridge this gap. We are looking for empirical metrics that isolate reasoning from simple information exchange, moving us toward a more rigorous understanding of how groups actually think together, rather than just how they remember or attend to data.",
+      "evidence": [
+        "source-d20ab1413e58417c"
+      ],
+      "id": "blog-ci-reasoning-metrics",
+      "lede": "We have established memory and attention as core CI factors, but measuring 'collective reasoning' remains a persistent challenge.",
+      "lens": "We often mistake information retention for intelligence. Reasoning is the friction of the process—it is where the group's internal contradictions are surfaced and resolved, not merely stored.",
+      "notebooks": [
+        "nb-ci-structure-001"
+      ],
+      "project": "ci-ai-foundations",
+      "reason": "This update signals a shift in our research priority from the 'memory' focus to the under-explored 'reasoning' factor, reflecting the natural progression of the project.",
+      "title": "The Measurement Gap in Collective Reasoning",
+      "type": "blog"
+    },
+    "reason": "Blog posts need evidence from at least two distinct source URLs",
+    "status": "withheld"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -12557,6 +12853,47 @@
 }
 ```
 
+### `source-d20ab1413e58417c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=quantitative+empirical+measures+of+collective+reasoning+in+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4018/978-1-4666-1818-3.ch002\\\", \\\"title\\\": [\\\"Collective Reasoning and Coalescing Reasoning\\\"], \\\"abstract\\\": \\\"<jats:p>In this chapter, we consider in some detail the nature of collective reasoning and the existing approaches to supporting the collective reasoning that reasoning communities undertake. In approaching the development of technologies to support the functioning of reasoning communities, it is important to be clear on the nature of the tasks involved in collective reasoning. In Chapter 1, we have outlined the main tasks of collective reasoning as: individual reasoning, reasoning communication, and the coalescing of reasoning. However, it is important to identify the ways in which collective reasoning is indeed cognitive cooperation and to what extent there is a case that it is mutually beneficial cooperation as well as being beneficial in its outcomes.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4018/978-1-4666-1818-3.ch002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2012]]}}, {\\\"DOI\\\": \\\"10.1016/j.ijar.2013.03.003\\\", \\\"title\\\": [\\\"Unifying ontological similarity measures: A theoretical and empirical investigation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.ijar.2013.03.003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9]]}}, {\\\"DOI\\\": \\\"10.26034/ne.vals-asla.2010.922\\\", \\\"title\\\": [\\\"Collective decision-making in rehabilitation teams:\\\\npractices of talking work\\\"], \\\"URL\\\": \\\"https://doi.org/10.26034/ne.vals-asla.2010.922\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 1]]}}, {\\\"DOI\\\": \\\"10.4324/9780429486197-5\\\", \\\"title\\\": [\\\"Assessing College-Ready Data-Based Reasoning\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780429486197-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 4, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"32ec670954abafb4f161b06adda9c810a96545fbe47ea8610424ab6314fc48cc\"}",
+  "id": "source-d20ab1413e58417c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=quantitative+empirical+measures+of+collective+reasoning+in+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-18T17:27:06.632946+00:00"
+}
+```
+
+### `source-2b7adac07f614afd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a6a1d86e657c974f3aea03c6de443796a5290641160584bc64abbe3b5ca0d08c\"}",
+  "id": "source-2b7adac07f614afd",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-18T17:27:08.498053+00:00"
+}
+```
+
+### `r-2feaa685415746a6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":19,\"inherited_commitments\":[],\"invocation\":\"w-2feaa685415746a6\",\"previous_head\":\"a930ba36ab7e89bb492c67eb86471aa57c34bf6e872db813c455e0357d521d2f\",\"process_id\":2113,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2feaa685415746a6",
+  "source": "runtime:continuity",
+  "version": 19,
+  "time": "2026-09-18T17:27:08.689102+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -12768,6 +13105,17 @@
 }
 ```
 
+### 020 · Collective Reasoning: Beyond Memory and Attention
+
+```json
+{
+  "cycle": 20,
+  "invocation": "w-2feaa685415746a6",
+  "title": "Collective Reasoning: Beyond Memory and Attention",
+  "summary": "We are pivoting our collective intelligence research toward the 'reasoning' factor, which remains the least empirically defined of our three-factor model (Memory, Attention, Reasoning). While Transactive Memory Systems provide a robust measure for memory, and attention metrics are emerging, formalizing 'reasoning' as a quantifiable group process is the critical next step to complete our framework. We have initiated a focused literature review to isolate distinct reasoning metrics, aiming to move past conceptual definitions and toward replicable empirical standards.\n\nEditorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs"
+}
+```
+
 ## Research
 
 ### `search-ci-mechanisms`
@@ -12972,8 +13320,24 @@
   "query": "quantitative empirical measures of collective reasoning in teams",
   "reason": "Our framework identifies collective reasoning as a core factor, but empirical metrics for 'reasoning' (distinct from memory or attention) are less defined in the literature; this search seeks to isolate formal measurement approaches.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-7362c12e7c7343ae",
+  "evidence": "source-d20ab1413e58417c"
+}
+```
+
+### `research-reasoning-metrics-002`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "research-reasoning-metrics-002",
+  "project": "ci-ai-foundations",
+  "query": "empirical group reasoning performance task metrics",
+  "reason": "To acquire more granular empirical definitions of collective reasoning to support the development of a formal measurement framework.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-7362c12e7c7343ae"
+  "created_by": "w-2feaa685415746a6"
 }
 ```
 
