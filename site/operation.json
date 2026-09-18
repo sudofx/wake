@@ -1,105 +1,50 @@
 {
-  "status": "deferred",
-  "id": "w-6d457fa4cbbb4d5c",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 41967,
-    "http_status": null,
-    "result": "transient_failure",
-    "category": "timeout",
-    "error_type": "TimeoutError",
-    "elapsed_ms": 60114,
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 41967,
-        "http_status": null,
-        "result": "transient_failure",
-        "category": "timeout",
-        "error_type": "TimeoutError",
-        "elapsed_ms": 60114
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 41967,
-      "http_status": null,
-      "result": "transient_failure",
-      "category": "timeout",
-      "error_type": "TimeoutError",
-      "elapsed_ms": 60114
-    }
-  ],
+  "status": "accepted",
+  "id": "w-f0e6a5ab193e4c2e",
+  "cycle": 20,
   "wake_status": {
     "last_accepted": {
-      "id": "w-c397fc6918da4e33",
-      "time": "2026-09-18T19:37:33.999319+00:00",
-      "finished": "2026-09-18T19:37:47.539253+00:00",
+      "id": "w-f0e6a5ab193e4c2e",
+      "time": "2026-09-18T19:43:14.095506+00:00",
+      "finished": "2026-09-18T19:43:25.457922+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8614,
+          "elapsed_ms": 4871,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43451,
+          "request_payload_bytes": 42206,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-6d457fa4cbbb4d5c",
-      "time": "2026-09-18T19:41:13.283491+00:00",
-      "finished": "2026-09-18T19:42:19.033784+00:00",
-      "status": "deferred",
-      "reason": "Gemini temporarily unavailable; wake deferred",
-      "provider_error": {
-        "category": "timeout",
-        "elapsed_ms": 60114,
-        "error_type": "TimeoutError",
-        "http_status": null,
-        "model": "gemini-3.1-flash-lite",
-        "provider_attempts": [
-          {
-            "category": "timeout",
-            "elapsed_ms": 60114,
-            "error_type": "TimeoutError",
-            "http_status": null,
-            "model": "gemini-3.1-flash-lite",
-            "request_payload_bytes": 41967,
-            "result": "transient_failure"
-          }
-        ],
-        "provider_requests_sent": 1,
-        "request_payload_bytes": 41967,
-        "result": "transient_failure"
-      },
+      "id": "w-f0e6a5ab193e4c2e",
+      "time": "2026-09-18T19:43:14.095506+00:00",
+      "finished": "2026-09-18T19:43:25.457922+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "timeout",
-          "elapsed_ms": 60114,
-          "error_type": "TimeoutError",
-          "http_status": null,
+          "elapsed_ms": 4871,
+          "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 41967,
-          "result": "transient_failure"
+          "request_payload_bytes": 42206,
+          "result": "success"
         }
-      ]
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 19,
-    "next_eligible": "2026-09-18T19:46:13.283491+00:00",
+    "accepted_cycles": 20,
+    "next_eligible": "2026-09-18T19:48:14.095506+00:00",
     "pending": false,
-    "attempts_today": 38,
-    "provider_requests_today": 40,
-    "provider_request_slots_today": 40,
+    "attempts_today": 39,
+    "provider_requests_today": 41,
+    "provider_request_slots_today": 41,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
