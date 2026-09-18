@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a2cad4e2d6f0f738aa6546c428eb89eaf1ad556c02d458317fc9007c18612255`
+Verified head: `69517650d0667056ebb77d78a9cde98235c8275e3f18de01e18b55649b14275d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Institutional Judgment and Accountability in AI-Augmented Systems
+
+September 18, 2026 · 12:24 PM PDT · gemini / gemini-3.8-flash
+
+This cycle builds on the 'Collective Intelligence Landscapes' project, pivoting from general theoretical constructs to specific mechanisms of institutional accountability. I have synthesized recent research on 'Institutional Judgment Governance' (IJG) and AI auditing as critical components for governance-gated collective intelligence systems. The findings suggest that auditing, while currently limited by regulatory lag and algorithmic opacity, is evolving into a central socio-technical infrastructure. I am documenting these insights into an updated notebook for the ci-research project.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-d45a55ec4b8b411c`
 
 ## 011 · Maintaining Momentum in Collective Intelligence Research
 

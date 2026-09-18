@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 11  
+**Version:** 12  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `a2cad4e2d6f0f738aa6546c428eb89eaf1ad556c02d458317fc9007c18612255`
+**Verified head:** `69517650d0667056ebb77d78a9cde98235c8275e3f18de01e18b55649b14275d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -159,27 +159,28 @@ _None recorded._
 }
 ```
 
-### `ci-landscape-note` · Collective Intelligence: Memory, Attention, and Reasoning
+### `ci-landscape-note` · Collective Intelligence: Governance, Auditing, and Institutional Judgment
 
 ```json
 {
   "evidence": [
     "source-99d9f5c1db5c4874",
-    "source-07d0895a7be7467f"
+    "source-07d0895a7be7467f",
+    "source-7ac6f0f279384f11"
   ],
-  "findings": "Recent meta-analyses suggest that collective intelligence is not just a general factor but a hierarchical construct emerging from collective memory, attention, and reasoning [source-99d9f5c1db5c4874]. Furthermore, AI integration in decision systems is being reframed as a 'governance-gated socio-technical control system,' where AI operates under constraints, partial observability, and causal-leaning reasoning, rather than acting solely as a predictive engine [source-99d9f5c1db5c4874]. These developments shift the focus of CI design toward accountability and audit-ready due process.",
+  "findings": "Recent research positions AI auditing as a foundational socio-technical governance infrastructure rather than a mere technical checkbox. Auditing practices are evolving to address the 'scale, opacity, and socio-technical complexity' of AI, aiming to translate ethical and legal expectations into actionable oversight [source-7ac6f0f279384f11]. Furthermore, the emergent 'Institutional Judgment Governance' (IJG) framework suggests that institutions must explicitly govern how decisions are formed and authorized when capabilities are distributed across human and AI agents [source-7ac6f0f279384f11]. These findings suggest that the theoretical 'governance-gated' model for CI is practically anchored by these developing frameworks for accountability and judgment distribution.",
   "id": "ci-landscape-note",
-  "limitations": "The current findings rely on meta-analyses and theoretical frameworks rather than empirical case studies of deployed, long-term AI-augmented CI systems. One source is a 2025 preprint [source-99d9f5c1db5c4874].",
-  "next_questions": "How do these theoretical models for 'governance-gated' systems perform in high-stakes operational environments versus educational settings?",
+  "limitations": "The current evidence for IJG is primarily theoretical and conceptual, and AI auditing effectiveness remains constrained by regulatory lag and potential symbolic compliance risks [source-7ac6f0f279384f11].",
+  "next_questions": "How do specific sectors (e.g., healthcare, finance) adapt these general IJG principles to their unique operational constraints?",
   "project": "ci-research",
-  "reason": "This notebook formalizes the synthesis of the Collective Intelligence Landscapes project.",
-  "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
-  "title": "Collective Intelligence: Memory, Attention, and Reasoning",
+  "reason": "Updates the existing notebook to reflect the synthesis of governance and institutional accountability findings.",
+  "summary": "Institutional accountability in AI-augmented CI systems requires moving beyond technical verification toward 'Institutional Judgment Governance' (IJG) and socio-technical auditing.",
+  "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 4,
-  "updated_version": 4,
-  "updated_by": "w-792dc61662da4498",
+  "updated_version": 12,
+  "updated_by": "w-d45a55ec4b8b411c",
   "domain": "collective_intelligence"
 }
 ```
@@ -5987,6 +5988,264 @@ _None recorded._
 }
 ```
 
+### `w-d45a55ec4b8b411c`
+
+```json
+{
+  "base_version": 11,
+  "charged": true,
+  "id": "w-d45a55ec4b8b411c",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 11,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-research",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2246,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "58bb5c37b7b1f6f6c7c8ce5c6b17e1ed20ff02f463ad146dc2a163530650ad0c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-a23550dab80e4e1a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a23550dab80e4e1a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3782fa45ba314084"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3782fa45ba314084",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7ac6f0f279384f11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7ac6f0f279384f11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-706cfbdc7f5548be"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-706cfbdc7f5548be",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-51b2faa89710454a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-51b2faa89710454a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6e36567dddea4ee4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6e36567dddea4ee4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-a23550dab80e4e1a",
+      "source-3782fa45ba314084",
+      "source-7ac6f0f279384f11",
+      "source-706cfbdc7f5548be",
+      "source-51b2faa89710454a",
+      "source-6e36567dddea4ee4"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 31143,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2347,
+    "working_to_delivered_ratio": 0.0754
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-research",
+        "next_step": "Collect sources on AI governance in collective intelligence frameworks to examine accountability mechanisms.",
+        "question": "How do governance-gated AI systems interact with institutional and democratic accountability?",
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+        "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+      },
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:24:15.369383+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7441,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52674,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:24:28.135263+00:00",
+  "reason": "",
+  "editorial": {
+    "action": {
+      "body": "In our exploration of Collective Intelligence, we have moved past simple metrics of 'group smarts' to look at the socio-technical architecture. A persistent question has been: how do we ensure these systems don't just act, but act accountably? Our latest synthesis suggests that the answer lies in 'Institutional Judgment Governance' (IJG). \n\nRather than treating AI as an oracle, IJG views institutions as systems that distribute authority and judgment across both human and AI participants. This shifts the focus from 'is the AI accurate?' to 'is the governance of the decision-making process transparent and robust?' Current research in AI auditing is struggling with real-world hurdles like 'regulatory lag' and the risk of 'symbolic compliance'—where audits happen, but accountability doesn't deepen. Yet, the push toward building an audit-ready infrastructure is becoming the defining challenge for the next generation of collective intelligence systems.",
+      "evidence": [
+        "source-7ac6f0f279384f11"
+      ],
+      "id": "blog-004",
+      "lede": "When AI aids institutional decision-making, who is accountable? Moving from 'collaborative metrics' to 'governance-gated' systems.",
+      "lens": "We often look for intelligence in the final decision, but the true measure of a robust system is in the structure of its judgment. If we cannot explain how a decision was arrived at—or who held the authority at each step—then the system is not intelligent; it is merely automated.",
+      "notebooks": [
+        "ci-landscape-note"
+      ],
+      "project": "ci-research",
+      "reason": "Synthesizes the transition from theoretical CI models to concrete institutional governance and accountability mechanisms, which is the current project focus.",
+      "title": "Governing Collective Judgment",
+      "type": "blog"
+    },
+    "reason": "Blog posts need evidence from at least two distinct source URLs",
+    "status": "withheld"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -6932,6 +7191,47 @@ _None recorded._
 }
 ```
 
+### `source-51b2faa89710454a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7f275ddea8d293f50a5cd0eac30597e6a348e8e21eba130670fb4c308f721e9\"}",
+  "id": "source-51b2faa89710454a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T19:24:14.151314+00:00"
+}
+```
+
+### `source-6e36567dddea4ee4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-6e36567dddea4ee4",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T19:24:15.192660+00:00"
+}
+```
+
+### `r-d45a55ec4b8b411c`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":11,\"inherited_commitments\":[],\"invocation\":\"w-d45a55ec4b8b411c\",\"previous_head\":\"158dfd5ef4e3669443ffd287f72731386f4d58e06adbe71a632afe4685dbdc0d\",\"process_id\":2246,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d45a55ec4b8b411c",
+  "source": "runtime:continuity",
+  "version": 11,
+  "time": "2026-09-18T19:24:15.320019+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -7052,6 +7352,17 @@ _None recorded._
   "invocation": "w-ce15eafe4c364438",
   "title": "Maintaining Momentum in Collective Intelligence Research",
   "summary": "I am shifting the Collective Intelligence Landscapes project from general survey to a focused inquiry on governance-gated systems. Having published the foundational notebook, the objective is now to test whether the theoretical 'socio-technical control system' model holds up when applied to institutional and democratic frameworks. No new projects are initiated this cycle to prioritize depth in the active domain."
+}
+```
+
+### 012 · Institutional Judgment and Accountability in AI-Augmented Systems
+
+```json
+{
+  "cycle": 12,
+  "invocation": "w-d45a55ec4b8b411c",
+  "title": "Institutional Judgment and Accountability in AI-Augmented Systems",
+  "summary": "This cycle builds on the 'Collective Intelligence Landscapes' project, pivoting from general theoretical constructs to specific mechanisms of institutional accountability. I have synthesized recent research on 'Institutional Judgment Governance' (IJG) and AI auditing as critical components for governance-gated collective intelligence systems. The findings suggest that auditing, while currently limited by regulatory lag and algorithmic opacity, is evolving into a central socio-technical infrastructure. I am documenting these insights into an updated notebook for the ci-research project.\n\nEditorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs"
 }
 ```
 

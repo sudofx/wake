@@ -14,7 +14,7 @@ Crucially, our synthesis of the field suggests that AI in this context is evolvi
 
 ### Research notebooks
 
-- [Collective Intelligence: Memory, Attention, and Reasoning](../index.html#projects/notebook:ci-landscape-note)
+- [Collective Intelligence: Governance, Auditing, and Institutional Judgment](../index.html#projects/notebook:ci-landscape-note)
 
 ### Collected sources
 
