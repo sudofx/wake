@@ -5,7 +5,7 @@
 **Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1afb1f85bca00e5a9b0c786d12443a6b7d564465a08551a98a8a64cb3b3bf9a0`
+**Verified head:** `0d28728df750bc1a05850a6d8aedf2037873376a4b54c4afe5921cc4892f0287`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1540,6 +1540,223 @@ _None recorded._
 }
 ```
 
+### `w-28c761577f594bc1`
+
+```json
+{
+  "base_version": 4,
+  "charged": true,
+  "id": "w-28c761577f594bc1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 4,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-int-01",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI-Augmented Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2389,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "186395fab15acf1b844f1940eea71f735af7b8589fba31b5ea72a7f8d97476b1",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-d1a2824fbfd84fda"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d1a2824fbfd84fda",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d747ddeb8f464cf4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d747ddeb8f464cf4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e42059b5902a4b1e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e42059b5902a4b1e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-720f877294174fd0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-720f877294174fd0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-033f66d711244d53"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-033f66d711244d53",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c266addb0c024e79"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c266addb0c024e79",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-d1a2824fbfd84fda",
+      "source-d747ddeb8f464cf4",
+      "source-e42059b5902a4b1e",
+      "source-720f877294174fd0",
+      "source-033f66d711244d53",
+      "source-c266addb0c024e79"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27611,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1700,
+    "working_to_delivered_ratio": 0.0616
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-int-01",
+        "next_step": "Analyze empirical findings on human-machine task performance to validate or challenge the tripartite and COHUMAIN frameworks.",
+        "question": "How can AI tools specifically enhance the socio-cognitive architecture of collective intelligence, such as collective memory, attention, and reasoning?",
+        "title": "AI-Augmented Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "AI can be structured to support collective intelligence by targeting functional socio-cognitive pillars or through integrated human-machine team architectures.",
+        "confidence": 0.85,
+        "id": "bel-ai-coll-int-elements",
+        "provenance": [
+          "source-fc353e0b71524ce7",
+          "source-968b3035b6384c08"
+        ],
+        "status": "active",
+        "why_retained": "The tripartite editorial model and the COHUMAIN team framework offer complementary functional and integrative perspectives on socio-cognitive architectures."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-ci-architectures",
+        "project": "proj-coll-int-01",
+        "provenance": [
+          "source-fc353e0b71524ce7",
+          "source-968b3035b6384c08"
+        ],
+        "revision": 1,
+        "summary": "This notebook contrasts the tripartite functional model of collective memory, attention, and reasoning against the COHUMAIN integrative human-machine team framework.",
+        "title": "Functional vs. Integrative Socio-Cognitive Architectures for Human-Machine Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T16:09:49.587805+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9543,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 48252,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T16:10:04.740398+00:00",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs"
+}
+```
+
 ## Evidence
 
 ### `source-f3541cabda934b51`
@@ -2236,6 +2453,47 @@ _None recorded._
 }
 ```
 
+### `source-033f66d711244d53`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=empirical+human-machine+collaboration+collective+intelligence+task+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780198862536.003.0019\\\", \\\"title\\\": [\\\"Human–Machine Collaboration for Democratizing Data Science\\\"], \\\"abstract\\\": \\\"<p>Everybody wants to analyse their data, but only few posses the data science expertise to do this. Motivated by this observation, we introduce a novel framework and system VisualSynth for human-machine collaboration in data science. Its aim is to democratize data science by allowing users to interact with standard spreadsheet software in order to perform and automate various data analysis tasks ranging from data wrangling, data selection, clustering, constraint learning, predictive modeling and auto-completion. VisualSynth relies on the user providing colored sketches, i.e., coloring parts of the spreadsheet, to partially specify data science tasks, which are then determined and executed using artificial intelligence techniques.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198862536.003.0019\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 13]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251409515\\\", \\\"title\\\": [\\\"Erratum to: Supermind Ideator: How scaffolding Human-AI collaboration can increase creativity\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251409515\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 1]]}}, {\\\"DOI\\\": \\\"10.23919/fruct52173.2021.9435535\\\", \\\"title\\\": [\\\"Recommendation of Collaboration Patterns for Human-Machine Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.23919/fruct52173.2021.9435535\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 5, 12]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5143004\\\", \\\"title\\\": [\\\"Human-Centric Task Allocation Model Under Human-Machine Collaboration Modes\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5143004\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"43e438992afdb6fa4c6cdb5caa7cb3247939c027871c3600d235600067be171a\"}",
+  "id": "source-033f66d711244d53",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=empirical+human-machine+collaboration+collective+intelligence+task+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-18T16:09:48.669808+00:00"
+}
+```
+
+### `source-c266addb0c024e79`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"24dd2eb2b228a290c3adab83025502ac5456c23033d08eee3cac51bea39b207c\"}",
+  "id": "source-c266addb0c024e79",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-18T16:09:49.514252+00:00"
+}
+```
+
+### `r-28c761577f594bc1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":4,\"inherited_commitments\":[],\"invocation\":\"w-28c761577f594bc1\",\"previous_head\":\"6cd37543b1f5e1c6f1cc63bfdaeb8ee108fa63a8abee42560e7964eb69aded15\",\"process_id\":2389,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-28c761577f594bc1",
+  "source": "runtime:continuity",
+  "version": 4,
+  "time": "2026-09-18T16:09:49.565814+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating research into collective intelligence
@@ -2310,8 +2568,9 @@ _None recorded._
   "query": "empirical human-machine collaboration collective intelligence task performance",
   "reason": "Identify empirical papers that test human-machine interaction, moving beyond high-level conceptual frameworks to examine specific collaborative dynamics.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-f4bf0a7694ff405e"
+  "status": "collected",
+  "created_by": "w-f4bf0a7694ff405e",
+  "evidence": "source-033f66d711244d53"
 }
 ```
 

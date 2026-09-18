@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-f4bf0a7694ff405e",
-  "cycle": 4,
+  "status": "rejected",
+  "id": "w-28c761577f594bc1",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs",
   "wake_status": {
     "last_accepted": {
       "id": "w-f4bf0a7694ff405e",
@@ -22,18 +22,18 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-f4bf0a7694ff405e",
-      "time": "2026-09-18T16:08:53.285017+00:00",
-      "finished": "2026-09-18T16:09:01.777495+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-28c761577f594bc1",
+      "time": "2026-09-18T16:09:49.587805+00:00",
+      "finished": "2026-09-18T16:10:04.740398+00:00",
+      "status": "rejected",
+      "reason": "Research notebooks need at least two distinct retrieved source URLs",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 3866,
+          "elapsed_ms": 9543,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46266,
+          "request_payload_bytes": 48252,
           "result": "success"
         }
       ],
@@ -42,9 +42,9 @@
     "accepted_cycles": 4,
     "next_eligible": "2026-09-19T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 6,
-    "provider_requests_today": 13,
-    "provider_request_slots_today": 13,
+    "attempts_today": 7,
+    "provider_requests_today": 14,
+    "provider_request_slots_today": 14,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
