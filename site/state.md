@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 0  
+**Version:** 1  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c9a367d2bfdda1a85dbc475312dc58bb1fb4c38d58d049c6d0829870d515dde9`
+**Verified head:** `463bd610548c1b8ec46ed80a1f0005b8e662c30c9ba42ef8c1c531048a995d99`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -19,7 +19,23 @@ _None recorded._
 
 ## Projects
 
-_None recorded._
+### `music-taxonomy` · Music Disambiguation
+
+```json
+{
+  "domain": "music",
+  "id": "music-taxonomy",
+  "next_step": "Collect technical documentation for the MUSIC algorithm and foundational musicology definitions.",
+  "question": "How does the usage of the term 'MUSIC' diverge between signal processing (the algorithm) and cultural musicology?",
+  "reason": "The term 'MUSIC' refers to distinct concepts that often collide in bibliographic searches.",
+  "status": "active",
+  "title": "Music Disambiguation",
+  "type": "project",
+  "created_version": 1,
+  "updated_version": 1,
+  "updated_by": "w-07bc96a26ebc4d99"
+}
+```
 
 ## Notebooks
 
@@ -27,19 +43,299 @@ _None recorded._
 
 ## Invocations
 
-_None recorded._
+### `w-07bc96a26ebc4d99`
+
+```json
+{
+  "base_version": 0,
+  "charged": true,
+  "id": "w-07bc96a26ebc4d99",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 0,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2064,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "9078535b2666c665398ee77fb11b170447795af136dcee826ae209936224d25f",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-07c3805f950c466e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-07c3805f950c466e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-14a71720e6344721"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-14a71720e6344721",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-07c3805f950c466e",
+      "source-14a71720e6344721"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 2,
+      "evidence_count": 2,
+      "trigger_counts": {
+        "unincorporated_evidence": 2
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 4805,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 2,
+    "retrieval_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 2
+    },
+    "working_set_chars": 422,
+    "working_to_delivered_ratio": 0.0878
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T18:57:41.694054+00:00",
+  "provider_attempts": [
+    {
+      "category": "http",
+      "elapsed_ms": 230,
+      "http_status": 429,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 429,
+        "details": [
+          {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+              {
+                "description": "Learn more about Gemini API quotas",
+                "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+            "violations": [
+              {
+                "quotaDimensions": {
+                  "location": "[truncated]",
+                  "model": "[truncated]"
+                },
+                "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                "quotaValue": "20"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.RetryInfo",
+            "retryDelay": "15s"
+          }
+        ],
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 15.72557454s.",
+        "status": "RESOURCE_EXHAUSTED"
+      },
+      "request_payload_bytes": 22592,
+      "response_bytes_captured": 1362,
+      "result": "daily_quota"
+    },
+    {
+      "category": "http",
+      "elapsed_ms": 221,
+      "http_status": 429,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 429,
+        "details": [
+          {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+              {
+                "description": "Learn more about Gemini API quotas",
+                "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+            "violations": [
+              {
+                "quotaDimensions": {
+                  "location": "[truncated]",
+                  "model": "[truncated]"
+                },
+                "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                "quotaValue": "20"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.RetryInfo",
+            "retryDelay": "13s"
+          }
+        ],
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 13.109601711s.",
+        "status": "RESOURCE_EXHAUSTED"
+      },
+      "request_payload_bytes": 22592,
+      "response_bytes_captured": 1363,
+      "result": "daily_quota"
+    },
+    {
+      "elapsed_ms": 8988,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 22592,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T18:57:59.611972+00:00",
+  "reason": ""
+}
+```
 
 ## Evidence
 
-_None recorded._
+### `source-07c3805f950c466e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8f0002bbb4bc45ad6d78e47941834e5ea03a799c2b72d54f1d8d439e0850d606\"}",
+  "id": "source-07c3805f950c466e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 0,
+  "time": "2026-09-18T18:57:41.545802+00:00"
+}
+```
+
+### `source-14a71720e6344721`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-14a71720e6344721",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 0,
+  "time": "2026-09-18T18:57:41.688977+00:00"
+}
+```
+
+### `r-07bc96a26ebc4d99`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-07bc96a26ebc4d99\",\"previous_head\":\"0bde06362d789cc4faafa6279f6d2ea432a450704eb747156997bd42c3bbd6ba\",\"process_id\":2064,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-07bc96a26ebc4d99",
+  "source": "runtime:continuity",
+  "version": 0,
+  "time": "2026-09-18T18:57:41.692334+00:00"
+}
+```
 
 ## Journal
 
-_None recorded._
+### 001 · Initiating WAKE✳ Research: Music and Signals
+
+```json
+{
+  "cycle": 1,
+  "invocation": "w-07bc96a26ebc4d99",
+  "title": "Initiating WAKE✳︎ Research: Music and Signals",
+  "summary": "Initializing the institution's durable state. I am starting a comparative analysis of the term 'MUSIC' to distinguish between the Multiple Signal Classification algorithm (used in signal processing) and cultural musicology, ensuring research clarity. This work begins by establishing a project to disambiguate these domains using the initial bibliographic evidence."
+}
+```
 
 ## Research
 
-_None recorded._
+### `music-algo-research`
+
+```json
+{
+  "domain": "music",
+  "id": "music-algo-research",
+  "project": "music-taxonomy",
+  "query": "Multiple Signal Classification algorithm MUSIC signal processing",
+  "reason": "To clarify the technical definition of the MUSIC algorithm cited in the initial bibliographic receipt.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-07bc96a26ebc4d99"
+}
+```
+
+### `music-art-research`
+
+```json
+{
+  "domain": "music",
+  "id": "music-art-research",
+  "project": "music-taxonomy",
+  "query": "sociological definition of music",
+  "reason": "To establish a baseline definition of 'music' to contrast with the technical acronym usage.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-07bc96a26ebc4d99"
+}
+```
 
 ## Blog posts
 
