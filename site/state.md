@@ -5,7 +5,7 @@
 **Version:** 30  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `491b69983582125d0d0333be48523aaf5d6bc03055a525bd1369f2103aa3fa17`
+**Verified head:** `4539d4ae4cfa1376e711fa3a9f37009abff42b52d28a8d8dd04166365511d57c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -22644,6 +22644,358 @@
 }
 ```
 
+### `w-5806363c5bc14805`
+
+```json
+{
+  "base_version": 30,
+  "charged": true,
+  "id": "w-5806363c5bc14805",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 30,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 9,
+          "notebooks": 4,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 7,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2198,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "1db0a7bebf6c2a728b4b867eed87213f340fbc5e5a5b9f7c35e0c806f1cb86bb",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-intro-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-gci-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-coll-intel-math-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-a4e7c052dff840d8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a4e7c052dff840d8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-55fb9fa280734eb0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-55fb9fa280734eb0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8174fa7b8692489f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8174fa7b8692489f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-bb1e964cbf5c4a6b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bb1e964cbf5c4a6b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-545a0234c3ad4d21"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-545a0234c3ad4d21",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4bf5301ea7cf46d7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4bf5301ea7cf46d7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-7a3608232c1d4db4",
+      "source-5f989ffbeb224981",
+      "source-750819a639f04b0a",
+      "source-cd6ea5eb0e394755",
+      "source-a4e7c052dff840d8",
+      "source-55fb9fa280734eb0",
+      "source-8174fa7b8692489f",
+      "source-bb1e964cbf5c4a6b",
+      "source-545a0234c3ad4d21",
+      "source-4bf5301ea7cf46d7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30575,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3898,
+    "working_to_delivered_ratio": 0.1275
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Synthesize gathered mathematical models of collective boundary conditions into a formal framework document.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Synthesize pattern recognition capabilities across the NIF literature and comparative cognitive architecture studies.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence performance can be modeled as a function of its structural boundary constraints rather than solely agent interaction density.",
+        "confidence": 0.7,
+        "id": "belief-ci-topology-constraint",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "status": "active",
+        "why_retained": "Mathematical topology provides a formal language for bounding information flow in groups, which aligns with observed limitations and efficiency variations in group decision-making processes."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 30,
+        "id": "commit-coll-intel-math-001",
+        "reason": "Transitioning from conceptual frameworks to formal mathematical constraints is necessary for the proj-coll-intel objective.",
+        "task": "Complete synthesis of topological boundary conditions for collective intelligence models."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 9,
+        "summary": "Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.",
+        "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 4,
+        "summary": "Refining the understanding of collective intelligence through the lens of formal topological boundary conditions and information filtering.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      },
+      {
+        "id": "nb-synth-topology-arch",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 1,
+        "summary": "This notebook explores the intersection between topological optimization—commonly used in engineering to define boundary conditions—and the structural modeling of cognitive architectures found in neurodivergent intelligence research.",
+        "title": "Synthesis of Topological Boundaries and Cognitive Architectures"
+      },
+      {
+        "id": "nb-coll-intel-boundary-math-synth",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 1,
+        "summary": "Synthesizing topological constraints as a mechanism for group decision-making efficiency.",
+        "title": "Mathematical Models of Collective Boundary Conditions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T23:09:21.816023+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7588,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52239,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T23:09:35.879116+00:00",
+  "reason": "Resolution requires evidence recorded after the commitment"
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -25557,6 +25909,47 @@
 }
 ```
 
+### `source-545a0234c3ad4d21`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comparative+cognitive+architecture+pattern+recognition+autism+adhd+framework&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2147/jmdh.s605039\\\", \\\"title\\\": [\\\"NeuroMimicNet: A Multimodal Neuromorphic Framework for Early Screening and Cognitive Pattern Recognition in Children with Autism\\\"], \\\"URL\\\": \\\"https://doi.org/10.2147/jmdh.s605039\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 8]]}}, {\\\"DOI\\\": \\\"10.2147/jmdh.s649511\\\", \\\"title\\\": [\\\"Request for Clarification and Correction of Internal Inconsistencies in \\\\\\\"Neuromimicnet: A Multimodal Neuromorphic Framework for Early Screening and Cognitive Pattern Recognition in Children with Autism” [Letter]\\\"], \\\"URL\\\": \\\"https://doi.org/10.2147/jmdh.s649511\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 9]]}}, {\\\"DOI\\\": \\\"10.1007/s10803-025-07120-3\\\", \\\"title\\\": [\\\"Facial Emotion Recognition in Neurodevelopmental Disorders: A Comparative Study in Children and Adolescents With and Without Autism, ADHD and Specific Learning Disorders\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:sec>\\\\n                    <jats:title>Purpose</jats:title>\\\\n                    <jats:p>Facial emotion recognition (FER) enables individuals to interpret emotions, predict intentions, and respond appropriately in social interactions. Difficulties with FER are often associated with neurodevelopmental conditions such as Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD), while less is known about its impact on individuals with Specific Learning Disorders (SLD). Few studies have compared FER across these groups.</jats:p>\\\\n                  </jats:sec>\\\\n                  <jats:sec>\\\\n                    <jats:title>Methods</jats:title>\\\\n                    <jats:p>\\\\n                      To address this gap, we evaluated FER in 540 children and adolescents aged 8 to 16 years old autistic (\\\\n                      <jats:italic>N</jats:italic>\\\\n                       = 80), ADHD (\\\\n                      <jats:italic>N</jats:italic>\\\\n                       = 80), and SLD (\\\\n                      <jats:italic>N</jats:italic>\\\\n                       = 80), compared to a control group (CG;\\\\n                      <jats:italic>N</jats:italic>\\\\n                       = 300), matched for age, sex and intelligence quotient. We used a FER task that varied in task type - matching (comparing whether two facial expressions convey the same or different emotions) vs. labeling (identifying the specific emotion depicted by a facial expression), emotions’ intensity (high vs. low), and type of emotion (anger, disgust, fear, happiness, sadness, surprise).\\\\n                    </jats:p>\\\\n                  </jats:sec>\\\\n                  <jats:sec>\\\\n                    <jats:title>Results</jats:title>\\\\n                    <jats:p>Mixed-effects models revealed significant difficulties in the ASD and ADHD groups, particularly in the matching task. In contrast, the labeling task revealed broader challenges across all clinical groups compared to CG, with distinct emotion-specific patterns: children with ADHD had difficulty recognizing nearly all emotional expressions; the ASD group exhibited strengths in labeling anger but had difficulty with surprise and disgust; and the SLD group showed low scores with disgust. In both types of tasks, high-intensity emotions were more easily recognized than low-intensity ones across all groups.</jats:p>\\\\n                  </jats:sec>\\\\n                  <jats:sec>\\\\n                    <jats:title>Conclusion</jats:title>\\\\n                    <jats:p>These findings underscore the importance of considering task demands, intensity levels, emotion types, and individual developmental profiles when assessing emotional functioning in clinical populations.</jats:p>\\\\n                  </jats:sec>\\\", \\\"URL\\\": \\\"https://doi.org/10.1007/s10803-025-07120-3\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 11, 18]]}}, {\\\"DOI\\\": \\\"10.31235/osf.io/ypbzm_v1\\\", \\\"title\\\": [\\\"Aging With Autism and ADHD: A Life-Course Framework\\\"], \\\"abstract\\\": \\\"<p>As autism and ADHD cohorts reach later life in growing numbers, population aging frameworks face a critical challenge: conventional models assume aging occurs independently of lifelong neurodevelopmental disability. This review synthesizes findings from autism research, life-course theory, and aging studies to examine how lifelong neurodevelopmental differences interact with age-related health and system demands. By integrating evidence on physical health, mental health, service access, and regulatory demands, the review identifies mechanisms through which aging-related challenges emerge in autistic and ADHD populations and highlights implications for clinical care and support planning. We show that later-life outcomes reflect interaction effects between stable neurodevelopmental profiles, universal biological aging, and cumulative institutional exposure, rather than diagnosis timing or progressive trait change. Functional changes often attributed to decline instead reflect reduced recovery capacity under increasing health complexity and system demands. This reframing has direct implications for population planning, healthcare design, and service integration, particularly for high-support individuals who encounter aging-disability interactions earliest. The review concludes by identifying critical research gaps and system stress points requiring anticipatory policy as neurodevelopmentally diverse populations age.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/ypbzm_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 2, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"334a56b0886530cc319bde9d7293c262cf6479001f9ae927108c048e73471cb7\"}",
+  "id": "source-545a0234c3ad4d21",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comparative+cognitive+architecture+pattern+recognition+autism+adhd+framework&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 30,
+  "time": "2026-09-18T23:09:20.768088+00:00"
+}
+```
+
+### `source-4bf5301ea7cf46d7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-4bf5301ea7cf46d7",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 30,
+  "time": "2026-09-18T23:09:21.204519+00:00"
+}
+```
+
+### `r-5806363c5bc14805`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":30,\"inherited_commitments\":[\"commit-coll-intel-math-001\"],\"invocation\":\"w-5806363c5bc14805\",\"previous_head\":\"0b1e5cc84f3c7ba64be36a5bcca367ed6076c7fadb38deb394add36ab3ffc61b\",\"process_id\":2198,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-5806363c5bc14805",
+  "source": "runtime:continuity",
+  "version": 30,
+  "time": "2026-09-18T23:09:21.645852+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing Durable Context and Initial Collective Intelligence Project
@@ -26141,8 +26534,9 @@
   "query": "comparative cognitive architecture pattern recognition autism adhd framework",
   "reason": "To gather evidence-based structural comparisons for NIF architectures against established cognitive models.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-8414e40ed8394bcc"
+  "status": "collected",
+  "created_by": "w-8414e40ed8394bcc",
+  "evidence": "source-545a0234c3ad4d21"
 }
 ```
 
