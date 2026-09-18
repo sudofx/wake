@@ -4,8 +4,10 @@
   if(s.charter){document.querySelector('.footer-mark').href='#home';}
   const help=key=>window.WakeHelp.button(key);
   const blogNav=document.querySelector('[data-nav="blog"]');if(blogNav)blogNav.hidden=!Object.keys(s.posts||{}).length;
-  const esc=v=>String(v??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-  const displayName=String(s.pet_name||'WAKE✳︎').replaceAll('\uFE0E','').replaceAll('\u2733','\u2733\uFE0E');
+  const WAKE_TEXT='WAKE\u2733\uFE0E';
+  const normalizeWake=v=>String(v??'').replaceAll('WAKE\u2733\uFE0F','WAKE\u2733').replaceAll('WAKE\u2733\uFE0E','WAKE\u2733').replaceAll('WAKE\u2733',WAKE_TEXT);
+  const esc=v=>normalizeWake(v).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const displayName=normalizeWake(s.pet_name||WAKE_TEXT);
   const names=Object.fromEntries((s.research_topics||[]).map(topic=>[topic.id,topic.label]));
   const topicName=id=>names[id]||String(id||'Unconfigured topic').replaceAll('_',' ');
   const projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
