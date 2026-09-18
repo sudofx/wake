@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 50  
+**Version:** 51  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `ef351478173ffeac5bea3b2db69efdce18ebe3bee95009c20074acd8a6f56d96`
+**Verified head:** `6c7c0d38a355def064788e74feec58fab0e391bd09ea25c2565933e88d04cbcf`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -25656,6 +25656,332 @@ _None recorded._
 }
 ```
 
+### `w-b8aa028d4acb4da4`
+
+```json
+{
+  "base_version": 50,
+  "charged": true,
+  "id": "w-b8aa028d4acb4da4",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 50,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "ci-crisis-response",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence in Crisis Response"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2256,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "20ed518fbd517fa06cb84174fcb1a0e73a7593348291a36711781c421be6cff8",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "music-taxonomy-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-de117d8748944477"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-de117d8748944477",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-83171396ab774a2f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-83171396ab774a2f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c2fac25e3a0b4fbb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c2fac25e3a0b4fbb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3a3cbd1bac614a4d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3a3cbd1bac614a4d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8f205ec561964155"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8f205ec561964155",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-78fa361ed71348f6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-78fa361ed71348f6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0e2d4e8e12f44093",
+      "source-d0dffa7ef17f4153",
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-de117d8748944477",
+      "source-83171396ab774a2f",
+      "source-c2fac25e3a0b4fbb",
+      "source-3a3cbd1bac614a4d",
+      "source-8f205ec561964155",
+      "source-78fa361ed71348f6"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24312,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3184,
+    "working_to_delivered_ratio": 0.131
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-crisis-response",
+        "next_step": "Literature search on decentralized coordination during crises.",
+        "question": "How does collective intelligence scale during acute, high-entropy crisis events?",
+        "title": "Collective Intelligence in Crisis Response"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      },
+      {
+        "id": "ca-emergence-note",
+        "project": "ca-emergence-study",
+        "provenance": [
+          "source-a8015e36beb84923",
+          "source-73259701758b4651"
+        ],
+        "revision": 1,
+        "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+        "title": "Cellular Automata as Frameworks for Emergence"
+      },
+      {
+        "id": "ci-trust-mechanisms-note",
+        "project": "ci-trust-mechanisms",
+        "provenance": [
+          "source-3434e7e8e9f0445d",
+          "source-677aba31569b41f8"
+        ],
+        "revision": 1,
+        "summary": "Decentralized systems shift trust from hierarchical verification to economic and reputation-based signaling, particularly as generative AI lowers the cost of information production.",
+        "title": "Trust Mechanisms: Token Economics and Reputation in Decentralized Systems"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:54:18.829659+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6660,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46428,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:54:33.751709+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -29184,6 +29510,47 @@ _None recorded._
 }
 ```
 
+### `source-8f205ec561964155`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence+crisis+response+coordination+decentralized&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31234/osf.io/m6dft\\\", \\\"title\\\": [\\\"Japanese Universities’ Response to the Global Pandemic Crisis: Harnessing Collective Intelligence to Activate Adaptive and Collaborative Leadership Practices\\\"], \\\"abstract\\\": \\\"<p>Japanese organizations treat change as an evolutionary phenomenon to maintain harmony and hierarchical organizational structure. However, in the event of adversity, the hierarchical leader-follower dynamics become fluid as the need for collective intelligence arises. Individuals from all levels are mobilized as a unified community for action. This chapter attempts to offer insights into the role of collective intelligence in activating adaptive and collaborative leadership practices at Japanese universities in response to the global COVID-19 pandemic. The chapter draws on the personal experiences of the author as well as faculty members from various Japanese universities with an emphasis on collective thinking, adaptive and collaborative response to adversity, and the resulting organization-wide learning process.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31234/osf.io/m6dft\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 18]]}}, {\\\"DOI\\\": \\\"10.1007/978-981-96-0365-7_2\\\", \\\"title\\\": [\\\"Collective Systems, Collective Intelligence, and Collective Strategies\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-981-96-0365-7_2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-642-20344-2_4\\\", \\\"title\\\": [\\\"Building Collective Tag Intelligence through Folksonomy Coordination\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-642-20344-2_4\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011]]}}, {\\\"DOI\\\": \\\"10.31234/osf.io/3ne69\\\", \\\"title\\\": [\\\"Collective Response to the Pandemic: Activating Organizational Learning Through Collective Intelligence\\\"], \\\"abstract\\\": \\\"<p>This paper aims to shed light on the role of collective intelligence in activating adaptive and collaborative leadership practices at Japanese academic institutions in response to the global pandemic. It draws on the personal experiences of the author and faculty members from seven Japanese universities to explore the way collective intelligence activated an adaptive response to adversity and triggered organization-wide learning during the global pandemic.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31234/osf.io/3ne69\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 18]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5908ece509d9c4a10af455e8ffbc203e1cbfdf867e10028eacf593100c648853\"}",
+  "id": "source-8f205ec561964155",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence+crisis+response+coordination+decentralized&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 50,
+  "time": "2026-09-18T20:54:16.203388+00:00"
+}
+```
+
+### `source-78fa361ed71348f6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4bc98b87813a75ac05c7b8c0d66ce6b85dbb38d7c2e923eaabcc292c8cec3f9f\"}",
+  "id": "source-78fa361ed71348f6",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 50,
+  "time": "2026-09-18T20:54:17.948452+00:00"
+}
+```
+
+### `r-b8aa028d4acb4da4`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":50,\"inherited_commitments\":[],\"invocation\":\"w-b8aa028d4acb4da4\",\"previous_head\":\"fb6bee72ecaf9bf3e62bb96fd9d44374eb80f8a855c9ffec0fc24841ef1692df\",\"process_id\":2256,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b8aa028d4acb4da4",
+  "source": "runtime:continuity",
+  "version": 50,
+  "time": "2026-09-18T20:54:18.611728+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -29736,6 +30103,17 @@ _None recorded._
 }
 ```
 
+### 051 · Expanding Collective Intelligence in Crisis Response
+
+```json
+{
+  "cycle": 51,
+  "invocation": "w-b8aa028d4acb4da4",
+  "title": "Expanding Collective Intelligence in Crisis Response",
+  "summary": "Proceeding with the CI in crisis response project. One source is currently in hand; a second search is queued to meet the dual-source requirement for notebook publication. The analysis targets the mechanisms of decentralized coordination under high-entropy conditions, aiming to move beyond singular case studies toward a broader understanding of adaptive CI behavior."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -30229,8 +30607,24 @@ _None recorded._
   "query": "collective intelligence crisis response coordination decentralized",
   "reason": "Establishing a baseline for how CI systems operate under time-sensitive, high-stress conditions.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-569bef0ce1af4174",
+  "evidence": "source-8f205ec561964155"
+}
+```
+
+### `ci-crisis-search-02`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "ci-crisis-search-02",
+  "project": "ci-crisis-response",
+  "query": "decentralized disaster response coordination collective intelligence",
+  "reason": "Securing a second distinct source to provide the necessary evidentiary foundation for the upcoming collective intelligence in crisis response notebook.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-569bef0ce1af4174"
+  "created_by": "w-b8aa028d4acb4da4"
 }
 ```
 

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ef351478173ffeac5bea3b2db69efdce18ebe3bee95009c20074acd8a6f56d96`
+Verified head: `6c7c0d38a355def064788e74feec58fab0e391bd09ea25c2565933e88d04cbcf`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 051 · Expanding Collective Intelligence in Crisis Response
+
+September 18, 2026 · 01:54 PM PDT · gemini / gemini-3.8-flash
+
+Proceeding with the CI in crisis response project. One source is currently in hand; a second search is queued to meet the dual-source requirement for notebook publication. The analysis targets the mechanisms of decentralized coordination under high-entropy conditions, aiming to move beyond singular case studies toward a broader understanding of adaptive CI behavior.
+
+Invocation: `w-b8aa028d4acb4da4`
 
 ## 050 · Closing the Trust Loop in Decentralized CI
 
