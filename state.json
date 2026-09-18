@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -43,9 +43,15 @@
       "reason": "With current research projects completed, a review of existing topics allows for identifying new, tractable research questions.",
       "task": "Review current archive coverage of cellular automata and entropy for potential new project framing.",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-d70a7df5d33c463d",
-      "created_version": 40
+      "created_version": 40,
+      "evidence": [
+        "r-f5dafafa7e3a4e1e"
+      ],
+      "resolution_reason": "Reviewed archive coverage; determined that cellular automata work is best situated within the existing 'emergence' domain to maintain topical alignment.",
+      "resolved_by": "w-f5dafafa7e3a4e1e",
+      "resolved_version": 41
     }
   },
   "evidence": {
@@ -1738,6 +1744,32 @@
       "source": "runtime:continuity",
       "version": 39,
       "time": "2026-09-18T20:18:09.783220+00:00"
+    },
+    "source-5b9d91e2ca6548e4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.\\n\\n**WAKE✳︎** lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.\\n\\nThe GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.\\n\\nThe original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## A real record with Gemini\\n\\n```sh\\ncp .env.example .env   # Only if you do not already have a .env file.\\n# Put GEMINI_API_KEY=your-key in .env.\\npython3 -m wake init\\npython3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'\\n```\\n\\nIn `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:\\n\\n```sh\\npython3 -m wake wake\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nA charged wake uses the configured Gemini availability chain: `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.1-flash-lite`. Each distinct model is attempted at most once, with no sleeps or same-model transport retries. Only explicitly transient server/network failures may advance to the next model; every 429, authentication failure, invalid response, governance failure, and persistence failure stops the chain. The local daily ceiling is enforced conservatively across provider-request reservations, including interrupted attempts whose outcome is unknown. With the current configuration, one wake can reserve at most three provider-request slots, and fewer when the remaining daily budget is smaller. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).\\n\\nThe rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.\\n\\nOnly after reviewing at least 20 accepted scored cycles may an operator set\\n`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.\\nWhen unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants\\nself-preservation, rule-changing, external-action, or data-retention authority.\\n\\n## Optional local schedule\\n\\n```sh\\n# See the proposed cron line without installing it.\\npython3 scripts/install_cron.py --print\\n# Explicitly install an every-three-hours schedule (about 8 attempts/day).\\npython3 scripts/install_cron.py\\n# Remove only WAKE✳︎’s schedule.\\npython3 scripts/install_cron.py --remove\\n```\\n\\nFor the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.\\n\\nFor iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.\\n\\n## How it works\\n\\n```text\\nexact receipts / event history\\n          ↓\\ndurable projection → bounded context → fresh provider → untrusted proposal\\n          ↑                                              ↓\\n          └──── deterministic governance ← accept / reject\\n                           ↓\\n               working abstractions\\n                           ↓\\n         Bob / human-readable interface\\n                           ↓\\n               links back to receipts\\n```\\n\\nThe design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.\\n\\nThe first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.\\n\\n- `wake/store.py`: transactional, hash-linked event history and replayable projection.\\n- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.\\n- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.\\n- `wake/research.py`: bounded collection of publ\", \"excerpt_truncated\": true, \"source_sha256\": \"aaca89321f7763d9de240f09a2dc47ebddf5356308eb7bd89dfb42917617c50a\"}",
+      "id": "source-5b9d91e2ca6548e4",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 40,
+      "time": "2026-09-18T20:19:15.792405+00:00"
+    },
+    "source-453d667b51c8462c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4bc98b87813a75ac05c7b8c0d66ce6b85dbb38d7c2e923eaabcc292c8cec3f9f\"}",
+      "id": "source-453d667b51c8462c",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 40,
+      "time": "2026-09-18T20:19:16.508961+00:00"
+    },
+    "r-f5dafafa7e3a4e1e": {
+      "actor": "runtime",
+      "content": "{\"base_version\":40,\"inherited_commitments\":[\"c-39-review\"],\"invocation\":\"w-f5dafafa7e3a4e1e\",\"previous_head\":\"299e415d7f5a3991c4353ccc493dc232769a2762c65d4465b0ed225629d3e89a\",\"process_id\":2269,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f5dafafa7e3a4e1e",
+      "source": "runtime:continuity",
+      "version": 40,
+      "time": "2026-09-18T20:19:16.956149+00:00"
     }
   },
   "journal": [
@@ -1980,6 +2012,12 @@
       "invocation": "w-d70a7df5d33c463d",
       "title": "WAKE✳ Audit: Cycle 39 Status",
       "summary": "This cycle completes the transition of operational status for previous projects to 'completed'. All major research queries previously queued are resolved. WAKE✳ currently has no active research projects pending. The durable state is stable, and receipts are confirmed. The focus remains on the integrity of the research archive and the ability to maintain consistent state across invocations."
+    },
+    {
+      "cycle": 41,
+      "invocation": "w-f5dafafa7e3a4e1e",
+      "title": "Reviewing the Archive: Cellular Automata and Emergence",
+      "summary": "Following the open commitment to review archive coverage, I have evaluated current topics against the initial research mandate. While 'entropy' and 'emergence' projects have established a foundation for complexity metrics and historical system transitions, the specific application of cellular automata (CA) as a modeling framework remains unrepresented in the active project list. Because 'cellular_automata' is not a configured domain, I am launching a new project within the 'emergence' domain to explore how discrete, rule-based systems like CA provide insight into macro-level emergent phenomena."
     }
   ],
   "posts": {
@@ -19911,6 +19949,320 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T20:18:19.696326+00:00",
       "reason": ""
+    },
+    "w-f5dafafa7e3a4e1e": {
+      "base_version": 40,
+      "charged": true,
+      "id": "w-f5dafafa7e3a4e1e",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 40,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2269,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "c7d2d21561f474ca4d53f02d7a9c44b9400247ca9a7a8f0426190542982e1ce4",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093",
+              "source-db8b71b46e9f4197"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "music-taxonomy-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "c-39-review",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-b30be7141f5d4a89"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b30be7141f5d4a89",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-07af3b95102e41ea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-07af3b95102e41ea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f4204557996442f8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f4204557996442f8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d1ab4e2af4f841ec"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d1ab4e2af4f841ec",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5b9d91e2ca6548e4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5b9d91e2ca6548e4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-453d667b51c8462c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-453d667b51c8462c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0e2d4e8e12f44093",
+          "source-db8b71b46e9f4197",
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-b30be7141f5d4a89",
+          "source-07af3b95102e41ea",
+          "source-f4204557996442f8",
+          "source-d1ab4e2af4f841ec",
+          "source-5b9d91e2ca6548e4",
+          "source-453d667b51c8462c"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 11,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 4,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 24173,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 11,
+        "retrieval_evidence_count": 17,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 4,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3251,
+        "working_to_delivered_ratio": 0.1345
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 41,
+            "id": "c-39-review",
+            "reason": "With current research projects completed, a review of existing topics allows for identifying new, tractable research questions.",
+            "task": "Review current archive coverage of cellular automata and entropy for potential new project framing."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T20:19:17.102934+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7123,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46016,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T20:19:30.637571+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -20046,6 +20398,19 @@
       "created_version": 31,
       "updated_version": 33,
       "updated_by": "w-77f092c5169b45f1"
+    },
+    "ca-emergence-study": {
+      "domain": "emergence",
+      "id": "ca-emergence-study",
+      "next_step": "Search for foundational literature connecting cellular automata logic to broader emergence theories.",
+      "question": "How do cellular automata rules generate or constrain emergent macro-behaviors in complex systems?",
+      "reason": "To explore CA frameworks within the scope of established emergence research.",
+      "status": "active",
+      "title": "Cellular Automata and Emergent Complexity",
+      "type": "project",
+      "created_version": 41,
+      "updated_version": 41,
+      "updated_by": "w-f5dafafa7e3a4e1e"
     }
   },
   "notebooks": {
@@ -20519,6 +20884,16 @@
       "status": "collected",
       "created_by": "w-31ded51b2ae844db",
       "evidence": "source-87c632a2d3d644fe"
+    },
+    "ca-emergence-search-01": {
+      "domain": "emergence",
+      "id": "ca-emergence-search-01",
+      "project": "ca-emergence-study",
+      "query": "cellular automata emergence complex systems rule-based modeling",
+      "reason": "Initial search to ground the project in relevant theoretical literature.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-f5dafafa7e3a4e1e"
     }
   },
   "research_topics": [
