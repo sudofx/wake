@@ -7,7 +7,7 @@ from urllib.parse import quote
 def explanation(reason):
     if 'traceable through its referenced notebooks' in reason:
         return ('The draft cited sources that were not attached to the notebooks it named. '
-                'A source can exist in WAKE’s record without supporting that particular notebook. '
+                'A source can exist in WAKE✳︎’s record without supporting that particular notebook. '
                 'The publication rule requires that connection to be recorded first.')
     if 'contested synthesis or interpretation as established fact' in reason:
         return ('The wording check found a phrase it treats as an overclaim about a contested topic. '
@@ -21,7 +21,7 @@ def explanation(reason):
         return 'At least one cited source ID was missing from the durable record at the time of this decision.'
     if 'Quantum-Carnegie connections' in reason:
         return ('The wording check detected a claim connecting quantum physics to mind or behavior '
-                'as a scientific explanation. WAKE permits these connections only as clearly labeled metaphor.')
+                'as a scientific explanation. WAKE✳︎ permits these connections only as clearly labeled metaphor.')
     if 'base_version' in reason:
         return 'The response did not identify the research version it was asked to continue, so applying it could conflict with the saved record.'
     return ('The response did not satisfy the recorded acceptance rule below. '
@@ -99,10 +99,10 @@ def rejected_html(state, events):
             + '<p><strong>' + consequence + '</strong></p><h3>Why it stopped</h3><p>' + _text(explanation(reason)) + '</p>'
             + '<p><strong>Exact recorded reason:</strong> ' + _text(reason or 'No reason recorded') + '</p>'
             + '<p class="meta">This is the recorded first failing check, not an exhaustive review of every claim.</p>'
-            + ('<details open>' if not cards else '<details>') + '<summary>Read the unaccepted draft</summary><div class="inside">' + draft + '</div></details>'
+            + '<details><summary>Read the unaccepted draft</summary><div class="inside">' + draft + '</div></details>'
             + diagnostics + '<details><summary>Exact saved response</summary><pre>' + _text(raw if raw is not None else 'No raw response was saved.') + '</pre></details>'
             + '<p><a href="index.html#history/' + quote(str(ident), safe='') + '">Full invocation and decision →</a></p></article><hr>')
-    intro = ('<p>These drafts show what WAKE tried to produce and why it stopped. '
+    intro = ('<p>These drafts show what WAKE✳︎ tried to produce and why it stopped. '
              'They are displayed for inspection, not endorsed as findings or published blog posts. '
              'More rejections do not by themselves prove better judgment; some checks can be too broad.</p>')
     return '<div style="max-width:780px;overflow-wrap:anywhere">' + intro + (''.join(cards) or '<p>No rejected proposals or withheld blog drafts have been recorded.</p>') + '</div>'
