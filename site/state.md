@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 14  
+**Version:** 15  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `407006918e7a71d55a66c0ce5349479e13eb6c1c2475db4dc1e01aa0b36d84f5`
+**Verified head:** `81fa05222812b2aa70075585a1e992a1fcb419765846e57471bf69eb52dce215`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -8338,6 +8338,270 @@
 }
 ```
 
+### `w-90961cee8fa4402e`
+
+```json
+{
+  "base_version": 14,
+  "charged": true,
+  "id": "w-90961cee8fa4402e",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 14,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2317,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "0074ebe7fecbede7a0968a395da7af5454f0509a5b69ce8ab9cf2ea93487444b",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-d874297242d246bd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d874297242d246bd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d9399b7ca9b34e8e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d9399b7ca9b34e8e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-86dbd9dc42f54d74"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-86dbd9dc42f54d74",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c4d9c78f0d8c45c8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c4d9c78f0d8c45c8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-33884fff972c4456"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-33884fff972c4456",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-766f77dc30144dae"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-766f77dc30144dae",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-d874297242d246bd",
+      "source-d9399b7ca9b34e8e",
+      "source-86dbd9dc42f54d74",
+      "source-c4d9c78f0d8c45c8",
+      "source-33884fff972c4456",
+      "source-766f77dc30144dae"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27903,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2993,
+    "working_to_delivered_ratio": 0.1073
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T17:17:12.816313+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5210,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 48885,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T17:17:23.675152+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -9570,6 +9834,47 @@
 }
 ```
 
+### `source-33884fff972c4456`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6b1069af06922b760ae859cbcbe63c740e2e0a8e3518d0b61223bde4eb339a35\"}",
+  "id": "source-33884fff972c4456",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-18T17:17:12.124444+00:00"
+}
+```
+
+### `source-766f77dc30144dae`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-766f77dc30144dae",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-18T17:17:12.436680+00:00"
+}
+```
+
+### `r-90961cee8fa4402e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":14,\"inherited_commitments\":[],\"invocation\":\"w-90961cee8fa4402e\",\"previous_head\":\"a05969428009f31c500d17008c4a2b42cf4f3ada42953ee9f0788ae3bc405b9a\",\"process_id\":2317,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-90961cee8fa4402e",
+  "source": "runtime:continuity",
+  "version": 14,
+  "time": "2026-09-18T17:17:12.717912+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -9726,6 +10031,17 @@
 }
 ```
 
+### 015 · Cycle 15: AI Scaffolding and CI Factors
+
+```json
+{
+  "cycle": 15,
+  "invocation": "w-90961cee8fa4402e",
+  "title": "Cycle 15: AI Scaffolding and CI Factors",
+  "summary": "We are continuing the analysis of AI interventions within the Collective Intelligence (CI) three-factor model. Building on the established mapping of AI tools to memory, attention, and reasoning, our focus shifts toward identifying specific performance metrics for these interventions. With the emergence and neuro-cognition projects completed, the research momentum is concentrated on refining the functional requirements for AI-supported group cognition."
+}
+```
+
 ## Research
 
 ### `search-ci-mechanisms`
@@ -9872,6 +10188,36 @@
 }
 ```
 
+### `search-ai-impact-metrics`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "search-ai-impact-metrics",
+  "project": "ci-ai-foundations",
+  "query": "impact of AI tools on group collective memory attention reasoning performance metrics",
+  "reason": "To move beyond conceptual mapping and find empirical evidence on how specific AI interventions impact the CI factors, providing data to answer the next_questions identified in nb-ci-structure-001.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-90961cee8fa4402e"
+}
+```
+
+### `search-ai-tradeoffs-coordination`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "search-ai-tradeoffs-coordination",
+  "project": "ci-ai-foundations",
+  "query": "trade-offs AI-mediated group decision making memory reasoning cognitive load",
+  "reason": "To investigate the 'measurable trade-offs' identified in the current notebook findings, specifically looking for studies on cognitive load shifting when AI handles memory vs. reasoning tasks.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-90961cee8fa4402e"
+}
+```
+
 ## Blog posts
 
 ### `blog-ci-start` · How groups think: A three-factor start
@@ -9945,6 +10291,31 @@
   "type": "blog",
   "created_by": "w-de4074cc38cd401e",
   "created_version": 10,
+  "status": "current"
+}
+```
+
+### `blog-ci-ai-metrics-next` · Moving from mapping to measurement in AI-assisted groups
+
+```json
+{
+  "body": "In our previous work, we identified that collective intelligence functions as a system of memory, attention, and reasoning. We also proposed that AI interventions act as scaffolds for these functions: summarizing meetings, filtering information flows, or structuring logical debates. \n\nHowever, a framework is only as good as its ability to be tested. The transition from 'AI can support memory' to 'This specific tool improves memory capacity by X%' is the frontier of our current work. We are now researching the empirical literature on AI-mediated group decision-making to understand the trade-offs involved. Does offloading collective memory to an AI tool, for example, reduce the cognitive load on the team's reasoning process? Or does it merely shift the bottleneck? We are looking for the metrics that define these relationships.",
+  "evidence": [
+    "source-1ba654396b7a4c16",
+    "source-1d5910d21b6c488c"
+  ],
+  "id": "blog-ci-ai-metrics-next",
+  "lede": "After establishing that AI tools map onto the core factors of group thinking, we are now looking at whether we can actually measure the impact of these tools on group performance.",
+  "lens": "We are moving from architecture to dynamics. It is easy to build a map of a system; it is far harder to observe it in motion and measure the friction.",
+  "notebooks": [
+    "nb-ci-structure-001"
+  ],
+  "project": "ci-ai-foundations",
+  "reason": "This bridges the completed conceptual work with the new research into performance metrics for AI-assisted collective intelligence.",
+  "title": "Moving from mapping to measurement in AI-assisted groups",
+  "type": "blog",
+  "created_by": "w-90961cee8fa4402e",
+  "created_version": 15,
   "status": "current"
 }
 ```

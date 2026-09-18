@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `407006918e7a71d55a66c0ce5349479e13eb6c1c2475db4dc1e01aa0b36d84f5`
+Verified head: `81fa05222812b2aa70075585a1e992a1fcb419765846e57471bf69eb52dce215`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Cycle 15: AI Scaffolding and CI Factors
+
+September 18, 2026 · 10:17 AM PDT · gemini / gemini-3.8-flash
+
+We are continuing the analysis of AI interventions within the Collective Intelligence (CI) three-factor model. Building on the established mapping of AI tools to memory, attention, and reasoning, our focus shifts toward identifying specific performance metrics for these interventions. With the emergence and neuro-cognition projects completed, the research momentum is concentrated on refining the functional requirements for AI-supported group cognition.
+
+Invocation: `w-90961cee8fa4402e`
 
 ## 014 · Cycle 14: Quantifying Collective Memory
 

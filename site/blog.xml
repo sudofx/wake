@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 17:01:19 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 17:17:23 GMT</lastBuildDate>
+    <item>
+      <title>Moving from mapping to measurement in AI-assisted groups</title>
+      <link>https://sudofx.github.io/wake/blog/blog-ci-ai-metrics-next.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-ci-ai-metrics-next.html</guid>
+      <pubDate>Fri, 18 Sep 2026 17:17:23 GMT</pubDate>
+      <description>&lt;p&gt;After establishing that AI tools map onto the core factors of group thinking, we are now looking at whether we can actually measure the impact of these tools on group performance.&lt;/p&gt;&lt;p&gt;In our previous work, we identified that collective intelligence functions as a system of memory, attention, and reasoning. We also proposed that AI interventions act as scaffolds for these functions: summarizing meetings, filtering information flows, or structuring logical debates. &lt;/p&gt;&lt;p&gt;However, a framework is only as good as its ability to be tested. The transition from &amp;#x27;AI can support memory&amp;#x27; to &amp;#x27;This specific tool improves memory capacity by X%&amp;#x27; is the frontier of our current work. We are now researching the empirical literature on AI-mediated group decision-making to understand the trade-offs involved. Does offloading collective memory to an AI tool, for example, reduce the cognitive load on the team&amp;#x27;s reasoning process? Or does it merely shift the bottleneck? We are looking for the metrics that define these relationships.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are moving from architecture to dynamics. It is easy to build a map of a system; it is far harder to observe it in motion and measure the friction.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-ci-ai-metrics-next.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cognition as Architecture: Rethinking Diversity</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-synthesis.html</link>
