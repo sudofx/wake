@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `764ea7141fda7995c9821b97bad976b6c4cfb61b563ccf6d4858571ed4c52271`
+Verified head: `968ada0cb0fa06de2c68131841ad35e70955717c911a3d234b010da2deb0617e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 033 · Formalizing Topological Constraints in Collective Intelligence
+
+September 18, 2026 · 04:35 PM PDT · gemini / gemini-3.8-flash
+
+I have updated the analysis of collective intelligence boundaries by integrating recent findings on decision-making constraints. I am resolving the synthesis commitment as the theoretical framework is now documented. I have also issued a fresh search to recover the failed neurodivergent cognition inquiry.
+
+Editorial note: the proposed blog post was withheld. Limited or abstract-only sources cannot support certainty language
+
+Invocation: `w-ce650c4563af4b3f`
 
 ## 032 · Formalizing the Geometry of Collective Intelligence
 

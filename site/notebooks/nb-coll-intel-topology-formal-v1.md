@@ -4,19 +4,19 @@ Collective intelligence systems are best modeled as systems defined by informati
 
 ## Findings
 
-Analysis of structural models suggests that collective intelligence emerges not just from node density, but from the topology of communication links. Research [source-750819a639f04b0a] indicates that topological optimization in engineered systems provides a valid analogue for group information flow management. Further synthesis [source-cd6ea5eb0e394755] suggests that rigid boundary conditions often prevent noise accumulation, effectively increasing signal-to-noise ratios in large groups. This suggests that 'intelligence' at the collective level relies on boundary-dependent information pruning, distinguishing it from simple agent-interaction summation.
+Recent research [source-f5638fa237ef48d7] supports the hypothesis that current group decision-making systems face structural constraints—mathematically analogous to topological limits—that prevent them from achieving general problem-solving ability. Our reading suggests that these boundaries are not merely social friction but formal limitations on information flow. This aligns with earlier findings [source-750819a639f04b0a] that suggest topological models are appropriate for mapping how information aggregates within a group.
 
 ## Limitations and competing views
 
-These models rely on topological analogies from engineering and graph theory. The translation to human social dynamics assumes that cognitive interactions map cleanly onto abstract graph nodes, which may oversimplify human behavioral variables.
+These findings rely on abstract summaries of theoretical work; formal proofs of these topological boundaries in specific collective systems remain to be fully mapped.
 
 ## Next questions
 
-Do human collective intelligence groups exhibit measurable 'topological phases' similar to engineered networks? How do these boundaries change under high-stress information environments?
+Can these topological constraints be quantified using specific graph-theoretic metrics in real-world decision networks?
 
 ## Collected sources
 
 - [source-750819a639f04b0a](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-cd6ea5eb0e394755](https://api.crossref.org/works?query=mathematical+boundary+conditions+collective+intelligence+group+problem+solving&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-f5638fa237ef48d7](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+information+flow+constraints&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

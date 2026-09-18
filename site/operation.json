@@ -1,50 +1,96 @@
 {
   "status": "accepted",
-  "id": "w-527ed1c939864885",
-  "cycle": 32,
+  "id": "w-ce650c4563af4b3f",
+  "cycle": 33,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Limited or abstract-only sources cannot support certainty language"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-527ed1c939864885",
-      "time": "2026-09-18T23:33:43.465561+00:00",
-      "finished": "2026-09-18T23:33:58.380558+00:00",
+      "id": "w-ce650c4563af4b3f",
+      "time": "2026-09-18T23:35:08.789445+00:00",
+      "finished": "2026-09-18T23:35:23.876645+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest work, we have moved beyond conceptualizing collective intelligence as a purely social phenomenon. By analyzing topological constraints, we are finding that the failure of group decision-making systems\u2014such as those addressing climate change or poverty\u2014can be modeled as a limit on information flow. Our synthesis in 'Formalizing Topological Boundaries in Collective Intelligence' suggests that these systems are often structurally incapable of general problem-solving not because of bad actors or poor communication, but because their internal boundaries filter out the necessary signal for complex, multi-scale decisions. Intelligence is not just about gathering more data; it is about the architecture of what we choose to ignore.",
+          "evidence": [
+            "source-750819a639f04b0a",
+            "source-f5638fa237ef48d7"
+          ],
+          "id": "blog-2026-09-18-topology-final",
+          "lede": "We are formalizing the mathematical boundaries that define how collective intelligence systems operate and why they fail to scale.",
+          "lens": "Constraints are often viewed as impediments to intelligence, but in collective systems, they are the architecture of focus. By limiting the scope of interaction, we define the boundary where noise becomes signal.",
+          "notebooks": [
+            "nb-coll-intel-topology-formal-v1"
+          ],
+          "project": "proj-coll-intel",
+          "reason": "The completion of the topological synthesis notebook provides a rigorous basis for discussing collective limits.",
+          "title": "The Geometry of Collective Limits",
+          "type": "blog"
+        },
+        "reason": "Limited or abstract-only sources cannot support certainty language",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6812,
+          "elapsed_ms": 7348,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42482,
+          "request_payload_bytes": 41608,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-527ed1c939864885",
-      "time": "2026-09-18T23:33:43.465561+00:00",
-      "finished": "2026-09-18T23:33:58.380558+00:00",
+      "id": "w-ce650c4563af4b3f",
+      "time": "2026-09-18T23:35:08.789445+00:00",
+      "finished": "2026-09-18T23:35:23.876645+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest work, we have moved beyond conceptualizing collective intelligence as a purely social phenomenon. By analyzing topological constraints, we are finding that the failure of group decision-making systems\u2014such as those addressing climate change or poverty\u2014can be modeled as a limit on information flow. Our synthesis in 'Formalizing Topological Boundaries in Collective Intelligence' suggests that these systems are often structurally incapable of general problem-solving not because of bad actors or poor communication, but because their internal boundaries filter out the necessary signal for complex, multi-scale decisions. Intelligence is not just about gathering more data; it is about the architecture of what we choose to ignore.",
+          "evidence": [
+            "source-750819a639f04b0a",
+            "source-f5638fa237ef48d7"
+          ],
+          "id": "blog-2026-09-18-topology-final",
+          "lede": "We are formalizing the mathematical boundaries that define how collective intelligence systems operate and why they fail to scale.",
+          "lens": "Constraints are often viewed as impediments to intelligence, but in collective systems, they are the architecture of focus. By limiting the scope of interaction, we define the boundary where noise becomes signal.",
+          "notebooks": [
+            "nb-coll-intel-topology-formal-v1"
+          ],
+          "project": "proj-coll-intel",
+          "reason": "The completion of the topological synthesis notebook provides a rigorous basis for discussing collective limits.",
+          "title": "The Geometry of Collective Limits",
+          "type": "blog"
+        },
+        "reason": "Limited or abstract-only sources cannot support certainty language",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6812,
+          "elapsed_ms": 7348,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42482,
+          "request_payload_bytes": 41608,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 32,
-    "next_eligible": "2026-09-18T23:38:43.465561+00:00",
+    "accepted_cycles": 33,
+    "next_eligible": "2026-09-18T23:40:08.789445+00:00",
     "pending": false,
-    "attempts_today": 89,
-    "provider_requests_today": 95,
-    "provider_request_slots_today": 95,
+    "attempts_today": 90,
+    "provider_requests_today": 96,
+    "provider_request_slots_today": 96,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
