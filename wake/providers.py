@@ -352,6 +352,7 @@ class Gemini:
                                   and set(self.models) <= low_thinking_models),
                 "Gemini fallback chain requires verified low-thinking request compatibility")
         self.request_limit = len(self.models)
+        self.model_request_limits = None
         self.record_attempt = None
         require(config["free_tier_confirmed"] is True,
                 "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled")
@@ -369,7 +370,13 @@ class Gemini:
         payload = json.dumps(body).encode()
         self.provider_attempts = []
         self.successful_model = None
-        for model in self.models[:self.request_limit]:
+        attempted = 0
+        for model in self.models:
+            if attempted >= self.request_limit:
+                break
+            if self.model_request_limits is not None and self.model_request_limits.get(model, 0) <= 0:
+                continue
+            attempted += 1
             req = urllib.request.Request(
                 f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
                 data=payload, headers={"Content-Type": "application/json",
@@ -403,8 +410,12 @@ class Gemini:
                     error = TransientProviderError("Gemini temporarily unavailable; wake deferred")
                 elif exc.code == 429 and is_free_tier_daily_quota(attempt):
                     attempt["result"] = "daily_quota"
-                    error = DailyQuotaExceeded(
-                        "Gemini free-tier daily quota exhausted; wake deferred until Pacific midnight")
+                    remaining = self.models[self.models.index(model) + 1:]
+                    if any(self.model_request_limits is None or self.model_request_limits.get(next_model, 1) > 0 for next_model in remaining):
+                        error = TransientProviderError("Gemini model daily quota exhausted; trying fallback")
+                    else:
+                        error = DailyQuotaExceeded(
+                            "Gemini free-tier daily quotas exhausted for available models; wake deferred until Pacific midnight")
                 else:
                     error = ProviderRequestError(f"Gemini HTTP {exc.code}; wake attempt counted")
             except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
