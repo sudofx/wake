@@ -1,7 +1,9 @@
 {
   "status": "accepted",
   "id": "w-b1f5f6d929074666",
+  "reason": "",
   "cycle": 1,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-b1f5f6d929074666",
@@ -72,6 +74,7 @@
     "pending": false,
     "attempts_today": 2,
     "provider_requests_today": 5,
+    "provider_request_slots_today": 5,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }
