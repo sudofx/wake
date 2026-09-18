@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 7  
+**Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `03bfd9615755bb57d21af9e47c437559ac061cd40274d1d9ee9abb325a078510`
+**Verified head:** `758051463290e51d232d06f3f90d3dabdb99d59af7c71126ddf83260bdd3fd5f`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -94,6 +94,21 @@
 }
 ```
 
+### `review_ca_phase_transitions_notebook`
+
+```json
+{
+  "due_cycle": 9,
+  "id": "review_ca_phase_transitions_notebook",
+  "reason": "To integrate detailed mathematical formulations of puppet states and temperature functionals.",
+  "task": "Review the Moran majority rule analysis notebook once more sources on Ginosar and Holzman are retrieved",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-46a44a5951114e22",
+  "created_version": 8
+}
+```
+
 ## Projects
 
 ### `ca_phase_transitions` · CA Phase Transitions
@@ -121,23 +136,22 @@
 ```json
 {
   "evidence": [
-    "source-11d13057f14849af",
-    "source-51eb1382616047c0",
-    "source-7b86e773d95a4512"
+    "source-cbf75ca945b0429d",
+    "source-cb9046999ae941ac"
   ],
-  "findings": "Building on Moran's [source-11d13057f14849af] proposal that majority-rule cellular automata on countably infinite graphs can exhibit phase-transition-like behavior, we incorporated the formal confirmation of the Period-Two-Property (p2p) [source-7b86e773d95a4512]. A configuration is 'solid' if its charge decays to a period of at most 2 under local majority dynamics. The existence of the p2p is a structural constraint on the operator, providing a foundational baseline for the 'temperature' functional proposed by Moran. The correspondence between this operator-theoretic property and the phase boundary remains the critical linkage for understanding non-Landau phase transitions in these models.",
+  "findings": "Moran's framework [source-cbf75ca945b0429d] proposes that local majority-rule cellular automata on countably infinite graphs can model phase transitions. A configuration is classified as a 'solid' (or 'puppet' in Ginosar and Holzman's terminology) if any initial charge decays under local majority dynamics into a periodic charging with a period of at most 2. The existence of this Period-Two-Property is a characteristic of the majority operator on infinite graphs under specified conditions [source-cb9046999ae941ac]. Moran introduces a 'temperature' functional, suggesting that a configuration is solid when its temperature is negative. While this provides a provocative thermodynamic analogy, the mapping is primarily functional and speculative rather than a direct statistical mechanics translation.",
   "id": "moran_majority_rule_analysis",
-  "limitations": "The precise mathematical definitions of the 'temperature' functional are still derived from summaries and correspondence descriptions, not full proofs. The mapping between p2p dynamics and thermodynamics is currently an analogy that requires rigorous verification of the functional's behavior across specific graph topologies.",
-  "next_questions": "Does the p2p guarantee imply the existence of a spectral gap in the transition matrix for these automata on lattice graphs? How can we analytically bound the decay time to a period-2 state?",
+  "limitations": "Our analysis relies on metadata and abstracts [source-cbf75ca945b0429d]. The full proofs, topological dependencies, and exact formulation of the temperature functional remain unverified in full text.",
+  "next_questions": "What are the exact mathematical formulations of Moran's temperature functional? How do different graph architectures affect the decay times?",
   "project": "ca_phase_transitions",
-  "reason": "Updates the notebook to integrate the Period-Two-Property evidence into the broader context of Moran's phase-transition framework.",
-  "summary": "Consolidated analysis of Moran's (2003) majority-rule framework and the underlying Period-Two-Property (p2p) of the majority operator.",
+  "reason": "Integrates the newly collected abstract of Moran (2003) to clarify the definitions of 'solid', 'puppet', and the temperature functional.",
+  "summary": "Consolidated analysis of Moran's (2003) majority-rule framework, puppet definition, and the Period-Two-Property (p2p) of the majority operator.",
   "title": "Moran's Majority Rule Automata and Temperature Functionals",
   "type": "notebook",
-  "revision": 3,
+  "revision": 4,
   "created_version": 3,
-  "updated_version": 7,
-  "updated_by": "w-90439b855ff34fb0",
+  "updated_version": 8,
+  "updated_by": "w-46a44a5951114e22",
   "domain": "cellular_automata"
 }
 ```
@@ -3011,6 +3025,262 @@
 }
 ```
 
+### `w-46a44a5951114e22`
+
+```json
+{
+  "base_version": 7,
+  "charged": true,
+  "id": "w-46a44a5951114e22",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 7,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ca_phase_transitions",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2054,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "36c5bac1929f63adea51831875d5ec951bf14a7275a655854867545413d7505e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-11d13057f14849af",
+          "source-51eb1382616047c0",
+          "source-7b86e773d95a4512"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "moran_majority_rule_analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-cbf75ca945b0429d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cbf75ca945b0429d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9c19dafaab8f4c7a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9c19dafaab8f4c7a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-07ecec05a6a4455d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-07ecec05a6a4455d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a320762bbdfb41f1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a320762bbdfb41f1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6eb4cb0a96284766"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6eb4cb0a96284766",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3fcac12636c14e27"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3fcac12636c14e27",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-11d13057f14849af",
+      "source-51eb1382616047c0",
+      "source-7b86e773d95a4512",
+      "source-cbf75ca945b0429d",
+      "source-9c19dafaab8f4c7a",
+      "source-07ecec05a6a4455d",
+      "source-a320762bbdfb41f1",
+      "source-6eb4cb0a96284766",
+      "source-3fcac12636c14e27"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26771,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2120,
+    "working_to_delivered_ratio": 0.0792
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca_phase_transitions",
+        "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+        "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+        "confidence": 0.8,
+        "id": "majority_automata_phase_transition",
+        "provenance": [
+          "source-2925974584404e4d",
+          "source-9800de467f644091",
+          "source-641de936e3684635"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+      },
+      {
+        "claim": "The majority operator on infinite graphs exhibits a characteristic Period-Two-Property under specified dynamics.",
+        "confidence": 0.9,
+        "id": "majority_operator_p2p",
+        "provenance": [
+          "source-cb9046999ae941ac"
+        ],
+        "status": "active",
+        "why_retained": "Moran (1995) explicitly analyzes 'On the Period-Two-Property of the Majority Operator in Infinite Graphs' demonstrating that the self-mapping has the p2p property under local majority dynamics."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "moran_majority_rule_analysis",
+        "project": "ca_phase_transitions",
+        "provenance": [
+          "source-11d13057f14849af",
+          "source-51eb1382616047c0",
+          "source-7b86e773d95a4512"
+        ],
+        "revision": 3,
+        "summary": "Consolidated analysis of Moran's (2003) majority-rule framework and the underlying Period-Two-Property (p2p) of the majority operator.",
+        "title": "Moran's Majority Rule Automata and Temperature Functionals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T14:27:14.694133+00:00",
+  "provider_attempts": [
+    {
+      "category": "timeout",
+      "elapsed_ms": 60102,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.8-flash",
+      "request_payload_bytes": 47854,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 16329,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 47854,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-18T14:28:39.142704+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-2925974584404e4d`
@@ -3505,6 +3775,47 @@
 }
 ```
 
+### `source-6eb4cb0a96284766`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"dba74fce537d07615c100691911ebe3f5a4c040c12d40b26b86f7bb6f09b4d9a\"}",
+  "id": "source-6eb4cb0a96284766",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 7,
+  "time": "2026-09-18T14:27:13.643392+00:00"
+}
+```
+
+### `source-3fcac12636c14e27`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.71010/2835-6764/ajser-e335\\\", \\\"title\\\": [\\\"Commentary: Ant Colonies in Science, Culture and Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.71010/2835-6764/ajser-e335\\\"}, {\\\"DOI\\\": \\\"10.1111/j.1601-5223.2003.01613.x\\\", \\\"title\\\": [\\\"Highly variable social organisation of colonies in the ant Formica cinerea\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1601-5223.2003.01613.x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 11, 27]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2023.1805/v2/review2\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Synchronized locomotion can improve spatial accessibility inside ant colonies\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2023.1805/v2/review2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 10, 3]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-6485\\\", \\\"title\\\": [\\\"Food Distribution in Ant Colonies: Trophallaxis and Self-Organization\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-6485\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7611b48a7fdcc897939cf40a516d4b92852c271e353256954c9cedd671e2a1f3\"}",
+  "id": "source-3fcac12636c14e27",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 7,
+  "time": "2026-09-18T14:27:14.513253+00:00"
+}
+```
+
+### `r-46a44a5951114e22`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-46a44a5951114e22\",\"previous_head\":\"870b2b24cc9ca03ef7af84ab3da21fac91df4cf50486461b19725cd545fb2d7c\",\"process_id\":2054,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-46a44a5951114e22",
+  "source": "runtime:continuity",
+  "version": 7,
+  "time": "2026-09-18T14:27:14.663642+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping the Boundaries of Majority Automata
@@ -3581,6 +3892,17 @@
   "invocation": "w-90439b855ff34fb0",
   "title": "Mapping the Period-Two-Property in Majority Automata",
   "summary": "We have consolidated the research on the Period-Two-Property (p2p) of the majority operator in infinite graphs. Our findings link Moran's phase-transition model with formal graph-theoretic operator dynamics. We are now prepared to explore the stability conditions for these periodic states.\n\nEditorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact"
+}
+```
+
+### 008 · Verifying Moran's Temperature Functional and Puppet States
+
+```json
+{
+  "cycle": 8,
+  "invocation": "w-46a44a5951114e22",
+  "title": "Verifying Moran's Temperature Functional and Puppet States",
+  "summary": "We have retrieved the abstract of Moran's 2003 paper 'Phase Transition via Cellular Automata'. This allows us to ground our definitions of 'solid' and 'puppet' states under local majority rules, identifying a clear structural mapping between configuration decay and the proposed 'temperature' functional."
 }
 ```
 
@@ -3679,6 +4001,21 @@
   "status": "collected",
   "created_by": "w-a3ddf450f8634533",
   "evidence": "source-7b86e773d95a4512"
+}
+```
+
+### `search_ginosar_holzman_details`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "search_ginosar_holzman_details",
+  "project": "ca_phase_transitions",
+  "query": "Ginosar Holzman puppets majority rule cellular automata",
+  "reason": "Retrieve the full text or detailed abstract of Ginosar & Holzman's work on puppet states in majority rule CA to verify the mathematical definitions.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-46a44a5951114e22"
 }
 ```
 

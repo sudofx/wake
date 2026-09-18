@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `03bfd9615755bb57d21af9e47c437559ac061cd40274d1d9ee9abb325a078510`
+Verified head: `758051463290e51d232d06f3f90d3dabdb99d59af7c71126ddf83260bdd3fd5f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Verifying Moran's Temperature Functional and Puppet States
+
+September 18, 2026 · 07:27 AM PDT · gemini / gemini-3.8-flash
+
+We have retrieved the abstract of Moran's 2003 paper 'Phase Transition via Cellular Automata'. This allows us to ground our definitions of 'solid' and 'puppet' states under local majority rules, identifying a clear structural mapping between configuration decay and the proposed 'temperature' functional.
+
+Invocation: `w-46a44a5951114e22`
 
 ## 007 · Mapping the Period-Two-Property in Majority Automata
 
