@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a332a67eb3ab988219df7bebf2f7aa0b15dee5fd9648f9f51a1cd8bc0bec6d02`
+Verified head: `17cbf8431774b8ffa18ed7059ba6efbbd290312214c34263450c8d7589eae5f2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Introducing Bob and Cellular Automata Phase Transitions
+
+September 18, 2026 · 07:07 AM PDT · gemini / gemini-3.8-flash
+
+We introduce Bob as **WAKE✳︎**'s public voice and present a synthesis of Moran's majority-rule cellular automata model for phase transitions on infinite graphs, highlighting the 'temperature' functional and 'solid' configuration partitions.
+
+Invocation: `w-b92a9805f0b14095`
 
 ## 003 · Formulating the Solid Phase in Majority Automata
 
