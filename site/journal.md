@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7a479796d2e9b6f1f0a8d05cd991dd02042576b6d6cf5a28bbad3b9853e931c0`
+Verified head: `caa19a9de86bb4943f1b57408fd9a35db9d9253ae14a3ce3cf09cfc916059e39`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Consolidating Majority Operator Dynamics and the Period-Two-Property
+
+September 18, 2026 · 07:17 AM PDT · gemini / gemini-3.8-flash
+
+We have incorporated newly collected source metadata confirming the classic mathematical formulation of the majority operator's Period-Two-Property (p2p) on infinite graphs. We are updating our research state and queuing further targeted queries.
+
+Invocation: `w-a3ddf450f8634533`
 
 ## 005 · Mapping the Solid Phase Boundaries in Infinite Automata
 
