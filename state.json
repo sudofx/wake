@@ -331,6 +331,32 @@
       "source": "runtime:continuity",
       "version": 6,
       "time": "2026-09-18T16:54:43.788921+00:00"
+    },
+    "source-f816ad486a324c20": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+pattern+recognition+collective+intelligence+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137231199739\\\", \\\"title\\\": [\\\"Shared language in the team network-performance association: Reconciling conflicting views of the network centralization effect on team performance\\\"], \\\"abstract\\\": \\\"<jats:p>We reconcile two conflicting views of the network centralization effect on team performance. In one view, a centralized network is problematic because it limits knowledge transfer, making it harder for team members to discover productive combinations of their know-how and expertise. In the alternative view, the limits on knowledge transfer encourage search and experimentation, leading to the discovery of more valuable ideas. We maintain the two sides are not opposed but reflect two distinct ways centralization can affect a team’s shared problem-solving framework. The shared framework in our research is a shared language. We contend that team network centralization affects both how quickly a shared language emerges and the performance implications of the shared language that develops. We analyze the performance of 77 teams working to identify abstract symbols for 15 trials. Teams work under network conditions that vary with respect to centralization. Results indicate that centralized teams take longer to develop a shared language, but centralized teams also create a shared language that is more beneficial for performance. The findings also indicate that the highest performing teams are assigned to networks that combine elements of a centralized and a decentralized network.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137231199739\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 7]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-87137-4.50001-1\\\", \\\"title\\\": [\\\"Machine Intelligence and Pattern Recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-87137-4.50001-1\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-87137-4.50036-9\\\", \\\"title\\\": [\\\"Pattern Recognition and Artificial Intelligence in Molecular Biology\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-87137-4.50036-9\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1177/26339137231158584\\\", \\\"title\\\": [\\\"Kill chaos with kindness: Agreeableness improves team performance under uncertainty\\\"], \\\"abstract\\\": \\\"<jats:p>Teams are central to human accomplishment. Over the past half-century, psychologists have identified the Big-Five cross-culturally valid personality variables: Neuroticism, Extraversion, Openness, Conscientiousness, and Agreeableness. The first four have shown consistent relationships with team performance. Agreeableness (being harmonious, altruistic, humble, and cooperative), however, has demonstrated a non-significant and highly variable relationship with team performance. We resolve this inconsistency through computational modelling. An agent-based model (ABM) is used to predict the effects of personality traits on teamwork, and a genetic algorithm is then used to explore the limits of the ABM in order to discover which traits correlate with best and worst performing teams for a problem with different levels of uncertainty (noise). New dependencies revealed by the exploration are corroborated by analyzing previously unseen data from one of the largest datasets on team performance to date comprising 3698 individuals in 593 teams working on more than 5000 group tasks with and without uncertainty, collected over a 10-year period. Our finding is that the dependency between team performance and Agreeableness is moderated by task uncertainty. Combining evolutionary computation with ABMs in this way provides a new methodology for the scientific investigation of teamwork, making new predictions, and improving our understanding of human behaviors. Our results confirm the potential usefulness of computer modelling for developing theory, as well as shedding light on the future of teams as work environments are becoming increasingly fluid and uncertain.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137231158584\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2567a836d9d53dd2e704e49bdf4c1cbf5ea9ecfe6977cda23224ced73d5e64c2\"}",
+      "id": "source-f816ad486a324c20",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+pattern+recognition+collective+intelligence+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-18T16:55:49.811498+00:00"
+    },
+    "source-68cbede2fe14411d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-68cbede2fe14411d",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-18T16:55:50.033474+00:00"
+    },
+    "r-88168277887f4fcf": {
+      "actor": "runtime",
+      "content": "{\"base_version\":7,\"inherited_commitments\":[\"commit-nif-synthesis\"],\"invocation\":\"w-88168277887f4fcf\",\"previous_head\":\"568e008bd713ec1619c3080823d1a04be1e5d4ad333f0ac4dccd9c639ee3913a\",\"process_id\":2259,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-88168277887f4fcf",
+      "source": "runtime:continuity",
+      "version": 7,
+      "time": "2026-09-18T16:55:50.096835+00:00"
     }
   },
   "journal": [
@@ -2878,6 +2904,274 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T16:54:58.712669+00:00",
       "reason": ""
+    },
+    "w-88168277887f4fcf": {
+      "base_version": 7,
+      "charged": true,
+      "id": "w-88168277887f4fcf",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 7,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-ai-foundations",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "AI and Collective Intelligence"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "project-neuro-cognition",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2259,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "ad41d92810b15a8700ce99824191391ba0c5984615a525d84b133c10ecd23b01",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ci-structure-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-nif-synthesis",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-951fa4e89af349b2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-951fa4e89af349b2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b808cf2b3c714526"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b808cf2b3c714526",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6855351f63aa491f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6855351f63aa491f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9e0c29667d2a42f9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9e0c29667d2a42f9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f816ad486a324c20"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f816ad486a324c20",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-68cbede2fe14411d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-68cbede2fe14411d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c",
+          "source-951fa4e89af349b2",
+          "source-b808cf2b3c714526",
+          "source-6855351f63aa491f",
+          "source-9e0c29667d2a42f9",
+          "source-f816ad486a324c20",
+          "source-68cbede2fe14411d"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27696,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2343,
+        "working_to_delivered_ratio": 0.0846
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-ai-foundations",
+            "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+            "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+            "title": "AI and Collective Intelligence"
+          },
+          {
+            "id": "project-neuro-cognition",
+            "next_step": "Synthesize the Neurodivergent Intelligence Framework (NIF) paper to determine if its proposed pattern-recognition mechanisms map to the three-factor CI model.",
+            "question": "How do pattern recognition orientations in neurodivergent profiles (internally vs. externally oriented) interact with group-level cognitive architectures?",
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "ci-structure-three-factor",
+            "provenance": [
+              "source-1ba654396b7a4c16"
+            ],
+            "status": "active",
+            "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 8,
+            "id": "commit-nif-synthesis",
+            "reason": "This provides a dedicated timeframe to analyze the intersection of cognitive diversity and collective structural intelligence.",
+            "task": "Synthesize collected evidence into a formal notebook comparing the NIF and CI models."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ci-structure-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "revision": 2,
+            "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+            "title": "The Three-Factor Structure of Collective Intelligence"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-18T16:55:50.119729+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7900,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48221,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T16:56:03.079443+00:00",
+      "reason": "Evidence reference does not exist"
     }
   },
   "pending": null,
@@ -2985,8 +3279,9 @@
       "query": "neurodivergent pattern recognition collective intelligence team performance",
       "reason": "I need a second source to evaluate how neurodivergent pattern recognition orientations (internal vs. external) map to the collective CI architecture (memory/attention/reasoning) to fulfill notebook publication requirements.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-d2f13384934a47e4"
+      "status": "collected",
+      "created_by": "w-d2f13384934a47e4",
+      "evidence": "source-f816ad486a324c20"
     }
   },
   "research_topics": [
