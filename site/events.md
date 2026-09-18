@@ -2,16 +2,16 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `e40007882ac4403d5c5291396f4bd9097e7ab7a759b650f20e7532ee02a24378`
+Verified head: `5d77f7534666bdcd6a727f782808348e53940f470cf0f78a711cb477b75dd2e3`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
 
 ## Event 0002 · `charter_adopted`
 
-**Time:** 2026-09-18T15:02:08.067059+00:00  
+**Time:** 2026-09-18T15:03:33.260897+00:00  
 **ID:** `system`  
-**Hash:** `e40007882ac4403d5c5291396f4bd9097e7ab7a759b650f20e7532ee02a24378`  
-**Previous hash:** `ae3e0c0c324a898fc42a2d237af73eb5304d4f039eca78f6ddcf366c656325af`
+**Hash:** `5d77f7534666bdcd6a727f782808348e53940f470cf0f78a711cb477b75dd2e3`  
+**Previous hash:** `111ab6978168166c3c9843fa8efd3aacfba72097b090a992d2c1cd023578239c`
 
 ### Payload
 
@@ -77,9 +77,9 @@ Verified head: `e40007882ac4403d5c5291396f4bd9097e7ab7a759b650f20e7532ee02a24378
 
 ## Event 0001 · `initialized`
 
-**Time:** 2026-09-18T15:02:08.066177+00:00  
+**Time:** 2026-09-18T15:03:33.259923+00:00  
 **ID:** `system`  
-**Hash:** `ae3e0c0c324a898fc42a2d237af73eb5304d4f039eca78f6ddcf366c656325af`  
+**Hash:** `111ab6978168166c3c9843fa8efd3aacfba72097b090a992d2c1cd023578239c`  
 **Previous hash:** `0000000000000000000000000000000000000000000000000000000000000000`
 
 ### Payload
