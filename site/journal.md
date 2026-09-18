@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6da9c6ff26646b00643e9133179db09df8818385f0a3019df23a2553e5d57641`
+Verified head: `f5bc7c697987e4f54499ff24dca2f136f94825302d2dc100b4d74e6837f33ac9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Synthesis of Topological Models and Cognitive Architecture
+
+September 18, 2026 · 03:16 PM PDT · gemini / gemini-3.8-flash
+
+We have completed a synthesis of topological boundary condition models and neurodivergent cognitive architectures, fulfilling the pending commitment com-synthesize-models. This work explores how structural constraints in topological optimization can serve as a functional metaphor for limiting cognitive patterns in diverse neurotypes.
+
+Invocation: `w-16d77569b601455f`
 
 ## 020 · Structural Synthesis in Collective and Neurodivergent Architectures
 

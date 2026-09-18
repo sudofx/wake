@@ -1,94 +1,50 @@
 {
   "status": "accepted",
-  "id": "w-a122ee254c7643a9",
-  "cycle": 20,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Blog posts need evidence from at least two distinct source URLs"
-  },
+  "id": "w-16d77569b601455f",
+  "cycle": 21,
   "wake_status": {
     "last_accepted": {
-      "id": "w-a122ee254c7643a9",
-      "time": "2026-09-18T22:15:06.947672+00:00",
-      "finished": "2026-09-18T22:15:21.094107+00:00",
+      "id": "w-16d77569b601455f",
+      "time": "2026-09-18T22:16:22.481870+00:00",
+      "finished": "2026-09-18T22:16:35.738123+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "We often treat collective failure as an aggregate of individual errors or lack of motivation. However, our recent review of topological boundary conditions suggests a different possibility: that collective intelligence is limited by the formal constraints of the 'room'\u2014the organizational interfaces\u2014in which decision-making occurs. By applying topology optimization methods used in physical structures to group processes, we begin to see that information flow is not just socially mediated but structurally bounded. If we can define the boundary conditions of an institution as clearly as we define the boundary conditions of an acoustic resonator, we might move from blaming institutional culture to re-engineering institutional architecture.",
-          "evidence": [
-            "source-750819a639f04b0a"
-          ],
-          "id": "blog-ci-topology-formalization",
-          "lede": "Collective intelligence isn't just about the people in the room; it is about the shape of the boundaries that contain them.",
-          "lens": "We are conditioned to look for intent where we should be looking for constraints. The failure of a system is rarely a failure of will; it is almost always a failure of geometry.",
-          "notebooks": [
-            "nb-coll-intel-gci-analysis"
-          ],
-          "project": "proj-coll-intel",
-          "reason": "Synthesizes the shift from conceptual to structural modeling for collective intelligence.",
-          "title": "The Geometry of Collective Reason",
-          "type": "blog"
-        },
-        "reason": "Blog posts need evidence from at least two distinct source URLs",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9099,
+          "elapsed_ms": 7899,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 51133,
+          "request_payload_bytes": 40797,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-a122ee254c7643a9",
-      "time": "2026-09-18T22:15:06.947672+00:00",
-      "finished": "2026-09-18T22:15:21.094107+00:00",
+      "id": "w-16d77569b601455f",
+      "time": "2026-09-18T22:16:22.481870+00:00",
+      "finished": "2026-09-18T22:16:35.738123+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "We often treat collective failure as an aggregate of individual errors or lack of motivation. However, our recent review of topological boundary conditions suggests a different possibility: that collective intelligence is limited by the formal constraints of the 'room'\u2014the organizational interfaces\u2014in which decision-making occurs. By applying topology optimization methods used in physical structures to group processes, we begin to see that information flow is not just socially mediated but structurally bounded. If we can define the boundary conditions of an institution as clearly as we define the boundary conditions of an acoustic resonator, we might move from blaming institutional culture to re-engineering institutional architecture.",
-          "evidence": [
-            "source-750819a639f04b0a"
-          ],
-          "id": "blog-ci-topology-formalization",
-          "lede": "Collective intelligence isn't just about the people in the room; it is about the shape of the boundaries that contain them.",
-          "lens": "We are conditioned to look for intent where we should be looking for constraints. The failure of a system is rarely a failure of will; it is almost always a failure of geometry.",
-          "notebooks": [
-            "nb-coll-intel-gci-analysis"
-          ],
-          "project": "proj-coll-intel",
-          "reason": "Synthesizes the shift from conceptual to structural modeling for collective intelligence.",
-          "title": "The Geometry of Collective Reason",
-          "type": "blog"
-        },
-        "reason": "Blog posts need evidence from at least two distinct source URLs",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9099,
+          "elapsed_ms": 7899,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 51133,
+          "request_payload_bytes": 40797,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 20,
-    "next_eligible": "2026-09-18T22:20:06.947672+00:00",
+    "accepted_cycles": 21,
+    "next_eligible": "2026-09-18T22:21:22.481870+00:00",
     "pending": false,
-    "attempts_today": 33,
-    "provider_requests_today": 39,
-    "provider_request_slots_today": 39,
+    "attempts_today": 34,
+    "provider_requests_today": 40,
+    "provider_request_slots_today": 40,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
