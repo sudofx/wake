@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 8  
+**Version:** 9  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `691034b6d6a851f26847255adb5575b9d6db07477b55c9d204112a34e0079436`
+**Verified head:** `4140623c35c93500498966933deef6297f12d701425a69b97540715156004d3c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -79,9 +79,16 @@
   "reason": "This provides a dedicated timeframe to analyze the intersection of cognitive diversity and collective structural intelligence.",
   "task": "Synthesize collected evidence into a formal notebook comparing the NIF and CI models.",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-d2f13384934a47e4",
-  "created_version": 7
+  "created_version": 7,
+  "evidence": [
+    "source-a53d284f781844ef",
+    "source-f816ad486a324c20"
+  ],
+  "resolution_reason": "The synthesis of the NIF and CI models has been completed and documented in the new notebook.",
+  "resolved_by": "w-787eaff52c89423d",
+  "resolved_version": 9
 }
 ```
 
@@ -147,6 +154,31 @@
   "updated_version": 5,
   "updated_by": "w-254a3b9b17d94b80",
   "domain": "collective_intelligence"
+}
+```
+
+### `nb-nif-synthesis` · Mapping Neurodivergent Pattern Recognition to Collective Intelligence
+
+```json
+{
+  "evidence": [
+    "source-a53d284f781844ef",
+    "source-f816ad486a324c20"
+  ],
+  "findings": "The NIF preprint [source-a53d284f781844ef] proposes that neurodivergent profiles, particularly those with Autism and ADHD, exhibit amplified pattern recognition capabilities. When integrated with network centralization models [source-f816ad486a324c20], this suggests that the 'pattern recognition' capacity may serve as a specific input for collective attention mechanisms, potentially accelerating or disrupting the development of shared languages in teams. We hypothesize that neurodivergent individuals might act as 'pattern-density filters' within a group architecture.",
+  "id": "nb-nif-synthesis",
+  "limitations": "The NIF framework is currently a preprint [source-a53d284f781844ef], and direct empirical linkage between 'amplified pattern recognition' and group-level performance metrics remains largely theoretical.",
+  "next_questions": "Does the integration of neurodivergent pattern recognition reliably correlate with faster or more nuanced collective reasoning in established groups?",
+  "project": "project-neuro-cognition",
+  "reason": "This notebook fulfills the synthesis commitment and initiates the mapping of neurodivergent cognition to the established CI three-factor model.",
+  "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+  "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 9,
+  "updated_version": 9,
+  "updated_by": "w-787eaff52c89423d",
+  "domain": "neurodivergent_cognition"
 }
 ```
 
@@ -3485,6 +3517,289 @@
 }
 ```
 
+### `w-787eaff52c89423d`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "id": "w-787eaff52c89423d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "project-neuro-cognition",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2268,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "da824ae9fc92e8c7f450e1b82114d8ab556dd371f07941ecf8ba6c05465dbf95",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-nif-synthesis",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-616a2188124f4073"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-616a2188124f4073",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2852f5fe58594f7e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2852f5fe58594f7e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dd956be6fb3b4e1a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dd956be6fb3b4e1a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1b1787c55b6a48cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1b1787c55b6a48cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a53d284f781844ef"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a53d284f781844ef",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4a0cdf5127cc4d51"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4a0cdf5127cc4d51",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-616a2188124f4073",
+      "source-2852f5fe58594f7e",
+      "source-dd956be6fb3b4e1a",
+      "source-1b1787c55b6a48cf",
+      "source-a53d284f781844ef",
+      "source-4a0cdf5127cc4d51"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18014,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2855,
+    "working_to_delivered_ratio": 0.1585
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "id": "project-neuro-cognition",
+        "next_step": "Synthesize the Neurodivergent Intelligence Framework (NIF) paper to determine if its proposed pattern-recognition mechanisms map to the three-factor CI model.",
+        "question": "How do pattern recognition orientations in neurodivergent profiles (internally vs. externally oriented) interact with group-level cognitive architectures?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 8,
+        "id": "commit-nif-synthesis",
+        "reason": "This provides a dedicated timeframe to analyze the intersection of cognitive diversity and collective structural intelligence.",
+        "task": "Synthesize collected evidence into a formal notebook comparing the NIF and CI models."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T16:59:16.681335+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 20379,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 37900,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T16:59:41.767416+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -4061,6 +4376,47 @@
 }
 ```
 
+### `source-a53d284f781844ef`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+group+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-87137-4.50001-1\\\", \\\"title\\\": [\\\"Machine Intelligence and Pattern Recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-87137-4.50001-1\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-88650-7.50023-8\\\", \\\"title\\\": [\\\"A Framework of Fuzzy Evidential Reasoning\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-88650-7.50023-8\\\", \\\"published\\\": {\\\"date-parts\\\": [[1990]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-70396-5.50007-8\\\", \\\"title\\\": [\\\"An Axiomatic Framework for Belief Updates\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-70396-5.50007-8\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5f132c58b498fead4c96bf19370490e88ace72be095d5e4480d3c510a71ca7f9\"}",
+  "id": "source-a53d284f781844ef",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+group+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-18T16:59:16.342074+00:00"
+}
+```
+
+### `source-4a0cdf5127cc4d51`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"349d394549bb9d1582a0754ae113181632b97a2ab7f09146ee62b16e538154d6\"}",
+  "id": "source-4a0cdf5127cc4d51",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-18T16:59:16.574594+00:00"
+}
+```
+
+### `r-787eaff52c89423d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[\"commit-nif-synthesis\"],\"invocation\":\"w-787eaff52c89423d\",\"previous_head\":\"8139b21cc246e39d7d256ece5e27ba94f2184e321558500d3737565b89e6f088\",\"process_id\":2268,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-787eaff52c89423d",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-18T16:59:16.652076+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -4148,6 +4504,17 @@
   "invocation": "w-e3911f3fa78b46f7",
   "title": "Neurodivergent cognition and structural collective intelligence",
   "summary": "This cycle focused on examining the interplay between network centralization and collective performance, using current search results as a proxy for understanding collective reasoning and attention. While centralized networks show distinct performance benefits in shared language development, evidence connecting the 'Neurodivergent Intelligence Framework' directly to these CI structural models remains insufficient for formal synthesis. The existing three-factor CI model continues to serve as the baseline for evaluating group architectures, and the research trajectory remains focused on bridging these domains through continued source acquisition."
+}
+```
+
+### 009 · Synthesizing Neurodivergent Cognition with Collective Intelligence
+
+```json
+{
+  "cycle": 9,
+  "invocation": "w-787eaff52c89423d",
+  "title": "Synthesizing Neurodivergent Cognition with Collective Intelligence",
+  "summary": "Completed synthesis of the Neurodivergent Intelligence Framework (NIF) and its relationship to collective intelligence. Mapped potential overlaps between individual-level pattern recognition and group-level cognitive architectures, fulfilling the outstanding research commitment."
 }
 ```
 
@@ -4243,8 +4610,9 @@
   "query": "Neurodivergent Intelligence Framework pattern recognition group performance",
   "reason": "Previous search attempts returned broad team performance literature but failed to return empirical papers explicitly utilizing the 'Neurodivergent Intelligence Framework' terminology; this query attempts to isolate whether the framework is a known formal construct.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-e3911f3fa78b46f7"
+  "status": "collected",
+  "created_by": "w-e3911f3fa78b46f7",
+  "evidence": "source-a53d284f781844ef"
 }
 ```
 
