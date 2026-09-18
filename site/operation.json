@@ -1,50 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-81d90a4a92a54c9f",
-  "reason": "New projects must use a configured topic; existing projects keep their original topic",
+  "status": "accepted",
+  "id": "w-771bb52a116c4e3b",
+  "cycle": 22,
   "wake_status": {
     "last_accepted": {
-      "id": "w-cf62dbe52a534aca",
-      "time": "2026-09-18T19:44:15.159576+00:00",
-      "finished": "2026-09-18T19:44:34.120742+00:00",
+      "id": "w-771bb52a116c4e3b",
+      "time": "2026-09-18T19:46:44.947603+00:00",
+      "finished": "2026-09-18T19:46:55.351553+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 13370,
+          "elapsed_ms": 4522,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50768,
+          "request_payload_bytes": 51228,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-81d90a4a92a54c9f",
-      "time": "2026-09-18T19:45:42.400219+00:00",
-      "finished": "2026-09-18T19:45:50.320574+00:00",
-      "status": "rejected",
-      "reason": "New projects must use a configured topic; existing projects keep their original topic",
+      "id": "w-771bb52a116c4e3b",
+      "time": "2026-09-18T19:46:44.947603+00:00",
+      "finished": "2026-09-18T19:46:55.351553+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2236,
+          "elapsed_ms": 4522,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50298,
+          "request_payload_bytes": 51228,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 21,
-    "next_eligible": "2026-09-18T19:50:42.400219+00:00",
+    "accepted_cycles": 22,
+    "next_eligible": "2026-09-18T19:51:44.947603+00:00",
     "pending": false,
-    "attempts_today": 41,
-    "provider_requests_today": 43,
-    "provider_request_slots_today": 43,
+    "attempts_today": 42,
+    "provider_requests_today": 44,
+    "provider_request_slots_today": 44,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

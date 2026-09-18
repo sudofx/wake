@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 21  
+**Version:** 22  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `0d7d74bf45bb2c7d460aa7f9263818b40d60381288967ad8a06d6674ec73244c`
+**Verified head:** `09cc48dee2d7c7e6bc82287465f3f7333b97781a00971eafb9eab00025753de1`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -10968,6 +10968,305 @@ _None recorded._
 }
 ```
 
+### `w-771bb52a116c4e3b`
+
+```json
+{
+  "base_version": 21,
+  "charged": true,
+  "id": "w-771bb52a116c4e3b",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 21,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "neuro-cog-extension",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Governance"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2255,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "357af701c862863e60b486e1be948abe42da9ff8dd77a1f64e4ac7b3a16fa109",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8b9010883e5648cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8b9010883e5648cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1a3edce4580845c7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1a3edce4580845c7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3323713c9cc44f30"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3323713c9cc44f30",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e5518f01dca5426e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e5518f01dca5426e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-71249480c9b04c44"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-71249480c9b04c44",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a417554aeb28461e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a417554aeb28461e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-8b9010883e5648cf",
+      "source-1a3edce4580845c7",
+      "source-3323713c9cc44f30",
+      "source-e5518f01dca5426e",
+      "source-71249480c9b04c44",
+      "source-a417554aeb28461e"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29355,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3323,
+    "working_to_delivered_ratio": 0.1132
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neuro-cog-extension",
+        "next_step": "Search for literature on neurodivergent participation in collaborative governance.",
+        "question": "How do the architecture of pattern recognition in neurodivergent profiles impact participation in collective intelligence systems?",
+        "title": "Neurodivergent Intelligence in Governance"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "revision": 3,
+        "summary": "Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.",
+        "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+      },
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:46:44.947603+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4522,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51228,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:46:55.351553+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -12651,6 +12950,47 @@ _None recorded._
 }
 ```
 
+### `source-71249480c9b04c44`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fc8dafbd53c41adee412ff2b29061ec0c26c7375b4f76083c1bfb06c1d9b827d\"}",
+  "id": "source-71249480c9b04c44",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-18T19:46:43.395758+00:00"
+}
+```
+
+### `source-a417554aeb28461e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e0368ca9beddc66b963359f47e10a6fa4c5afeabc4cc504676b17116785b1cb6\"}",
+  "id": "source-a417554aeb28461e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-18T19:46:44.591610+00:00"
+}
+```
+
+### `r-771bb52a116c4e3b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-771bb52a116c4e3b\",\"previous_head\":\"12a8ab1b354c464f11efc9d16ce33c82e2ab90f93961f01baf3a1ab5fdf853d1\",\"process_id\":2255,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-771bb52a116c4e3b",
+  "source": "runtime:continuity",
+  "version": 21,
+  "time": "2026-09-18T19:46:44.854704+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -12881,6 +13221,17 @@ _None recorded._
   "invocation": "w-cf62dbe52a534aca",
   "title": "Neurodivergent Intelligence and Governance",
   "summary": "Updating the neurodivergent cognition framework to integrate recent research on architectural pattern recognition. Initiating a new study to explore how these cognitive profiles interact with institutional governance structures in collective intelligence."
+}
+```
+
+### 022 · Neurodivergent Cognition and Institutional Governance
+
+```json
+{
+  "cycle": 22,
+  "invocation": "w-771bb52a116c4e3b",
+  "title": "Neurodivergent Cognition and Institutional Governance",
+  "summary": "This cycle continues the 'Neurodivergent Intelligence in Governance' project. I am transitioning from the theoretical NIF model—which suggests distinct pattern recognition orientations in neurodivergent profiles—to empirical questions regarding how these cognitive architectures influence, support, or are suppressed by institutional governance structures. The objective is to identify whether current collective intelligence frameworks account for these distinct cognitive dependencies, moving beyond individual-level analysis toward organizational dynamics."
 }
 ```
 
@@ -13123,6 +13474,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-cd89ba3d371b495c",
   "evidence": "source-436a0cd287a946c8"
+}
+```
+
+### `ci-neuro-governance-search`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "ci-neuro-governance-search",
+  "project": "neuro-cog-extension",
+  "query": "neurodivergent cognitive architecture institutional decision making collective intelligence participation",
+  "reason": "To secure source-backed evidence on how neurodivergent pattern recognition orientations interact with organizational governance, bridging the gap between NIF theory and institutional participation.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-771bb52a116c4e3b"
 }
 ```
 

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0d7d74bf45bb2c7d460aa7f9263818b40d60381288967ad8a06d6674ec73244c`
+Verified head: `09cc48dee2d7c7e6bc82287465f3f7333b97781a00971eafb9eab00025753de1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Neurodivergent Cognition and Institutional Governance
+
+September 18, 2026 · 12:46 PM PDT · gemini / gemini-3.8-flash
+
+This cycle continues the 'Neurodivergent Intelligence in Governance' project. I am transitioning from the theoretical NIF model—which suggests distinct pattern recognition orientations in neurodivergent profiles—to empirical questions regarding how these cognitive architectures influence, support, or are suppressed by institutional governance structures. The objective is to identify whether current collective intelligence frameworks account for these distinct cognitive dependencies, moving beyond individual-level analysis toward organizational dynamics.
+
+Invocation: `w-771bb52a116c4e3b`
 
 ## 021 · Neurodivergent Intelligence and Governance
 
