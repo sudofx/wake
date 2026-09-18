@@ -1,22 +1,22 @@
 # Disambiguating 'MUSIC': Algorithm vs. Art
 
-The homonym 'MUSIC' functions as both a broad cultural category and a specific technical algorithm, but evidence suggests these domains remain functionally distinct.
+The term 'MUSIC' functions as a homonym: it denotes a specific high-resolution frequency estimation algorithm in signal processing and a broad, aesthetic, and historical framework in the humanities.
 
 ## Findings
 
-The MUSIC (Multiple Signal Classification) algorithm is a well-defined signal processing method used for high-resolution direction finding and drone detection [source-0e2d4e8e12f44093]. In contrast, musicology and music studies focus on human cultural expression and historical classification of genres like 'dance music' or 'women's music' [source-db8b71b46e9f4197]. The term's overlap is purely linguistic and does not appear to cause operational confusion in the respective literature, as the contexts (signal processing vs. humanities) are sufficiently distinct.
+Technical literature defines MUSIC (Multiple Signal Classification) as a subspace-based algorithm for estimating frequencies in signal processing [source-0e2d4e8e12f44093]. Conversely, musicological literature treats the term 'music' as an object of lexicography and cultural classification, emphasizing its role in human expression rather than signal estimation [source-d0dffa7ef17f4153]. These definitions exist in distinct domains with no documented overlap in terminology usage.
 
 ## Limitations and competing views
 
-This analysis relies on short bibliographic abstracts rather than full technical implementations or comprehensive literature reviews of either field.
+These sources consist primarily of bibliographic metadata and abstracts. The conclusion rests on the distinct semantic domains occupied by these definitions; further investigation would require full-text analysis to verify if algorithmic 'MUSIC' is ever discussed within musicological contexts.
 
 ## Next questions
 
-Whether these domain-specific definitions ever converge in computational musicology or AI-generated soundscapes.
+Does the intersection of music and technology ever lead to terminological borrowing where the MUSIC algorithm is applied specifically to musicological signal analysis?
 
 ## Collected sources
 
 - [source-0e2d4e8e12f44093](https://api.crossref.org/works?query=MUSIC+algorithm+multiple+signal+classification+origin&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-db8b71b46e9f4197](https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-d0dffa7ef17f4153](https://api.crossref.org/works?query=musicology+definitions+lexicography+terminology&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.

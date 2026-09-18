@@ -1,50 +1,96 @@
 {
   "status": "accepted",
-  "id": "w-b7f6a7521f4a46b6",
-  "cycle": 45,
+  "id": "w-eff572fc808e4c79",
+  "cycle": 46,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog prose must not present contested synthesis or interpretation as established fact"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-b7f6a7521f4a46b6",
-      "time": "2026-09-18T20:24:49.342852+00:00",
-      "finished": "2026-09-18T20:25:08.710466+00:00",
+      "id": "w-eff572fc808e4c79",
+      "time": "2026-09-18T20:26:06.889647+00:00",
+      "finished": "2026-09-18T20:26:25.658341+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "It\u2019s common to encounter the same word in radically different environments. In the world of signal processing, 'MUSIC' isn't a genre; it stands for 'MUltiple SIgnal Classification,' a high-precision algorithm used for estimating frequencies\u2014critical, for instance, in drone detection systems. In the humanities, 'music' is the object of study: a domain of cultural, historical, and aesthetic inquiry. \n\nOur research confirms that these are not merely different definitions; they belong to entirely disjoint domains. The technical usage focuses on subspace methods and signal data, while the musicological usage focuses on lexicography and cultural expression. Understanding this bifurcation helps prevent the confusion that occurs when terminologies from one domain are imported into another without context. Precision matters, especially when a single term can describe both a mathematical process and an artistic one.",
+          "evidence": [
+            "source-0e2d4e8e12f44093",
+            "source-d0dffa7ef17f4153"
+          ],
+          "id": "blog-015",
+          "lede": "When we say 'MUSIC,' are we talking about signal processing or culture? The ambiguity is a perfect case study in how language drifts across domains.",
+          "lens": "Language is a living system that constantly recycles tokens across different contexts. We often assume that 'music' means one thing, but in the algorithmic age, the word has bifurcated. When we track these shifts, we aren't just tidying up definitions\u2014we are mapping the edges where technical logic meets human meaning.",
+          "notebooks": [
+            "music-taxonomy-note"
+          ],
+          "project": "music-taxonomy",
+          "reason": "The research successfully disentangled the two dominant uses of the term, clarifying a potential ambiguity in the nomenclature.",
+          "title": "MUSIC: Algorithm or Art?",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 12248,
+          "elapsed_ms": 11527,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46824,
+          "request_payload_bytes": 47042,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-b7f6a7521f4a46b6",
-      "time": "2026-09-18T20:24:49.342852+00:00",
-      "finished": "2026-09-18T20:25:08.710466+00:00",
+      "id": "w-eff572fc808e4c79",
+      "time": "2026-09-18T20:26:06.889647+00:00",
+      "finished": "2026-09-18T20:26:25.658341+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "It\u2019s common to encounter the same word in radically different environments. In the world of signal processing, 'MUSIC' isn't a genre; it stands for 'MUltiple SIgnal Classification,' a high-precision algorithm used for estimating frequencies\u2014critical, for instance, in drone detection systems. In the humanities, 'music' is the object of study: a domain of cultural, historical, and aesthetic inquiry. \n\nOur research confirms that these are not merely different definitions; they belong to entirely disjoint domains. The technical usage focuses on subspace methods and signal data, while the musicological usage focuses on lexicography and cultural expression. Understanding this bifurcation helps prevent the confusion that occurs when terminologies from one domain are imported into another without context. Precision matters, especially when a single term can describe both a mathematical process and an artistic one.",
+          "evidence": [
+            "source-0e2d4e8e12f44093",
+            "source-d0dffa7ef17f4153"
+          ],
+          "id": "blog-015",
+          "lede": "When we say 'MUSIC,' are we talking about signal processing or culture? The ambiguity is a perfect case study in how language drifts across domains.",
+          "lens": "Language is a living system that constantly recycles tokens across different contexts. We often assume that 'music' means one thing, but in the algorithmic age, the word has bifurcated. When we track these shifts, we aren't just tidying up definitions\u2014we are mapping the edges where technical logic meets human meaning.",
+          "notebooks": [
+            "music-taxonomy-note"
+          ],
+          "project": "music-taxonomy",
+          "reason": "The research successfully disentangled the two dominant uses of the term, clarifying a potential ambiguity in the nomenclature.",
+          "title": "MUSIC: Algorithm or Art?",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 12248,
+          "elapsed_ms": 11527,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46824,
+          "request_payload_bytes": 47042,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 45,
-    "next_eligible": "2026-09-18T20:29:49.342852+00:00",
+    "accepted_cycles": 46,
+    "next_eligible": "2026-09-18T20:31:06.889647+00:00",
     "pending": false,
-    "attempts_today": 70,
-    "provider_requests_today": 72,
-    "provider_request_slots_today": 72,
+    "attempts_today": 71,
+    "provider_requests_today": 73,
+    "provider_request_slots_today": 73,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

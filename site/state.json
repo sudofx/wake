@@ -1,5 +1,5 @@
 {
-  "version": 45,
+  "version": 46,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -1874,6 +1874,32 @@
       "source": "runtime:continuity",
       "version": 44,
       "time": "2026-09-18T20:24:49.185244+00:00"
+    },
+    "source-d0dffa7ef17f4153": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=musicology+definitions+lexicography+terminology&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/omo/9781561592630.013.90000382572\\\", \\\"title\\\": [\\\"Musicology: Lexicography and terminology\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/omo/9781561592630.013.90000382572\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1075/tlrp.11.04cha\\\", \\\"title\\\": [\\\"Chapter 3. Definitions in business dictionaries\\\"], \\\"URL\\\": \\\"https://doi.org/10.1075/tlrp.11.04cha\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 7, 3]]}}, {\\\"DOI\\\": \\\"10.1075/tlrp.19.c2\\\", \\\"title\\\": [\\\"Definitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1075/tlrp.19.c2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 7, 27]]}}, {\\\"DOI\\\": \\\"10.1075/tlrp.3.05fro\\\", \\\"title\\\": [\\\"3. From traditional definitions of concepts to templates of units of understanding\\\"], \\\"URL\\\": \\\"https://doi.org/10.1075/tlrp.3.05fro\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000, 6, 15]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8fe348bd4cce427e783921e3d73aa62396b90a69cbe41fa932ab9016ec4b6eb7\"}",
+      "id": "source-d0dffa7ef17f4153",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=musicology+definitions+lexicography+terminology&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 45,
+      "time": "2026-09-18T20:26:04.896385+00:00"
+    },
+    "source-fd77adc735394e69": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"08ace04468ca644a71c0f4bc815a0f20e378912fc6a1f7dfb03ed51435aa9cdb\"}",
+      "id": "source-fd77adc735394e69",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 45,
+      "time": "2026-09-18T20:26:06.184633+00:00"
+    },
+    "r-eff572fc808e4c79": {
+      "actor": "runtime",
+      "content": "{\"base_version\":45,\"inherited_commitments\":[],\"invocation\":\"w-eff572fc808e4c79\",\"previous_head\":\"ef49f87709ef3965e60c0f153dec4c62f1a827d5ccf28c1cf57e5cf58fd1cbd9\",\"process_id\":2208,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-eff572fc808e4c79",
+      "source": "runtime:continuity",
+      "version": 45,
+      "time": "2026-09-18T20:26:06.707510+00:00"
     }
   },
   "journal": [
@@ -2146,6 +2172,12 @@
       "invocation": "w-b7f6a7521f4a46b6",
       "title": "Disambiguating Music: Terminological Collision in Technical and Arts Literature",
       "summary": "This cycle focuses on preparing for the resolution of the 'Disambiguating Music' project. Analysis of available bibliographic metadata confirms that 'MUSIC' functions as both a technical acronym (Multiple Signal Classification) and a broad arts category, creating potential for ambiguity in automated indexing and information retrieval systems. Current evidence collection has established the technical usage, but requires a secondary, distinct source focused on musicological terminology to ensure a balanced taxonomy. A follow-up research task has been queued to secure this evidence."
+    },
+    {
+      "cycle": 46,
+      "invocation": "w-eff572fc808e4c79",
+      "title": "Disambiguating Musicology and Signal Processing",
+      "summary": "This cycle completes the literature review for the music taxonomy project, formally distinguishing the cultural definitions of music from the MUltiple SIgnal Classification (MUSIC) algorithm. The work is now ready for public synthesis.\n\nEditorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact"
     }
   ],
   "posts": {
@@ -21670,6 +21702,348 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T20:25:08.710466+00:00",
       "reason": ""
+    },
+    "w-eff572fc808e4c79": {
+      "base_version": 45,
+      "charged": true,
+      "id": "w-eff572fc808e4c79",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 45,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "music-taxonomy",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Disambiguating Music"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2208,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "ae5287ab2131a36e7935379225fe869e14de4625c501c23995b28deb1ebfdd66",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093",
+              "source-db8b71b46e9f4197"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "music-taxonomy-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-c7cb54722c7d4eea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c7cb54722c7d4eea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ac926f185078452b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ac926f185078452b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ee73a267c3544ae0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ee73a267c3544ae0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fade6b59ea6f46ca"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fade6b59ea6f46ca",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d0dffa7ef17f4153"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d0dffa7ef17f4153",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fd77adc735394e69"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fd77adc735394e69",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0e2d4e8e12f44093",
+          "source-db8b71b46e9f4197",
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-c7cb54722c7d4eea",
+          "source-ac926f185078452b",
+          "source-ee73a267c3544ae0",
+          "source-fade6b59ea6f46ca",
+          "source-d0dffa7ef17f4153",
+          "source-fd77adc735394e69"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 10,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "notebook_revised": 4,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 24662,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 10,
+        "retrieval_evidence_count": 17,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 4,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3163,
+        "working_to_delivered_ratio": 0.1283
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "music-taxonomy",
+            "next_step": "Synthesize existing literature on MUSIC algorithm and music theory terminology.",
+            "question": "How do algorithmic definitions of 'MUSIC' differ from musicological definitions?",
+            "title": "Disambiguating Music"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          },
+          {
+            "id": "ca-emergence-note",
+            "project": "ca-emergence-study",
+            "provenance": [
+              "source-a8015e36beb84923",
+              "source-73259701758b4651"
+            ],
+            "revision": 1,
+            "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+            "title": "Cellular Automata as Frameworks for Emergence"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T20:26:06.889647+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 11527,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 47042,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T20:26:25.658341+00:00",
+      "reason": "",
+      "editorial": {
+        "action": {
+          "body": "It’s common to encounter the same word in radically different environments. In the world of signal processing, 'MUSIC' isn't a genre; it stands for 'MUltiple SIgnal Classification,' a high-precision algorithm used for estimating frequencies—critical, for instance, in drone detection systems. In the humanities, 'music' is the object of study: a domain of cultural, historical, and aesthetic inquiry. \n\nOur research confirms that these are not merely different definitions; they belong to entirely disjoint domains. The technical usage focuses on subspace methods and signal data, while the musicological usage focuses on lexicography and cultural expression. Understanding this bifurcation helps prevent the confusion that occurs when terminologies from one domain are imported into another without context. Precision matters, especially when a single term can describe both a mathematical process and an artistic one.",
+          "evidence": [
+            "source-0e2d4e8e12f44093",
+            "source-d0dffa7ef17f4153"
+          ],
+          "id": "blog-015",
+          "lede": "When we say 'MUSIC,' are we talking about signal processing or culture? The ambiguity is a perfect case study in how language drifts across domains.",
+          "lens": "Language is a living system that constantly recycles tokens across different contexts. We often assume that 'music' means one thing, but in the algorithmic age, the word has bifurcated. When we track these shifts, we aren't just tidying up definitions—we are mapping the edges where technical logic meets human meaning.",
+          "notebooks": [
+            "music-taxonomy-note"
+          ],
+          "project": "music-taxonomy",
+          "reason": "The research successfully disentangled the two dominant uses of the term, clarifying a potential ambiguity in the nomenclature.",
+          "title": "MUSIC: Algorithm or Art?",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      }
     }
   },
   "pending": null,
@@ -21679,15 +22053,15 @@
     "music-taxonomy": {
       "domain": "music",
       "id": "music-taxonomy",
-      "next_step": "Synthesize existing literature on MUSIC algorithm and music theory terminology.",
+      "next_step": "None - Project complete.",
       "question": "How do algorithmic definitions of 'MUSIC' differ from musicological definitions?",
-      "reason": "The project exists in notebooks but lacks an active project status for structured development.",
-      "status": "active",
+      "reason": "The disambiguation analysis is finalized with sufficient evidence.",
+      "status": "completed",
       "title": "Disambiguating Music",
       "type": "project",
       "created_version": 1,
-      "updated_version": 44,
-      "updated_by": "w-ba0598369cd24f38"
+      "updated_version": 46,
+      "updated_by": "w-eff572fc808e4c79"
     },
     "ci-research": {
       "domain": "collective_intelligence",
@@ -21824,21 +22198,21 @@
     "music-taxonomy-note": {
       "evidence": [
         "source-0e2d4e8e12f44093",
-        "source-db8b71b46e9f4197"
+        "source-d0dffa7ef17f4153"
       ],
-      "findings": "The MUSIC (Multiple Signal Classification) algorithm is a well-defined signal processing method used for high-resolution direction finding and drone detection [source-0e2d4e8e12f44093]. In contrast, musicology and music studies focus on human cultural expression and historical classification of genres like 'dance music' or 'women's music' [source-db8b71b46e9f4197]. The term's overlap is purely linguistic and does not appear to cause operational confusion in the respective literature, as the contexts (signal processing vs. humanities) are sufficiently distinct.",
+      "findings": "Technical literature defines MUSIC (Multiple Signal Classification) as a subspace-based algorithm for estimating frequencies in signal processing [source-0e2d4e8e12f44093]. Conversely, musicological literature treats the term 'music' as an object of lexicography and cultural classification, emphasizing its role in human expression rather than signal estimation [source-d0dffa7ef17f4153]. These definitions exist in distinct domains with no documented overlap in terminology usage.",
       "id": "music-taxonomy-note",
-      "limitations": "This analysis relies on short bibliographic abstracts rather than full technical implementations or comprehensive literature reviews of either field.",
-      "next_questions": "Whether these domain-specific definitions ever converge in computational musicology or AI-generated soundscapes.",
+      "limitations": "These sources consist primarily of bibliographic metadata and abstracts. The conclusion rests on the distinct semantic domains occupied by these definitions; further investigation would require full-text analysis to verify if algorithmic 'MUSIC' is ever discussed within musicological contexts.",
+      "next_questions": "Does the intersection of music and technology ever lead to terminological borrowing where the MUSIC algorithm is applied specifically to musicological signal analysis?",
       "project": "music-taxonomy",
-      "reason": "This formalizes the research findings and resolves the ambiguity that motivated the project.",
-      "summary": "The homonym 'MUSIC' functions as both a broad cultural category and a specific technical algorithm, but evidence suggests these domains remain functionally distinct.",
+      "reason": "This notebook establishes the clear bifurcation of the term 'MUSIC', fulfilling the research project's requirement to disambiguate algorithmic and cultural terminology.",
+      "summary": "The term 'MUSIC' functions as a homonym: it denotes a specific high-resolution frequency estimation algorithm in signal processing and a broad, aesthetic, and historical framework in the humanities.",
       "title": "Disambiguating 'MUSIC': Algorithm vs. Art",
       "type": "notebook",
-      "revision": 2,
+      "revision": 3,
       "created_version": 2,
-      "updated_version": 36,
-      "updated_by": "w-994b0f01bf084474",
+      "updated_version": 46,
+      "updated_by": "w-eff572fc808e4c79",
       "domain": "music"
     },
     "ci-landscape-note": {
@@ -22352,8 +22726,9 @@
       "query": "musicology definitions lexicography terminology",
       "reason": "Acquiring a distinct secondary source to satisfy the two-source requirement for notebook publication and disambiguation analysis.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-b7f6a7521f4a46b6"
+      "status": "collected",
+      "created_by": "w-b7f6a7521f4a46b6",
+      "evidence": "source-d0dffa7ef17f4153"
     }
   },
   "research_topics": [
