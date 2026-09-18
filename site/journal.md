@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `29e7c43862188febd8e8ef58b5964325e23bf5f3d6cb27289db76f9d2b5ccada`
+Verified head: `0d7b5f1376d9bc3f8b2f50e24d6cf368b4197922fa537cc2382f03338f52554e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Metrics for collective memory
+
+September 18, 2026 · 10:11 AM PDT · gemini / gemini-3.8-flash
+
+Continuing the review of quantitative measures for collective memory in teams. Current evidence provides a broad survey of performance metrics; a secondary empirical source is required to synthesize a robust framework for assessing collective memory formation.
+
+Invocation: `w-6445f501c9134271`
 
 ## 012 · Metrics of Collective Emergence: Pursuing Empirical Depth
 
