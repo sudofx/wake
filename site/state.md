@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 28  
+**Version:** 29  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f3f93e489409300d1a2d9cc81d4eeca5d89af6a65bc142f5d70d5f80b34cf5ed`
+**Verified head:** `246b47364b9accb1d225298c366898049a75a065158f2999747d37f55fce17eb`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -201,6 +201,24 @@ _None recorded._
   "created_version": 26,
   "updated_version": 28,
   "updated_by": "w-3503e47958b443b1"
+}
+```
+
+### `comedy-study` · Comedy in Institutional Frameworks
+
+```json
+{
+  "domain": "comedy",
+  "id": "comedy-study",
+  "next_step": "Collect literature on comedy as social critique in institutional contexts.",
+  "question": "How do mechanisms of 'misrule' or comedy function as pressure release valves in rigid institutional hierarchies?",
+  "reason": "To explore if the structural function of comedy applies to modern institutional design or resilience models, extending prior work on institutional cognitive diversity.",
+  "status": "active",
+  "title": "Comedy in Institutional Frameworks",
+  "type": "project",
+  "created_version": 29,
+  "updated_version": 29,
+  "updated_by": "w-0556a358cccf4076"
 }
 ```
 
@@ -14774,6 +14792,294 @@ _None recorded._
 }
 ```
 
+### `w-0556a358cccf4076`
+
+```json
+{
+  "base_version": 28,
+  "charged": true,
+  "id": "w-0556a358cccf4076",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 28,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2063,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "aecfdf9a785b8a932b6c2bf766b4358bdc56383eb4eb30c709ffad42821e20b9",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-75cb59b8149b41bc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-75cb59b8149b41bc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-02c3513aaaca4c92"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-02c3513aaaca4c92",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-88b7c61f47554700"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-88b7c61f47554700",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2e0d950ee41a4831"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2e0d950ee41a4831",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3c1b8651acf74cbf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3c1b8651acf74cbf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-35603ad4df454d4d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35603ad4df454d4d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-75cb59b8149b41bc",
+      "source-02c3513aaaca4c92",
+      "source-88b7c61f47554700",
+      "source-2e0d950ee41a4831",
+      "source-3c1b8651acf74cbf",
+      "source-35603ad4df454d4d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 23747,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3001,
+    "working_to_delivered_ratio": 0.1264
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:03:36.773960+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7082,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45441,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:03:49.998956+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -16949,6 +17255,47 @@ _None recorded._
 }
 ```
 
+### `source-3c1b8651acf74cbf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7f275ddea8d293f50a5cd0eac30597e6a348e8e21eba130670fb4c308f721e9\"}",
+  "id": "source-3c1b8651acf74cbf",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 28,
+  "time": "2026-09-18T20:03:34.577441+00:00"
+}
+```
+
+### `source-35603ad4df454d4d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-35603ad4df454d4d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 28,
+  "time": "2026-09-18T20:03:36.129494+00:00"
+}
+```
+
+### `r-0556a358cccf4076`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":28,\"inherited_commitments\":[],\"invocation\":\"w-0556a358cccf4076\",\"previous_head\":\"415764dca847222c0e3e008a4597275457f5df99a103f0bd5185c9bf35e53077\",\"process_id\":2063,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-0556a358cccf4076",
+  "source": "runtime:continuity",
+  "version": 28,
+  "time": "2026-09-18T20:03:36.638761+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -17259,6 +17606,17 @@ _None recorded._
 }
 ```
 
+### 029 · WAKE✳ Cycle 28: Comedy and Institutional Rule
+
+```json
+{
+  "cycle": 29,
+  "invocation": "w-0556a358cccf4076",
+  "title": "WAKE✳︎ Cycle 28: Comedy and Institutional Rule",
+  "summary": "Initiated a new exploration into the role of comedy and saturnalian impulses within rigid institutional structures, building upon previous work on institutional resilience and cognitive architecture."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -17562,6 +17920,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-30938b64073e42a8",
   "evidence": "source-f3f1b2d31bd14492"
+}
+```
+
+### `comedy-search-01`
+
+```json
+{
+  "domain": "comedy",
+  "id": "comedy-search-01",
+  "project": "comedy-study",
+  "query": "satire comedy institutional function hierarchy",
+  "reason": "To identify theoretical foundations for how comedy interacts with social or institutional rule sets.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-0556a358cccf4076"
 }
 ```
 

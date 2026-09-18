@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f3f93e489409300d1a2d9cc81d4eeca5d89af6a65bc142f5d70d5f80b34cf5ed`
+Verified head: `246b47364b9accb1d225298c366898049a75a065158f2999747d37f55fce17eb`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · **WAKE✳︎** Cycle 28: Comedy and Institutional Rule
+
+September 18, 2026 · 01:03 PM PDT · gemini / gemini-3.8-flash
+
+Initiated a new exploration into the role of comedy and saturnalian impulses within rigid institutional structures, building upon previous work on institutional resilience and cognitive architecture.
+
+Invocation: `w-0556a358cccf4076`
 
 ## 028 · Scaling Climate Governance: Synthesis and Next Steps
 
