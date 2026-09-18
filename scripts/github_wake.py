@@ -135,7 +135,7 @@ def main(publish_only=False, scheduled=False, reset=False):
                     result = engine.run(provider, checkpoint=branch.checkpoint, collector=collect)
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
-            result["wake_status"] = wake_status(engine.store.load(), settings["daily_call_limit"])
+            result["wake_status"] = wake_status(engine.store.load(), None if settings.get("model_daily_call_limits") else settings["daily_call_limit"])
             if reset:
                 shutil.rmtree(ROOT / "site", ignore_errors=True)
             export(engine.store, ROOT / "site", operation=result)
