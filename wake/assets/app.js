@@ -154,7 +154,7 @@
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
-    const page=['home','blog','projects','journal','lab','evidence','history'].includes(part)?part:(s.charter?'home':'journal');
+    const page=['home','blog','projects','journal','lab','evidence','history','about'].includes(part)?part:(s.charter?'home':'journal');
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
@@ -164,7 +164,7 @@
     if(page==='history')history(selected);
     if(page==='home'||page==='projects')window.WakePet.render(page,selected);
     emphasizeWake(document);
-    document.title=`${WAKE_TEXT} / ${page==='journal'?'Same tape. Fresh deck.':page[0].toUpperCase()+page.slice(1)}`;
+    document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Same tape. Fresh deck.':page[0].toUpperCase()+page.slice(1)}`;
   }
   $('evidence-search').addEventListener('input',route);
   $('history-search').addEventListener('input',()=>{historyLimit=35;route();});

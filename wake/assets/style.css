@@ -58,3 +58,12 @@ body{font-size:16px;background:radial-gradient(circle at 88% -8%,var(--glow),tra
 /* Quiet structural separators; links retain a clearer visual hierarchy. */
 :root[data-theme="dark"] .metric-strip,:root[data-theme="dark"] .visit-card,:root[data-theme="dark"] footer,:root[data-theme="dark"] footer>p,:root[data-theme="dark"] .wake-progress{border-color:var(--line)}
 :root[data-theme="dark"] .text-link{border-bottom-color:#59617d}
+
+/* Progressive-depth entry point: the front page leads with a recorded event,
+   while the journal, lab, and source material remain one click deeper. */
+.observation-hero{max-width:920px;padding:58px 0 48px;border-bottom:1px solid var(--ink)}
+.observation-hero h1,.about-page h1{font:58px/1.04 var(--serif);letter-spacing:-2px;margin:12px 0 20px;max-width:860px}
+.observation-hero>p:not(.eyebrow){font:22px/1.55 var(--serif);color:var(--muted);max-width:760px;margin:0 0 25px}
+.observation-hero>div{display:flex;gap:18px;flex-wrap:wrap;align-items:center}.observation-hero small{display:block;margin-top:27px;font:11px/1.55 var(--mono);color:var(--muted)}
+.about-page{max-width:980px;padding:58px 0 70px}.about-lede{font:25px/1.55 var(--serif);color:var(--muted);max-width:760px}.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:42px 0}.about-grid article{border-top:3px solid var(--orange);background:var(--surface);padding:23px}.about-grid h2{font:27px var(--serif);margin:0 0 12px}.about-grid p{font-size:15px;line-height:1.7;color:var(--muted);margin:0}
+@media(max-width:700px){.observation-hero,.about-page{padding:34px 0}.observation-hero h1,.about-page h1{font-size:42px;letter-spacing:-1px}.observation-hero>p:not(.eyebrow),.about-lede{font-size:19px}.observation-hero>div{gap:13px}.about-grid{grid-template-columns:1fr;margin:28px 0;gap:14px}}
