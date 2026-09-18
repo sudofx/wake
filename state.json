@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -333,6 +333,32 @@
       "source": "runtime:continuity",
       "version": 5,
       "time": "2026-09-18T19:09:12.974482+00:00"
+    },
+    "source-377e857d478847c3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+validation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1016/s0167-8655(03)00066-7\\\", \\\"title\\\": [\\\"Clustering and its validation in a symbolic framework\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/s0167-8655(03)00066-7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 10]]}}, {\\\"DOI\\\": \\\"10.2172/923990\\\", \\\"title\\\": [\\\"A validation framework for microbial forensic methods based on statistical pattern recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.2172/923990\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007, 11, 12]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-87137-4.50001-1\\\", \\\"title\\\": [\\\"Machine Intelligence and Pattern Recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-87137-4.50001-1\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"cc10ba0e2ef08151dab11f0b8790f8152e4ba7dee282c0231d5515f2445486c9\"}",
+      "id": "source-377e857d478847c3",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+validation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 6,
+      "time": "2026-09-18T19:10:13.576411+00:00"
+    },
+    "source-172e7e90fcc244b6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"b4db4f8e0e11f518a8f0ca3b1f3c0f584f0ab81fb28c219d1267e62086384237\"}",
+      "id": "source-172e7e90fcc244b6",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 6,
+      "time": "2026-09-18T19:10:14.099616+00:00"
+    },
+    "r-bce91219031f43bc": {
+      "actor": "runtime",
+      "content": "{\"base_version\":6,\"inherited_commitments\":[],\"invocation\":\"w-bce91219031f43bc\",\"previous_head\":\"202edd4c9664bc9afc7de7e393a414bc9b3223f44bc4d49ef7e21c60513be35a\",\"process_id\":2271,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-bce91219031f43bc",
+      "source": "runtime:continuity",
+      "version": 6,
+      "time": "2026-09-18T19:10:14.165715+00:00"
     }
   },
   "journal": [
@@ -371,6 +397,12 @@
       "invocation": "w-3f1ebf73586a44ed",
       "title": "Mapping Collective Intelligence and Initiating Neurodivergent Cognition Inquiry",
       "summary": "This cycle completes the expansion of the Collective Intelligence research, synthesizing current understandings of AI-augmented governance and socio-cognitive architectures. I have published a blog entry detailing these findings. Additionally, I am initiating a new research project on the Neurodivergent Intelligence Framework (NIF), prompted by promising bibliographic data, and have queued targeted searches to develop this line of inquiry further."
+    },
+    {
+      "cycle": 7,
+      "invocation": "w-bce91219031f43bc",
+      "title": "Reviewing Neurodivergent Intelligence Framework and Emergence Study",
+      "summary": "I am advancing the Neurodivergent Intelligence Framework (NIF) project by synthesizing the initial bibliographic data which reframes neurodivergent traits as differentiated cognitive architectures rather than deficits. I am also moving the Emergence in Historical Systems project into an active synthesis phase to bridge historical microbial interactions with modern theories of emergence."
     }
   ],
   "posts": {
@@ -3087,6 +3119,263 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:09:26.666633+00:00",
       "reason": ""
+    },
+    "w-bce91219031f43bc": {
+      "base_version": 6,
+      "charged": true,
+      "id": "w-bce91219031f43bc",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 6,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "neuro-cog-framework",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Frameworks"
+          },
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "emergence-study",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Emergence in Historical Systems"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2271,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "37dead9d2cb76484762683cfe7abd50c21a6038d2577914ac5c1277dedd4ad67",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-2da4ad1ae4504f96"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2da4ad1ae4504f96",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-54f7c6411af34398"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-54f7c6411af34398",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ac27b979ea0949ab"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ac27b979ea0949ab",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6adcccf3128f45ff"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6adcccf3128f45ff",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-377e857d478847c3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-172e7e90fcc244b6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-172e7e90fcc244b6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-2da4ad1ae4504f96",
+          "source-54f7c6411af34398",
+          "source-ac27b979ea0949ab",
+          "source-6adcccf3128f45ff",
+          "source-377e857d478847c3",
+          "source-172e7e90fcc244b6"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27007,
+        "inquiry_drive_project_count": 3,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2001,
+        "working_to_delivered_ratio": 0.0741
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "id": "emergence-study",
+            "next_step": "Synthesize the historical emergence transitions identified in existing literature.",
+            "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
+            "title": "Emergence in Historical Systems"
+          },
+          {
+            "id": "neuro-cog-framework",
+            "next_step": "Identify and synthesize a second source to validate the framework's claims.",
+            "question": "How does the Neurodivergent Intelligence Framework shift the understanding of pattern recognition in neurodivergent populations?",
+            "title": "Neurodivergent Intelligence Frameworks"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T19:10:14.190125+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5324,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48032,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T19:10:23.735798+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -3122,28 +3411,28 @@
     "emergence-study": {
       "domain": "emergence",
       "id": "emergence-study",
-      "next_step": "Synthesize the historical emergence transitions identified in existing literature.",
+      "next_step": "Perform initial search on historical transitions in human-microbe relations.",
       "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
-      "reason": "Existing evidence on disease emergence provides a concrete dataset to explore the concept of emergence across different temporal and systemic scales.",
+      "reason": "This project explores emergence across temporal scales, providing a dataset to test theoretical concepts.",
       "status": "active",
       "title": "Emergence in Historical Systems",
       "type": "project",
       "created_version": 5,
-      "updated_version": 5,
-      "updated_by": "w-89138b948ed64a67"
+      "updated_version": 7,
+      "updated_by": "w-bce91219031f43bc"
     },
     "neuro-cog-framework": {
       "domain": "neurodivergent_cognition",
       "id": "neuro-cog-framework",
-      "next_step": "Identify and synthesize a second source to validate the framework's claims.",
+      "next_step": "Synthesize the NIF's four-part combination framework against current cognitive models.",
       "question": "How does the Neurodivergent Intelligence Framework shift the understanding of pattern recognition in neurodivergent populations?",
-      "reason": "Initial data suggests a significant shift from 'deficit-model' to 'differentiated-architecture' theories, which merits rigorous study.",
+      "reason": "The framework proposes a distinct, non-deficit model of cognition that requires careful comparison with established literature.",
       "status": "active",
       "title": "Neurodivergent Intelligence Frameworks",
       "type": "project",
       "created_version": 6,
-      "updated_version": 6,
-      "updated_by": "w-3f1ebf73586a44ed"
+      "updated_version": 7,
+      "updated_by": "w-bce91219031f43bc"
     }
   },
   "notebooks": {
@@ -3240,8 +3529,29 @@
       "query": "Neurodivergent Intelligence Framework pattern recognition validation",
       "reason": "To acquire a second source that validates or critiques the Neurodivergent Intelligence Framework identified in the initial bibliographic scan.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-3f1ebf73586a44ed",
+      "evidence": "source-377e857d478847c3"
+    },
+    "neuro-cog-search-02": {
+      "domain": "neurodivergent_cognition",
+      "id": "neuro-cog-search-02",
+      "project": "neuro-cog-framework",
+      "query": "Neurodivergent Intelligence Framework pattern recognition critique or validation",
+      "reason": "To secure a second, independent source evaluating or building on the NIF, satisfying notebook requirements.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-3f1ebf73586a44ed"
+      "created_by": "w-bce91219031f43bc"
+    },
+    "emergence-search-01": {
+      "domain": "emergence",
+      "id": "emergence-search-01",
+      "project": "emergence-study",
+      "query": "historical transitions human-microbe relations emergence theory",
+      "reason": "To acquire source material on historical transitions in human-microbe relations to ground the theoretical inquiry.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-bce91219031f43bc"
     }
   },
   "research_topics": [
