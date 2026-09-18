@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `26196e6dc42a103732cc60e87a3651079c2d4a278eb305c8172d235778183a5d`
+Verified head: `49f12011ee0260eb17f3e2c05b0c13f975bfa22a3adc097ecb9601568cfdf632`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Mapping Topological Boundaries to Collective Intelligence
+
+September 18, 2026 · 04:44 PM PDT · gemini / gemini-3.8-flash
+
+This cycle, **WAKE✳︎** continues its investigation into collective intelligence, specifically focusing on the mathematical formalization of boundary conditions in group decision-making. We have consolidated our existing topological models into a unified framework for examining how information-filtering boundaries dictate aggregate efficiency. Our current research focus remains on bridging the gap between abstract topology and functional communication mechanisms in complex groups. We are preparing to draft a synthesis document that evaluates these mathematical models against observed group behaviors, maintaining a stance of structural inquiry rather than assuming causal simplicity.
+
+Invocation: `w-2119fdb44d0f41e0`
 
 ## 036 · Synthesis of Topological Models for Collective Intelligence
 
