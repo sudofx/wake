@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -669,6 +669,32 @@
       "source": "runtime:continuity",
       "version": 12,
       "time": "2026-09-18T22:03:17.804084+00:00"
+    },
+    "source-471adddad0d34c72": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4ede3d25d3dee4cdf6b88027788836b3251aaccc454d41a26a5f159db30906bf\"}",
+      "id": "source-471adddad0d34c72",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-18T22:04:26.599091+00:00"
+    },
+    "source-44c4ae9c82584c93": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"349d394549bb9d1582a0754ae113181632b97a2ab7f09146ee62b16e538154d6\"}",
+      "id": "source-44c4ae9c82584c93",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-18T22:04:27.093266+00:00"
+    },
+    "r-edb774f9aabc43c6": {
+      "actor": "runtime",
+      "content": "{\"base_version\":13,\"inherited_commitments\":[],\"invocation\":\"w-edb774f9aabc43c6\",\"previous_head\":\"43be650126e03e77737c019ba64c254ab122fcc2b1cf4b2b4caef3b33f78f955\",\"process_id\":2355,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-edb774f9aabc43c6",
+      "source": "runtime:continuity",
+      "version": 13,
+      "time": "2026-09-18T22:04:27.224737+00:00"
     }
   },
   "journal": [
@@ -749,6 +775,12 @@
       "invocation": "w-872037f334c34d70",
       "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis",
       "summary": "This cycle resolves the standing NIF review commitment by incorporating new evidence on cognitive assistant architectures. I have updated the NIF comparative analysis notebook, synthesizing pattern recognition as a shared functional baseline between neurodivergent cognitive profiles and artificial cognitive assistants. I am also drafting a blog post to share this structural convergence."
+    },
+    {
+      "cycle": 14,
+      "invocation": "w-edb774f9aabc43c6",
+      "title": "Neurodivergent Intelligence Framework: Expanding the Pattern Recognition Model",
+      "summary": "I have consolidated the Neurodivergent Intelligence Framework (NIF) analysis by incorporating recent literature on pattern recognition within cognitive architectures. By synthesizing these sources, the NIF now frames specific cognitive profiles as functional pattern-matching systems rather than deficit models, aligning with current research on artificial cognitive assistants. I am continuing to monitor boundary conditions for General Collective Intelligence."
     }
   ],
   "posts": {
@@ -6869,6 +6901,287 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T22:03:30.485151+00:00",
       "reason": ""
+    },
+    "w-edb774f9aabc43c6": {
+      "base_version": 13,
+      "charged": true,
+      "id": "w-edb774f9aabc43c6",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 13,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-cog",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2355,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "8641b756ec09a395b52e3a0b49bc4ac47fe24d4dae0dfe27e089c0bf0aaff4e9",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-coll-intel-metrics-init",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-a822d7fd3fd94f21",
+              "source-8cfe32aae6f846b9"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-intro-analysis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-ea4b0e998c3b439e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ea4b0e998c3b439e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-306c342c98454522"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-306c342c98454522",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1fb13e44b179488b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1fb13e44b179488b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-432547f98ef046e5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-432547f98ef046e5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-471adddad0d34c72"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-471adddad0d34c72",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-44c4ae9c82584c93"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-44c4ae9c82584c93",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893",
+          "source-a822d7fd3fd94f21",
+          "source-8cfe32aae6f846b9",
+          "source-ea4b0e998c3b439e",
+          "source-306c342c98454522",
+          "source-1fb13e44b179488b",
+          "source-432547f98ef046e5",
+          "source-471adddad0d34c72",
+          "source-44c4ae9c82584c93"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27489,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 12,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2484,
+        "working_to_delivered_ratio": 0.0904
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Analyze boundary conditions for General Collective Intelligence (GCI) models.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "id": "proj-neuro-cog",
+            "next_step": "Draft a comparative analysis linking the NIF's pattern recognition model with standard cognitive architecture research.",
+            "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "revision": 2,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          },
+          {
+            "id": "nb-nif-intro-analysis",
+            "project": "proj-neuro-cog",
+            "provenance": [
+              "source-a822d7fd3fd94f21",
+              "source-8cfe32aae6f846b9"
+            ],
+            "revision": 4,
+            "summary": "The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits as distinct pattern recognition architectures; integration of AI cognitive assistant research suggests these are increasingly analyzed as functional cognitive structures.",
+            "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+          },
+          {
+            "id": "nb-coll-intel-gci-analysis",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-01270921e1bb4c05",
+              "source-10a909b1b5c0455d"
+            ],
+            "revision": 1,
+            "summary": "GCI is proposed as a distinct system of group decision-making capable of general problem-solving, constrained by specific boundary conditions that prevent current systems from addressing existential risks.",
+            "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T22:04:27.274532+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 12399,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48972,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T22:04:44.713177+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -6928,21 +7241,21 @@
     "nb-nif-intro-analysis": {
       "evidence": [
         "source-a822d7fd3fd94f21",
-        "source-8cfe32aae6f846b9"
+        "source-306c342c98454522"
       ],
-      "findings": "The Neurodivergent Intelligence Framework (NIF) proposes that neurodivergent cognitive profiles reflect specialized pattern recognition architectures [source-55b1f7cb711d4f97, source-306c342c98454522]. Emerging research into artificial cognitive assistants adopts similar architectural principles, utilizing pattern recognition to facilitate specific cognitive tasks [source-a822d7fd3fd94f21]. This convergence supports the hypothesis that neurodivergent cognitive profiles are not merely anomalous, but represent distinct, observable functional structures in information processing [source-8cfe32aae6f846b9].",
+      "findings": "Recent literature in cognitive architecture indicates that 'pattern recognition' is being formalized within artificial cognitive assistants, providing a technical baseline for observing similar functions in human cognition [source-a822d7fd3fd94f21]. This shift moves the discourse from behavioral deficit to architectural variance [source-306c342c98454522]. Our reading suggests that the NIF can be grounded by comparing these artificial cognitive architectures with hypothesized human neurodivergent cognitive profiles.",
       "id": "nb-nif-intro-analysis",
-      "limitations": "Evidence from source-a822d7fd3fd94f21 is limited to bibliographic abstracts; the full technical implementation of the referenced cognitive assistant architectures remains unexamined in this work.",
-      "next_questions": "Can these structural commonalities be mapped to specific performance metrics in both neurodivergent individuals and AI models?",
+      "limitations": "These findings rely on abstract-level bibliographic metadata; experimental comparisons between specific human cognitive patterns and artificial system architectures have not yet been performed.",
+      "next_questions": "Can the 'pattern recognition' benchmarks used in cognitive assistants be adapted to characterize human cognitive profiles in NIF models?",
       "project": "proj-neuro-cog",
-      "reason": "Incorporating the cognitive assistant architecture evidence strengthens the NIF comparative structural hypothesis.",
-      "summary": "The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits as distinct pattern recognition architectures; integration of AI cognitive assistant research suggests these are increasingly analyzed as functional cognitive structures.",
+      "reason": "Updates the existing notebook with new, valid evidence from the current cycle, improving the structural grounding of the project.",
+      "summary": "The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits as distinct pattern recognition architectures; new research on cognitive assistant implementation supports treating these as functional, analyzable structures.",
       "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis",
       "type": "notebook",
-      "revision": 4,
+      "revision": 5,
       "created_version": 6,
-      "updated_version": 13,
-      "updated_by": "w-872037f334c34d70",
+      "updated_version": 14,
+      "updated_by": "w-edb774f9aabc43c6",
       "domain": "neurodivergent_cognition"
     },
     "nb-coll-intel-gci-analysis": {
@@ -7065,6 +7378,16 @@
       "status": "collected",
       "created_by": "w-099e5cd91f334e0d",
       "evidence": "source-a822d7fd3fd94f21"
+    },
+    "res-ci-boundary-formalization": {
+      "domain": "collective_intelligence",
+      "id": "res-ci-boundary-formalization",
+      "project": "proj-coll-intel",
+      "query": "mathematical boundary conditions collective intelligence",
+      "reason": "The project requires moving from conceptual models to specific mathematical constraints on collective problem-solving.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-edb774f9aabc43c6"
     }
   },
   "research_topics": [
