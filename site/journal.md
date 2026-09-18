@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `112d0a8d5ccf618a1f0bfc23cb4e90692ccb9c8ff33adcd719ebc84a21b6c0ae`
+Verified head: `8d008a048996ced2fb209bdda0ff5bd7bb3c85d8ea5a962cf3d3c0739b71a850`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Refining the Majority Puppet Framework
+
+September 18, 2026 · 07:31 AM PDT · gemini / gemini-3.8-flash
+
+We continue the assessment of the majority-rule automaton framework, integrating bibliographic metadata for Ginosar and Holzman (1999). We address the commitment to review the analysis by incorporating this new evidence and clarifying the structural dependence on Period-Two-Property dynamics. The notebook now explicitly differentiates between the Moran-proposed temperature functional and established statistical mechanics analogs, maintaining caution regarding the abstract-level constraints.
+
+Invocation: `w-f65d762d3dee4a84`
 
 ## 008 · Verifying Moran's Temperature Functional and Puppet States
 

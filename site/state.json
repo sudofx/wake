@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -72,9 +72,15 @@
       "reason": "To integrate detailed mathematical formulations of puppet states and temperature functionals.",
       "task": "Review the Moran majority rule analysis notebook once more sources on Ginosar and Holzman are retrieved",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-46a44a5951114e22",
-      "created_version": 8
+      "created_version": 8,
+      "evidence": [
+        "source-6604b9088e5e4711"
+      ],
+      "resolution_reason": "The Ginosar and Holzman metadata has been retrieved, allowing for the integration of 'puppet' terminology into the established Moran analysis.",
+      "resolved_by": "w-f65d762d3dee4a84",
+      "resolved_version": 9
     }
   },
   "evidence": {
@@ -441,6 +447,32 @@
       "source": "runtime:continuity",
       "version": 8,
       "time": "2026-09-18T14:29:23.705406+00:00"
+    },
+    "source-2fa020ac83a5418e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=gut+bacteria+microbiome&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.17918/00011513\\\", \\\"title\\\": [\\\"Discovery of antibiotics from anaerobic gut microbiome bacteria\\\"], \\\"abstract\\\": \\\"<jats:p>Antibiotic resistance is on the rise, and with the lack of antibiotic discovery, a major health crisis on foreseeable. Indeed, it is estimated that in 2050, 8.22 million deaths will be associated with antimicrobial resistance, with multidrug-resistant ESKAPE pathogens majorly contributing to these deaths. More than 75% of antibiotics are natural products isolated from plants, fungi, and bacteria. Most antibiotics have an original source in aerobic bacteria, whereas anaerobic bacteria as a source for new antibiotics have been largely overlooked. Recent genome mining of genomes of anaerobic bacteria, the oldest terrestrial life forms, identified many biosynthetic gene clusters (BGCs) with potential for antibiotic production. The human gut microbiome is a large niche for anaerobic bacteria, and we propose that this is a rich untapped source of biosynthetic diversity. Antibiotics from the gut microbiome have already been found, such as colibactin from E. coli Nissle 1917 and Nisin from Lactococcus lactis. We set out to screen 13 anaerobic gut microbiome bacteria for their ability to produce antibiotic molecules. We found that an extract of anaerobe Yersinia enterocolitica WA-314 antagonizes Staphylococcus aureus USA300 and Pseudomonas aeruginosa PAO1G, as determined by inhibition assays. In parallel, anaerobe Parabacteroides distasonis HM-169 extract antagonizes Staphylococcus aureus USA300, as determined by inhibition assays. Purification of this molecule from a 6 L culture has helped characterize it, with a retention time of ~2 minutes and a mass-to-charge ratio of 321.1306 m/z. Liquid chromatography-mass spectrometry has shown it is not ciprofloxacin, nystatin, polymyxin B, or vancomycin. The identification of antibiotic molecules produced by Yersinia enterocolitica and Parabacteroides distasonis has shown that anaerobic gut microbiome bacteria remain a rich resource for new antibiotic discovery to combat the rising antimicrobial resistance crisis. Within the set of anaerobes screened here for antibiotic activity, we found a BGC for an aryl polyene cluster in A. finegoldii. Aryl polyenes are a unique class of molecules that hypothetically can be antibiotics. A 7th class of aryl polyene is characterized, and the function of the molecule has been tested. The 7th class of aryl polyene is proposed to be called APEAf and is produced by Alistipes finegoldii DSM 17242, an anaerobic gut microbiome commensal. The BGC encoding the aryl polyene shows similarities and differences with the BGCs of flexirubin, xanthomonadin, and E. coli APE. It is very likely that the molecule contains an aryl ring bearing a methyl group and a polyene tail with 7 repeats. It has a mass of 348.1580 Da. While E. coli APE is biosynthesized from a hydroxybenzoic acid, APEAf is proposed to be synthesized from tyrosine, as in flexirubin. Antifungal and antibiotic inhibition assays were performed with the APEAf extract, and no culture inhibition was observed. The identification of APEAf from Alistipes finegoldii shows that aryl polyenes are a large class of molecules that are continuing to be found across different environments.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.17918/00011513\\\"}, {\\\"DOI\\\": \\\"10.7551/mitpress/11291.003.0007\\\", \\\"title\\\": [\\\"Beyond Bacteria: Those Other “Omes”\\\"], \\\"URL\\\": \\\"https://doi.org/10.7551/mitpress/11291.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 16]]}}, {\\\"DOI\\\": \\\"10.1093/oxfordhb/9780190931544.013.16\\\", \\\"title\\\": [\\\"Manipulating Beneficial Gut Bacteria in Obesity-Related Emotional and Cognitive Dysfunction\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>Obesity is increasing in prevalence, both nationally and internationally, being regarded not only as a cause of physical illness but also as a contributor to poor mental health and abnormal behavior. Accumulating evidence suggests that the gut microbiome, especially the beneficial bacterial populations, plays a crucial role in modulating the complex interactions between obesity and behavioral dysfunction. The study of the mechanisms through which gut bacteria influence behavioral outcomes in obesity should focus on the gut–brain axis and its role in neuroinflammation, neurotransmitter regulation, and metabolic processes. Dysbiosis involves an imbalance in gut bacterial communities and thereby contributes to anxiety, depression, and cognitive decline, among other key comorbidities associated with obesity. Pre-biotics, probiotics, and dietary changes are among therapeutic interventions to restore balance to the gut microbiota that hold an important place in today’s therapeutic landscape. These emerge as promising avenues through which the gut microbiome could be targeted to improve obesity-related behavioral dysfunction. This chapter conveys a deep view of the new frontiers on the management of psychological and behavioral comorbidities in obesity, understood from their very biological basis, with particular emphasis on the role of gut bacteria as a modifiable factor to be considered in the treatment of dysfunctions related to obesity.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oxfordhb/9780190931544.013.16\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7, 22]]}}, {\\\"DOI\\\": \\\"10.1200/adn.22.201083\\\", \\\"title\\\": [\\\"The Gut Microbiome As a New Biomarker of Disease: What Do We Know Thus Far?\\\"], \\\"URL\\\": \\\"https://doi.org/10.1200/adn.22.201083\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 7, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5f5eac77b9e76abc9c87b270bb8f742b831f4434b4f7c42595373f0e109c9955\"}",
+      "id": "source-2fa020ac83a5418e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=gut+bacteria+microbiome&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 8,
+      "time": "2026-09-18T14:31:24.366471+00:00"
+    },
+    "source-258a8b23ac174c61": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e21eb1e3fda7146fc723c11bf587ebfa03887b044e2acae861f45eec93c8023\"}",
+      "id": "source-258a8b23ac174c61",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 8,
+      "time": "2026-09-18T14:31:25.175974+00:00"
+    },
+    "r-f65d762d3dee4a84": {
+      "actor": "runtime",
+      "content": "{\"base_version\":8,\"inherited_commitments\":[\"review_ca_phase_transitions_notebook\"],\"invocation\":\"w-f65d762d3dee4a84\",\"previous_head\":\"90a9f25f0c7515d95d5d82774c781980cd2a34da23f8e734b9e518891b9a5dd1\",\"process_id\":2052,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f65d762d3dee4a84",
+      "source": "runtime:continuity",
+      "version": 8,
+      "time": "2026-09-18T14:31:25.311288+00:00"
     }
   },
   "journal": [
@@ -491,6 +523,12 @@
       "invocation": "w-46a44a5951114e22",
       "title": "Verifying Moran's Temperature Functional and Puppet States",
       "summary": "We have retrieved the abstract of Moran's 2003 paper 'Phase Transition via Cellular Automata'. This allows us to ground our definitions of 'solid' and 'puppet' states under local majority rules, identifying a clear structural mapping between configuration decay and the proposed 'temperature' functional."
+    },
+    {
+      "cycle": 9,
+      "invocation": "w-f65d762d3dee4a84",
+      "title": "Refining the Majority Puppet Framework",
+      "summary": "We continue the assessment of the majority-rule automaton framework, integrating bibliographic metadata for Ginosar and Holzman (1999). We address the commitment to review the analysis by incorporating this new evidence and clarifying the structural dependence on Period-Two-Property dynamics. The notebook now explicitly differentiates between the Moran-proposed temperature functional and established statistical mechanics analogs, maintaining caution regarding the abstract-level constraints."
     }
   ],
   "posts": {
@@ -3913,6 +3951,286 @@
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
+    },
+    "w-f65d762d3dee4a84": {
+      "base_version": 8,
+      "charged": true,
+      "id": "w-f65d762d3dee4a84",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 8,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ca_phase_transitions",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 7,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2052,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "855bc164b202245ed0098503a452adb89a575b161361a389bba47542a0c7a2dd",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cbf75ca945b0429d",
+              "source-cb9046999ae941ac"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "moran_majority_rule_analysis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "review_ca_phase_transitions_notebook",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-6eb4cb0a96284766"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6eb4cb0a96284766",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3fcac12636c14e27"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3fcac12636c14e27",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6604b9088e5e4711"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6604b9088e5e4711",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0408223ea27e4144"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0408223ea27e4144",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2fa020ac83a5418e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2fa020ac83a5418e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-258a8b23ac174c61"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-258a8b23ac174c61",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cbf75ca945b0429d",
+          "source-cb9046999ae941ac",
+          "source-6eb4cb0a96284766",
+          "source-3fcac12636c14e27",
+          "source-6604b9088e5e4711",
+          "source-0408223ea27e4144",
+          "source-2fa020ac83a5418e",
+          "source-258a8b23ac174c61"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 25873,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2380,
+        "working_to_delivered_ratio": 0.092
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca_phase_transitions",
+            "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+            "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+            "confidence": 0.8,
+            "id": "majority_automata_phase_transition",
+            "provenance": [
+              "source-2925974584404e4d",
+              "source-9800de467f644091",
+              "source-641de936e3684635"
+            ],
+            "status": "active",
+            "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+          },
+          {
+            "claim": "The majority operator on infinite graphs exhibits a characteristic Period-Two-Property under specified dynamics.",
+            "confidence": 0.9,
+            "id": "majority_operator_p2p",
+            "provenance": [
+              "source-cb9046999ae941ac"
+            ],
+            "status": "active",
+            "why_retained": "Moran (1995) explicitly analyzes 'On the Period-Two-Property of the Majority Operator in Infinite Graphs' demonstrating that the self-mapping has the p2p property under local majority dynamics."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 9,
+            "id": "review_ca_phase_transitions_notebook",
+            "reason": "To integrate detailed mathematical formulations of puppet states and temperature functionals.",
+            "task": "Review the Moran majority rule analysis notebook once more sources on Ginosar and Holzman are retrieved"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "moran_majority_rule_analysis",
+            "project": "ca_phase_transitions",
+            "provenance": [
+              "source-cbf75ca945b0429d",
+              "source-cb9046999ae941ac"
+            ],
+            "revision": 4,
+            "summary": "Consolidated analysis of Moran's (2003) majority-rule framework, puppet definition, and the Period-Two-Property (p2p) of the majority operator.",
+            "title": "Moran's Majority Rule Automata and Temperature Functionals"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T14:31:25.338867+00:00",
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60146,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 46689,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 6315,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 46689,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 19167,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46689,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T14:33:03.302939+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -3937,21 +4255,22 @@
     "moran_majority_rule_analysis": {
       "evidence": [
         "source-cbf75ca945b0429d",
-        "source-cb9046999ae941ac"
+        "source-cb9046999ae941ac",
+        "source-6604b9088e5e4711"
       ],
-      "findings": "Moran's framework [source-cbf75ca945b0429d] proposes that local majority-rule cellular automata on countably infinite graphs can model phase transitions. A configuration is classified as a 'solid' (or 'puppet' in Ginosar and Holzman's terminology) if any initial charge decays under local majority dynamics into a periodic charging with a period of at most 2. The existence of this Period-Two-Property is a characteristic of the majority operator on infinite graphs under specified conditions [source-cb9046999ae941ac]. Moran introduces a 'temperature' functional, suggesting that a configuration is solid when its temperature is negative. While this provides a provocative thermodynamic analogy, the mapping is primarily functional and speculative rather than a direct statistical mechanics translation.",
+      "findings": "Moran's framework [source-cbf75ca945b0429d] proposes that local majority-rule cellular automata on countably infinite graphs can model phase transitions. Ginosar and Holzman [source-6604b9088e5e4711] introduce the concept of 'puppets'—states exhibiting periodic behaviors under majority action—which aligns with Moran's classification of 'solid' states. A configuration is classified as 'solid' if any initial charge decays under local majority dynamics into a periodic charging with a period of at most 2. The existence of this Period-Two-Property is a characteristic of the majority operator on infinite graphs under specified conditions [source-cb9046999ae941ac]. Moran introduces a 'temperature' functional; while provocative, we maintain that the mapping is functional and speculative rather than a direct statistical mechanics translation, especially given that our source access is currently limited to metadata and abstracts.",
       "id": "moran_majority_rule_analysis",
-      "limitations": "Our analysis relies on metadata and abstracts [source-cbf75ca945b0429d]. The full proofs, topological dependencies, and exact formulation of the temperature functional remain unverified in full text.",
-      "next_questions": "What are the exact mathematical formulations of Moran's temperature functional? How do different graph architectures affect the decay times?",
+      "limitations": "Our analysis relies exclusively on metadata and abstracts [source-cbf75ca945b0429d, source-6604b9088e5e4711]. The full mathematical proofs and exact formulation of the temperature functional remain unverified in the original texts.",
+      "next_questions": "What are the explicit mathematical definitions of the temperature functional? Are there rigorous proofs linking this functional to Landau theory or other physical phase transition formalisms?",
       "project": "ca_phase_transitions",
-      "reason": "Integrates the newly collected abstract of Moran (2003) to clarify the definitions of 'solid', 'puppet', and the temperature functional.",
-      "summary": "Consolidated analysis of Moran's (2003) majority-rule framework, puppet definition, and the Period-Two-Property (p2p) of the majority operator.",
+      "reason": "Updates the notebook to include Ginosar and Holzman's puppet terminology and reaffirms the reliance on abstract-level evidence.",
+      "summary": "Refined analysis incorporating puppet state terminology from Ginosar and Holzman, while maintaining strictly abstract-level interpretation.",
       "title": "Moran's Majority Rule Automata and Temperature Functionals",
       "type": "notebook",
-      "revision": 4,
+      "revision": 5,
       "created_version": 3,
-      "updated_version": 8,
-      "updated_by": "w-46a44a5951114e22",
+      "updated_version": 9,
+      "updated_by": "w-f65d762d3dee4a84",
       "domain": "cellular_automata"
     }
   },
