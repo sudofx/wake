@@ -421,6 +421,32 @@
       "source": "runtime:continuity",
       "version": 7,
       "time": "2026-09-18T19:12:45.315504+00:00"
+    },
+    "source-616711c74f684726": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=criticism+of+pattern+recognition+theories+in+autism&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/j.patcog.2025.112906\\\", \\\"title\\\": [\\\"Deep learning-based detection of autism spectrum disorder and emotion recognition in children\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.patcog.2025.112906\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 5]]}}, {\\\"DOI\\\": \\\"10.1016/j.patcog.2023.109716\\\", \\\"title\\\": [\\\"Optimal transport based pyramid graph kernel for autism spectrum disorder diagnosis\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.patcog.2023.109716\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11]]}}, {\\\"DOI\\\": \\\"10.1016/j.patrec.2020.04.028\\\", \\\"title\\\": [\\\"Gaze-based classification of autism spectrum disorder\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.patrec.2020.04.028\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 7]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-12-161909-1.50010-4\\\", \\\"title\\\": [\\\"SCHEMES AND THEORIES OF PATTERN RECOGNITION\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-12-161909-1.50010-4\\\", \\\"published\\\": {\\\"date-parts\\\": [[1978]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c1aff6f0612244475ac3daf58657101967883b1fda4cd2f73296dd6b977abc33\"}",
+      "id": "source-616711c74f684726",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=criticism+of+pattern+recognition+theories+in+autism&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 8,
+      "time": "2026-09-18T19:13:54.889078+00:00"
+    },
+    "source-4642c1faaa0143cd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.\\n\\n**WAKE✳︎** lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.\\n\\nThe GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.\\n\\nThe original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## A real record with Gemini\\n\\n```sh\\ncp .env.example .env   # Only if you do not already have a .env file.\\n# Put GEMINI_API_KEY=your-key in .env.\\npython3 -m wake init\\npython3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'\\n```\\n\\nIn `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:\\n\\n```sh\\npython3 -m wake wake\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nA charged wake uses the configured Gemini availability chain: `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.1-flash-lite`. Each distinct model is attempted at most once, with no sleeps or same-model transport retries. Only explicitly transient server/network failures may advance to the next model; every 429, authentication failure, invalid response, governance failure, and persistence failure stops the chain. The local daily ceiling is enforced conservatively across provider-request reservations, including interrupted attempts whose outcome is unknown. With the current configuration, one wake can reserve at most three provider-request slots, and fewer when the remaining daily budget is smaller. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).\\n\\nThe rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.\\n\\nOnly after reviewing at least 20 accepted scored cycles may an operator set\\n`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.\\nWhen unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants\\nself-preservation, rule-changing, external-action, or data-retention authority.\\n\\n## Optional local schedule\\n\\n```sh\\n# See the proposed cron line without installing it.\\npython3 scripts/install_cron.py --print\\n# Explicitly install an every-three-hours schedule (about 8 attempts/day).\\npython3 scripts/install_cron.py\\n# Remove only WAKE✳︎’s schedule.\\npython3 scripts/install_cron.py --remove\\n```\\n\\nFor the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.\\n\\nFor iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.\\n\\n## How it works\\n\\n```text\\nexact receipts / event history\\n          ↓\\ndurable projection → bounded context → fresh provider → untrusted proposal\\n          ↑                                              ↓\\n          └──── deterministic governance ← accept / reject\\n                           ↓\\n               working abstractions\\n                           ↓\\n         Bob / human-readable interface\\n                           ↓\\n               links back to receipts\\n```\\n\\nThe design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.\\n\\nThe first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.\\n\\n- `wake/store.py`: transactional, hash-linked event history and replayable projection.\\n- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.\\n- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.\\n- `wake/research.py`: bounded collection of publ\", \"excerpt_truncated\": true, \"source_sha256\": \"aaca89321f7763d9de240f09a2dc47ebddf5356308eb7bd89dfb42917617c50a\"}",
+      "id": "source-4642c1faaa0143cd",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 8,
+      "time": "2026-09-18T19:13:55.115661+00:00"
+    },
+    "r-1edb6ea906a74a22": {
+      "actor": "runtime",
+      "content": "{\"base_version\":8,\"inherited_commitments\":[\"review-nif-progress\"],\"invocation\":\"w-1edb6ea906a74a22\",\"previous_head\":\"70dfe7e25b80becea4fcae2d5a0d3b6669579e748d5f4b78accffcdcffe1e871\",\"process_id\":2196,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-1edb6ea906a74a22",
+      "source": "runtime:continuity",
+      "version": 8,
+      "time": "2026-09-18T19:13:55.197822+00:00"
     }
   },
   "journal": [
@@ -3995,6 +4021,281 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:13:01.862711+00:00",
       "reason": ""
+    },
+    "w-1edb6ea906a74a22": {
+      "base_version": 8,
+      "charged": true,
+      "id": "w-1edb6ea906a74a22",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 8,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "neuro-cog-framework",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Frameworks"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "emergence-study",
+            "score": 0.75,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 1
+            },
+            "title": "Emergence in Historical Systems"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2196,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "7db24f2fd45085b5b2a27180ac0858c947a38be4c10eda335e0ba382ac74b3ed",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "review-nif-progress",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-4a8c00cfade546cc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4a8c00cfade546cc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ed1af0baedd74801"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ed1af0baedd74801",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cc2c54ae1df741a2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cc2c54ae1df741a2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-622cf0a7eda94dc8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-622cf0a7eda94dc8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-616711c74f684726"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-616711c74f684726",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4642c1faaa0143cd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4642c1faaa0143cd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-4a8c00cfade546cc",
+          "source-ed1af0baedd74801",
+          "source-cc2c54ae1df741a2",
+          "source-622cf0a7eda94dc8",
+          "source-616711c74f684726",
+          "source-4642c1faaa0143cd"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 29999,
+        "inquiry_drive_project_count": 3,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2225,
+        "working_to_delivered_ratio": 0.0742
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "id": "emergence-study",
+            "next_step": "Perform initial search on historical transitions in human-microbe relations.",
+            "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
+            "title": "Emergence in Historical Systems"
+          },
+          {
+            "id": "neuro-cog-framework",
+            "next_step": "Synthesize the NIF's four-part combination framework against current cognitive models.",
+            "question": "How does the Neurodivergent Intelligence Framework shift the understanding of pattern recognition in neurodivergent populations?",
+            "title": "Neurodivergent Intelligence Frameworks"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 9,
+            "id": "review-nif-progress",
+            "reason": "Ensuring sufficient cycles have passed to complete new research and synthesize a robust notebook.",
+            "task": "Synthesize NIF findings against new critical perspectives."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-18T19:13:55.228639+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 51046,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 51267,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T19:14:51.101584+00:00",
+      "reason": "Stale or invalid base_version"
     }
   },
   "pending": null,
@@ -4181,8 +4482,9 @@
       "query": "criticism of pattern recognition theories in autism",
       "reason": "The NIF relies on pattern recognition models; I need contrasting or critical perspectives to ensure a balanced, evidence-backed analysis before notebook publication.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-601b34724467450f"
+      "status": "collected",
+      "created_by": "w-601b34724467450f",
+      "evidence": "source-616711c74f684726"
     },
     "emergence-history-search": {
       "domain": "emergence",
