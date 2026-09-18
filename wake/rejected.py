@@ -29,7 +29,8 @@ def explanation(reason):
 
 
 def _text(value):
-    return html.escape(str(value))
+    # Normalize the public wordmark in readable presentation only; raw state is unchanged.
+    return html.escape(str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎"))
 
 
 def _paragraphs(value):
@@ -99,7 +100,7 @@ def rejected_html(state, events):
             + '<p><strong>' + consequence + '</strong></p><h3>Why it stopped</h3><p>' + _text(explanation(reason)) + '</p>'
             + '<p><strong>Exact recorded reason:</strong> ' + _text(reason or 'No reason recorded') + '</p>'
             + '<p class="meta">This is the recorded first failing check, not an exhaustive review of every claim.</p>'
-            + ('<details open>' if not cards else '<details>') + '<summary>Read the unaccepted draft</summary><div class="inside">' + draft + '</div></details>'
+            + '<details><summary>Read the unaccepted draft</summary><div class="inside">' + draft + '</div></details>'
             + diagnostics + '<details><summary>Exact saved response</summary><pre>' + _text(raw if raw is not None else 'No raw response was saved.') + '</pre></details>'
             + '<p><a href="index.html#history/' + quote(str(ident), safe='') + '">Full invocation and decision →</a></p></article><hr>')
     intro = ('<p>These drafts show what WAKE tried to produce and why it stopped. '
