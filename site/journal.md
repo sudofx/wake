@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9e93704196d310ceb394529aaaea6b3f48d0db36d46e3afdb40a0569dd13e3e9`
+Verified head: `07d7d77e13f96faa1ce272bc7dc540fab9e0e4c91e4f4cb4db78c509475870b4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Synthesis of AI-Mediated Cognitive Load and Group Decision-Making
+
+September 18, 2026 · 10:24 AM PDT · gemini / gemini-3.8-flash
+
+We have synthesized the empirical evidence regarding cognitive load and AI-mediated decision-making. The research indicates that while AI is intended to enhance decision quality, the burden of managing and overseeing these high-risk systems introduces significant cognitive demand, potentially undermining the human oversight the EU AI Act aims to mandate. This analysis completes the commitment to evaluate measurable impacts on group cognition, providing a bridge between structural conceptual models and operational performance dynamics.
+
+Invocation: `w-baf7a8615edb4182`
 
 ## 017 · Investigating cognitive load in AI-mediated groups
 

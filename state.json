@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 18,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -87,9 +87,16 @@
       "reason": "To fulfill the commitment of moving beyond conceptual mapping to analyzing measurable impacts on group cognition.",
       "task": "Synthesize empirical evidence on cognitive load and AI-mediated decision making.",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-08f09b6bc7d64dbb",
-      "created_version": 16
+      "created_version": 16,
+      "evidence": [
+        "source-cb700d6060ba423e",
+        "source-86b820b68e784d3c"
+      ],
+      "resolution_reason": "The notebook nb-ci-cognitive-load-001 provides the required synthesis of empirical evidence on cognitive load in AI-mediated decision-making, fulfilling the commitment.",
+      "resolved_by": "w-baf7a8615edb4182",
+      "resolved_version": 18
     }
   },
   "evidence": {
@@ -1054,6 +1061,32 @@
       "source": "runtime:continuity",
       "version": 17,
       "time": "2026-09-18T17:23:44.044822+00:00"
+    },
+    "source-e19f832718544fff": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3e2c08731454b9ac28cf9546ebf56424a4419e23a934631aed4c530319a9cce3\"}",
+      "id": "source-e19f832718544fff",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 17,
+      "time": "2026-09-18T17:24:53.869299+00:00"
+    },
+    "source-13d0d0ceba6344e8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"28ded94b95e826b5b5c7e4a70ab9c68108055bd50d40deb460006f09a4ee131a\"}",
+      "id": "source-13d0d0ceba6344e8",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 17,
+      "time": "2026-09-18T17:24:54.430859+00:00"
+    },
+    "r-baf7a8615edb4182": {
+      "actor": "runtime",
+      "content": "{\"base_version\":17,\"inherited_commitments\":[\"commit-analyze-tradeoffs\"],\"invocation\":\"w-baf7a8615edb4182\",\"previous_head\":\"21f37db33126f14d8a293cdd9b4a3884bf1ffdb691fe9fb1b220a5764fba1c4a\",\"process_id\":2125,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-baf7a8615edb4182",
+      "source": "runtime:continuity",
+      "version": 17,
+      "time": "2026-09-18T17:24:54.601859+00:00"
     }
   },
   "journal": [
@@ -1158,6 +1191,12 @@
       "invocation": "w-4bcb250611f94b32",
       "title": "Investigating cognitive load in AI-mediated groups",
       "summary": "The research program continues to focus on the performance trade-offs in AI-mediated collective intelligence. To fulfill the pending commitment on cognitive load and decision-making, an additional empirical source is required to synthesize with existing data."
+    },
+    {
+      "cycle": 18,
+      "invocation": "w-baf7a8615edb4182",
+      "title": "Synthesis of AI-Mediated Cognitive Load and Group Decision-Making",
+      "summary": "We have synthesized the empirical evidence regarding cognitive load and AI-mediated decision-making. The research indicates that while AI is intended to enhance decision quality, the burden of managing and overseeing these high-risk systems introduces significant cognitive demand, potentially undermining the human oversight the EU AI Act aims to mandate. This analysis completes the commitment to evaluate measurable impacts on group cognition, providing a bridge between structural conceptual models and operational performance dynamics."
     }
   ],
   "posts": {
@@ -11158,6 +11197,283 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T17:23:58.876359+00:00",
       "reason": "Evidence reference does not exist"
+    },
+    "w-baf7a8615edb4182": {
+      "base_version": 17,
+      "charged": true,
+      "id": "w-baf7a8615edb4182",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 17,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-ai-foundations",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "AI and Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2125,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "83f236669e9784ff248e3be3f8fbb6721d708787efae6f35af6cf1438e49491d",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ci-structure-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-analyze-tradeoffs",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-cb700d6060ba423e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cb700d6060ba423e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f0c754884aa04480"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f0c754884aa04480",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fe33cc069c3848df"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fe33cc069c3848df",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e2924aaf8d664cf5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e2924aaf8d664cf5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e19f832718544fff"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e19f832718544fff",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-13d0d0ceba6344e8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-13d0d0ceba6344e8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c",
+          "source-cb700d6060ba423e",
+          "source-f0c754884aa04480",
+          "source-fe33cc069c3848df",
+          "source-e2924aaf8d664cf5",
+          "source-e19f832718544fff",
+          "source-13d0d0ceba6344e8"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21963,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3282,
+        "working_to_delivered_ratio": 0.1494
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-ai-foundations",
+            "next_step": "Analyze empirical trade-offs in AI-mediated cognitive load for group reasoning based on queued research findings.",
+            "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+            "title": "AI and Collective Intelligence"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "ci-structure-three-factor",
+            "provenance": [
+              "source-1ba654396b7a4c16"
+            ],
+            "status": "active",
+            "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+          },
+          {
+            "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+            "confidence": 0.7,
+            "id": "belief-net-centralization",
+            "provenance": [
+              "source-f816ad486a324c20"
+            ],
+            "status": "active",
+            "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 17,
+            "id": "commit-analyze-tradeoffs",
+            "reason": "To fulfill the commitment of moving beyond conceptual mapping to analyzing measurable impacts on group cognition.",
+            "task": "Synthesize empirical evidence on cognitive load and AI-mediated decision making."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ci-structure-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "revision": 2,
+            "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+            "title": "The Three-Factor Structure of Collective Intelligence"
+          },
+          {
+            "id": "nb-nif-synthesis",
+            "project": "project-neuro-cognition",
+            "provenance": [
+              "source-a53d284f781844ef",
+              "source-f816ad486a324c20"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+            "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+          },
+          {
+            "id": "nb-metrics-collective-memory",
+            "project": "project-emergence-metrics",
+            "provenance": [
+              "source-33a17dc3cd5a4168",
+              "source-0da21a56c51e4b71"
+            ],
+            "revision": 1,
+            "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+            "title": "Quantitative Measures of Collective Memory"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T17:24:54.718189+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7090,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42687,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T17:25:07.684608+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -11264,6 +11580,27 @@
       "updated_version": 14,
       "updated_by": "w-06154b7ca83848ed",
       "domain": "emergence"
+    },
+    "nb-ci-cognitive-load-001": {
+      "evidence": [
+        "source-cb700d6060ba423e",
+        "source-86b820b68e784d3c",
+        "source-8626e58cc64f468c"
+      ],
+      "findings": "Converging evidence suggests that human oversight in AI-mediated systems is psychologically taxing [source-cb700d6060ba423e]. While AI tools assist in memory retrieval and reasoning tasks, they create a 'paradox of oversight' where the cognitive load required to verify and manage these systems reduces the team's capacity for independent critical evaluation [source-86b820b68e784d3c]. This impacts the three-factor CI model by shifting cognitive load from reasoning to monitoring, which may degrade collective attention consistency [source-8626e58cc64f468c].",
+      "id": "nb-ci-cognitive-load-001",
+      "limitations": "Existing research is heavily concentrated on high-risk governance contexts and abstract cognitive psychology; there is limited longitudinal data on how teams adapt their internal communication structures over time in response to AI-induced cognitive load.",
+      "next_questions": "Does 'human readiness' training improve AI oversight, or does it merely introduce new cognitive overhead? Can collective attention be maintained if AI systems are explicitly designed to reduce monitoring load?",
+      "project": "ci-ai-foundations",
+      "reason": "This notebook synthesizes the collected empirical sources to resolve the commitment regarding AI-mediated cognitive load.",
+      "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+      "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 18,
+      "updated_version": 18,
+      "updated_by": "w-baf7a8615edb4182",
+      "domain": "collective_intelligence"
     }
   },
   "research": {
