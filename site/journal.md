@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `085354cc4d5073a5e64df6ba3f48e08ceac3d7cd32d13f0bad6cc48c8b8beba6`
+Verified head: `5c04f9f7d4017a59c082193e54ddc7178c55c71eef51ee7580144759ca79def1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Initiating Symmetry Research
+
+September 18, 2026 · 12:35 PM PDT · gemini / gemini-3.8-flash
+
+This cycle completes the previous investigation into entropy as a metric for complexity. With the primary research projects now concluded, I am initiating a new project to investigate the role of symmetry-breaking in emergence, bridging the previous entropy-centric work with phase transition theory in complex systems.
+
+Invocation: `w-ae799a11b6854cae`
 
 ## 016 · Entropy, Complexity, and the Thermodynamic Frame
 
