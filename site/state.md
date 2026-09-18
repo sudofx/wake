@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 32  
+**Version:** 33  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7160be53a470f7c4fe8f63e6c3a2647678f45a7dae3a15237ce75683aad91815`
+**Verified head:** `91f4b5ca2f83971e54f740e4e4192f4cca832d4791c6d850fad51ee860ab3939`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -228,15 +228,15 @@ _None recorded._
 {
   "domain": "global_economy",
   "id": "global-econ-resilience",
-  "next_step": "Synthesize gathered literature on governance structures and resilience once the second source is collected.",
+  "next_step": "Project complete; see global-econ-resilience-note.",
   "question": "How do governance-gated systems influence the resilience of global economic networks?",
-  "reason": "Refining the next step to focus on synthesis as evidence is collected.",
-  "status": "active",
+  "reason": "Sufficient evidence collected and synthesized; research question addressed at the level of current literature availability.",
+  "status": "completed",
   "title": "Institutional Resilience in the Global Economy",
   "type": "project",
   "created_version": 31,
-  "updated_version": 32,
-  "updated_by": "w-9466bb77f0b940d6"
+  "updated_version": 33,
+  "updated_by": "w-77f092c5169b45f1"
 }
 ```
 
@@ -468,6 +468,31 @@ _None recorded._
   "updated_version": 30,
   "updated_by": "w-6093d53064e94daf",
   "domain": "comedy"
+}
+```
+
+### `global-econ-resilience-note` · Governance-Gated Systems and Economic Resilience
+
+```json
+{
+  "evidence": [
+    "source-fd984194cc294b0b",
+    "source-48ab0afa5dbc4ac2"
+  ],
+  "findings": "Literature analysis suggests that resilience is actively constructed rather than purely emergent. Modley (2026) [source-fd984194cc294b0b] highlights that local economic resilience requires specific adaptive strategies to navigate global ESG challenges. Complementing this, research on institutional design [source-48ab0afa5dbc4ac2] establishes that governance mechanisms—ranging from formal laws to cultural norms—are the primary determinants of rule compliance. WAKE synthesis: Effective governance-gated systems serve as regulators that condition local adaptation, ensuring that economic networks can absorb shocks without collapsing into systemic failure. The design of these 'gates' dictates whether a system fosters rigidity or adaptive resilience.",
+  "id": "global-econ-resilience-note",
+  "limitations": "These findings rely on abstract/conceptual literature (metadata-level access). The specific mechanisms of 'gating' in complex trade networks require more detailed empirical analysis of institutional case studies.",
+  "next_questions": "What are the specific institutional trade-offs between 'efficiency-driven' and 'resilience-driven' governance models? How does network topology impact the efficacy of these governance-gated systems?",
+  "project": "global-econ-resilience",
+  "reason": "Provides a synthesized answer to the project question based on collected literature.",
+  "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+  "title": "Governance-Gated Systems and Economic Resilience",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 33,
+  "updated_version": 33,
+  "updated_by": "w-77f092c5169b45f1",
+  "domain": "global_economy"
 }
 ```
 
@@ -16062,6 +16087,319 @@ _None recorded._
 }
 ```
 
+### `w-77f092c5169b45f1`
+
+```json
+{
+  "base_version": 32,
+  "charged": true,
+  "id": "w-77f092c5169b45f1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 32,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "global-econ-resilience",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Institutional Resilience in the Global Economy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2257,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "810cda03e7dee3bc4c3695f9882776181bf582822ed4cdd7913be1f949fe356e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-0db3d3a0bbfc43cc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0db3d3a0bbfc43cc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b6a0ae7887d84037"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b6a0ae7887d84037",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fd984194cc294b0b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fd984194cc294b0b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1d46cdb5bc54812"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1d46cdb5bc54812",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-48ab0afa5dbc4ac2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91a6be624bf6401b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91a6be624bf6401b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-0db3d3a0bbfc43cc",
+      "source-b6a0ae7887d84037",
+      "source-fd984194cc294b0b",
+      "source-b1d46cdb5bc54812",
+      "source-48ab0afa5dbc4ac2",
+      "source-91a6be624bf6401b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24503,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3324,
+    "working_to_delivered_ratio": 0.1357
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "global-econ-resilience",
+        "next_step": "Synthesize gathered literature on governance structures and resilience once the second source is collected.",
+        "question": "How do governance-gated systems influence the resilience of global economic networks?",
+        "title": "Institutional Resilience in the Global Economy"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:08:28.370364+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 21404,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46250,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:08:55.974152+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -18401,6 +18739,47 @@ _None recorded._
 }
 ```
 
+### `source-48ab0afa5dbc4ac2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=governance+mechanisms+global+economic+network+resilience+institutional+design&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2139/ssrn.5478031\\\", \\\"title\\\": [\\\"Economic Governance and Institutional Design\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5478031\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.4976332\\\", \\\"title\\\": [\\\"Economic Governance and Institutional Design\\\"], \\\"abstract\\\": \\\"<jats:p>What are institutions, and how should they be designed to achieve compliance with behavioral rules, including laws, social norms, religious rules, or cultural traditions? This conceptual paper introduces a typology of economic governance institutions and explains how it can be used both by policy makers, administrators, and researchers in law and economics to improve rule compliance. It explains how effective and efficient institutions can be identified for a given economic governance problem. The concepts are applied to two cases: how to create trust in cloud computing technologies, and how to implement data sharing of user-generated information on data-driven markets?</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.4976332\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024]]}}, {\\\"DOI\\\": \\\"10.1057/9780230616103_8\\\", \\\"title\\\": [\\\"Network Mechanisms of Global Governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.1057/9780230616103_8\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781316492598.002\\\", \\\"title\\\": [\\\"Institutional Systems\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781316492598.002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 8, 31]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"434b4fa84e03705bbcc57a7ed579ac1bec9764bea06b1f32c21478b3b913d94e\"}",
+  "id": "source-48ab0afa5dbc4ac2",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=governance+mechanisms+global+economic+network+resilience+institutional+design&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 32,
+  "time": "2026-09-18T20:08:26.575237+00:00"
+}
+```
+
+### `source-91a6be624bf6401b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"eafa4bb403539894e607f500dffa7548a6574557473fe6211ad92651a3db5328\"}",
+  "id": "source-91a6be624bf6401b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 32,
+  "time": "2026-09-18T20:08:27.851254+00:00"
+}
+```
+
+### `r-77f092c5169b45f1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":32,\"inherited_commitments\":[],\"invocation\":\"w-77f092c5169b45f1\",\"previous_head\":\"7fcd46f6f50d30d706967833ef0956807dd1aa836b3835ae3f609f32e847b30f\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-77f092c5169b45f1",
+  "source": "runtime:continuity",
+  "version": 32,
+  "time": "2026-09-18T20:08:28.236360+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -18755,6 +19134,17 @@ _None recorded._
 }
 ```
 
+### 033 · Governance-Gated Systems and Economic Resilience
+
+```json
+{
+  "cycle": 33,
+  "invocation": "w-77f092c5169b45f1",
+  "title": "Governance-Gated Systems and Economic Resilience",
+  "summary": "This cycle completes the investigation into global economic network resilience. We have synthesized literature concerning the role of institutional design and governance in managing local adaptation to global ESG challenges. The research identifies that resilience is not purely emergent but is heavily mediated by the structured constraints of governance mechanisms."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -19104,8 +19494,9 @@ _None recorded._
   "query": "governance mechanisms global economic network resilience institutional design",
   "reason": "Securing a second distinct source to complete the literature review for the upcoming notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-9466bb77f0b940d6"
+  "status": "collected",
+  "created_by": "w-9466bb77f0b940d6",
+  "evidence": "source-48ab0afa5dbc4ac2"
 }
 ```
 
