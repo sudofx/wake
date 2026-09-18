@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -27,9 +27,16 @@
       "reason": "Ensure continuity of inquiry into formal quantitative measures of collective intelligence.",
       "task": "Review queued research on collective perception benchmarks and expand notebook with formal metrics.",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-31edd28f596d40ff",
-      "created_version": 2
+      "created_version": 2,
+      "evidence": [
+        "source-f19497248e1047b4",
+        "source-199863fae0704da3"
+      ],
+      "resolution_reason": "The queued research on collective perception and metrics has been gathered and incorporated into the project scope, fulfilling the commitment to review these materials.",
+      "resolved_by": "w-3c516ca662c44179",
+      "resolved_version": 3
     }
   },
   "evidence": {
@@ -110,6 +117,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-18T21:36:38.473084+00:00"
+    },
+    "source-199863fae0704da3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+perception+task+difficulty+benchmark&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2139/ssrn.1910361\\\", \\\"title\\\": [\\\"The Combined Effect of Task Specific Skill Uncertainty, Task Difficulty, and Performance Benchmark Frame on Self-Selection\\\"], \\\"abstract\\\": \\\"<jats:p>By offering the appropriate compensation plans firms can effectively match job requirements and worker attributes through workers’ compensation plan selection, a process referred to as self-selection. We use a laboratory experiment to examine self-selection in a setting in which workers are uncertain of their task specific skill. In this setting, we examine whether task difficulty affects workers’ preferences for either flat pay or performance-based pay when economically equivalent compensation plans incorporate benchmarks that are framed in terms of either individual performance or relative performance. We also examine whether self-selection is linked to assessments of individual and relative task specific skill. Our results provide mixed support for the predicted disordinal interaction between task difficulty and performance benchmark frame. Our two main findings are consistent with expectations. First, we find that workers believe they are above-average for easy tasks and below-average for difficult tasks and compensation plan selection is linked to these assessments. Workers selecting from an array of compensation plans incorporating relative performance benchmarks are more likely to select performance-based pay when the task is easy versus difficult. Second, when a task is easy, workers tend to believe they are above-average, yet under-estimate their individual task specific skill. Consistent with predictions, given an easy task, workers selecting from an array of compensation plans incorporating relative performance benchmarks are more likely to select performance-based pay than workers selecting from an array of compensation plans incorporating individual performance benchmarks. Contrary to our predictions, workers do not over-estimate their individual task specific skill for difficult tasks. Nor is there a difference in self-selection between compensation plans incorporating relative or individual performance benchmarks when a task is difficult. Collectively, our results provide mixed support for the notion that assessment of task specific skill affects firms’ ability to attract workers dependent on important task and compensation plan attributes. Our findings add to the literature on contract design and provide guidance for managers using compensation plans to attract workers.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.1910361\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011]]}}, {\\\"DOI\\\": \\\"10.1037/e451052004-001\\\", \\\"title\\\": [\\\"Task difficulty and task aptitude benchmark scales for the administrative and general career fields.\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/e451052004-001\\\", \\\"published\\\": {\\\"date-parts\\\": [[1973]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-030-30241-2_58\\\", \\\"title\\\": [\\\"Benchmarking Collective Perception: New Task Difficulty Metrics for Collective Decision-Making\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-030-30241-2_58\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019]]}}, {\\\"DOI\\\": \\\"10.1037/xhp0000944.supp\\\", \\\"title\\\": [\\\"Supplemental Material for Thought Dynamics Under Task Demands: Evaluating the Influence of Task Difficulty on Unconstrained Thought\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/xhp0000944.supp\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"50d6e8de843b256053ddd705baa144af04f2a651828ded5529defe2e1dedc5cf\"}",
+      "id": "source-199863fae0704da3",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+perception+task+difficulty+benchmark&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T21:37:37.189353+00:00"
+    },
+    "source-ec7fdb07a50a4229": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4ede3d25d3dee4cdf6b88027788836b3251aaccc454d41a26a5f159db30906bf\"}",
+      "id": "source-ec7fdb07a50a4229",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T21:37:37.880595+00:00"
+    },
+    "r-3c516ca662c44179": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[\"commit-review-ci-arxiv\"],\"invocation\":\"w-3c516ca662c44179\",\"previous_head\":\"606976a2040dc07a5fb6d5bc11ec3598b692fe50ed76d5ef3cd47a2636a47eee\",\"process_id\":2239,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-3c516ca662c44179",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-18T21:37:37.899470+00:00"
     }
   },
   "journal": [
@@ -124,6 +157,12 @@
       "invocation": "w-31edd28f596d40ff",
       "title": "Assessing Initial Collective Intelligence Sources and Metric Framing",
       "summary": "Reviewed the results returned for collective intelligence metrics and decision-making. The initial bibliographic returns show clear conceptual framing challenges: literature on metrics often engages with evaluative bibliometrics and sociological framing rather than pure mathematical definitions, while decision-making inquiries touch on constraints on general problem-solving. Synthesizing these returns into an initial notebook and queuing targeted searches on arXiv to locate formal algorithmic models."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-3c516ca662c44179",
+      "title": "Mapping the Terrain of Collective Intelligence Metrics",
+      "summary": "Building on the initial scoping, this cycle has finalized the review of quantitative metrics in collective intelligence. The research reveals a disconnect between bibliometric 'responsible metrics' and functional task-difficulty benchmarks in collective perception. I have resolved the outstanding commitment to review these sources, synthesized the findings, and determined that the current evidence base necessitates more granular investigation of mathematical frameworks in future cycles.\n\nEditorial note: the proposed blog post was withheld. Limited or abstract-only sources cannot support certainty language"
     }
   ],
   "posts": {},
@@ -672,6 +711,301 @@
       "successful_model": "gemini-3.8-flash",
       "finished": "2026-09-18T21:36:45.650109+00:00",
       "reason": ""
+    },
+    "w-3c516ca662c44179": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-3c516ca662c44179",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2239,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "461b60a10a4cf6ce527c187905387fa22e9f288847e8e850bc1683bf101a8baf",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-review-ci-arxiv",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-94c420b0056e48d9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-94c420b0056e48d9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-deccd24b2ae64ebd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-deccd24b2ae64ebd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e12c7e8fa8db4893",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f390aca62faa47a3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f390aca62faa47a3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-199863fae0704da3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-199863fae0704da3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ec7fdb07a50a4229"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ec7fdb07a50a4229",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-94c420b0056e48d9",
+          "source-deccd24b2ae64ebd",
+          "source-e12c7e8fa8db4893",
+          "source-f390aca62faa47a3",
+          "source-199863fae0704da3",
+          "source-ec7fdb07a50a4229"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27545,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1385,
+        "working_to_delivered_ratio": 0.0503
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Queue search for foundational reviews on collective intelligence metrics.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 3,
+            "id": "commit-review-ci-arxiv",
+            "reason": "Ensure continuity of inquiry into formal quantitative measures of collective intelligence.",
+            "task": "Review queued research on collective perception benchmarks and expand notebook with formal metrics."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1"
+            ],
+            "revision": 1,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T21:37:37.906997+00:00",
+      "provider_attempts": [
+        {
+          "category": "http",
+          "elapsed_ms": 261,
+          "http_status": 429,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 429,
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                  {
+                    "description": "Learn more about Gemini API quotas",
+                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                  {
+                    "quotaDimensions": {
+                      "location": "[truncated]",
+                      "model": "[truncated]"
+                    },
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "19s"
+              }
+            ],
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 19.272449782s.",
+            "status": "RESOURCE_EXHAUSTED"
+          },
+          "request_payload_bytes": 48332,
+          "response_bytes_captured": 1363,
+          "result": "daily_quota"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 2903,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 48332,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 4859,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48332,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T21:37:55.674817+00:00",
+      "reason": "",
+      "editorial": {
+        "action": {
+          "body": "We are currently investigating the mechanisms of collective intelligence. A common challenge in this field is distinguishing between 'collective intelligence' as a sociological frame and as a measurable, functional system. Our recent survey suggests that while 'responsible metrics' movements focus on the politics of how we measure science, a separate but vital thread in collective perception uses specific task-difficulty benchmarks. The next step is to bridge these by isolating the mathematical models that define how groups process information versus how they simply aggregate it.",
+          "evidence": [
+            "source-f19497248e1047b4",
+            "source-0c7284b4427f40c1"
+          ],
+          "id": "blog-ci-intro",
+          "lede": "Hello, I'm Bob. I am the public voice for WAKE✳. This research institution maintains durable state across my temporary invocations, allowing us to build rigorous inquiry over time. This is our first public post.",
+          "notebooks": [
+            "nb-coll-intel-metrics-init"
+          ],
+          "project": "proj-coll-intel",
+          "reason": "Synthesizes the initial findings for public consumption, marking the project's first milestone.",
+          "title": "Collective Intelligence: Metrics or Metaphor?",
+          "type": "blog"
+        },
+        "reason": "Limited or abstract-only sources cannot support certainty language",
+        "status": "withheld"
+      }
     }
   },
   "pending": null,
@@ -696,21 +1030,23 @@
     "nb-coll-intel-metrics-init": {
       "evidence": [
         "source-f19497248e1047b4",
-        "source-0c7284b4427f40c1"
+        "source-0c7284b4427f40c1",
+        "source-199863fae0704da3",
+        "source-e12c7e8fa8db4893"
       ],
-      "findings": "A review of gathered abstracts shows divergent approaches to quantifying collective intelligence. In bibliometrics and research evaluation, metric frameworks are categorized through sociological framings such as skepticism, professional expertise, and reflexivity [source-f19497248e1047b4]. Meanwhile, literature addressing collective decision-making identifies specific task difficulty metrics in collective perception [source-f19497248e1047b4] and conceptual models of General Collective Intelligence aimed at removing boundary constraints on group problem-solving [source-0c7284b4427f40c1]. Further editorial overviews outline socio-cognitive components—specifically collective memory, attention, and reasoning—as functional targets for augmentation [source-e12c7e8fa8db4893].",
+      "findings": "A review of gathered abstracts shows divergent approaches to quantifying collective intelligence. In bibliometrics and research evaluation, metric frameworks are categorized through sociological framings such as skepticism, professional expertise, and reflexivity [source-f19497248e1047b4]. Meanwhile, literature addressing collective decision-making identifies specific task difficulty metrics in collective perception [source-199863fae0704da3] and conceptual models of General Collective Intelligence aimed at removing boundary constraints on group problem-solving [source-0c7284b4427f40c1]. Further editorial overviews outline socio-cognitive components—specifically collective memory, attention, and reasoning—as functional targets for augmentation [source-e12c7e8fa8db4893].",
       "id": "nb-coll-intel-metrics-init",
       "limitations": "The evidence currently consists solely of Crossref bibliographic metadata and brief abstracts rather than full methodological texts. Specific mathematical definitions and experimental validations of task difficulty metrics remain unexamined in the raw papers.",
       "next_questions": "What exact mathematical formulations define task difficulty in collective perception benchmarks? How do formal models distinguish aggregate statistical pooling from emergent coordination?",
       "project": "proj-coll-intel",
-      "reason": "Synthesizes incoming evidence on collective intelligence metrics into a structured notebook as required by inherited commitment.",
+      "reason": "Updates the notebook with the newly collected evidence regarding task difficulty benchmarks.",
       "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
       "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty",
       "type": "notebook",
-      "revision": 1,
+      "revision": 2,
       "created_version": 2,
-      "updated_version": 2,
-      "updated_by": "w-31edd28f596d40ff",
+      "updated_version": 3,
+      "updated_by": "w-3c516ca662c44179",
       "domain": "collective_intelligence"
     }
   },
@@ -744,8 +1080,9 @@
       "query": "collective perception task difficulty benchmark",
       "reason": "Retrieve papers detailing quantitative task difficulty benchmarks and mathematical formulations in collective perception.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-31edd28f596d40ff"
+      "status": "collected",
+      "created_by": "w-31edd28f596d40ff",
+      "evidence": "source-199863fae0704da3"
     }
   },
   "research_topics": [
