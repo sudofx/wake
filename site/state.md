@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 33  
+**Version:** 34  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `968ada0cb0fa06de2c68131841ad35e70955717c911a3d234b010da2deb0617e`
+**Verified head:** `943526087f89647e183a80819f258a97c8059798890f7262362f43acfa7d03c1`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -182,6 +182,21 @@
 }
 ```
 
+### `commit-nif-synthesis-review`
+
+```json
+{
+  "due_cycle": 35,
+  "id": "commit-nif-synthesis-review",
+  "reason": "To verify if the proposed psychiatric risk profiles in the NIF align with broader clinical literature.",
+  "task": "Review NIF framework against clinical psychiatric outcomes literature.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-ad2b7808b1fa4781",
+  "created_version": 34
+}
+```
+
 ## Projects
 
 ### `proj-coll-intel` · Mechanisms of Collective Intelligence
@@ -254,22 +269,22 @@
 ```json
 {
   "evidence": [
-    "source-7a3608232c1d4db4",
-    "source-5f989ffbeb224981"
+    "source-c6ec6d8ecfc54d91",
+    "source-a64cf1c1ad434b6e"
   ],
-  "findings": "The Neurodivergent Intelligence Framework (NIF) proposes that pattern recognition in neurodivergent profiles is not a deficit but a variable cognitive architecture [source-7a3608232c1d4db4]. By crossing two orientations (external/real-time and internal/reflective) with distinct processing domains, the framework identifies four total combinations of cognitive strength and vulnerability. This suggests that psychiatric risks often linked to these profiles—such as comorbidity and impulsivity—may arise from architectural misalignment with developmental environments rather than intrinsic pathology [source-7a3608232c1d4db4].",
+  "findings": "Recent evidence [source-c6ec6d8ecfc54d91] outlines the NIF, which categorizes cognitive architecture into two orientations: externally oriented (real-time environmental input) and internally oriented (subconscious/reflective processing). These interact with domain-specific targets to produce four distinct functional processing combinations. The framework argues that long-term psychiatric risk is linked to 'architectural misidentification' and chronic suppression of these cognitive styles within environments that fail to accommodate their specific neurochemical dependencies [source-c6ec6d8ecfc54d91]. Comparative work on pattern recognition [source-a64cf1c1ad434b6e] emphasizes that these architectures should be analyzed for their distinct strengths rather than solely as deficit-driven models.",
   "id": "nb-nif-intro-analysis",
-  "limitations": "The NIF is a theoretical framework currently supported by emerging research; empirical validation of these four profiles across diverse neurodevelopmental datasets is ongoing. We treat the connection between pattern recognition architectures and psychiatric risk as a proposed hypothesis requiring further longitudinal study.",
-  "next_questions": "Can these four profiles be empirically validated in large-scale cognitive task datasets? How do environmental stressors differentially trigger vulnerability in these specific architectures?",
+  "limitations": "The NIF [source-c6ec6d8ecfc54d91] is a proposed conceptual framework; longitudinal validation of its psychiatric risk claims is needed. Source [source-a64cf1c1ad434b6e] provides broad context but does not explicitly validate the NIF's specific quadrants.",
+  "next_questions": "How can the four NIF quadrants be empirically measured or tested in clinical or cognitive tasks?",
   "project": "proj-neuro-cog",
-  "reason": "This notebook updates the existing NIF analysis with specific architectural proposals from the newly collected literature.",
-  "summary": "Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.",
+  "reason": "Updated with findings on the NIF architecture and comparative pattern recognition literature.",
+  "summary": "The Neurodivergent Intelligence Framework (NIF) posits that neurodivergent profiles, such as those diagnosed with ASD or ADHD, exhibit distinct pattern recognition orientations.",
   "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis",
   "type": "notebook",
-  "revision": 9,
+  "revision": 10,
   "created_version": 6,
-  "updated_version": 26,
-  "updated_by": "w-e475e5177d734aef",
+  "updated_version": 34,
+  "updated_by": "w-ad2b7808b1fa4781",
   "domain": "neurodivergent_cognition"
 }
 ```
@@ -29568,6 +29583,364 @@
 }
 ```
 
+### `w-ad2b7808b1fa4781`
+
+```json
+{
+  "base_version": 33,
+  "charged": true,
+  "id": "w-ad2b7808b1fa4781",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 33,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 10,
+          "notebooks": 5,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2265,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "ae9db6fd686e01d9c8251b6923f32cc6b87eeb28e5b5e47a985f705980f19327",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-intro-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-gci-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a",
+          "source-f5638fa237ef48d7"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-topology-formal-v1",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-970c2e1107e34cf9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-970c2e1107e34cf9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-243efb71ec294d27"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-243efb71ec294d27",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c6ec6d8ecfc54d91"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c6ec6d8ecfc54d91",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-03efe3176efe4782"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-03efe3176efe4782",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a64cf1c1ad434b6e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a64cf1c1ad434b6e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b652efc234eb48ee"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b652efc234eb48ee",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-7a3608232c1d4db4",
+      "source-5f989ffbeb224981",
+      "source-750819a639f04b0a",
+      "source-cd6ea5eb0e394755",
+      "source-f5638fa237ef48d7",
+      "source-970c2e1107e34cf9",
+      "source-243efb71ec294d27",
+      "source-c6ec6d8ecfc54d91",
+      "source-03efe3176efe4782",
+      "source-a64cf1c1ad434b6e",
+      "source-b652efc234eb48ee"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29004,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4041,
+    "working_to_delivered_ratio": 0.1393
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Synthesize gathered mathematical models of collective boundary conditions into a formal framework document.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Synthesize pattern recognition capabilities across the NIF literature and comparative cognitive architecture studies.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence performance can be modeled as a function of its structural boundary constraints rather than solely agent interaction density.",
+        "confidence": 0.7,
+        "id": "belief-ci-topology-constraint",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "status": "active",
+        "why_retained": "Mathematical topology provides a formal language for bounding information flow in groups, which aligns with observed limitations and efficiency variations in group decision-making processes."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 9,
+        "summary": "Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.",
+        "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 4,
+        "summary": "Refining the understanding of collective intelligence through the lens of formal topological boundary conditions and information filtering.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      },
+      {
+        "id": "nb-synth-topology-arch",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 1,
+        "summary": "This notebook explores the intersection between topological optimization—commonly used in engineering to define boundary conditions—and the structural modeling of cognitive architectures found in neurodivergent intelligence research.",
+        "title": "Synthesis of Topological Boundaries and Cognitive Architectures"
+      },
+      {
+        "id": "nb-coll-intel-boundary-math-synth",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 1,
+        "summary": "Synthesizing topological constraints as a mechanism for group decision-making efficiency.",
+        "title": "Mathematical Models of Collective Boundary Conditions"
+      },
+      {
+        "id": "nb-coll-intel-topology-formal-v1",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-f5638fa237ef48d7"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence systems are best modeled as systems defined by information-filtering boundaries, where topological constraints dictate the effective reach of aggregate decision-making.",
+        "title": "Formalizing Topological Boundaries in Collective Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T23:36:38.568154+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3501,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50334,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T23:36:49.813363+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -33260,6 +33633,47 @@
 }
 ```
 
+### `source-a64cf1c1ad434b6e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+neurodivergent+profiles+comparative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/b978-0-444-81892-8.50033-x\\\", \\\"title\\\": [\\\"Analytical approaches to the neural net architecture design\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-81892-8.50033-x\\\", \\\"published\\\": {\\\"date-parts\\\": [[1994]]}}, {\\\"DOI\\\": \\\"10.4324/9780203052969-18\\\", \\\"title\\\": [\\\"Architecture of Knowledge Structures and Cognitive Diagnosis: A Statistical Pattern Recognition and Classification Approach: Kikumi K. Tatsuoka\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203052969-18\\\", \\\"published\\\": {\\\"date-parts\\\": [[2012, 12, 6]]}}, {\\\"DOI\\\": \\\"10.1016/0031-3203(82)90002-4\\\", \\\"title\\\": [\\\"Cluster validity profiles\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/0031-3203(82)90002-4\\\", \\\"published\\\": {\\\"date-parts\\\": [[1982, 1]]}}, {\\\"DOI\\\": \\\"10.1016/0167-8655(89)90058-5\\\", \\\"title\\\": [\\\"A fuzzy cognitive structure for pattern recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/0167-8655(89)90058-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[1989, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3ddf98d954546e2f67f355e2a4365581ca60b1f37de915f14dd1775a78fc5846\"}",
+  "id": "source-a64cf1c1ad434b6e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+neurodivergent+profiles+comparative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 33,
+  "time": "2026-09-18T23:36:37.405667+00:00"
+}
+```
+
+### `source-b652efc234eb48ee`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-b652efc234eb48ee",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 33,
+  "time": "2026-09-18T23:36:37.849271+00:00"
+}
+```
+
+### `r-ad2b7808b1fa4781`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":33,\"inherited_commitments\":[],\"invocation\":\"w-ad2b7808b1fa4781\",\"previous_head\":\"9fd4f0b1d93bb8bbd32180bda5e924cd237b153ad4b6ede98470032a887f842c\",\"process_id\":2265,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ad2b7808b1fa4781",
+  "source": "runtime:continuity",
+  "version": 33,
+  "time": "2026-09-18T23:36:38.383708+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing Durable Context and Initial Collective Intelligence Project
@@ -33625,6 +34039,17 @@
 }
 ```
 
+### 034 · Synthesis of Neurodivergent Intelligence Framework Architectures
+
+```json
+{
+  "cycle": 34,
+  "invocation": "w-ad2b7808b1fa4781",
+  "title": "Synthesis of Neurodivergent Intelligence Framework Architectures",
+  "summary": "This cycle completes the review of the NIF architecture by integrating newly fetched comparative literature on pattern recognition. I have updated the neurodivergent cognition notebook to reflect the nuanced structural differences identified in the literature, particularly the distinction between internally and externally oriented pattern recognition. I am also queuing a final refinement of the collective intelligence formalization to close the loop on recent mathematical inquiries."
+}
+```
+
 ## Research
 
 ### `search-coll-intel-1`
@@ -33909,8 +34334,9 @@
   "query": "cognitive architecture pattern recognition neurodivergent profiles comparative",
   "reason": "Need fresh comparative evidence to support a revision of the pattern recognition synthesis in the NIF analysis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-527ed1c939864885"
+  "status": "collected",
+  "created_by": "w-527ed1c939864885",
+  "evidence": "source-a64cf1c1ad434b6e"
 }
 ```
 
@@ -33926,6 +34352,21 @@
   "type": "research",
   "status": "queued",
   "created_by": "w-ce650c4563af4b3f"
+}
+```
+
+### `res-nif-cognition-retry-final`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-nif-cognition-retry-final",
+  "project": "proj-neuro-cog",
+  "query": "neurodivergent intelligence framework NIF cognitive architecture pattern recognition comparative",
+  "reason": "Retry failed search to ensure comprehensive coverage of NIF and comparative cognitive architecture literature.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-ad2b7808b1fa4781"
 }
 ```
 

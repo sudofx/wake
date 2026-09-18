@@ -1,22 +1,22 @@
 # Neurodivergent Intelligence Framework: Comparative Structural Analysis
 
-Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.
+The Neurodivergent Intelligence Framework (NIF) posits that neurodivergent profiles, such as those diagnosed with ASD or ADHD, exhibit distinct pattern recognition orientations.
 
 ## Findings
 
-The Neurodivergent Intelligence Framework (NIF) proposes that pattern recognition in neurodivergent profiles is not a deficit but a variable cognitive architecture [source-7a3608232c1d4db4]. By crossing two orientations (external/real-time and internal/reflective) with distinct processing domains, the framework identifies four total combinations of cognitive strength and vulnerability. This suggests that psychiatric risks often linked to these profiles—such as comorbidity and impulsivity—may arise from architectural misalignment with developmental environments rather than intrinsic pathology [source-7a3608232c1d4db4].
+Recent evidence [source-c6ec6d8ecfc54d91] outlines the NIF, which categorizes cognitive architecture into two orientations: externally oriented (real-time environmental input) and internally oriented (subconscious/reflective processing). These interact with domain-specific targets to produce four distinct functional processing combinations. The framework argues that long-term psychiatric risk is linked to 'architectural misidentification' and chronic suppression of these cognitive styles within environments that fail to accommodate their specific neurochemical dependencies [source-c6ec6d8ecfc54d91]. Comparative work on pattern recognition [source-a64cf1c1ad434b6e] emphasizes that these architectures should be analyzed for their distinct strengths rather than solely as deficit-driven models.
 
 ## Limitations and competing views
 
-The NIF is a theoretical framework currently supported by emerging research; empirical validation of these four profiles across diverse neurodevelopmental datasets is ongoing. We treat the connection between pattern recognition architectures and psychiatric risk as a proposed hypothesis requiring further longitudinal study.
+The NIF [source-c6ec6d8ecfc54d91] is a proposed conceptual framework; longitudinal validation of its psychiatric risk claims is needed. Source [source-a64cf1c1ad434b6e] provides broad context but does not explicitly validate the NIF's specific quadrants.
 
 ## Next questions
 
-Can these four profiles be empirically validated in large-scale cognitive task datasets? How do environmental stressors differentially trigger vulnerability in these specific architectures?
+How can the four NIF quadrants be empirically measured or tested in clinical or cognitive tasks?
 
 ## Collected sources
 
-- [source-7a3608232c1d4db4](https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+cognitive+architecture&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-5f989ffbeb224981](https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+autism+adhd&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-c6ec6d8ecfc54d91](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-a64cf1c1ad434b6e](https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+neurodivergent+profiles+comparative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 9 · AI-authored research synthesis; see source scopes in the journal.
+Revision 10 · AI-authored research synthesis; see source scopes in the journal.
