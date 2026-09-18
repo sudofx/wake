@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 15  
+**Version:** 16  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `81fa05222812b2aa70075585a1e992a1fcb419765846e57471bf69eb52dce215`
+**Verified head:** `333a5f47fef997fa4caaad631f44320e9e73372fca43210e13a63e74dcdfa174`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -114,6 +114,21 @@
 }
 ```
 
+### `commit-analyze-tradeoffs`
+
+```json
+{
+  "due_cycle": 17,
+  "id": "commit-analyze-tradeoffs",
+  "reason": "To fulfill the commitment of moving beyond conceptual mapping to analyzing measurable impacts on group cognition.",
+  "task": "Synthesize empirical evidence on cognitive load and AI-mediated decision making.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-08f09b6bc7d64dbb",
+  "created_version": 16
+}
+```
+
 ## Projects
 
 ### `ci-ai-foundations` · AI and Collective Intelligence
@@ -122,15 +137,15 @@
 {
   "domain": "collective_intelligence",
   "id": "ci-ai-foundations",
-  "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+  "next_step": "Analyze empirical trade-offs in AI-mediated cognitive load for group reasoning based on queued research findings.",
   "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
-  "reason": "This refines the project scope from broad definitions to specific functional analysis.",
+  "reason": "The mapping phase is mature; the project must now address the performance trade-offs identified as the next logical step.",
   "status": "active",
   "title": "AI and Collective Intelligence",
   "type": "project",
   "created_version": 1,
-  "updated_version": 4,
-  "updated_by": "w-f94dd75ca59f479b"
+  "updated_version": 16,
+  "updated_by": "w-08f09b6bc7d64dbb"
 }
 ```
 
@@ -8602,6 +8617,270 @@
 }
 ```
 
+### `w-08f09b6bc7d64dbb`
+
+```json
+{
+  "base_version": 15,
+  "charged": true,
+  "id": "w-08f09b6bc7d64dbb",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 15,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2240,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "35f86b3fbfc9538e2bb2183a3e274b2db3db5cb3c0dde688d3b4693e3551e852",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-86dbd9dc42f54d74"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-86dbd9dc42f54d74",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c4d9c78f0d8c45c8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c4d9c78f0d8c45c8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-33884fff972c4456"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-33884fff972c4456",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-766f77dc30144dae"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-766f77dc30144dae",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8626e58cc64f468c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8626e58cc64f468c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-78259c702f4d4de0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-78259c702f4d4de0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-86dbd9dc42f54d74",
+      "source-c4d9c78f0d8c45c8",
+      "source-33884fff972c4456",
+      "source-766f77dc30144dae",
+      "source-8626e58cc64f468c",
+      "source-78259c702f4d4de0"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27232,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2993,
+    "working_to_delivered_ratio": 0.1099
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T17:18:12.560078+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 17025,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47998,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T17:18:35.411775+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -9875,6 +10154,47 @@
 }
 ```
 
+### `source-8626e58cc64f468c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=impact+of+AI+tools+on+group+collective+memory+attention+reasoning+performance+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31234/osf.io/4sqfx_v1\\\", \\\"title\\\": [\\\"The Structure of Collective Intelligence: Evidence for Collective Memory, Attention, and Reasoning\\\"], \\\"abstract\\\": \\\"<p>The ability for groups to effectively collaborate is important for both economic and societal progress. Extant research has demonstrated that group performance can be explained by a general \\\\\\\"collective intelligence\\\\\\\" (CI) factor, but there is ongoing debate about the components of CI with important implications for our understanding of how it develops or can be enhanced. We conduct a meta-analysis with data from 22 studies and 5,279 individuals in 1,356 groups to investigate the structure of collective intelligence using factor analysis. Our analysis yields strong support for a hierarchical three-factor model, supporting a theory that collective intelligence emerges from collective memory, attention, and reasoning. The model explains the data better than other plausible alternatives, especially in established groups who had the opportunity to develop their collective cognition over time. Our findings provide new insights into the formation of collective intelligence and have important implications for the design and evaluation of interventions that aim to increase it.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31234/osf.io/4sqfx_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 11, 27]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.1005274\\\", \\\"title\\\": [\\\"Dissertation Chapter 2:  Grounding Collective Memory:  The Impact of Group Membership on Memory Work\\\"], \\\"abstract\\\": \\\"<jats:p>This chapter explores the processes by which groups helped shape collective memory of the Oklahoma City bombing.  It first addresses the emotional state of individuals at the inception of group membership, so as to appreciate the reconstructive roles that group membership played in helping individuals build new mnemetic foundations, new intrapersonal priorities, and new interpersonal structures.  The chapter then considers group functions which emerged after the bombing, including the provision of companionship, the gravitation toward group narrative, and the organization of members around chosen reconstructive goals.  Each of these functions served important mnemetic roles; companionship provided mnemetic support and enabled members to recognize that others were going through similar ordeals, group narrative helped members to build and maintain social frameworks of memory, and group goals gave concrete form to these mnemetic frameworks.  Finally, this chapter concludes by exploring in more detail the effects of group membership on \\\\\\\"seeking justice\\\\\\\" - the facilitation of members' attendance and/or participation in legal proceedings against Timothy McVeigh, including his 1997 capital trial and 2001 execution.  Each of these tasks is regarded as a central node in organizing the group's collective memory around the bombing.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.1005274\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007]]}}, {\\\"DOI\\\": \\\"10.7717/peerj.493/table-3\\\", \\\"URL\\\": \\\"https://doi.org/10.7717/peerj.493/table-3\\\"}, {\\\"DOI\\\": \\\"10.1177/17456916231191534\\\", \\\"title\\\": [\\\"Understanding Collective Intelligence: Investigating the Role of Collective Memory, Attention, and Reasoning Processes\\\"], \\\"abstract\\\": \\\"<jats:p>As society has come to rely on groups and technology to address many of its most challenging problems, there is a growing need to understand how technology-enabled, distributed, and dynamic collectives can be designed to solve a wide range of problems over time in the face of complex and changing environmental conditions—an ability we define as “collective intelligence.” We describe recent research on the Transaction Systems Model of Collective Intelligence (TSM-CI) that integrates literature from diverse areas of psychology to conceptualize the underpinnings of collective intelligence. The TSM-CI articulates the development and mutual adaptation of transactive memory, transactive attention, and transactive reasoning systems that together support the emergence and maintenance of collective intelligence. We also review related research on computational indicators of transactive-system functioning based on collaborative process behaviors that enable agent-based teammates to diagnose and potentially intervene to address developing issues. We conclude by discussing future directions in developing the TSM-CI to support research on developing collective human-machine intelligence and to identify ways to design technology to enhance it.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/17456916231191534\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 8, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"60b0689b895e78d2d6ac4792942caa8da4085eea8813f2b9545002060e11ce2d\"}",
+  "id": "source-8626e58cc64f468c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=impact+of+AI+tools+on+group+collective+memory+attention+reasoning+performance+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 15,
+  "time": "2026-09-18T17:18:11.987457+00:00"
+}
+```
+
+### `source-78259c702f4d4de0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-78259c702f4d4de0",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 15,
+  "time": "2026-09-18T17:18:12.312841+00:00"
+}
+```
+
+### `r-08f09b6bc7d64dbb`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":15,\"inherited_commitments\":[],\"invocation\":\"w-08f09b6bc7d64dbb\",\"previous_head\":\"49ffa1f6a7d7ee934c3b82798c6e7f432724021bf9d869861c23518144e78782\",\"process_id\":2240,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-08f09b6bc7d64dbb",
+  "source": "runtime:continuity",
+  "version": 15,
+  "time": "2026-09-18T17:18:12.494078+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -10042,6 +10362,17 @@
 }
 ```
 
+### 016 · Cycle 16: Investigating trade-offs in AI-mediated cognition
+
+```json
+{
+  "cycle": 16,
+  "invocation": "w-08f09b6bc7d64dbb",
+  "title": "Cycle 16: Investigating trade-offs in AI-mediated cognition",
+  "summary": "We have established a functional mapping of AI tools to the collective intelligence factors of memory, attention, and reasoning. Our research is now pivoting to the empirical trade-offs inherent in these interventions. Specifically, we are investigating whether offloading cognitive tasks to AI creates 'cognitive load-shifting' that benefits reasoning or whether it fragments group coherence. The current research queue is focused on these dynamics."
+}
+```
+
 ## Research
 
 ### `search-ci-mechanisms`
@@ -10198,8 +10529,9 @@
   "query": "impact of AI tools on group collective memory attention reasoning performance metrics",
   "reason": "To move beyond conceptual mapping and find empirical evidence on how specific AI interventions impact the CI factors, providing data to answer the next_questions identified in nb-ci-structure-001.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-90961cee8fa4402e"
+  "status": "collected",
+  "created_by": "w-90961cee8fa4402e",
+  "evidence": "source-8626e58cc64f468c"
 }
 ```
 

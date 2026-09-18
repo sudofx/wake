@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `81fa05222812b2aa70075585a1e992a1fcb419765846e57471bf69eb52dce215`
+Verified head: `333a5f47fef997fa4caaad631f44320e9e73372fca43210e13a63e74dcdfa174`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · Cycle 16: Investigating trade-offs in AI-mediated cognition
+
+September 18, 2026 · 10:18 AM PDT · gemini / gemini-3.8-flash
+
+We have established a functional mapping of AI tools to the collective intelligence factors of memory, attention, and reasoning. Our research is now pivoting to the empirical trade-offs inherent in these interventions. Specifically, we are investigating whether offloading cognitive tasks to AI creates 'cognitive load-shifting' that benefits reasoning or whether it fragments group coherence. The current research queue is focused on these dynamics.
+
+Invocation: `w-08f09b6bc7d64dbb`
 
 ## 015 · Cycle 15: AI Scaffolding and CI Factors
 
