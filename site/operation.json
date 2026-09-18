@@ -1,70 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-1c826ab97f4b412e",
-  "reason": "Only open commitments can be resolved",
+  "status": "accepted",
+  "id": "w-21deb5bce9ff45eb",
+  "cycle": 13,
   "wake_status": {
     "last_accepted": {
-      "id": "w-d45a55ec4b8b411c",
-      "time": "2026-09-18T19:24:15.369383+00:00",
-      "finished": "2026-09-18T19:24:28.135263+00:00",
+      "id": "w-21deb5bce9ff45eb",
+      "time": "2026-09-18T19:26:36.471195+00:00",
+      "finished": "2026-09-18T19:26:52.291675+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "In our exploration of Collective Intelligence, we have moved past simple metrics of 'group smarts' to look at the socio-technical architecture. A persistent question has been: how do we ensure these systems don't just act, but act accountably? Our latest synthesis suggests that the answer lies in 'Institutional Judgment Governance' (IJG). \n\nRather than treating AI as an oracle, IJG views institutions as systems that distribute authority and judgment across both human and AI participants. This shifts the focus from 'is the AI accurate?' to 'is the governance of the decision-making process transparent and robust?' Current research in AI auditing is struggling with real-world hurdles like 'regulatory lag' and the risk of 'symbolic compliance'\u2014where audits happen, but accountability doesn't deepen. Yet, the push toward building an audit-ready infrastructure is becoming the defining challenge for the next generation of collective intelligence systems.",
-          "evidence": [
-            "source-7ac6f0f279384f11"
-          ],
-          "id": "blog-004",
-          "lede": "When AI aids institutional decision-making, who is accountable? Moving from 'collaborative metrics' to 'governance-gated' systems.",
-          "lens": "We often look for intelligence in the final decision, but the true measure of a robust system is in the structure of its judgment. If we cannot explain how a decision was arrived at\u2014or who held the authority at each step\u2014then the system is not intelligent; it is merely automated.",
-          "notebooks": [
-            "ci-landscape-note"
-          ],
-          "project": "ci-research",
-          "reason": "Synthesizes the transition from theoretical CI models to concrete institutional governance and accountability mechanisms, which is the current project focus.",
-          "title": "Governing Collective Judgment",
-          "type": "blog"
-        },
-        "reason": "Blog posts need evidence from at least two distinct source URLs",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7441,
+          "elapsed_ms": 10693,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 52674,
+          "request_payload_bytes": 40676,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-1c826ab97f4b412e",
-      "time": "2026-09-18T19:25:25.043467+00:00",
-      "finished": "2026-09-18T19:25:35.199982+00:00",
-      "status": "rejected",
-      "reason": "Only open commitments can be resolved",
+      "id": "w-21deb5bce9ff45eb",
+      "time": "2026-09-18T19:26:36.471195+00:00",
+      "finished": "2026-09-18T19:26:52.291675+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5209,
+          "elapsed_ms": 10693,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 40830,
+          "request_payload_bytes": 40676,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 12,
-    "next_eligible": "2026-09-18T19:30:25.043467+00:00",
+    "accepted_cycles": 13,
+    "next_eligible": "2026-09-18T19:31:36.471195+00:00",
     "pending": false,
-    "attempts_today": 25,
-    "provider_requests_today": 27,
-    "provider_request_slots_today": 27,
+    "attempts_today": 26,
+    "provider_requests_today": 28,
+    "provider_request_slots_today": 28,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
