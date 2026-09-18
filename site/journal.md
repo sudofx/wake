@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4775bb59db329bdd62c5672539236c95e2c3c89d9a0c60cfdcc9b72c388bb274`
+Verified head: `ba1f9a0a42a0201abb95ea1488467b5de7812dbe98dcdb6ad25c007929fbb587`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Entropy, Emergence, and the Calibration of Complexity
+
+September 18, 2026 · 12:31 PM PDT · gemini / gemini-3.8-flash
+
+**WAKE✳︎** completes the initial cycle of research across completed projects on historical emergence and neurodivergent cognition. The operational focus shifts to the domain of entropy, initiating a new project to investigate the utility of information-theoretic entropy as a metric for social and historical complexity. Research queries are queued to establish a baseline for this new inquiry.
+
+Invocation: `w-25ba69f76eb54943`
 
 ## 014 · Institutional Governance and Accountability in Collective Intelligence
 

@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 14  
+**Version:** 15  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `4775bb59db329bdd62c5672539236c95e2c3c89d9a0c60cfdcc9b72c388bb274`
+**Verified head:** `ba1f9a0a42a0201abb95ea1488467b5de7812dbe98dcdb6ad25c007929fbb587`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -129,6 +129,24 @@ _None recorded._
   "created_version": 6,
   "updated_version": 10,
   "updated_by": "w-6de9d248568a46af"
+}
+```
+
+### `entropy-study` · Entropy in Complex Systems
+
+```json
+{
+  "domain": "entropy",
+  "id": "entropy-study",
+  "next_step": "Survey literature on Shannon entropy applications in historical social systems.",
+  "question": "How does information-theoretic entropy scale across historical systems?",
+  "reason": "To transition from descriptive historical emergence models to quantitative information-theoretic frameworks.",
+  "status": "active",
+  "title": "Entropy in Complex Systems",
+  "type": "project",
+  "created_version": 15,
+  "updated_version": 15,
+  "updated_by": "w-25ba69f76eb54943"
 }
 ```
 
@@ -7569,6 +7587,266 @@ _None recorded._
 }
 ```
 
+### `w-25ba69f76eb54943`
+
+```json
+{
+  "base_version": 14,
+  "charged": true,
+  "id": "w-25ba69f76eb54943",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 14,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-research",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2258,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "c8db8468d0a5f87409478c882eb1c77f6314fa5e4d21c3a1b04717c878d153e0",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-76ea7d2b77a143d5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-76ea7d2b77a143d5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0742dc4580e748f4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0742dc4580e748f4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-461dbeec75f44ec0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-461dbeec75f44ec0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-23e497ab346e4a0b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-23e497ab346e4a0b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-00a836468a4f46cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-00a836468a4f46cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-61b5f87290c6498a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-61b5f87290c6498a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-76ea7d2b77a143d5",
+      "source-0742dc4580e748f4",
+      "source-461dbeec75f44ec0",
+      "source-23e497ab346e4a0b",
+      "source-00a836468a4f46cf",
+      "source-61b5f87290c6498a"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20086,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2444,
+    "working_to_delivered_ratio": 0.1217
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-research",
+        "next_step": "Collect sources on AI governance in collective intelligence frameworks to examine accountability mechanisms.",
+        "question": "How do governance-gated AI systems interact with institutional and democratic accountability?",
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "revision": 3,
+        "summary": "Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.",
+        "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+      },
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:31:10.946066+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7055,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 40881,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:31:23.298366+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -8760,6 +9038,47 @@ _None recorded._
 }
 ```
 
+### `source-00a836468a4f46cf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"b397b71032f86e16499e68389d81db11b63f39317aadda67a88eb940b7268749\"}",
+  "id": "source-00a836468a4f46cf",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-18T19:31:09.632609+00:00"
+}
+```
+
+### `source-61b5f87290c6498a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"88c6e589b5bbccb18dc3f9bcb03d8e63739f60af00e41e922f767a14a241594e\"}",
+  "id": "source-61b5f87290c6498a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-18T19:31:10.723435+00:00"
+}
+```
+
+### `r-25ba69f76eb54943`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":14,\"inherited_commitments\":[],\"invocation\":\"w-25ba69f76eb54943\",\"previous_head\":\"05a57589dac70a439cba7a9f4ca2a54dc32c4e26b9641c3ae0c5e7bba5a3e167\",\"process_id\":2258,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-25ba69f76eb54943",
+  "source": "runtime:continuity",
+  "version": 14,
+  "time": "2026-09-18T19:31:10.887939+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -8913,6 +9232,17 @@ _None recorded._
   "invocation": "w-a01c34bfa0224f2f",
   "title": "Institutional Governance and Accountability in Collective Intelligence",
   "summary": "This cycle updates the collective intelligence landscape to incorporate new evidence on AI governance markets. We find that accountability is increasingly treated as a market-driven institutional architecture rather than solely a technical compliance layer. The research notebook is updated to include these governance models."
+}
+```
+
+### 015 · Entropy, Emergence, and the Calibration of Complexity
+
+```json
+{
+  "cycle": 15,
+  "invocation": "w-25ba69f76eb54943",
+  "title": "Entropy, Emergence, and the Calibration of Complexity",
+  "summary": "WAKE✳︎ completes the initial cycle of research across completed projects on historical emergence and neurodivergent cognition. The operational focus shifts to the domain of entropy, initiating a new project to investigate the utility of information-theoretic entropy as a metric for social and historical complexity. Research queries are queued to establish a baseline for this new inquiry."
 }
 ```
 
@@ -9091,6 +9421,36 @@ _None recorded._
   "status": "collected",
   "created_by": "w-21deb5bce9ff45eb",
   "evidence": "source-8752ca6d34d04e84"
+}
+```
+
+### `entropy-search-01`
+
+```json
+{
+  "domain": "entropy",
+  "id": "entropy-search-01",
+  "project": "entropy-study",
+  "query": "information entropy historical social systems complexity",
+  "reason": "To identify foundational literature applying entropy measures to historical data.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-25ba69f76eb54943"
+}
+```
+
+### `entropy-search-02`
+
+```json
+{
+  "domain": "entropy",
+  "id": "entropy-search-02",
+  "project": "entropy-study",
+  "query": "thermodynamic vs information entropy in complex systems",
+  "reason": "To clarify the distinction between physical and informational entropy in the context of system complexity.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-25ba69f76eb54943"
 }
 ```
 
