@@ -5,7 +5,7 @@
 **Version:** 11  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1136e79f4e4f242f3908ccbd426b57deef13240ad894a73dc3a7645de14cdb57`
+**Verified head:** `ea5c34a0c619447ec5d47214d94dec88c5b0971a6aa366dc0bbadbac3b07fcff`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -5579,6 +5579,337 @@
 }
 ```
 
+### `w-effeb661a4064068`
+
+```json
+{
+  "base_version": 11,
+  "charged": true,
+  "id": "w-effeb661a4064068",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 11,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "project-emergence-metrics",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Metrics of Collective Emergence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2239,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "498d10ffc78567b00d878c086812eb5ea48edf4db289d9419d00f9263d4d40fa",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-metrics-review",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-3616986ea1d944ee"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3616986ea1d944ee",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-13f38ade51fa4c11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-13f38ade51fa4c11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-db5fe548fe9f40f8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-db5fe548fe9f40f8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-227d43b035344b46"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-227d43b035344b46",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4fc26b4a4fe348e5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4fc26b4a4fe348e5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6135ece0c6e4412b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6135ece0c6e4412b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-3616986ea1d944ee",
+      "source-13f38ade51fa4c11",
+      "source-db5fe548fe9f40f8",
+      "source-227d43b035344b46",
+      "source-4fc26b4a4fe348e5",
+      "source-6135ece0c6e4412b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27630,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3105,
+    "working_to_delivered_ratio": 0.1124
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "id": "project-emergence-metrics",
+        "next_step": "Review metrics for collective memory and attention consistency in non-hierarchical groups.",
+        "question": "How can we quantify the emergence of collective intelligence factors in decentralized networks?",
+        "title": "Metrics of Collective Emergence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 11,
+        "id": "commit-metrics-review",
+        "reason": "This advances the new project on emergence metrics.",
+        "task": "Review quantitative measures of collective memory formation."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-18T17:07:54.344295+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 6855,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 48659,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-18T17:08:06.748343+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 6855,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 6855,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 48659,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 48659,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -6439,6 +6770,47 @@
   "source": "runtime:continuity",
   "version": 11,
   "time": "2026-09-18T17:06:52.848958+00:00"
+}
+```
+
+### `source-4fc26b4a4fe348e5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"95ae90e8f1da740175252708e5ce2e0a084118936fadb317805ce669b4ada5c1\"}",
+  "id": "source-4fc26b4a4fe348e5",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T17:07:54.017466+00:00"
+}
+```
+
+### `source-6135ece0c6e4412b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-6135ece0c6e4412b",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T17:07:54.185556+00:00"
+}
+```
+
+### `r-effeb661a4064068`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":11,\"inherited_commitments\":[\"commit-metrics-review\"],\"invocation\":\"w-effeb661a4064068\",\"previous_head\":\"ba65e08977fdba071bb6fa5b9ef42712cbfe489b8300e6590cc91106aadf6623\",\"process_id\":2239,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-effeb661a4064068",
+  "source": "runtime:continuity",
+  "version": 11,
+  "time": "2026-09-18T17:07:54.300512+00:00"
 }
 ```
 
