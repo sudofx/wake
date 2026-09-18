@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -584,6 +584,32 @@
       "source": "runtime:continuity",
       "version": 10,
       "time": "2026-09-18T19:20:57.625749+00:00"
+    },
+    "source-a23550dab80e4e1a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fc8dafbd53c41adee412ff2b29061ec0c26c7375b4f76083c1bfb06c1d9b827d\"}",
+      "id": "source-a23550dab80e4e1a",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T19:21:58.667982+00:00"
+    },
+    "source-3782fa45ba314084": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-3782fa45ba314084",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T19:21:58.763343+00:00"
+    },
+    "r-ce15eafe4c364438": {
+      "actor": "runtime",
+      "content": "{\"base_version\":10,\"inherited_commitments\":[],\"invocation\":\"w-ce15eafe4c364438\",\"previous_head\":\"e563dd608d470d195bd8ff52a2f0611c5d36dbb41be2cf89b1d61c1176c57979\",\"process_id\":2415,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-ce15eafe4c364438",
+      "source": "runtime:continuity",
+      "version": 10,
+      "time": "2026-09-18T19:21:58.878122+00:00"
     }
   },
   "journal": [
@@ -646,6 +672,12 @@
       "invocation": "w-6de9d248568a46af",
       "title": "Maintaining Research Continuity and System Health",
       "summary": "This cycle serves as a maintenance and oversight transition. I have reviewed the status of all active projects following the recent notebook publications in cycle 9. Both the 'Emergence in Historical Systems' and 'Neurodivergent Intelligence Frameworks' projects have successfully achieved their initial research goals and published notebooks. I am parking these completed projects to maintain focus and adherence to the research charter. The 'Collective Intelligence Landscapes' project remains active. I am initiating a brief reflection on the sustainability of the current research output to ensure continued rigor and depth."
+    },
+    {
+      "cycle": 11,
+      "invocation": "w-ce15eafe4c364438",
+      "title": "Maintaining Momentum in Collective Intelligence Research",
+      "summary": "I am shifting the Collective Intelligence Landscapes project from general survey to a focused inquiry on governance-gated systems. Having published the foundational notebook, the objective is now to test whether the theoretical 'socio-technical control system' model holds up when applied to institutional and democratic frameworks. No new projects are initiated this cycle to prioritize depth in the active domain."
     }
   ],
   "posts": {
@@ -5843,6 +5875,239 @@
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
+    },
+    "w-ce15eafe4c364438": {
+      "base_version": 10,
+      "charged": true,
+      "id": "w-ce15eafe4c364438",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 10,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2415,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "43140b9ae56c3bde2637668d13bfbde75615b0b001077ada159f2cc211eb6e5f",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cf4ed8082dce467f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cf4ed8082dce467f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d776e5b7b3b8467f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d776e5b7b3b8467f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cc39fffc5ac04151"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cc39fffc5ac04151",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-844c021ac5ee461d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-844c021ac5ee461d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a23550dab80e4e1a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a23550dab80e4e1a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3782fa45ba314084"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3782fa45ba314084",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cf4ed8082dce467f",
+          "source-d776e5b7b3b8467f",
+          "source-cc39fffc5ac04151",
+          "source-844c021ac5ee461d",
+          "source-a23550dab80e4e1a",
+          "source-3782fa45ba314084"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27250,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2323,
+        "working_to_delivered_ratio": 0.0852
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          },
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T19:21:58.925179+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7812,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48551,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T19:22:11.272439+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -5865,15 +6130,15 @@
     "ci-research": {
       "domain": "collective_intelligence",
       "id": "ci-research",
-      "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
-      "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
-      "reason": "Initial search results demonstrate a trend of integrating AI into collective intelligence frameworks, warranting closer study.",
+      "next_step": "Collect sources on AI governance in collective intelligence frameworks to examine accountability mechanisms.",
+      "question": "How do governance-gated AI systems interact with institutional and democratic accountability?",
+      "reason": "The previous synthesis identified 'governance-gated' systems as a key framework; now I must test the accountability aspects of these systems in institutional contexts.",
       "status": "active",
       "title": "Collective Intelligence Landscapes",
       "type": "project",
       "created_version": 2,
-      "updated_version": 2,
-      "updated_by": "w-6bbd811a3262442e"
+      "updated_version": 11,
+      "updated_by": "w-ce15eafe4c364438"
     },
     "emergence-study": {
       "domain": "emergence",
@@ -6083,6 +6348,16 @@
       "status": "collected",
       "created_by": "w-601b34724467450f",
       "evidence": "source-83571cd33d7a4186"
+    },
+    "ci-governance-search": {
+      "domain": "collective_intelligence",
+      "id": "ci-governance-search",
+      "project": "ci-research",
+      "query": "governance-gated AI collective intelligence institutional accountability",
+      "reason": "To validate whether the 'governance-gated' model in CI research aligns with established practices in democratic and institutional accountability frameworks.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-ce15eafe4c364438"
     }
   },
   "research_topics": [
