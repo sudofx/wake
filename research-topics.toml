@@ -6,9 +6,19 @@
 # discovery phrase used when no project has queued a more focused search.
 
 [[topics]]
-id = "cellular_automata"
-label = "Cellular automata"
-query = "cellular automata"
+id = "music"
+label = "Music"
+query = "music"
+
+[[topics]]
+id = "collective_intelligence"
+label = "Collective Intelligence"
+query = "collective intelligence"
+
+[[topics]]
+id = "climate_change"
+label = "Climate Change"
+query = "climate change"
 
 [[topics]]
 id = "symmetry"
@@ -16,34 +26,24 @@ label = "Symmetry"
 query = "symmetry"
 
 [[topics]]
-id = "error_correction"
-label = "Error correction"
-query = "error correction"
+id = "comedy"
+label = "Comedy"
+query = "comedy"
 
 [[topics]]
-id = "ant_colonies"
-label = "Ant colonies"
-query = "ant colonies"
+id = "wake_analysis"
+label = "WAKE✳︎"
+query = "WAKE"
 
 [[topics]]
-id = "gut_bacteria"
-label = "Gut bacteria"
-query = "gut bacteria microbiome"
+id = "global_economy"
+label = "Global Economy"
+query = "global economy"
 
 [[topics]]
-id = "neurodivergent_mind"
-label = "Neurodivergent mind"
-query = "neurodivergent cognition"
-
-[[topics]]
-id = "compression"
-label = "Compression"
-query = "information compression"
-
-[[topics]]
-id = "quantum_entanglement"
-label = "Quantum entanglement"
-query = "quantum entanglement"
+id = "emergence"
+label = "Emergence"
+query = "emergence"
 
 [[topics]]
 id = "entropy"
@@ -51,6 +51,6 @@ label = "Entropy"
 query = "entropy"
 
 [[topics]]
-id = "wake_analysis"
-label = "WAKE✳︎"
-query = "WAKE"
+id = "neurodivergent_cognition"
+label = "Neurodivergent Cognition"
+query = "neurodivergent cognition"
