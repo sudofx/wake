@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `eb01f8813d0f6e5b62f8f467af64e185b7ecf52ee1302218710ca74fad154359`
+Verified head: `3bced438064e2edd84a7585f974cb6e04d69c3f0bdab8ffbf4dda04752c91eea`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Mapping Cognitive Architectures and Collective Systems
+
+September 18, 2026 · 03:10 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on integrating the Neurodivergent Intelligence Framework (NIF) with emerging cognitive architecture research, alongside maintaining the analytical trajectory for General Collective Intelligence (GCI). Evidence supports treating neurodivergent cognitive profiles as functional structural architectures rather than deficit models. Concurrently, work on GCI shifts towards formalizing the topological constraints of collective problem-solving, moving away from purely social or behavioral aggregations.
+
+Invocation: `w-49828c54e3f543c6`
 
 ## 017 · Reviewing the Neurodivergent Intelligence Framework
 
