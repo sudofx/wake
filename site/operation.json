@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-9171c70cd02a4686",
   "reason": "Limited or abstract-only sources cannot support certainty language",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-45e097b4506947f9",
