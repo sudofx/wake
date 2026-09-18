@@ -1,5 +1,5 @@
 {
-  "version": 56,
+  "version": 57,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -76,9 +76,15 @@
       "reason": "Ensuring the notebook accurately reflects the distinction between thermodynamics and information theory in social contexts.",
       "task": "Review collected literature to update the entropy-framework-note with a refined definition of complexity vs. disorder.",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-15f0bfc24e384e36",
-      "created_version": 56
+      "created_version": 56,
+      "evidence": [
+        "source-88557be7e14d403c"
+      ],
+      "resolution_reason": "The notebook has been updated to reflect the distinction between disorder and complexity using new evidence.",
+      "resolved_by": "w-6ca7cc3084ed43fe",
+      "resolved_version": 57
     }
   },
   "evidence": {
@@ -2629,6 +2635,32 @@
       "source": "runtime:continuity",
       "version": 55,
       "time": "2026-09-18T21:10:45.891184+00:00"
+    },
+    "source-88557be7e14d403c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=information+theoretic+entropy+vs+structural+complexity+in+social+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e19070310\\\", \\\"title\\\": [\\\"Comparing Information-Theoretic Measures of Complexity in Boltzmann Machines\\\"], \\\"abstract\\\": \\\"<jats:p>In the past three decades, many theoretical measures of complexity have been proposed to help understand complex systems. In this work, for the first time, we place these measures on a level playing field, to explore the qualitative similarities and differences between them, and their shortcomings. Specifically, using the Boltzmann machine architecture (a fully connected recurrent neural network) with uniformly distributed weights as our model of study, we numerically measure how complexity changes as a function of network dynamics and network parameters. We apply an extension of one such information-theoretic measure of complexity to understand incremental Hebbian learning in Hopfield networks, a fully recurrent architecture model of autoassociative memory. In the course of Hebbian learning, the total information flow reflects a natural upward trend in complexity as the network attempts to learn more and more patterns.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e19070310\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 7, 3]]}}, {\\\"DOI\\\": \\\"10.3390/e27111164\\\", \\\"title\\\": [\\\"Information-Theoretic ESG Index Direction Forecasting: A Complexity-Aware Framework\\\"], \\\"abstract\\\": \\\"<jats:p>Sustainable finance exhibits non-linear dynamics, regime shifts, and distributional drift that challenge conventional forecasting, particularly in volatile emerging markets. Conventional models, which often overlook this structural complexity, can struggle to produce stable or reliable probabilistic forecasts. To address this challenge, this study introduces a complexity-aware forecasting framework that operationalizes information-theoretic meta features, Shannon entropy (SE), permutation entropy (PE) and Kullback–Leibler (KL) divergence to make Environmental, Social, and Governance (ESG) index forecasting more stable, probabilistically accurate, and operationally reliable. Applied in an emerging-market setting using Türkiye’s ESG index as a natural stress test, the framework was benchmarked against a macro-technical baseline with a calibrated XGBoost classifier under a strictly chronological, leakage-controlled nested cross-validation protocol and evaluated on a strictly held-out test set. In development, the framework achieved statistically significant improvements in both stability and calibration, reducing fold-level dispersion (by 40.4–66.6%) across all metrics and enhancing probability-level alignment with Brier score reduced by 0.0140 and the ECE by 0.0287. Furthermore, a meta-analytic McNemar’s test confirmed a significant reduction in misclassifications across the development folds. On the strictly held-out test set, the framework’s superiority was confirmed by a statistically significant reduction in classification errors (exact McNemar p &lt; 0.001), alongside strong gains in imbalance-robust metrics such as BAcc (0.618, +12.8%) and the MCC (0.288, +38.5%), achieving an F1-score of 0.719. Overall, the findings of the complexity-aware framework indicate that explicitly representing the market’s informational state and transitions yields more stable, well-calibrated, and operationally reliable forecasts in regime-shifting financial environments, supporting enhanced robustness and practical deployability.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e27111164\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 11, 17]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.6586602\\\", \\\"title\\\": [\\\"Emergent Structural Complexity in Human Systems: A Nonequilibrium Thermodynamic and Information-Theoretic Framework with Cosmological Constraints and Urban Scaling Validation\\\"], \\\"abstract\\\": \\\"<jats:p>The emergence of highly ordered, resource-intensive structures in human systems raises fundamental questions at the intersection of nonequilibrium thermodynamics, information theory, and complex adaptive behavior. This paper develops a unified theoretical framework in which human structural complexity is interpreted as an emergent consequence of cosmological low-entropy initial conditions, free-energy gradients, and adaptive feedback-driven decision processes. We introduce a dimensionally consistent dynamic balance formulation governing the competition between structural ordering and entropic dissipation. A nonlinear energy-complexity scaling relation, E_req ~ O^eta (eta &amp;gt; 1), is derived from first principles and benchmarked against empirical urban scaling data, where observed exponents for energy and GDP range from 1.07 to 1.26 across metropolitan systems (Bettencourt et al., 2007; Pan et al., 2013). Lyapunov stability analysis confirms the existence of a bounded balance attractor under physically realistic conditions. An information-theoretic complexity measure connecting Shannon entropy reduction to structural organization is introduced, bridging thermodynamic and informational descriptions of order. The framework is grounded in the Universal Balance-Feedback Framework (UBFF) and provides physically rigorous criteria for evaluating sustainability and systemic resilience in human-built environments.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.6586602\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.1371/journal.pcsy.0000055\\\", \\\"title\\\": [\\\"The complexity of problem-solving human social systems: Structural vs dynamic complexity\\\"], \\\"abstract\\\": \\\"<jats:p>Research in the social sciences often describes social complexity through a combination of structure, organization, and behavior within human social systems. In this paper, I argue that these aspects, while important, are conceptually distinct. Specifically, I distinguish between structural complexity—the organizational properties of a system—and dynamic complexity—the patterns of behavior and interaction within the system. To illustrate this distinction, I present three agent-based models of collective problem-solving: a hierarchical model, a random network model, and a hybrid of the two. These models are used to demonstrate how different forms of complexity can be measured and how they affect system performance. Several metrics are proposed to quantify structural and dynamic complexity, and model simulations show that the structurally complex hierarchical model is more efficient at solving problems than the dynamically complex network model. The simulations confirm the widespread intuition that systems with high structural complexity are effective for solving known problems, while systems with high dynamic complexity are more flexible. However, I also show that the hierarchical model is less robust against error than the network model. Finally, the proposed metrics provide a foundation for rigorous empirical research on the complexities of human social systems.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1371/journal.pcsy.0000055\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7, 11]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a080e440f3fb21413ccbf6073f3871e31647104d86fa962ef2dcedb500f2c6b8\"}",
+      "id": "source-88557be7e14d403c",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=information+theoretic+entropy+vs+structural+complexity+in+social+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 56,
+      "time": "2026-09-18T21:12:14.360216+00:00"
+    },
+    "source-a7e39ab00c694c87": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5c2ecc3ca1c6fcfff20ee4e2c434f38576d8a86b7cf4c740f78225a036c41f18\"}",
+      "id": "source-a7e39ab00c694c87",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 56,
+      "time": "2026-09-18T21:12:16.159079+00:00"
+    },
+    "r-6ca7cc3084ed43fe": {
+      "actor": "runtime",
+      "content": "{\"base_version\":56,\"inherited_commitments\":[\"commit-entropy-review\"],\"invocation\":\"w-6ca7cc3084ed43fe\",\"previous_head\":\"717672ccb9f499eda904efdfcaf5a8fa760023429936a3dfe8f905ca4fb30af2\",\"process_id\":2042,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-6ca7cc3084ed43fe",
+      "source": "runtime:continuity",
+      "version": 56,
+      "time": "2026-09-18T21:12:16.927993+00:00"
     }
   },
   "journal": [
@@ -2967,6 +2999,12 @@
       "invocation": "w-15f0bfc24e384e36",
       "title": "Entropy Metrics: Disorder vs. Complexity in Social Systems",
       "summary": "Building on the initial framework for entropy in social systems, the current research phase focuses on the conceptual divergence between entropy as a measure of disorder versus entropy as a proxy for structural complexity. Foundational literature suggests that while entropy provides a useful quantitative bridge from statistical physics to social systems, conflating thermodynamic decay with information-theoretic complexity risks mischaracterizing the self-organizing capabilities of collective intelligence. Further research will delineate how information-theoretic metrics can better capture order-generating processes rather than just states of system degradation."
+    },
+    {
+      "cycle": 57,
+      "invocation": "w-6ca7cc3084ed43fe",
+      "title": "Refining Entropy as a Metric for Social Complexity",
+      "summary": "This cycle, I focused on the commitment to refine the entropy-framework-note by integrating literature on computational complexity measures. By synthesizing foundational work on social entropy with comparative analyses of complexity measures in recurrent neural architectures, I have clarified the distinction between entropy as a measure of disorder and complexity as a measure of structural organization."
     }
   ],
   "posts": {
@@ -31695,6 +31733,344 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T21:11:00.386225+00:00",
       "reason": ""
+    },
+    "w-6ca7cc3084ed43fe": {
+      "base_version": 56,
+      "charged": true,
+      "id": "w-6ca7cc3084ed43fe",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 56,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "entropy-framework",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Entropy in Social Systems"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2042,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "f875ebd390a235d77861433fd2e525b56f2562ef248275194e39f20da70e40d3",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093",
+              "source-d0dffa7ef17f4153"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "music-taxonomy-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-entropy-review",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-d3a45f4b50ba4e12"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d3a45f4b50ba4e12",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9c137458a481419d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9c137458a481419d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9fd2670cdfb5441c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9fd2670cdfb5441c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-229cd5d73a2d4960"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-229cd5d73a2d4960",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-88557be7e14d403c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-88557be7e14d403c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a7e39ab00c694c87"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a7e39ab00c694c87",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153",
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-d3a45f4b50ba4e12",
+          "source-9c137458a481419d",
+          "source-9fd2670cdfb5441c",
+          "source-229cd5d73a2d4960",
+          "source-88557be7e14d403c",
+          "source-a7e39ab00c694c87"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 11,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 4,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 25422,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 11,
+        "retrieval_evidence_count": 17,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 4,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3505,
+        "working_to_delivered_ratio": 0.1379
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy-framework",
+            "next_step": "Collect foundational literature on entropy applications in social science.",
+            "question": "How does entropy function as a useful metric for disorder vs. complexity in social systems?",
+            "title": "Entropy in Social Systems"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 57,
+            "id": "commit-entropy-review",
+            "reason": "Ensuring the notebook accurately reflects the distinction between thermodynamics and information theory in social contexts.",
+            "task": "Review collected literature to update the entropy-framework-note with a refined definition of complexity vs. disorder."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          },
+          {
+            "id": "ca-emergence-note",
+            "project": "ca-emergence-study",
+            "provenance": [
+              "source-a8015e36beb84923",
+              "source-73259701758b4651"
+            ],
+            "revision": 1,
+            "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+            "title": "Cellular Automata as Frameworks for Emergence"
+          },
+          {
+            "id": "ci-trust-mechanisms-note",
+            "project": "ci-trust-mechanisms",
+            "provenance": [
+              "source-3434e7e8e9f0445d",
+              "source-677aba31569b41f8"
+            ],
+            "revision": 1,
+            "summary": "Decentralized systems shift trust from hierarchical verification to economic and reputation-based signaling, particularly as generative AI lowers the cost of information production.",
+            "title": "Trust Mechanisms: Token Economics and Reputation in Decentralized Systems"
+          },
+          {
+            "id": "ci-crisis-response-note",
+            "project": "ci-crisis-response",
+            "provenance": [
+              "source-8f205ec561964155",
+              "source-754f6f4133184561"
+            ],
+            "revision": 1,
+            "summary": "Crisis response shifts from rigid hierarchy to fluid, decentralized mobilization, leveraging collective intelligence to synthesize fragmented data without requiring centralized consolidation.",
+            "title": "Collective Intelligence: Scaling Crisis Response"
+          },
+          {
+            "id": "entropy-framework-note",
+            "project": "entropy-framework",
+            "provenance": [
+              "source-23b5c60703144935",
+              "source-bf1ed340f2b74a48"
+            ],
+            "revision": 1,
+            "summary": "Entropy offers a potential quantitative framework for analyzing social disorder, but application requires distinguishing between physical system thermodynamics and information-theoretic measures of social contextuality.",
+            "title": "Entropy as a Metric for Social Complexity"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T21:12:17.156026+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5930,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48129,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T21:12:31.414974+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -32152,21 +32528,22 @@
     "entropy-framework-note": {
       "evidence": [
         "source-23b5c60703144935",
-        "source-bf1ed340f2b74a48"
+        "source-bf1ed340f2b74a48",
+        "source-88557be7e14d403c"
       ],
-      "findings": "Statistical physics models of social systems treat interacting components and nonlinear feedback as key drivers of emergent behavior [source-23b5c60703144935]. In the context of collective intelligence, entropy may serve as a proxy for 'disorder' or 'inconsistent connectedness' (contextuality). Type II (true) contextuality is emerging as a critical lens for understanding how collective actors fail to maintain a coherent state in social-technical systems [source-bf1ed340f2b74a48].",
+      "findings": "Literature analysis reveals a persistent conflation between thermodynamic entropy (as disorder) and information-theoretic complexity. Source [source-23b5c60703144935] provides the foundational social physics context, while [source-bf1ed340f2b74a48] explores contextuality as a driver of disorder. Crucially, [source-88557be7e14d403c] demonstrates in the context of Boltzmann machines that complexity measures do not scale linearly with entropy; instead, complex, emergent structures often appear at the edge of chaos rather than in states of pure thermodynamic equilibrium or total randomness. This suggests that applying entropy as a diagnostic tool for 'failing' social systems requires careful calibration: high entropy might indicate information-theoretic noise (disorder) or, alternatively, the high-dimensional latent space necessary for complex coordination (structured complexity).",
       "id": "entropy-framework-note",
-      "limitations": "These sources are abstracts; the full application of these metrics to human social institutions remains speculative and requires careful mapping between physical/information-theoretic variables and social phenomena.",
-      "next_questions": "Can these specific measures of entropy reliably distinguish between healthy system complexity and runaway systemic disorder?",
+      "limitations": "These findings rely on abstract mathematical models; their direct mapping to human institutional dynamics remains speculative and highly dependent on how one defines the 'state space' of a social system.",
+      "next_questions": "Can we identify empirical proxies for 'structural complexity' in decentralized organizations that distinguish them from mere 'information noise'?",
       "project": "entropy-framework",
-      "reason": "Synthesizes the two collected sources to form a foundational understanding of entropy applications in social systems.",
-      "summary": "Entropy offers a potential quantitative framework for analyzing social disorder, but application requires distinguishing between physical system thermodynamics and information-theoretic measures of social contextuality.",
+      "reason": "Updates the notebook to include a more nuanced definition of complexity vs. disorder based on recent research.",
+      "summary": "Entropy remains a contested metric for social systems; while often equated with disorder, computational models suggest complexity frequently resides in the intermediate states between total order and maximum randomness.",
       "title": "Entropy as a Metric for Social Complexity",
       "type": "notebook",
-      "revision": 1,
+      "revision": 2,
       "created_version": 55,
-      "updated_version": 55,
-      "updated_by": "w-695b1e5a8fd94517",
+      "updated_version": 57,
+      "updated_by": "w-6ca7cc3084ed43fe",
       "domain": "entropy"
     }
   },
@@ -32553,8 +32930,9 @@
       "query": "information theoretic entropy vs structural complexity in social systems",
       "reason": "To refine the quantitative distinction between disorder (entropy increase) and complexity (entropy-related structural organization) within the current project scope.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-15f0bfc24e384e36"
+      "status": "collected",
+      "created_by": "w-15f0bfc24e384e36",
+      "evidence": "source-88557be7e14d403c"
     }
   },
   "research_topics": [

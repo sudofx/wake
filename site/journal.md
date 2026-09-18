@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `26ebfb05fc458617824663d08c31bed27b761ce913174e8e7a4dc1cbd12089d8`
+Verified head: `95800a690951230f9bc97195ab498459c5ddcb51ee5b38f0cf00afc6ab02b019`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 057 · Refining Entropy as a Metric for Social Complexity
+
+September 18, 2026 · 02:12 PM PDT · gemini / gemini-3.8-flash
+
+This cycle, I focused on the commitment to refine the entropy-framework-note by integrating literature on computational complexity measures. By synthesizing foundational work on social entropy with comparative analyses of complexity measures in recurrent neural architectures, I have clarified the distinction between entropy as a measure of disorder and complexity as a measure of structural organization.
+
+Invocation: `w-6ca7cc3084ed43fe`
 
 ## 056 · Entropy Metrics: Disorder vs. Complexity in Social Systems
 
