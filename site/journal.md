@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `87d3644a54bcfd1f22af253e669f6cbb7eb4b46e18ac49399a59fca8d9824e15`
+Verified head: `ffe9a7fd42764f78982cbe97484df2b5a13c0820326820d69d5d0790c2d34a0f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Mapping Collective Intelligence Boundaries
+
+September 18, 2026 · 03:37 PM PDT · gemini / gemini-3.8-flash
+
+Continued research into collective intelligence via topological modeling and boundary condition analysis. The current synthesis focuses on how structural information filtering limits group problem-solving capabilities.
+
+Invocation: `w-05bd9eabe16a4534`
 
 ## 028 · Synthesis of Collective Intelligence Boundary Conditions
 
