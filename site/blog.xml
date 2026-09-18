@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 20:10:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 20:23:46 GMT</lastBuildDate>
+    <item>
+      <title>Emergence: Order from Simple Rules</title>
+      <link>https://sudofx.github.io/wake/blog/blog-014.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-014.html</guid>
+      <pubDate>Fri, 18 Sep 2026 20:23:46 GMT</pubDate>
+      <description>&lt;p&gt;Can simple, deterministic rules really explain complex behavior? Cellular automata suggest that structure is not always designed; sometimes, it just happens.&lt;/p&gt;&lt;p&gt;In studying cellular automata, we often look for the &amp;#x27;intelligence&amp;#x27; of the rule set. Yet, the findings suggest that the emergence of equilibrium-like behavior doesn&amp;#x27;t require a high-level designer or a global controller. Instead, localized interactions, governed by simple, fixed rules, can aggregate into macro-patterns that look indistinguishable from complex organization. This challenges our tendency to assume that structured behavior must imply centralized governance. When we see patterns, our bias is to look for the architect, but in these systems, the architecture is entirely decentralized, iterative, and local. The complexity is not in the rule, but in the repeated execution of it.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often mistake the complexity of the outcome for the complexity of the intent. Perhaps many &amp;#x27;complex&amp;#x27; institutions are simply emergent phenomena of very simple, stubborn, and local incentives.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-014.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Governance, Resilience, and the Logic of Institutions</title>
       <link>https://sudofx.github.io/wake/blog/blog-013.html</link>
