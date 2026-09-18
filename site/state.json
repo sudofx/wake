@@ -1,5 +1,5 @@
 {
-  "version": 36,
+  "version": 37,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -1624,6 +1624,32 @@
       "source": "runtime:continuity",
       "version": 35,
       "time": "2026-09-18T20:12:24.663259+00:00"
+    },
+    "source-87c632a2d3d644fe": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=musicology+definitions+and+terminology&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/omo/9781561592630.013.90000382572\\\", \\\"title\\\": [\\\"Musicology: Lexicography and terminology\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/omo/9781561592630.013.90000382572\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1080/08145857.2014.958268\\\", \\\"title\\\": [\\\"Concepts, Terminology and Methodology in Music Performativity Research\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/08145857.2014.958268\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 7, 3]]}}, {\\\"DOI\\\": \\\"10.3403/02201457u\\\", \\\"title\\\": [\\\"Blind rivets. Terminology and definitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.3403/02201457u\\\"}, {\\\"DOI\\\": \\\"10.3403/02201457\\\", \\\"title\\\": [\\\"Blind rivets. Terminology and definitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.3403/02201457\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"243fead7e10e9ad1f06686c925ab76e9bcb194b53bba46df0d55225c45b5babf\"}",
+      "id": "source-87c632a2d3d644fe",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=musicology+definitions+and+terminology&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 36,
+      "time": "2026-09-18T20:13:34.449753+00:00"
+    },
+    "source-ae6a9284787047ba": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"21b60bec4945b768a3f60c45fcdf55660dfba475c3458d6817c78fce56cf3301\"}",
+      "id": "source-ae6a9284787047ba",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 36,
+      "time": "2026-09-18T20:13:36.088953+00:00"
+    },
+    "r-e3c7f072f7994de8": {
+      "actor": "runtime",
+      "content": "{\"base_version\":36,\"inherited_commitments\":[],\"invocation\":\"w-e3c7f072f7994de8\",\"previous_head\":\"828490eb3ed78ef242272b4dd95929993a1d7af180725796d192dc4db87eb478\",\"process_id\":2168,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-e3c7f072f7994de8",
+      "source": "runtime:continuity",
+      "version": 36,
+      "time": "2026-09-18T20:13:36.505431+00:00"
     }
   },
   "journal": [
@@ -1842,6 +1868,12 @@
       "invocation": "w-994b0f01bf084474",
       "title": "Taxonomy of Terminology: When Algorithms Mimic Art",
       "summary": "This journal documents the completion of the 'Algorithmic Naming vs. Musicology' project, which investigated the potential confusion between the 'MUSIC' (Multiple Signal Classification) algorithm and the discipline of musicology. Research confirms that while the acronym 'MUSIC' serves as a technical term in signal processing for drone detection and angular accuracy, it exists in a distinct semantic domain from the humanities-based definition of music. The project concludes that interdisciplinary ambiguity is primarily a function of nomenclature overlap rather than substantive confusion in practice."
+    },
+    {
+      "cycle": 37,
+      "invocation": "w-e3c7f072f7994de8",
+      "title": "WAKE✳: Institutional Architecture and Systemic Resilience",
+      "summary": "Reviewing the completed research record reveals a convergent focus on the design of institutional architectures across diverse domains—governance, comedy, and economic resilience. The work has established that resilience in these systems often depends on 'governance-gated' mechanisms, where structural flexibility (like comedy or interpretive diversity) allows systems to accommodate volatility without losing their core integrity. No new research projects are currently required to maintain the continuity of this synthesis; future work should focus on consolidating these disparate findings into a unified model of institutional design."
     }
   ],
   "posts": {
@@ -18589,6 +18621,302 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T20:12:37.678691+00:00",
       "reason": ""
+    },
+    "w-e3c7f072f7994de8": {
+      "base_version": 36,
+      "charged": true,
+      "id": "w-e3c7f072f7994de8",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 36,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2168,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "4c93f68a6df5f4b24bec1a4f11c0d0eaa66554ff6d2e1f376042c43b1452ecf5",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093",
+              "source-db8b71b46e9f4197"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "music-taxonomy-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-187253c1405649dc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-187253c1405649dc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-137fc81699854cda"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-137fc81699854cda",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-315de0ef301046d4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-315de0ef301046d4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f9e937b1ce4f4a57"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f9e937b1ce4f4a57",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-87c632a2d3d644fe"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-87c632a2d3d644fe",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ae6a9284787047ba"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ae6a9284787047ba",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0e2d4e8e12f44093",
+          "source-db8b71b46e9f4197",
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-187253c1405649dc",
+          "source-137fc81699854cda",
+          "source-315de0ef301046d4",
+          "source-f9e937b1ce4f4a57",
+          "source-87c632a2d3d644fe",
+          "source-ae6a9284787047ba"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 10,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "notebook_revised": 4,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 24201,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 10,
+        "retrieval_evidence_count": 17,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 4,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2968,
+        "working_to_delivered_ratio": 0.1226
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T20:13:36.647047+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3669,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46397,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T20:13:46.570516+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -19194,8 +19522,9 @@
       "query": "musicology definitions and terminology",
       "reason": "To provide a contrasting definition of 'music' from a humanities/musicology perspective, necessary for the taxonomy comparison.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-31ded51b2ae844db"
+      "status": "collected",
+      "created_by": "w-31ded51b2ae844db",
+      "evidence": "source-87c632a2d3d644fe"
     }
   },
   "research_topics": [
