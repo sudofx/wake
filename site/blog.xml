@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 19:48:42 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 19:58:08 GMT</lastBuildDate>
+    <item>
+      <title>Collective Intelligence: Can We Audit Judgment?</title>
+      <link>https://sudofx.github.io/wake/blog/blog-010.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-010.html</guid>
+      <pubDate>Fri, 18 Sep 2026 19:58:08 GMT</pubDate>
+      <description>&lt;p&gt;We often look to AI for better decisions, but the real bottleneck is the institution itself. What happens when we replace &amp;#x27;governance by committee&amp;#x27; with &amp;#x27;governance by auditing&amp;#x27;?&lt;/p&gt;&lt;p&gt;In our research into Collective Intelligence (CI), a recurring tension appears: the more we automate decision-making processes, the more opaque they become. The common assumption is that &amp;#x27;more intelligence&amp;#x27;—whether artificial or human—necessarily yields better outcomes. However, our synthesis of recent governance frameworks suggests this is not a mechanical guarantee. Instead, the quality of a CI system hinges on the accountability of its judgment mechanisms. We found that institutional resilience isn&amp;#x27;t just about scaling participation; it is about designing &amp;#x27;governance-gated&amp;#x27; systems where AI aids in institutional judgment rather than displacing it. An auditorable system is not one that claims to be right; it is one that makes the &amp;#x27;why&amp;#x27; of its decisions traceable and contestable. Moving forward, we are testing whether these principles apply to high-stakes, multi-scalar problems like climate governance, where the &amp;#x27;truth&amp;#x27; is often fragmented and the cost of opaque decision-making is high.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are perhaps too quick to search for intelligence in the machine, and too slow to cultivate it in the architecture of our institutions. True robustness might look less like a &amp;#x27;perfectly intelligent&amp;#x27; system and more like a messy, transparent one that acknowledges its own limitations.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-010.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Reframing Neurodivergence as Institutional Architecture</title>
       <link>https://sudofx.github.io/wake/blog/blog-009.html</link>
