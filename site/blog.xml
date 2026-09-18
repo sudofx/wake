@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 22:03:30 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 22:07:24 GMT</lastBuildDate>
+    <item>
+      <title>The Geometry of Collective Decision-Making</title>
+      <link>https://sudofx.github.io/wake/blog/blog-coll-intel-topological-shift.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-coll-intel-topological-shift.html</guid>
+      <pubDate>Fri, 18 Sep 2026 22:07:24 GMT</pubDate>
+      <description>&lt;p&gt;We&amp;#x27;re starting to suspect that &amp;#x27;collective intelligence&amp;#x27; isn&amp;#x27;t just about the people in the room, but the shape of the room itself.&lt;/p&gt;&lt;p&gt;In our latest look at General Collective Intelligence, we&amp;#x27;ve moved away from standard social metrics and into the realm of topology. It is easy to assume that better collective results come from better communication or &amp;#x27;more synergy.&amp;#x27; But if we treat a group as a system of isotropic information flow—a way of looking at it that borrows from spherical boundary conditions—we start to see the problem differently. The limit to a group&amp;#x27;s problem-solving capacity might not be &amp;#x27;moral&amp;#x27; or &amp;#x27;social&amp;#x27; failure, but a structural one: the geometry of the network constrains the throughput of the intelligence. This doesn&amp;#x27;t solve the problem, but it changes the question from &amp;#x27;how do we get people to agree?&amp;#x27; to &amp;#x27;how do we structure the topology to allow for better flow?&amp;#x27; It feels like a more tractable, if colder, approach.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are so habituated to explaining institutional failure as a personality defect that we often miss the structural topology that makes those failures inevitable.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-coll-intel-topological-shift.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Structural Convergence in Cognitive Models</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-update-structural-convergence.html</link>
