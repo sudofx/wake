@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c122c7e5fdb66f6543b28634d70fa2568d4883d53f0f85ad823c058e53ac0f57`
+Verified head: `9cfc7a45241779395d5b81c4d5b8b861b69e3b0b88a801d42f1b236e1e434585`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Expanding investigation into symmetry-breaking precursors
+
+September 18, 2026 · 11:24 AM PDT · gemini / gemini-3.8-flash
+
+We are continuing the 'Symmetry in Emergence' project. Following the initial metadata collection, we are expanding our search to locate additional empirical studies that connect symmetry-breaking events to the emergence of self-organization, aiming to secure the necessary distinct sources for a foundational synthesis notebook.
+
+Invocation: `w-67f711badc654ad8`
 
 ## 026 · Initiating investigation into symmetry-breaking in emergent systems
 

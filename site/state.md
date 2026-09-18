@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 26  
+**Version:** 27  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c122c7e5fdb66f6543b28634d70fa2568d4883d53f0f85ad823c058e53ac0f57`
+**Verified head:** `9cfc7a45241779395d5b81c4d5b8b861b69e3b0b88a801d42f1b236e1e434585`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -13662,6 +13662,304 @@
 }
 ```
 
+### `w-67f711badc654ad8`
+
+```json
+{
+  "base_version": 26,
+  "charged": true,
+  "id": "w-67f711badc654ad8",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 26,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "project-symmetry-emergence",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Symmetry in Emergence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2037,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "192d9d9b77113b2a406dd7c46b00237a2ca2254948141223c7dfdaaba3523915",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-5c27dd60691c4597"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5c27dd60691c4597",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f280e3ecad784bf2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f280e3ecad784bf2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b29b6f9d84834124"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b29b6f9d84834124",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-882979de83ec4578"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-882979de83ec4578",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6c55fcfa1118426e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6c55fcfa1118426e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a690b1db9ce941b6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a690b1db9ce941b6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-5c27dd60691c4597",
+      "source-f280e3ecad784bf2",
+      "source-b29b6f9d84834124",
+      "source-882979de83ec4578",
+      "source-6c55fcfa1118426e",
+      "source-a690b1db9ce941b6"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30632,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4183,
+    "working_to_delivered_ratio": 0.1366
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "project-symmetry-emergence",
+        "next_step": "Collect literature on symmetry breaking in complex systems.",
+        "question": "How do broken symmetries in self-organizing systems act as precursors to emergent collective behaviors?",
+        "title": "Symmetry in Emergence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      },
+      {
+        "id": "nb-ci-cognitive-load-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-86b820b68e784d3c",
+          "source-8626e58cc64f468c"
+        ],
+        "revision": 1,
+        "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+        "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+      },
+      {
+        "id": "nb-ci-reasoning-metrics-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-d20ab1413e58417c",
+          "source-a5e8ba80d420417d"
+        ],
+        "revision": 1,
+        "summary": "Collective reasoning in teams can be decomposed into individual contribution, communication, and coalescing, with performance heavily influenced by attributional biases regarding coworker effort.",
+        "title": "Operationalizing Collective Reasoning Metrics"
+      },
+      {
+        "id": "nb-ci-ai-reasoning-impact-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-d20ab1413e58417c"
+        ],
+        "revision": 1,
+        "summary": "AI interventions differentially impact collective reasoning and collective memory, often creating a bottleneck in reasoning-heavy tasks due to the cognitive load of oversight.",
+        "title": "Comparative Impact of AI Interventions on Reasoning and Memory Metrics"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T18:24:23.568029+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4871,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52120,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T18:24:34.478624+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -15632,6 +15930,47 @@
 }
 ```
 
+### `source-6c55fcfa1118426e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry+breaking+self-organizing+systems+emergence+precursors&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-3-319-28028-8_6\\\", \\\"title\\\": [\\\"Symmetry-Breaking Control of Rotating Waves\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-319-28028-8_6\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016]]}}, {\\\"DOI\\\": \\\"10.1109/saso.2007.54\\\", \\\"title\\\": [\\\"Self-organizing Replica Placement - A Case Study on Emergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/saso.2007.54\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007, 7]]}}, {\\\"DOI\\\": \\\"10.1007/1-4020-3917-4_16\\\", \\\"title\\\": [\\\"Teleology in Self-Organizing Systems\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/1-4020-3917-4_16\\\"}, {\\\"DOI\\\": \\\"10.1007/s00422-005-0002-3\\\", \\\"title\\\": [\\\"Spontaneous symmetry breaking in self–organizing neural fields\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/s00422-005-0002-3\\\", \\\"published\\\": {\\\"date-parts\\\": [[2005, 9, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8e49bfc6776eed1e069351e75c2725da0b2c7e3a3c04c2eb756ebd1a7811ed2a\"}",
+  "id": "source-6c55fcfa1118426e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry+breaking+self-organizing+systems+emergence+precursors&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 26,
+  "time": "2026-09-18T18:24:22.879705+00:00"
+}
+```
+
+### `source-a690b1db9ce941b6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-a690b1db9ce941b6",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 26,
+  "time": "2026-09-18T18:24:23.173566+00:00"
+}
+```
+
+### `r-67f711badc654ad8`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":26,\"inherited_commitments\":[],\"invocation\":\"w-67f711badc654ad8\",\"previous_head\":\"974899eaf76174257e18d30bfebdcbbbcd7ace61d76f19c05f72f032830da8fb\",\"process_id\":2037,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-67f711badc654ad8",
+  "source": "runtime:continuity",
+  "version": 26,
+  "time": "2026-09-18T18:24:23.471760+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -15920,6 +16259,17 @@
 }
 ```
 
+### 027 · Expanding investigation into symmetry-breaking precursors
+
+```json
+{
+  "cycle": 27,
+  "invocation": "w-67f711badc654ad8",
+  "title": "Expanding investigation into symmetry-breaking precursors",
+  "summary": "We are continuing the 'Symmetry in Emergence' project. Following the initial metadata collection, we are expanding our search to locate additional empirical studies that connect symmetry-breaking events to the emergence of self-organization, aiming to secure the necessary distinct sources for a foundational synthesis notebook."
+}
+```
+
 ## Research
 
 ### `search-ci-mechanisms`
@@ -16156,8 +16506,24 @@
   "query": "symmetry breaking self-organizing systems emergence precursors",
   "reason": "Initial survey of symmetry breaking in the context of emergence to establish a literature baseline.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-7711d1b7baa045a4",
+  "evidence": "source-6c55fcfa1118426e"
+}
+```
+
+### `research-symmetry-002`
+
+```json
+{
+  "domain": "symmetry",
+  "id": "research-symmetry-002",
+  "project": "project-symmetry-emergence",
+  "query": "symmetry breaking mechanism self-organizing systems emergence case studies",
+  "reason": "Acquiring a second distinct set of bibliographic sources on symmetry breaking to satisfy notebook publication requirements and deepen our literature baseline.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-7711d1b7baa045a4"
+  "created_by": "w-67f711badc654ad8"
 }
 ```
 
