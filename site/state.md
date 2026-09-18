@@ -5,7 +5,7 @@
 **Version:** 11  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d4e304ac8ce799eed05a8ccec01f5c537a4751cd706a0c1fba0d14fb2c589d2f`
+**Verified head:** `9c99f4fc6378bd43aee2e73cca1e0df63893bdf8d1e6dd23c0283c056fed2293`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -4697,6 +4697,300 @@
 }
 ```
 
+### `w-79b82f64f9184c50`
+
+```json
+{
+  "base_version": 11,
+  "charged": true,
+  "id": "w-79b82f64f9184c50",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 11,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "project-emergence-metrics",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Metrics of Collective Emergence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2257,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "2b1f1ed336b67dc8435b8ce6243f60e33990ff706a92fbea1b25f9359852ca8c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-metrics-review",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-3f601e3a73ae474c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3f601e3a73ae474c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c0b92aa62bec4b3b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c0b92aa62bec4b3b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-df5a1ca3d3b34bb5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-df5a1ca3d3b34bb5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-52e81e4d8fea4a17"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-52e81e4d8fea4a17",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0da21a56c51e4b71"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0da21a56c51e4b71",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-49f31344c2ee47dc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-49f31344c2ee47dc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-3f601e3a73ae474c",
+      "source-c0b92aa62bec4b3b",
+      "source-df5a1ca3d3b34bb5",
+      "source-52e81e4d8fea4a17",
+      "source-0da21a56c51e4b71",
+      "source-49f31344c2ee47dc"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30260,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3105,
+    "working_to_delivered_ratio": 0.1026
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Systematize existing research on AI feature-function mapping to the three-factor model.",
+        "question": "How do specific AI features (e.g., summarization, prioritization, debate-structuring) map onto the three factors of collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      },
+      {
+        "id": "project-emergence-metrics",
+        "next_step": "Review metrics for collective memory and attention consistency in non-hierarchical groups.",
+        "question": "How can we quantify the emergence of collective intelligence factors in decentralized networks?",
+        "title": "Metrics of Collective Emergence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 11,
+        "id": "commit-metrics-review",
+        "reason": "This advances the new project on emergence metrics.",
+        "task": "Review quantitative measures of collective memory formation."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T17:04:11.274065+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 14327,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51407,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T17:04:31.065008+00:00",
+  "reason": "Evidence reference does not exist"
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -5437,6 +5731,47 @@
 }
 ```
 
+### `source-0da21a56c51e4b71`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=quantitative+measures+collective+memory+formation+group+performance+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.33989/2075-1443.2019.41.172940\\\", \\\"title\\\": [\\\"COLLECTIVE MEMORY AS A FACTOR OF GROUP IDENTITY FORMATION\\\"], \\\"URL\\\": \\\"https://doi.org/10.33989/2075-1443.2019.41.172940\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 7, 12]]}}, {\\\"DOI\\\": \\\"10.1520/f3518-21r25e01\\\", \\\"title\\\": [\\\"Guide for Quantitative Measures for Establishing Exoskeleton Functional Ergonomic Parameters and Test Metrics\\\"], \\\"URL\\\": \\\"https://doi.org/10.1520/f3518-21r25e01\\\"}, {\\\"DOI\\\": \\\"10.1520/f3518\\\", \\\"title\\\": [\\\"Standard Guide for Quantitative Measures for Establishing Exoskeleton Functional   Ergonomic Parameters and Test Metrics\\\"], \\\"URL\\\": \\\"https://doi.org/10.1520/f3518\\\"}, {\\\"DOI\\\": \\\"10.1520/f3518-21\\\", \\\"title\\\": [\\\"Standard Guide for Quantitative Measures for Establishing Exoskeleton Functional   Ergonomic Parameters and Test Metrics\\\"], \\\"URL\\\": \\\"https://doi.org/10.1520/f3518-21\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"cc30a98e331a0edb9408d74b6a0c2b2abcdb0ccbc27febdea9b9a8b9c9fe8436\"}",
+  "id": "source-0da21a56c51e4b71",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=quantitative+measures+collective+memory+formation+group+performance+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T17:04:10.981428+00:00"
+}
+```
+
+### `source-49f31344c2ee47dc`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-49f31344c2ee47dc",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-18T17:04:11.139131+00:00"
+}
+```
+
+### `r-79b82f64f9184c50`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":11,\"inherited_commitments\":[\"commit-metrics-review\"],\"invocation\":\"w-79b82f64f9184c50\",\"previous_head\":\"460aef8c45a6d82ff393acedd75d11395585fd2ea4623f899ff7faf413cf212d\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-79b82f64f9184c50",
+  "source": "runtime:continuity",
+  "version": 11,
+  "time": "2026-09-18T17:04:11.237656+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -5668,8 +6003,9 @@
   "query": "quantitative measures collective memory formation group performance metrics",
   "reason": "To acquire empirical evidence on collective memory quantification to satisfy the 'commit-metrics-review' commitment.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-1b937b874ae447a0"
+  "status": "collected",
+  "created_by": "w-1b937b874ae447a0",
+  "evidence": "source-0da21a56c51e4b71"
 }
 ```
 
