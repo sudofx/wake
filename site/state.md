@@ -5,7 +5,7 @@
 **Version:** 3  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `23fd110753dcb46e4e545e49a3ec7b0bb655a0dad596ba10a1a7966fae58544e`
+**Verified head:** `a332a67eb3ab988219df7bebf2f7aa0b15dee5fd9648f9f51a1cd8bc0bec6d02`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -875,6 +875,260 @@
 }
 ```
 
+### `w-9171c70cd02a4686`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "id": "w-9171c70cd02a4686",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 3,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ca_phase_transitions",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2302,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "16439a02fa503e31af957407f8ad3ab70554c9d12391da64d5cabc44b45f09b9",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "analyze_temperature_functional",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-567cd794dcfd4233"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-567cd794dcfd4233",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-319208b2a3af4054"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-319208b2a3af4054",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-31dbcc97d3534265"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-31dbcc97d3534265",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1140705caf6e4920"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1140705caf6e4920",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-11d13057f14849af"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-11d13057f14849af",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d57d8a6a454e419c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d57d8a6a454e419c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-567cd794dcfd4233",
+      "source-319208b2a3af4054",
+      "source-31dbcc97d3534265",
+      "source-1140705caf6e4920",
+      "source-11d13057f14849af",
+      "source-d57d8a6a454e419c"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26635,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1956,
+    "working_to_delivered_ratio": 0.0734
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca_phase_transitions",
+        "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+        "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+        "confidence": 0.8,
+        "id": "majority_automata_phase_transition",
+        "provenance": [
+          "source-2925974584404e4d",
+          "source-9800de467f644091",
+          "source-641de936e3684635"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 4,
+        "id": "analyze_temperature_functional",
+        "reason": "Allows time for the queued non-Landau research or direct document retrieval to provide full-text details.",
+        "task": "Analyze the mathematical definitions of the temperature functional and puppet configurations once full texts are retrieved."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "moran_majority_rule_analysis",
+        "project": "ca_phase_transitions",
+        "provenance": [
+          "source-9800de467f644091",
+          "source-641de936e3684635"
+        ],
+        "revision": 1,
+        "summary": "An analysis of Moran's (2003) framework modeling phase transitions on countably infinite graphs using majority-rule cellular automata.",
+        "title": "Moran's Majority Rule Automata and Temperature Functionals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T14:01:15.469805+00:00",
+  "provider_attempts": [
+    {
+      "category": "timeout",
+      "elapsed_ms": 60103,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.8-flash",
+      "request_payload_bytes": 47540,
+      "result": "transient_failure"
+    },
+    {
+      "category": "timeout",
+      "elapsed_ms": 60093,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 47540,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 4993,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47540,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T14:03:31.680491+00:00",
+  "reason": "Limited or abstract-only sources cannot support certainty language"
+}
+```
+
 ## Evidence
 
 ### `source-2925974584404e4d`
@@ -1041,6 +1295,47 @@
 }
 ```
 
+### `source-11d13057f14849af`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=non-Landau+phase+transition+cellular+automata+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.5772/15768\\\", \\\"title\\\": [\\\"Nonequilibrium Phase Transition of Elementary Cellular Automata with a Single Conserved Quantity\\\"], \\\"URL\\\": \\\"https://doi.org/10.5772/15768\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 4, 11]]}}, {\\\"DOI\\\": \\\"10.1142/9789814540940\\\", \\\"title\\\": [\\\"Workshop on Computational Physics And Cellular Automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1142/9789814540940\\\", \\\"published\\\": {\\\"date-parts\\\": [[1990, 7]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-015-8326-8_4\\\", \\\"title\\\": [\\\"Self-Organization of Random Cellular Automata: Four Snapshots\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-015-8326-8_4\\\", \\\"published\\\": {\\\"date-parts\\\": [[1994]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2170ba6fdf523b99ff29a605115fab183c16f4a22dd0ee2963e80dfb1553a29a\"}",
+  "id": "source-11d13057f14849af",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=non-Landau+phase+transition+cellular+automata+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T14:01:14.108170+00:00"
+}
+```
+
+### `source-d57d8a6a454e419c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=gut+bacteria+microbiome&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.17918/00011513\\\", \\\"title\\\": [\\\"Discovery of antibiotics from anaerobic gut microbiome bacteria\\\"], \\\"abstract\\\": \\\"<jats:p>Antibiotic resistance is on the rise, and with the lack of antibiotic discovery, a major health crisis on foreseeable. Indeed, it is estimated that in 2050, 8.22 million deaths will be associated with antimicrobial resistance, with multidrug-resistant ESKAPE pathogens majorly contributing to these deaths. More than 75% of antibiotics are natural products isolated from plants, fungi, and bacteria. Most antibiotics have an original source in aerobic bacteria, whereas anaerobic bacteria as a source for new antibiotics have been largely overlooked. Recent genome mining of genomes of anaerobic bacteria, the oldest terrestrial life forms, identified many biosynthetic gene clusters (BGCs) with potential for antibiotic production. The human gut microbiome is a large niche for anaerobic bacteria, and we propose that this is a rich untapped source of biosynthetic diversity. Antibiotics from the gut microbiome have already been found, such as colibactin from E. coli Nissle 1917 and Nisin from Lactococcus lactis. We set out to screen 13 anaerobic gut microbiome bacteria for their ability to produce antibiotic molecules. We found that an extract of anaerobe Yersinia enterocolitica WA-314 antagonizes Staphylococcus aureus USA300 and Pseudomonas aeruginosa PAO1G, as determined by inhibition assays. In parallel, anaerobe Parabacteroides distasonis HM-169 extract antagonizes Staphylococcus aureus USA300, as determined by inhibition assays. Purification of this molecule from a 6 L culture has helped characterize it, with a retention time of ~2 minutes and a mass-to-charge ratio of 321.1306 m/z. Liquid chromatography-mass spectrometry has shown it is not ciprofloxacin, nystatin, polymyxin B, or vancomycin. The identification of antibiotic molecules produced by Yersinia enterocolitica and Parabacteroides distasonis has shown that anaerobic gut microbiome bacteria remain a rich resource for new antibiotic discovery to combat the rising antimicrobial resistance crisis. Within the set of anaerobes screened here for antibiotic activity, we found a BGC for an aryl polyene cluster in A. finegoldii. Aryl polyenes are a unique class of molecules that hypothetically can be antibiotics. A 7th class of aryl polyene is characterized, and the function of the molecule has been tested. The 7th class of aryl polyene is proposed to be called APEAf and is produced by Alistipes finegoldii DSM 17242, an anaerobic gut microbiome commensal. The BGC encoding the aryl polyene shows similarities and differences with the BGCs of flexirubin, xanthomonadin, and E. coli APE. It is very likely that the molecule contains an aryl ring bearing a methyl group and a polyene tail with 7 repeats. It has a mass of 348.1580 Da. While E. coli APE is biosynthesized from a hydroxybenzoic acid, APEAf is proposed to be synthesized from tyrosine, as in flexirubin. Antifungal and antibiotic inhibition assays were performed with the APEAf extract, and no culture inhibition was observed. The identification of APEAf from Alistipes finegoldii shows that aryl polyenes are a large class of molecules that are continuing to be found across different environments.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.17918/00011513\\\"}, {\\\"DOI\\\": \\\"10.7551/mitpress/11291.003.0007\\\", \\\"title\\\": [\\\"Beyond Bacteria: Those Other “Omes”\\\"], \\\"URL\\\": \\\"https://doi.org/10.7551/mitpress/11291.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 16]]}}, {\\\"DOI\\\": \\\"10.1093/oxfordhb/9780190931544.013.16\\\", \\\"title\\\": [\\\"Manipulating Beneficial Gut Bacteria in Obesity-Related Emotional and Cognitive Dysfunction\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>Obesity is increasing in prevalence, both nationally and internationally, being regarded not only as a cause of physical illness but also as a contributor to poor mental health and abnormal behavior. Accumulating evidence suggests that the gut microbiome, especially the beneficial bacterial populations, plays a crucial role in modulating the complex interactions between obesity and behavioral dysfunction. The study of the mechanisms through which gut bacteria influence behavioral outcomes in obesity should focus on the gut–brain axis and its role in neuroinflammation, neurotransmitter regulation, and metabolic processes. Dysbiosis involves an imbalance in gut bacterial communities and thereby contributes to anxiety, depression, and cognitive decline, among other key comorbidities associated with obesity. Pre-biotics, probiotics, and dietary changes are among therapeutic interventions to restore balance to the gut microbiota that hold an important place in today’s therapeutic landscape. These emerge as promising avenues through which the gut microbiome could be targeted to improve obesity-related behavioral dysfunction. This chapter conveys a deep view of the new frontiers on the management of psychological and behavioral comorbidities in obesity, understood from their very biological basis, with particular emphasis on the role of gut bacteria as a modifiable factor to be considered in the treatment of dysfunctions related to obesity.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oxfordhb/9780190931544.013.16\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7, 22]]}}, {\\\"DOI\\\": \\\"10.1200/adn.22.201083\\\", \\\"title\\\": [\\\"The Gut Microbiome As a New Biomarker of Disease: What Do We Know Thus Far?\\\"], \\\"URL\\\": \\\"https://doi.org/10.1200/adn.22.201083\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 7, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e11a93c7a7fe4a5ca9ba69e04ecac2ee166f2a4db9c24a64c84221f8424af41f\"}",
+  "id": "source-d57d8a6a454e419c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=gut+bacteria+microbiome&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T14:01:15.435880+00:00"
+}
+```
+
+### `r-9171c70cd02a4686`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[\"analyze_temperature_functional\"],\"invocation\":\"w-9171c70cd02a4686\",\"previous_head\":\"9c78959f36e8b4f25be8c4d13baa6a2fac0116a790976be1fb5732c0749f134c\",\"process_id\":2302,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9171c70cd02a4686",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-18T14:01:15.460018+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping the Boundaries of Majority Automata
@@ -1120,8 +1415,9 @@
   "query": "non-Landau phase transition cellular automata review",
   "reason": "Expanding the search to identify specific critiques of the Landau approach in CA to understand the gap between topological/group-theoretic models and observed automaton dynamics.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-2f364d3eac4849c1"
+  "status": "collected",
+  "created_by": "w-2f364d3eac4849c1",
+  "evidence": "source-11d13057f14849af"
 }
 ```
 
