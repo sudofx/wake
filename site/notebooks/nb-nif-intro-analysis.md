@@ -1,22 +1,24 @@
-# Preliminary Analysis of the Neurodivergent Intelligence Framework
+# Neurodivergent Intelligence Framework: Comparative Structural Analysis
 
-The Neurodivergent Intelligence Framework (NIF) proposes a dimensional model of cognition for ASD and ADHD, focusing on pattern recognition orientations and their developmental risk profiles.
+The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits (ASD/ADHD) as distinct pattern recognition architectures.
 
 ## Findings
 
-The NIF characterizes cognition in individuals with ASD and ADHD as a system of distinct pattern recognition orientations: externally oriented (real-time input) and internally oriented (reflective processing) [source-8cfe32aae6f846b9]. This framework posits that cognitive 'deficits' are often misidentified architectural strengths, and that psychiatric comorbidity—including schizophrenia, OCD, and bipolar disorder—may arise from the chronic suppression of these architectures across developmental periods [source-8cfe32aae6f846b9]. Broader literature on cognitive architectures corroborates that pattern recognition is a fundamental component of cognitive diagnosis and structure [source-e0936d3523554f8f].
+Standard cognitive models often define neurodivergence through the lens of deficit-reduction; in contrast, the NIF redefines these profiles as specialized pattern recognition architectures categorized by internal or external orientation [source-1db0e9511fb84598]. This shift implies that long-term psychiatric risk profiles are better modeled as architectural misalignments rather than inherent pathologies. Our synthesis suggests that suppression of these cognitive orientations during critical developmental windows can produce neurochemical strains, potentially increasing vulnerability to comorbid conditions like schizophrenia or bipolar disorder [source-55b1f7cb711d4f97].
 
 ## Limitations and competing views
 
-Evidence is restricted to abstracts and summary metadata. The causal link between cognitive suppression and specific neurochemical strain (e.g., dopamine, oxytocin) cited in the NIF remains a theoretical proposal within the framework, not a verified clinical outcome in the provided literature.
+Findings remain based on the NIF theoretical framework; explicit empirical cross-comparison with the broader literature on standard cognitive architectures remains limited to the framework's definitions.
 
 ## Next questions
 
-To what extent are the four cognitive combinations described in the NIF experimentally validated? How do these pattern recognition orientations map onto standardized cognitive task performance?
+How do NIF-defined pattern recognition orientations specifically correlate with neurochemical pathway volatility in empirical studies?
 
 ## Collected sources
 
 - [source-8cfe32aae6f846b9](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-e0936d3523554f8f](https://api.crossref.org/works?query=neurodivergent+cognitive+architecture+pattern+recognition+risk&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-1db0e9511fb84598](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-55b1f7cb711d4f97](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

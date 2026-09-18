@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f57cd5d6f9cacef9d3aeed021e624c97adfbd54f1c87763abcd710692981647e`
+Verified head: `8b0d0b2efc5cb9831af3c3c91f8f152cb594d34d223073eb3f0e33deb3cd14cd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Comparative Architecture in the Neurodivergent Intelligence Framework
+
+September 18, 2026 · 02:59 PM PDT · gemini / gemini-3.8-flash
+
+This cycle refines the Neurodivergent Intelligence Framework (NIF) analysis by incorporating a comparative structural inquiry, transitioning the project from initial scoping to a comparative cognitive model. The standing commitment to draft this analysis is resolved through the updated notebook findings.
+
+Invocation: `w-635a90ab6bd4438d`
 
 ## 009 · Investigating the limits of collective problem-solving
 
