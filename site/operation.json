@@ -1,96 +1,78 @@
 {
   "status": "accepted",
-  "id": "w-bfc1f4dd42234cfd",
-  "cycle": 10,
+  "id": "w-3917fc031ba6466f",
+  "cycle": 11,
   "wake_status": {
     "last_accepted": {
-      "id": "w-bfc1f4dd42234cfd",
-      "time": "2026-09-18T14:33:50.030226+00:00",
-      "finished": "2026-09-18T14:35:07.081349+00:00",
+      "id": "w-3917fc031ba6466f",
+      "time": "2026-09-18T14:35:56.899354+00:00",
+      "finished": "2026-09-18T14:36:45.133313+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
-          "category": "timeout",
-          "elapsed_ms": 60140,
-          "error_type": "TimeoutError",
-          "http_status": null,
-          "model": "gemini-3.8-flash",
-          "request_payload_bytes": 46940,
-          "result": "transient_failure"
-        },
-        {
           "category": "server",
-          "elapsed_ms": 510,
+          "elapsed_ms": 13767,
           "http_status": 503,
-          "model": "gemini-3.5-flash",
+          "model": "gemini-3.8-flash",
           "provider_error": {
             "code": 503,
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 46940,
+          "request_payload_bytes": 48907,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 5860,
+          "elapsed_ms": 25941,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46940,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 48907,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-bfc1f4dd42234cfd",
-      "time": "2026-09-18T14:33:50.030226+00:00",
-      "finished": "2026-09-18T14:35:07.081349+00:00",
+      "id": "w-3917fc031ba6466f",
+      "time": "2026-09-18T14:35:56.899354+00:00",
+      "finished": "2026-09-18T14:36:45.133313+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
-          "category": "timeout",
-          "elapsed_ms": 60140,
-          "error_type": "TimeoutError",
-          "http_status": null,
-          "model": "gemini-3.8-flash",
-          "request_payload_bytes": 46940,
-          "result": "transient_failure"
-        },
-        {
           "category": "server",
-          "elapsed_ms": 510,
+          "elapsed_ms": 13767,
           "http_status": 503,
-          "model": "gemini-3.5-flash",
+          "model": "gemini-3.8-flash",
           "provider_error": {
             "code": 503,
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 46940,
+          "request_payload_bytes": 48907,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 5860,
+          "elapsed_ms": 25941,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46940,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 48907,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
-    "accepted_cycles": 10,
+    "accepted_cycles": 11,
     "next_eligible": "2026-09-19T00:00:00-07:00",
     "pending": false,
-    "attempts_today": 16,
-    "provider_requests_today": 41,
-    "provider_request_slots_today": 41,
+    "attempts_today": 17,
+    "provider_requests_today": 43,
+    "provider_request_slots_today": 43,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `638bc8d700ceda3ee962d8d2b36af8698edb1854cb48d385c3b461dd64672f7d`
+Verified head: `2691f4273452d6bdb3e5895e73807c7b1f976bcbf7c3c67057ec7b332f40a06f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · Mapping Moran's Temperature Functional and Initiating Cognitive Architecture Project
+
+September 18, 2026 · 07:35 AM PDT · gemini / gemini-3.8-flash
+
+We updated our analysis of Moran's majority-rule cellular automata by integrating the newly retrieved abstract details, which reveal the historical 1993 response to Ruelle and the formal definition of the negative temperature functional. We also initiated a new research project on neurodivergent cognitive architectures.
+
+Invocation: `w-3917fc031ba6466f`
 
 ## 010 · Continuing Moran's Majority-Rule CA Analysis
 

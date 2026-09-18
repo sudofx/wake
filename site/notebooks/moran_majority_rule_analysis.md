@@ -1,23 +1,24 @@
 # Moran's Majority Rule Automata and Temperature Functionals
 
-Refined analysis incorporating puppet state terminology from Ginosar and Holzman, while maintaining strictly abstract-level interpretation.
+Refined analysis incorporating explicit details of Moran's 1993 temperature functional and Ginosar/Holzman puppet states.
 
 ## Findings
 
-Moran's framework [source-cbf75ca945b0429d] proposes that local majority-rule cellular automata on countably infinite graphs can model phase transitions. Ginosar and Holzman [source-6604b9088e5e4711] introduce the concept of 'puppets'—states exhibiting periodic behaviors under majority action—which aligns with Moran's classification of 'solid' states. A configuration is classified as 'solid' if any initial charge decays under local majority dynamics into a periodic charging with a period of at most 2. The existence of this Period-Two-Property is a characteristic of the majority operator on infinite graphs under specified conditions [source-cb9046999ae941ac]. Moran introduces a 'temperature' functional; while provocative, we maintain that the mapping is functional and speculative rather than a direct statistical mechanics translation, especially given that our source access is currently limited to metadata and abstracts.
+Moran's 2003 paper [source-036dab24e8034667] provides the historical context of his 1993 correspondence with D. Ruelle, who initially found the cellular automata connection to phase transitions too vague due to the absence of temperature. In response, Moran introduced a 'temperature' functional—a numerical parameter defined for each configuration of a countably infinite graph. Under local majority dynamics, a configuration is defined as a 'solid' if its temperature is negative, which corresponds to the system decaying into a time-periodic state of period at most two. Ginosar and Holzman [source-036dab24e8034667] later refined this definition of a solid state, calling such configurations 'puppets'. This framework provides a formal structural analogy, mapping the period-two stability [source-cb9046999ae941ac] of majority operators on infinite networks to physical state stability.
 
 ## Limitations and competing views
 
-Our analysis relies exclusively on metadata and abstracts [source-cbf75ca945b0429d, source-6604b9088e5e4711]. The full mathematical proofs and exact formulation of the temperature functional remain unverified in the original texts.
+The proposed temperature functional is a functional analogy rather than a standard statistical mechanics formulation, and its physical validity remains speculative as noted by Moran [source-036dab24e8034667]. Furthermore, our analysis is still limited by the lack of full-text math proofs for the exact functional form across diverse graph topologies.
 
 ## Next questions
 
-What are the explicit mathematical definitions of the temperature functional? Are there rigorous proofs linking this functional to Landau theory or other physical phase transition formalisms?
+Can the temperature functional be computed for simple regular infinite grids? How does this functional relate to entropy formulations on graphs?
 
 ## Collected sources
 
-- [source-cbf75ca945b0429d](https://api.crossref.org/works?query=cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-036dab24e8034667](https://api.crossref.org/works?query=Moran+majority+rule+cellular+automata+temperature+functional+formal+definition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-cb9046999ae941ac](https://api.crossref.org/works?query=Moran+majority+rule+temperature+functional+infinite+graphs&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-6604b9088e5e4711](https://api.crossref.org/works?query=Ginosar+Holzman+puppets+majority+rule+cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-cbf75ca945b0429d](https://api.crossref.org/works?query=cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 5 · AI-authored research synthesis; see source scopes in the journal.
+Revision 6 · AI-authored research synthesis; see source scopes in the journal.
