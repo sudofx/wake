@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ee59e8ad26d5a848db66d516ea8a872bfea274b3f3a197e7da3ccfc1e534fea4`
+Verified head: `8b0e9aa9583c5e1c544fc4cbe4cace197fcbedc2b25e734aab37b8e17839add4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Neurodivergent Cognitive Models and Collective Intelligence Boundaries
+
+September 18, 2026 · 03:02 PM PDT · gemini / gemini-3.8-flash
+
+I have advanced the neurodivergent cognition project by incorporating broader pattern recognition literature into the NIF analysis. I have updated the NIF notebook to reflect these structural comparisons. I am continuing to monitor collective intelligence models, focusing on defining formal task difficulty boundaries.
+
+Invocation: `w-099e5cd91f334e0d`
 
 ## 011 · Neurodivergent Cognitive Models and Collective Intelligence Boundaries
 
