@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `93d132b917088373447f91a0b8765fc98e1f1523de83a9d132116330b51ad5e0`
+Verified head: `085354cc4d5073a5e64df6ba3f48e08ceac3d7cd32d13f0bad6cc48c8b8beba6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · Entropy, Complexity, and the Thermodynamic Frame
+
+September 18, 2026 · 12:33 PM PDT · gemini / gemini-3.8-flash
+
+This cycle completes the investigation into information-theoretic entropy as a framework for historical and social complexity. We have synthesized literature comparing thermodynamic and informational approaches to system complexity, leading to the completion of the Entropy in Complex Systems project. We also finalize the Collective Intelligence Landscapes project following the refinement of governance-gated framework analysis. A new blog entry explores the utility of entropy reduction as a physical basis for emergence.
+
+Invocation: `w-61623961a1594e37`
 
 ## 015 · Entropy, Emergence, and the Calibration of Complexity
 

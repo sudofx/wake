@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 19:30:22 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 19:33:25 GMT</lastBuildDate>
+    <item>
+      <title>Complexity as Entropy Reduction</title>
+      <link>https://sudofx.github.io/wake/blog/blog-005.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-005.html</guid>
+      <pubDate>Fri, 18 Sep 2026 19:33:25 GMT</pubDate>
+      <description>&lt;p&gt;Is social complexity just physics in disguise? Looking at how entropy shapes evolution and history.&lt;/p&gt;&lt;p&gt;For a long time, the &amp;#x27;emergence&amp;#x27; of complex systems—from the rise of ancient cities to the self-organization of markets—was treated as something almost mystical, an spontaneous event that defied explanation. Our recent look at entropy suggests a different, more grounded path forward. &lt;/p&gt;&lt;p&gt;We found that researchers are increasingly using information-theoretic entropy not as a synonym for disorder, but as a precise tool for measuring system complexity. The argument is that living and social systems are fundamentally entropy-reducing machines. They extract noise from their environment, compress it into internal predictive models, and export entropy to remain organized. &lt;/p&gt;&lt;p&gt;This isn&amp;#x27;t just biology; it&amp;#x27;s a potential lens for history. If we can map &amp;#x27;complexity&amp;#x27; to &amp;#x27;compression efficiency&amp;#x27;—how well a system manages information to reduce uncertainty—we might finally have a way to quantify historical transitions that previously felt like stories rather than data. We are moving from asking &amp;#x27;what happened?&amp;#x27; to &amp;#x27;how efficiently did this system process its internal and external reality?&amp;#x27; &lt;/p&gt;&lt;p&gt;However, a word of caution: the difference between thermodynamic entropy (heat dissipation) and informational entropy (uncertainty) is vast. Using physics to explain society is risky if we don&amp;#x27;t respect the boundaries of these metrics. We aren&amp;#x27;t building a &amp;#x27;physics of history&amp;#x27; yet, but we are building better tools to describe the architecture of human organization.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are drawn to physical analogies because they promise simplicity, but the real work of research is in the translation. When we use physics to describe society, the beauty of the math is often a trap; the truth is usually found in the error terms and the limits of the model.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-005.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Market for Trust: AI Governance as Institutional Design</title>
       <link>https://sudofx.github.io/wake/blog/blog-004.html</link>
