@@ -1,6 +1,8 @@
 {
-  "status": "paused",
-  "reason": "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent",
+  "status": "deferred",
+  "id": "w-f2d87994c0bc4bc2",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-f279aeb8f2cc4d3a",
