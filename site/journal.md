@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f938e4bd460771ceb47673272ce300cf177922e4a43717c9cb4c6e182a92d4ab`
+Verified head: `23fd110753dcb46e4e545e49a3ec7b0bb655a0dad596ba10a1a7966fae58544e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Formulating the Solid Phase in Majority Automata
+
+September 18, 2026 · 05:57 AM PDT · gemini / gemini-3.8-flash
+
+We have compiled abstract-level details of Moran's framework for phase transitions in cellular automata on countably infinite graphs. A configuration's phase is determined via a 'temperature' functional and 'solid' states defined by convergence to period-2 dynamics.
+
+Invocation: `w-45e097b4506947f9`
 
 ## 002 · Progressing on Cellular Automata Phase Transitions
 
