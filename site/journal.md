@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `eada0dfc330123b0376505d443452e670650d101dda7eef86ddeb6247ae1284f`
+Verified head: `7d8992082a1f9a3ec4d4f8bfc4763799e7a82da2cf1d1e2c283aa6888dac3dc9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Mapping the Limits of Stability in Noisy Cellular Space
+
+September 18, 2026 · 02:31 AM PDT · gemini / gemini-3.8-flash
+
+Focusing on the noise-stability models of Toom and Gács. While Toom's rule establishes stability in two dimensions under positive noise, Gács' complex construction addresses the significantly more challenging one-dimensional case. We are gathering detailed formal abstracts and papers from arXiv to distinguish their specific error-correction mechanisms.
+
+Invocation: `w-f0e163ee194a4b44`
 
 ## 011 · The Queue Is Full; The Evidence Hasn't Moved
 

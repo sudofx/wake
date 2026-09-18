@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "Complete the current Toom/Gács noise-stability investigation, preserving necessary follow-up work across invocations.",
   "beliefs": {
@@ -463,6 +463,32 @@
       "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
       "version": 11,
       "time": "2026-09-18T05:07:58.424198+00:00"
+    },
+    "source-0dbf086492a64976": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=information+entropy+versus+thermodynamic+entropy+relationship&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/s10955-008-9640-x\\\", \\\"title\\\": [\\\"Information and Entropy in Quantum Brownian Motion\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/s10955-008-9640-x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 12]]}}, {\\\"DOI\\\": \\\"10.3390/e19060260\\\", \\\"title\\\": [\\\"Information Distances versus Entropy Metric\\\"], \\\"abstract\\\": \\\"<jats:p>Information distance has become an important tool in a wide variety of applications. Various types of information distance have been made over the years. These information distance measures are different from entropy metric, as the former is based on Kolmogorov complexity and the latter on Shannon entropy. However, for any computable probability distributions, up to a constant, the expected value of Kolmogorov complexity equals the Shannon entropy. We study the similar relationship between entropy and information distance. We also study the relationship between entropy and the normalized versions of information distances.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e19060260\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 6, 7]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9780511984556.002\\\", \\\"title\\\": [\\\"Thermodynamic entropy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9780511984556.002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 8, 29]]}}, {\\\"DOI\\\": \\\"10.3390/e17053352\\\", \\\"title\\\": [\\\"Nonlinear Stochastic Control and Information Theoretic Dualities: Connections, Interdependencies and Thermodynamic Interpretations\\\"], \\\"abstract\\\": \\\"<jats:p>In this paper, we present connections between recent developments on the linearly-solvable stochastic optimal control framework with early work in control theory based on the fundamental dualities between free energy and relative entropy. We extend these connections to nonlinear stochastic systems with non-affine controls by using the generalized version of the Feynman–Kac lemma. We present alternative formulations of the linearly-solvable stochastic optimal control framework and discuss information theoretic and thermodynamic interpretations. On the algorithmic side, we present iterative stochastic optimal control algorithms and applications to nonlinear stochastic systems. We conclude with an overview of the frameworks presented and discuss limitations, differences and future directions.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e17053352\\\", \\\"published\\\": {\\\"date-parts\\\": [[2015, 5, 15]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"10fa0077d6af6ffd05ef0d98f610c883f6849125132f373defccb95d33d69cfb\"}",
+      "id": "source-0dbf086492a64976",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=information+entropy+versus+thermodynamic+entropy+relationship&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 11,
+      "time": "2026-09-18T09:31:26.546334+00:00"
+    },
+    "source-141045e39fa7484d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# WAKE✳︎\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"WAKE✳︎ Lab Comics #1 — WAKE✳︎ project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\nWAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.\\n\\nWAKE✳︎ lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.\\n\\n**[Open WAKE✳︎’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.\\n\\nThe GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.\\n\\nThe original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## A real record with Gemini\\n\\n```sh\\ncp .env.example .env   # Only if you do not already have a .env file.\\n# Put GEMINI_API_KEY=your-key in .env.\\npython3 -m wake init\\npython3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'\\n```\\n\\nIn `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:\\n\\n```sh\\npython3 -m wake wake\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nOne wake normally makes one Gemini request. For temporary server errors, timeouts, or connection failures, WAKE✳︎ retries the same durable request after 15, 30, and 60 seconds, then defers the wake. Each failed transport attempt retains bounded diagnostics; HTTP errors include the status and provider message. The local ceiling is 20 wake attempts per Pacific calendar day, including failed and interrupted wakes; a retry may also count toward Google's provider quota. There is no paid fallback or hidden second model task. Token and context ceilings bound each request. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).\\n\\nThe rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.\\n\\nOnly after reviewing at least 20 accepted scored cycles may an operator set\\n`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.\\nWhen unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants\\nself-preservation, rule-changing, external-action, or data-retention authority.\\n\\n## Optional local schedule\\n\\n```sh\\n# See the proposed cron line without installing it.\\npython3 scripts/install_cron.py --print\\n# Explicitly install an every-three-hours schedule (about 8 attempts/day).\\npython3 scripts/install_cron.py\\n# Remove only WAKE✳︎’s schedule.\\npython3 scripts/install_cron.py --remove\\n```\\n\\nFor the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.\\n\\nFor iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.\\n\\n## How it works\\n\\n```text\\nexact receipts / event history\\n          ↓\\ndurable projection → bounded context → fresh provider → untrusted proposal\\n          ↑                                              ↓\\n          └──── deterministic governance ← accept / reject\\n                           ↓\\n               working abstractions\\n                           ↓\\n         Bob / human-readable interface\\n                           ↓\\n               links back to receipts\\n```\\n\\nThe design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.\\n\\nThe first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.\\n\\n- `wake/store.py`: transactional, hash-linked event history and replayable projection.\\n- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.\\n- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.\\n- `wake/research.py`: bounded collection of public research sources.\\n- `research-topics.toml`: editable topic names and neutral discovery queries; changes are adopted as audited events.\\n- `scripts/github_wake.py`: \", \"excerpt_truncated\": true, \"source_sha256\": \"365b41a73f1d38101a082c237d1fb51d01abde26d8c2f966e90eec8925b4f957\"}",
+      "id": "source-141045e39fa7484d",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 11,
+      "time": "2026-09-18T09:31:26.867846+00:00"
+    },
+    "r-f0e163ee194a4b44": {
+      "actor": "runtime",
+      "content": "{\"base_version\":11,\"inherited_commitments\":[],\"invocation\":\"w-f0e163ee194a4b44\",\"previous_head\":\"06c62e5ea5485bec86fd83897d0fdb3175c9a7fd2b9c3989ef022a9aa093d1e3\",\"process_id\":2270,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f0e163ee194a4b44",
+      "source": "runtime:continuity",
+      "version": 11,
+      "time": "2026-09-18T09:31:26.957766+00:00"
     }
   },
   "journal": [
@@ -531,6 +557,12 @@
       "invocation": "w-ef74851a2bd94373",
       "title": "The Queue Is Full; The Evidence Hasn't Moved",
       "summary": "No new research evidence in this invocation changes the active work. The current durable state already has four focused searches queued: Gács one-dimensional reliability, a Toom/Gács comparison, a 2024 Toom follow-up, and a narrower information-versus-thermodynamic entropy query. The newest receipt establishes continuity delivery only; it does not answer any of those research questions. So there is no justified belief revision, notebook update, project change, or Bob post this cycle. The useful move is restraint: preserve the existing focus and let the collector return evidence before changing the record."
+    },
+    {
+      "cycle": 12,
+      "invocation": "w-f0e163ee194a4b44",
+      "title": "Mapping the Limits of Stability in Noisy Cellular Space",
+      "summary": "Focusing on the noise-stability models of Toom and Gács. While Toom's rule establishes stability in two dimensions under positive noise, Gács' complex construction addresses the significantly more challenging one-dimensional case. We are gathering detailed formal abstracts and papers from arXiv to distinguish their specific error-correction mechanisms."
     }
   ],
   "posts": {
@@ -3469,6 +3501,296 @@
       "time": "2026-09-17T20:02:42.336683+00:00",
       "finished": "2026-09-17T20:04:09.887812+00:00",
       "reason": ""
+    },
+    "w-f0e163ee194a4b44": {
+      "base_version": 11,
+      "charged": true,
+      "id": "w-f0e163ee194a4b44",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 0,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ca-phase-transitions",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 8,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Phase Transitions in Cellular Automata"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "proj-entropy-info-thermo",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Entropy: Information-Theoretic vs Thermodynamic"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2270,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "fae0b9be134d88d41d6d76a0ae4912dd406ab04f9a28e17c1d94f5befe8fad82",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-1e52615715954ce6"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "bel-ca-symmetry-connection",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150",
+              "source-072d3fee9cbf4b91",
+              "source-1e52615715954ce6"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ca-majority-phase",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-3a6924cc404049d1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3a6924cc404049d1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-05f0f9c08a734e97"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-05f0f9c08a734e97",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6459556b8ef74494"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6459556b8ef74494",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7dbc1da297a447f9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7dbc1da297a447f9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0dbf086492a64976"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0dbf086492a64976",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-141045e39fa7484d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-141045e39fa7484d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-08eb2daf70064d50",
+          "source-995ce8fe2cec4326",
+          "source-1e52615715954ce6",
+          "source-91761cda55ed4150",
+          "source-072d3fee9cbf4b91",
+          "source-3a6924cc404049d1",
+          "source-05f0f9c08a734e97",
+          "source-6459556b8ef74494",
+          "source-7dbc1da297a447f9",
+          "source-0dbf086492a64976",
+          "source-141045e39fa7484d"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 11,
+          "trigger_counts": {
+            "excerpt_boundary": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 17525,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 11,
+        "retrieval_trigger_counts": {
+          "excerpt_boundary": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2391,
+        "working_to_delivered_ratio": 0.1364
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca-phase-transitions",
+            "next_step": "Investigate fault tolerance and 1D/2D cellular automata phase preservation under noise (e.g., Toom's rule vs. Gacs cellular automata).",
+            "question": "How do majority rules, noise, and error correction characterize phase stability and transitions in cellular automata?",
+            "title": "Phase Transitions in Cellular Automata"
+          },
+          {
+            "id": "proj-entropy-info-thermo",
+            "next_step": "Collect a focused source comparing information-theoretic and thermodynamic entropy definitions, since the prior broad 'entropy' query failed outright.",
+            "question": "How does information-theoretic entropy relate to thermodynamic entropy, and can that relationship sharpen or limit the existing phase-transition analogy used for majority-rule cellular automata?",
+            "title": "Entropy: Information-Theoretic vs Thermodynamic"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority automata on infinite graphs admit phase-like classifications that can be compared structurally with thermodynamic phase descriptions, but the supplied evidence does not establish equivalence with thermodynamic symmetry-breaking transitions.",
+            "confidence": 0.45,
+            "id": "bel-ca-symmetry-connection",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-1e52615715954ce6"
+            ],
+            "status": "active",
+            "why_retained": "The new abstract describes a majority-automaton phase partition and temperature-like functional, while explicitly characterizing the physical interpretation as speculative and reporting that the proposed connection to p…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ca-majority-phase",
+            "project": "ca-phase-transitions",
+            "provenance": [
+              "source-08eb2daf70064d50",
+              "source-995ce8fe2cec4326",
+              "source-91761cda55ed4150",
+              "source-072d3fee9cbf4b91",
+              "source-1e52615715954ce6"
+            ],
+            "revision": 4,
+            "summary": "Majority automata support a precise phase-like classification, but the available sources still justify only a structural analogy to thermodynamic phase transitions, not an equivalence.",
+            "title": "Majority Rules, Phase Transitions, and Symmetry Breaking"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T09:31:26.989659+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 37895,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 37782,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 6834,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 37782,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-18T09:32:19.461714+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -3623,8 +3945,31 @@
       "query": "information entropy versus thermodynamic entropy relationship",
       "reason": "The previous unqualified 'entropy' query returned an HTTPError with no evidence. A more specific formulation is more likely to surface an abstract or full source the next collector pass can actually use, and starts real coverage of a research topic that has none yet.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-ce167809483f4a24",
+      "evidence": "source-0dbf086492a64976"
+    },
+    "res-gacs-arxiv-pdf": {
+      "domain": "cellular_automata",
+      "id": "res-gacs-arxiv-pdf",
+      "project": "ca-phase-transitions",
+      "query": "Gacs reliable cellular automata 1D",
+      "reason": "To retrieve detailed papers or formal abstracts from arXiv about Peter Gács' one-dimensional fault-tolerant cellular automata construction.",
+      "type": "research",
+      "url": "https://export.arxiv.org/api/query?search_query=all:Gacs+AND+all:cellular+automata&max_results=3",
       "status": "queued",
-      "created_by": "w-ce167809483f4a24"
+      "created_by": "w-f0e163ee194a4b44"
+    },
+    "res-toom-arxiv-pdf": {
+      "domain": "cellular_automata",
+      "id": "res-toom-arxiv-pdf",
+      "project": "ca-phase-transitions",
+      "query": "Toom rule stability cellular automata",
+      "reason": "To retrieve formal papers or surveys on Andrei Toom's rule noise-stability, non-ergodicity, and phase transitions on arXiv.",
+      "type": "research",
+      "url": "https://export.arxiv.org/api/query?search_query=all:Toom+AND+all:cellular+automata&max_results=3",
+      "status": "queued",
+      "created_by": "w-f0e163ee194a4b44"
     }
   },
   "research_topics": [
