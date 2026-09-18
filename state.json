@@ -56,6 +56,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-18T18:58:51.610822+00:00"
+    },
+    "source-4952ac6b2203479a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=sociological+definition+of+music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.7765/9781847792235.00006\\\", \\\"title\\\": [\\\"Music and the sociological gaze\\\"], \\\"URL\\\": \\\"https://doi.org/10.7765/9781847792235.00006\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 1, 18]]}}, {\\\"DOI\\\": \\\"10.1093/omo/9781561592630.013.60000200222\\\", \\\"title\\\": [\\\"Binary form: Definition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/omo/9781561592630.013.60000200222\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.2307/837002\\\", \\\"title\\\": [\\\"A Theoretical Comparison of Certified Piano Teachers' Claim to Professional Status with the Sociological Definition of Profession\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/837002\\\", \\\"published\\\": {\\\"date-parts\\\": [[1995, 12]]}}, {\\\"DOI\\\": \\\"10.2307/2084319\\\", \\\"title\\\": [\\\"Blindness: Definition and Statistics\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/2084319\\\", \\\"published\\\": {\\\"date-parts\\\": [[1939, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4eacf479b796cf2c918229762defeb21d16d3ced62aecb23bc4e96ad562d1914\"}",
+      "id": "source-4952ac6b2203479a",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=sociological+definition+of+music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T18:59:50.037943+00:00"
+    },
+    "source-46f78192f73a48f0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0007\\\", \\\"title\\\": [\\\"Environmental Hazards and Climate Change\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the interplay of environmental hazards and climate change. It focuses on the relationship between environmental hazards, natural disasters, and anthropogenic climate change. The nature and causes of the increased occurrence and intensity of environmental hazards provide further understanding for developing effective adaptation strategies. The chapter also considers how communities can respond to the increased frequency and intensity of extreme events across a range of different areas. Moreover, adaptation to the effects of climate change on the occurrence and intensity of environmental hazards requires detailed knowledge of the underlying processes responsible for their occurrence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"751cb443f8d623c3a6604ee2f89ef0d6bb2572d1dbf69396caa8a7cd8d0bc523\"}",
+      "id": "source-46f78192f73a48f0",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T18:59:50.648037+00:00"
+    },
+    "r-f921c3f93fdc46c7": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-f921c3f93fdc46c7\",\"previous_head\":\"4653b580c40a7c9e35ca2d95c7b1f88c89065b4bf71558360a035e18396822c3\",\"process_id\":2041,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f921c3f93fdc46c7",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-18T18:59:50.669636+00:00"
     }
   },
   "journal": [
@@ -459,6 +485,242 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T18:59:04.405763+00:00",
       "reason": ""
+    },
+    "w-f921c3f93fdc46c7": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-f921c3f93fdc46c7",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "music-taxonomy",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Music Disambiguation"
+          },
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "ci-research",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2041,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "1edd164744f83f62bbf232cedeb15bb8a6c0b1bfb9b7713fa4fb4c72921539b6",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-14a71720e6344721"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-14a71720e6344721",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-36c3ec2ec6c04931"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-36c3ec2ec6c04931",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4952ac6b2203479a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4952ac6b2203479a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-46f78192f73a48f0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-46f78192f73a48f0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-14a71720e6344721",
+          "source-36c3ec2ec6c04931",
+          "source-4952ac6b2203479a",
+          "source-46f78192f73a48f0"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 4,
+          "evidence_count": 4,
+          "trigger_counts": {
+            "unincorporated_evidence": 4
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19978,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 4,
+        "retrieval_evidence_count": 4,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 4
+        },
+        "working_set_chars": 1319,
+        "working_to_delivered_ratio": 0.066
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "music-taxonomy",
+            "next_step": "Collect technical documentation for the MUSIC algorithm and foundational musicology definitions.",
+            "question": "How does the usage of the term 'MUSIC' diverge between signal processing (the algorithm) and cultural musicology?",
+            "title": "Music Disambiguation"
+          },
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T18:59:50.674875+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 39670,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 40617,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T19:00:34.360983+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 39670,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 39670,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 40617,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 40617,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -533,8 +795,9 @@
       "query": "sociological definition of music",
       "reason": "To establish a baseline definition of 'music' to contrast with the technical acronym usage.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-07bc96a26ebc4d99"
+      "status": "collected",
+      "created_by": "w-07bc96a26ebc4d99",
+      "evidence": "source-4952ac6b2203479a"
     }
   },
   "research_topics": [
