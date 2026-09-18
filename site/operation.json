@@ -1,16 +1,55 @@
 {
-  "status": "not_started",
-  "reason": "WAKE reset to zero",
-  "reset": true,
-  "cycle": 0,
+  "status": "rejected",
+  "id": "w-f816c529204441d2",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs",
   "wake_status": {
     "last_accepted": null,
-    "latest_attempt": null,
+    "latest_attempt": {
+      "id": "w-f816c529204441d2",
+      "time": "2026-09-18T09:38:05.187177+00:00",
+      "finished": "2026-09-18T09:39:36.552864+00:00",
+      "status": "rejected",
+      "reason": "Research notebooks need at least two distinct retrieved source URLs",
+      "provider_requests_sent": 3,
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60104,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 26604,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 11279,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 26604,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 9702,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 26604,
+          "result": "success"
+        }
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
+    },
     "accepted_cycles": 0,
-    "next_eligible": null,
+    "next_eligible": "2026-09-18T10:33:05.187177+00:00",
     "pending": false,
-    "attempts_today": 0,
-    "provider_requests_today": 0,
+    "attempts_today": 1,
+    "provider_requests_today": 3,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": 20
   }
