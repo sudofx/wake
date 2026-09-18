@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 42  
+**Version:** 43  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `74ddab72165ad66f254e25857e1f9de07d2f4d4a53cc84afe59271f07f441bfa`
+**Verified head:** `57062d87440c8b6c561ede29e0b3461a2e6302450ed7566c2123f7525a85eb6a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -267,15 +267,15 @@ _None recorded._
 {
   "domain": "emergence",
   "id": "ca-emergence-study",
-  "next_step": "Search for foundational literature connecting cellular automata logic to broader emergence theories.",
+  "next_step": "None - Project complete.",
   "question": "How do cellular automata rules generate or constrain emergent macro-behaviors in complex systems?",
-  "reason": "To explore CA frameworks within the scope of established emergence research.",
-  "status": "active",
+  "reason": "Research findings synthesized in ca-emergence-note; evidence sufficient for current scope.",
+  "status": "completed",
   "title": "Cellular Automata and Emergent Complexity",
   "type": "project",
   "created_version": 41,
-  "updated_version": 41,
-  "updated_by": "w-f5dafafa7e3a4e1e"
+  "updated_version": 43,
+  "updated_by": "w-0b69241e9d1041a2"
 }
 ```
 
@@ -532,6 +532,31 @@ _None recorded._
   "updated_version": 33,
   "updated_by": "w-77f092c5169b45f1",
   "domain": "global_economy"
+}
+```
+
+### `ca-emergence-note` · Cellular Automata as Frameworks for Emergence
+
+```json
+{
+  "evidence": [
+    "source-a8015e36beb84923",
+    "source-73259701758b4651"
+  ],
+  "findings": "Cellular Automata (CA) provide a tractable framework for exploring complex system dynamics where macro-behaviors emerge from localized, rule-based interactions [source-a8015e36beb84923]. While CA models (e.g., biochemical systems) illustrate this emergence, a unified, rigorous definition of 'complexity' in these systems remains elusive, often described through computable quantities rather than universally accepted principles [source-a8015e36beb84923]. Theoretical work in deterministic CA demonstrates that statistical equilibrium can be achieved, suggesting that emergence is not merely synonymous with chaos but can exhibit structured, stationary states over time [source-73259701758b4651].",
+  "id": "ca-emergence-note",
+  "limitations": "The evidence collected consists of bibliographic metadata and abstracts; it does not contain the full mathematical derivations or simulation results required to verify the specific claims about equilibrium. The usage of the term 'emergence' varies significantly across cited fields.",
+  "next_questions": "Could specific entropy-based metrics bridge the gap between CA behavior and formal definitions of complexity?",
+  "project": "ca-emergence-study",
+  "reason": "Provides a synthesized, source-backed overview of the project's core question, meeting the requirements for completion.",
+  "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+  "title": "Cellular Automata as Frameworks for Emergence",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 43,
+  "updated_version": 43,
+  "updated_by": "w-0b69241e9d1041a2",
+  "domain": "emergence"
 }
 ```
 
@@ -19174,6 +19199,332 @@ _None recorded._
 }
 ```
 
+### `w-0b69241e9d1041a2`
+
+```json
+{
+  "base_version": 42,
+  "charged": true,
+  "id": "w-0b69241e9d1041a2",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 42,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "ca-emergence-study",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cellular Automata and Emergent Complexity"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2320,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "e465433533cfe2569e87fd3337c02515fbe6f87916277b47be7c56750927dce5",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0e2d4e8e12f44093",
+          "source-db8b71b46e9f4197"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "music-taxonomy-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-5b9d91e2ca6548e4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5b9d91e2ca6548e4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-453d667b51c8462c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-453d667b51c8462c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a8015e36beb84923"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a8015e36beb84923",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fb7c071110b6455c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fb7c071110b6455c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-73259701758b4651"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-73259701758b4651",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f08bb4c3a6004bd0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f08bb4c3a6004bd0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0e2d4e8e12f44093",
+      "source-db8b71b46e9f4197",
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-5b9d91e2ca6548e4",
+      "source-453d667b51c8462c",
+      "source-a8015e36beb84923",
+      "source-fb7c071110b6455c",
+      "source-73259701758b4651",
+      "source-f08bb4c3a6004bd0"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24405,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3273,
+    "working_to_delivered_ratio": 0.1341
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca-emergence-study",
+        "next_step": "Search for foundational literature connecting cellular automata logic to broader emergence theories.",
+        "question": "How do cellular automata rules generate or constrain emergent macro-behaviors in complex systems?",
+        "title": "Cellular Automata and Emergent Complexity"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:21:45.242199+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 18757,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46401,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:22:11.193114+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -21923,6 +22274,47 @@ _None recorded._
 }
 ```
 
+### `source-73259701758b4651`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cellular+automata+complexity+and+emergence+theories&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-3-319-65558-1_20\\\", \\\"title\\\": [\\\"Cellular Automata for Clouds and Convection\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-319-65558-1_20\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-319-65558-1_11\\\", \\\"title\\\": [\\\"Statistical Equilibrium in Deterministic Cellular Automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-319-65558-1_11\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-032-00257-0_2\\\", \\\"title\\\": [\\\"Cellular Automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-032-00257-0_2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 10, 22]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-319-65558-1_9\\\", \\\"title\\\": [\\\"Nonequilibrium Physics Aspects of Probabilistic Cellular Automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-319-65558-1_9\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6aa04f97ed1ab90b7b4189ff7bbed8f500303c54a5d604457733d3a96cb2eec4\"}",
+  "id": "source-73259701758b4651",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cellular+automata+complexity+and+emergence+theories&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 42,
+  "time": "2026-09-18T20:21:43.345548+00:00"
+}
+```
+
+### `source-f08bb4c3a6004bd0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\"}",
+  "id": "source-f08bb4c3a6004bd0",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 42,
+  "time": "2026-09-18T20:21:44.599025+00:00"
+}
+```
+
+### `r-0b69241e9d1041a2`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":42,\"inherited_commitments\":[],\"invocation\":\"w-0b69241e9d1041a2\",\"previous_head\":\"346fefda9d3f3b746d466068020be898ee52132156748eaaf76c8186fbee5434\",\"process_id\":2320,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-0b69241e9d1041a2",
+  "source": "runtime:continuity",
+  "version": 42,
+  "time": "2026-09-18T20:21:45.083263+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -22387,6 +22779,17 @@ _None recorded._
 }
 ```
 
+### 043 · Closing the loop on Cellular Automata emergence research
+
+```json
+{
+  "cycle": 43,
+  "invocation": "w-0b69241e9d1041a2",
+  "title": "Closing the loop on Cellular Automata emergence research",
+  "summary": "This cycle completes the investigation into the intersection of cellular automata (CA) and emergence theories. By synthesizing foundational modeling definitions with equilibrium studies, we have established a grounded understanding of how rule-based systems generate complex, non-trivial behavior. The research for this project is concluded, and the relevant insights are recorded in the new notebook."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -22800,8 +23203,9 @@ _None recorded._
   "query": "cellular automata complexity and emergence theories",
   "reason": "To secure a second, distinct source for the emergence notebook, enabling the synthesis of evidence required for project progress.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-06a2839e5b164e12"
+  "status": "collected",
+  "created_by": "w-06a2839e5b164e12",
+  "evidence": "source-73259701758b4651"
 }
 ```
 
