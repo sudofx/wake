@@ -7,7 +7,7 @@
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>cd64f319c844f24bbd501eec02b6f3cf51ba03f47b8b28d3cf84c96d19fbf6a8</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 29<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>belief-ci-topology-constraint</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>c129fc9f3b5ad8b5232b9b2efef49730a20c9382a28311ad229ec0dd7f96f3d1</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 29<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>belief-ci-topology-constraint</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.7,
   &quot;evidence&quot;: [
     &quot;source-750819a639f04b0a&quot;,
@@ -20349,6 +20349,352 @@
   &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
   &quot;finished&quot;: &quot;2026-09-18T23:01:15.337388+00:00&quot;,
   &quot;reason&quot;: &quot;Resolution requires evidence recorded after the commitment&quot;
+}</pre></div></details><details><summary>w-ee6a9036798545b6</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 29,
+  &quot;charged&quot;: true,
+  &quot;id&quot;: &quot;w-ee6a9036798545b6&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 29,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;proj-coll-intel&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 8,
+          &quot;notebooks&quot;: 4,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Mechanisms of Collective Intelligence&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;proj-neuro-cog&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 6,
+          &quot;notebooks&quot;: 1,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Neurodivergent Intelligence Framework Analysis&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2274,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-18&quot;,
+  &quot;request_hash&quot;: &quot;39c891a031380cb103577a9f9213c3038831d57a2d348c0afbe0951d9609955d&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-f19497248e1047b4&quot;,
+          &quot;source-0c7284b4427f40c1&quot;,
+          &quot;source-199863fae0704da3&quot;,
+          &quot;source-e12c7e8fa8db4893&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-coll-intel-metrics-init&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-7a3608232c1d4db4&quot;,
+          &quot;source-5f989ffbeb224981&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-nif-intro-analysis&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-750819a639f04b0a&quot;,
+          &quot;source-cd6ea5eb0e394755&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-coll-intel-gci-analysis&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;commit-coll-intel-math-001&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-1739f9acf0094c50&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-1739f9acf0094c50&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-ac0f1a8dd95a476f&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-ac0f1a8dd95a476f&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-4c184638a5704e78&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-4c184638a5704e78&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-21c43b2636544207&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-21c43b2636544207&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-7d91859ee0e346d9&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-7d91859ee0e346d9&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-374ac7f988464f91&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-374ac7f988464f91&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-f19497248e1047b4&quot;,
+      &quot;source-0c7284b4427f40c1&quot;,
+      &quot;source-199863fae0704da3&quot;,
+      &quot;source-e12c7e8fa8db4893&quot;,
+      &quot;source-7a3608232c1d4db4&quot;,
+      &quot;source-5f989ffbeb224981&quot;,
+      &quot;source-750819a639f04b0a&quot;,
+      &quot;source-cd6ea5eb0e394755&quot;,
+      &quot;source-1739f9acf0094c50&quot;,
+      &quot;source-ac0f1a8dd95a476f&quot;,
+      &quot;source-4c184638a5704e78&quot;,
+      &quot;source-21c43b2636544207&quot;,
+      &quot;source-7d91859ee0e346d9&quot;,
+      &quot;source-374ac7f988464f91&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 10,
+      &quot;evidence_count&quot;: 14,
+      &quot;trigger_counts&quot;: {
+        &quot;commitment_near_due&quot;: 1,
+        &quot;notebook_revised&quot;: 3,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 20915,
+    &quot;inquiry_drive_project_count&quot;: 2,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;retrieval_candidate_count&quot;: 10,
+    &quot;retrieval_evidence_count&quot;: 14,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;commitment_near_due&quot;: 1,
+      &quot;notebook_revised&quot;: 3,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;working_set_chars&quot;: 3875,
+    &quot;working_to_delivered_ratio&quot;: 0.1853
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;proj-coll-intel&quot;,
+        &quot;next_step&quot;: &quot;Synthesize gathered mathematical models of collective boundary conditions.&quot;,
+        &quot;question&quot;: &quot;What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?&quot;,
+        &quot;title&quot;: &quot;Mechanisms of Collective Intelligence&quot;
+      },
+      {
+        &quot;id&quot;: &quot;proj-neuro-cog&quot;,
+        &quot;next_step&quot;: &quot;Synthesize pattern recognition capabilities across the collected NIF literature and comparative cognitive architecture studies.&quot;,
+        &quot;question&quot;: &quot;How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?&quot;,
+        &quot;title&quot;: &quot;Neurodivergent Intelligence Framework Analysis&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [
+      {
+        &quot;claim&quot;: &quot;Collective intelligence performance can be modeled as a function of its structural boundary constraints rather than solely agent interaction density.&quot;,
+        &quot;confidence&quot;: 0.7,
+        &quot;id&quot;: &quot;belief-ci-topology-constraint&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-750819a639f04b0a&quot;,
+          &quot;source-cd6ea5eb0e394755&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Mathematical topology provides a formal language for bounding information flow in groups, which aligns with observed limitations and efficiency variations in group decision-making processes.&quot;
+      }
+    ],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 30,
+        &quot;id&quot;: &quot;commit-coll-intel-math-001&quot;,
+        &quot;reason&quot;: &quot;Transitioning from conceptual frameworks to formal mathematical constraints is necessary for the proj-coll-intel objective.&quot;,
+        &quot;task&quot;: &quot;Complete synthesis of topological boundary conditions for collective intelligence models.&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;nb-coll-intel-metrics-init&quot;,
+        &quot;project&quot;: &quot;proj-coll-intel&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-f19497248e1047b4&quot;,
+          &quot;source-0c7284b4427f40c1&quot;,
+          &quot;source-199863fae0704da3&quot;,
+          &quot;source-e12c7e8fa8db4893&quot;
+        ],
+        &quot;revision&quot;: 2,
+        &quot;summary&quot;: &quot;Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.&quot;,
+        &quot;title&quot;: &quot;Initial Scoping of Collective Intelligence Metrics and Task Difficulty&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-nif-intro-analysis&quot;,
+        &quot;project&quot;: &quot;proj-neuro-cog&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-7a3608232c1d4db4&quot;,
+          &quot;source-5f989ffbeb224981&quot;
+        ],
+        &quot;revision&quot;: 9,
+        &quot;summary&quot;: &quot;Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.&quot;,
+        &quot;title&quot;: &quot;Neurodivergent Intelligence Framework: Comparative Structural Analysis&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-coll-intel-gci-analysis&quot;,
+        &quot;project&quot;: &quot;proj-coll-intel&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-750819a639f04b0a&quot;,
+          &quot;source-cd6ea5eb0e394755&quot;
+        ],
+        &quot;revision&quot;: 4,
+        &quot;summary&quot;: &quot;Refining the understanding of collective intelligence through the lens of formal topological boundary conditions and information filtering.&quot;,
+        &quot;title&quot;: &quot;General Collective Intelligence: Boundary Conditions and Problem-Solving&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-synth-topology-arch&quot;,
+        &quot;project&quot;: &quot;proj-coll-intel&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-750819a639f04b0a&quot;,
+          &quot;source-5f989ffbeb224981&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;This notebook explores the intersection between topological optimization—commonly used in engineering to define boundary conditions—and the structural modeling of cognitive architectures found in neurodivergent intelligence research.&quot;,
+        &quot;title&quot;: &quot;Synthesis of Topological Boundaries and Cognitive Architectures&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-coll-intel-boundary-math-synth&quot;,
+        &quot;project&quot;: &quot;proj-coll-intel&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-750819a639f04b0a&quot;,
+          &quot;source-cd6ea5eb0e394755&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Synthesizing topological constraints as a mechanism for group decision-making efficiency.&quot;,
+        &quot;title&quot;: &quot;Mathematical Models of Collective Boundary Conditions&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;time&quot;: &quot;2026-09-18T23:02:18.854383+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;elapsed_ms&quot;: 5294,
+      &quot;http_status&quot;: 200,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;request_payload_bytes&quot;: 41585,
+      &quot;result&quot;: &quot;success&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+  &quot;finished&quot;: &quot;2026-09-18T23:02:30.521387+00:00&quot;,
+  &quot;reason&quot;: &quot;Commitment ID already exists&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-94c420b0056e48d9</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=music&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Women’s music [womyn’s music]\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2014, 1, 31]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Dance music (popular music genre)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2010]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Warner Bros. Music (music publisher)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;3246af5a37381e510cf45a74e41f32b87354ebc0a2d042014a5004d7667a5e37\&quot;}&quot;,
@@ -21867,6 +22213,29 @@
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 29,
   &quot;time&quot;: &quot;2026-09-18T23:01:01.061140+00:00&quot;
+}</pre></div></details><details><summary>source-7d91859ee0e346d9</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=global+economy&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/hepl/9780198737469.003.0001\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;1. The Study of Global Political Economy\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/hepl/9780198737469.003.0001\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2016, 12, 22]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/hepl/9780192847553.003.0013\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;13. The Political Economy of Global Inequality\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/hepl/9780192847553.003.0013\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2024, 4, 23]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/hepl/9780198820642.003.0001\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;1. The Study of Global Political Economy\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/hepl/9780198820642.003.0001\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2020, 4, 14]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/hepl/9780192847553.003.0014\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;14. The Global Political Economy of Development\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/hepl/9780192847553.003.0014\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2024, 4, 23]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;ff57d062220869bf3fd0f5dbdfd0cab9539c5ccf00dd9003d2626291b452fd98\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-7d91859ee0e346d9&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=global+economy&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 29,
+  &quot;time&quot;: &quot;2026-09-18T23:02:17.342252+00:00&quot;
+}</pre></div></details><details><summary>source-374ac7f988464f91</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=emergence&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780199244737.003.0011\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Disease Emergence and Re-emergence Prior to 1850\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780199244737.003.0011\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2009, 7, 30]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oso/9780198823742.003.0009\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Metaphysical emergence: next steps\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oso/9780198823742.003.0009\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2021, 3, 4]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/acprof:oso/9780199544318.003.0010\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Emergence and Mental Causation\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2008, 5, 15]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/9780191954887.003.0009\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;The Emergence of Emergence\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:title&gt;Abstract&lt;/jats:title&gt;\\\\n                  &lt;jats:p&gt;In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/9780191954887.003.0009\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2026, 3, 17]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-374ac7f988464f91&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=emergence&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 29,
+  &quot;time&quot;: &quot;2026-09-18T23:02:18.246623+00:00&quot;
+}</pre></div></details><details><summary>r-ee6a9036798545b6</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:29,\&quot;inherited_commitments\&quot;:[\&quot;commit-coll-intel-math-001\&quot;],\&quot;invocation\&quot;:\&quot;w-ee6a9036798545b6\&quot;,\&quot;previous_head\&quot;:\&quot;1aa2a5786749fdc5974c85172de6deb73fb2158e3a94afbd5d27a7c9e4b59c1f\&quot;,\&quot;process_id\&quot;:2274,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-ee6a9036798545b6&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 29,
+  &quot;time&quot;: &quot;2026-09-18T23:02:18.696159+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Establishing Durable Context and Initial Collective Intelligence Project</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-f4dcae3f11f94198&quot;,

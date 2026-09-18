@@ -5,7 +5,7 @@
 **Version:** 29  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `cd64f319c844f24bbd501eec02b6f3cf51ba03f47b8b28d3cf84c96d19fbf6a8`
+**Verified head:** `c129fc9f3b5ad8b5232b9b2efef49730a20c9382a28311ad229ec0dd7f96f3d1`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -20847,6 +20847,358 @@
 }
 ```
 
+### `w-ee6a9036798545b6`
+
+```json
+{
+  "base_version": 29,
+  "charged": true,
+  "id": "w-ee6a9036798545b6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 29,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 4,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2274,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "39c891a031380cb103577a9f9213c3038831d57a2d348c0afbe0951d9609955d",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-intro-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-gci-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-coll-intel-math-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-1739f9acf0094c50"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1739f9acf0094c50",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ac0f1a8dd95a476f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac0f1a8dd95a476f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4c184638a5704e78"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4c184638a5704e78",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-21c43b2636544207"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-21c43b2636544207",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7d91859ee0e346d9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7d91859ee0e346d9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-374ac7f988464f91"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-374ac7f988464f91",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-7a3608232c1d4db4",
+      "source-5f989ffbeb224981",
+      "source-750819a639f04b0a",
+      "source-cd6ea5eb0e394755",
+      "source-1739f9acf0094c50",
+      "source-ac0f1a8dd95a476f",
+      "source-4c184638a5704e78",
+      "source-21c43b2636544207",
+      "source-7d91859ee0e346d9",
+      "source-374ac7f988464f91"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20915,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3875,
+    "working_to_delivered_ratio": 0.1853
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Synthesize gathered mathematical models of collective boundary conditions.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Synthesize pattern recognition capabilities across the collected NIF literature and comparative cognitive architecture studies.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence performance can be modeled as a function of its structural boundary constraints rather than solely agent interaction density.",
+        "confidence": 0.7,
+        "id": "belief-ci-topology-constraint",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "status": "active",
+        "why_retained": "Mathematical topology provides a formal language for bounding information flow in groups, which aligns with observed limitations and efficiency variations in group decision-making processes."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 30,
+        "id": "commit-coll-intel-math-001",
+        "reason": "Transitioning from conceptual frameworks to formal mathematical constraints is necessary for the proj-coll-intel objective.",
+        "task": "Complete synthesis of topological boundary conditions for collective intelligence models."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 9,
+        "summary": "Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.",
+        "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 4,
+        "summary": "Refining the understanding of collective intelligence through the lens of formal topological boundary conditions and information filtering.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      },
+      {
+        "id": "nb-synth-topology-arch",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 1,
+        "summary": "This notebook explores the intersection between topological optimization—commonly used in engineering to define boundary conditions—and the structural modeling of cognitive architectures found in neurodivergent intelligence research.",
+        "title": "Synthesis of Topological Boundaries and Cognitive Architectures"
+      },
+      {
+        "id": "nb-coll-intel-boundary-math-synth",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 1,
+        "summary": "Synthesizing topological constraints as a mechanism for group decision-making efficiency.",
+        "title": "Mathematical Models of Collective Boundary Conditions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T23:02:18.854383+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5294,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41585,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T23:02:30.521387+00:00",
+  "reason": "Commitment ID already exists"
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -23552,6 +23904,47 @@
   "source": "runtime:continuity",
   "version": 29,
   "time": "2026-09-18T23:01:01.061140+00:00"
+}
+```
+
+### `source-7d91859ee0e346d9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ff57d062220869bf3fd0f5dbdfd0cab9539c5ccf00dd9003d2626291b452fd98\"}",
+  "id": "source-7d91859ee0e346d9",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T23:02:17.342252+00:00"
+}
+```
+
+### `source-374ac7f988464f91`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\"}",
+  "id": "source-374ac7f988464f91",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T23:02:18.246623+00:00"
+}
+```
+
+### `r-ee6a9036798545b6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":29,\"inherited_commitments\":[\"commit-coll-intel-math-001\"],\"invocation\":\"w-ee6a9036798545b6\",\"previous_head\":\"1aa2a5786749fdc5974c85172de6deb73fb2158e3a94afbd5d27a7c9e4b59c1f\",\"process_id\":2274,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ee6a9036798545b6",
+  "source": "runtime:continuity",
+  "version": 29,
+  "time": "2026-09-18T23:02:18.696159+00:00"
 }
 ```
 
