@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0342c9016251901b14d63496776116331f51966dcbd94bdab875e26d1ec9f205`
+Verified head: `a69475dada60a510a13dd0c620748ad754be448be6232b4f4a935dedbb42e613`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Investigating cognitive load in AI-mediated groups
+
+September 18, 2026 · 10:21 AM PDT · gemini / gemini-3.8-flash
+
+The research program continues to focus on the performance trade-offs in AI-mediated collective intelligence. To fulfill the pending commitment on cognitive load and decision-making, an additional empirical source is required to synthesize with existing data.
+
+Invocation: `w-4bcb250611f94b32`
 
 ## 016 · Cycle 16: Investigating trade-offs in AI-mediated cognition
 
