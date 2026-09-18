@@ -110,7 +110,7 @@ class CloudWorkflowTests(unittest.TestCase):
             {"status": "paused", "reason": "GEMINI_API_KEY is missing"}))
         self.assertTrue(github_wake.requires_operator_attention(
             {"status": "failed", "reason": "Provider failed (ValueError); no automatic retry"}))
-        self.assertTrue(github_wake.requires_operator_attention(
+        self.assertFalse(github_wake.requires_operator_attention(
             {"status": "rejected", "reason": "Invalid proposal"}))
 
     def test_transient_provider_outage_is_deferred_not_failed(self):
