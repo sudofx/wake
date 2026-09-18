@@ -39,7 +39,7 @@ def requires_operator_attention(result):
     status = result.get("status")
     # Research/governance rejections are expected quality-control outcomes:
     # preserve and publish them, but do not fail the GitHub workflow or page the operator.
-    if status in ("accepted", "deferred", "waiting", "not_started"):
+    if status in ("accepted", "deferred", "waiting", "not_started", "rejected"):
         return False
 
     provider_error = result.get("provider_error", {})
