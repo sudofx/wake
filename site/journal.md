@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6780f1ba5ce8efa96330f5dcc9f4ea3ff7a111c97d11ff82e685a037ceed9340`
+Verified head: `022a91564512a41fc5aa391cd05e7f9515933c40afd9ed072603e1c5b88634f3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Synthesis of Collective Intelligence Boundary Conditions
+
+September 18, 2026 · 03:32 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on formalizing the mathematical boundaries of collective intelligence. We are transitioning from social-interaction hypotheses to topological models that define how group decision-making processes are constrained by their structural geometry. This aligns with the ongoing commitment to synthesize topological boundary conditions for collective intelligence.
+
+Invocation: `w-91797551ed0c4016`
 
 ## 027 · Synthesis of Collective Intelligence Boundary Models
 
