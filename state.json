@@ -1952,6 +1952,32 @@
       "source": "runtime:continuity",
       "version": 46,
       "time": "2026-09-18T20:29:07.519864+00:00"
+    },
+    "source-a9d50da8273a47a0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e750e5f5e39a23d0d414903ac3105491c1a805ac366cc31a7cc592cc1117bde6\"}",
+      "id": "source-a9d50da8273a47a0",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 46,
+      "time": "2026-09-18T20:30:49.021862+00:00"
+    },
+    "source-041f8bc3c6a74216": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+      "id": "source-041f8bc3c6a74216",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 46,
+      "time": "2026-09-18T20:30:50.028993+00:00"
+    },
+    "r-d1cb04f28d7b4b5c": {
+      "actor": "runtime",
+      "content": "{\"base_version\":46,\"inherited_commitments\":[],\"invocation\":\"w-d1cb04f28d7b4b5c\",\"previous_head\":\"e9e0ae27b224c0a0221e81859ec9f9dfd74632b7d28e869e8a6f527f6802af5a\",\"process_id\":2104,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d1cb04f28d7b4b5c",
+      "source": "runtime:continuity",
+      "version": 46,
+      "time": "2026-09-18T20:30:50.904755+00:00"
     }
   },
   "journal": [
@@ -22760,6 +22786,324 @@
         "provider_requests_sent": 1,
         "request_payload_bytes": 45762,
         "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    },
+    "w-d1cb04f28d7b4b5c": {
+      "base_version": 46,
+      "charged": true,
+      "id": "w-d1cb04f28d7b4b5c",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 46,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2104,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "74c4958682b2c6fb5ca42fa34d56721c558ac5c7fb89b40c06b0996798a3c976",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093",
+              "source-d0dffa7ef17f4153"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "music-taxonomy-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-3e1b29365b3f4b5f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3e1b29365b3f4b5f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0f9bdbb0542e4bb1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0f9bdbb0542e4bb1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b47b8baa72d94367"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b47b8baa72d94367",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-80f1669a310149b1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-80f1669a310149b1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a9d50da8273a47a0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a9d50da8273a47a0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-041f8bc3c6a74216"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-041f8bc3c6a74216",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153",
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-3e1b29365b3f4b5f",
+          "source-0f9bdbb0542e4bb1",
+          "source-b47b8baa72d94367",
+          "source-80f1669a310149b1",
+          "source-a9d50da8273a47a0",
+          "source-041f8bc3c6a74216"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 10,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "notebook_revised": 4,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23209,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 10,
+        "retrieval_evidence_count": 17,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 4,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2921,
+        "working_to_delivered_ratio": 0.1259
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          },
+          {
+            "id": "ca-emergence-note",
+            "project": "ca-emergence-study",
+            "provenance": [
+              "source-a8015e36beb84923",
+              "source-73259701758b4651"
+            ],
+            "revision": 1,
+            "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+            "title": "Cellular Automata as Frameworks for Emergence"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T20:30:51.193642+00:00",
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60127,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45262,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T20:31:58.465524+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "timeout",
+        "elapsed_ms": 60127,
+        "error_type": "TimeoutError",
+        "http_status": null,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "timeout",
+            "elapsed_ms": 60127,
+            "error_type": "TimeoutError",
+            "http_status": null,
+            "model": "gemini-3.1-flash-lite",
+            "request_payload_bytes": 45262,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 45262,
         "result": "transient_failure"
       }
     }
