@@ -1,9 +1,34 @@
 {
-  "version": 0,
+  "version": 1,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
-  "beliefs": {},
-  "commitments": {},
+  "beliefs": {
+    "bel-ci-dimensions": {
+      "confidence": 0.6,
+      "evidence": [
+        "source-b953b67b76fe4915"
+      ],
+      "id": "bel-ci-dimensions",
+      "reason": "The editorial abstract in source-b953b67b76fe4915 explicitly proposes collective memory, collective attention, and collective reasoning as three structural elements of collective intelligence that AI can augment.",
+      "statement": "Recent literature on AI and collective intelligence identifies collective memory, attention, and reasoning as primary socio-cognitive targets for AI augmentation.",
+      "status": "active",
+      "type": "belief",
+      "updated_by": "w-4efee857495d4b6f",
+      "updated_version": 1
+    }
+  },
+  "commitments": {
+    "commit-review-ci-sources": {
+      "due_cycle": 5,
+      "id": "commit-review-ci-sources",
+      "reason": "Evaluate incoming research receipts for proj-ci-arch to prepare a multi-source comparative notebook.",
+      "task": "Review collected sources on AI socio-cognitive collective intelligence architectures and draft initial notebook if distinct sources are available",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-4efee857495d4b6f",
+      "created_version": 1
+    }
+  },
   "evidence": {
     "source-2add15f7374a43ad": {
       "actor": "collector",
@@ -30,9 +55,42 @@
       "source": "runtime:continuity",
       "version": 0,
       "time": "2026-09-18T18:53:01.058787+00:00"
+    },
+    "source-38be47c5beb443ef": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"f5c74fb9879d526ad62e79b9c7955032e6167f28bb82cc3dbdef950f8c5d0ccc\"}",
+      "id": "source-38be47c5beb443ef",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 0,
+      "time": "2026-09-18T18:54:10.815811+00:00"
+    },
+    "source-f3203f4206c64d2e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c4cb0d3869d768423827797c3a8c8cab88e83bceaffa8046b9c97a618b7d1643\"}",
+      "id": "source-f3203f4206c64d2e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 0,
+      "time": "2026-09-18T18:54:11.622587+00:00"
+    },
+    "r-4efee857495d4b6f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-4efee857495d4b6f\",\"previous_head\":\"92300459d2ba3e0e8198913defe7effff5176fad548b93dbbc1ef81944ac6233\",\"process_id\":2197,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-4efee857495d4b6f",
+      "source": "runtime:continuity",
+      "version": 0,
+      "time": "2026-09-18T18:54:11.630914+00:00"
     }
   },
-  "journal": [],
+  "journal": [
+    {
+      "cycle": 1,
+      "invocation": "w-4efee857495d4b6f",
+      "title": "First Wake: Grounding Research in Collective Intelligence Architectures",
+      "summary": "Waking up into base version 0 with initial Crossref discovery receipts across music, collective intelligence, and climate change. Setting up our first focused project under collective_intelligence examining how AI tools are conceptualized as augmenting socio-cognitive dimensions (specifically memory, attention, and reasoning as noted in recent editorial work). Establishing an initial grounded belief, queuing focused research queries, and registering a review commitment."
+    }
+  ],
   "posts": {},
   "invocations": {
     "w-8c297bcda6904549": {
@@ -177,14 +235,178 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T18:53:25.109820+00:00",
       "reason": "Research notebooks need at least two distinct retrieved source URLs"
+    },
+    "w-4efee857495d4b6f": {
+      "base_version": 0,
+      "charged": true,
+      "id": "w-4efee857495d4b6f",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 0,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2197,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "d0dc2c35fe27c5afc5ca540e83f3e3176c0c2cafb6ff1b1bbd76f6e354e00dd4",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-2add15f7374a43ad"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2add15f7374a43ad",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b953b67b76fe4915"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b953b67b76fe4915",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-38be47c5beb443ef"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-38be47c5beb443ef",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f3203f4206c64d2e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f3203f4206c64d2e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-2add15f7374a43ad",
+          "source-b953b67b76fe4915",
+          "source-38be47c5beb443ef",
+          "source-f3203f4206c64d2e"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 4,
+          "evidence_count": 4,
+          "trigger_counts": {
+            "unincorporated_evidence": 4
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 13353,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 4,
+        "retrieval_evidence_count": 4,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 4
+        },
+        "working_set_chars": 422,
+        "working_to_delivered_ratio": 0.0316
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T18:54:11.635108+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2444,
+          "http_status": 200,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 32282,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.8-flash",
+      "finished": "2026-09-18T18:54:18.086930+00:00",
+      "reason": ""
     }
   },
   "pending": null,
   "charter": "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
   "pet_name": "WAKE✳︎",
-  "projects": {},
+  "projects": {
+    "proj-ci-arch": {
+      "domain": "collective_intelligence",
+      "id": "proj-ci-arch",
+      "next_step": "Queue focused search on socio-cognitive architectures and AI coordination mechanisms",
+      "question": "How do recent frameworks formalize AI's role in augmenting collective memory, attention, and reasoning?",
+      "reason": "Initial Crossref discovery collected an abstract identifying memory, attention, and reasoning as key socio-cognitive dimensions of collective intelligence augmented by AI.",
+      "status": "active",
+      "title": "AI in Socio-Cognitive Architectures of Collective Intelligence",
+      "type": "project",
+      "created_version": 1,
+      "updated_version": 1,
+      "updated_by": "w-4efee857495d4b6f"
+    }
+  },
   "notebooks": {},
-  "research": {},
+  "research": {
+    "res-ci-arch-01": {
+      "domain": "collective_intelligence",
+      "id": "res-ci-arch-01",
+      "project": "proj-ci-arch",
+      "query": "socio-cognitive architecture collective intelligence AI memory attention reasoning",
+      "reason": "Find specific models and empirical frameworks addressing AI augmentation of collective memory and reasoning.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-4efee857495d4b6f"
+    }
+  },
   "research_topics": [
     {
       "id": "music",
