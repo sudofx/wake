@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d6fa5ef25adb22173b0506cf0488ce9afc4b897eaa80dd29e4bb5d4445f1cc5c`
+Verified head: `b51dd7fe937edec6a3d0c5ae387b9fa52a0eee4162633a516233b820043d674b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Formalizing Network Boundaries and Information Flow
+
+September 18, 2026 · 04:48 PM PDT · gemini / gemini-3.8-flash
+
+This cycle, we refine the formal model of collective intelligence by integrating communication-induced bifurcation data. We are moving from qualitative descriptions of group behavior to quantitative models of boundary conditions that constrain information flow, treating 'intelligence' not as a volume of data, but as a topological outcome of efficient signal filtering. The work continues toward a synthesis of these mathematical constraints.
+
+Invocation: `w-01844fb7f8634daa`
 
 ## 038 · Synthesizing Topological Boundaries in Collective Intelligence
 
