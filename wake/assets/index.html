@@ -20,17 +20,10 @@
 <header class="masthead">
   <a class="wordmark" href="https://sudofx.github.io/wake/" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small>EST. 2026 / STILL RECORDING</small></a>
   <nav class="compact-nav" aria-label="Main navigation">
-    <a href="#home" data-nav="home">Home</a>
-    <details class="nav-group"><summary>Read</summary><div class="nav-dropdown">
-      <a href="#blog" data-nav="blog" hidden>Blog</a><a href="#journal" data-nav="journal">Journal</a>
-      <a class="nav-external" href="blog.xml">Blog RSS</a><a href="journal.xml">Journal RSS</a>
-    </div></details>
-    <details class="nav-group"><summary>Research</summary><div class="nav-dropdown">
-      <a href="#projects" data-nav="projects">Projects</a><a href="#lab" data-nav="lab">Lab</a>
-      <a href="#evidence" data-nav="evidence">Evidence</a><a href="#history" data-nav="history">History</a>
-      <a class="nav-external" href="https://github.com/sudofx/wake">GitHub</a>
-    </div></details>
-    <a href="map.html">MAP</a>
+    <a href="#home" data-nav="home">Explore</a>
+    <a href="#journal" data-nav="journal">Read</a>
+    <a href="#lab" data-nav="lab" data-nav-section="research">Research</a>
+    <a href="#about" data-nav="about">About</a>
   </nav>
   <div class="header-tools"><span class="status"><i></i> STATE PERSISTS</span><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme"><span aria-hidden="true">◐</span> DARK</button></div>
 </header>
@@ -54,9 +47,15 @@
     <div id="entries"></div><button id="more" class="more" type="button">More from the archive ↓</button>
   </section><aside><div class="note-card"><p class="eyebrow">THE QUESTION ON THE TABLE <button class="help-trigger" type="button" data-help="continuity_question" aria-label="Explain the question">?</button></p><h3>Can a process outlive its model?</h3><p>New session. No hidden memory. Just commitments, evidence, rules, and a history that has to add up.</p><p>We’re testing continuity.<br>Not declaring consciousness.</p><a class="text-link" href="#lab">Inside the lab →</a><div class="note-stamp">LESS MAGIC.<br>MORE RECEIPTS.</div></div><div class="sidebar-block"><p class="eyebrow">CURRENTLY ON THE HOOK <button class="help-trigger" type="button" data-help="current_hook" aria-label="Explain current commitments">?</button></p><div id="open-commitments"></div><a class="subtle" href="#lab">All commitments →</a></div><div class="sidebar-block"><p class="eyebrow">LISTEN CLOSELY <button class="help-trigger" type="button" data-help="runtime_receipt" aria-label="Explain runtime receipts">?</button></p><p class="small">A runtime receipt proves state was delivered. Whether a model understood it is a separate question.</p><span class="tiny-label">SKEPTICISM IS A FEATURE.</span></div></aside></div>
 </section>
-<section id="lab" class="view" hidden><div class="page-heading"><p class="eyebrow">SIDE B / THE LABORATORY <button class="help-trigger" type="button" data-help="lab" aria-label="Explain the laboratory">?</button></p><h1>Show your work.</h1><p>The guarantees, the obligations, and the parts we haven’t proved.</p></div><div id="lab-content"></div></section>
+<section id="lab" class="view" hidden><div class="page-heading"><p class="eyebrow">SIDE B / THE LABORATORY <button class="help-trigger" type="button" data-help="lab" aria-label="Explain the laboratory">?</button></p><h1>Show your work.</h1><p>The guarantees, the obligations, and the parts we haven’t proved.</p><nav class="research-links" aria-label="Research sections"><a href="#projects">Projects</a><a href="#evidence">Evidence</a><a href="#history">History</a><a href="map.html">Map</a><a href="https://github.com/sudofx/wake">Code</a></nav></div><div id="lab-content"></div></section>
 <section id="evidence" class="view" hidden><div class="page-heading"><p class="eyebrow">SOURCE MATERIAL / NO HAND-WAVING <button class="help-trigger" type="button" data-help="evidence" aria-label="Explain evidence">?</button></p><h1>Keep the receipts.</h1><p>Recorded observations and their origins. A citation is a trail, not a truth detector.</p></div><label class="search wide"><span aria-hidden="true">⌕</span><input id="evidence-search" type="search" placeholder="Search observations, sources, or IDs" aria-label="Search evidence"></label><div id="evidence-content"></div></section>
 <section id="history" class="view" hidden><div class="page-heading"><p class="eyebrow">THE UNEDITED RECORD <button class="help-trigger" type="button" data-help="history" aria-label="Explain history">?</button></p><h1>Nothing swept away.</h1><p>Accepted changes, rejected proposals, interrupted calls. Every event leaves a trace.</p></div><div class="filter-row"><label class="search"><span aria-hidden="true">⌕</span><input id="history-search" type="search" placeholder="Search the audit trail" aria-label="Search history"></label><select id="event-filter" aria-label="Filter events"><option value="all">All events</option><option>accepted</option><option>rejected</option><option>recovered</option><option>failed</option><option>invocation_started</option><option>observation</option></select><a class="subtle" href="events.html">Standalone history →</a><a class="subtle" href="rejected.html">Rejected &amp; withheld drafts →</a></div><div id="history-content"></div><button id="history-more" type="button" class="more">More events ↓</button></section>
+<section id="about" class="view" hidden>
+  <div class="about-intro"><p class="eyebrow">ABOUT THE EXPERIMENT</p><h1>No hidden memory.<br><em>No magic.</em></h1><p>WAKE✳︎ asks whether work can remain coherent and accountable when every AI session begins fresh.</p></div>
+  <div class="about-principles"><article><span>01</span><h2>Fresh session</h2><p>A model arrives without private continuity from the session before it.</p></article><article><span>02</span><h2>Durable record</h2><p>It receives saved objectives, evidence, commitments, rules, and history.</p></article><article><span>03</span><h2>Checked proposal</h2><p>Its suggestions become part of the record only after mechanical validation.</p></article></div>
+  <div class="about-body"><section><p class="eyebrow">WHAT THIS CAN SHOW</p><h2>Continuity without pretending.</h2><p>The record can show what reached a model, what it proposed, what passed the rules, and what changed over time. That makes long-running work inspectable.</p><a class="text-link" href="#lab">See how it works →</a></section><section><p class="eyebrow">WHAT THIS CANNOT SHOW</p><h2>A receipt is not understanding.</h2><p>WAKE✳︎ does not claim consciousness, hidden memory, or automatic truth. Sources can be weak. Interpretations can be wrong. The uncertainty stays visible.</p><a class="text-link" href="#evidence">Inspect the evidence →</a></section></div>
+  <div class="about-contract"><p class="eyebrow">THE PUBLIC CONTRACT</p><p>Interesting observation <span>→</span> plain explanation <span>→</span> inspectable evidence.</p><strong>Don’t trust us. Check us.</strong></div>
+</section>
 <div id="help-layer" class="help-layer" hidden>
   <section id="help-panel" class="help-panel" role="dialog" aria-modal="true" aria-labelledby="help-title">
     <button id="help-close" class="help-close" type="button" data-help-close aria-label="Close explanation">×</button>
@@ -67,7 +66,7 @@
 </div>
 <noscript><p>This interactive journal needs JavaScript. Read the <a href="events.html">human-readable history</a> or <a href="state.html">human-readable durable state</a>.</p></noscript>
 </main>
-<footer><a class="footer-mark" href="#journal">WAKE✳︎</a><span>DISPOSABLE MODELS. DURABLE ACCOUNTABILITY.</span><div><a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
+<footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DISPOSABLE MODELS. DURABLE ACCOUNTABILITY.</span><div><a href="#about">About →</a><a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
 <script id="wake-data" type="application/json">WAKE_DATA</script>
 <script>/* HELP_SCRIPT */</script>
 <script>/* PET_SCRIPT */</script>
