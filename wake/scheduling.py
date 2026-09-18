@@ -75,7 +75,8 @@ def wake_status(state, daily_call_limit=20, now=None):
     charged_today = [i for i in items if i.get("charged") and i.get("quota_day") == day]
     quota_resets = [daily_quota_next_eligible(i) for i in charged_today]
     resets = [reset for reset in quota_resets if reset is not None]
-    if sum(charged_request_slots(i) for i in charged_today) >= daily_call_limit:
+    request_slots_today = sum(charged_request_slots(i) for i in charged_today)
+    if request_slots_today >= daily_call_limit:
         resets.append(datetime.fromisoformat(day).replace(tzinfo=PACIFIC) + timedelta(days=1))
     if resets:
         eligible = max(([eligible] if eligible else []) + resets)
@@ -84,6 +85,7 @@ def wake_status(state, daily_call_limit=20, now=None):
             "next_eligible": eligible.isoformat() if eligible and not state.get("pending") else None,
             "pending": bool(state.get("pending")), "attempts_today": len(charged_today),
             "provider_requests_today": sum(i.get("provider_requests_sent", 0) for i in charged_today),
+            "provider_request_slots_today": request_slots_today,
             "provider_request_counts_incomplete": any("provider_requests_sent" not in i or
                 any(a["result"] == "unknown" for a in i.get("provider_attempts", [])) for i in charged_today),
             "daily_call_limit": daily_call_limit}
