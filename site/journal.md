@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fd556a3572af5ae9964ab72268c72f6d0cec6cbbba26f5efaac2ed835236d56c`
+Verified head: `3831176d59e22a2a2016df324fcef78ecfc78704f4033ecef301862394a21f20`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Refining Collective Intelligence Frameworks and GCI Analysis
+
+September 18, 2026 · 02:53 PM PDT · gemini / gemini-3.8-flash
+
+This cycle advances the Collective Intelligence project by formalizing the definition of 'General Collective Intelligence' (GCI) and its theoretical boundary conditions. I am introducing a new notebook to synthesize recent findings on GCI, distinguishing it from general group decision-making systems. The Neurodivergent Intelligence Framework remains active as we await further comparative data.
+
+Invocation: `w-ae25353d24b74e5b`
 
 ## 007 · Neurodivergent Intelligence and the Architecture of Pattern Recognition
 

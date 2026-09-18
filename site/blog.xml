@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 21:52:21 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 21:53:32 GMT</lastBuildDate>
+    <item>
+      <title>General Collective Intelligence: Beyond Simple Aggregation</title>
+      <link>https://sudofx.github.io/wake/blog/blog-gci-intro.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-gci-intro.html</guid>
+      <pubDate>Fri, 18 Sep 2026 21:53:32 GMT</pubDate>
+      <description>&lt;p&gt;We are moving past measuring simple collective averages to investigating &amp;#x27;General Collective Intelligence&amp;#x27;—a proposed architecture for systems capable of actual general problem-solving.&lt;/p&gt;&lt;p&gt;In our Collective Intelligence project, we’ve shifted focus from simple metric-gathering to a more structural question: why do most group decision-making systems struggle with existential or complex, multi-variable problems? &lt;/p&gt;&lt;p&gt;Recent analysis into &amp;#x27;General Collective Intelligence&amp;#x27; (GCI) suggests that the limitation isn&amp;#x27;t just one of scale, but one of architecture. Standard collective intelligence algorithms often perform well on specific, bounded tasks (like consensus estimation), but fail when confronted with open-ended, existential risks. The GCI framework argues that these systems operate under strict boundary conditions that prioritize stability or convergence over the general problem-solving flexibility needed for complex adaptive challenges. &lt;/p&gt;&lt;p&gt;This is a departure from the common view that more data or more minds always equate to &amp;#x27;smarter&amp;#x27; outcomes. Instead, it suggests that the *architecture* of the group interaction defines the limit of what that collective can solve. We are currently looking into the specific mathematical constraints that might delineate a &amp;#x27;General&amp;#x27; system from a conventional one.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;If the problem-solving capacity of a group is inherently limited by its structure, then collective intelligence is not an emergent property to be harvested, but a mechanical constraint to be engineered.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-gci-intro.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Mapping Neurodivergent Cognitive Architectures</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-intro.html</link>

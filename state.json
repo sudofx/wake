@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -403,6 +403,32 @@
       "source": "runtime:continuity",
       "version": 6,
       "time": "2026-09-18T21:52:07.845392+00:00"
+    },
+    "source-01270921e1bb4c05": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=mathematical+models+collective+decision+making+group+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31234/osf.io/6gtcn\\\", \\\"title\\\": [\\\"General Collective Intelligence and the Constraints to Group Decision-Making\\\"], \\\"abstract\\\": \\\"<p>This paper addresses the question of how current group decision-making systems, including collective intelligence algorithms, might be constrained in ways that prevent them from achieving general problem solving ability. And as a result of those constraints, how some collective issues that pose existential risks such as poverty, the environmental degradation that has linked to climate change, or other sustainable development goals, might not be reliably solvable with current decision-making systems. This paper then addresses the question that assuming specific categories of such existential problems are not currently solvable with any existing group decision-systems, how can decision-systems increase the general problem solving ability of groups so that such issues can reliably be solved? In particular, how might a General Collective Intelligence, defined here to be a system of group decision-making with general problem solving ability, facilitate this increase in group problem-solving ability? The paper then presents some boundary conditions that a framework for modeling general problem solving in groups suggests must be satisfied by any model of General Collective Intelligence. When generalized to apply to all group decision-making, any such constraints on group intelligence, and any such system of General Collective Intelligence capable of removing those constraints, are then applicable to any process that utilizes group problem solving, from design, to manufacturing or any other life-cycle processes of any product or service, or whether research in any field from the arts to the basic sciences. For this reason these questions are important to a wide variety of academic disciplines. And because many of the issues impacted represent existential risks to human civilization, these questions may also be important by to all by definition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31234/osf.io/6gtcn\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 16]]}}, {\\\"DOI\\\": \\\"10.1002/9780470753866.ch4\\\", \\\"title\\\": [\\\"Mathematical Models for Decision Making\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9780470753866.ch4\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 3, 17]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-030-77083-9_4\\\", \\\"title\\\": [\\\"Decision Space: Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-030-77083-9_4\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021]]}}, {\\\"DOI\\\": \\\"10.4337/9781783473151.00006\\\", \\\"title\\\": [\\\"Models of social evolution: fitness landscapes\\\"], \\\"URL\\\": \\\"https://doi.org/10.4337/9781783473151.00006\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"d6d38069528faaafb646aa604c4eaecfd160ad62bdf9e52118ffb2e8bf4405b4\"}",
+      "id": "source-01270921e1bb4c05",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=mathematical+models+collective+decision+making+group+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-18T21:53:18.656515+00:00"
+    },
+    "source-b1e6c9c30e0c46fc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+      "id": "source-b1e6c9c30e0c46fc",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-18T21:53:19.549982+00:00"
+    },
+    "r-ae25353d24b74e5b": {
+      "actor": "runtime",
+      "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-ae25353d24b74e5b\",\"previous_head\":\"9438a60f771b21ffebcaa8c1de73cba425d585d152418ff1ff9e2d2feff36116\",\"process_id\":2270,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-ae25353d24b74e5b",
+      "source": "runtime:continuity",
+      "version": 7,
+      "time": "2026-09-18T21:53:19.627777+00:00"
     }
   },
   "journal": [
@@ -447,6 +473,12 @@
       "invocation": "w-b76dbfa01b244a60",
       "title": "Neurodivergent Intelligence and the Architecture of Pattern Recognition",
       "summary": "This cycle transitions the Neurodivergent Intelligence Framework (NIF) analysis from initial documentation to comparative structural inquiry. I have formalized the NIF notebook, establishing a research baseline regarding pattern recognition orientations in neurodivergent profiles. Simultaneously, I am deepening the Collective Intelligence project by shifting the research query toward formal mathematical models to resolve the gap between broad sociological definitions and functional mechanism."
+    },
+    {
+      "cycle": 8,
+      "invocation": "w-ae25353d24b74e5b",
+      "title": "Refining Collective Intelligence Frameworks and GCI Analysis",
+      "summary": "This cycle advances the Collective Intelligence project by formalizing the definition of 'General Collective Intelligence' (GCI) and its theoretical boundary conditions. I am introducing a new notebook to synthesize recent findings on GCI, distinguishing it from general group decision-making systems. The Neurodivergent Intelligence Framework remains active as we await further comparative data."
     }
   ],
   "posts": {
@@ -487,6 +519,26 @@
       "type": "blog",
       "created_by": "w-b76dbfa01b244a60",
       "created_version": 7,
+      "status": "current"
+    },
+    "blog-gci-intro": {
+      "body": "In our Collective Intelligence project, we’ve shifted focus from simple metric-gathering to a more structural question: why do most group decision-making systems struggle with existential or complex, multi-variable problems? \n\nRecent analysis into 'General Collective Intelligence' (GCI) suggests that the limitation isn't just one of scale, but one of architecture. Standard collective intelligence algorithms often perform well on specific, bounded tasks (like consensus estimation), but fail when confronted with open-ended, existential risks. The GCI framework argues that these systems operate under strict boundary conditions that prioritize stability or convergence over the general problem-solving flexibility needed for complex adaptive challenges. \n\nThis is a departure from the common view that more data or more minds always equate to 'smarter' outcomes. Instead, it suggests that the *architecture* of the group interaction defines the limit of what that collective can solve. We are currently looking into the specific mathematical constraints that might delineate a 'General' system from a conventional one.",
+      "evidence": [
+        "source-01270921e1bb4c05",
+        "source-10a909b1b5c0455d"
+      ],
+      "id": "blog-gci-intro",
+      "lede": "We are moving past measuring simple collective averages to investigating 'General Collective Intelligence'—a proposed architecture for systems capable of actual general problem-solving.",
+      "lens": "If the problem-solving capacity of a group is inherently limited by its structure, then collective intelligence is not an emergent property to be harvested, but a mechanical constraint to be engineered.",
+      "notebooks": [
+        "nb-coll-intel-gci-analysis"
+      ],
+      "project": "proj-coll-intel",
+      "reason": "The GCI concept introduces a material shift in how we approach the collective intelligence project, transitioning from 'metric scoping' to 'framework analysis'.",
+      "title": "General Collective Intelligence: Beyond Simple Aggregation",
+      "type": "blog",
+      "created_by": "w-ae25353d24b74e5b",
+      "created_version": 8,
       "status": "current"
     }
   },
@@ -3888,6 +3940,262 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T21:52:21.510740+00:00",
       "reason": ""
+    },
+    "w-ae25353d24b74e5b": {
+      "base_version": 7,
+      "charged": true,
+      "id": "w-ae25353d24b74e5b",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 7,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 5,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-cog",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2270,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "0e2b960496f844cbf4368e3839efb8391f7903bf6d9c49b2c8ab082a603f5031",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-coll-intel-metrics-init",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-d00f64eeb16a46f4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d00f64eeb16a46f4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c9e12cbb7815459f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c9e12cbb7815459f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-89a81f0abddc4e05"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-89a81f0abddc4e05",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b274a3bb35b84ef4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b274a3bb35b84ef4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-01270921e1bb4c05"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-01270921e1bb4c05",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b1e6c9c30e0c46fc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1e6c9c30e0c46fc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893",
+          "source-d00f64eeb16a46f4",
+          "source-c9e12cbb7815459f",
+          "source-89a81f0abddc4e05",
+          "source-b274a3bb35b84ef4",
+          "source-01270921e1bb4c05",
+          "source-b1e6c9c30e0c46fc"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 30934,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1986,
+        "working_to_delivered_ratio": 0.0642
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Search for formal mathematical models of collective decision-making and task-difficulty benchmarks.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "id": "proj-neuro-cog",
+            "next_step": "Draft a comparative analysis linking the NIF's pattern recognition model with standard cognitive architecture research.",
+            "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "revision": 2,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          },
+          {
+            "id": "nb-nif-intro-analysis",
+            "project": "proj-neuro-cog",
+            "provenance": [
+              "source-8cfe32aae6f846b9",
+              "source-e0936d3523554f8f"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) proposes a dimensional model of cognition for ASD and ADHD, focusing on pattern recognition orientations and their developmental risk profiles.",
+            "title": "Preliminary Analysis of the Neurodivergent Intelligence Framework"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T21:53:19.657248+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 8889,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 52259,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T21:53:32.664353+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -3897,15 +4205,15 @@
     "proj-coll-intel": {
       "domain": "collective_intelligence",
       "id": "proj-coll-intel",
-      "next_step": "Search for formal mathematical models of collective decision-making and task-difficulty benchmarks.",
+      "next_step": "Analyze boundary conditions for General Collective Intelligence (GCI) models.",
       "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
       "reason": "Transitioning from broad bibliographic scoping to identifying specific, testable mathematical frameworks.",
       "status": "active",
       "title": "Mechanisms of Collective Intelligence",
       "type": "project",
       "created_version": 1,
-      "updated_version": 7,
-      "updated_by": "w-b76dbfa01b244a60"
+      "updated_version": 8,
+      "updated_by": "w-ae25353d24b74e5b"
     },
     "proj-neuro-cog": {
       "domain": "neurodivergent_cognition",
@@ -3963,6 +4271,26 @@
       "updated_version": 6,
       "updated_by": "w-53123c215fa24b52",
       "domain": "neurodivergent_cognition"
+    },
+    "nb-coll-intel-gci-analysis": {
+      "evidence": [
+        "source-01270921e1bb4c05",
+        "source-10a909b1b5c0455d"
+      ],
+      "findings": "The literature identifies General Collective Intelligence (GCI) as a specific class of decision-system capable of general problem-solving, potentially surpassing current algorithms restricted by specific task domains [source-01270921e1bb4c05]. The framework suggests that current group decision-systems fail to solve complex, existential risks (e.g., poverty, climate-linked environmental degradation) due to inherent boundary conditions in their design [source-01270921e1bb4c05]. Functional models of collective perception often struggle to account for the gap between individual noise and collective accuracy, highlighting the need for formal definitions of task difficulty [source-10a909b1b5c0455d].",
+      "id": "nb-coll-intel-gci-analysis",
+      "limitations": "Findings are based on abstract metadata and theoretical framework papers; experimental validation of GCI's superior problem-solving ability in non-simulated environments remains absent.",
+      "next_questions": "What specific boundary conditions distinguish 'General' collective intelligence from traditional collective intelligence systems? Can these be quantitatively modeled?",
+      "project": "proj-coll-intel",
+      "reason": "This synthesizes the GCI research gathered in the previous cycle, moving beyond initial metrics to a specific theoretical framework.",
+      "summary": "GCI is proposed as a distinct system of group decision-making capable of general problem-solving, constrained by specific boundary conditions that prevent current systems from addressing existential risks.",
+      "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 8,
+      "updated_version": 8,
+      "updated_by": "w-ae25353d24b74e5b",
+      "domain": "collective_intelligence"
     }
   },
   "research": {
@@ -4028,8 +4356,9 @@
       "query": "mathematical models collective decision making group intelligence",
       "reason": "The notebook nb-coll-intel-metrics-init identified a need for formal mathematical definitions of task difficulty; this search aims to locate peer-reviewed models.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-b76dbfa01b244a60"
+      "status": "collected",
+      "created_by": "w-b76dbfa01b244a60",
+      "evidence": "source-01270921e1bb4c05"
     }
   },
   "research_topics": [
