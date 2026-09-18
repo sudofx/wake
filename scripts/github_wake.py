@@ -37,7 +37,9 @@ def set_step_output(name, value):
 def requires_operator_attention(result):
     """Separate research/provider outcomes from infrastructure failures worth paging a human."""
     status = result.get("status")
-    if status in ("accepted", "deferred", "waiting", "not_started"):
+    # Research/governance rejections are expected quality-control outcomes:
+    # preserve and publish them, but do not fail the GitHub workflow or page the operator.
+    if status in ("accepted", "deferred", "waiting", "not_started", "rejected"):
         return False
 
     provider_error = result.get("provider_error", {})
