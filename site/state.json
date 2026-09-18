@@ -517,6 +517,32 @@
       "source": "runtime:continuity",
       "version": 9,
       "time": "2026-09-18T21:56:39.335238+00:00"
+    },
+    "source-3cd63e4c334746c5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5c2ecc3ca1c6fcfff20ee4e2c434f38576d8a86b7cf4c740f78225a036c41f18\"}",
+      "id": "source-3cd63e4c334746c5",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 9,
+      "time": "2026-09-18T21:57:45.209269+00:00"
+    },
+    "source-55b1f7cb711d4f97": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"88daad9ce2186a1376adea731b20e38db1794af89fda5112c04f108c02e20ce3\"}",
+      "id": "source-55b1f7cb711d4f97",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 9,
+      "time": "2026-09-18T21:57:46.135222+00:00"
+    },
+    "r-bea254af79834584": {
+      "actor": "runtime",
+      "content": "{\"base_version\":9,\"inherited_commitments\":[\"commit-nif-analysis-draft\"],\"invocation\":\"w-bea254af79834584\",\"previous_head\":\"f42b063709441bb371a432774b025b9c7f6cf72fda0663544a0eced246c457ff\",\"process_id\":2035,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-bea254af79834584",
+      "source": "runtime:continuity",
+      "version": 9,
+      "time": "2026-09-18T21:57:46.191291+00:00"
     }
   },
   "journal": [
@@ -5164,6 +5190,328 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T21:56:56.163931+00:00",
       "reason": "A revision needs changed findings and newly retrieved evidence"
+    },
+    "w-bea254af79834584": {
+      "base_version": 9,
+      "charged": true,
+      "id": "w-bea254af79834584",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 9,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-cog",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2035,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "6e2206597ab1753ac48452919883fc322dedc2790f91ffd11dd952b35cf0e841",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-coll-intel-metrics-init",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-nif-analysis-draft",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-cd6ea5eb0e394755"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cd6ea5eb0e394755",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-54ad0c7c052e41e5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-54ad0c7c052e41e5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5af7b633f42d4b32"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5af7b633f42d4b32",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-693f743d7e1a4635"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-693f743d7e1a4635",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3cd63e4c334746c5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3cd63e4c334746c5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-55b1f7cb711d4f97"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-55b1f7cb711d4f97",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893",
+          "source-cd6ea5eb0e394755",
+          "source-54ad0c7c052e41e5",
+          "source-5af7b633f42d4b32",
+          "source-693f743d7e1a4635",
+          "source-3cd63e4c334746c5",
+          "source-55b1f7cb711d4f97"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 29586,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2681,
+        "working_to_delivered_ratio": 0.0906
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Analyze boundary conditions for General Collective Intelligence (GCI) models.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "id": "proj-neuro-cog",
+            "next_step": "Draft a comparative analysis linking the NIF's pattern recognition model with standard cognitive architecture research.",
+            "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 10,
+            "id": "commit-nif-analysis-draft",
+            "reason": "This is the next step for project proj-neuro-cog; I need time to synthesize the existing sources before drafting.",
+            "task": "Draft a comparative analysis between the NIF cognitive architecture and standard models."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "revision": 2,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          },
+          {
+            "id": "nb-nif-intro-analysis",
+            "project": "proj-neuro-cog",
+            "provenance": [
+              "source-8cfe32aae6f846b9",
+              "source-e0936d3523554f8f"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) proposes a dimensional model of cognition for ASD and ADHD, focusing on pattern recognition orientations and their developmental risk profiles.",
+            "title": "Preliminary Analysis of the Neurodivergent Intelligence Framework"
+          },
+          {
+            "id": "nb-coll-intel-gci-analysis",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-01270921e1bb4c05",
+              "source-10a909b1b5c0455d"
+            ],
+            "revision": 1,
+            "summary": "GCI is proposed as a distinct system of group decision-making capable of general problem-solving, constrained by specific boundary conditions that prevent current systems from addressing existential risks.",
+            "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T21:57:46.212271+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 37988,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50750,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T21:58:28.801737+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 37988,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 37988,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 50750,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 50750,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
