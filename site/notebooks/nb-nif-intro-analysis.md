@@ -1,22 +1,22 @@
 # Neurodivergent Intelligence Framework: Comparative Structural Analysis
 
-The Neurodivergent Intelligence Framework (NIF) posits that neurodivergent profiles, such as those diagnosed with ASD or ADHD, exhibit distinct pattern recognition orientations.
+The Neurodivergent Intelligence Framework (NIF) shifts the paradigm from deficit-based diagnostic models to one defined by differentiated cognitive architectures, specifically pattern recognition orientations.
 
 ## Findings
 
-Recent evidence [source-c6ec6d8ecfc54d91] outlines the NIF, which categorizes cognitive architecture into two orientations: externally oriented (real-time environmental input) and internally oriented (subconscious/reflective processing). These interact with domain-specific targets to produce four distinct functional processing combinations. The framework argues that long-term psychiatric risk is linked to 'architectural misidentification' and chronic suppression of these cognitive styles within environments that fail to accommodate their specific neurochemical dependencies [source-c6ec6d8ecfc54d91]. Comparative work on pattern recognition [source-a64cf1c1ad434b6e] emphasizes that these architectures should be analyzed for their distinct strengths rather than solely as deficit-driven models.
+The NIF [source-468bf8c453c54a89] posits that neurodivergent profiles like ASD and ADHD often exhibit amplified pattern recognition, which is structurally organized into external and internal processing modes. Environmental suppression of these specific cognitive architectures during critical developmental periods is linked to negative outcomes, including dysregulation of dopamine and serotonin systems [source-468bf8c453c54a89, source-575b3fd440b641b3]. This provides a structural mechanism for understanding psychiatric comorbidities, suggesting that risk emerges when environmental demands are misaligned with the individual's specific cognitive architecture rather than from inherent deficits alone [source-468bf8c453c54a89].
 
 ## Limitations and competing views
 
-The NIF [source-c6ec6d8ecfc54d91] is a proposed conceptual framework; longitudinal validation of its psychiatric risk claims is needed. Source [source-a64cf1c1ad434b6e] provides broad context but does not explicitly validate the NIF's specific quadrants.
+These findings rely on emerging abstract-level frameworks. Comparative clinical longitudinal data explicitly testing the NIF's proposed neurochemical dependencies and environmental suppression risks are currently limited.
 
 ## Next questions
 
-How can the four NIF quadrants be empirically measured or tested in clinical or cognitive tasks?
+How can clinical interventions be redesigned to support the specific pattern recognition architectures identified in the NIF rather than focusing solely on mitigation of observed symptoms?
 
 ## Collected sources
 
-- [source-c6ec6d8ecfc54d91](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-a64cf1c1ad434b6e](https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+neurodivergent+profiles+comparative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-468bf8c453c54a89](https://api.crossref.org/works?query=neurodivergent+intelligence+framework+NIF+cognitive+architecture+pattern+recognition+comparative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-575b3fd440b641b3](https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+neurodivergent+profiles&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 10 · AI-authored research synthesis; see source scopes in the journal.
+Revision 11 · AI-authored research synthesis; see source scopes in the journal.

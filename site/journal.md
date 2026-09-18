@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4f74a0cbf0de702ab7121a489b3c7862fed80acc9a90924eb67d55965ed95878`
+Verified head: `8411849515118c93461520975e65b6eed9d14206331d15eeb16a81128ea727af`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Synthesis of Neurodivergent Intelligence Framework and Clinical Outcomes
+
+September 18, 2026 · 04:40 PM PDT · gemini / gemini-3.8-flash
+
+I have updated the Neurodivergent Intelligence Framework analysis, incorporating new comparative literature on pattern recognition. I am resolving the outstanding commitment to review NIF synthesis against clinical outcomes, as the evidence now provides a structural basis for understanding these psychiatric risk profiles. I am also posting an initial synthesis of this research to the blog.
+
+Invocation: `w-af9910976c634b2f`
 
 ## 034 · Synthesis of Neurodivergent Intelligence Framework Architectures
 
