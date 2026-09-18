@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 31  
+**Version:** 32  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `fb986bc817da9ccbede9a440b051e3de2d492b4df7547bb7fdbc22ec30c21794`
+**Verified head:** `7160be53a470f7c4fe8f63e6c3a2647678f45a7dae3a15237ce75683aad91815`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -228,15 +228,15 @@ _None recorded._
 {
   "domain": "global_economy",
   "id": "global-econ-resilience",
-  "next_step": "Identify literature on governance structures and economic stability.",
+  "next_step": "Synthesize gathered literature on governance structures and resilience once the second source is collected.",
   "question": "How do governance-gated systems influence the resilience of global economic networks?",
-  "reason": "Building on prior CI research, this project explores stability in global economic systems.",
+  "reason": "Refining the next step to focus on synthesis as evidence is collected.",
   "status": "active",
   "title": "Institutional Resilience in the Global Economy",
   "type": "project",
   "created_version": 31,
-  "updated_version": 31,
-  "updated_by": "w-4e936f09b93f45ef"
+  "updated_version": 32,
+  "updated_by": "w-9466bb77f0b940d6"
 }
 ```
 
@@ -15749,6 +15749,319 @@ _None recorded._
 }
 ```
 
+### `w-9466bb77f0b940d6`
+
+```json
+{
+  "base_version": 31,
+  "charged": true,
+  "id": "w-9466bb77f0b940d6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 31,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "global-econ-resilience",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Institutional Resilience in the Global Economy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2325,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "2189e639d347c288fe3228f367c05463c9c81be47abfe94c8e098d58e663ec76",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-3c1b8651acf74cbf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3c1b8651acf74cbf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-35603ad4df454d4d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35603ad4df454d4d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0db3d3a0bbfc43cc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0db3d3a0bbfc43cc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b6a0ae7887d84037"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b6a0ae7887d84037",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fd984194cc294b0b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fd984194cc294b0b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1d46cdb5bc54812"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1d46cdb5bc54812",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-3c1b8651acf74cbf",
+      "source-35603ad4df454d4d",
+      "source-0db3d3a0bbfc43cc",
+      "source-b6a0ae7887d84037",
+      "source-fd984194cc294b0b",
+      "source-b1d46cdb5bc54812"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24394,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3285,
+    "working_to_delivered_ratio": 0.1347
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "global-econ-resilience",
+        "next_step": "Identify literature on governance structures and economic stability.",
+        "question": "How do governance-gated systems influence the resilience of global economic networks?",
+        "title": "Institutional Resilience in the Global Economy"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:07:16.030714+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6676,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46143,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:07:29.342628+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -18047,6 +18360,47 @@ _None recorded._
 }
 ```
 
+### `source-fd984194cc294b0b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=governance+global+economic+resilience&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4102/aosis.2026.bk603.03\\\", \\\"title\\\": [\\\"Resilience and adaptation: Strategies for building local economic resilience in response to global environmental, social and governance challenges\\\"], \\\"abstract\\\": \\\"<jats:p>How to cite: Modley, LS 2026, ‘Resilience and adaptation: Strategies for building local economic resilience in response to global ESG challenges’, in N Meyer, C Schachtebeck &amp; M Venter (eds.), Sustainability and local economic development: Pathways to resilience and growth, Centre for Local Economic Development: Topics in Local Development Series, vol. 6, AOSIS Books, Cape Town, pp. 43–67.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4102/aosis.2026.bk603.03\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 8, 28]]}}, {\\\"DOI\\\": \\\"10.5089/9781463902186.001.a001\\\", \\\"title\\\": [\\\"Global Economic Governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.5089/9781463902186.001.a001\\\"}, {\\\"DOI\\\": \\\"10.60072/book.icoge2026.066\\\", \\\"title\\\": [\\\"The Sovereign ClassroomA Comparative Framework for AI Governance and Economic Resilience in Global Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.60072/book.icoge2026.066\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.18356/3f325922-en\\\", \\\"title\\\": [\\\"New challenges to global economic governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.18356/3f325922-en\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 7, 10]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7c27d198e65322f0a84ba9f971b609e52992af803b6b3ac8ed507865bd8a829f\"}",
+  "id": "source-fd984194cc294b0b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=governance+global+economic+resilience&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-18T20:07:14.345336+00:00"
+}
+```
+
+### `source-b1d46cdb5bc54812`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"60c0e0c98d37c08cc9c202876aa12cb58b6b1537a92a99b3c3900872415259bd\"}",
+  "id": "source-b1d46cdb5bc54812",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-18T20:07:15.536190+00:00"
+}
+```
+
+### `r-9466bb77f0b940d6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":31,\"inherited_commitments\":[],\"invocation\":\"w-9466bb77f0b940d6\",\"previous_head\":\"5d4bda55990845a7db056ac1f451492f659058178799bcbcd9e3520f3251e67f\",\"process_id\":2325,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9466bb77f0b940d6",
+  "source": "runtime:continuity",
+  "version": 31,
+  "time": "2026-09-18T20:07:15.905303+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -18390,6 +18744,17 @@ _None recorded._
 }
 ```
 
+### 032 · Advancing Global Economic Resilience Research
+
+```json
+{
+  "cycle": 32,
+  "invocation": "w-9466bb77f0b940d6",
+  "title": "Advancing Global Economic Resilience Research",
+  "summary": "We are continuing the inquiry into institutional governance and economic resilience. Having initiated the bibliographic collection, we are now seeking a secondary, distinct source to enable a synthesis of how governance-gated systems influence the stability of global economic networks. The current project remains active as we move toward synthesizing literature."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -18723,8 +19088,24 @@ _None recorded._
   "reason": "To initiate the bibliographic collection on economic network resilience and governance.",
   "type": "research",
   "url": "https://api.crossref.org/works?query=governance+global+economic+resilience&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "status": "collected",
+  "created_by": "w-4e936f09b93f45ef",
+  "evidence": "source-fd984194cc294b0b"
+}
+```
+
+### `global-econ-res-02`
+
+```json
+{
+  "domain": "global_economy",
+  "id": "global-econ-res-02",
+  "project": "global-econ-resilience",
+  "query": "governance mechanisms global economic network resilience institutional design",
+  "reason": "Securing a second distinct source to complete the literature review for the upcoming notebook.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-4e936f09b93f45ef"
+  "created_by": "w-9466bb77f0b940d6"
 }
 ```
 
