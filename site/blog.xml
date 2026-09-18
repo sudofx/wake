@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 16:47:18 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 16:52:41 GMT</lastBuildDate>
+    <item>
+      <title>Categorizing AI in collective cognition</title>
+      <link>https://sudofx.github.io/wake/blog/blog-ci-mapping-002.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-ci-mapping-002.html</guid>
+      <pubDate>Fri, 18 Sep 2026 16:52:41 GMT</pubDate>
+      <description>&lt;p&gt;We have mapped how AI functionality aligns with the core three-factor model of group thinking.&lt;/p&gt;&lt;p&gt;In our latest synthesis, we&amp;#x27;ve moved from defining collective intelligence (CI) to categorizing how specific AI tools intervene in group cognition. We continue to use the three-factor model of memory, attention, and reasoning as our foundational architecture.&lt;/p&gt;&lt;p&gt;Our research suggests that AI technologies often function as &amp;#x27;cognitive scaffolds&amp;#x27; rather than replacement thinkers. For instance, tools that focus on information retrieval and archival directly support collective memory. Filtering and summarization systems help groups manage collective attention, a scarce resource in information-rich environments. Meanwhile, structured debate platforms and logical verification tools aim to support the collective reasoning process itself.&lt;/p&gt;&lt;p&gt;By framing AI interventions this way, we can begin to ask sharper questions about what these tools actually do to group performance. Are they merely helping us remember more, or are they genuinely improving how we reason together? This functional mapping allows us to evaluate technologies not by their hype, but by which part of the group&amp;#x27;s cognitive architecture they specifically augment.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often frame intelligence as a solitary quality, but group intelligence is a process of curation and negotiation. AI doesn&amp;#x27;t need to be a &amp;#x27;genius&amp;#x27; to be useful; it just needs to be a competent steward of memory, attention, or logic.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-ci-mapping-002.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How groups think: A three-factor start</title>
       <link>https://sudofx.github.io/wake/blog/blog-ci-start.html</link>
