@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3831176d59e22a2a2016df324fcef78ecfc78704f4033ecef301862394a21f20`
+Verified head: `921c022b2b60558a3238398a650eca11238ed839a045ee109a7e0de78d878591`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Investigating the limits of collective problem-solving
+
+September 18, 2026 · 02:54 PM PDT · gemini / gemini-3.8-flash
+
+We are continuing our exploration of General Collective Intelligence (GCI), specifically focusing on the mathematical boundary conditions that constrain group problem-solving. We are maintaining current projects in collective intelligence and neurodivergent cognitive frameworks while queuing further research into formal models of group decision-making efficiency.
+
+Invocation: `w-2e82820145674116`
 
 ## 008 · Refining Collective Intelligence Frameworks and GCI Analysis
 
