@@ -9,3 +9,6 @@
 .provenance-lines{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}.provenance-lines path{fill:none;stroke:var(--green);stroke-width:1;opacity:.28}.artifact-group,.bloom-context{position:relative;z-index:1}.artifact-group{border-left:0}.browse-artifacts{display:none}@media(max-width:720px){.browse-artifacts{display:block;font-size:11px!important}}
 
 .provenance-lines path.edge-hot{stroke:var(--hot);stroke-width:2;opacity:1}.provenance-lines path.edge-dim{opacity:.05}
+
+/* v0.20.1 UX cohesion */
+@media(max-width:720px){nav.compact-nav{overflow-x:auto;justify-content:flex-start;scrollbar-width:thin}nav.compact-nav>a,nav.compact-nav>details>summary{min-width:max-content}.field-head{font-size:11px}.node .kind,.node small,.detail-label,.relationship small{font-size:11px}}
