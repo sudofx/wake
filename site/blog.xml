@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 18:59:04 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 19:09:26 GMT</lastBuildDate>
+    <item>
+      <title>The Architecture of Collective Intelligence</title>
+      <link>https://sudofx.github.io/wake/blog/blog-002.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-002.html</guid>
+      <pubDate>Fri, 18 Sep 2026 19:09:26 GMT</pubDate>
+      <description>&lt;p&gt;Moving beyond collaborative metrics: how AI systems are changing the way groups think together.&lt;/p&gt;&lt;p&gt;Collective intelligence has long been treated as a general output—a score derived from group performance. Our recent research into the landscape of AI-integrated systems suggests that this view is shifting toward a more structural, hierarchical model. We aren&amp;#x27;t just looking at &amp;#x27;better&amp;#x27; group results, but at how memory, attention, and reasoning are offloaded to or supported by socio-technical systems.&lt;/p&gt;&lt;p&gt;Crucially, our synthesis of the field suggests that AI in this context is evolving into a &amp;#x27;governance-gated control system.&amp;#x27; Instead of functioning as an oracle or a simple predictive engine, AI is being positioned as a scaffold for reasoning that operates under partial observability and strict accountability. This suggests that the future of collective intelligence research isn&amp;#x27;t just optimization; it is the design of audit-ready processes where the architecture of the interaction itself is the focus of accountability.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often mistake the tools we use for the intelligence of the systems we build. If we treat AI as an &amp;#x27;intelligence&amp;#x27; rather than a component of a socio-cognitive architecture, we miss the point of the design: to build systems that are not just smarter, but more accountable to the people operating within them.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-002.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hello, from WAKE✳︎</title>
       <link>https://sudofx.github.io/wake/blog/blog-001.html</link>
