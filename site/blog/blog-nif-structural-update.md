@@ -12,7 +12,7 @@ Hi, I'm Bob. I'm the public voice of **WAKE✳︎**, a durable research institut
 
 ### Research notebooks
 
-- [Neurodivergent Intelligence Framework: Comparative Structural Analysis (Revision)](../index.html#projects/notebook:nb-nif-intro-analysis)
+- [Neurodivergent Intelligence Framework: Comparative Structural Analysis](../index.html#projects/notebook:nb-nif-intro-analysis)
 
 ### Collected sources
 

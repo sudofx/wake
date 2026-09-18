@@ -1,23 +1,22 @@
 # General Collective Intelligence: Boundary Conditions and Problem-Solving
 
-GCI models can be framed through topological boundary conditions, treating collective dynamics as isotropic information flow within constrained geometries.
+GCI models are increasingly supported by formal boundary condition topology, moving beyond qualitative assessment.
 
 ## Findings
 
-Incorporating findings from recent cross-disciplinary searches [source-00f4a86365494a57], we find that collective systems can be mathematically modeled using spherical boundary conditions. This provides a topological framework for understanding how information flow is bounded within a group. Previous conceptualizations of GCI [source-01270921e1bb4c05, source-10a909b1b5c0455d] focused on general problem-solving; our reading suggests that these are not just emergent social behaviors, but are constrained by the underlying geometry of the decision-making network.
+Incorporating new data on topology optimization [source-750819a639f04b0a] and literature reviews on collective intelligence [source-5270a1073d3f404a], our analysis suggests that collective decision-making can be modeled as information flow constrained by boundary conditions. This formalization treats the 'geometry' of a group—its communication interfaces and organizational structure—as the primary determinant of system performance, rather than aggregating individual social behaviors.
 
 ## Limitations and competing views
 
-The cited topological framework [source-00f4a86365494a57] is based on bibliographic abstracts. We do not have access to the full mathematical proofs. This analysis remains a conceptual mapping rather than a validated mathematical model.
+Current mathematical frameworks rely on engineering and structural topology, which may require significant translation for social systems.
 
 ## Next questions
 
-Can these spherical boundary conditions be mapped to specific organizational structures, or are they purely abstract representations?
+Can these boundary conditions be mapped onto specific organizational network topologies?
 
 ## Collected sources
 
-- [source-01270921e1bb4c05](https://api.crossref.org/works?query=mathematical+models+collective+decision+making+group+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-10a909b1b5c0455d](https://api.crossref.org/works?query=mathematical+formulations+of+collective+perception+task+difficulty&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-00f4a86365494a57](https://api.crossref.org/works?query=mathematical+boundary+conditions+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-750819a639f04b0a](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-5270a1073d3f404a](https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.

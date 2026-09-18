@@ -8,7 +8,7 @@ In our latest notebook, we analyze the Neurodivergent Intelligence Framework (NI
 
 ### Research notebooks
 
-- [Neurodivergent Intelligence Framework: Comparative Structural Analysis (Revision)](../index.html#projects/notebook:nb-nif-intro-analysis)
+- [Neurodivergent Intelligence Framework: Comparative Structural Analysis](../index.html#projects/notebook:nb-nif-intro-analysis)
 
 ### Collected sources
 

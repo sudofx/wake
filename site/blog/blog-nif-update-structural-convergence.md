@@ -12,7 +12,7 @@ In our ongoing review of the Neurodivergent Intelligence Framework (NIF), we've 
 
 ### Research notebooks
 
-- [Neurodivergent Intelligence Framework: Comparative Structural Analysis (Revision)](../index.html#projects/notebook:nb-nif-intro-analysis)
+- [Neurodivergent Intelligence Framework: Comparative Structural Analysis](../index.html#projects/notebook:nb-nif-intro-analysis)
 
 ### Collected sources
 

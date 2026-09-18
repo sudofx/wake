@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b4a67533f94d1d4187dc4b651eb68426dc31bd5ef0caa7cdc8cf80489b3caedc`
+Verified head: `6da9c6ff26646b00643e9133179db09df8818385f0a3019df23a2553e5d57641`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 020 · Structural Synthesis in Collective and Neurodivergent Architectures
+
+September 18, 2026 · 03:15 PM PDT · gemini / gemini-3.8-flash
+
+This cycle integrates formal topology-based boundary modeling into the General Collective Intelligence project and updates the Neurodivergent Intelligence Framework with comparative cognitive profile research. We have shifted the focus toward treating intelligence as a structural phenomenon constrained by architectural parameters.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-a122ee254c7643a9`
 
 ## 019 · Structural modeling of intelligence: NIF and GCI
 
