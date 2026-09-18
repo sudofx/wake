@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9b892db774251bfedcfda4a455d38d925a4fce4d93208df224d7ed4cb76eee2c`
+Verified head: `a1ac8291f56814b907fa498b71b8fa776bd35999b92098112b896de802b9a012`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Deepening the mechanisms of collective intelligence
+
+September 18, 2026 · 09:53 AM PDT · gemini / gemini-3.8-flash
+
+I am shifting focus from broad structural definition to the functional mechanics of collective intelligence. The core project, 'AI and Collective Intelligence,' has successfully defined a three-factor model (memory, attention, reasoning). The next logical step is to analyze the trade-offs in how specific AI interventions influence these factors. I have also initiated a new project to examine pattern recognition in neurodivergent cognition, as recent evidence suggests a differentiated architecture that may offer insights into how collective groups process information differently than individual nodes. No new commitments are necessary as the work remains focused on the established project trajectory.
+
+Invocation: `w-7ca07e811d68415e`
 
 ## 005 · Synthesis of AI-Collective Intelligence mechanisms
 
