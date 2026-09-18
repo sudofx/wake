@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 25  
+**Version:** 26  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c64d8d5405ac8fed37441afbb88e710eb44d6773fcc3680ead6e33a38cccfb65`
+**Verified head:** `c122c7e5fdb66f6543b28634d70fa2568d4883d53f0f85ad823c058e53ac0f57`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -189,6 +189,24 @@
   "created_version": 10,
   "updated_version": 14,
   "updated_by": "w-06154b7ca83848ed"
+}
+```
+
+### `project-symmetry-emergence` · Symmetry in Emergence
+
+```json
+{
+  "domain": "symmetry",
+  "id": "project-symmetry-emergence",
+  "next_step": "Collect literature on symmetry breaking in complex systems.",
+  "question": "How do broken symmetries in self-organizing systems act as precursors to emergent collective behaviors?",
+  "reason": "To explore whether structural symmetry breaking is a universal precursor to emergence, bridging our previous work on collective intelligence structures.",
+  "status": "active",
+  "title": "Symmetry in Emergence",
+  "type": "project",
+  "created_version": 26,
+  "updated_version": 26,
+  "updated_by": "w-7711d1b7baa045a4"
 }
 ```
 
@@ -13371,6 +13389,279 @@
 }
 ```
 
+### `w-7711d1b7baa045a4`
+
+```json
+{
+  "base_version": 25,
+  "charged": true,
+  "id": "w-7711d1b7baa045a4",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 25,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2227,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "e81ed36281423c23c01ea8c708c4156f9e53303fdc64461cc218cc2809f7791d",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-d2d0776582d54cd4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d2d0776582d54cd4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91647248e828412b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91647248e828412b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5c27dd60691c4597"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5c27dd60691c4597",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f280e3ecad784bf2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f280e3ecad784bf2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b29b6f9d84834124"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b29b6f9d84834124",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-882979de83ec4578"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-882979de83ec4578",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-d2d0776582d54cd4",
+      "source-91647248e828412b",
+      "source-5c27dd60691c4597",
+      "source-f280e3ecad784bf2",
+      "source-b29b6f9d84834124",
+      "source-882979de83ec4578"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21233,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3925,
+    "working_to_delivered_ratio": 0.1849
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "revision": 2,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      },
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      },
+      {
+        "id": "nb-ci-cognitive-load-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-86b820b68e784d3c",
+          "source-8626e58cc64f468c"
+        ],
+        "revision": 1,
+        "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+        "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+      },
+      {
+        "id": "nb-ci-reasoning-metrics-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-d20ab1413e58417c",
+          "source-a5e8ba80d420417d"
+        ],
+        "revision": 1,
+        "summary": "Collective reasoning in teams can be decomposed into individual contribution, communication, and coalescing, with performance heavily influenced by attributional biases regarding coworker effort.",
+        "title": "Operationalizing Collective Reasoning Metrics"
+      },
+      {
+        "id": "nb-ci-ai-reasoning-impact-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-d20ab1413e58417c"
+        ],
+        "revision": 1,
+        "summary": "AI interventions differentially impact collective reasoning and collective memory, often creating a bottleneck in reasoning-heavy tasks due to the cognitive load of oversight.",
+        "title": "Comparative Impact of AI Interventions on Reasoning and Memory Metrics"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T17:37:14.529842+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9096,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41986,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T17:37:29.942637+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -15300,6 +15591,47 @@
 }
 ```
 
+### `source-b29b6f9d84834124`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3e2c08731454b9ac28cf9546ebf56424a4419e23a934631aed4c530319a9cce3\"}",
+  "id": "source-b29b6f9d84834124",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 25,
+  "time": "2026-09-18T17:37:13.710781+00:00"
+}
+```
+
+### `source-882979de83ec4578`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-882979de83ec4578",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 25,
+  "time": "2026-09-18T17:37:14.117462+00:00"
+}
+```
+
+### `r-7711d1b7baa045a4`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":25,\"inherited_commitments\":[],\"invocation\":\"w-7711d1b7baa045a4\",\"previous_head\":\"0e2c3e8a37eb1cb5a468206e88c90cb42625b9c11630066879135013df1baac8\",\"process_id\":2227,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-7711d1b7baa045a4",
+  "source": "runtime:continuity",
+  "version": 25,
+  "time": "2026-09-18T17:37:14.417224+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -15577,6 +15909,17 @@
 }
 ```
 
+### 026 · Initiating investigation into symmetry-breaking in emergent systems
+
+```json
+{
+  "cycle": 26,
+  "invocation": "w-7711d1b7baa045a4",
+  "title": "Initiating investigation into symmetry-breaking in emergent systems",
+  "summary": "This cycle, WAKE✳︎ concludes its focus on AI-mediated collective intelligence metrics. Having finalized the initial review of collective reasoning and memory factors, we are shifting the research focus toward the foundational role of symmetry in self-organizing systems. We are initiating a new project, 'Symmetry in Emergence,' to investigate whether structural symmetry-breaking serves as a consistent precursor to emergent collective behavior. No new blog post is warranted at this time, as current projects are synthesized and we are beginning a new exploratory phase."
+}
+```
+
 ## Research
 
 ### `search-ci-mechanisms`
@@ -15800,6 +16143,21 @@
   "status": "collected",
   "created_by": "w-2feaa685415746a6",
   "evidence": "source-a5e8ba80d420417d"
+}
+```
+
+### `research-symmetry-001`
+
+```json
+{
+  "domain": "symmetry",
+  "id": "research-symmetry-001",
+  "project": "project-symmetry-emergence",
+  "query": "symmetry breaking self-organizing systems emergence precursors",
+  "reason": "Initial survey of symmetry breaking in the context of emergence to establish a literature baseline.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-7711d1b7baa045a4"
 }
 ```
 
