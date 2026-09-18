@@ -152,3 +152,7 @@ h2,.section-top h2,.panel h2,.note-card h3,.entry h3,.project-card h3,.notebook-
 .topic-landscape{padding:52px 0;border-top:1px solid var(--line)}.topic-landscape .section-top{margin-bottom:10px}.topic-intro{max-width:760px;margin:0 0 25px;color:var(--muted);font-size:15px;line-height:1.7}.topic-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}.topic-card{display:block;min-width:0;padding:20px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.topic-card:hover{text-decoration:none;background:var(--pale)}.topic-card h3{font:22px/1.2 var(--serif);margin:8px 0 10px}.topic-card p{margin:0;color:var(--muted);font-size:12px}.topic-state{font:9px var(--mono);letter-spacing:1px;color:var(--green)}
 @media(max-width:1000px){.topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.topic-landscape{padding:40px 0}.topic-grid{grid-template-columns:1fr}.topic-card{padding:17px 15px}.topic-card h3{font-size:22px}.topic-intro{font-size:15px}}
+
+
+/* Emphasize non-zero published notebook counts in the research landscape. */
+.topic-notebook-count{color:var(--orange);font-weight:800}
