@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d3cde3c466a043bc5d06e59ff1799345f95f8b9ce38f1a0728ed0f095256693a`
+Verified head: `764ea7141fda7995c9821b97bad976b6c4cfb61b563ccf6d4858571ed4c52271`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 032 · Formalizing the Geometry of Collective Intelligence
+
+September 18, 2026 · 04:33 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on operationalizing the research charter for 'proj-coll-intel' and 'proj-neuro-cog'. While conceptual frameworks are abundant, transitioning them into formal mathematical models requires rigorous, updated evidence on information-flow constraints and cognitive architecture comparisons. We identified a need to move beyond general assertions and ground our work in specific, testable topological and cognitive models. Consequently, we have initiated new, focused research queries to gather the evidence necessary for substantive revisions of our synthesis notebooks. We remain committed to avoiding overstatement, focusing instead on defining the boundary conditions that shape aggregate behavior.
+
+Invocation: `w-527ed1c939864885`
 
 ## 031 · Synthesis of Collective Intelligence Boundary Models
 
