@@ -714,6 +714,32 @@
       "source": "runtime:continuity",
       "version": 12,
       "time": "2026-09-18T19:26:36.420802+00:00"
+    },
+    "source-8752ca6d34d04e84": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=AI+governance+frameworks+institutional+accountability+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2139/ssrn.6067308\\\", \\\"title\\\": [\\\"The AI Governance Market: Institutional Frameworks, Regulatory Architecture, and the Economics of Trust in Artificial Intelligence Systems\\\"], \\\"abstract\\\": \\\"<jats:p>The rapid diffusion of artificial intelligence (AI) across economic sectors has generated substantial efficiency gains while simultaneously amplifying systemic risks related to safety, accountability, bias, and societal trust. As AI systems increasingly influence critical decisions in healthcare, finance, public administration, and security, governance mechanisms have emerged as a central market and policy concern. This manuscript examines the AI governance market as an institutional and economic system encompassing regulatory frameworks, technical standards, compliance tools, organizational practices, and assurance mechanisms designed to manage AI-related risks. Using a conceptual and secondary research methodology, the study analyzes demand drivers, regulatory evolution, technological enablers, and competitive dynamics shaping this market globally. Particular attention is paid to the role of governance in balancing innovation with risk containment, the divergence of regional regulatory approaches, and the emergence of AI governance as a distinct layer within digital infrastructure. The paper contributes to applied industry and policy research by framing AI governance not merely as regulation, but as a market-mediated trust infrastructure essential for sustainable AI deployment.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.6067308\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.3390/aisoc1010004\\\", \\\"title\\\": [\\\"Auditing as a Governance Mechanism for Artificial Intelligence: Institutional Design, Accountability, and Ethical Oversight\\\"], \\\"abstract\\\": \\\"<jats:p>The rapid diffusion of artificial intelligence (AI) across organisational and societal settings has heightened concerns about accountability, transparency, and ethical oversight. Existing governance mechanisms, including regulation and principle-based ethics frameworks, often struggle to address the scale, opacity, and socio-technical complexity of AI systems. In response, auditing has increasingly been proposed as a means of implementing accountability by translating ethical and legal expectations into structured oversight practices. The study employs a structured literature review methodology, analysing 71 peer-reviewed articles published between 2020 and 2025, retrieved from Scopus, Web of Science, and ProQuest. Through thematic synthesis, the review shows that AI auditing has evolved beyond technical verification towards a socio-technical governance infrastructure grounded in transparency, independence, ethics integration, and professionalisation. However, its effectiveness is constrained by persistent challenges, including algorithmic opacity, regulatory lag, fragmented standards, capability gaps, and risks of symbolic compliance. The study positions auditing as both a central tool and a critical institutional challenge within AI governance, offering insights for scholars, regulators, and practitioners seeking durable accountability mechanisms for responsible AI.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/aisoc1010004\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 9, 9]]}}, {\\\"DOI\\\": \\\"10.4324/9781003747567-6\\\", \\\"title\\\": [\\\"Regulatory frameworks for AI and ESG reporting\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003747567-6\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 8, 18]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.7339378\\\", \\\"title\\\": [\\\"Institutional Judgment Governance: Toward a Theory of Reliance, Authority, and Accountability in Human-AI Decision Systems\\\"], \\\"abstract\\\": \\\"<jats:p>Artificial intelligence increasingly participates in the processes through which institutions interpret information, evaluate evidence, generate recommendations, make decisions, and act. Existing research and governance frameworks address AI risk management, human oversight, appropriate reliance, accountability, decision governance, and increasingly autonomous systems. A broader question nevertheless arises: how should institutions govern consequential judgment when the capabilities contributing to decisions and actions are distributed across human and artificial participants? This article advances Institutional Judgment Governance (IJG) as an integrative theoretical framework for examining that problem. IJG is defined as the governance of how institutions form, exercise, distribute, authorize, and evaluate consequential judgment; preserve the capacities required for such judgment; and remain accountable when human and artificial capabilities jointly contribute to organizational decision-making and action. It treats consequential institutional judgment as an institutionally attributable object of governance connecting AI capability with reliance, decision authority, delegated authority, judgment capacity, organizational action, and continuing accountability. The article makes four principal contributions. First, it distinguishes the exercise of institutional judgment from the institution’s continuing judgment capacity. Second, it distinguishes human presence, human oversight, human decision authority, and meaningful human judgment. Third, it identifies a two-sided governance problem: institutions must govern both the decision weight artificial contributions are permitted to carry and the institutional judgment capacity required to evaluate, challenge, and remain accountable for the resulting judgment. Fourth, it organizes the framework through six propositions: Institutional Accountability, Reliance Authorization, Effective Human Decision Authority, Judgment Preservation, Governed Delegation, and Reassessment and Adaptation.&amp;nbsp;IJG complements rather than replaces established approaches to AI risk management, oversight, assurance, decision governance, evidentiary control, and authority allocation. Within IJG, Reliance Authorization is positioned as one governance model for structuring the institutional determination of whether, when, by whose authority, and under what conditions an AI contribution may carry consequential institutional decision weight. IJG’s proposed contribution is therefore configurational and integrative: it treats consequential institutional judgment as the integrative governance object around which Reliance Authorization, decision authority, institutional judgment capacity, accountability, and continuing reassessment are analyzed together.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.7339378\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"bee8cf0b5e0b704cbfe8dc027d15e0a465217aefcc0bda2bffa91bd2873bd8b9\"}",
+      "id": "source-8752ca6d34d04e84",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=AI+governance+frameworks+institutional+accountability+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-18T19:27:41.022271+00:00"
+    },
+    "source-449d7d806aa14ec8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2058c1d9e4a6356adc11c47cbff92c1219239f16911b695fcef3fd785252a9c3\"}",
+      "id": "source-449d7d806aa14ec8",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-18T19:27:42.147245+00:00"
+    },
+    "r-8f45379b85344dd3": {
+      "actor": "runtime",
+      "content": "{\"base_version\":13,\"inherited_commitments\":[],\"invocation\":\"w-8f45379b85344dd3\",\"previous_head\":\"1c28779bdd73dcf4aa416d5df6b2058f6293cafe356c1af6a57e9f9427ce24d1\",\"process_id\":2111,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-8f45379b85344dd3",
+      "source": "runtime:continuity",
+      "version": 13,
+      "time": "2026-09-18T19:27:42.312363+00:00"
     }
   },
   "journal": [
@@ -7251,6 +7277,295 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:26:52.291675+00:00",
       "reason": ""
+    },
+    "w-8f45379b85344dd3": {
+      "base_version": 13,
+      "charged": true,
+      "id": "w-8f45379b85344dd3",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 13,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2111,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "4c33d96c72c264e03f1e08e1cd028516c4cd979e53987f96629a8d6fad2182d1",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-47ec937b8a074981"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-47ec937b8a074981",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-99cc89e567284a88"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-99cc89e567284a88",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-68b96275dcd841f9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-68b96275dcd841f9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f8b4028010564a93"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f8b4028010564a93",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8752ca6d34d04e84",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-449d7d806aa14ec8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-449d7d806aa14ec8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-47ec937b8a074981",
+          "source-99cc89e567284a88",
+          "source-68b96275dcd841f9",
+          "source-f8b4028010564a93",
+          "source-8752ca6d34d04e84",
+          "source-449d7d806aa14ec8"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20201,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2386,
+        "working_to_delivered_ratio": 0.1181
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Collect sources on AI governance in collective intelligence frameworks to examine accountability mechanisms.",
+            "question": "How do governance-gated AI systems interact with institutional and democratic accountability?",
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11"
+            ],
+            "revision": 2,
+            "summary": "Institutional accountability in AI-augmented CI systems requires moving beyond technical verification toward 'Institutional Judgment Governance' (IJG) and socio-technical auditing.",
+            "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+          },
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T19:27:42.356729+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 28626,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 40799,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T19:28:16.759824+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 28626,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 28626,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 40799,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 40799,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -7511,8 +7826,9 @@
       "query": "AI governance frameworks institutional accountability collective intelligence",
       "reason": "To identify specific, actionable frameworks that connect AI governance to institutional accountability, building on the existing 'Institutional Judgment Governance' (IJG) findings.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-21deb5bce9ff45eb"
+      "status": "collected",
+      "created_by": "w-21deb5bce9ff45eb",
+      "evidence": "source-8752ca6d34d04e84"
     }
   },
   "research_topics": [
