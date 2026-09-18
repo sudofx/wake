@@ -86,3 +86,65 @@ body{font-size:16px}
 .masthead nav.compact-nav{font-size:14px}
 .metric-strip,.visit-card,footer{border-color:var(--line)}
 @media(max-width:700px){.wordmark{font-size:34px}.masthead nav.compact-nav{font-size:14px}}
+
+
+/* v0.20.2 — MAP is the visual source of truth across WAKE✳︎.
+   Keep page-specific layout, but use MAP's exact palette, type system, links,
+   controls, surfaces, and dark-theme treatment everywhere. */
+:root{
+  color-scheme:light;
+  --paper:#f7f3ea;--surface:#fffdf8;--ink:#232a26;--muted:#656c60;
+  --line:#d8d0c5;--green:#286d72;--orange:#b84d2e;--accent:#b84d2e;
+  --hot:#a827ff;--pale:#fffdf8;--surface-strong:#fffdf8;--glow:transparent;
+  --mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+  --sans:Arial,Helvetica,sans-serif;--serif:Georgia,serif
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;
+  --line:#32384d;--green:#7dcfff;--orange:#c69cff;--accent:#c69cff;
+  --hot:#ff5ce1;--pale:#1f2335;--surface-strong:#1f2335;--glow:transparent
+}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);transition:none}
+a{color:var(--green)}
+@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-shadow:0 0 12px #a827ff55}}
+.masthead{max-width:none;margin:0;padding:24px 4%;border-bottom:1px solid var(--line)}
+.wordmark{font:900 34px/1 var(--sans);letter-spacing:-2px;color:var(--ink)}
+.asterisk{color:inherit;margin-left:0}
+.wordmark small{color:var(--muted)}
+main{max-width:1800px;padding-left:4%;padding-right:4%}
+footer{max-width:none;margin-left:4%;margin-right:4%;border-color:var(--line)}
+.eyebrow{font:11px/1.6 var(--mono);letter-spacing:.1em;color:var(--green)}
+.hero h1,.page-heading h1,.explore-copy h1,.about-intro h1{
+  font-family:var(--serif);font-weight:400;letter-spacing:-.05em
+}
+.hero h1{font-size:clamp(40px,5vw,72px);line-height:1.05}
+.page-heading h1{font-size:clamp(40px,5vw,72px);line-height:1.05}
+.hero h1 em,.about-intro h1 em,.orange{color:var(--accent)}
+h2,.section-top h2,.panel h2,.note-card h3,.entry h3,.project-card h3,.notebook-card h3{
+  font-family:var(--serif);font-weight:400
+}
+.intro,.entry p,.panel p,.data-card p,.project-card p,.notebook-card p,
+.visit-card p:last-child,.note-card p:not(.eyebrow),.pet-description,
+.blog-card>p:not(.eyebrow),.help-copy p,.page-heading p:last-child{color:var(--muted)}
+.search,.project-card,.notebook-card,.blog-card,.theme-toggle,.record-card,
+.note-card,pre,.panel,.about-contract{background:var(--surface)}
+.text-link{color:var(--green);border-bottom-color:var(--line)}
+.theme-toggle,.more,button{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.theme-toggle:hover,.more:hover{border-color:var(--hot);color:var(--hot)}
+.metric-strip,.visit-card,.latest-observation,.about-principles{border-color:var(--line)}
+:root[data-theme="dark"] .asterisk,
+:root[data-theme="dark"] .masthead nav a[aria-current=page],
+:root[data-theme="dark"] .section-question,
+:root[data-theme="dark"] .help-trigger,
+:root[data-theme="dark"] .text-link,
+:root[data-theme="dark"] .blog-reading blockquote{filter:none}
+:root[data-theme="dark"] .theme-toggle{box-shadow:none}
+@media(max-width:1350px){main{margin-left:0;margin-right:0}}
+@media(max-width:1000px){main{margin-left:0;margin-right:0;padding-left:4%;padding-right:4%}.masthead{padding:24px 4%}}
+@media(max-width:700px){
+  .masthead{padding:20px}
+  main{margin-left:0;margin-right:0;padding-left:18px;padding-right:18px}
+  footer{margin-left:18px;margin-right:18px}
+  .hero h1,.page-heading h1{font-size:40px}
+}
