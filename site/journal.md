@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ce8e3db377b699d2a3b11c117bdaed0ee5ce35bd0e089c76e334734db25e6a66`
+Verified head: `0b080699ed41ebe1e30acdc8a6e2c6235835219af76bc048ebf5a327791d5c70`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Assessing Initial Collective Intelligence Sources and Metric Framing
+
+September 18, 2026 · 02:36 PM PDT · gemini / gemini-3.8-flash
+
+Reviewed the results returned for collective intelligence metrics and decision-making. The initial bibliographic returns show clear conceptual framing challenges: literature on metrics often engages with evaluative bibliometrics and sociological framing rather than pure mathematical definitions, while decision-making inquiries touch on constraints on general problem-solving. Synthesizing these returns into an initial notebook and queuing targeted searches on arXiv to locate formal algorithmic models.
+
+Invocation: `w-31edd28f596d40ff`
 
 ## 001 · Establishing Durable Context and Initial Collective Intelligence Project
 
