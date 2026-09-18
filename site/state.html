@@ -7,7 +7,7 @@
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>2d67665b53b346b80bac2299fece7eb9254c5ad84851c883bade66fda6530604</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 49<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>ci-review-01</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>04f6a1a212ebba14f843ea3794cd99c66f880adf074eb85975872ea1007c4faa</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 49<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>ci-review-01</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 4,
   &quot;id&quot;: &quot;ci-review-01&quot;,
   &quot;reason&quot;: &quot;Once the research search completes, synthesizing the findings into a notebook is the logical next step to document current understanding of the field.&quot;,
@@ -23943,6 +23943,326 @@
     &quot;request_payload_bytes&quot;: 47330,
     &quot;result&quot;: &quot;transient_failure&quot;
   }
+}</pre></div></details><details><summary>w-a16d0f668f3e4a52</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 49,
+  &quot;charged&quot;: true,
+  &quot;id&quot;: &quot;w-a16d0f668f3e4a52&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 49,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;ci-trust-mechanisms&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 2,
+          &quot;notebooks&quot;: 1,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Trust Mechanisms in Collective Intelligence&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2253,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-18&quot;,
+  &quot;request_hash&quot;: &quot;a4025ca464c7fd4bdcc2aa77b3e818a3ca1e7bf519fdbdde7d073065bab0392f&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-0e2d4e8e12f44093&quot;,
+          &quot;source-d0dffa7ef17f4153&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;music-taxonomy-note&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-99d9f5c1db5c4874&quot;,
+          &quot;source-07d0895a7be7467f&quot;,
+          &quot;source-7ac6f0f279384f11&quot;,
+          &quot;source-8752ca6d34d04e84&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;ci-landscape-note&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-377e857d478847c3&quot;,
+          &quot;source-616711c74f684726&quot;,
+          &quot;source-3b6d506685c94175&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;neuro-cog-note&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e749c4be40014051&quot;,
+          &quot;source-377e857d478847c3&quot;,
+          &quot;source-b36d520b619945ce&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;neuro-cog-governance-note&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-bde1f0983ae049f3&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-bde1f0983ae049f3&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-2f6837133dbd46dc&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-2f6837133dbd46dc&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-dcc4bdc7bfa741d7&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-dcc4bdc7bfa741d7&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-f3022873e0d7442d&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-f3022873e0d7442d&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e3cacebfe9f048a8&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e3cacebfe9f048a8&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-774c2836c10a4ac0&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-774c2836c10a4ac0&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-0e2d4e8e12f44093&quot;,
+      &quot;source-d0dffa7ef17f4153&quot;,
+      &quot;source-99d9f5c1db5c4874&quot;,
+      &quot;source-07d0895a7be7467f&quot;,
+      &quot;source-7ac6f0f279384f11&quot;,
+      &quot;source-8752ca6d34d04e84&quot;,
+      &quot;source-377e857d478847c3&quot;,
+      &quot;source-616711c74f684726&quot;,
+      &quot;source-3b6d506685c94175&quot;,
+      &quot;source-e749c4be40014051&quot;,
+      &quot;source-b36d520b619945ce&quot;,
+      &quot;source-bde1f0983ae049f3&quot;,
+      &quot;source-2f6837133dbd46dc&quot;,
+      &quot;source-dcc4bdc7bfa741d7&quot;,
+      &quot;source-f3022873e0d7442d&quot;,
+      &quot;source-e3cacebfe9f048a8&quot;,
+      &quot;source-774c2836c10a4ac0&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 10,
+      &quot;evidence_count&quot;: 17,
+      &quot;trigger_counts&quot;: {
+        &quot;notebook_revised&quot;: 4,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 24646,
+    &quot;inquiry_drive_project_count&quot;: 1,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;retrieval_candidate_count&quot;: 10,
+    &quot;retrieval_evidence_count&quot;: 17,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;notebook_revised&quot;: 4,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;working_set_chars&quot;: 3264,
+    &quot;working_to_delivered_ratio&quot;: 0.1324
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;ci-trust-mechanisms&quot;,
+        &quot;next_step&quot;: &quot;Bibliographic search for literature on trust and decentralized governance in CI.&quot;,
+        &quot;question&quot;: &quot;How do trust-building mechanisms differ in decentralized collective intelligence systems compared to traditional hierarchical organizations?&quot;,
+        &quot;title&quot;: &quot;Trust Mechanisms in Collective Intelligence&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;neuro-cog-governance-note&quot;,
+        &quot;project&quot;: &quot;neuro-cog-extension&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-e749c4be40014051&quot;,
+          &quot;source-377e857d478847c3&quot;,
+          &quot;source-b36d520b619945ce&quot;
+        ],
+        &quot;revision&quot;: 2,
+        &quot;summary&quot;: &quot;Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.&quot;,
+        &quot;title&quot;: &quot;Cognitive Architecture and Institutional Resilience&quot;
+      },
+      {
+        &quot;id&quot;: &quot;climate-governance-note&quot;,
+        &quot;project&quot;: &quot;climate-governance&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-b36d70d9820743ee&quot;,
+          &quot;source-f3f1b2d31bd14492&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.&quot;,
+        &quot;title&quot;: &quot;Collective Intelligence in Climate Governance: Scaling Mechanisms&quot;
+      },
+      {
+        &quot;id&quot;: &quot;comedy-study-note&quot;,
+        &quot;project&quot;: &quot;comedy-study&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-69fa6e3bd2a94571&quot;,
+          &quot;source-b7853c89b8e44aff&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Comedy, specifically in the form of &#x27;misrule&#x27; or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.&quot;,
+        &quot;title&quot;: &quot;Comedy and Hierarchy: Misrule as Structural Function&quot;
+      },
+      {
+        &quot;id&quot;: &quot;global-econ-resilience-note&quot;,
+        &quot;project&quot;: &quot;global-econ-resilience&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-fd984194cc294b0b&quot;,
+          &quot;source-48ab0afa5dbc4ac2&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.&quot;,
+        &quot;title&quot;: &quot;Governance-Gated Systems and Economic Resilience&quot;
+      },
+      {
+        &quot;id&quot;: &quot;ca-emergence-note&quot;,
+        &quot;project&quot;: &quot;ca-emergence-study&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-a8015e36beb84923&quot;,
+          &quot;source-73259701758b4651&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.&quot;,
+        &quot;title&quot;: &quot;Cellular Automata as Frameworks for Emergence&quot;
+      },
+      {
+        &quot;id&quot;: &quot;ci-trust-mechanisms-note&quot;,
+        &quot;project&quot;: &quot;ci-trust-mechanisms&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-3434e7e8e9f0445d&quot;,
+          &quot;source-677aba31569b41f8&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;Decentralized systems shift trust from hierarchical verification to economic and reputation-based signaling, particularly as generative AI lowers the cost of information production.&quot;,
+        &quot;title&quot;: &quot;Trust Mechanisms: Token Economics and Reputation in Decentralized Systems&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;time&quot;: &quot;2026-09-18T20:49:14.222176+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;elapsed_ms&quot;: 3735,
+      &quot;http_status&quot;: 200,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;request_payload_bytes&quot;: 46932,
+      &quot;result&quot;: &quot;success&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+  &quot;finished&quot;: &quot;2026-09-18T20:49:25.970392+00:00&quot;,
+  &quot;reason&quot;: &quot;Only open commitments can be resolved&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-07c3805f950c466e</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=music&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Women’s music [womyn’s music]\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2014, 1, 31]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Dance music (popular music genre)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2010]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Warner Bros. Music (music publisher)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;8f0002bbb4bc45ad6d78e47941834e5ea03a799c2b72d54f1d8d439e0850d606\&quot;}&quot;,
@@ -25852,6 +26172,29 @@
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 49,
   &quot;time&quot;: &quot;2026-09-18T20:46:57.226926+00:00&quot;
+}</pre></div></details><details><summary>source-e3cacebfe9f048a8</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=symmetry&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/hesc/9780198559108.003.0001\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Symmetry elements, symmetry operations and point groups\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/hesc/9780198559108.003.0001\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001, 7, 26]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.3390/sym2031401\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Symmetry, Symmetry Breaking and Topology\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:p&gt;The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.3390/sym2031401\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2010, 7, 7]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.3390/sym11010117\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Acknowledgement to Reviewers of Symmetry in 2018\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:p&gt;Rigorous peer-review is the corner-stone of high-quality academic publishing [...]&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.3390/sym11010117\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2019, 1, 19]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.3390/sym14020264\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Acknowledgment to Reviewers of Symmetry in 2021\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:p&gt;Rigorous peer-reviews are the basis of high-quality academic publishing [...]&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.3390/sym14020264\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2022, 1, 29]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;e750e5f5e39a23d0d414903ac3105491c1a805ac366cc31a7cc592cc1117bde6\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-e3cacebfe9f048a8&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=symmetry&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 49,
+  &quot;time&quot;: &quot;2026-09-18T20:49:10.034514+00:00&quot;
+}</pre></div></details><details><summary>source-774c2836c10a4ac0</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=comedy&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.23943/princeton/9780691149523.003.0003\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Misrule as Comedy; Comedy as Misrule\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;p&gt;This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.&lt;/p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.23943/princeton/9780691149523.003.0003\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2011, 10, 23]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oseo/instance.00232733\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Section A: Doric Comedy\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oseo/instance.00232733\\\&quot;}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.5040/9781350911949\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Drama/Comedy\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.5040/9781350911949\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[1988]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/oseo/instance.00232803\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Section C: &#x27;Middle&#x27; and &#x27;New Comedy&#x27;\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/oseo/instance.00232803\\\&quot;}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;349d394549bb9d1582a0754ae113181632b97a2ab7f09146ee62b16e538154d6\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-774c2836c10a4ac0&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=comedy&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 49,
+  &quot;time&quot;: &quot;2026-09-18T20:49:12.331078+00:00&quot;
+}</pre></div></details><details><summary>r-a16d0f668f3e4a52</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:49,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-a16d0f668f3e4a52\&quot;,\&quot;previous_head\&quot;:\&quot;5b4e5910c6608017b34c0eb889647b8caba792c5a2c0a5ba4acdcb7fb77bcd3b\&quot;,\&quot;process_id\&quot;:2253,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-a16d0f668f3e4a52&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 49,
+  &quot;time&quot;: &quot;2026-09-18T20:49:14.009608+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Initiating WAKE✳ Research: Music and Signals</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-07bc96a26ebc4d99&quot;,
