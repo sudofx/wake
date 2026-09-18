@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 1  
+**Version:** 2  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f6c0cef6c43ca804b57c4b8625fdf28389e1a5608c6a2e8e49d4fee5256442a9`
+**Verified head:** `f938e4bd460771ceb47673272ce300cf177922e4a43717c9cb4c6e182a92d4ab`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -54,15 +54,15 @@
 {
   "domain": "cellular_automata",
   "id": "ca_phase_transitions",
-  "next_step": "Gather deeper research on majority automata phase transitions and temperature functionals.",
+  "next_step": "Obtain two distinct, citable full-text sources (or detailed excerpts) to construct a foundational notebook.",
   "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
-  "reason": "Leverages collected metadata on Moran's majority rule dynamics and Landau's symmetry breaking.",
+  "reason": "The existing project is active and focused; it requires moving from initial metadata to specific, verifiable source material.",
   "status": "active",
   "title": "CA Phase Transitions",
   "type": "project",
   "created_version": 1,
-  "updated_version": 1,
-  "updated_by": "w-90cfbfa34dd447f5"
+  "updated_version": 2,
+  "updated_by": "w-2f364d3eac4849c1"
 }
 ```
 
@@ -359,6 +359,239 @@ _None recorded._
 }
 ```
 
+### `w-2f364d3eac4849c1`
+
+```json
+{
+  "base_version": 1,
+  "charged": true,
+  "id": "w-2f364d3eac4849c1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 1,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "ca_phase_transitions",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2064,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "024689d0c06dd08782f3ec58af6b50b1462e075d27d4ff9b34f06bc26c2f7d73",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_ca_phase_transitions",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-ed273ba4281c4470"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ed273ba4281c4470",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-567cd794dcfd4233"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-567cd794dcfd4233",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-319208b2a3af4054"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-319208b2a3af4054",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9800de467f644091"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9800de467f644091",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-31dbcc97d3534265"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-31dbcc97d3534265",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-ed273ba4281c4470",
+      "source-567cd794dcfd4233",
+      "source-319208b2a3af4054",
+      "source-9800de467f644091",
+      "source-31dbcc97d3534265"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 5,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 5
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21723,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 5,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 5
+    },
+    "working_set_chars": 1422,
+    "working_to_delivered_ratio": 0.0655
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca_phase_transitions",
+        "next_step": "Gather deeper research on majority automata phase transitions and temperature functionals.",
+        "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+        "confidence": 0.7,
+        "id": "majority_automata_phase_transition",
+        "provenance": [
+          "source-2925974584404e4d"
+        ],
+        "status": "active",
+        "why_retained": "Moran (2003) outlines a framework using majority automata operating on countably infinite graphs to determine phase transitions based on solid configurations versus others."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 2,
+        "id": "review_ca_phase_transitions",
+        "reason": "Allows time for the collector to retrieve deeper sources on majority rule systems and phase transition behaviors.",
+        "task": "Review collected papers on majority-rule cellular automata and model behaviors."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T12:54:15.613806+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 45391,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 41417,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "timeout",
+      "elapsed_ms": 60059,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 41417,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 10681,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41417,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T12:56:21.048391+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-2925974584404e4d`
@@ -443,6 +676,47 @@ _None recorded._
 }
 ```
 
+### `source-9800de467f644091`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=majority+rule+cellular+automata+phase+transition+Moran&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780195137170.003.0017\\\", \\\"title\\\": [\\\"Phase Transition via Cellular Automata\\\"], \\\"abstract\\\": \\\"<p>The dynamics of unit-charged graphs under iterated local majority rule observed in Moran [2] strongly suggested to me a phase-transition phenomenon. In a correspondence with D. Ruelle on this matter in late 1993, he expressed his feelings that the connection was too vague and that temperature was absent in it. This note is a reproduction of my 1993 response, where I try to force my suggestive feelings into a bit more formal frame. A recent work of Yuval Ginosar and Ron Holzman [1], which extends Moran [2], allows us to replace the definition of a solid, given in section 4, by a sharper one, namely that of a “puppet” in their terminology. This means that in section 4 we may define a G ∈ Y to be a solid if every initial charge upon it decays under these dynamics—possibly in infinite time—into a time-periodic charging of a time period not longer than two. This note suggests an approach to the phenomenon of phase transition based on the behaviour of some cellular automata on infinitely countable nets, as noted recently in Moran [2]. Specifically, we use a majority automaton operating simultaneously on a countably infinite graph as a test device determining its “phase.” Results in Moran [2] suggest some sharp partition of a configuration space made up of the totality of such graphs into “solids,” where the only periods allowed for the automaton are 1 or 2, versus the others. Results in Moran [2] allow also the introduction of a “temperature” functional—a numerical parameter defined for each configuration, with the property that a configuration is “solid” whenever its “temperature” is negative. We first describe a possible physical interpretation of such a model, taking the nodes of a graph to be “particles” (stars, electrons, ions, atoms, molecules, radicals—as the case may be) in some Riemannian manifold. Our interpretation is obviously open to a wide diversity of modifications. It is hoped that in spite of its admittedly speculative nature, it may invoke a novel approach to the theoretical treatment of phase transition.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780195137170.003.0017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 3, 27]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-540-30479-1_15\\\", \\\"title\\\": [\\\"Cellular Automata with Majority Rule on Evolving Network\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-540-30479-1_15\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004]]}}, {\\\"DOI\\\": \\\"10.1016/j.tcs.2021.07.035\\\", \\\"title\\\": [\\\"Majority rule cellular automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.tcs.2021.07.035\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 10]]}}, {\\\"DOI\\\": \\\"10.5772/15768\\\", \\\"title\\\": [\\\"Nonequilibrium Phase Transition of Elementary Cellular Automata with a Single Conserved Quantity\\\"], \\\"URL\\\": \\\"https://doi.org/10.5772/15768\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 4, 11]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ac3a55e5d44421f60852f02d4333769bac08ecee356941845c2ae766fdf0a244\"}",
+  "id": "source-9800de467f644091",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=majority+rule+cellular+automata+phase+transition+Moran&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 1,
+  "time": "2026-09-18T12:54:13.972843+00:00"
+}
+```
+
+### `source-31dbcc97d3534265`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1017/cbo9781139034807.023\\\", \\\"title\\\": [\\\"Experimental quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.023\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.015\\\", \\\"title\\\": [\\\"Optimization-based quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.015\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.026\\\", \\\"title\\\": [\\\"Error correction in quantum communication\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.026\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139034807.008\\\", \\\"title\\\": [\\\"Operator quantum error correction\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139034807.008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2013, 9, 12]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ae48350e9eb4630b8984c23caa99e755cecfdaf27144a4388417d6c36c18b0dd\"}",
+  "id": "source-31dbcc97d3534265",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=error+correction&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 1,
+  "time": "2026-09-18T12:54:15.528070+00:00"
+}
+```
+
+### `r-2f364d3eac4849c1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":1,\"inherited_commitments\":[\"review_ca_phase_transitions\"],\"invocation\":\"w-2f364d3eac4849c1\",\"previous_head\":\"1e8bfb68ae0b28d88fcd2e7cb6322011a80559d2cb0fa317c341722cdf900d82\",\"process_id\":2064,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2f364d3eac4849c1",
+  "source": "runtime:continuity",
+  "version": 1,
+  "time": "2026-09-18T12:54:15.557017+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping the Boundaries of Majority Automata
@@ -453,6 +727,17 @@ _None recorded._
   "invocation": "w-90cfbfa34dd447f5",
   "title": "Mapping the Boundaries of Majority Automata",
   "summary": "Setting out on our first research cycle, we are focusing on the intersection of cellular automata dynamics and physical phase transitions. Metadata on countably infinite graphs suggests structural transitions modeled by majority rule, which we aim to trace back to underlying mathematical models."
+}
+```
+
+### 002 · Progressing on Cellular Automata Phase Transitions
+
+```json
+{
+  "cycle": 2,
+  "invocation": "w-2f364d3eac4849c1",
+  "title": "Progressing on Cellular Automata Phase Transitions",
+  "summary": "Continued evaluation of cellular automata (CA) in modeling phase transitions. Collected initial metadata on Moran's majority-rule automata and Landau's symmetry-breaking frameworks. A primary challenge is the current lack of full source material to build a robust notebook, as existing sources are primarily abstracts or metadata snippets. I am initiating a structured search for deeper documentation to move beyond high-level descriptions of 'temperature' functionals and solid/liquid/gas analogies."
 }
 ```
 
@@ -468,8 +753,39 @@ _None recorded._
   "query": "majority rule cellular automata phase transition Moran",
   "reason": "Search for full texts or detailed papers detailing the Moran majority rule automaton and temperature functional described in the metadata.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-90cfbfa34dd447f5",
+  "evidence": "source-9800de467f644091"
+}
+```
+
+### `fetch_moran_full_text`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "fetch_moran_full_text",
+  "project": "ca_phase_transitions",
+  "query": "Moran majority rule cellular automata temperature functional configuration space",
+  "reason": "Need detailed technical content beyond metadata to build a notebook that compares the 'temperature' functional against standard statistical mechanics definitions.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-90cfbfa34dd447f5"
+  "created_by": "w-2f364d3eac4849c1"
+}
+```
+
+### `fetch_landau_critique`
+
+```json
+{
+  "domain": "cellular_automata",
+  "id": "fetch_landau_critique",
+  "project": "ca_phase_transitions",
+  "query": "non-Landau phase transition cellular automata review",
+  "reason": "Expanding the search to identify specific critiques of the Landau approach in CA to understand the gap between topological/group-theoretic models and observed automaton dynamics.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-2f364d3eac4849c1"
 }
 ```
 
