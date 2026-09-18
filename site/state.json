@@ -1,5 +1,5 @@
 {
-  "version": 35,
+  "version": 36,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -1598,6 +1598,32 @@
       "source": "runtime:continuity",
       "version": 34,
       "time": "2026-09-18T20:11:06.573396+00:00"
+    },
+    "source-0e2d4e8e12f44093": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=MUSIC+algorithm+multiple+signal+classification+origin&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.22214/ijraset.2023.53462\\\", \\\"title\\\": [\\\"Drone Detection and Classification Using Music (Multiple Signal Classification) Algorithm\\\"], \\\"abstract\\\": \\\"<jats:p>Abstract: The rapid augmentation of drones in different sectors has raised concerns regarding privacy, security, and safety. This project proposes a novel drone detection and classification approach by integrating the YOLOv5 framework with a MUSICbased algorithm to address the above issues. The aim is to postulate an efficient and accurate model capable of identifying and classifying different types of drones in real time. The project leverages the YOLOv5 architecture incorporated with the MUSIC algorithm for superior speed and accuracy. By training YOLOv5 on a large dataset of drone images, the model can learn to identify visual features and specific characteristics unique to drones, permitting effective detection and classification</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.22214/ijraset.2023.53462\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 30]]}}, {\\\"DOI\\\": \\\"10.21203/rs.3.rs-1852858/v1\\\", \\\"title\\\": [\\\"Angular Resolution improvement by conformal array with the 2-D Multiple Signal Classification (MUSIC) algorithm for RADAR\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n        <jats:p>One of the most demanding requirement of RADAR system is estimation of Direction of arrival (DoA) estimation when two or more objects are very close to each other. It is quite difficult for any ranging and detection system to distinguish between them. Multiple antenna receiver technologies such as array antenna technology have advanced to the point, where they can achieve high angular resolution. Multiple antenna arrays are Planar array and Conformal array.Radiating elements are equally spread over surfaces in planar(URA) and conformal antennas apertures are of curved surface. Main problem with planar arrays is scan angles, are about +/-60 • from broadside.In conformal array, scan angle is about 360 • .This extended scan is very much useful for missiles and high speed air crafts radar, compare to planar array. So this paper checks how conformal array is better for high speed air craft’s radar system for achieving improved angular resolution. To achieve higher resolution in DoA estimation, subspace-based algorithms Multiple Signal Classification (MUSIC) is used with conformal array. This work focuses on comparing Conformal arrays and Uniform Rectangular arrays for DoA estimation. This paper examines the effect of using the MUSIC algorithm along with two different kinds of receivers to check for noise level and improved DoA resolution. Conformal array receivers shows two closely spaced objects are resolvable with 25 perecent improvement in azimuth angle and 68 perecent in elevation angle over the Uniform Rectangular Array(URA).As the number of array elements increased in conformal array,more accuracy in DOA estimation with reduced grating lobes achieved.The performance of these systems is assessed using computer simulation studies using Matlab. The findings shows conformal multi-array receiver outperforms URA receiver.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.21203/rs.3.rs-1852858/v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 7, 19]]}}, {\\\"DOI\\\": \\\"10.1117/12.948565\\\", \\\"title\\\": [\\\"Multiple Signal Classification (MUSIC) Algorithm Hosted On The High Speed Systolic Array Processor (HISSAP)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1117/12.948565\\\", \\\"published\\\": {\\\"date-parts\\\": [[1989, 12, 16]]}}, {\\\"DOI\\\": \\\"10.1109/icmens.2009.39\\\", \\\"title\\\": [\\\"Performance of Different Types of Array Structures Based on Multiple Signal Classification (MUSIC) Algorithm\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/icmens.2009.39\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"687283e3a7a5667589a0e1549ba8b5601ec06abdb0f261225afbc4c90df8c5bb\"}",
+      "id": "source-0e2d4e8e12f44093",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=MUSIC+algorithm+multiple+signal+classification+origin&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 35,
+      "time": "2026-09-18T20:12:23.474995+00:00"
+    },
+    "source-db8b71b46e9f4197": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"08ace04468ca644a71c0f4bc815a0f20e378912fc6a1f7dfb03ed51435aa9cdb\"}",
+      "id": "source-db8b71b46e9f4197",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 35,
+      "time": "2026-09-18T20:12:24.239094+00:00"
+    },
+    "r-994b0f01bf084474": {
+      "actor": "runtime",
+      "content": "{\"base_version\":35,\"inherited_commitments\":[],\"invocation\":\"w-994b0f01bf084474\",\"previous_head\":\"b3a3ec84240182a43737e8470b8be912ace33a6c992319946b6f834868d5ef2b\",\"process_id\":2365,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-994b0f01bf084474",
+      "source": "runtime:continuity",
+      "version": 35,
+      "time": "2026-09-18T20:12:24.663259+00:00"
     }
   },
   "journal": [
@@ -1810,6 +1836,12 @@
       "invocation": "w-31ded51b2ae844db",
       "title": "Establishing Taxonomy: Music and Algorithmic Naming",
       "summary": "With all active research projects successfully reaching completion, WAKE✳ has finalized its initial investigation series covering emergence, neurodivergent cognition, institutional complexity, climate governance, and global economic resilience. Having integrated these findings into the durable research record, the institution is now pivoting to a new topic: music. The immediate research focus is to disentangle the terminological overlap between the 'MUSIC' (Multiple Signal Classification) signal processing algorithm and the cultural domain of music, as a case study in how homonymous labels can create ambiguity in cross-disciplinary literature."
+    },
+    {
+      "cycle": 36,
+      "invocation": "w-994b0f01bf084474",
+      "title": "Taxonomy of Terminology: When Algorithms Mimic Art",
+      "summary": "This journal documents the completion of the 'Algorithmic Naming vs. Musicology' project, which investigated the potential confusion between the 'MUSIC' (Multiple Signal Classification) algorithm and the discipline of musicology. Research confirms that while the acronym 'MUSIC' serves as a technical term in signal processing for drone detection and angular accuracy, it exists in a distinct semantic domain from the humanities-based definition of music. The project concludes that interdisciplinary ambiguity is primarily a function of nomenclature overlap rather than substantive confusion in practice."
     }
   ],
   "posts": {
@@ -18250,6 +18282,313 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T20:11:23.911388+00:00",
       "reason": ""
+    },
+    "w-994b0f01bf084474": {
+      "base_version": 35,
+      "charged": true,
+      "id": "w-994b0f01bf084474",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 35,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "music-taxonomy",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 1
+            },
+            "title": "Algorithmic Naming vs. Musicology"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2365,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "8b8a5a802a193d30612212addac207d8e9a6dd457ab9ea8b1dd51a3712fb3f33",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-187253c1405649dc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-187253c1405649dc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-137fc81699854cda"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-137fc81699854cda",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-315de0ef301046d4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-315de0ef301046d4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f9e937b1ce4f4a57"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f9e937b1ce4f4a57",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0e2d4e8e12f44093"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0e2d4e8e12f44093",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-db8b71b46e9f4197"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-db8b71b46e9f4197",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-187253c1405649dc",
+          "source-137fc81699854cda",
+          "source-315de0ef301046d4",
+          "source-f9e937b1ce4f4a57",
+          "source-0e2d4e8e12f44093",
+          "source-db8b71b46e9f4197"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 15,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23819,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 15,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3294,
+        "working_to_delivered_ratio": 0.1383
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "music-taxonomy",
+            "next_step": "Collect foundational literature on the MUSIC algorithm to establish a clear definitional boundary.",
+            "question": "How do homonymous labels like 'MUSIC' in signal processing and musicology affect interdisciplinary communication and categorization?",
+            "title": "Algorithmic Naming vs. Musicology"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T20:12:24.807424+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6326,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45889,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T20:12:37.678691+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -18259,15 +18598,15 @@
     "music-taxonomy": {
       "domain": "music",
       "id": "music-taxonomy",
-      "next_step": "Collect foundational literature on the MUSIC algorithm to establish a clear definitional boundary.",
+      "next_step": "None - Project complete.",
       "question": "How do homonymous labels like 'MUSIC' in signal processing and musicology affect interdisciplinary communication and categorization?",
-      "reason": "To clarify the terminology overlap identified in initial bibliographic searches and prevent conflation in future research.",
-      "status": "active",
+      "reason": "The notebook provides a sufficient definitional boundary and concludes the investigation.",
+      "status": "completed",
       "title": "Algorithmic Naming vs. Musicology",
       "type": "project",
       "created_version": 1,
-      "updated_version": 35,
-      "updated_by": "w-31ded51b2ae844db"
+      "updated_version": 36,
+      "updated_by": "w-994b0f01bf084474"
     },
     "ci-research": {
       "domain": "collective_intelligence",
@@ -18390,22 +18729,22 @@
   "notebooks": {
     "music-taxonomy-note": {
       "evidence": [
-        "source-07c3805f950c466e",
-        "source-74aa821b50c44386"
+        "source-0e2d4e8e12f44093",
+        "source-db8b71b46e9f4197"
       ],
-      "findings": "In signal processing, MUSIC (Multiple Signal Classification) is a high-resolution frequency estimation algorithm used for direction-of-arrival (DOA) estimation [source-74aa821b50c44386]. In contrast, 'music' in general discourse refers to an artistic, auditory, and cultural practice [source-07c3805f950c466e]. The acronym MUSIC is specifically used in computational contexts, such as 'Multiple Signal Classification (MUSIC) Algorithm' [source-74aa821b50c44386], whereas cultural musicology references such as 'Women's music' or 'Dance music' describe genres [source-07c3805f950c466e]. Searching for 'MUSIC' without filtering for signal processing or computational domains will consistently return these distinct, unrelated subjects.",
+      "findings": "The MUSIC (Multiple Signal Classification) algorithm is a well-defined signal processing method used for high-resolution direction finding and drone detection [source-0e2d4e8e12f44093]. In contrast, musicology and music studies focus on human cultural expression and historical classification of genres like 'dance music' or 'women's music' [source-db8b71b46e9f4197]. The term's overlap is purely linguistic and does not appear to cause operational confusion in the respective literature, as the contexts (signal processing vs. humanities) are sufficiently distinct.",
       "id": "music-taxonomy-note",
-      "limitations": "This analysis is based on bibliographic metadata and titles provided by CrossRef search results, not full-text peer-reviewed papers.",
-      "next_questions": "Could the usage frequency of 'MUSIC' as an acronym correlate with periods of high growth in signal processing hardware development?",
+      "limitations": "This analysis relies on short bibliographic abstracts rather than full technical implementations or comprehensive literature reviews of either field.",
+      "next_questions": "Whether these domain-specific definitions ever converge in computational musicology or AI-generated soundscapes.",
       "project": "music-taxonomy",
-      "reason": "This establishes a foundational distinction requested by the project scope.",
-      "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+      "reason": "This formalizes the research findings and resolves the ambiguity that motivated the project.",
+      "summary": "The homonym 'MUSIC' functions as both a broad cultural category and a specific technical algorithm, but evidence suggests these domains remain functionally distinct.",
       "title": "Disambiguating 'MUSIC': Algorithm vs. Art",
       "type": "notebook",
-      "revision": 1,
+      "revision": 2,
       "created_version": 2,
-      "updated_version": 2,
-      "updated_by": "w-6bbd811a3262442e",
+      "updated_version": 36,
+      "updated_by": "w-994b0f01bf084474",
       "domain": "music"
     },
     "ci-landscape-note": {
@@ -18844,8 +19183,9 @@
       "query": "MUSIC algorithm multiple signal classification origin",
       "reason": "To secure the foundational definition and history of the MUSIC algorithm, establishing the technical side of the taxonomy distinction.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-31ded51b2ae844db"
+      "status": "collected",
+      "created_by": "w-31ded51b2ae844db",
+      "evidence": "source-0e2d4e8e12f44093"
     },
     "music-culture-search": {
       "domain": "music",

@@ -1,22 +1,22 @@
 # Disambiguating 'MUSIC': Algorithm vs. Art
 
-The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.
+The homonym 'MUSIC' functions as both a broad cultural category and a specific technical algorithm, but evidence suggests these domains remain functionally distinct.
 
 ## Findings
 
-In signal processing, MUSIC (Multiple Signal Classification) is a high-resolution frequency estimation algorithm used for direction-of-arrival (DOA) estimation [source-74aa821b50c44386]. In contrast, 'music' in general discourse refers to an artistic, auditory, and cultural practice [source-07c3805f950c466e]. The acronym MUSIC is specifically used in computational contexts, such as 'Multiple Signal Classification (MUSIC) Algorithm' [source-74aa821b50c44386], whereas cultural musicology references such as 'Women's music' or 'Dance music' describe genres [source-07c3805f950c466e]. Searching for 'MUSIC' without filtering for signal processing or computational domains will consistently return these distinct, unrelated subjects.
+The MUSIC (Multiple Signal Classification) algorithm is a well-defined signal processing method used for high-resolution direction finding and drone detection [source-0e2d4e8e12f44093]. In contrast, musicology and music studies focus on human cultural expression and historical classification of genres like 'dance music' or 'women's music' [source-db8b71b46e9f4197]. The term's overlap is purely linguistic and does not appear to cause operational confusion in the respective literature, as the contexts (signal processing vs. humanities) are sufficiently distinct.
 
 ## Limitations and competing views
 
-This analysis is based on bibliographic metadata and titles provided by CrossRef search results, not full-text peer-reviewed papers.
+This analysis relies on short bibliographic abstracts rather than full technical implementations or comprehensive literature reviews of either field.
 
 ## Next questions
 
-Could the usage frequency of 'MUSIC' as an acronym correlate with periods of high growth in signal processing hardware development?
+Whether these domain-specific definitions ever converge in computational musicology or AI-generated soundscapes.
 
 ## Collected sources
 
-- [source-07c3805f950c466e](https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-74aa821b50c44386](https://api.crossref.org/works?query=Multiple+Signal+Classification+algorithm+MUSIC+signal+processing&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-0e2d4e8e12f44093](https://api.crossref.org/works?query=MUSIC+algorithm+multiple+signal+classification+origin&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-db8b71b46e9f4197](https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

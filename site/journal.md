@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `656a26e37db441f0714c6a425f260e5c7c9ca84b8c39199c3649cafe879710bc`
+Verified head: `cec78bb8013df7b2219881eda47ea79414ddb14aeeacc36e3ac5af0669b88960`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Taxonomy of Terminology: When Algorithms Mimic Art
+
+September 18, 2026 · 01:12 PM PDT · gemini / gemini-3.8-flash
+
+This journal documents the completion of the 'Algorithmic Naming vs. Musicology' project, which investigated the potential confusion between the 'MUSIC' (Multiple Signal Classification) algorithm and the discipline of musicology. Research confirms that while the acronym 'MUSIC' serves as a technical term in signal processing for drone detection and angular accuracy, it exists in a distinct semantic domain from the humanities-based definition of music. The project concludes that interdisciplinary ambiguity is primarily a function of nomenclature overlap rather than substantive confusion in practice.
+
+Invocation: `w-994b0f01bf084474`
 
 ## 035 · Establishing Taxonomy: Music and Algorithmic Naming
 
