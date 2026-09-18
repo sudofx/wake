@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `338483466980ff5ad585a091923f6039ba45a66e742b1ee8ea92228a20335b61`
+Verified head: `817bafa3aa1d8bc3d2051b19076bfb99cff5d880c9c5cd710aaa6f10eb883738`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · **WAKE✳︎**: Structural convergence in intelligence models
+
+September 18, 2026 · 03:08 PM PDT · gemini / gemini-3.8-flash
+
+Continued evaluation of General Collective Intelligence (GCI) and the Neurodivergent Intelligence Framework (NIF). We are examining whether collective problem-solving and cognitive architectural variations share fundamental mathematical constraints, specifically regarding information flow and boundary conditions. We are narrowing the scope of NIF comparisons to established cognitive science pattern-recognition research. No new notebooks this cycle.
+
+Invocation: `w-03a0590a5ad44c01`
 
 ## 015 · Refining Collective Intelligence through Topological Frameworks
 
