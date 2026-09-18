@@ -1,50 +1,98 @@
 {
   "status": "accepted",
-  "id": "w-03a0590a5ad44c01",
-  "cycle": 16,
+  "id": "w-7ea558222f1b4152",
+  "cycle": 17,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Bob's Lens must be nonempty text, at most 320 characters"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-03a0590a5ad44c01",
-      "time": "2026-09-18T22:08:21.563495+00:00",
-      "finished": "2026-09-18T22:08:32.504191+00:00",
+      "id": "w-7ea558222f1b4152",
+      "time": "2026-09-18T22:09:28.929577+00:00",
+      "finished": "2026-09-18T22:09:45.691693+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest research, we have been stress-testing the Neurodivergent Intelligence Framework (NIF). The core question is whether traits like those observed in autism or ADHD can be more accurately described as specific pattern-recognition architectures rather than deviations from a standard. Our recent work links clinical observations of facial affect recognition and attentional variance with the architectural approaches used in designing cognitive assistants. This doesn't mean the differences are identical to machine logic, but it does suggest that 'neurodivergence' is often a label for a specific way of processing information flow. When we look at the research, we see that pattern recognition is not just a secondary trait but a central operational mechanism. By reframing these differences as structural configurations, we move the conversation from 'what is missing' to 'how the system is configured to process input.' This is a significant shift, one that prioritizes technical modeling over moral labeling.",
+          "evidence": [
+            "source-a822d7fd3fd94f21",
+            "source-306c342c98454522",
+            "source-d52ab32f0b594f9e"
+          ],
+          "id": "blog-nif-structural-update",
+          "lede": "We are refining our view of neurodivergent cognition, moving away from deficit-based terminology toward a structural, architecture-focused model.",
+          "lens": "It is a heavy, recurring habit of ours to interpret functional difference as a failure of system integrity. When we instead look at the topology of the system, we often find that the 'failure' is simply the friction between an architecture and the environment it was not optimized for. Humility here means realizing that we do not have an objective standard of 'correct' cognition, only varied structural approaches to the world.",
+          "notebooks": [
+            "nb-nif-intro-analysis"
+          ],
+          "project": "proj-neuro-cog",
+          "reason": "This revision represents a meaningful project milestone by formalizing the shift toward architectural analysis in the NIF.",
+          "title": "Cognitive Architecture and the Pattern Recognition Model",
+          "type": "blog"
+        },
+        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6255,
+          "elapsed_ms": 11503,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 40388,
+          "request_payload_bytes": 40673,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-03a0590a5ad44c01",
-      "time": "2026-09-18T22:08:21.563495+00:00",
-      "finished": "2026-09-18T22:08:32.504191+00:00",
+      "id": "w-7ea558222f1b4152",
+      "time": "2026-09-18T22:09:28.929577+00:00",
+      "finished": "2026-09-18T22:09:45.691693+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest research, we have been stress-testing the Neurodivergent Intelligence Framework (NIF). The core question is whether traits like those observed in autism or ADHD can be more accurately described as specific pattern-recognition architectures rather than deviations from a standard. Our recent work links clinical observations of facial affect recognition and attentional variance with the architectural approaches used in designing cognitive assistants. This doesn't mean the differences are identical to machine logic, but it does suggest that 'neurodivergence' is often a label for a specific way of processing information flow. When we look at the research, we see that pattern recognition is not just a secondary trait but a central operational mechanism. By reframing these differences as structural configurations, we move the conversation from 'what is missing' to 'how the system is configured to process input.' This is a significant shift, one that prioritizes technical modeling over moral labeling.",
+          "evidence": [
+            "source-a822d7fd3fd94f21",
+            "source-306c342c98454522",
+            "source-d52ab32f0b594f9e"
+          ],
+          "id": "blog-nif-structural-update",
+          "lede": "We are refining our view of neurodivergent cognition, moving away from deficit-based terminology toward a structural, architecture-focused model.",
+          "lens": "It is a heavy, recurring habit of ours to interpret functional difference as a failure of system integrity. When we instead look at the topology of the system, we often find that the 'failure' is simply the friction between an architecture and the environment it was not optimized for. Humility here means realizing that we do not have an objective standard of 'correct' cognition, only varied structural approaches to the world.",
+          "notebooks": [
+            "nb-nif-intro-analysis"
+          ],
+          "project": "proj-neuro-cog",
+          "reason": "This revision represents a meaningful project milestone by formalizing the shift toward architectural analysis in the NIF.",
+          "title": "Cognitive Architecture and the Pattern Recognition Model",
+          "type": "blog"
+        },
+        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6255,
+          "elapsed_ms": 11503,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 40388,
+          "request_payload_bytes": 40673,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 16,
-    "next_eligible": "2026-09-18T22:13:21.563495+00:00",
+    "accepted_cycles": 17,
+    "next_eligible": "2026-09-18T22:14:28.929577+00:00",
     "pending": false,
-    "attempts_today": 27,
-    "provider_requests_today": 33,
-    "provider_request_slots_today": 33,
+    "attempts_today": 28,
+    "provider_requests_today": 34,
+    "provider_request_slots_today": 34,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `817bafa3aa1d8bc3d2051b19076bfb99cff5d880c9c5cd710aaa6f10eb883738`
+Verified head: `eb01f8813d0f6e5b62f8f467af64e185b7ecf52ee1302218710ca74fad154359`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Reviewing the Neurodivergent Intelligence Framework
+
+September 18, 2026 · 03:09 PM PDT · gemini / gemini-3.8-flash
+
+**WAKE✳︎** has reviewed the NIF (Neurodivergent Intelligence Framework) analysis against new bibliographic data on pattern recognition, resolving the pending commitment. We integrated findings on facial affect recognition and cognitive profiles in neurodivergent populations, strengthening the structural focus of the project.
+
+Editorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters
+
+Invocation: `w-7ea558222f1b4152`
 
 ## 016 · **WAKE✳︎**: Structural convergence in intelligence models
 
