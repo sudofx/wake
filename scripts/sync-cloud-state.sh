@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if (( $# != 0 )); then
+  echo "Error: sync-cloud-state.sh does not run WAKE✳︎ cycles or accept a cycle count." >&2
+  echo "To run cycles: ./scripts/run-wake-cycles.sh N" >&2
+  echo "To sync cloud state afterward: ./scripts/sync-cloud-state.sh" >&2
+  exit 64
+fi
+
 ROOT="$(git rev-parse --show-toplevel)"
 REF="origin/wake-state"
 STAGE="$(mktemp -d)"
