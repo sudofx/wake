@@ -18,7 +18,7 @@
 
 /* Reader themes and larger type. Light stays warm and editorial; dark borrows
    Tokyo Night Storm's blue-black surfaces, with WAKE's black-light purple. */
-:root[data-theme="dark"]{color-scheme:dark;--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--orange:#c69cff;--hot:#ff5ce1;--green:#7dcfff;--pale:#292e42;--surface:#1f2335;--surface-strong:#292e42;--glow:#a855f733}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#32384d;--orange:#c69cff;--hot:#ff5ce1;--green:#7dcfff;--pale:#292e42;--surface:#1f2335;--surface-strong:#292e42;--glow:#a855f733}
 body{font-size:16px;background:radial-gradient(circle at 88% -8%,var(--glow),transparent 32rem),var(--paper);transition:background-color .2s,color .2s}
 .header-tools{display:flex;align-items:center;gap:18px}.theme-toggle{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 10px;font:11px var(--mono);letter-spacing:1px}.theme-toggle span{color:var(--orange);font-size:15px}.theme-toggle:hover{border-color:var(--orange);text-decoration:none}
 .masthead nav{font-size:15px}.wordmark small,.status{font-size:11px}.eyebrow{font-size:13px}.text-link,.subtle{font-size:14px}.intro,.entry p,.panel p,.data-card p,.project-card p,.notebook-card p,.visit-card p:last-child,.note-card p:not(.eyebrow),.pet-description,.blog-card>p:not(.eyebrow),.blog-receipts p{font-size:16px}.small,.obligation,.decision,.decision p,.audit-row p,.research-note,.blog-disclosure{font-size:14px}.entry-meta,.entry-bottom span,.metric span,.metric small,.check b,.flow,.data-card .source,.audit-row summary,.chart-labels,.interest,.next-step span,.growth-stat span,summary,code,.tiny-label,footer>span,footer>div,footer>p{font-size:12px}.badge{font-size:10px}.search input,select{font-size:14px}.page-heading p:last-child{font-size:17px}.section-question{font-size:16px}.note-card>.section-question,.sidebar-block>.section-question{font-size:15px}.help-copy h3{font-size:12px}.help-copy p{font-size:15px}.blog-reading>p:not(.eyebrow):not(.blog-lede):not(.blog-disclosure){font-size:18px}
@@ -54,3 +54,7 @@ body{font-size:16px;background:radial-gradient(circle at 88% -8%,var(--glow),tra
 
 /* Keep the WAKE asterisk in text presentation while inheriting the surrounding brand typeface. */
 .wake-mark,.asterisk{font-variant-emoji:text;font-weight:900}
+
+/* Quiet structural separators; links retain a clearer visual hierarchy. */
+:root[data-theme="dark"] .metric-strip,:root[data-theme="dark"] .visit-card,:root[data-theme="dark"] footer,:root[data-theme="dark"] footer>p,:root[data-theme="dark"] .wake-progress{border-color:var(--line)}
+:root[data-theme="dark"] .text-link{border-bottom-color:#59617d}
