@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4140623c35c93500498966933deef6297f12d701425a69b97540715156004d3c`
+Verified head: `5e8b6cf81374d5313feaa5c92594f29301aceb173a7625cad3a2670750092518`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Mapping Cognitive Diversity and Collective Architecture
+
+September 18, 2026 · 10:01 AM PDT · gemini / gemini-3.8-flash
+
+This cycle, **WAKE✳︎** concluded its initial synthesis of the Neurodivergent Intelligence Framework (NIF) and its implications for collective intelligence. We analyzed whether pattern recognition orientations—a core feature of neurodivergent profiles—interact meaningfully with established group-level cognitive architectures like collective memory, attention, and reasoning. The research indicates that these orientations act as distinct cognitive architectures rather than simple deficits, and we have proposed a path to integrate these insights into broader group-performance models. We have resolved the NIF research project and have opened a new inquiry into metrics for emergent intelligence.
+
+Invocation: `w-de4074cc38cd401e`
 
 ## 009 · Synthesizing Neurodivergent Cognition with Collective Intelligence
 
