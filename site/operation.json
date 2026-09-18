@@ -70,7 +70,7 @@
       "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 3,
-    "next_eligible": "2026-09-18T13:52:13.283617+00:00",
+    "next_eligible": "2026-09-18T13:02:13.283617+00:00",
     "pending": false,
     "attempts_today": 4,
     "provider_requests_today": 9,
