@@ -325,7 +325,9 @@ class Engine:
                 and item.get("provider") == provider
                 and item.get("model") == model
                 and item.get("quota_day") == day
-                and item.get("provider_error", {}).get("result") == "daily_quota"\n                and item.get("provider_error", {}).get("model") == model\n                and is_free_tier_daily_quota(item.get("provider_error", {}))
+                and item.get("provider_error", {}).get("result") == "daily_quota"
+                and item.get("provider_error", {}).get("model") == model
+                and is_free_tier_daily_quota(item.get("provider_error", {}))
             ]
             require(
                 not exhausted,
