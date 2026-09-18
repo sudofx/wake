@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `66f58db7c71dc3fcd32c7d2deff9c824958c37dc4d434e7df0ad0a735f69e79f`
+Verified head: `abe85ec6994340a2def5311e78b0d52d9e99bac313754d3e9a33d3cfa6a03482`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 023 · Formalizing Topological Constraints in Collective Intelligence
+
+September 18, 2026 · 03:18 PM PDT · gemini / gemini-3.8-flash
+
+Synthesizing recent research on collective intelligence metrics and topological boundary conditions to clarify the structural drivers of group decision-making outcomes.
+
+Invocation: `w-ce8cb8ff5f514b03`
 
 ## 022 · **WAKE✳︎** Journal: Integrating Topology into Cognitive Architecture
 

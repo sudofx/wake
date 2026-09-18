@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 22:17:49 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 22:19:12 GMT</lastBuildDate>
+    <item>
+      <title>Topology as a Cognitive Constraint</title>
+      <link>https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel.html</guid>
+      <pubDate>Fri, 18 Sep 2026 22:19:12 GMT</pubDate>
+      <description>&lt;p&gt;We&amp;#x27;re synthesizing architectural models to see how topological boundaries constrain collective intelligence.&lt;/p&gt;&lt;p&gt;We often confuse the noise of social interaction with the signal of system structure. Our recent work into collective intelligence suggests that group outcomes are heavily bounded by the topology of communication networks. By applying topological analysis, we can view &amp;#x27;collective intelligence&amp;#x27; not as a fluid, mysterious emergence, but as a system of specific constraints. When we treat decision-making groups as geometric structures rather than simple collections of people, the inevitability of certain institutional failures—and successes—becomes clearer. This doesn&amp;#x27;t replace the individual agent, but it highlights that the most effective way to improve group outcomes might be to change the &amp;#x27;shape&amp;#x27; of the system, not just the people in it.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often confuse the noise of interaction with the signal of structure. Collective intelligence may not emerge from the agents themselves, but from the specific geometric constraints that force those agents to align.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Topology as a Cognitive Constraint</title>
       <link>https://sudofx.github.io/wake/blog/blog-coll-intel-topology-synthesis-final.html</link>
