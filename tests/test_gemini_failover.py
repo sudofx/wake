@@ -130,16 +130,22 @@ class FailoverTests(unittest.TestCase):
                 self.assertEqual(network.call_count, 1)
                 self.assertNotIn("quota_exhausted", item)
 
-    def test_exact_quota_on_fallback_stops_and_preserves_both_calls(self):
-        result, state, item, network = self.run_chain([failure(503), failure(429, FREE_TIER_DAILY_QUOTA_ID)])
+    def test_exact_quota_on_one_model_continues_to_next_model(self):
+        result, state, item, network = self.run_chain(
+            [failure(503), failure(429, FREE_TIER_DAILY_QUOTA_ID), "valid"])
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(network.call_count, 3)
+        self.assertEqual(item["successful_model"], "gemini-3.1-flash-lite")
+        self.assertEqual([a["result"] for a in item["provider_attempts"]],
+                         ["transient_failure", "daily_quota", "success"])
+
+    def test_exact_quota_on_last_available_model_defers(self):
+        result, state, item, network = self.run_chain(
+            [failure(503), failure(503), failure(429, FREE_TIER_DAILY_QUOTA_ID)])
         self.assertEqual(result["status"], "deferred")
         self.assertEqual(item["quota_exhausted"], "free_tier_daily")
-        self.assertEqual(network.call_count, 2)
-        self.assertEqual(item["provider_error"]["model"], "gemini-3.5-flash")
-        with patch("urllib.request.urlopen") as network:
-            with self.assertRaisesRegex(Rejected, "daily quota exhausted"):
-                self.engine.run(Gemini(self.settings))
-            network.assert_not_called()
+        self.assertEqual(network.call_count, 3)
+        self.assertEqual(item["provider_error"]["model"], "gemini-3.1-flash-lite")
 
     def test_transport_availability_fails_over_but_tls_configuration_does_not(self):
         for error in (TimeoutError(), urllib.error.URLError(ConnectionRefusedError())):
