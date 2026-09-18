@@ -15,26 +15,27 @@
   setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
   themeToggle.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
   const help = key => window.WakeHelp.button(key);
-  const display = value => String(value ?? '').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
+  const WAKE_TEXT='WAKE\u2733\uFE0E';
+  const display = value => String(value ?? '').replaceAll('WAKE\u2733\uFE0F','WAKE\u2733').replaceAll('WAKE\u2733\uFE0E','WAKE\u2733').replaceAll('WAKE\u2733',WAKE_TEXT);
   const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   function emphasizeWake(root=document) {
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
     const targets=[];
     while(walker.nextNode()){
       const node=walker.currentNode, parent=node.parentElement;
-      if(!parent || !node.nodeValue.includes('WAKE✳︎')) continue;
+      if(!parent || !node.nodeValue.includes(WAKE_TEXT)) continue;
       if(parent.closest('script,style,pre,code,textarea,.wake-mark')) continue;
       targets.push(node);
     }
     targets.forEach(node=>{
-      const parts=node.nodeValue.split('WAKE✳︎');
+      const parts=node.nodeValue.split(WAKE_TEXT);
       const fragment=document.createDocumentFragment();
       parts.forEach((part,index)=>{
         if(part) fragment.append(document.createTextNode(part));
         if(index<parts.length-1){
           const strong=document.createElement('strong');
           strong.className='wake-mark';
-          strong.textContent='WAKE✳︎';
+          strong.textContent=WAKE_TEXT;
           fragment.append(strong);
         }
       });
@@ -163,7 +164,7 @@
     if(page==='history')history(selected);
     if(page==='home'||page==='projects')window.WakePet.render(page,selected);
     emphasizeWake(document);
-    document.title=`WAKE✳︎ / ${page==='journal'?'Same tape. Fresh deck.':page[0].toUpperCase()+page.slice(1)}`;
+    document.title=`${WAKE_TEXT} / ${page==='journal'?'Same tape. Fresh deck.':page[0].toUpperCase()+page.slice(1)}`;
   }
   $('evidence-search').addEventListener('input',route);
   $('history-search').addEventListener('input',()=>{historyLimit=35;route();});
