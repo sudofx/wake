@@ -9,3 +9,6 @@
 .provenance-lines{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}.provenance-lines path{fill:none;stroke:var(--green);stroke-width:1;opacity:.28}.artifact-group,.bloom-context{position:relative;z-index:1}.artifact-group{border-left:0}.browse-artifacts{display:none}@media(max-width:720px){.browse-artifacts{display:block;font-size:11px!important}}
 
 .provenance-lines path.edge-hot{stroke:var(--hot);stroke-width:2;opacity:1}.provenance-lines path.edge-dim{opacity:.05}
+
+/* Keep MAP controls aligned with the main journal's mobile interaction scale. */
+@media(max-width:720px){header{align-items:center}.wordmark{font-size:30px}header nav.compact-nav{order:3;flex-basis:100%;justify-content:flex-start;gap:20px;border-top:1px solid var(--line);padding-top:8px}.field-head{font-size:11px}.node small,.detail-label,.relationship small{font-size:11px}footer{font-size:13px}}
