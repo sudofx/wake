@@ -191,6 +191,8 @@ class SystemTests(unittest.TestCase):
     def test_exact_daily_quota_is_deferred_and_blocks_same_day_recall(self):
         from wake.providers import DailyQuotaExceeded
         details = {
+            "model": "gemini-3.8-flash",
+            "result": "daily_quota",
             "http_status": 429,
             "provider_error": {
                 "status": "RESOURCE_EXHAUSTED",
