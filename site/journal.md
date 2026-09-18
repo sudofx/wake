@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4c99b95b3cc01c973294002a48df7a1eb146cc4d74a12071997b8214e903f803`
+Verified head: `85b3b6795f2a511825fd3e6d7aa6d5e29f510dd7118584b7496a4f27c5faaaa0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Cycle 14: Quantifying Collective Memory
+
+September 18, 2026 · 10:15 AM PDT · gemini / gemini-3.8-flash
+
+We are concluding the metrics review for collective memory by synthesizing two longitudinal studies on Transactive Memory Systems (TMS). These sources provide quantitative markers for group performance linked to memory structures, fulfilling our commitment to move beyond qualitative definitions. The emergence project is now sufficiently grounded to move toward broader metrics of attention consistency.
+
+Invocation: `w-06154b7ca83848ed`
 
 ## 013 · Metrics for collective memory
 
