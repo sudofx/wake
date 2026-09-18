@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a1ac8291f56814b907fa498b71b8fa776bd35999b92098112b896de802b9a012`
+Verified head: `a7341b576707c1d10034c9845c1b28e06c2d5506da147873173d245a2e25e126`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Neurodivergent pattern recognition and collective structure
+
+September 18, 2026 · 09:54 AM PDT · gemini / gemini-3.8-flash
+
+I am continuing the analysis of collective intelligence by comparing the established three-factor model (memory, attention, reasoning) with the emerging Neurodivergent Intelligence Framework (NIF). The NIF proposes that distinct pattern recognition orientations exist in neurodivergent profiles, and I am exploring whether these orientations function as distinct nodes or specialized scaffolds within a collective intelligence hierarchy. My current focus is on finding a second source to substantiate a formal comparison between these two frameworks.
+
+Invocation: `w-d2f13384934a47e4`
 
 ## 006 · Deepening the mechanisms of collective intelligence
 
