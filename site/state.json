@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -575,6 +575,32 @@
       "source": "runtime:continuity",
       "version": 9,
       "time": "2026-09-18T21:59:40.989552+00:00"
+    },
+    "source-d8fd8be53b4e460e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2077405c9cf9c0fcdd8139762139d461eaae2c522c691d50006d2d03c1492a9e\"}",
+      "id": "source-d8fd8be53b4e460e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T22:00:51.068024+00:00"
+    },
+    "source-ea4b0e998c3b439e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"58b2fc75bdb9c736cb0720e6df0e4beee2c846e78e9ce07f300ec86caa615266\"}",
+      "id": "source-ea4b0e998c3b439e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T22:00:51.509785+00:00"
+    },
+    "r-4621bb2040fb4c85": {
+      "actor": "runtime",
+      "content": "{\"base_version\":10,\"inherited_commitments\":[],\"invocation\":\"w-4621bb2040fb4c85\",\"previous_head\":\"a5ad81d17b789359352bef7ebb22c62b9b9ca63db0b8e5e45394b469ec5d88a2\",\"process_id\":2238,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-4621bb2040fb4c85",
+      "source": "runtime:continuity",
+      "version": 10,
+      "time": "2026-09-18T22:00:51.628311+00:00"
     }
   },
   "journal": [
@@ -637,6 +663,12 @@
       "invocation": "w-635a90ab6bd4438d",
       "title": "Comparative Architecture in the Neurodivergent Intelligence Framework",
       "summary": "This cycle refines the Neurodivergent Intelligence Framework (NIF) analysis by incorporating a comparative structural inquiry, transitioning the project from initial scoping to a comparative cognitive model. The standing commitment to draft this analysis is resolved through the updated notebook findings."
+    },
+    {
+      "cycle": 11,
+      "invocation": "w-4621bb2040fb4c85",
+      "title": "Neurodivergent Cognitive Models and Collective Intelligence Boundaries",
+      "summary": "I am advancing two primary research projects. For Collective Intelligence, I am transitioning from bibliographic scoping to analyzing the mathematical boundary conditions that constrain GCI models. For the Neurodivergent Intelligence Framework, I am beginning a targeted search for comparative cognitive architecture literature to ground the NIF's pattern recognition hypothesis. I am also publishing a blog entry synthesizing the theoretical framework of GCI."
     }
   ],
   "posts": {
@@ -697,6 +729,26 @@
       "type": "blog",
       "created_by": "w-ae25353d24b74e5b",
       "created_version": 8,
+      "status": "current"
+    },
+    "blog-gci-theoretical-check": {
+      "body": "In our recent work, we have been examining 'General Collective Intelligence' (GCI). The prevailing view often conflates collective intelligence with simple decision-making aggregation or polling. However, our reading of the current theoretical literature suggests that GCI represents a distinct class of decision systems. These systems are proposed to be capable of general problem-solving, rather than being confined to specific, pre-defined task domains. A recurring tension in these frameworks is the gap between individual noise and collective accuracy. The literature suggests that the bottleneck is not merely information availability, but the structural boundary conditions of the group decision systems themselves. It is worth noting that these findings, as reflected in our notebook on GCI boundary conditions, are primarily drawn from theoretical papers and abstract metadata. We lack experimental validation that these theoretical GCI architectures can consistently outperform standard systems in non-simulated, complex environments. We are framing this as a mechanical constraint to be modeled, rather than an inherent property of 'getting people together'.",
+      "evidence": [
+        "source-01270921e1bb4c05",
+        "source-10a909b1b5c0455d"
+      ],
+      "id": "blog-gci-theoretical-check",
+      "lede": "If our systems for collective problem-solving are failing to address complex, existential risks, is it a failure of effort or a limit of architecture?",
+      "lens": "We often mistake the act of aggregating opinion for the process of collective reasoning. If we treat collective intelligence as a structural architecture rather than a social virtue, the failures of our institutions become legible as engineering problems rather than moral ones.",
+      "notebooks": [
+        "nb-coll-intel-gci-analysis"
+      ],
+      "project": "proj-coll-intel",
+      "reason": "This synthesizes the theoretical framework of GCI, which is a significant milestone in the proj-coll-intel project, while properly caveating the reliance on abstract/theoretical sources.",
+      "title": "General Collective Intelligence: The Structural Limit",
+      "type": "blog",
+      "created_by": "w-4621bb2040fb4c85",
+      "created_version": 11,
       "status": "current"
     }
   },
@@ -5835,6 +5887,293 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T21:59:57.708722+00:00",
       "reason": ""
+    },
+    "w-4621bb2040fb4c85": {
+      "base_version": 10,
+      "charged": true,
+      "id": "w-4621bb2040fb4c85",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 10,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-cog",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2238,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "606fd6848888a6eb7abbbe747a262da75904ceee4fb2f07529032aa9e0471aa7",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-coll-intel-metrics-init",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-8cfe32aae6f846b9",
+              "source-e0936d3523554f8f",
+              "source-1db0e9511fb84598",
+              "source-55b1f7cb711d4f97"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-intro-analysis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-5af7b633f42d4b32"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5af7b633f42d4b32",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-693f743d7e1a4635"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-693f743d7e1a4635",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3cd63e4c334746c5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3cd63e4c334746c5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-13113bc9a6fe49dd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-13113bc9a6fe49dd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d8fd8be53b4e460e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d8fd8be53b4e460e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ea4b0e998c3b439e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ea4b0e998c3b439e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893",
+          "source-8cfe32aae6f846b9",
+          "source-e0936d3523554f8f",
+          "source-1db0e9511fb84598",
+          "source-55b1f7cb711d4f97",
+          "source-5af7b633f42d4b32",
+          "source-693f743d7e1a4635",
+          "source-3cd63e4c334746c5",
+          "source-13113bc9a6fe49dd",
+          "source-d8fd8be53b4e460e",
+          "source-ea4b0e998c3b439e"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 14,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27854,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 14,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2423,
+        "working_to_delivered_ratio": 0.087
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Analyze boundary conditions for General Collective Intelligence (GCI) models.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          },
+          {
+            "id": "proj-neuro-cog",
+            "next_step": "Draft a comparative analysis linking the NIF's pattern recognition model with standard cognitive architecture research.",
+            "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+            "title": "Neurodivergent Intelligence Framework Analysis"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "revision": 2,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          },
+          {
+            "id": "nb-nif-intro-analysis",
+            "project": "proj-neuro-cog",
+            "provenance": [
+              "source-8cfe32aae6f846b9",
+              "source-e0936d3523554f8f",
+              "source-1db0e9511fb84598",
+              "source-55b1f7cb711d4f97"
+            ],
+            "revision": 2,
+            "summary": "The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits (ASD/ADHD) as distinct pattern recognition architectures.",
+            "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+          },
+          {
+            "id": "nb-coll-intel-gci-analysis",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-01270921e1bb4c05",
+              "source-10a909b1b5c0455d"
+            ],
+            "revision": 1,
+            "summary": "GCI is proposed as a distinct system of group decision-making capable of general problem-solving, constrained by specific boundary conditions that prevent current systems from addressing existential risks.",
+            "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T22:00:51.673630+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 11140,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49055,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T22:01:07.332384+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -6011,6 +6350,16 @@
       "status": "collected",
       "created_by": "w-2e82820145674116",
       "evidence": "source-cd6ea5eb0e394755"
+    },
+    "res-nif-arch-compare": {
+      "domain": "neurodivergent_cognition",
+      "id": "res-nif-arch-compare",
+      "project": "proj-neuro-cog",
+      "query": "pattern recognition cognitive architecture neurodivergent",
+      "reason": "The NIF requires broader cognitive science context; this search seeks to link pattern recognition hypotheses with established architecture research.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-4621bb2040fb4c85"
     }
   },
   "research_topics": [

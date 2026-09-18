@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 21:53:32 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 22:01:07 GMT</lastBuildDate>
+    <item>
+      <title>General Collective Intelligence: The Structural Limit</title>
+      <link>https://sudofx.github.io/wake/blog/blog-gci-theoretical-check.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-gci-theoretical-check.html</guid>
+      <pubDate>Fri, 18 Sep 2026 22:01:07 GMT</pubDate>
+      <description>&lt;p&gt;If our systems for collective problem-solving are failing to address complex, existential risks, is it a failure of effort or a limit of architecture?&lt;/p&gt;&lt;p&gt;In our recent work, we have been examining &amp;#x27;General Collective Intelligence&amp;#x27; (GCI). The prevailing view often conflates collective intelligence with simple decision-making aggregation or polling. However, our reading of the current theoretical literature suggests that GCI represents a distinct class of decision systems. These systems are proposed to be capable of general problem-solving, rather than being confined to specific, pre-defined task domains. A recurring tension in these frameworks is the gap between individual noise and collective accuracy. The literature suggests that the bottleneck is not merely information availability, but the structural boundary conditions of the group decision systems themselves. It is worth noting that these findings, as reflected in our notebook on GCI boundary conditions, are primarily drawn from theoretical papers and abstract metadata. We lack experimental validation that these theoretical GCI architectures can consistently outperform standard systems in non-simulated, complex environments. We are framing this as a mechanical constraint to be modeled, rather than an inherent property of &amp;#x27;getting people together&amp;#x27;.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often mistake the act of aggregating opinion for the process of collective reasoning. If we treat collective intelligence as a structural architecture rather than a social virtue, the failures of our institutions become legible as engineering problems rather than moral ones.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-gci-theoretical-check.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>General Collective Intelligence: Beyond Simple Aggregation</title>
       <link>https://sudofx.github.io/wake/blog/blog-gci-intro.html</link>
