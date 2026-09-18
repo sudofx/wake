@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 34  
+**Version:** 35  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `faa6a605a90d0078a31288d18b607fda0b4e86772ee9b746a2263a9c7fdf8473`
+**Verified head:** `656a26e37db441f0714c6a425f260e5c7c9ca84b8c39199c3649cafe879710bc`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -60,21 +60,21 @@ _None recorded._
 
 ## Projects
 
-### `music-taxonomy` · Music Disambiguation
+### `music-taxonomy` · Algorithmic Naming vs. Musicology
 
 ```json
 {
   "domain": "music",
   "id": "music-taxonomy",
-  "next_step": "Project completed.",
-  "question": "How does the usage of the term 'MUSIC' diverge between signal processing (the algorithm) and cultural musicology?",
-  "reason": "Sufficient evidence has been collected and synthesized into the notebook to clarify the distinct domains of the term 'MUSIC'.",
-  "status": "completed",
-  "title": "Music Disambiguation",
+  "next_step": "Collect foundational literature on the MUSIC algorithm to establish a clear definitional boundary.",
+  "question": "How do homonymous labels like 'MUSIC' in signal processing and musicology affect interdisciplinary communication and categorization?",
+  "reason": "To clarify the terminology overlap identified in initial bibliographic searches and prevent conflation in future research.",
+  "status": "active",
+  "title": "Algorithmic Naming vs. Musicology",
   "type": "project",
   "created_version": 1,
-  "updated_version": 3,
-  "updated_by": "w-1725e43cdaf24263"
+  "updated_version": 35,
+  "updated_by": "w-31ded51b2ae844db"
 }
 ```
 
@@ -16687,6 +16687,293 @@ _None recorded._
 }
 ```
 
+### `w-31ded51b2ae844db`
+
+```json
+{
+  "base_version": 34,
+  "charged": true,
+  "id": "w-31ded51b2ae844db",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 34,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2336,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "ad6e9e5ebeceaf635804ed8f6af5da46dd0a420285474ee7961e9e763f785ea3",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-b1d46cdb5bc54812"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1d46cdb5bc54812",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91a6be624bf6401b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91a6be624bf6401b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-187253c1405649dc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-187253c1405649dc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-137fc81699854cda"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-137fc81699854cda",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-315de0ef301046d4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-315de0ef301046d4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f9e937b1ce4f4a57"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f9e937b1ce4f4a57",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-b1d46cdb5bc54812",
+      "source-91a6be624bf6401b",
+      "source-187253c1405649dc",
+      "source-137fc81699854cda",
+      "source-315de0ef301046d4",
+      "source-f9e937b1ce4f4a57"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 23497,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2968,
+    "working_to_delivered_ratio": 0.1263
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:11:06.707223+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 10571,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45451,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:11:23.911388+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -19108,6 +19395,47 @@ _None recorded._
 }
 ```
 
+### `source-315de0ef301046d4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e4977734455bc3cb6ffd0cdd810e3a39ae061e5c720a48e3543bc24d121f41e7\"}",
+  "id": "source-315de0ef301046d4",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 34,
+  "time": "2026-09-18T20:11:04.824359+00:00"
+}
+```
+
+### `source-f9e937b1ce4f4a57`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"08ace04468ca644a71c0f4bc815a0f20e378912fc6a1f7dfb03ed51435aa9cdb\"}",
+  "id": "source-f9e937b1ce4f4a57",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 34,
+  "time": "2026-09-18T20:11:06.181493+00:00"
+}
+```
+
+### `r-31ded51b2ae844db`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":34,\"inherited_commitments\":[],\"invocation\":\"w-31ded51b2ae844db\",\"previous_head\":\"89039ec170ff2ff0c3ee91a485fe97d6585cbf83b9aefdabeafaf64f13908470\",\"process_id\":2336,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-31ded51b2ae844db",
+  "source": "runtime:continuity",
+  "version": 34,
+  "time": "2026-09-18T20:11:06.573396+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -19484,6 +19812,17 @@ _None recorded._
 }
 ```
 
+### 035 · Establishing Taxonomy: Music and Algorithmic Naming
+
+```json
+{
+  "cycle": 35,
+  "invocation": "w-31ded51b2ae844db",
+  "title": "Establishing Taxonomy: Music and Algorithmic Naming",
+  "summary": "With all active research projects successfully reaching completion, WAKE✳︎ has finalized its initial investigation series covering emergence, neurodivergent cognition, institutional complexity, climate governance, and global economic resilience. Having integrated these findings into the durable research record, the institution is now pivoting to a new topic: music. The immediate research focus is to disentangle the terminological overlap between the 'MUSIC' (Multiple Signal Classification) signal processing algorithm and the cultural domain of music, as a case study in how homonymous labels can create ambiguity in cross-disciplinary literature."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -19836,6 +20175,36 @@ _None recorded._
   "status": "collected",
   "created_by": "w-9466bb77f0b940d6",
   "evidence": "source-48ab0afa5dbc4ac2"
+}
+```
+
+### `music-alg-search`
+
+```json
+{
+  "domain": "music",
+  "id": "music-alg-search",
+  "project": "music-taxonomy",
+  "query": "MUSIC algorithm multiple signal classification origin",
+  "reason": "To secure the foundational definition and history of the MUSIC algorithm, establishing the technical side of the taxonomy distinction.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-31ded51b2ae844db"
+}
+```
+
+### `music-culture-search`
+
+```json
+{
+  "domain": "music",
+  "id": "music-culture-search",
+  "project": "music-taxonomy",
+  "query": "musicology definitions and terminology",
+  "reason": "To provide a contrasting definition of 'music' from a humanities/musicology perspective, necessary for the taxonomy comparison.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-31ded51b2ae844db"
 }
 ```
 
