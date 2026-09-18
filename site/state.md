@@ -5,7 +5,7 @@
 **Version:** 19  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `ef2961af800cce196bdcd3396937b070324eb5000829cde38ba74ae5e11a1fb8`
+**Verified head:** `b4a67533f94d1d4187dc4b651eb68426dc31bd5ef0caa7cdc8cf80489b3caedc`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -8805,6 +8805,327 @@ _None recorded._
 }
 ```
 
+### `w-97e9ff7266ff4939`
+
+```json
+{
+  "base_version": 19,
+  "charged": true,
+  "id": "w-97e9ff7266ff4939",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 19,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2276,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "6ac9a07b1c288550363e86e759afef5bbbc9916516f17e8a14026a06d13f2653",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-79853335e43144ef",
+          "source-d52ab32f0b594f9e"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-intro-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-01270921e1bb4c05",
+          "source-10a909b1b5c0455d",
+          "source-00f4a86365494a57"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-gci-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "com-synthesize-models",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-6efe8b71ae8346b8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6efe8b71ae8346b8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-31c828241dba4b55"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-31c828241dba4b55",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-981939222ebe4de3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-981939222ebe4de3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d8e26a54a7cd4425"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d8e26a54a7cd4425",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-750819a639f04b0a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5270a1073d3f404a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5270a1073d3f404a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-79853335e43144ef",
+      "source-d52ab32f0b594f9e",
+      "source-01270921e1bb4c05",
+      "source-10a909b1b5c0455d",
+      "source-00f4a86365494a57",
+      "source-6efe8b71ae8346b8",
+      "source-31c828241dba4b55",
+      "source-981939222ebe4de3",
+      "source-d8e26a54a7cd4425",
+      "source-750819a639f04b0a",
+      "source-5270a1073d3f404a"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29671,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2740,
+    "working_to_delivered_ratio": 0.0923
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Synthesize gathered mathematical models of collective boundary conditions.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Synthesize pattern recognition capabilities across the collected NIF literature and comparative cognitive architecture studies.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 20,
+        "id": "com-synthesize-models",
+        "reason": "Ensures the transition from concept to formal modeling is tracked and reviewed.",
+        "task": "Review and synthesize mathematical models of topological boundaries and cognitive architectures."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-79853335e43144ef",
+          "source-d52ab32f0b594f9e"
+        ],
+        "revision": 7,
+        "summary": "The NIF contrasts with traditional deficit-based models by reframing neurodivergent traits as distinct pattern recognition architectures; new research on cognitive assistant implementation and clinical pattern recognition supports treating these as functional, analyzable structures.",
+        "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis (Revision)"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-01270921e1bb4c05",
+          "source-10a909b1b5c0455d",
+          "source-00f4a86365494a57"
+        ],
+        "revision": 2,
+        "summary": "GCI models can be framed through topological boundary conditions, treating collective dynamics as isotropic information flow within constrained geometries.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T22:14:00.218835+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 11555,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51080,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T22:14:16.482820+00:00",
+  "reason": "Stale or invalid base_version"
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -10078,6 +10399,47 @@ _None recorded._
 }
 ```
 
+### `source-750819a639f04b0a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-94-010-0910-2_36\\\", \\\"title\\\": [\\\"Topology Design of the Joint Types and Boundary Conditions of the Discretized Structures by Mathematical Programming\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-010-0910-2_36\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}, {\\\"DOI\\\": \\\"10.1016/j.apm.2025.115959\\\", \\\"title\\\": [\\\"Topology optimization for coupled thermomechanical problems with approximated thermal radiation boundary conditions depending on design variables\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.apm.2025.115959\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 6]]}}, {\\\"DOI\\\": \\\"10.1021/acs.jpcb.6c01770.s001\\\", \\\"title\\\": [\\\"Spherical Boundary Conditions: A Topological Framework for Isotropic Collective Dynamics\\\"], \\\"URL\\\": \\\"https://doi.org/10.1021/acs.jpcb.6c01770.s001\\\"}, {\\\"DOI\\\": \\\"10.21203/rs.3.rs-6690751/v1\\\", \\\"title\\\": [\\\"Arbitrary Boundary Conditions in Topology Optimization:\\\\nApplications in Strongly Coupled Viscothermal Multiphysics\\\"], \\\"abstract\\\": \\\"<title>Abstract</title>\\\\n        <p>Density based topology optimization has proven to be a powerful framework for designing high-performance structures across a wide range of physical domains. However, a challenge in density based topology optimization is incorporating the influence of boundary dependent conditions such as forces, heat fluxes, and interface conditions in the optimization process, due to the evolving and initially undefined nature of these boundaries. Existing solutions to this problem often rely on physics-specific workarounds, auxiliary fields, or mesh-dependent strategies, limiting their generality and broad applicability. In this work, we introduce a novel approach based on boundary interpolations. This enables the application of arbitrary boundary conditions in density based topology optimization, regardless of mesh structures or underlying physics. The boundary interpolations integrate seamlessly into the density based topology optimization methodology, transforming it straightforwardly into a boundary-aware optimization method. We demonstrate this by designing an optimal acoustic resonator that leverages viscothermal boundary losses to fully absorb an incoming acoustic wave, and we highlight the degradation of the resonator’s absorption performance when physically accurate vibroacoustic multiphysics are taken into account. To recover its performance, we subsequently include a strongly coupled vibroacoustic multiphysics model in the optimization process, along with the associated boundary-dependent coupling conditions. This showcases,to the best of the authors knowledge, the first simultaneous application of multiple interface conditions to a single boundary during a density based topology optimization process. This advancement opens the door not only to the optimal design of complex vibroacoustic systems, encompassing all their physical complexity, but also to other applications that require the incorporation of boundary effects into density based topology optimization.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.21203/rs.3.rs-6690751/v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 20]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c56ba34176ef7bf585bfc4852b56253fe2b9eb97f173d2ab4d82fcb3f4543b94\"}",
+  "id": "source-750819a639f04b0a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-18T22:13:59.589579+00:00"
+}
+```
+
+### `source-5270a1073d3f404a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"978dfb7dbda0e16347e193e212cf0728ca9e2c4c773e90563bc8ad0c4b3a0881\"}",
+  "id": "source-5270a1073d3f404a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-18T22:13:59.953864+00:00"
+}
+```
+
+### `r-97e9ff7266ff4939`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":19,\"inherited_commitments\":[\"com-synthesize-models\"],\"invocation\":\"w-97e9ff7266ff4939\",\"previous_head\":\"74510c26bc924055d657af13a3d0beede9a357d15d292f85e45b739cf20f2b89\",\"process_id\":2276,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-97e9ff7266ff4939",
+  "source": "runtime:continuity",
+  "version": 19,
+  "time": "2026-09-18T22:14:00.149053+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing Durable Context and Initial Collective Intelligence Project
@@ -10477,8 +10839,9 @@ _None recorded._
   "query": "mathematical topology collective intelligence boundary conditions",
   "reason": "To identify rigorous topological frameworks for collective information flow.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-34da7aa8f99f48fd"
+  "status": "collected",
+  "created_by": "w-34da7aa8f99f48fd",
+  "evidence": "source-750819a639f04b0a"
 }
 ```
 
