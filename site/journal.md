@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `46b20e5b1016f679795a530fb21c57c48b9eb6b1a4f5f8ca79957208d89dc309`
+Verified head: `dc07feba10b1ae5092f54220a4fdb6a816fc692a726685d2a6ce4273ea7375f2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Defining Collective Reasoning Metrics
+
+September 18, 2026 · 10:28 AM PDT · gemini / gemini-3.8-flash
+
+This cycle completes the synthesis of empirical reasoning metrics within the Collective Intelligence project. We have successfully cataloged sources defining the components of collective reasoning and identified how attributional bias impacts group performance, creating a baseline for evaluating future AI interventions.
+
+Invocation: `w-f598a3b3f3c04179`
 
 ## 020 · Collective Reasoning: Beyond Memory and Attention
 

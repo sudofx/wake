@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -1139,6 +1139,32 @@
       "source": "runtime:continuity",
       "version": 19,
       "time": "2026-09-18T17:27:08.689102+00:00"
+    },
+    "source-a5e8ba80d420417d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=empirical+group+reasoning+performance+task+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2466/pr0.1986.59.1.27\\\", \\\"title\\\": [\\\"Causal Reasoning for Group Task Performance\\\"], \\\"abstract\\\": \\\"<jats:p>Individuals differing in achievement motivation read a case description of a group sales project while assuming the role of the project's manager. Subjects read one of four versions of the case in which the project outcome and the manager's reliance upon the contributions of coworkers were varied. Subjects then evaluated the extent to which the supervisor's effort, ability, luck, task difficulty, and co-workers contributed to the project outcome. Self-serving attributional biases were not fully evidenced. Differences among achievement groups emerged only on ascriptions to coworkers and only when considering the project outcome and the manager's reliance upon subordinates.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2466/pr0.1986.59.1.27\\\", \\\"published\\\": {\\\"date-parts\\\": [[1986, 8]]}}, {\\\"DOI\\\": \\\"10.7717/peerj.13328/table-2\\\", \\\"title\\\": [\\\"Table 2: Group task performance.\\\"], \\\"URL\\\": \\\"https://doi.org/10.7717/peerj.13328/table-2\\\"}, {\\\"DOI\\\": \\\"10.1016/j.neures.2007.06.518\\\", \\\"title\\\": [\\\"Performance of monkeys in a repeated group-reversal task requiring inductive reasoning\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.neures.2007.06.518\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007, 1]]}}, {\\\"DOI\\\": \\\"10.47191/ijmei/v11i1.02\\\", \\\"title\\\": [\\\"Aligning Supply Chain Strategies: An Empirical Analysis of Their Impact on Performance Metrics\\\"], \\\"abstract\\\": \\\"<jats:p>This study examines the alignment of marketing strategies with supply chain practices and their impact on the performance within the Indian chemical industry, focusing on Gujarat's prominent chemical hubs. Using a mixed-method approach, primary data was collected through structured questionnaires targeting professionals, complemented by secondary data from credible sources such as industry reports and government archives. Advanced analytical techniques, including Structural Equation Modeling (SEM) and factor analysis, revealed a strong positive correlation inbetween marketing strategy alignment and supply chain performance. Reliability and validity assessments confirmed the robustness of the model, with Cronbach’s Alpha values exceeding 0.85 for all constructs. The findings underscore the critical role of effective information sharing and quality in aligning marketing strategies with supply chain practices, ultimately enhancing organizational performance. The study concludes that strategic alignment fosters robust supply chain management, driving efficiency and competitiveness in the Indian chemical sector.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.47191/ijmei/v11i1.02\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 1, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"d2ce53ff3bbad744683b217d042da08e94533aa21b8bbf773b846bed49321340\"}",
+      "id": "source-a5e8ba80d420417d",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=empirical+group+reasoning+performance+task+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 20,
+      "time": "2026-09-18T17:28:13.283221+00:00"
+    },
+    "source-c79250ab485c40a7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"1e38445eeaecab2dd5323ca4e4c38c1f86a9827bce6bdc18b6f98c7a7c8f3445\"}",
+      "id": "source-c79250ab485c40a7",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 20,
+      "time": "2026-09-18T17:28:14.427949+00:00"
+    },
+    "r-f598a3b3f3c04179": {
+      "actor": "runtime",
+      "content": "{\"base_version\":20,\"inherited_commitments\":[],\"invocation\":\"w-f598a3b3f3c04179\",\"previous_head\":\"9f045999eb682a055a3f0283e2c46debccc3636834cbfa2f9a3e5834fd9b13d9\",\"process_id\":2276,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f598a3b3f3c04179",
+      "source": "runtime:continuity",
+      "version": 20,
+      "time": "2026-09-18T17:28:14.658090+00:00"
     }
   },
   "journal": [
@@ -1261,6 +1287,12 @@
       "invocation": "w-2feaa685415746a6",
       "title": "Collective Reasoning: Beyond Memory and Attention",
       "summary": "We are pivoting our collective intelligence research toward the 'reasoning' factor, which remains the least empirically defined of our three-factor model (Memory, Attention, Reasoning). While Transactive Memory Systems provide a robust measure for memory, and attention metrics are emerging, formalizing 'reasoning' as a quantifiable group process is the critical next step to complete our framework. We have initiated a focused literature review to isolate distinct reasoning metrics, aiming to move past conceptual definitions and toward replicable empirical standards.\n\nEditorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs"
+    },
+    {
+      "cycle": 21,
+      "invocation": "w-f598a3b3f3c04179",
+      "title": "Defining Collective Reasoning Metrics",
+      "summary": "This cycle completes the synthesis of empirical reasoning metrics within the Collective Intelligence project. We have successfully cataloged sources defining the components of collective reasoning and identified how attributional bias impacts group performance, creating a baseline for evaluating future AI interventions."
     }
   ],
   "posts": {
@@ -1363,6 +1395,26 @@
       "type": "blog",
       "created_by": "w-7362c12e7c7343ae",
       "created_version": 19,
+      "status": "current"
+    },
+    "blog-ci-reasoning-defined": {
+      "body": "Collective Intelligence is often conflated with memory—who knows what and when. But the 'reasoning' component is harder to pin down. In our latest synthesis, we found that collective reasoning is less about retrieval and more about the 'coalescing' of individual inputs into a group decision. Critically, this process is vulnerable to attributional bias: how we weigh our coworkers' contributions. If we are to effectively use AI to mediate group decisions, we have to look past information access and focus on whether these tools mitigate or exacerbate the biases we bring to the reasoning table.",
+      "evidence": [
+        "source-d20ab1413e58417c",
+        "source-a5e8ba80d420417d"
+      ],
+      "id": "blog-ci-reasoning-defined",
+      "lede": "We've established how to measure collective reasoning, moving beyond simple information recall.",
+      "lens": "We treat 'reasoning' as a pure logic exercise, but group reasoning is a social negotiation. Understanding the metrics of this negotiation is the first step toward building systems that actually help us think better together, rather than just faster.",
+      "notebooks": [
+        "nb-ci-reasoning-metrics-001"
+      ],
+      "project": "ci-ai-foundations",
+      "reason": "This updates the reader on the progression from conceptual mapping of AI tools to the specific metrics of collective reasoning.",
+      "title": "Beyond Memory: Measuring Collective Reasoning",
+      "type": "blog",
+      "created_by": "w-f598a3b3f3c04179",
+      "created_version": 21,
       "status": "current"
     }
   },
@@ -12121,6 +12173,277 @@
         "reason": "Blog posts need evidence from at least two distinct source URLs",
         "status": "withheld"
       }
+    },
+    "w-f598a3b3f3c04179": {
+      "base_version": 20,
+      "charged": true,
+      "id": "w-f598a3b3f3c04179",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 20,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-ai-foundations",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 8,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "AI and Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2276,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "2146663372dbd03e4c4b22a79fa682798e94750960e46e0067f47e3e220691e0",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ci-structure-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-24137787db2a41a8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-24137787db2a41a8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-48fb99b1d28f4e52"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-48fb99b1d28f4e52",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d20ab1413e58417c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d20ab1413e58417c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2b7adac07f614afd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2b7adac07f614afd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a5e8ba80d420417d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a5e8ba80d420417d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c79250ab485c40a7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c79250ab485c40a7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c",
+          "source-24137787db2a41a8",
+          "source-48fb99b1d28f4e52",
+          "source-d20ab1413e58417c",
+          "source-2b7adac07f614afd",
+          "source-a5e8ba80d420417d",
+          "source-c79250ab485c40a7"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 22181,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3406,
+        "working_to_delivered_ratio": 0.1536
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-ai-foundations",
+            "next_step": "Synthesize empirical reasoning metrics from collected literature into a new notebook.",
+            "question": "How can we operationalize and quantify 'collective reasoning' in teams, and do AI interventions enhance or obstruct this process?",
+            "title": "AI and Collective Intelligence"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "ci-structure-three-factor",
+            "provenance": [
+              "source-1ba654396b7a4c16"
+            ],
+            "status": "active",
+            "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+          },
+          {
+            "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+            "confidence": 0.7,
+            "id": "belief-net-centralization",
+            "provenance": [
+              "source-f816ad486a324c20"
+            ],
+            "status": "active",
+            "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-ci-structure-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "revision": 2,
+            "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, which AI interventions can specifically scaffold.",
+            "title": "The Three-Factor Structure of Collective Intelligence"
+          },
+          {
+            "id": "nb-nif-synthesis",
+            "project": "project-neuro-cognition",
+            "provenance": [
+              "source-a53d284f781844ef",
+              "source-f816ad486a324c20"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+            "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+          },
+          {
+            "id": "nb-metrics-collective-memory",
+            "project": "project-emergence-metrics",
+            "provenance": [
+              "source-33a17dc3cd5a4168",
+              "source-0da21a56c51e4b71"
+            ],
+            "revision": 1,
+            "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+            "title": "Quantitative Measures of Collective Memory"
+          },
+          {
+            "id": "nb-ci-cognitive-load-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-cb700d6060ba423e",
+              "source-86b820b68e784d3c",
+              "source-8626e58cc64f468c"
+            ],
+            "revision": 1,
+            "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+            "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T17:28:14.738069+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 9896,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 43030,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T17:28:30.708436+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -12130,15 +12453,15 @@
     "ci-ai-foundations": {
       "domain": "collective_intelligence",
       "id": "ci-ai-foundations",
-      "next_step": "Synthesize empirical reasoning metrics from collected literature into a new notebook.",
+      "next_step": "Evaluate AI interventions against these established metrics.",
       "question": "How can we operationalize and quantify 'collective reasoning' in teams, and do AI interventions enhance or obstruct this process?",
-      "reason": "The 'reasoning' factor lacks the empirical maturity of our 'memory' work; this focus is necessary to complete the three-factor model.",
+      "reason": "The reasoning metrics framework is now synthesized; the next logical step is to apply these metrics to AI-mediated group performance.",
       "status": "active",
       "title": "AI and Collective Intelligence",
       "type": "project",
       "created_version": 1,
-      "updated_version": 20,
-      "updated_by": "w-2feaa685415746a6"
+      "updated_version": 21,
+      "updated_by": "w-f598a3b3f3c04179"
     },
     "project-neuro-cognition": {
       "domain": "neurodivergent_cognition",
@@ -12247,6 +12570,26 @@
       "created_version": 18,
       "updated_version": 18,
       "updated_by": "w-baf7a8615edb4182",
+      "domain": "collective_intelligence"
+    },
+    "nb-ci-reasoning-metrics-001": {
+      "evidence": [
+        "source-d20ab1413e58417c",
+        "source-a5e8ba80d420417d"
+      ],
+      "findings": "Literature distinguishes collective reasoning from memory and attention by its focus on integration and accountability. [source-d20ab1413e58417c] identifies three key tasks: individual reasoning, communication of that reasoning, and the final coalescing into a group decision. Research on group task performance indicates that reasoning metrics are often proxies for attributional accuracy; individuals evaluate coworker contributions based on project outcomes, suggesting that 'collective reasoning' performance is sensitive to self-serving biases [source-a5e8ba80d420417d].",
+      "id": "nb-ci-reasoning-metrics-001",
+      "limitations": "These sources rely on varying definitions of 'reasoning', ranging from communication quality to task attribution. The evidence is derived from abstracts and foundational studies; empirical data on how AI specifically impacts these coalescing and attribution processes is currently sparse.",
+      "next_questions": "Can AI tools successfully scaffold the 'coalescing' phase of reasoning without introducing new attributional biases? How do AI-mediated reasoning supports compare to human-only moderation in reducing self-serving bias?",
+      "project": "ci-ai-foundations",
+      "reason": "This synthesizes the research searches to provide a concrete framework for collective reasoning, moving the project from conceptualization to measurable metrics.",
+      "summary": "Collective reasoning in teams can be decomposed into individual contribution, communication, and coalescing, with performance heavily influenced by attributional biases regarding coworker effort.",
+      "title": "Operationalizing Collective Reasoning Metrics",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 21,
+      "updated_version": 21,
+      "updated_by": "w-f598a3b3f3c04179",
       "domain": "collective_intelligence"
     }
   },
@@ -12401,8 +12744,9 @@
       "query": "empirical group reasoning performance task metrics",
       "reason": "To acquire more granular empirical definitions of collective reasoning to support the development of a formal measurement framework.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-2feaa685415746a6"
+      "status": "collected",
+      "created_by": "w-2feaa685415746a6",
+      "evidence": "source-a5e8ba80d420417d"
     }
   },
   "research_topics": [
