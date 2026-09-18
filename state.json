@@ -610,6 +610,32 @@
       "source": "runtime:continuity",
       "version": 10,
       "time": "2026-09-18T19:21:58.878122+00:00"
+    },
+    "source-7ac6f0f279384f11": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=governance-gated+AI+collective+intelligence+institutional+accountability&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/aisoc1010004\\\", \\\"title\\\": [\\\"Auditing as a Governance Mechanism for Artificial Intelligence: Institutional Design, Accountability, and Ethical Oversight\\\"], \\\"abstract\\\": \\\"<jats:p>The rapid diffusion of artificial intelligence (AI) across organisational and societal settings has heightened concerns about accountability, transparency, and ethical oversight. Existing governance mechanisms, including regulation and principle-based ethics frameworks, often struggle to address the scale, opacity, and socio-technical complexity of AI systems. In response, auditing has increasingly been proposed as a means of implementing accountability by translating ethical and legal expectations into structured oversight practices. The study employs a structured literature review methodology, analysing 71 peer-reviewed articles published between 2020 and 2025, retrieved from Scopus, Web of Science, and ProQuest. Through thematic synthesis, the review shows that AI auditing has evolved beyond technical verification towards a socio-technical governance infrastructure grounded in transparency, independence, ethics integration, and professionalisation. However, its effectiveness is constrained by persistent challenges, including algorithmic opacity, regulatory lag, fragmented standards, capability gaps, and risks of symbolic compliance. The study positions auditing as both a central tool and a critical institutional challenge within AI governance, offering insights for scholars, regulators, and practitioners seeking durable accountability mechanisms for responsible AI.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/aisoc1010004\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 9, 9]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.7339378\\\", \\\"title\\\": [\\\"Institutional Judgment Governance: Toward a Theory of Reliance, Authority, and Accountability in Human-AI Decision Systems\\\"], \\\"abstract\\\": \\\"<jats:p>Artificial intelligence increasingly participates in the processes through which institutions interpret information, evaluate evidence, generate recommendations, make decisions, and act. Existing research and governance frameworks address AI risk management, human oversight, appropriate reliance, accountability, decision governance, and increasingly autonomous systems. A broader question nevertheless arises: how should institutions govern consequential judgment when the capabilities contributing to decisions and actions are distributed across human and artificial participants? This article advances Institutional Judgment Governance (IJG) as an integrative theoretical framework for examining that problem. IJG is defined as the governance of how institutions form, exercise, distribute, authorize, and evaluate consequential judgment; preserve the capacities required for such judgment; and remain accountable when human and artificial capabilities jointly contribute to organizational decision-making and action. It treats consequential institutional judgment as an institutionally attributable object of governance connecting AI capability with reliance, decision authority, delegated authority, judgment capacity, organizational action, and continuing accountability. The article makes four principal contributions. First, it distinguishes the exercise of institutional judgment from the institution’s continuing judgment capacity. Second, it distinguishes human presence, human oversight, human decision authority, and meaningful human judgment. Third, it identifies a two-sided governance problem: institutions must govern both the decision weight artificial contributions are permitted to carry and the institutional judgment capacity required to evaluate, challenge, and remain accountable for the resulting judgment. Fourth, it organizes the framework through six propositions: Institutional Accountability, Reliance Authorization, Effective Human Decision Authority, Judgment Preservation, Governed Delegation, and Reassessment and Adaptation.&amp;nbsp;IJG complements rather than replaces established approaches to AI risk management, oversight, assurance, decision governance, evidentiary control, and authority allocation. Within IJG, Reliance Authorization is positioned as one governance model for structuring the institutional determination of whether, when, by whose authority, and under what conditions an AI contribution may carry consequential institutional decision weight. IJG’s proposed contribution is therefore configurational and integrative: it treats consequential institutional judgment as the integrative governance object around which Reliance Authorization, decision authority, institutional judgment capacity, accountability, and continuing reassessment are analyzed together.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.7339378\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.4018/979-8-2600-4050-8.ch007\\\", \\\"title\\\": [\\\"AI-Enabled Governance in Higher Education\\\"], \\\"abstract\\\": \\\"<jats:p>This chapter examines the growing integration of artificial intelligence in higher education governance and its impact on accountability, institutional autonomy, and regulatory systems. It analyses the use of algorithmic systems in admissions, assessment, student monitoring, and institutional management, highlighting concerns relating to opacity, procedural fairness, distributed liability, and data-driven governance. The chapter evaluates existing regulatory frameworks, including the General Data Protection Regulation, the European Union Artificial Intelligence Act, the Digital Personal Data Protection Act 2023, and the Indian Information Technology Act 2000, while identifying gaps in sector-specific regulation for higher education. Drawing on interdisciplinary scholarship on algorithmic governance and digital bureaucracy, the chapter argues that artificial intelligence represents a structural transformation in university governance. It proposes a hybrid regulatory framework based on transparency, traceability, institutional oversight, and procedural safeguards.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4018/979-8-2600-4050-8.ch007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 9, 2]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.7082358\\\", \\\"title\\\": [\\\"Autonomous Governance Intelligence: An AI-Native Framework for Continuous Democratic Visibility and Accountability\\\"], \\\"abstract\\\": \\\"<jats:p>Governance intelligence should be treated as a continuous state-estimation problem rather than a complaint-resolution problem. Traditional civic technology platforms operate on transactional, complaint-centric architectures that process citizen grievances as isolated tickets. While effective for administrative workflow management, these systems often fail to generate a comprehensive understanding of broader governance conditions, disconnect citizen participation from collective impact, and prioritize procedural activity over measurable public outcomes. This paper introduces IndiaOS, a theoretical AI-native governance framework designed to transition from fragmented grievance management toward continuous governance intelligence. At the center of the framework is the Autonomous Governance Intelligence Layer (AGIL), a multi-engine architecture that continuously ingests decentralized civic observations and transforms them into structured public issues through semantic, spatial, and temporal clustering mechanisms. By establishing a clear separation between private citizen inputs and public issue outputs, the framework reduces informational fragmentation while enabling large-scale aggregation of civic signals. The model further introduces a dual-state evaluation framework that distinguishes between Official Status, representing institutional claims of resolution, and Reality Status, representing continuously verified ground-level conditions. Through multi-source evidence aggregation and dynamic accountability assessment, the architecture seeks to provide a more accurate representation of governance performance than traditional complaint-management systems. The paper argues that artificial intelligence can evolve beyond stateless generative applications toward persistent, stateful monitoring systems capable of supporting transparency, accountability, and evidence-based democratic governance. Author Ashnik X. Chaudhary is a mechanical engineering student, independent researcher, and founder exploring the application of artificial intelligence to governance, civic participation, and institutional accountability. His current work focuses on IndiaOS, an AI-native governance intelligence framework designed to transform decentralized citizen observations into continuous public visibility and evidence-based accountability systems. His broader interests include collective intelligence, digital democracy, public-sector innovation, and emerging technology policy.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.7082358\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3d135c2a2475a5f9ed2d9273173d24d717d076205f569cb18e0ad953d2326c56\"}",
+      "id": "source-7ac6f0f279384f11",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=governance-gated+AI+collective+intelligence+institutional+accountability&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 11,
+      "time": "2026-09-18T19:23:05.231916+00:00"
+    },
+    "source-706cfbdc7f5548be": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e0368ca9beddc66b963359f47e10a6fa4c5afeabc4cc504676b17116785b1cb6\"}",
+      "id": "source-706cfbdc7f5548be",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 11,
+      "time": "2026-09-18T19:23:06.690616+00:00"
+    },
+    "r-364faf4a89354fdc": {
+      "actor": "runtime",
+      "content": "{\"base_version\":11,\"inherited_commitments\":[],\"invocation\":\"w-364faf4a89354fdc\",\"previous_head\":\"23fc30421e44dca09452ca56ec1fb49f35ab67334e4d595268ff3c6786855404\",\"process_id\":2030,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-364faf4a89354fdc",
+      "source": "runtime:continuity",
+      "version": 11,
+      "time": "2026-09-18T19:23:06.915198+00:00"
     }
   },
   "journal": [
@@ -6108,6 +6134,276 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:22:11.272439+00:00",
       "reason": ""
+    },
+    "w-364faf4a89354fdc": {
+      "base_version": 11,
+      "charged": true,
+      "id": "w-364faf4a89354fdc",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 11,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2030,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "75d526a008ac28c2bc9f022d72694cc84351424ee0cf37dddf6f6a1fba6a3829",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cc39fffc5ac04151"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cc39fffc5ac04151",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-844c021ac5ee461d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-844c021ac5ee461d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a23550dab80e4e1a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a23550dab80e4e1a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3782fa45ba314084"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3782fa45ba314084",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7ac6f0f279384f11"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7ac6f0f279384f11",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-706cfbdc7f5548be"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-706cfbdc7f5548be",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cc39fffc5ac04151",
+          "source-844c021ac5ee461d",
+          "source-a23550dab80e4e1a",
+          "source-3782fa45ba314084",
+          "source-7ac6f0f279384f11",
+          "source-706cfbdc7f5548be"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 30249,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2347,
+        "working_to_delivered_ratio": 0.0776
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Collect sources on AI governance in collective intelligence frameworks to examine accountability mechanisms.",
+            "question": "How do governance-gated AI systems interact with institutional and democratic accountability?",
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          },
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T19:23:06.962708+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 9137,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 51882,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T19:23:21.311550+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 9137,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 9137,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 51882,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 51882,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -6356,8 +6652,9 @@
       "query": "governance-gated AI collective intelligence institutional accountability",
       "reason": "To validate whether the 'governance-gated' model in CI research aligns with established practices in democratic and institutional accountability frameworks.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-ce15eafe4c364438"
+      "status": "collected",
+      "created_by": "w-ce15eafe4c364438",
+      "evidence": "source-7ac6f0f279384f11"
     }
   },
   "research_topics": [
