@@ -154,5 +154,8 @@ h2,.section-top h2,.panel h2,.note-card h3,.entry h3,.project-card h3,.notebook-
 @media(max-width:700px){.topic-landscape{padding:40px 0}.topic-grid{grid-template-columns:1fr}.topic-card{padding:17px 15px}.topic-card h3{font-size:22px}.topic-intro{font-size:15px}}
 
 
-/* Emphasize non-zero published notebook counts in the research landscape. */
-.topic-notebook-count{color:var(--orange);font-weight:800}
+
+/* Make active research obvious at a glance: hot activity line, contrasting counts. */
+.topic-card.has-activity .topic-activity{color:var(--hot);font-weight:700}
+.topic-card.has-activity .topic-activity strong{color:var(--green);font-weight:900}
+:root[data-theme="dark"] .topic-card.has-activity .topic-activity strong{color:#7dcfff}
