@@ -76,7 +76,7 @@ def wake_status(state, daily_call_limit=20, now=None):
     quota_resets = [daily_quota_next_eligible(i) for i in charged_today]
     resets = [reset for reset in quota_resets if reset is not None]
     request_slots_today = sum(charged_request_slots(i) for i in charged_today)
-    if request_slots_today >= daily_call_limit:
+    if daily_call_limit is not None and request_slots_today >= daily_call_limit:
         resets.append(datetime.fromisoformat(day).replace(tzinfo=PACIFIC) + timedelta(days=1))
     if resets:
         eligible = max(([eligible] if eligible else []) + resets)
