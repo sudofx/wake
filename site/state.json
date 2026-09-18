@@ -1234,6 +1234,32 @@
       "source": "runtime:continuity",
       "version": 23,
       "time": "2026-09-18T19:53:09.463425+00:00"
+    },
+    "source-b36d520b619945ce": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=governance+models+institutional+interpretive+diversity+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9781003215929-39\\\", \\\"title\\\": [\\\"Mobilizing collective intelligence and diversity toward Sustainable Development Goals\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003215929-39\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 8]]}}, {\\\"DOI\\\": \\\"10.4324/9781003215929-5\\\", \\\"title\\\": [\\\"Collective intelligence and governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003215929-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 8]]}}, {\\\"DOI\\\": \\\"10.4324/9781003215929-2\\\", \\\"title\\\": [\\\"A brief history of collective intelligence, democracy, and governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003215929-2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 8]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.3563512\\\", \\\"title\\\": [\\\"Governance as Collective Intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This study models governance as a collective intelligence process, particularly a collective design process. The outcome of this process is a solution to a problem. The solution can be a decision, a policy, a product, a financial plan, etc. The quality (value) of the outcome solution reflects the quality (performance) of the process. Using an analytical model, I identify five mediators (channels) through which, different factors and features can affect the quality of the outcome and thus the process. Based on this model, I propose an asymmetric response surface method that introduces factors to the experimental model considering their plausible effects.&lt;br&gt;&lt;br&gt;As a proof of concept, I implemented a generic collective design process in a web application and measured the effects of several factors on its performance through online experiments. The results demonstrate the effectiveness of the proposed method. They also show that approval voting is significantly superior to plurality voting. Some studies assert that not the design process, but the designers drive the quality of the outcome. However, this study shows that the characteristics of the design process (e.g. voting schemes) as well as the designers (e.g. expertise and gender) can significantly affect the quality of the outcome. Hence, the outcome quality can be used as an indicator of the performance of the process. This enables us to evaluate and compare governance mechanisms objectively free from fairness criteria.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.3563512\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3cb3c14b4a377cc709e81c7edd480b1942f321345035ab1fb139cfcd7d5954fc\"}",
+      "id": "source-b36d520b619945ce",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=governance+models+institutional+interpretive+diversity+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 24,
+      "time": "2026-09-18T19:54:23.037306+00:00"
+    },
+    "source-14d8530344e64996": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2058c1d9e4a6356adc11c47cbff92c1219239f16911b695fcef3fd785252a9c3\"}",
+      "id": "source-14d8530344e64996",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 24,
+      "time": "2026-09-18T19:54:24.084990+00:00"
+    },
+    "r-9a98058a5516446a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":24,\"inherited_commitments\":[],\"invocation\":\"w-9a98058a5516446a\",\"previous_head\":\"3c3a1fb4e24e5f1df8e91ac0f7acc044d750861fd6b58ede957dbb1b1fa7f324\",\"process_id\":2267,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-9a98058a5516446a",
+      "source": "runtime:continuity",
+      "version": 24,
+      "time": "2026-09-18T19:54:24.389874+00:00"
     }
   },
   "journal": [
@@ -13528,6 +13554,300 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:53:22.160992+00:00",
       "reason": ""
+    },
+    "w-9a98058a5516446a": {
+      "base_version": 24,
+      "charged": true,
+      "id": "w-9a98058a5516446a",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 24,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "neuro-cog-extension",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence in Governance"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2267,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "4609224677ad9c3e3b34d9f4099244cc88c17f83defbf291f0ea0fec557b13ea",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-6403e7f473b845a2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6403e7f473b845a2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-17f39e4696654474"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-17f39e4696654474",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b9b0d9791cdc4b09"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b9b0d9791cdc4b09",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-167a45d3f2014b9b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-167a45d3f2014b9b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b36d520b619945ce"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b36d520b619945ce",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-14d8530344e64996"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-14d8530344e64996",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-6403e7f473b845a2",
+          "source-17f39e4696654474",
+          "source-b9b0d9791cdc4b09",
+          "source-167a45d3f2014b9b",
+          "source-b36d520b619945ce",
+          "source-14d8530344e64996"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 13,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 22988,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 13,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3350,
+        "working_to_delivered_ratio": 0.1457
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neuro-cog-extension",
+            "next_step": "Integrate DADM findings into the broader NIF model.",
+            "question": "How do the architecture of pattern recognition in neurodivergent profiles impact participation in collective intelligence systems?",
+            "title": "Neurodivergent Intelligence in Governance"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "revision": 3,
+            "summary": "Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.",
+            "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+          },
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "revision": 2,
+            "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          },
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3"
+            ],
+            "revision": 1,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-18T19:54:24.503483+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5420,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 44437,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T19:54:36.235210+00:00",
+      "reason": "Only open commitments can be resolved"
     }
   },
   "pending": null,
@@ -13955,8 +14275,9 @@
       "query": "governance models institutional interpretive diversity collective intelligence",
       "reason": "To secure source-backed evidence for integrating DADM findings into the NIF framework by identifying specific governance structures that leverage interpretive diversity.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-0a47b107a2be4eda"
+      "status": "collected",
+      "created_by": "w-0a47b107a2be4eda",
+      "evidence": "source-b36d520b619945ce"
     }
   },
   "research_topics": [
