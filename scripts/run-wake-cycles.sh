@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-# Run 1-20 WAKE✳︎ cycles sequentially through GitHub Actions.
+# Run 1-100 WAKE✳︎ cycles sequentially through GitHub Actions.
 # Requires: gh authenticated for sudofx/wake.
 #
 # Usage:
@@ -9,7 +9,7 @@ set -uo pipefail
 
 readonly REPO="sudofx/wake"
 readonly WORKFLOW="wake.yml"
-readonly MAX_CYCLES=20
+readonly MAX_CYCLES=100
 readonly POLL_SECONDS=5
 
 usage() {
