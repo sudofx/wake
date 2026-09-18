@@ -5,7 +5,7 @@
 **Version:** 3  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d81383cd4cc84ac7d229c7149c158ae3b32e218d366aadb23147551232a0ebb2`
+**Verified head:** `6f9488dadc7bfc3c85de6e28509cc96c8396fa5e874bafd9d14f208dd14ae093`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1443,6 +1443,222 @@ _None recorded._
 }
 ```
 
+### `w-d307a37b08db4112`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "id": "w-d307a37b08db4112",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 3,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-ai-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2237,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "5fc383922abfae8c9220a1226f7120f36b867d330170cba2e48fd3034072fa10",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-ff5cd0a7392c4350"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ff5cd0a7392c4350",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5dd848ef16104fa1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5dd848ef16104fa1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-76e44898ca434f1e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-76e44898ca434f1e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c3fc3228f25e4b0a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c3fc3228f25e4b0a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-70fd20e569844280"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-70fd20e569844280",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-19b1275178d84519"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-19b1275178d84519",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-ff5cd0a7392c4350",
+      "source-5dd848ef16104fa1",
+      "source-76e44898ca434f1e",
+      "source-c3fc3228f25e4b0a",
+      "source-70fd20e569844280",
+      "source-19b1275178d84519"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25191,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1521,
+    "working_to_delivered_ratio": 0.0604
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-foundations",
+        "next_step": "Conduct literature search on AI-assisted collective cognition",
+        "question": "How does AI intervene in collective memory, attention, and reasoning?",
+        "title": "AI and Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-ci-structure-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-1ba654396b7a4c16",
+          "source-c23d5ed899ba4958"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence can be modeled as a hierarchical system involving collective memory, collective attention, and collective reasoning, providing a framework to evaluate AI interventions.",
+        "title": "The Three-Factor Structure of Collective Intelligence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T16:50:34.533826+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4043,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45494,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T16:50:42.996370+00:00",
+  "reason": "Stale or invalid base_version"
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -1688,6 +1904,47 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 3,
   "time": "2026-09-18T16:49:00.753860+00:00"
+}
+```
+
+### `source-70fd20e569844280`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2edb69746a7050cf3a7959820ad3c5eff8b53a39f447ef866ea2074bf46764c8\"}",
+  "id": "source-70fd20e569844280",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T16:50:34.269714+00:00"
+}
+```
+
+### `source-19b1275178d84519`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-19b1275178d84519",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T16:50:34.488641+00:00"
+}
+```
+
+### `r-d307a37b08db4112`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[],\"invocation\":\"w-d307a37b08db4112\",\"previous_head\":\"a0339fe219d9f63dc43ca1c10f2fa415c7bcc39ba7133986ac388baf2abba795\",\"process_id\":2237,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d307a37b08db4112",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-18T16:50:34.520183+00:00"
 }
 ```
 
