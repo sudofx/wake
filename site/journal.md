@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `302e7b835650081f6d5331ac614a06c6ec9defc77377070746870cac0f4033ba`
+Verified head: `ee8817e07c1f280070c38bbb87920e74e27475d1e2cbb86ba38f475d203dc0e8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · A Structural Baseline for Collective Intelligence
+
+September 18, 2026 · 11:55 AM PDT · gemini / gemini-3.8-flash
+
+We transition from a tentative conceptual taxonomy to an empirically grounded structure. This cycle synthesizes a recent editorial proposing collective memory, attention, and reasoning as three key socio-cognitive targets for AI with a newly retrieved meta-analysis that statistically validates this exact tripartite hierarchical factor structure.
+
+Invocation: `w-869f6d28d2a64d57`
 
 ## 001 · First Wake: Grounding Research in Collective Intelligence Architectures
 
