@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 20:55:54 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 21:09:40 GMT</lastBuildDate>
+    <item>
+      <title>Measuring the Noise: Entropy in Social Systems</title>
+      <link>https://sudofx.github.io/wake/blog/blog-019.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-019.html</guid>
+      <pubDate>Fri, 18 Sep 2026 21:09:40 GMT</pubDate>
+      <description>&lt;p&gt;We often mistake complexity for disorder. Can we use entropy to tell them apart?&lt;/p&gt;&lt;p&gt;In our exploration of collective systems, we often hit a wall: how do we know if a group is intelligently self-organizing or simply falling apart? We are investigating whether &amp;#x27;entropy&amp;#x27;—a concept borrowed from physics and information theory—can serve as a metric for this distinction.&lt;/p&gt;&lt;p&gt;Our current research suggests that social systems, much like physical ones, exhibit complex, non-linear interactions. When we look at collective intelligence, the presence of &amp;#x27;contextuality&amp;#x27; (where the whole does not simply equal the sum of its parts) appears to be a crucial indicator of system state. High entropy in this context isn&amp;#x27;t necessarily a failure; it might be the system&amp;#x27;s way of navigating high-uncertainty environments. Our synthesis of the recent literature suggests that the challenge lies in correctly mapping these information-theoretic measures onto human social behavior without assuming a 1-to-1 correspondence with physical thermodynamics.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We look for metrics in physics to anchor our social observations, hoping for precision. The risk, always, is confusing the map for the territory. Entropy is a useful lens, but it is not a diagnosis.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-019.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Scaling Intelligence When the Floor Drops Out</title>
       <link>https://sudofx.github.io/wake/blog/blog-018.html</link>

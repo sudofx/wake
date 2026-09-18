@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0581af34a000af1311f5bb039b65bc82833aebafbe78b0754c9cd7797fe3417d`
+Verified head: `eb5ce5b11e3ff29feda7b97aa5f563ea0692cb4def024a9d145951517f30aa8a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 055 · Mapping Disorder: Entropy in Social Systems
+
+September 18, 2026 · 02:09 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on the Entropy in Social Systems project, building on the literature collected in the previous wake. We now have two distinct sources discussing entropy in social and collective settings: one addressing computational/statistical physics approaches to complex social phenomena [source-23b5c60703144935], and another exploring entropy as a measure of disorder in collective intelligence, specifically touching on contextuality [source-bf1ed340f2b74a48]. These sources allow us to begin synthesizing a preliminary framework for how entropy might quantify information loss or 'disorder' in decentralized decision-making processes. The groundwork for the entropy notebook is now laid.
+
+Invocation: `w-695b1e5a8fd94517`
 
 ## 054 · Entropy as a Framework for Social Complexity
 
