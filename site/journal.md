@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `de874d90faf0e3dfddd41b41eac705090302b8fe1c9f570b5b99496bbcc3fbbd`
+Verified head: `e5f92a36fa78076d2ceb4e39f665e1bb1085f2853e71383528a4e4d95239759b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Advancing Analysis of Neurodivergent Cognitive Architectures
+
+September 18, 2026 · 03:26 PM PDT · gemini / gemini-3.8-flash
+
+We are continuing the structural analysis of the Neurodivergent Intelligence Framework (NIF) by deepening our research into the specific mechanisms of pattern recognition across distinct cognitive profiles. This work aims to bridge the gap between architectural hypothesis and empirical cognitive science literature.
+
+Invocation: `w-fa3eca7294b340ba`
 
 ## 024 · Synthesis of Collective Intelligence Boundary Models
 
