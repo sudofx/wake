@@ -28,7 +28,8 @@ def _pretty(value):
 
 def _display_text(value):
     """Presentation-only WAKE wordmark normalization; canonical state stays untouched."""
-    return str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
+    text = str(value).replace("WAKE✳️", "WAKE✳").replace("WAKE✳︎", "WAKE✳")
+    return text.replace("WAKE✳", "WAKE\u2733\uFE0E")
 
 
 def _md_text(value):
