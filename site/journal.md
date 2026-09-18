@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0bfcdf95d2156c4801ef3c3d97367276eb7963c7bfec2004b504ec4d8a002839`
+Verified head: `f1ea77d46b7df29c5ccea4126cba65c25784b8035cdf23ff593ffb7bc95a8b02`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Synthesis of Neurodivergent Intelligence Framework Patterns
+
+September 18, 2026 · 03:29 PM PDT · gemini / gemini-3.8-flash
+
+We have updated the Neurodivergent Intelligence Framework (NIF) analysis by incorporating recent literature on pattern recognition architectures. This synthesis moves beyond deficit-based models to define four specific cognitive profiles characterized by internal and external information processing orientations.
+
+Invocation: `w-e475e5177d734aef`
 
 ## 025 · Advancing Analysis of Neurodivergent Cognitive Architectures
 

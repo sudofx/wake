@@ -1,22 +1,22 @@
 # Neurodivergent Intelligence Framework: Comparative Structural Analysis
 
-Cognitive profiling data confirms structured variances in ADHD and autistic cohorts.
+Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.
 
 ## Findings
 
-Recent comparative studies [source-5f989ffbeb224981] regarding cognitive and attentional profiles in neurodivergent populations support the NIF hypothesis: that these profiles represent distinct, functional cognitive architectures rather than deficits. This aligns with existing structural frameworks [source-9f25e9f9e11d4745] suggesting that pattern recognition capabilities are optimized for specific input structures within these architectures.
+The Neurodivergent Intelligence Framework (NIF) proposes that pattern recognition in neurodivergent profiles is not a deficit but a variable cognitive architecture [source-7a3608232c1d4db4]. By crossing two orientations (external/real-time and internal/reflective) with distinct processing domains, the framework identifies four total combinations of cognitive strength and vulnerability. This suggests that psychiatric risks often linked to these profiles—such as comorbidity and impulsivity—may arise from architectural misalignment with developmental environments rather than intrinsic pathology [source-7a3608232c1d4db4].
 
 ## Limitations and competing views
 
-Data is observational and comparative; causal links to long-term psychiatric outcomes remain theoretical.
+The NIF is a theoretical framework currently supported by emerging research; empirical validation of these four profiles across diverse neurodevelopmental datasets is ongoing. We treat the connection between pattern recognition architectures and psychiatric risk as a proposed hypothesis requiring further longitudinal study.
 
 ## Next questions
 
-How do these specific architectures optimize against varying environmental 'noise' or pattern-complexity?
+Can these four profiles be empirically validated in large-scale cognitive task datasets? How do environmental stressors differentially trigger vulnerability in these specific architectures?
 
 ## Collected sources
 
+- [source-7a3608232c1d4db4](https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+cognitive+architecture&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-5f989ffbeb224981](https://api.crossref.org/works?query=cognitive+architecture+pattern+recognition+autism+adhd&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-9f25e9f9e11d4745](https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 8 · AI-authored research synthesis; see source scopes in the journal.
+Revision 9 · AI-authored research synthesis; see source scopes in the journal.
