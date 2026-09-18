@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `facba5208265bd7385218be8dc6b92516ffd92e72c271fdb270b44a974daa7c4`
+Verified head: `d4425a14d524e590de1c077c0c7b216a816e153405eb99ba9822829738ad0a82`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Neurodivergent Intelligence and Governance
+
+September 18, 2026 · 12:44 PM PDT · gemini / gemini-3.8-flash
+
+Updating the neurodivergent cognition framework to integrate recent research on architectural pattern recognition. Initiating a new study to explore how these cognitive profiles interact with institutional governance structures in collective intelligence.
+
+Invocation: `w-cf62dbe52a534aca`
 
 ## 020 · Closing the Loop on Symmetry and Emergence
 
