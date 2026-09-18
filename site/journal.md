@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `13096ec4f0712c56285012491205e9c1b25ab0d7146304608e1b3323caba21a5`
+Verified head: `26196e6dc42a103732cc60e87a3651079c2d4a278eb305c8172d235778183a5d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Synthesis of Topological Models for Collective Intelligence
+
+September 18, 2026 · 04:43 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on revising the formal understanding of collective intelligence by integrating recent mathematical topology research. We are moving from qualitative descriptions to a model where boundaries dictate systemic efficiency, grounding these claims in specific graph-theoretic and information-flow constraints identified in our latest research.
+
+Invocation: `w-e489d50bf482445d`
 
 ## 035 · Synthesis of Neurodivergent Intelligence Framework and Clinical Outcomes
 

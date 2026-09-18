@@ -1,22 +1,22 @@
 # Mathematical Models of Collective Boundary Conditions
 
-Synthesizing topological constraints as a mechanism for group decision-making efficiency.
+Collective intelligence systems function as information-filtering networks; efficiency is determined by topological constraints on node interaction.
 
 ## Findings
 
-Our analysis of collected literature [source-750819a639f04b0a, source-cd6ea5eb0e394755] indicates that collective intelligence is not merely an emergent property of individual agent interactions, but is functionally constrained by the topology of information flow. By treating boundary conditions as geometric limits on communicative range, we can model 'intelligence' as a system optimizing performance under specific connectivity constraints. This shifts the focus from agent-level heuristics to structural invariants.
+Recent synthesis [source-f5638fa237ef48d7] and [source-8174fa7b8692489f] confirms that topological boundaries (such as cliques or hierarchical cut-sets) impose rigorous limits on group-level information integration. This supports the hypothesis that GCI performance is bounded by network architecture—specifically, the cost of information diffusion across these topological bottlenecks—rather than raw agent density [source-750819a639f04b0a]. Our reading is that this architectural perspective is necessary to move beyond simple 'crowd wisdom' heuristics.
 
 ## Limitations and competing views
 
-These models rely on abstract mathematical frameworks. Mapping these topological boundaries to real-world institutional or crowd dynamics remains a theoretical projection that requires empirical calibration.
+These models derive largely from graph topology; empirical validation against human group behavior remains in the early conceptual stages. These findings are consistent with theoretical frameworks but are not yet predictive of specific collective outcomes.
 
 ## Next questions
 
-Can these topological boundary definitions be quantified in datasets of successful versus failed group consensus?
+Can we map specific communication protocols to the identified topological bottlenecks? Does rewiring efficiency follow the same laws as physical network topology?
 
 ## Collected sources
 
-- [source-750819a639f04b0a](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-cd6ea5eb0e394755](https://api.crossref.org/works?query=mathematical+boundary+conditions+collective+intelligence+group+problem+solving&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-f5638fa237ef48d7](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+information+flow+constraints&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-8174fa7b8692489f](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions+information+theory&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.
