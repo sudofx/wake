@@ -33,7 +33,7 @@ INQUIRY_DRIVE_MIN_CYCLES = 20
 
 
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
-            "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20,
+            "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
             "inquiry_drive_enabled": False,
@@ -67,8 +67,13 @@ def _topics(settings, config_path=None):
 def config(path="wake.toml"):
     config_path = Path(path)
     result = {**DEFAULTS, **(tomllib.loads(config_path.read_text()) if config_path.exists() else {})}
-    require(type(result["daily_call_limit"]) is int and 1 <= result["daily_call_limit"] <= 20,
-            "daily_call_limit must be between 1 and 20")
+    require(type(result["daily_call_limit"]) is int and 1 <= result["daily_call_limit"] <= 500,
+            "daily_call_limit must be between 1 and 500")
+    model_limits = result.get("model_daily_call_limits", {})
+    require(isinstance(model_limits, dict), "model_daily_call_limits must be a table")
+    for model, limit in model_limits.items():
+        require(isinstance(model, str) and re.fullmatch(r"[a-zA-Z0-9._-]+", model), "Invalid quota model name")
+        require(type(limit) is int and 1 <= limit <= 500, "Model daily call limits must be between 1 and 500")
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
@@ -328,7 +333,8 @@ class Engine:
             )
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
-        require(not charged or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
+        if charged and not self.config.get("model_daily_call_limits"):
+            require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         invocation = "w-" + uuid.uuid4().hex[:16]
         receipt = "r-" + invocation[2:]
         _, head = self.store.replay()
@@ -447,9 +453,26 @@ class Engine:
             if hasattr(provider, "record_attempt"):
                 state = self.store.load()
                 day = state["invocations"][invocation]["quota_day"]
-                used = sum(charged_request_slots(i) for i in state["invocations"].values()
-                           if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
-                provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
+                if self.config.get("model_daily_call_limits"):
+                    used_by_model = {}
+                    exhausted_models = set()
+                    for item in state["invocations"].values():
+                        if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
+                            continue
+                        if is_free_tier_daily_quota(item.get("provider_error", {})):
+                            failed_model = item.get("provider_error", {}).get("model")
+                            if failed_model:
+                                exhausted_models.add(failed_model)
+                        for attempt in item.get("provider_attempts", []):
+                            model = attempt.get("model")
+                            if model:
+                                used_by_model[model] = used_by_model.get(model, 0) + 1
+                    provider.model_request_limits = {model: max(0, self.config["model_daily_call_limits"].get(model, self.config["daily_call_limit"]) - used_by_model.get(model, 0)) for model in provider.models}
+                    for model in exhausted_models:
+                        provider.model_request_limits[model] = 0
+                else:
+                    used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
+                    provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
 
                 def record_attempt(phase, attempt):
                     self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
