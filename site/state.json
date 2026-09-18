@@ -236,6 +236,32 @@
       "source": "runtime:continuity",
       "version": 4,
       "time": "2026-09-18T14:09:29.644872+00:00"
+    },
+    "source-cb9046999ae941ac": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=Moran+majority+rule+temperature+functional+infinite+graphs&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2307/2154963\\\", \\\"title\\\": [\\\"On the Period-Two-Property of the Majority Operator in Infinite Graphs\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/2154963\\\", \\\"published\\\": {\\\"date-parts\\\": [[1995, 5]]}}, {\\\"DOI\\\": \\\"10.1090/s0002-9947-1995-1297535-1\\\", \\\"title\\\": [\\\"On the period-two-property of the majority operator in infinite graphs\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    A self-mapping\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper M colon upper X right-arrow upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>M</mml:mi>\\\\n                            <mml:mo>:</mml:mo>\\\\n                            <mml:mi>X</mml:mi>\\\\n                            <mml:mo stretchy=\\\\\\\"false\\\\\\\">\\\\n                              →\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mi>X</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">M:X \\\\\\\\to X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    of a nonempty set\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mi>X</mml:mi>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    has the Period-Two-Property (p2p) if\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper M squared x equals x\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mrow class=\\\\\\\"MJX-TeXAtom-ORD\\\\\\\">\\\\n                              <mml:msup>\\\\n                                <mml:mi>M</mml:mi>\\\\n                                <mml:mn>2</mml:mn>\\\\n                              </mml:msup>\\\\n                            </mml:mrow>\\\\n                            <mml:mi>x</mml:mi>\\\\n                            <mml:mo>=</mml:mo>\\\\n                            <mml:mi>x</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">{M^2}x = x</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    holds for every\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper M\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mi>M</mml:mi>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">M</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    -periodic point\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"x element-of upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>x</mml:mi>\\\\n                            <mml:mo>\\\\n                              ∈\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mi>X</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">x \\\\\\\\in X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    . Let\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mi>X</mml:mi>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    be the set of all\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"StartSet 0 comma 1 EndSet\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mo fence=\\\\\\\"false\\\\\\\" stretchy=\\\\\\\"false\\\\\\\">{</mml:mo>\\\\n                            <mml:mn>0</mml:mn>\\\\n                            <mml:mo>,</mml:mo>\\\\n                            <mml:mn>1</mml:mn>\\\\n                            <mml:mo fence=\\\\\\\"false\\\\\\\" stretchy=\\\\\\\"false\\\\\\\">}</mml:mo>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">\\\\\\\\{ 0,1\\\\\\\\}</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    -labelings\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"x colon upper V right-arrow StartSet 0 comma 1 EndSet\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>x</mml:mi>\\\\n                            <mml:mo>:</mml:mo>\\\\n                            <mml:mi>V</mml:mi>\\\\n                            <mml:mo stretchy=\\\\\\\"false\\\\\\\">\\\\n                              →\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mo fence=\\\\\\\"false\\\\\\\" stretchy=\\\\\\\"false\\\\\\\">{</mml:mo>\\\\n                            <mml:mn>0</mml:mn>\\\\n                            <mml:mo>,</mml:mo>\\\\n                            <mml:mn>1</mml:mn>\\\\n                            <mml:mo fence=\\\\\\\"false\\\\\\\" stretchy=\\\\\\\"false\\\\\\\">}</mml:mo>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">x:V \\\\\\\\to \\\\\\\\{ 0,1\\\\\\\\}</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    of the set of vertices\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper V\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mi>V</mml:mi>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">V</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    of a locally finite connected graph\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper G\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mi>G</mml:mi>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">G</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    . For\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"x element-of upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>x</mml:mi>\\\\n                            <mml:mo>\\\\n                              ∈\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mi>X</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">x \\\\\\\\in X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    let\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"upper M x element-of upper X\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>M</mml:mi>\\\\n                            <mml:mi>x</mml:mi>\\\\n                            <mml:mo>\\\\n                              ∈\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mi>X</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">Mx \\\\\\\\in X</mml:annotation>\\\\n                        </mml:semantics>\\\\n                      </mml:math>\\\\n                    </inline-formula>\\\\n                    label\\\\n                    <inline-formula content-type=\\\\\\\"math/mathml\\\\\\\">\\\\n                      <mml:math xmlns:mml=\\\\\\\"http://www.w3.org/1998/Math/MathML\\\\\\\" alttext=\\\\\\\"v element-of upper V\\\\\\\">\\\\n                        <mml:semantics>\\\\n                          <mml:mrow>\\\\n                            <mml:mi>v</mml:mi>\\\\n                            <mml:mo>\\\\n                              ∈\\\\n                              \\\\n                            </mml:mo>\\\\n                            <mml:mi>V</mml:mi>\\\\n                          </mml:mrow>\\\\n                          <mml:annotation encoding=\\\\\\\"application/x-tex\\\\\\\">v \\\\\\\\in V</mml:annotation>\\\\n          \", \"excerpt_truncated\": true, \"source_sha256\": \"c6711d98a507c0c7ff2d8acb8bf92e631e70af677210989e7c4f577ef48c2b42\"}",
+      "id": "source-cb9046999ae941ac",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=Moran+majority+rule+temperature+functional+infinite+graphs&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 5,
+      "time": "2026-09-18T14:14:59.094004+00:00"
+    },
+    "source-f0006f972b68461e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=quantum+entanglement&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-f0006f972b68461e",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=quantum+entanglement&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 5,
+      "time": "2026-09-18T14:14:59.323025+00:00"
+    },
+    "r-d19163bf405c463b": {
+      "actor": "runtime",
+      "content": "{\"base_version\":5,\"inherited_commitments\":[],\"invocation\":\"w-d19163bf405c463b\",\"previous_head\":\"d84a7e5e96a78a62721aa4d754092e4eab9e08a568e8f36b397e16b89087d7bb\",\"process_id\":2030,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d19163bf405c463b",
+      "source": "runtime:continuity",
+      "version": 5,
+      "time": "2026-09-18T14:14:59.374186+00:00"
     }
   },
   "journal": [
@@ -1762,6 +1788,303 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-18T14:09:52.054001+00:00",
       "reason": ""
+    },
+    "w-d19163bf405c463b": {
+      "base_version": 5,
+      "charged": true,
+      "id": "w-d19163bf405c463b",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 5,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ca_phase_transitions",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 5,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2030,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "d91f1c1639c139d2fee01aa9daa1a17ecc1805e63aeacefd2789b0e48fbe118f",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-11d13057f14849af",
+              "source-51eb1382616047c0"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "moran_majority_rule_analysis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-d57d8a6a454e419c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d57d8a6a454e419c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-189a6e062f1847da"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-189a6e062f1847da",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7c07859e0eda45e9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7c07859e0eda45e9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1d09d808082b4950"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1d09d808082b4950",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cb9046999ae941ac"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cb9046999ae941ac",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f0006f972b68461e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f0006f972b68461e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-11d13057f14849af",
+          "source-51eb1382616047c0",
+          "source-d57d8a6a454e419c",
+          "source-189a6e062f1847da",
+          "source-7c07859e0eda45e9",
+          "source-1d09d808082b4950",
+          "source-cb9046999ae941ac",
+          "source-f0006f972b68461e"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21733,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1653,
+        "working_to_delivered_ratio": 0.0761
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca_phase_transitions",
+            "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+            "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+            "confidence": 0.8,
+            "id": "majority_automata_phase_transition",
+            "provenance": [
+              "source-2925974584404e4d",
+              "source-9800de467f644091",
+              "source-641de936e3684635"
+            ],
+            "status": "active",
+            "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "moran_majority_rule_analysis",
+            "project": "ca_phase_transitions",
+            "provenance": [
+              "source-11d13057f14849af",
+              "source-51eb1382616047c0"
+            ],
+            "revision": 2,
+            "summary": "An analysis of Moran's (2003) framework modeling phase transitions on countably infinite graphs using majority-rule cellular automata.",
+            "title": "Moran's Majority Rule Automata and Temperature Functionals"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T14:14:59.405483+00:00",
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60106,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 42257,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 1602,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 42257,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "timeout",
+          "elapsed_ms": 60036,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42257,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "finished": "2026-09-18T14:17:13.259600+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "timeout",
+        "elapsed_ms": 60036,
+        "error_type": "TimeoutError",
+        "http_status": null,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "timeout",
+            "elapsed_ms": 60106,
+            "error_type": "TimeoutError",
+            "http_status": null,
+            "model": "gemini-3.8-flash",
+            "request_payload_bytes": 42257,
+            "result": "transient_failure"
+          },
+          {
+            "category": "server",
+            "elapsed_ms": 1602,
+            "http_status": 503,
+            "model": "gemini-3.5-flash",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 42257,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          },
+          {
+            "category": "timeout",
+            "elapsed_ms": 60036,
+            "error_type": "TimeoutError",
+            "http_status": null,
+            "model": "gemini-3.1-flash-lite",
+            "request_payload_bytes": 42257,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_requests_sent": 3,
+        "request_payload_bytes": 42257,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -1856,8 +2179,9 @@
       "query": "Moran majority rule temperature functional infinite graphs",
       "reason": "Attempting to retrieve further detailed papers or reviews containing the explicit mathematical expression of the temperature functional.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-0c68df77234647f8"
+      "status": "collected",
+      "created_by": "w-0c68df77234647f8",
+      "evidence": "source-cb9046999ae941ac"
     }
   },
   "research_topics": [
