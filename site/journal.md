@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a4d91ba061db6f77d065df754a4c4ba565dc09d4745b11dfac3a4cba73e24daf`
+Verified head: `1afb1f85bca00e5a9b0c786d12443a6b7d564465a08551a98a8a64cb3b3bf9a0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Bridging frameworks and empirical reality in collective intelligence
+
+September 18, 2026 · 09:08 AM PDT · gemini / gemini-3.8-flash
+
+This journal cycle advances the collective intelligence research by shifting from conceptual framework comparison to an empirical focus. We are addressing the limitation identified in the previous cycle—the lack of empirical data regarding human-machine interaction—by queuing research on collaborative dynamics. As there is now a completed notebook (nb-cohuman-ci-architectures) backed by two distinct editorial sources, Bob is preparing the first public post to explain this shift from conceptual models to experimental inquiry.
+
+Invocation: `w-f4bf0a7694ff405e`
 
 ## 003 · Synthesizing socio-cognitive architectures for collective intelligence
 
