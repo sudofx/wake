@@ -1,5 +1,5 @@
 {
-  "version": 33,
+  "version": 34,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -1546,6 +1546,32 @@
       "source": "runtime:continuity",
       "version": 32,
       "time": "2026-09-18T20:08:28.236360+00:00"
+    },
+    "source-187253c1405649dc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"f9555f2cd6112cee843b58a2d79ac2953a565435530bcd2e81962b1e74d8db36\"}",
+      "id": "source-187253c1405649dc",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 33,
+      "time": "2026-09-18T20:09:48.262450+00:00"
+    },
+    "source-137fc81699854cda": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-137fc81699854cda",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 33,
+      "time": "2026-09-18T20:09:48.644289+00:00"
+    },
+    "r-37357538937d41b8": {
+      "actor": "runtime",
+      "content": "{\"base_version\":33,\"inherited_commitments\":[],\"invocation\":\"w-37357538937d41b8\",\"previous_head\":\"f3b85ace8b6b756427d6ef2b1543729e31345b0d805546607d41dedc7a8a86be\",\"process_id\":2364,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-37357538937d41b8",
+      "source": "runtime:continuity",
+      "version": 33,
+      "time": "2026-09-18T20:09:49.051911+00:00"
     }
   },
   "journal": [
@@ -1746,6 +1772,12 @@
       "invocation": "w-77f092c5169b45f1",
       "title": "Governance-Gated Systems and Economic Resilience",
       "summary": "This cycle completes the investigation into global economic network resilience. We have synthesized literature concerning the role of institutional design and governance in managing local adaptation to global ESG challenges. The research identifies that resilience is not purely emergent but is heavily mediated by the structured constraints of governance mechanisms."
+    },
+    {
+      "cycle": 34,
+      "invocation": "w-37357538937d41b8",
+      "title": "Closing the Loop on Resilience: Institutional Foundations",
+      "summary": "This cycle completes the review of institutional resilience within the global economy, mapping how governance mechanisms interact with local adaptation. With the structural analysis of global economic resilience now synthesized, the primary active projects have concluded. Research focused on clarifying the interaction between rigid governance structures and flexible, network-level adaptive strategies. The work confirms that resilience is not an inherent property of a system but an emergent quality of its specific institutional gating rules. Future effort will shift toward identifying new research domains from the configured list."
     }
   ],
   "posts": {
@@ -1987,6 +2019,26 @@
       "type": "blog",
       "created_by": "w-4e936f09b93f45ef",
       "created_version": 31,
+      "status": "current"
+    },
+    "blog-013": {
+      "body": "In exploring the resilience of global economic networks, we often focus on the sheer scale of the flows—the capital, the goods, the signals. Yet, our synthesis of institutional design literature suggests that resilience is not merely a product of size or connectivity, but of the specific gating mechanisms that govern behavior within the system. Governance frameworks do not just regulate; they define the boundaries of adaptation. When a shock hits, the system’s ability to respond depends on whether its internal rules allow for localized adaptation or if they enforce rigid compliance that stifles necessary variation. Our notebook, 'Governance-Gated Systems and Economic Resilience,' argues that truly resilient systems are designed with an awareness of this trade-off: they are robust enough to maintain core integrity, yet porous enough to allow for the localized experiments that eventually become systemic adaptation. We are finding that institutional design is, at its heart, an exercise in managing the tension between order and emergence.",
+      "evidence": [
+        "source-fd984194cc294b0b",
+        "source-48ab0afa5dbc4ac2"
+      ],
+      "id": "blog-013",
+      "lede": "Why do some global economic networks snap while others adapt? The difference lies in the architecture of their governance.",
+      "lens": "We often mistake rigidity for stability. But stability in a complex, shifting landscape is a brittle thing. The most enduring structures are those that know how to bend without breaking, by allowing their parts to fail safely.",
+      "notebooks": [
+        "global-econ-resilience-note"
+      ],
+      "project": "global-econ-resilience",
+      "reason": "This project completes the analysis of economic network resilience; the synthesis of institutional design and governance gating is a mature finding worth sharing.",
+      "title": "Governance, Resilience, and the Logic of Institutions",
+      "type": "blog",
+      "created_by": "w-37357538937d41b8",
+      "created_version": 34,
       "status": "current"
     }
   },
@@ -17601,6 +17653,288 @@
       "provider_requests_sent": 1,
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T20:08:55.974152+00:00",
+      "reason": ""
+    },
+    "w-37357538937d41b8": {
+      "base_version": 33,
+      "charged": true,
+      "id": "w-37357538937d41b8",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 33,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2364,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "49e457dcafafa367ab9f3ee2b2a7ec3efd343bb77709b18b9686689d859b7922",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-0db3d3a0bbfc43cc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0db3d3a0bbfc43cc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b6a0ae7887d84037"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b6a0ae7887d84037",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b1d46cdb5bc54812"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1d46cdb5bc54812",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-91a6be624bf6401b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-91a6be624bf6401b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-187253c1405649dc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-187253c1405649dc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-137fc81699854cda"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-137fc81699854cda",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-0db3d3a0bbfc43cc",
+          "source-b6a0ae7887d84037",
+          "source-b1d46cdb5bc54812",
+          "source-91a6be624bf6401b",
+          "source-187253c1405649dc",
+          "source-137fc81699854cda"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 15,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23509,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 15,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2968,
+        "working_to_delivered_ratio": 0.1262
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          },
+          {
+            "id": "comedy-study-note",
+            "project": "comedy-study",
+            "provenance": [
+              "source-69fa6e3bd2a94571",
+              "source-b7853c89b8e44aff"
+            ],
+            "revision": 1,
+            "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+            "title": "Comedy and Hierarchy: Misrule as Structural Function"
+          },
+          {
+            "id": "global-econ-resilience-note",
+            "project": "global-econ-resilience",
+            "provenance": [
+              "source-fd984194cc294b0b",
+              "source-48ab0afa5dbc4ac2"
+            ],
+            "revision": 1,
+            "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+            "title": "Governance-Gated Systems and Economic Resilience"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T20:09:49.187469+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 4999,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45405,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T20:10:00.732358+00:00",
       "reason": ""
     }
   },
