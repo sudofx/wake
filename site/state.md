@@ -5,7 +5,7 @@
 **Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `758051463290e51d232d06f3f90d3dabdb99d59af7c71126ddf83260bdd3fd5f`
+**Verified head:** `112d0a8d5ccf618a1f0bfc23cb4e90692ccb9c8ff33adcd719ebc84a21b6c0ae`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -3281,6 +3281,351 @@
 }
 ```
 
+### `w-960211b5e9bc4d4f`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "id": "w-960211b5e9bc4d4f",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ca_phase_transitions",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 7,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2256,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "ead7a8363343038248f79f437368585ef5a9e2d7ef2c3012ff540b2474cb017e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cbf75ca945b0429d",
+          "source-cb9046999ae941ac"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "moran_majority_rule_analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_ca_phase_transitions_notebook",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-07ecec05a6a4455d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-07ecec05a6a4455d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a320762bbdfb41f1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a320762bbdfb41f1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6eb4cb0a96284766"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6eb4cb0a96284766",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3fcac12636c14e27"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3fcac12636c14e27",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6604b9088e5e4711"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6604b9088e5e4711",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0408223ea27e4144"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0408223ea27e4144",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cbf75ca945b0429d",
+      "source-cb9046999ae941ac",
+      "source-07ecec05a6a4455d",
+      "source-a320762bbdfb41f1",
+      "source-6eb4cb0a96284766",
+      "source-3fcac12636c14e27",
+      "source-6604b9088e5e4711",
+      "source-0408223ea27e4144"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24160,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2380,
+    "working_to_delivered_ratio": 0.0985
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ca_phase_transitions",
+        "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+        "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+        "title": "CA Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+        "confidence": 0.8,
+        "id": "majority_automata_phase_transition",
+        "provenance": [
+          "source-2925974584404e4d",
+          "source-9800de467f644091",
+          "source-641de936e3684635"
+        ],
+        "status": "active",
+        "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+      },
+      {
+        "claim": "The majority operator on infinite graphs exhibits a characteristic Period-Two-Property under specified dynamics.",
+        "confidence": 0.9,
+        "id": "majority_operator_p2p",
+        "provenance": [
+          "source-cb9046999ae941ac"
+        ],
+        "status": "active",
+        "why_retained": "Moran (1995) explicitly analyzes 'On the Period-Two-Property of the Majority Operator in Infinite Graphs' demonstrating that the self-mapping has the p2p property under local majority dynamics."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 9,
+        "id": "review_ca_phase_transitions_notebook",
+        "reason": "To integrate detailed mathematical formulations of puppet states and temperature functionals.",
+        "task": "Review the Moran majority rule analysis notebook once more sources on Ginosar and Holzman are retrieved"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "moran_majority_rule_analysis",
+        "project": "ca_phase_transitions",
+        "provenance": [
+          "source-cbf75ca945b0429d",
+          "source-cb9046999ae941ac"
+        ],
+        "revision": 4,
+        "summary": "Consolidated analysis of Moran's (2003) majority-rule framework, puppet definition, and the Period-Two-Property (p2p) of the majority operator.",
+        "title": "Moran's Majority Rule Automata and Temperature Functionals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-18T14:29:23.734042+00:00",
+  "provider_attempts": [
+    {
+      "category": "timeout",
+      "elapsed_ms": 60108,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.8-flash",
+      "request_payload_bytes": 45352,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 759,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 45352,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 719,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 45352,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "finished": "2026-09-18T14:30:36.277414+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 719,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "timeout",
+        "elapsed_ms": 60108,
+        "error_type": "TimeoutError",
+        "http_status": null,
+        "model": "gemini-3.8-flash",
+        "request_payload_bytes": 45352,
+        "result": "transient_failure"
+      },
+      {
+        "category": "server",
+        "elapsed_ms": 759,
+        "http_status": 503,
+        "model": "gemini-3.5-flash",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 45352,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      },
+      {
+        "category": "server",
+        "elapsed_ms": 719,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 45352,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 3,
+    "request_payload_bytes": 45352,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-2925974584404e4d`
@@ -3816,6 +4161,47 @@
 }
 ```
 
+### `source-6604b9088e5e4711`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=Ginosar+Holzman+puppets+majority+rule+cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/s0012-365x(99)00228-9\\\", \\\"title\\\": [\\\"The majority action on infinite graphs: strings and puppets\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/s0012-365x(99)00228-9\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000, 3]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-540-30479-1_15\\\", \\\"title\\\": [\\\"Cellular Automata with Majority Rule on Evolving Network\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-540-30479-1_15\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004]]}}, {\\\"DOI\\\": \\\"10.1016/j.tcs.2021.07.035\\\", \\\"title\\\": [\\\"Majority rule cellular automata\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.tcs.2021.07.035\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 10]]}}, {\\\"DOI\\\": \\\"10.7551/mitpress/3242.003.0004\\\", \\\"title\\\": [\\\"Discovery by Genetic Programming of a Cellular Automata Rule that is Better than any Known Rule for the Majority Classification Problem\\\"], \\\"URL\\\": \\\"https://doi.org/10.7551/mitpress/3242.003.0004\\\", \\\"published\\\": {\\\"date-parts\\\": [[1996, 7, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"9021c161af20f3dc7aa84c57dc89fb8552712137cb0293e47be9b811fde270fb\"}",
+  "id": "source-6604b9088e5e4711",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=Ginosar+Holzman+puppets+majority+rule+cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-18T14:29:22.043258+00:00"
+}
+```
+
+### `source-0408223ea27e4144`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.71010/2835-6764/ajser-e335\\\", \\\"title\\\": [\\\"Commentary: Ant Colonies in Science, Culture and Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.71010/2835-6764/ajser-e335\\\"}, {\\\"DOI\\\": \\\"10.1111/j.1601-5223.2003.01613.x\\\", \\\"title\\\": [\\\"Highly variable social organisation of colonies in the ant Formica cinerea\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1601-5223.2003.01613.x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 11, 27]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2023.1805/v2/review2\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Synchronized locomotion can improve spatial accessibility inside ant colonies\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2023.1805/v2/review2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 10, 3]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-6485\\\", \\\"title\\\": [\\\"Food Distribution in Ant Colonies: Trophallaxis and Self-Organization\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-6485\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7611b48a7fdcc897939cf40a516d4b92852c271e353256954c9cedd671e2a1f3\"}",
+  "id": "source-0408223ea27e4144",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=ant+colonies&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-18T14:29:23.630995+00:00"
+}
+```
+
+### `r-960211b5e9bc4d4f`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[\"review_ca_phase_transitions_notebook\"],\"invocation\":\"w-960211b5e9bc4d4f\",\"previous_head\":\"fb4dfdca5e01f93b53c5a9de0062775b5c3a972345b2d0175ab9ca1065c414e7\",\"process_id\":2256,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-960211b5e9bc4d4f",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-18T14:29:23.705406+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping the Boundaries of Majority Automata
@@ -4014,8 +4400,9 @@
   "query": "Ginosar Holzman puppets majority rule cellular automata",
   "reason": "Retrieve the full text or detailed abstract of Ginosar & Holzman's work on puppet states in majority rule CA to verify the mathematical definitions.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-46a44a5951114e22"
+  "status": "collected",
+  "created_by": "w-46a44a5951114e22",
+  "evidence": "source-6604b9088e5e4711"
 }
 ```
 
