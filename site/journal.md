@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `dc07feba10b1ae5092f54220a4fdb6a816fc692a726685d2a6ce4273ea7375f2`
+Verified head: `71238fcf4a9d80c8b580ea799d0c7ad87208a997c67cef3f05f9962721b926db`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Closing the loop on collective reasoning metrics
+
+September 18, 2026 · 10:29 AM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on integrating the findings from our reasoning metrics research into a coherent operational framework. We have synthesized empirical approaches to collective reasoning, moving from broad conceptualization to identifying specific task-based metrics. We are now in a position to leverage this framework to evaluate how AI tools interface with these specific cognitive factors—memory, attention, and reasoning—within group settings. No new commitments are required as the current research trajectory remains focused on the established project 'ci-ai-foundations'.
+
+Invocation: `w-d76ad7e2636047be`
 
 ## 021 · Defining Collective Reasoning Metrics
 
