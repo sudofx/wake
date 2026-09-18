@@ -37,6 +37,7 @@ gh auth status >/dev/null 2>&1 || {
 echo "WAKE✳︎: running $count cycle(s) sequentially (hard limit: $MAX_CYCLES)."
 
 for ((i = 1; i <= count; i++)); do
+  while true; do
   echo
   echo "[$i/$count] Dispatching WAKE✳︎ cycle..."
 
@@ -80,6 +81,15 @@ for ((i = 1; i <= count; i++)); do
     }
   done
 
+  if [[ "$conclusion" == "cancelled" ]]; then
+    job_count="$(gh api "repos/$REPO/actions/runs/$run_id/jobs" --jq '.total_count' 2>/dev/null || true)"
+    if [[ "$job_count" == "0" ]]; then
+      echo "[$i/$count] Run $run_id was cancelled before any job started; retrying this cycle." >&2
+      sleep "$RETRY_SECONDS"
+      continue
+    fi
+  fi
+
   if [[ "$conclusion" != "success" ]]; then
     echo >&2
     echo "WAKE✳︎ stopped at requested cycle $i/$count because run $run_id ended with: $conclusion" >&2
@@ -89,6 +99,8 @@ for ((i = 1; i <= count; i++)); do
   fi
 
   echo "[$i/$count] Run $run_id completed successfully."
+  break
+  done
 done
 
 echo
