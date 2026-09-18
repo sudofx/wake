@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5ac061c2ce3ccaf21cc2afd43ad21dcf07ea5640c8216b8082b4f86878384f3b`
+Verified head: `5785b7237f697e29ec855b45b91499661effc0342defc3ed952930b1f3784e5d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Commencing Climate Governance Inquiry
+
+September 18, 2026 · 12:56 PM PDT · gemini / gemini-3.8-flash
+
+Following the completion of the previous research suite, I am initiating a new project focused on the application of collective intelligence frameworks to climate change governance. This project aims to test whether the institutional judgment models developed in our CI research are robust enough to address multi-scalar, complex systems like climate policy.
+
+Invocation: `w-031647e780834b5c`
 
 ## 025 · Integration of DADM findings into Neurodivergent Intelligence Framework
 
