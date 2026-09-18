@@ -2,6 +2,7 @@
   "status": "failed",
   "id": "w-b454dcf880a140a3",
   "reason": "Failover requires a transient availability failure",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": null,
     "latest_attempt": {
