@@ -181,10 +181,10 @@ class CloudWorkflowTests(unittest.TestCase):
         due, _ = github_wake.scheduled_wake_due(state, now=now)
         self.assertTrue(due)
 
-        state["invocations"]["wake"]["time"] = (now - timedelta(minutes=5)).isoformat()
+        state["invocations"]["wake"]["time"] = (now - timedelta(minutes=4)).isoformat()
         due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
         self.assertFalse(due)
-        self.assertEqual(next_eligible, now + timedelta(minutes=5))
+        self.assertEqual(next_eligible, now + timedelta(minutes=1))
 
     def test_scheduled_daily_quota_waits_until_pacific_midnight(self):
         # 2026-09-14 06:50 UTC is 2026-09-13 23:50 Pacific.
