@@ -25,7 +25,7 @@ class RejectedDraftTests(unittest.TestCase):
                      'No research changes or journal entry', 'Exact recorded reason', 'unlinked-source'):
             self.assertIn(text, page)
         self.assertEqual((self.state, self.event), before)
-        self.assertIn('<details open>', page)
+        self.assertIn('<details><summary>Read the unaccepted draft</summary>', page)
 
     def test_withheld_blog_preserves_distinction_from_accepted_research(self):
         self.event['kind'] = 'accepted'
