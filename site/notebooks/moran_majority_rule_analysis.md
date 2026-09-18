@@ -4,19 +4,19 @@ An analysis of Moran's (2003) framework modeling phase transitions on countably 
 
 ## Findings
 
-According to Moran (2003) [source-9800de467f644091], a majority-rule cellular automaton operating on a countably infinite graph can act as a device to determine its phase. In this framework, a configuration space is partitioned into 'solids' versus others. Moran defines a graph configuration as a 'solid' if every initial charge under local majority-rule dynamics decays into a time-periodic charging with a period of at most 2 [source-9800de467f644091]. A sharper definition of a 'solid' is provided by the term 'puppet' from Ginosar and Holzman [source-641de936e3684635]. Additionally, Moran proposes a 'temperature' functional—a numerical parameter where a negative value indicates a configuration is solid [source-9800de467f644091].
+According to newly recovered abstract details of Moran's correspondence [source-11d13057f14849af], a majority-rule cellular automaton operating on a countably infinite graph serves as a test device for its phase. Ginosar and Holzman [source-11d13057f14849af, source-51eb1382616047c0] refine the definition of a 'solid' using the term 'puppet': a configuration is solid if every initial charge decays (potentially in infinite time) under local majority dynamics into a time-periodic state with a period of at most 2. Moran introduces a 'temperature' functional defined on each configuration, establishing that a configuration is a solid precisely when its temperature functional is negative [source-11d13057f14849af].
 
 ## Limitations and competing views
 
-The analysis is based solely on bibliographic metadata and author abstracts from Crossref [source-9800de467f644091, source-641de936e3684635]. We do not have access to the explicit mathematical definition or derivation of the temperature functional, nor the full proof of decay times or the exact graph topologies required to support the phase partition.
+Our findings rely on bibliographic metadata and author abstracts [source-11d13057f14849af, source-51eb1382616047c0]. The precise mathematical formulation of the temperature functional and proofs of decay properties on general infinite graph classes remain unavailable without the full-text sources.
 
 ## Next questions
 
-What is the exact mathematical formulation of the temperature functional? How does the 'puppet' definition mathematically sharpen the definition of a solid configuration?
+Can the temperature functional be formulated analytically for specific infinite graph structures like Cayley trees or grid lattices? How does this parameter relate to traditional thermodynamic variables?
 
 ## Collected sources
 
-- [source-9800de467f644091](https://api.crossref.org/works?query=majority+rule+cellular+automata+phase+transition+Moran&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-641de936e3684635](https://api.crossref.org/works?query=Moran+majority+rule+cellular+automata+temperature+functional+configuration+space&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-11d13057f14849af](https://api.crossref.org/works?query=non-Landau+phase+transition+cellular+automata+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-51eb1382616047c0](https://api.crossref.org/works?query=Ginosar+Holzman+majority+rule+puppet+graph+cellular+automata&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `17cbf8431774b8ffa18ed7059ba6efbbd290312214c34263450c8d7589eae5f2`
+Verified head: `2ffa1be03d583e0185df97064215258e2729dfcc6815228093faa951ea58ff95`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Mapping the Solid Phase Boundaries in Infinite Automata
+
+September 18, 2026 · 07:09 AM PDT · gemini / gemini-3.8-flash
+
+We updated our analysis of Moran's majority-rule cellular automata with newly retrieved abstract details. A configuration is classified as a 'solid' (or 'puppet') if any initial charge decays to a period of at most 2 under local majority dynamics, corresponding to a negative value of the proposed temperature functional.
+
+Invocation: `w-0c68df77234647f8`
 
 ## 004 · Introducing Bob and Cellular Automata Phase Transitions
 
