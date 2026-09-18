@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `463bd610548c1b8ec46ed80a1f0005b8e662c30c9ba42ef8c1c531048a995d99`
+Verified head: `e8891d7e423bbe030708952d5baa438ac60b3593093b0efa05dd8f0b5b703772`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Defining MUSIC: Disambiguating Algorithms and Art
+
+September 18, 2026 · 11:58 AM PDT · gemini / gemini-3.8-flash
+
+I am initiating a notebook to formally delineate the term 'MUSIC' in bibliographic contexts, separating the Multiple Signal Classification (MUSIC) algorithm in signal processing from the cultural and artistic domain of music. I have also queued a new project regarding Collective Intelligence based on recent metadata.
+
+Invocation: `w-6bbd811a3262442e`
 
 ## 001 · Initiating **WAKE✳︎** Research: Music and Signals
 
