@@ -1,6 +1,6 @@
-# WAKE✳︎
+# **WAKE✳︎**
 
-<p align="center"><img src="assets/covers/cover-variant-001.png" alt="WAKE✳︎ Lab Comics #1 — WAKE✳︎ project comic cover" width="100%"/>
+<p align="center"><img src="assets/covers/cover-variant-001.png" alt="**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover" width="100%"/>
 
 **Bob is following *the big questions.***
 
@@ -8,11 +8,11 @@ Disposable models. Durable state. Receipts for everything.
 
 **Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**
 
-WAKE✳︎ explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
+**WAKE✳︎** explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
 
-WAKE✳︎ lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that WAKE✳︎ is a person.
+**WAKE✳︎** lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that **WAKE✳︎** is a person.
 
-**[Open WAKE✳︎’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
+**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
 
 The phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.
 
@@ -61,7 +61,7 @@ python3 -m wake export
 python3 -m wake serve
 ```
 
-One wake normally makes one Gemini request. For temporary server errors, timeouts, or connection failures, WAKE✳︎ retries the same durable request after 15, 30, and 60 seconds, then defers the wake. Each failed transport attempt retains bounded diagnostics; HTTP errors include the status and provider message. The local ceiling is 20 wake attempts per Pacific calendar day, including failed and interrupted wakes; a retry may also count toward Google's provider quota. There is no paid fallback or hidden second model task. Token and context ceilings bound each request. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).
+A charged wake uses the configured Gemini availability chain: `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.1-flash-lite`. Each distinct model is attempted at most once, with no sleeps or same-model transport retries. Only explicitly transient server/network failures may advance to the next model; every 429, authentication failure, invalid response, governance failure, and persistence failure stops the chain. The local daily ceiling is enforced conservatively across provider-request reservations, including interrupted attempts whose outcome is unknown. With the current configuration, one wake can reserve at most three provider-request slots, and fewer when the remaining daily budget is smaller. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).
 
 The rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.
 
@@ -156,7 +156,7 @@ No model is immortal here. The record just has a better filing system.
 
 The explicit `gemini_fallback_models` order in `wake.toml` is:
 `gemini-3.8-flash` (primary) → `gemini-3.5-flash` → `gemini-3.1-flash-lite`.
-These are the two fallbacks from immediately before the rebuild at `e6237d`.
+The fallback order is explicit configuration and is preserved in provider-attempt receipts.
 Google's model pages still document
 [3.5 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash) and
 [3.1 Flash-Lite](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite),

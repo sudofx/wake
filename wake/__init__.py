@@ -1,3 +1,3 @@
-"""WAKE✳: disposable models, durable accountability."""
+"""WAKE✳︎: disposable models, durable accountability."""
 
-__version__ = "2.0.0"
+__version__ = "0.20.0"

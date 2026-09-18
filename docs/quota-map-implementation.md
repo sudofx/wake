@@ -2,18 +2,19 @@
 
 ## Delivered
 
-A charged Gemini invocation now attempts at most one generate-content request.
-Transient HTTP 500/502/503/504, timeout, and connection failures defer durably;
-a later scheduled wake provides the next opportunity. The exact free-tier daily
+A charged Gemini invocation now attempts each configured model at most once. Eligible
+transient HTTP 500/502/503/504 and narrowly classified network failures may advance
+to the next configured model; there are no sleeps or same-model retries. The exact free-tier daily
 quota ID still blocks another request for that provider/model/quota day until
 Pacific midnight. Other 429s retain the existing attention policy without being
 misclassified as daily exhaustion. Auth, runtime, persistence, integrity,
 publication, and proposal rejection behavior remains attention-worthy.
 
-New terminal invocation records carry `provider_requests_sent` when known. The
-adapter also supplies it in success metadata and structured error diagnostics.
-The count describes the client attempt; it does not establish server receipt or
-billing. No historical request counts are inferred or backfilled.
+Invocation records carry ordered `provider_attempts`, `successful_model`, and
+`provider_requests_sent` when known. Started attempts are durably reserved before
+the network boundary; an interruption can therefore leave an explicit `unknown`
+outcome whose slot remains reserved. The counts describe client attempts, not proof
+of server receipt or billing. Historical unknowns are flagged rather than guessed.
 
 MAP is exported at `map.html`, with a downloadable `map-data.json` and an
 identical safely embedded payload. The page works as a local file or on GitHub
@@ -60,7 +61,7 @@ layout overflow.
 Working-set and retrieval metrics appear only when recorded. They are labelled
 as observational character counts and ratios, never token savings, cognitive
 savings, or proof of behavioral equivalence. Historical prose remains intact;
-the display normalizes and bolds the WAKE✳︎ wordmark.
+the display normalizes and bolds the **WAKE✳︎** wordmark.
 
 ## Compatibility fix found during validation
 
@@ -73,12 +74,9 @@ or state. Current proposal acceptance retains the stricter editorial policy.
 
 ## Validation
 
-- Baseline: 84 unit/integration tests passed.
-- Final: 88 unit/integration tests passed. Three obsolete retry tests were
-  removed/consolidated and seven new tests added.
-- Tests assert one network call for successful charged wakes, all four transient
-  HTTP statuses, timeout/connection failures, and exact daily quota exhaustion.
-  A second same-day real-adapter invocation is blocked before another request.
+- The implementation was validated with the repository's unit/integration suite at the time of each change. Historical test-count snapshots are not presented as the current suite size.
+- Tests cover successful primary calls, eligible failover across transient failures,
+  non-failover errors, interrupted-attempt accounting, and exact daily quota exhaustion.
 - Cloud tests verify durable deferral, unchanged research version, recorded
   request count, redacted diagnostics, and existing attention semantics.
 - Provenance tests cover historical revisions, exact evidence edges,
@@ -135,6 +133,4 @@ The historical pre-rebuild connection-to-publication rate has not been measured,
 and this change does not establish a restored rate. Validation demonstrates the
 single-request invariant and provenance behavior with offline checks.
 
-Two local commits are prepared for the provider fix and MAP addition. Nothing
-has been pushed or deployed; the final task response gives the commit IDs and
-local preview link.
+The provider-accounting and MAP work described here is part of the repository history and has been pushed. This document is retained as an implementation note; current behavior is defined by the code, tests, and primary documentation.
