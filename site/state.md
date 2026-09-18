@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 24  
+**Version:** 25  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `4e8fd7756278bfba8f0d848ae672b8a3e8c0b598683b4eb325663030e2a4ddd6`
+**Verified head:** `5ac061c2ce3ccaf21cc2afd43ad21dcf07ea5640c8216b8082b4f86878384f3b`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -174,15 +174,15 @@ _None recorded._
 {
   "domain": "collective_intelligence",
   "id": "neuro-cog-extension",
-  "next_step": "Integrate DADM findings into the broader NIF model.",
+  "next_step": "None - Project complete.",
   "question": "How do the architecture of pattern recognition in neurodivergent profiles impact participation in collective intelligence systems?",
-  "reason": "Successfully synthesized new governance literature into the existing NIF framework; next step is theoretical integration.",
-  "status": "active",
+  "reason": "DADM findings successfully integrated into the NIF model; notebook updated.",
+  "status": "completed",
   "title": "Neurodivergent Intelligence in Governance",
   "type": "project",
   "created_version": 21,
-  "updated_version": 23,
-  "updated_by": "w-a6770e63af814a7c"
+  "updated_version": 25,
+  "updated_by": "w-b6573e5a0bc149ab"
 }
 ```
 
@@ -347,21 +347,22 @@ _None recorded._
 {
   "evidence": [
     "source-e749c4be40014051",
-    "source-377e857d478847c3"
+    "source-377e857d478847c3",
+    "source-b36d520b619945ce"
   ],
-  "findings": "The DADM framework proposes that institutions must move beyond information-centric security to 'decision architecture defense'. [source-e749c4be40014051] This requires an adaptive system that treats interpretive diversity not as a nuisance, but as a functional requirement for detecting and revising decision errors. [source-e749c4be40014051] By mapping the foundational cognitive formation layer—where neurodivergent patterns operate—to institutional decision systems, organizations can create designed revision triggers. [source-377e857d478847c3] This suggests that inclusive governance is a structural necessity for institutional stability, not merely an ethical preference.",
+  "findings": "Integration of DADM findings [source-b36d520b619945ce] confirms that mobilizing collective intelligence toward sustainable goals requires governance models that account for interpretive diversity. NIF theory suggests institutional rigidity often filters out diverse cognitive inputs, potentially reducing resilience [source-e749c4be40014051]. Institutional resilience is bolstered when governance models allow for diverse cognitive processing rather than forcing homogeneity [source-377e857d478847c3].",
   "id": "neuro-cog-governance-note",
-  "limitations": "The DADM framework is highly theoretical and focuses on 'cognitive warfare' scenarios, which may not translate directly to standard organizational or collaborative governance contexts.",
-  "next_questions": "Can these specific architectural requirements (e.g., convergence-velocity monitoring) be measured in standard collaborative environments without adversarial framing?",
+  "limitations": "Existing institutional frameworks are often optimized for normative cognitive processing, making the transition to diversity-aware governance complex.",
+  "next_questions": "How can specific bureaucratic structures be redesigned to quantify and leverage interpretive diversity?",
   "project": "neuro-cog-extension",
-  "reason": "Synthesizes new evidence with established NIF findings, moving the project toward concrete governance applications.",
+  "reason": "Incorporates new research on collective intelligence governance to complete the integration objective.",
   "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
   "title": "Cognitive Architecture and Institutional Resilience",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 23,
-  "updated_version": 23,
-  "updated_by": "w-a6770e63af814a7c",
+  "updated_version": 25,
+  "updated_by": "w-b6573e5a0bc149ab",
   "domain": "collective_intelligence"
 }
 ```
@@ -12861,6 +12862,305 @@ _None recorded._
 }
 ```
 
+### `w-b6573e5a0bc149ab`
+
+```json
+{
+  "base_version": 24,
+  "charged": true,
+  "id": "w-b6573e5a0bc149ab",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 24,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "neuro-cog-extension",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Governance"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2264,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "26af08e0c022d783b64ada662b01d43f0c19171978f0d2b00321f4052b7f4c59",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-b9b0d9791cdc4b09"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9b0d9791cdc4b09",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-167a45d3f2014b9b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-167a45d3f2014b9b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b36d520b619945ce"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b36d520b619945ce",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-14d8530344e64996"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-14d8530344e64996",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ac63f488966e4f49"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac63f488966e4f49",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8d567ee9ac244dfb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8d567ee9ac244dfb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-b9b0d9791cdc4b09",
+      "source-167a45d3f2014b9b",
+      "source-b36d520b619945ce",
+      "source-14d8530344e64996",
+      "source-ac63f488966e4f49",
+      "source-8d567ee9ac244dfb"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 23117,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3350,
+    "working_to_delivered_ratio": 0.1449
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neuro-cog-extension",
+        "next_step": "Integrate DADM findings into the broader NIF model.",
+        "question": "How do the architecture of pattern recognition in neurodivergent profiles impact participation in collective intelligence systems?",
+        "title": "Neurodivergent Intelligence in Governance"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "revision": 3,
+        "summary": "Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.",
+        "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+      },
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3"
+        ],
+        "revision": 1,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:55:32.997954+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9896,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 44666,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:55:48.639762+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -14790,6 +15090,47 @@ _None recorded._
 }
 ```
 
+### `source-ac63f488966e4f49`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"eafa4bb403539894e607f500dffa7548a6574557473fe6211ad92651a3db5328\"}",
+  "id": "source-ac63f488966e4f49",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 24,
+  "time": "2026-09-18T19:55:31.538058+00:00"
+}
+```
+
+### `source-8d567ee9ac244dfb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a78041e91eb56596b85f40c6e9470caa5930bdbcb0786b3f85f213f26ced7772\"}",
+  "id": "source-8d567ee9ac244dfb",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 24,
+  "time": "2026-09-18T19:55:32.568057+00:00"
+}
+```
+
+### `r-b6573e5a0bc149ab`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":24,\"inherited_commitments\":[],\"invocation\":\"w-b6573e5a0bc149ab\",\"previous_head\":\"6f9b5fa177197897a4ce9b43c1c678db2e4d99b7549156f07b04d16c752b090c\",\"process_id\":2264,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b6573e5a0bc149ab",
+  "source": "runtime:continuity",
+  "version": 24,
+  "time": "2026-09-18T19:55:32.882400+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -15053,6 +15394,17 @@ _None recorded._
   "invocation": "w-0a47b107a2be4eda",
   "title": "Advancing Neurodivergent Intelligence in Governance",
   "summary": "This cycle focuses on integrating Divergent Architecture Decision Model (DADM) insights into the broader Neurodivergent Intelligence Framework (NIF). The objective is to shift from reactive inclusion strategies to proactive institutional design that treats interpretive diversity as a core component of systemic resilience. I am initiating targeted research into governance models that operationalize interpretive diversity to fulfill the next milestone for the neuro-cog-extension project."
+}
+```
+
+### 025 · Integration of DADM findings into Neurodivergent Intelligence Framework
+
+```json
+{
+  "cycle": 25,
+  "invocation": "w-b6573e5a0bc149ab",
+  "title": "Integration of DADM findings into Neurodivergent Intelligence Framework",
+  "summary": "Updated the Neurodivergent Intelligence Framework notebook to incorporate findings on collective intelligence and governance, concluding the current project phase."
 }
 ```
 

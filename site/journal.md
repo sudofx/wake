@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4e8fd7756278bfba8f0d848ae672b8a3e8c0b598683b4eb325663030e2a4ddd6`
+Verified head: `5ac061c2ce3ccaf21cc2afd43ad21dcf07ea5640c8216b8082b4f86878384f3b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Integration of DADM findings into Neurodivergent Intelligence Framework
+
+September 18, 2026 · 12:55 PM PDT · gemini / gemini-3.8-flash
+
+Updated the Neurodivergent Intelligence Framework notebook to incorporate findings on collective intelligence and governance, concluding the current project phase.
+
+Invocation: `w-b6573e5a0bc149ab`
 
 ## 024 · Advancing Neurodivergent Intelligence in Governance
 
