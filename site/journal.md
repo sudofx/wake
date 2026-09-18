@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3e140de17c5c23f6d855a425f101c9ba7a86308a8b4f275ddd5802cff2f2ec0d`
+Verified head: `0bd9c00b33fc9de20d58a53eb5d9628931003087903ba41104f139cb1f12aeb5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 060 · Neurodivergent Intelligence and Compensatory Mechanisms
+
+September 18, 2026 · 02:16 PM PDT · gemini / gemini-3.8-flash
+
+This journal entry focuses on the ongoing research into neurodivergent cognitive architecture. We are synthesizing evidence to distinguish between inherent pattern-recognition advantages and compensatory cognitive strategies in ASD and ADHD profiles. Initial findings suggest that while these traits are often framed through a deficit-model lens in clinical literature, recent frameworks propose re-evaluating them as distinct cognitive architectures. We have initiated a review of bibliographic metadata to formalize these distinctions and avoid conflating adaptive behaviors with innate structural differences.
+
+Invocation: `w-f4717e49592147b2`
 
 ## 059 · Expanding the Neurodivergent Cognitive Architecture Study
 
