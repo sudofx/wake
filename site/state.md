@@ -5,7 +5,7 @@
 **Version:** 7  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `60440c42a5c95e589d4f05650f47e8bbe77fb00cd3bf8b093542715b32a1e349`
+**Verified head:** `18036bbfa0de5c8132be6f6584c8e562d7ef5f4fdb7cea919f84b0b01c8bea60`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -3158,6 +3158,305 @@ _None recorded._
 }
 ```
 
+### `w-8cada520378048e1`
+
+```json
+{
+  "base_version": 7,
+  "charged": true,
+  "id": "w-8cada520378048e1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 7,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-research",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence Landscapes"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "neuro-cog-framework",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Frameworks"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "emergence-study",
+        "score": 0.575,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Emergence in Historical Systems"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2292,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "f2fe54d228cf455a3208ce79b2b557cd5a83546c88daa9431ac3beca20432bf6",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-ac27b979ea0949ab"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac27b979ea0949ab",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6adcccf3128f45ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6adcccf3128f45ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-377e857d478847c3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-172e7e90fcc244b6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-172e7e90fcc244b6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4a8c00cfade546cc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4a8c00cfade546cc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ed1af0baedd74801"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ed1af0baedd74801",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-ac27b979ea0949ab",
+      "source-6adcccf3128f45ff",
+      "source-377e857d478847c3",
+      "source-172e7e90fcc244b6",
+      "source-4a8c00cfade546cc",
+      "source-ed1af0baedd74801"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29683,
+    "inquiry_drive_project_count": 3,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2006,
+    "working_to_delivered_ratio": 0.0676
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-research",
+        "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+        "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+        "title": "Collective Intelligence Landscapes"
+      },
+      {
+        "id": "emergence-study",
+        "next_step": "Perform initial search on historical transitions in human-microbe relations.",
+        "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
+        "title": "Emergence in Historical Systems"
+      },
+      {
+        "id": "neuro-cog-framework",
+        "next_step": "Synthesize the NIF's four-part combination framework against current cognitive models.",
+        "question": "How does the Neurodivergent Intelligence Framework shift the understanding of pattern recognition in neurodivergent populations?",
+        "title": "Neurodivergent Intelligence Frameworks"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+        "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-18T19:11:52.559385+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 979,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 50514,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-18T19:11:58.290219+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 979,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 979,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 50514,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 50514,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -3693,6 +3992,47 @@ _None recorded._
 }
 ```
 
+### `source-4a8c00cfade546cc`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+critique+or+validation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1016/s0167-8655(03)00066-7\\\", \\\"title\\\": [\\\"Clustering and its validation in a symbolic framework\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/s0167-8655(03)00066-7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003, 10]]}}, {\\\"DOI\\\": \\\"10.2172/923990\\\", \\\"title\\\": [\\\"A validation framework for microbial forensic methods based on statistical pattern recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.2172/923990\\\", \\\"published\\\": {\\\"date-parts\\\": [[2007, 11, 12]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-87137-4.50001-1\\\", \\\"title\\\": [\\\"Machine Intelligence and Pattern Recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-87137-4.50001-1\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"20e294893042340bef396897fb4def1e0ac950e59ba909ce257e280f869b8de3\"}",
+  "id": "source-4a8c00cfade546cc",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=Neurodivergent+Intelligence+Framework+pattern+recognition+critique+or+validation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 7,
+  "time": "2026-09-18T19:11:51.771788+00:00"
+}
+```
+
+### `source-ed1af0baedd74801`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7f275ddea8d293f50a5cd0eac30597e6a348e8e21eba130670fb4c308f721e9\"}",
+  "id": "source-ed1af0baedd74801",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 7,
+  "time": "2026-09-18T19:11:52.462056+00:00"
+}
+```
+
+### `r-8cada520378048e1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-8cada520378048e1\",\"previous_head\":\"07ceeea34a5986c47b8b5cb2e5f2f09145b204595bea51dbdbc830a8fcdf3200\",\"process_id\":2292,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-8cada520378048e1",
+  "source": "runtime:continuity",
+  "version": 7,
+  "time": "2026-09-18T19:11:52.532930+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -3864,8 +4204,9 @@ _None recorded._
   "query": "Neurodivergent Intelligence Framework pattern recognition critique or validation",
   "reason": "To secure a second, independent source evaluating or building on the NIF, satisfying notebook requirements.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-bce91219031f43bc"
+  "status": "collected",
+  "created_by": "w-bce91219031f43bc",
+  "evidence": "source-4a8c00cfade546cc"
 }
 ```
 
