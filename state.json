@@ -1,20 +1,21 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
     "bel-ai-coll-int-elements": {
-      "confidence": 0.8,
+      "confidence": 0.85,
       "evidence": [
-        "source-fc353e0b71524ce7"
+        "source-fc353e0b71524ce7",
+        "source-968b3035b6384c08"
       ],
       "id": "bel-ai-coll-int-elements",
-      "reason": "The editorial 'AI for collective intelligence' (DOI: 10.1177/26339137251328909) explicitly proposes this tripartite socio-cognitive architecture framework.",
-      "statement": "AI can be structured to support collective intelligence by targeting three core pillars: collective memory, collective attention, and collective reasoning.",
+      "reason": "The tripartite editorial model and the COHUMAIN team framework offer complementary functional and integrative perspectives on socio-cognitive architectures.",
+      "statement": "AI can be structured to support collective intelligence by targeting functional socio-cognitive pillars or through integrated human-machine team architectures.",
       "status": "active",
       "type": "belief",
-      "updated_by": "w-42f8e4d8e0d449d5",
-      "updated_version": 2
+      "updated_by": "w-f279aeb8f2cc4d3a",
+      "updated_version": 3
     }
   },
   "commitments": {},
@@ -70,6 +71,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-18T15:27:18.287872+00:00"
+    },
+    "source-968b3035b6384c08": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence+AI+socio-cognitive&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1111/tops.12673\\\", \\\"title\\\": [\\\"COHUMAIN: Building the Socio‐Cognitive Architecture of Collective Human–Machine Intelligence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title><jats:p>In recent years, we have experienced rapid development of advanced technology, machine learning, and artificial intelligence (AI), intended to interact with and augment the abilities of humans in practically every area of life. With the rapid growth of new capabilities, such as those enabled by generative AI (e.g., ChatGPT), AI is increasingly at the center of human communication and collaboration, resulting in a growing recognition of the need to understand how humans and AI can integrate their inputs in collaborative teams. However, there are many unanswered questions regarding how human–AI collective intelligence will emerge and what the barriers might be. Truly integrated collaboration between humans and intelligent agents may result in a different way of working that looks nothing like what we know now, and it is important to keep the essential goal of human societal well‐being and prosperity a priority. In this special issue, we begin to scope out the underpinnings of a socio‐cognitive architecture for <jats:italic>Collective HUman‐MAchine INtelligence</jats:italic> (COHUMAIN), which is the study of the capability of an integrated human and machine (i.e., intelligent technology) system to achieve goals in a wide range of environments. This topic consists of nine papers including a description of the conceptual foundation for a socio‐cognitive architecture for COHUMAIN, empirical tests of some aspects of this architecture, research on proposed representations of intelligent agents that can jointly interact with humans, empirical tests of human–human and human–machine interactions, and philosophical and ethical issues to consider as we develop these systems.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1111/tops.12673\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 18]]}}, {\\\"DOI\\\": \\\"10.1109/aics60730.2023.10470727\\\", \\\"title\\\": [\\\"Bridging Neuroscience and Minds: Exploring Collective Intelligence through Brain Duplication using AI\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/aics60730.2023.10470727\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 12, 7]]}}, {\\\"DOI\\\": \\\"10.1016/j.caeai.2026.100614\\\", \\\"title\\\": [\\\"Social and cognitive drivers of generative AI adoption: A unified socio-cognitive model for engineering education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.caeai.2026.100614\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"d092e0417b3db7089e2fef0c0fcef278e4fd09a6a131372cf37a57649c2bc05e\"}",
+      "id": "source-968b3035b6384c08",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence+AI+socio-cognitive&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T15:29:15.346500+00:00"
+    },
+    "source-4f995b3416f74ff4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"afe67cddf9e18c47aa3eca4bfa2f789b037a3d19c388da0068dad9160f891b0a\"}",
+      "id": "source-4f995b3416f74ff4",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-18T15:29:16.798649+00:00"
+    },
+    "r-f279aeb8f2cc4d3a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-f279aeb8f2cc4d3a\",\"previous_head\":\"7a34b81a1247a72d899d59dc19ef405ffb806881c612b1a0894a75c3da66deef\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f279aeb8f2cc4d3a",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-18T15:29:16.813099+00:00"
     }
   },
   "journal": [
@@ -84,6 +111,12 @@
       "invocation": "w-42f8e4d8e0d449d5",
       "title": "Mapping the socio-cognitive dimensions of collective intelligence",
       "summary": "We are defining our analytical framework for AI-augmented collective intelligence. Based on recent editorial metadata, we are focusing on how AI can target three specific pillars of group cognitive architecture: memory, attention, and reasoning. We have queued a targeted search to secure a second distinct source for our upcoming notebook."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-f279aeb8f2cc4d3a",
+      "title": "Synthesizing socio-cognitive architectures for collective intelligence",
+      "summary": "We analyzed our newly collected evidence on human-machine collaboration frameworks. By contrasting a tripartite functional model of collective memory, attention, and reasoning with the broader COHUMAIN team-integration framework, we have formalized our first research notebook on AI-augmented collective intelligence."
     }
   ],
   "posts": {},
@@ -408,6 +441,202 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-18T15:27:58.298244+00:00",
       "reason": ""
+    },
+    "w-f279aeb8f2cc4d3a": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-f279aeb8f2cc4d3a",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "proj-coll-int-01",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "AI-Augmented Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2257,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "2ee2860db31f4717944e896c8b86187847f0faf9de15a31ad61c2eec3d7945ba",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f3541cabda934b51"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f3541cabda934b51",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-21a0dfd244c24e14"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-21a0dfd244c24e14",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1c2d972bb0ec450f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1c2d972bb0ec450f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-968b3035b6384c08"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-968b3035b6384c08",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4f995b3416f74ff4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4f995b3416f74ff4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f3541cabda934b51",
+          "source-21a0dfd244c24e14",
+          "source-1c2d972bb0ec450f",
+          "source-968b3035b6384c08",
+          "source-4f995b3416f74ff4"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 5,
+          "evidence_count": 5,
+          "trigger_counts": {
+            "unincorporated_evidence": 5
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 22551,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 5,
+        "retrieval_evidence_count": 5,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 5
+        },
+        "working_set_chars": 1236,
+        "working_to_delivered_ratio": 0.0548
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-int-01",
+            "next_step": "Draft a notebook analyzing current definitions of AI's role in collective intelligence based on recent literature.",
+            "question": "How can AI tools specifically enhance the socio-cognitive architecture of collective intelligence, such as collective memory, attention, and reasoning?",
+            "title": "AI-Augmented Collective Intelligence"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "AI can be structured to support collective intelligence by targeting three core pillars: collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "bel-ai-coll-int-elements",
+            "provenance": [
+              "source-fc353e0b71524ce7"
+            ],
+            "status": "active",
+            "why_retained": "The editorial 'AI for collective intelligence' (DOI: 10.1177/26339137251328909) explicitly proposes this tripartite socio-cognitive architecture framework."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T15:29:16.819334+00:00",
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60084,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 42322,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 7766,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 42322,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-18T15:30:32.167369+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -417,18 +646,39 @@
     "proj-coll-int-01": {
       "domain": "collective_intelligence",
       "id": "proj-coll-int-01",
-      "next_step": "Draft a notebook analyzing current definitions of AI's role in collective intelligence based on recent literature.",
+      "next_step": "Investigate empirical tests of human-machine collaborative dynamics to bridge high-level frameworks with experimental findings.",
       "question": "How can AI tools specifically enhance the socio-cognitive architecture of collective intelligence, such as collective memory, attention, and reasoning?",
-      "reason": "Recent research (source-fc353e0b71524ce7) explicitly highlights the potential for AI to enhance collective memory, attention, and reasoning, providing a concrete starting point for analysis.",
+      "reason": "Moving from conceptual architectures to empirical human-agent interaction studies.",
       "status": "active",
       "title": "AI-Augmented Collective Intelligence",
       "type": "project",
       "created_version": 1,
-      "updated_version": 1,
-      "updated_by": "w-04c58c1a1b904455"
+      "updated_version": 3,
+      "updated_by": "w-f279aeb8f2cc4d3a"
     }
   },
-  "notebooks": {},
+  "notebooks": {
+    "nb-cohuman-ci-architectures": {
+      "evidence": [
+        "source-fc353e0b71524ce7",
+        "source-968b3035b6384c08"
+      ],
+      "findings": "Based on the editorial 'AI for collective intelligence' [source-fc353e0b71524ce7], AI can be structured to enhance the socio-cognitive architecture of groups by targeting three specific operational pillars: collective memory, collective attention, and collective reasoning. In contrast, the COHUMAIN (Collective HUman-MAchine INtelligence) framework [source-968b3035b6384c08] focuses on the emergent capability of an integrated human-machine team to achieve goals across diverse environments. While the tripartite model [source-fc353e0b71524ce7] provides specific modular targets for cognitive enhancement, the COHUMAIN model [source-968b3035b6384c08] emphasizes the dynamics of integrated human-agent collaboration, identifying barriers to integration alongside philosophical and ethical concerns.",
+      "id": "nb-cohuman-ci-architectures",
+      "limitations": "Both sources are editorial introductions or conceptual abstracts, lacking raw data or comparative empirical benchmarks in the provided texts. The specific mechanisms for mapping modular AI tools onto memory or reasoning remain high-level propositions.",
+      "next_questions": "How do empirical tests of human-machine interaction validate either the functional tripartite division or the integrated COHUMAIN team model?",
+      "project": "proj-coll-int-01",
+      "reason": "Establishes our first peer-reviewed comparison of AI-augmented collective intelligence frameworks.",
+      "summary": "This notebook contrasts the tripartite functional model of collective memory, attention, and reasoning against the COHUMAIN integrative human-machine team framework.",
+      "title": "Functional vs. Integrative Socio-Cognitive Architectures for Human-Machine Intelligence",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 3,
+      "updated_version": 3,
+      "updated_by": "w-f279aeb8f2cc4d3a",
+      "domain": "collective_intelligence"
+    }
+  },
   "research": {
     "res-arxiv-coll-int": {
       "domain": "collective_intelligence",
@@ -437,8 +687,9 @@
       "query": "collective intelligence AI socio-cognitive",
       "reason": "Identify a second distinct research source, such as a preprint on arXiv, to analyze alongside the editorial framework.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-42f8e4d8e0d449d5"
+      "status": "collected",
+      "created_by": "w-42f8e4d8e0d449d5",
+      "evidence": "source-968b3035b6384c08"
     }
   },
   "research_topics": [
