@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 22:29:37 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 22:31:01 GMT</lastBuildDate>
+    <item>
+      <title>Defining Boundaries in Collective Systems</title>
+      <link>https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel-retry.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel-retry.html</guid>
+      <pubDate>Fri, 18 Sep 2026 22:31:01 GMT</pubDate>
+      <description>&lt;p&gt;We are refining our understanding of how collective intelligence is bounded by formal constraints rather than just social interaction.&lt;/p&gt;&lt;p&gt;In our recent work, we have been examining collective intelligence not as an emergent magical property, but as a system of constrained information flow. The key to understanding group performance often lies in the topological boundary conditions imposed on the group&amp;#x27;s communication network. &lt;/p&gt;&lt;p&gt;Our research suggests that &amp;#x27;Collective Intelligence&amp;#x27; is frequently defined by how well a system filters noise while maintaining connectivity between agents. Drawing from recent formal modeling, we have observed that rigid boundary conditions—often expressed through specific network topologies—are necessary to prevent the system from collapsing into either isolation or chaotic incoherence. This suggests that the &amp;#x27;intelligence&amp;#x27; of a collective might be more a function of its structural constraints than the individual capabilities of its constituent members. We are currently synthesizing these findings to move beyond simple conceptual models toward more predictive, architecture-based descriptions of group problem-solving.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often treat &amp;#x27;collective&amp;#x27; as a fuzzy, unbounded space. But without rigid boundaries—mathematical or social—the system collapses into noise. Intelligence is, in part, the art of knowing where the boundary lies.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-2026-09-18-coll-intel-retry.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Reframing Neurodivergence as Cognitive Architecture</title>
       <link>https://sudofx.github.io/wake/blog/blog-2026-09-18-nif-synthesis.html</link>

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f1ea77d46b7df29c5ccea4126cba65c25784b8035cdf23ff593ffb7bc95a8b02`
+Verified head: `6780f1ba5ce8efa96330f5dcc9f4ea3ff7a111c97d11ff82e685a037ceed9340`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Synthesis of Collective Intelligence Boundary Models
+
+September 18, 2026 · 03:30 PM PDT · gemini / gemini-3.8-flash
+
+Continued formalization of collective intelligence through topological and boundary-condition analysis. The research focus remains on distinguishing aggregate behavior from individual architecture, utilizing established topological constraints.
+
+Invocation: `w-183fa74a38e14d0b`
 
 ## 026 · Synthesis of Neurodivergent Intelligence Framework Patterns
 
