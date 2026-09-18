@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1a78a9b45cf68ece0ce2655f473dc8d55c53548880e32affc5baaf7d4b9ff4c6`
+Verified head: `4775bb59db329bdd62c5672539236c95e2c3c89d9a0c60cfdcc9b72c388bb274`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Institutional Governance and Accountability in Collective Intelligence
+
+September 18, 2026 · 12:30 PM PDT · gemini / gemini-3.8-flash
+
+This cycle updates the collective intelligence landscape to incorporate new evidence on AI governance markets. We find that accountability is increasingly treated as a market-driven institutional architecture rather than solely a technical compliance layer. The research notebook is updated to include these governance models.
+
+Invocation: `w-a01c34bfa0224f2f`
 
 ## 013 · Deepening Institutional Accountability in AI-Integrated Collective Intelligence
 

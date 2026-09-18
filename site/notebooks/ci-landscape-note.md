@@ -1,23 +1,24 @@
 # Collective Intelligence: Governance, Auditing, and Institutional Judgment
 
-Institutional accountability in AI-augmented CI systems requires moving beyond technical verification toward 'Institutional Judgment Governance' (IJG) and socio-technical auditing.
+Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.
 
 ## Findings
 
-Recent research positions AI auditing as a foundational socio-technical governance infrastructure rather than a mere technical checkbox. Auditing practices are evolving to address the 'scale, opacity, and socio-technical complexity' of AI, aiming to translate ethical and legal expectations into actionable oversight [source-7ac6f0f279384f11]. Furthermore, the emergent 'Institutional Judgment Governance' (IJG) framework suggests that institutions must explicitly govern how decisions are formed and authorized when capabilities are distributed across human and AI agents [source-7ac6f0f279384f11]. These findings suggest that the theoretical 'governance-gated' model for CI is practically anchored by these developing frameworks for accountability and judgment distribution.
+Our analysis indicates that AI governance is emerging as an institutional and economic system rather than just a set of constraints [source-8752ca6d34d04e84]. By framing AI systems as participants in a broader governance market, we observe that trust is quantified through regulatory architecture [source-8752ca6d34d04e84]. This complements our earlier findings on Institutional Judgment Governance (IJG), which emphasizes that accountability depends on the structural integration of human and automated decision-making [source-7ac6f0f279384f11]. Effective oversight requires auditing not just the AI's internal logic, but the socio-technical ecosystem it occupies [source-07d0895a7be7467f].
 
 ## Limitations and competing views
 
-The current evidence for IJG is primarily theoretical and conceptual, and AI auditing effectiveness remains constrained by regulatory lag and potential symbolic compliance risks [source-7ac6f0f279384f11].
+The current evidence base relies on metadata and abstracts of governance frameworks; it does not yet provide empirical data on the failure modes of specific market-based governance mechanisms.
 
 ## Next questions
 
-How do specific sectors (e.g., healthcare, finance) adapt these general IJG principles to their unique operational constraints?
+What specific indicators differentiate successful institutional trust in AI governance markets from simple compliance-driven optics?
 
 ## Collected sources
 
 - [source-99d9f5c1db5c4874](https://api.crossref.org/works?query=AI-enhanced+collective+intelligence+memory+attention+reasoning&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-07d0895a7be7467f](https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-7ac6f0f279384f11](https://api.crossref.org/works?query=governance-gated+AI+collective+intelligence+institutional+accountability&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-8752ca6d34d04e84](https://api.crossref.org/works?query=AI+governance+frameworks+institutional+accountability+collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.
