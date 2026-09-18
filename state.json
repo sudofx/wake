@@ -1581,6 +1581,32 @@
       "source": "runtime:continuity",
       "version": 30,
       "time": "2026-09-18T18:32:51.927577+00:00"
+    },
+    "source-09153859893848b2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3e2c08731454b9ac28cf9546ebf56424a4419e23a934631aed4c530319a9cce3\"}",
+      "id": "source-09153859893848b2",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 30,
+      "time": "2026-09-18T18:34:06.243387+00:00"
+    },
+    "source-0db979181cdf4844": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-0db979181cdf4844",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 30,
+      "time": "2026-09-18T18:34:06.684868+00:00"
+    },
+    "r-7e98d5667dfd4135": {
+      "actor": "runtime",
+      "content": "{\"base_version\":30,\"inherited_commitments\":[],\"invocation\":\"w-7e98d5667dfd4135\",\"previous_head\":\"5ad07039ed287cd9965c23a71e446247b0a7eebbb2f29255a68379eb1c5345cc\",\"process_id\":2259,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-7e98d5667dfd4135",
+      "source": "runtime:continuity",
+      "version": 30,
+      "time": "2026-09-18T18:34:07.057331+00:00"
     }
   },
   "journal": [
@@ -17521,6 +17547,311 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T18:33:00.817353+00:00",
       "reason": "Belief review requires new evidence"
+    },
+    "w-7e98d5667dfd4135": {
+      "base_version": 30,
+      "charged": true,
+      "id": "w-7e98d5667dfd4135",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 30,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2259,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "d1d9e9beb02424ca966ed1bb6c26d26ed5432797bf2f689da37ade3042245aa7",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-1ba654396b7a4c16",
+              "source-1d5910d21b6c488c"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-ci-structure-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-58a45b17d6354b5f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-58a45b17d6354b5f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d649bc0de2c34536"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d649bc0de2c34536",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1d6ccd9f454f41e1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1d6ccd9f454f41e1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-163317f5852c4f0d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-163317f5852c4f0d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-09153859893848b2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-09153859893848b2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0db979181cdf4844"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0db979181cdf4844",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c",
+          "source-58a45b17d6354b5f",
+          "source-d649bc0de2c34536",
+          "source-1d6ccd9f454f41e1",
+          "source-163317f5852c4f0d",
+          "source-09153859893848b2",
+          "source-0db979181cdf4844"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21148,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3925,
+        "working_to_delivered_ratio": 0.1856
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [
+          {
+            "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "ci-structure-three-factor",
+            "provenance": [
+              "source-1ba654396b7a4c16"
+            ],
+            "status": "active",
+            "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+          },
+          {
+            "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+            "confidence": 0.7,
+            "id": "belief-net-centralization",
+            "provenance": [
+              "source-f816ad486a324c20"
+            ],
+            "status": "active",
+            "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-nif-synthesis",
+            "project": "project-neuro-cognition",
+            "provenance": [
+              "source-a53d284f781844ef",
+              "source-f816ad486a324c20"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+            "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+          },
+          {
+            "id": "nb-metrics-collective-memory",
+            "project": "project-emergence-metrics",
+            "provenance": [
+              "source-33a17dc3cd5a4168",
+              "source-0da21a56c51e4b71"
+            ],
+            "revision": 1,
+            "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+            "title": "Quantitative Measures of Collective Memory"
+          },
+          {
+            "id": "nb-ci-cognitive-load-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-cb700d6060ba423e",
+              "source-86b820b68e784d3c",
+              "source-8626e58cc64f468c"
+            ],
+            "revision": 1,
+            "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+            "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+          },
+          {
+            "id": "nb-ci-reasoning-metrics-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-d20ab1413e58417c",
+              "source-a5e8ba80d420417d"
+            ],
+            "revision": 1,
+            "summary": "Collective reasoning in teams can be decomposed into individual contribution, communication, and coalescing, with performance heavily influenced by attributional biases regarding coworker effort.",
+            "title": "Operationalizing Collective Reasoning Metrics"
+          },
+          {
+            "id": "nb-ci-ai-reasoning-impact-001",
+            "project": "ci-ai-foundations",
+            "provenance": [
+              "source-cb700d6060ba423e",
+              "source-d20ab1413e58417c"
+            ],
+            "revision": 1,
+            "summary": "AI interventions differentially impact collective reasoning and collective memory, often creating a bottleneck in reasoning-heavy tasks due to the cognitive load of oversight.",
+            "title": "Comparative Impact of AI Interventions on Reasoning and Memory Metrics"
+          },
+          {
+            "id": "nb-symmetry-emergence-precursors-001",
+            "project": "project-symmetry-emergence",
+            "provenance": [
+              "source-6c55fcfa1118426e",
+              "source-d751f6c7263d4d63"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational control mechanism in self-organizing systems, facilitating transitions from homogeneous states to structured, emergent behaviors.",
+            "title": "Symmetry Breaking as a Precursor to Emergence"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T18:34:07.184790+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 23150,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 42081,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T18:34:36.877801+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 23150,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 23150,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 42081,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 42081,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
