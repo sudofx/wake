@@ -26,19 +26,29 @@ label = "Ant colonies"
 query = "ant colonies"
 
 [[topics]]
+id = "gut_bacteria"
+label = "Gut bacteria"
+query = "gut bacteria microbiome"
+
+[[topics]]
+id = "neurodivergent_mind"
+label = "Neurodivergent mind"
+query = "neurodivergent cognition"
+
+[[topics]]
 id = "compression"
 label = "Compression"
 query = "information compression"
 
 [[topics]]
+id = "quantum_entanglement"
+label = "Quantum entanglement"
+query = "quantum entanglement"
+
+[[topics]]
 id = "entropy"
 label = "Entropy"
 query = "entropy"
-
-[[topics]]
-id = "information_theory"
-label = "Information theory"
-query = "information theory"
 
 [[topics]]
 id = "wake_analysis"
