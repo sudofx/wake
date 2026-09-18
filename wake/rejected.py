@@ -30,7 +30,8 @@ def explanation(reason):
 
 def _text(value):
     # Normalize the public wordmark in readable presentation only; raw state is unchanged.
-    return html.escape(str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎"))
+    escaped = html.escape(str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎"))
+    return escaped.replace("WAKE✳︎", '<strong class="wake-mark">WAKE✳︎</strong>')
 
 
 def _paragraphs(value):
