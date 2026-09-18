@@ -5,12 +5,10 @@ on:
     branches: [master]
     paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
   schedule:
-    # GitHub documents scheduled Actions as best effort: they can start late or
-    # be dropped when the service is busy. :42 remains the Hitchhiker's Guide
-    # reference and preferred hourly wake, away from top-of-hour congestion.
-    # The other off-minute ticks are delivery backups. scripts/github_wake.py
-    # checks durable state before Gemini, so these never multiply model calls.
-    - cron: '12,27,42,57 * * * *'
+    # GitHub scheduled Actions are best effort and can be delayed or dropped.
+    # Ask at the platform's five-minute cadence; durable state remains the
+    # authority, so queued/delayed deliveries cannot create concurrent writers.
+    - cron: '2-57/5 * * * *'
   workflow_dispatch:
     inputs:
       publish_only:
@@ -52,7 +50,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         # Code updates refresh the record, scheduled ticks use the durable
-        # hourly guard, and manual wakes always run when requested.
+        # high-frequency eligibility guard, and manual wakes always run when requested.
         run: |
           if [[ "${{ inputs.reset }}" == "true" ]]; then
             python scripts/github_wake.py --reset --confirm-reset
