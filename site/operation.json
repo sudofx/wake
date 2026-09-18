@@ -1,7 +1,9 @@
 {
   "status": "accepted",
   "id": "w-3917fc031ba6466f",
+  "reason": "",
   "cycle": 11,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-3917fc031ba6466f",
@@ -68,12 +70,12 @@
       "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 11,
-    "next_eligible": "2026-09-19T00:00:00-07:00",
+    "next_eligible": "2026-09-18T14:40:56.899354+00:00",
     "pending": false,
     "attempts_today": 17,
     "provider_requests_today": 43,
     "provider_request_slots_today": 43,
     "provider_request_counts_incomplete": false,
-    "daily_call_limit": 20
+    "daily_call_limit": null
   }
 }

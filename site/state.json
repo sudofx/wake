@@ -4975,9 +4975,19 @@
   },
   "research_topics": [
     {
-      "id": "cellular_automata",
-      "label": "Cellular automata",
-      "query": "cellular automata"
+      "id": "music",
+      "label": "Music",
+      "query": "music"
+    },
+    {
+      "id": "collective_intelligence",
+      "label": "Collective Intelligence",
+      "query": "collective intelligence"
+    },
+    {
+      "id": "climate_change",
+      "label": "Climate Change",
+      "query": "climate change"
     },
     {
       "id": "symmetry",
@@ -4985,34 +4995,24 @@
       "query": "symmetry"
     },
     {
-      "id": "error_correction",
-      "label": "Error correction",
-      "query": "error correction"
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy"
     },
     {
-      "id": "ant_colonies",
-      "label": "Ant colonies",
-      "query": "ant colonies"
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE"
     },
     {
-      "id": "gut_bacteria",
-      "label": "Gut bacteria",
-      "query": "gut bacteria microbiome"
+      "id": "global_economy",
+      "label": "Global Economy",
+      "query": "global economy"
     },
     {
-      "id": "neurodivergent_mind",
-      "label": "Neurodivergent mind",
-      "query": "neurodivergent cognition"
-    },
-    {
-      "id": "compression",
-      "label": "Compression",
-      "query": "information compression"
-    },
-    {
-      "id": "quantum_entanglement",
-      "label": "Quantum entanglement",
-      "query": "quantum entanglement"
+      "id": "emergence",
+      "label": "Emergence",
+      "query": "emergence"
     },
     {
       "id": "entropy",
@@ -5020,9 +5020,9 @@
       "query": "entropy"
     },
     {
-      "id": "wake_analysis",
-      "label": "WAKE✳︎",
-      "query": "WAKE"
+      "id": "neurodivergent_cognition",
+      "label": "Neurodivergent Cognition",
+      "query": "neurodivergent cognition"
     }
   ]
 }

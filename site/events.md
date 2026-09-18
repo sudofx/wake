@@ -2,9 +2,76 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `2691f4273452d6bdb3e5895e73807c7b1f976bcbf7c3c67057ec7b332f40a06f`
+Verified head: `3fb5216b93476108c225a0fbe6011971f145068c158a66ace0fd07cfa8987d64`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0208 · `research_topics_changed`
+
+**Time:** 2026-09-18T14:56:02.574019+00:00  
+**ID:** `system`  
+**Hash:** `3fb5216b93476108c225a0fbe6011971f145068c158a66ace0fd07cfa8987d64`  
+**Previous hash:** `2691f4273452d6bdb3e5895e73807c7b1f976bcbf7c3c67057ec7b332f40a06f`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topics": [
+    {
+      "id": "music",
+      "label": "Music",
+      "query": "music"
+    },
+    {
+      "id": "collective_intelligence",
+      "label": "Collective Intelligence",
+      "query": "collective intelligence"
+    },
+    {
+      "id": "climate_change",
+      "label": "Climate Change",
+      "query": "climate change"
+    },
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "query": "symmetry"
+    },
+    {
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE"
+    },
+    {
+      "id": "global_economy",
+      "label": "Global Economy",
+      "query": "global economy"
+    },
+    {
+      "id": "emergence",
+      "label": "Emergence",
+      "query": "emergence"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    },
+    {
+      "id": "neurodivergent_cognition",
+      "label": "Neurodivergent Cognition",
+      "query": "neurodivergent cognition"
+    }
+  ]
+}
+```
 
 ## Event 0207 · `accepted`
 
