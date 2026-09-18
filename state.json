@@ -447,6 +447,32 @@
       "source": "runtime:continuity",
       "version": 8,
       "time": "2026-09-18T19:13:55.197822+00:00"
+    },
+    "source-83571cd33d7a4186": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=complexity+theory+in+social+and+historical+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2307/j.ctt1ggjk7c.6\\\", \\\"title\\\": [\\\"Complexity theory:\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/j.ctt1ggjk7c.6\\\"}, {\\\"DOI\\\": \\\"10.46692/9781447311416.002\\\", \\\"title\\\": [\\\"Complexity theory: an overview\\\"], \\\"URL\\\": \\\"https://doi.org/10.46692/9781447311416.002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 5, 28]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781447311409.003.0002\\\", \\\"title\\\": [\\\"Complexity Theory: an Overview\\\"], \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781447311409.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 5, 28]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780190888589.003.0008\\\", \\\"title\\\": [\\\"Ideal Theory and Historical Complexity\\\"], \\\"abstract\\\": \\\"<p>After summarizing Fassin’s arguments, McLennan urges attention to five related questions. The first addresses the intersection between philosophy and the social sciences, specifically how, if at all, utilitarian, Kantian, and other ideal theories of punishment might usefully inform the study of past and present penal practices. Second, McLennan asks what in American history explains the particular brutality of state punishment in the U.S.—what she calls “delegated sadism”—notwithstanding many common features between French and American penal institutions. Building on this theme, she invites Fassin to reflect more on the nonlinearity of the history of penal policy in the U.S. and the ways in which penal welfarism and the slave plantation provided competing models for punishment in both North and South. Responding to Fassin’s call for the study of “penal theology,” McLennan suggests that nineteenth- and twentieth-century Christian theologies have not only fostered certain penal practices but generated radical critiques of incarceration and its effects. Finally, turning to mass incarceration’s more recent history, McLennan calls our attention to the gendered character of penal policy, especially in light of the fact that incarceration rates for women have risen much faster than for men.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780190888589.003.0008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 6, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6dbd514f24f0395dee58bf1687f177f3834d3a39cc35ad2ea5a85d1c48c51f67\"}",
+      "id": "source-83571cd33d7a4186",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=complexity+theory+in+social+and+historical+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 8,
+      "time": "2026-09-18T19:15:43.621775+00:00"
+    },
+    "source-7dd1940edfa7475c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"f13673a9eec3f928a0c80c26982e730b504168b26f5a6949239ec7b5a3826450\"}",
+      "id": "source-7dd1940edfa7475c",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 8,
+      "time": "2026-09-18T19:15:44.464364+00:00"
+    },
+    "r-428d00cac6ef4195": {
+      "actor": "runtime",
+      "content": "{\"base_version\":8,\"inherited_commitments\":[\"review-nif-progress\"],\"invocation\":\"w-428d00cac6ef4195\",\"previous_head\":\"14c6fbfcc90d0d41a94fbd7108cb8cf62f29f97d8de6a1bafb416bf185fd004f\",\"process_id\":2240,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-428d00cac6ef4195",
+      "source": "runtime:continuity",
+      "version": 8,
+      "time": "2026-09-18T19:15:44.554423+00:00"
     }
   },
   "journal": [
@@ -4296,6 +4322,281 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:14:51.101584+00:00",
       "reason": "Stale or invalid base_version"
+    },
+    "w-428d00cac6ef4195": {
+      "base_version": 8,
+      "charged": true,
+      "id": "w-428d00cac6ef4195",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 8,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "emergence-study",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Emergence in Historical Systems"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "neuro-cog-framework",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence Frameworks"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2240,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "dbca3f78aa233482b3ceeb231e92c98baf41caf50a527aabc7c04f9a5fce442e",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "review-nif-progress",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-cc2c54ae1df741a2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cc2c54ae1df741a2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-622cf0a7eda94dc8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-622cf0a7eda94dc8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-616711c74f684726"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-616711c74f684726",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4642c1faaa0143cd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4642c1faaa0143cd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-83571cd33d7a4186"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-83571cd33d7a4186",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7dd1940edfa7475c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7dd1940edfa7475c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cc2c54ae1df741a2",
+          "source-622cf0a7eda94dc8",
+          "source-616711c74f684726",
+          "source-4642c1faaa0143cd",
+          "source-83571cd33d7a4186",
+          "source-7dd1940edfa7475c"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 29611,
+        "inquiry_drive_project_count": 3,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2225,
+        "working_to_delivered_ratio": 0.0751
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          },
+          {
+            "id": "emergence-study",
+            "next_step": "Perform initial search on historical transitions in human-microbe relations.",
+            "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
+            "title": "Emergence in Historical Systems"
+          },
+          {
+            "id": "neuro-cog-framework",
+            "next_step": "Synthesize the NIF's four-part combination framework against current cognitive models.",
+            "question": "How does the Neurodivergent Intelligence Framework shift the understanding of pattern recognition in neurodivergent populations?",
+            "title": "Neurodivergent Intelligence Frameworks"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 9,
+            "id": "review-nif-progress",
+            "reason": "Ensuring sufficient cycles have passed to complete new research and synthesize a robust notebook.",
+            "task": "Synthesize NIF findings against new critical perspectives."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-18T19:15:44.588354+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 9672,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 51111,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T19:15:58.980379+00:00",
+      "reason": "Stale or invalid base_version"
     }
   },
   "pending": null,
@@ -4493,8 +4794,9 @@
       "query": "complexity theory in social and historical systems",
       "reason": "To secure a second, distinct source to support the theoretical grounding of emergence in historical human-microbe systems, satisfying publication requirements.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-601b34724467450f"
+      "status": "collected",
+      "created_by": "w-601b34724467450f",
+      "evidence": "source-83571cd33d7a4186"
     }
   },
   "research_topics": [
