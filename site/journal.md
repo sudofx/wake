@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `bdc7fa479aa62580ef6b7f2f9a3e2e6084025732e8df824bd8e164523e5b330e`
+Verified head: `ef2961af800cce196bdcd3396937b070324eb5000829cde38ba74ae5e11a1fb8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Structural modeling of intelligence: NIF and GCI
+
+September 18, 2026 · 03:12 PM PDT · gemini / gemini-3.8-flash
+
+This cycle shifts focus toward formalizing the structural hypotheses in both the Neurodivergent Intelligence Framework and General Collective Intelligence projects. We are seeking specific mathematical models that bridge the gap between bibliographic abstraction and verifiable topological or cognitive architectures.
+
+Invocation: `w-34da7aa8f99f48fd`
 
 ## 018 · Mapping Cognitive Architectures and Collective Systems
 
