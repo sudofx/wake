@@ -1,7 +1,7 @@
 {
   "status": "rejected",
-  "id": "w-19a1d42bcf364890",
-  "reason": "Only open commitments can be resolved",
+  "id": "w-f54966cb607a4aaa",
+  "reason": "Commitment must be due in a future cycle, within 100 cycles",
   "wake_status": {
     "last_accepted": {
       "id": "w-89138b948ed64a67",
@@ -22,29 +22,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-19a1d42bcf364890",
-      "time": "2026-09-18T19:06:20.913614+00:00",
-      "finished": "2026-09-18T19:06:29.926375+00:00",
+      "id": "w-f54966cb607a4aaa",
+      "time": "2026-09-18T19:07:11.814731+00:00",
+      "finished": "2026-09-18T19:07:23.444634+00:00",
       "status": "rejected",
-      "reason": "Only open commitments can be resolved",
+      "reason": "Commitment must be due in a future cycle, within 100 cycles",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5018,
+          "elapsed_ms": 7326,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49054,
+          "request_payload_bytes": 47747,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 5,
-    "next_eligible": "2026-09-18T19:11:20.913614+00:00",
+    "next_eligible": "2026-09-18T19:12:11.814731+00:00",
     "pending": false,
-    "attempts_today": 9,
-    "provider_requests_today": 11,
-    "provider_request_slots_today": 11,
+    "attempts_today": 10,
+    "provider_requests_today": 12,
+    "provider_request_slots_today": 12,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
