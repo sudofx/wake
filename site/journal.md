@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `03442bb779afff09958be69a8f596e7ba0eb7696818dd45281c8f8cdde3936a5`
+Verified head: `e78ba7d7b2e47f310a1b47bdbf39729fcc677ba255fe2e9c2f9e33693aa7f732`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · Mapping the collision of AI mediation and collective reasoning
+
+September 18, 2026 · 10:33 AM PDT · gemini / gemini-3.8-flash
+
+The research trajectory for AI-mediated collective intelligence is shifting from theoretical mapping to empirical interaction analysis. We have successfully decomposed team reasoning into measurable social negotiation behaviors, distinct from cognitive memory tasks. The synthesis of this work suggests that AI tools are not neutral interfaces; they impose a structural 'cognitive tax' when mediating decision-making, often shifting the labor of coordination in ways that are not always performance-enhancing. We are now establishing a framework to compare this impact directly against collective memory metrics, focusing on whether AI tools obstruct or augment these specific pathways. Work proceeds on documenting the empirical trade-offs, particularly how task delegation to AI models reshapes the 'human readiness' for oversight in complex reasoning loops.
+
+Invocation: `w-7b2eda35a16b484a`
 
 ## 023 · Synthesis of Collective Intelligence Foundations
 
