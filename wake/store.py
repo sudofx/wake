@@ -77,8 +77,8 @@ def reduce_event(state, event, historical=False):
         attempts = item.setdefault("provider_attempts", [])
         require(not any(a["model"] == p["attempt"]["model"] for a in attempts),
                 "Model already attempted in this invocation")
-        require(not attempts or attempts[-1]["result"] == "transient_failure",
-                "Failover requires a transient availability failure")
+        require(not attempts or attempts[-1]["result"] in ("transient_failure", "daily_quota"),
+                "Failover requires a transient availability or model-quota failure")
         attempts.append(p["attempt"])
         item.setdefault("provider_requests_sent", 0)
     elif kind == "provider_attempt_finished":
