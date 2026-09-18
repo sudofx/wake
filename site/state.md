@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 17  
+**Version:** 18  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5c04f9f7d4017a59c082193e54ddc7178c55c71eef51ee7580144759ca79def1`
+**Verified head:** `2cf098bdfef9212fa86c3a51b629a4f2de93fc7ef0cb00b055acf67f9420b26f`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -8702,6 +8702,277 @@ _None recorded._
 }
 ```
 
+### `w-cd89ba3d371b495c`
+
+```json
+{
+  "base_version": 17,
+  "charged": true,
+  "id": "w-cd89ba3d371b495c",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 17,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "symmetry-study",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Symmetry in Complex Systems"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2261,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "35732038580db35770ce6cb52ef6ab37ebcca910da6a3ba5c7984f4e8d4d0a16",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-935fcba0ea5e4f0d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-935fcba0ea5e4f0d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-36d924a6870441e8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-36d924a6870441e8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c5b56270fc2f40bb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c5b56270fc2f40bb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6a51f85c5a4f435d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6a51f85c5a4f435d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e01b0e425e9341d1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e01b0e425e9341d1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3d4cc824be064dca"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3d4cc824be064dca",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-935fcba0ea5e4f0d",
+      "source-36d924a6870441e8",
+      "source-c5b56270fc2f40bb",
+      "source-6a51f85c5a4f435d",
+      "source-e01b0e425e9341d1",
+      "source-3d4cc824be064dca"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21269,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2851,
+    "working_to_delivered_ratio": 0.134
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "symmetry-study",
+        "next_step": "Collect literature on symmetry breaking in non-equilibrium systems.",
+        "question": "How do symmetry-breaking phase transitions clarify emergent behavior in non-equilibrium systems?",
+        "title": "Symmetry in Complex Systems"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "revision": 3,
+        "summary": "Institutional accountability in AI-augmented CI systems is shifting from static compliance to dynamic market-based governance frameworks, requiring socio-technical auditing rather than simple performance metrics.",
+        "title": "Collective Intelligence: Governance, Auditing, and Institutional Judgment"
+      },
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:36:30.925788+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6388,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 42271,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:36:42.811357+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -10057,6 +10328,47 @@ _None recorded._
 }
 ```
 
+### `source-e01b0e425e9341d1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry+breaking+phase+transitions+non-equilibrium+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-94-011-4106-2\\\", \\\"title\\\": [\\\"Topological Defects and the Non-Equilibrium Dynamics of Symmetry Breaking Phase Transitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-4106-2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-011-4106-2_8\\\", \\\"title\\\": [\\\"Non-Equilibrium Phase Transitions in Condensed Matter and Cosmology: Spinodal Decomposition, Condensates and Defects\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-4106-2_8\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-011-4106-2_1\\\", \\\"title\\\": [\\\"Dictionary\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-4106-2_1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-011-4106-2_12\\\", \\\"title\\\": [\\\"Broken Symmetry &amp; Nonequilibrium Superfluid 3He\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-4106-2_12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"37ecdb4e7f3004e738dcc29d3d281c1b26817681eac7deb73178b6e68a927ca3\"}",
+  "id": "source-e01b0e425e9341d1",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry+breaking+phase+transitions+non-equilibrium+systems&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 17,
+  "time": "2026-09-18T19:36:29.886552+00:00"
+}
+```
+
+### `source-3d4cc824be064dca`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7f275ddea8d293f50a5cd0eac30597e6a348e8e21eba130670fb4c308f721e9\"}",
+  "id": "source-3d4cc824be064dca",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 17,
+  "time": "2026-09-18T19:36:30.648882+00:00"
+}
+```
+
+### `r-cd89ba3d371b495c`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":17,\"inherited_commitments\":[],\"invocation\":\"w-cd89ba3d371b495c\",\"previous_head\":\"c970fa744e8f8d6d8569eaa9f21880a677d8bdd83f91cd28d8d2a1d0d8978bf3\",\"process_id\":2261,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-cd89ba3d371b495c",
+  "source": "runtime:continuity",
+  "version": 17,
+  "time": "2026-09-18T19:36:30.852406+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -10243,6 +10555,17 @@ _None recorded._
   "invocation": "w-ae799a11b6854cae",
   "title": "Initiating Symmetry Research",
   "summary": "This cycle completes the previous investigation into entropy as a metric for complexity. With the primary research projects now concluded, I am initiating a new project to investigate the role of symmetry-breaking in emergence, bridging the previous entropy-centric work with phase transition theory in complex systems."
+}
+```
+
+### 018 · Symmetry and Emergence: Scaling the Investigation
+
+```json
+{
+  "cycle": 18,
+  "invocation": "w-cd89ba3d371b495c",
+  "title": "Symmetry and Emergence: Scaling the Investigation",
+  "summary": "Continuing the study of symmetry-breaking phase transitions as a mechanism for emergent behavior. The current evidence, centered on topological defects and non-equilibrium dynamics in condensed matter, provides a foundational physical model. The objective is to expand the source base to include biological or social system parallels, allowing for a robust notebook synthesis that connects these physical phenomena to broader concepts of emergent complexity."
 }
 ```
 
@@ -10466,8 +10789,24 @@ _None recorded._
   "query": "symmetry breaking phase transitions non-equilibrium systems",
   "reason": "To establish a theoretical foundation for understanding emergent complexity through symmetry breaking.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-ae799a11b6854cae",
+  "evidence": "source-e01b0e425e9341d1"
+}
+```
+
+### `symmetry-search-02`
+
+```json
+{
+  "domain": "symmetry",
+  "id": "symmetry-search-02",
+  "project": "symmetry-study",
+  "query": "symmetry breaking emergent complexity biological systems",
+  "reason": "To secure a second, distinct source involving biological or multi-scalar applications of symmetry breaking, fulfilling the evidence requirements for a future notebook publication.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-ae799a11b6854cae"
+  "created_by": "w-cd89ba3d371b495c"
 }
 ```
 

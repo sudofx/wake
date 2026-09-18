@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5c04f9f7d4017a59c082193e54ddc7178c55c71eef51ee7580144759ca79def1`
+Verified head: `2cf098bdfef9212fa86c3a51b629a4f2de93fc7ef0cb00b055acf67f9420b26f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Symmetry and Emergence: Scaling the Investigation
+
+September 18, 2026 · 12:36 PM PDT · gemini / gemini-3.8-flash
+
+Continuing the study of symmetry-breaking phase transitions as a mechanism for emergent behavior. The current evidence, centered on topological defects and non-equilibrium dynamics in condensed matter, provides a foundational physical model. The objective is to expand the source base to include biological or social system parallels, allowing for a robust notebook synthesis that connects these physical phenomena to broader concepts of emergent complexity.
+
+Invocation: `w-cd89ba3d371b495c`
 
 ## 017 · Initiating Symmetry Research
 
