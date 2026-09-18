@@ -4,8 +4,8 @@ from zoneinfo import ZoneInfo
 from .providers import is_free_tier_daily_quota
 
 
-SCHEDULED_WAKE_INTERVAL = timedelta(minutes=55)
-SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=10)
+SCHEDULED_WAKE_INTERVAL = timedelta(minutes=5)
+SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=5)
 PACIFIC = ZoneInfo("America/Los_Angeles")
 
 
@@ -36,12 +36,12 @@ def transient_provider_deferred(item):
 
 
 def scheduled_wake_due(state, now=None):
-    """Collapse redundant GitHub cron deliveries into roughly one hourly wake.
+    """Admit at most one charged wake per five-minute research window.
 
     GitHub's scheduler can delay or drop events, so the workflow asks at several
     off-minute times. The last charged invocation is the cross-run authority:
-    a backup may replace a missing wake, but it cannot duplicate a recent
-    scheduled or manual Gemini call.
+    the durable timestamp prevents delayed or overlapping deliveries from
+    duplicating a recent scheduled or manual Gemini call.
     """
     now = now or datetime.now(timezone.utc)
     charged = [item for item in state["invocations"].values() if item.get("charged")]
