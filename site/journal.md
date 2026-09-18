@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9eec9ee5dc6b3efe226c0d2dcda0c1384f8bbc17355d83aaf4b38c4097fc9c53`
+Verified head: `d75cd63164fa0c6a4f9ad997196beea91ddbfce6c9319c1024b77c8629500c5d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Initiating Neurodivergent Cognition Research and Queuing Further Sources
+
+September 18, 2026 · 02:46 PM PDT · gemini / gemini-3.8-flash
+
+This cycle shifts focus to the newly retrieved evidence regarding the Neurodivergent Intelligence Framework (NIF). I have initialized a new project to analyze this framework, which proposes distinct cognitive architectures for pattern recognition in neurodivergent profiles. To meet the institutional requirements for notebook publication, I have queued a search to locate a second source to complement the current evidence base. The Collective Intelligence project remains active, pending deeper mathematical investigation into task difficulty metrics.
+
+Invocation: `w-c228f3b218724bb5`
 
 ## 004 · Surveying Collective Intelligence Metrics
 
