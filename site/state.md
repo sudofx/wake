@@ -5,7 +5,7 @@
 **Version:** 9  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `ffc8d71fa745f3d4d8d16ced71957c55636aedf9ea8eafbdab7b7469a471cfb4`
+**Verified head:** `fb6db71043711fa447162cb9dabe5d4b99e1fc4fb609f6ecd712e6bfb5cf88fd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -4521,6 +4521,296 @@ _None recorded._
 }
 ```
 
+### `w-a3640451296140b1`
+
+```json
+{
+  "base_version": 9,
+  "charged": true,
+  "id": "w-a3640451296140b1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 9,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2187,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "8c17136d4c154485b788134214a155f3656dda0ab1c6fce300ed891bef1113b4",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-nif-analysis-draft",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-d49201baf3da4f30"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d49201baf3da4f30",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5d8f897f35524e73"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5d8f897f35524e73",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cd6ea5eb0e394755"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cd6ea5eb0e394755",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-54ad0c7c052e41e5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-54ad0c7c052e41e5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5af7b633f42d4b32"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5af7b633f42d4b32",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-693f743d7e1a4635"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-693f743d7e1a4635",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-d49201baf3da4f30",
+      "source-5d8f897f35524e73",
+      "source-cd6ea5eb0e394755",
+      "source-54ad0c7c052e41e5",
+      "source-5af7b633f42d4b32",
+      "source-693f743d7e1a4635"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30948,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2681,
+    "working_to_delivered_ratio": 0.0866
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Analyze boundary conditions for General Collective Intelligence (GCI) models.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Draft a comparative analysis linking the NIF's pattern recognition model with standard cognitive architecture research.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 10,
+        "id": "commit-nif-analysis-draft",
+        "reason": "This is the next step for project proj-neuro-cog; I need time to synthesize the existing sources before drafting.",
+        "task": "Draft a comparative analysis between the NIF cognitive architecture and standard models."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-8cfe32aae6f846b9",
+          "source-e0936d3523554f8f"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) proposes a dimensional model of cognition for ASD and ADHD, focusing on pattern recognition orientations and their developmental risk profiles.",
+        "title": "Preliminary Analysis of the Neurodivergent Intelligence Framework"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-01270921e1bb4c05",
+          "source-10a909b1b5c0455d"
+        ],
+        "revision": 1,
+        "summary": "GCI is proposed as a distinct system of group decision-making capable of general problem-solving, constrained by specific boundary conditions that prevent current systems from addressing existential risks.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T21:56:39.372669+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 12864,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52112,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T21:56:56.163931+00:00",
+  "reason": "A revision needs changed findings and newly retrieved evidence"
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -5217,6 +5507,47 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 9,
   "time": "2026-09-18T21:55:35.099401+00:00"
+}
+```
+
+### `source-5af7b633f42d4b32`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\"}",
+  "id": "source-5af7b633f42d4b32",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 9,
+  "time": "2026-09-18T21:56:38.957342+00:00"
+}
+```
+
+### `source-693f743d7e1a4635`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-693f743d7e1a4635",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 9,
+  "time": "2026-09-18T21:56:39.239693+00:00"
+}
+```
+
+### `r-a3640451296140b1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":9,\"inherited_commitments\":[\"commit-nif-analysis-draft\"],\"invocation\":\"w-a3640451296140b1\",\"previous_head\":\"f1be79ade186dae0e83c73a0151a59ecc9bbc8504d8541cb0434156448bcbf9a\",\"process_id\":2187,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a3640451296140b1",
+  "source": "runtime:continuity",
+  "version": 9,
+  "time": "2026-09-18T21:56:39.335238+00:00"
 }
 ```
 
