@@ -1,19 +1,19 @@
 {
   "status": "accepted",
-  "id": "w-04c58c1a1b904455",
-  "cycle": 1,
+  "id": "w-42f8e4d8e0d449d5",
+  "cycle": 2,
   "wake_status": {
     "last_accepted": {
-      "id": "w-04c58c1a1b904455",
-      "time": "2026-09-18T15:26:13.847737+00:00",
-      "finished": "2026-09-18T15:26:33.687689+00:00",
+      "id": "w-42f8e4d8e0d449d5",
+      "time": "2026-09-18T15:27:18.291895+00:00",
+      "finished": "2026-09-18T15:27:58.298244+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 1564,
+          "elapsed_ms": 19862,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -21,45 +21,31 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 24957,
+          "request_payload_bytes": 33373,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "category": "server",
-          "elapsed_ms": 3272,
-          "http_status": 503,
-          "model": "gemini-3.5-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 24957,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 5097,
+          "elapsed_ms": 13096,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 24957,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 33373,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-04c58c1a1b904455",
-      "time": "2026-09-18T15:26:13.847737+00:00",
-      "finished": "2026-09-18T15:26:33.687689+00:00",
+      "id": "w-42f8e4d8e0d449d5",
+      "time": "2026-09-18T15:27:18.291895+00:00",
+      "finished": "2026-09-18T15:27:58.298244+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 3,
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 1564,
+          "elapsed_ms": 19862,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -67,40 +53,26 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 24957,
+          "request_payload_bytes": 33373,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "category": "server",
-          "elapsed_ms": 3272,
-          "http_status": 503,
-          "model": "gemini-3.5-flash",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 24957,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
-        },
-        {
-          "elapsed_ms": 5097,
+          "elapsed_ms": 13096,
           "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 24957,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 33373,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.1-flash-lite"
+      "successful_model": "gemini-3.5-flash"
     },
-    "accepted_cycles": 1,
-    "next_eligible": "2026-09-18T15:31:13.847737+00:00",
+    "accepted_cycles": 2,
+    "next_eligible": "2026-09-18T15:32:18.291895+00:00",
     "pending": false,
-    "attempts_today": 1,
-    "provider_requests_today": 3,
-    "provider_request_slots_today": 3,
+    "attempts_today": 2,
+    "provider_requests_today": 5,
+    "provider_request_slots_today": 5,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
