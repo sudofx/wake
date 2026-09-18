@@ -18,6 +18,34 @@ class StatusTests(unittest.TestCase):
         state["pending"] = "b"
         self.assertIsNone(wake_status(state, now=now)["next_eligible"])
 
+    def test_unknown_reservation_is_visible_as_a_conservative_request_slot(self):
+        interrupted = dict(
+            id="a", time="2026-09-14T08:00:00+00:00", status="recovered",
+            charged=True, quota_day="2026-09-14", provider_requests_sent=0,
+            provider_attempts=[dict(model="gemini-test", result="unknown")],
+        )
+        state = dict(version=0, invocations={"a": interrupted}, pending=None)
+        result = wake_status(state, now=datetime(2026,9,14,8,1,tzinfo=timezone.utc))
+        self.assertEqual(result["attempts_today"], 1)
+        self.assertEqual(result["provider_requests_today"], 0)
+        self.assertEqual(result["provider_request_slots_today"], 1)
+        self.assertTrue(result["provider_request_counts_incomplete"])
+
+    def test_confirmed_requests_and_slots_match_when_attempts_are_complete(self):
+        completed = dict(
+            id="a", time="2026-09-14T08:00:00+00:00", status="accepted",
+            charged=True, quota_day="2026-09-14", provider_requests_sent=2,
+            provider_attempts=[
+                dict(model="gemini-a", result="transient_failure"),
+                dict(model="gemini-b", result="success"),
+            ],
+        )
+        state = dict(version=1, invocations={"a": completed}, pending=None)
+        result = wake_status(state, now=datetime(2026,9,14,8,1,tzinfo=timezone.utc))
+        self.assertEqual(result["provider_requests_today"], 2)
+        self.assertEqual(result["provider_request_slots_today"], 2)
+        self.assertFalse(result["provider_request_counts_incomplete"])
+
     def test_empty_state_has_no_invented_success(self):
         result = wake_status(dict(version=0, invocations={}, pending=None))
         self.assertIsNone(result["last_accepted"])
