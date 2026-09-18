@@ -16,7 +16,7 @@ that the resulting behavior is reliable or intelligent.
 
 ### Working-set shadow phase
 
-Before replacing any live context, WAKE✳ records a deterministic `working_set_shadow` beside each invocation.
+Before replacing any live context, **WAKE✳︎** records a deterministic `working_set_shadow` beside each invocation.
 It compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,
 and carries compact active-project and recent-notebook pointers. Raw evidence contents remain only in the
 authoritative record and the richer provider context. `working_set_metrics` records shadow size versus the
