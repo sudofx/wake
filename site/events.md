@@ -2,9 +2,76 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `3e74d9b96c511f369a070d9e1946fb55a09552b775a944adc1a125dbf958c7ef`
+Verified head: `7a655e37fc736334646e124d7ada44f23279d76c01feda7467ccd76ef9b4b3e5`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0027 · `research_topics_changed`
+
+**Time:** 2026-09-18T12:48:18.817208+00:00  
+**ID:** `system`  
+**Hash:** `7a655e37fc736334646e124d7ada44f23279d76c01feda7467ccd76ef9b4b3e5`  
+**Previous hash:** `3e74d9b96c511f369a070d9e1946fb55a09552b775a944adc1a125dbf958c7ef`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topics": [
+    {
+      "id": "cellular_automata",
+      "label": "Cellular automata",
+      "query": "cellular automata"
+    },
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "query": "symmetry"
+    },
+    {
+      "id": "error_correction",
+      "label": "Error correction",
+      "query": "error correction"
+    },
+    {
+      "id": "ant_colonies",
+      "label": "Ant colonies",
+      "query": "ant colonies"
+    },
+    {
+      "id": "gut_bacteria",
+      "label": "Gut bacteria",
+      "query": "gut bacteria microbiome"
+    },
+    {
+      "id": "neurodivergent_mind",
+      "label": "Neurodivergent mind",
+      "query": "neurodivergent cognition"
+    },
+    {
+      "id": "compression",
+      "label": "Compression",
+      "query": "information compression"
+    },
+    {
+      "id": "quantum_entanglement",
+      "label": "Quantum entanglement",
+      "query": "quantum entanglement"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE"
+    }
+  ]
+}
+```
 
 ## Event 0026 · `accepted`
 

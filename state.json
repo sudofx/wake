@@ -458,19 +458,29 @@
       "query": "ant colonies"
     },
     {
+      "id": "gut_bacteria",
+      "label": "Gut bacteria",
+      "query": "gut bacteria microbiome"
+    },
+    {
+      "id": "neurodivergent_mind",
+      "label": "Neurodivergent mind",
+      "query": "neurodivergent cognition"
+    },
+    {
       "id": "compression",
       "label": "Compression",
       "query": "information compression"
     },
     {
+      "id": "quantum_entanglement",
+      "label": "Quantum entanglement",
+      "query": "quantum entanglement"
+    },
+    {
       "id": "entropy",
       "label": "Entropy",
       "query": "entropy"
-    },
-    {
-      "id": "information_theory",
-      "label": "Information theory",
-      "query": "information theory"
     },
     {
       "id": "wake_analysis",
