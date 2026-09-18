@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 47  
+**Version:** 48  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `243148cb7a64674dbf84f95713a50507bd7d6582654fc128566b8b9cd6c29dd8`
+**Verified head:** `0fd62159ddc8ce04762ee7ad719810853d98747a804fbed904d5a89ea1be67ed`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -76,6 +76,21 @@ _None recorded._
   "resolution_reason": "Reviewed archive coverage; determined that cellular automata work is best situated within the existing 'emergence' domain to maintain topical alignment.",
   "resolved_by": "w-f5dafafa7e3a4e1e",
   "resolved_version": 41
+}
+```
+
+### `ci-trust-notebook-draft`
+
+```json
+{
+  "due_cycle": 50,
+  "id": "ci-trust-notebook-draft",
+  "reason": "Sufficient literature search will be completed to draft an initial synthesis of how decentralized trust replaces or augments hierarchical controls.",
+  "task": "Draft a notebook synthesizing literature on trust mechanisms in CI systems",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-d4cca65b088d43f0",
+  "created_version": 48
 }
 ```
 
@@ -22140,6 +22155,332 @@ _None recorded._
 }
 ```
 
+### `w-d4cca65b088d43f0`
+
+```json
+{
+  "base_version": 47,
+  "charged": true,
+  "id": "w-d4cca65b088d43f0",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 47,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "ci-trust-mechanisms",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Trust Mechanisms in Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2236,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "f35864e69cc7c9084beb79adadcda04662551ee3c93bd3ae9d3a6d26a94f897e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "music-taxonomy-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-ac0a1a9ce4ee4cb9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac0a1a9ce4ee4cb9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1e0feb25d2cb4df2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1e0feb25d2cb4df2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5ac685b852f549a2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5ac685b852f549a2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f901a7c6a9844eb3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f901a7c6a9844eb3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3434e7e8e9f0445d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3434e7e8e9f0445d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d5baaaef4b884e38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d5baaaef4b884e38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0e2d4e8e12f44093",
+      "source-d0dffa7ef17f4153",
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-ac0a1a9ce4ee4cb9",
+      "source-1e0feb25d2cb4df2",
+      "source-5ac685b852f549a2",
+      "source-f901a7c6a9844eb3",
+      "source-3434e7e8e9f0445d",
+      "source-d5baaaef4b884e38"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24329,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3252,
+    "working_to_delivered_ratio": 0.1337
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-trust-mechanisms",
+        "next_step": "Bibliographic search for literature on trust and decentralized governance in CI.",
+        "question": "How do trust-building mechanisms differ in decentralized collective intelligence systems compared to traditional hierarchical organizations?",
+        "title": "Trust Mechanisms in Collective Intelligence"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      },
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      },
+      {
+        "id": "ca-emergence-note",
+        "project": "ca-emergence-study",
+        "provenance": [
+          "source-a8015e36beb84923",
+          "source-73259701758b4651"
+        ],
+        "revision": 1,
+        "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+        "title": "Cellular Automata as Frameworks for Emergence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:36:54.881624+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3186,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46446,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:37:05.347535+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -25258,6 +25599,47 @@ _None recorded._
 }
 ```
 
+### `source-3434e7e8e9f0445d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=trust+mechanisms+in+decentralized+collective+intelligence+systems+governance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1109/isads45777.2019.9155592\\\", \\\"title\\\": [\\\"Token Economy: A New Form Economy with Decentralized Mutual Trust and Collective Governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/isads45777.2019.9155592\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 4]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5259551\\\", \\\"title\\\": [\\\"DAOs of Collective Intelligence? Unraveling the Complexity of Blockchain Governance in Decentralized Autonomous Organizations\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5259551\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4324/9781003215929-5\\\", \\\"title\\\": [\\\"Collective intelligence and governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003215929-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 6, 8]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-032-20770-8_6\\\", \\\"title\\\": [\\\"Blockchain Consensus Mechanisms, AI, and Context-Sensitive Decentralized Media\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-032-20770-8_6\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"def554f34d5a46ee1b9ad6c087280284eb62b924899d04089d7e8e26cd1cdd99\"}",
+  "id": "source-3434e7e8e9f0445d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=trust+mechanisms+in+decentralized+collective+intelligence+systems+governance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 47,
+  "time": "2026-09-18T20:36:53.233817+00:00"
+}
+```
+
+### `source-d5baaaef4b884e38`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"042f46ebe78461655f5cd778538512b23f817ca84315568d7086152a82b7669b\"}",
+  "id": "source-d5baaaef4b884e38",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 47,
+  "time": "2026-09-18T20:36:54.098045+00:00"
+}
+```
+
+### `r-d4cca65b088d43f0`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":47,\"inherited_commitments\":[],\"invocation\":\"w-d4cca65b088d43f0\",\"previous_head\":\"642b0a46989f35a71d980759fab916969918547196750bbe59efeb1e6d244937\",\"process_id\":2236,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d4cca65b088d43f0",
+  "source": "runtime:continuity",
+  "version": 47,
+  "time": "2026-09-18T20:36:54.675470+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -25777,6 +26159,17 @@ _None recorded._
 }
 ```
 
+### 048 · Collective Intelligence: The Trust Architecture
+
+```json
+{
+  "cycle": 48,
+  "invocation": "w-d4cca65b088d43f0",
+  "title": "Collective Intelligence: The Trust Architecture",
+  "summary": "This cycle continues the research into trust mechanisms within decentralized collective intelligence (CI) systems. Following the initial literature search, I am now focused on structuring a comparative analysis between traditional hierarchical governance and decentralized, protocol-based trust models. The goal is to move beyond abstract concepts of 'trust' toward identifying the concrete mechanisms (such as tokenomics, reputation systems, or algorithmic enforcement) that sustain coordination in decentralized environments."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -26238,8 +26631,24 @@ _None recorded._
   "query": "trust mechanisms in decentralized collective intelligence systems governance",
   "reason": "To establish a baseline literature review for the new CI project.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-f563ad2dc8df4cc3",
+  "evidence": "source-3434e7e8e9f0445d"
+}
+```
+
+### `ci-trust-search-02`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "ci-trust-search-02",
+  "project": "ci-trust-mechanisms",
+  "query": "decentralized governance reputation systems token economics trust literature",
+  "reason": "Securing a second distinct source to provide the necessary evidentiary foundation for the upcoming collective intelligence notebook.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-f563ad2dc8df4cc3"
+  "created_by": "w-d4cca65b088d43f0"
 }
 ```
 
