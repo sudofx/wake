@@ -46,7 +46,14 @@ class StatusTests(unittest.TestCase):
         self.assertEqual(result["provider_request_slots_today"], 2)
         self.assertFalse(result["provider_request_counts_incomplete"])
 
-    def test_per_model_quota_mode_has_no_aggregate_ceiling(self):\n        completed = dict(id="a", time="2026-09-14T08:00:00+00:00", status="accepted", charged=True, quota_day="2026-09-14", provider_requests_sent=2)\n        state = dict(version=1, invocations={"a": completed}, pending=None)\n        result = wake_status(state, daily_call_limit=None, now=datetime(2026,9,14,8,1,tzinfo=timezone.utc))\n        self.assertIsNone(result["daily_call_limit"])\n        self.assertEqual(result["provider_request_slots_today"], 2)\n\n    def test_empty_state_has_no_invented_success(self):
+    def test_per_model_quota_mode_has_no_aggregate_ceiling(self):
+        completed = dict(id="a", time="2026-09-14T08:00:00+00:00", status="accepted", charged=True, quota_day="2026-09-14", provider_requests_sent=2)
+        state = dict(version=1, invocations={"a": completed}, pending=None)
+        result = wake_status(state, daily_call_limit=None, now=datetime(2026,9,14,8,1,tzinfo=timezone.utc))
+        self.assertIsNone(result["daily_call_limit"])
+        self.assertEqual(result["provider_request_slots_today"], 2)
+
+    def test_empty_state_has_no_invented_success(self):
         result = wake_status(dict(version=0, invocations={}, pending=None))
         self.assertIsNone(result["last_accepted"])
         self.assertIsNone(result["latest_attempt"])
