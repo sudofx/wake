@@ -558,6 +558,32 @@
       "source": "runtime:continuity",
       "version": 9,
       "time": "2026-09-18T19:19:31.755953+00:00"
+    },
+    "source-cc39fffc5ac04151": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"108dacdfc3bb436b9749e2dd1c35e97cf2404b4ab8422b9df63bac91b773f2dd\"}",
+      "id": "source-cc39fffc5ac04151",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T19:20:56.776970+00:00"
+    },
+    "source-844c021ac5ee461d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fc8dafbd53c41adee412ff2b29061ec0c26c7375b4f76083c1bfb06c1d9b827d\"}",
+      "id": "source-844c021ac5ee461d",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 10,
+      "time": "2026-09-18T19:20:57.515495+00:00"
+    },
+    "r-02777b9e6d1b4405": {
+      "actor": "runtime",
+      "content": "{\"base_version\":10,\"inherited_commitments\":[],\"invocation\":\"w-02777b9e6d1b4405\",\"previous_head\":\"c2af2ca78dc2a21a40dfe6ca720295538d0e3ebbae6dec0c6d7d0a91a89a2ddf\",\"process_id\":2279,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-02777b9e6d1b4405",
+      "source": "runtime:continuity",
+      "version": 10,
+      "time": "2026-09-18T19:20:57.625749+00:00"
     }
   },
   "journal": [
@@ -5547,6 +5573,276 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T19:19:41.800426+00:00",
       "reason": ""
+    },
+    "w-02777b9e6d1b4405": {
+      "base_version": 10,
+      "charged": true,
+      "id": "w-02777b9e6d1b4405",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 10,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ci-research",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2279,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "6de4255b798df7c050d00b28c5d368db81a7ec5222b3ffb3d711a1be8905ff24",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-5759b4df49e74269"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5759b4df49e74269",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7a705b0e3f51449f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7a705b0e3f51449f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cf4ed8082dce467f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cf4ed8082dce467f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d776e5b7b3b8467f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d776e5b7b3b8467f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cc39fffc5ac04151"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cc39fffc5ac04151",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-844c021ac5ee461d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-844c021ac5ee461d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-5759b4df49e74269",
+          "source-7a705b0e3f51449f",
+          "source-cf4ed8082dce467f",
+          "source-d776e5b7b3b8467f",
+          "source-cc39fffc5ac04151",
+          "source-844c021ac5ee461d"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 29526,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2323,
+        "working_to_delivered_ratio": 0.0787
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-research",
+            "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+            "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+            "title": "Collective Intelligence Landscapes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "music-taxonomy-note",
+            "project": "music-taxonomy",
+            "provenance": [
+              "source-07c3805f950c466e",
+              "source-74aa821b50c44386"
+            ],
+            "revision": 1,
+            "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+            "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+          },
+          {
+            "id": "ci-landscape-note",
+            "project": "ci-research",
+            "provenance": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+            "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+          },
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726"
+            ],
+            "revision": 1,
+            "summary": "The Neurodivergent Intelligence Framework (NIF) reframes neurodivergent cognition through specific pattern recognition architectures, though this must be reconciled with existing criticisms regarding the over-generalization of pattern-based models.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T19:20:57.666105+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 1809,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50925,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T19:21:03.991774+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 1809,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 1809,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 50925,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 50925,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
