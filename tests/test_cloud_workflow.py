@@ -172,7 +172,7 @@ class CloudWorkflowTests(unittest.TestCase):
         state["invocations"]["wake"].update(status="accepted", time=now.isoformat(), reason="")
         due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
         self.assertFalse(due)
-        self.assertEqual(next_eligible, now + timedelta(minutes=55))
+        self.assertEqual(next_eligible, now + timedelta(minutes=5))
 
         state["invocations"]["wake"].update(
             status="deferred",
@@ -238,7 +238,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("Fail only when operator attention is required", workflow)
         self.assertIn("path: site", workflow)
         self.assertIn("github-pages-${{ github.run_id }}-${{ github.run_attempt }}", workflow)
-        self.assertIn("cron: '12,27,42,57 * * * *'", workflow)
+        self.assertIn("cron: '2-57/5 * * * *'", workflow)
         self.assertIn("python scripts/github_wake.py --scheduled", workflow)
         self.assertIn("python scripts/github_wake.py --reset --confirm-reset", workflow)
         self.assertIn("Irreversibly reset durable research/history to WAKE 0", workflow)
