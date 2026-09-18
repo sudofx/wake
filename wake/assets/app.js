@@ -16,7 +16,7 @@
   themeToggle.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
-  const display = value => String(value ?? '').replaceAll('WAKE\u2733\uFE0F','WAKE\u2733').replaceAll('WAKE\u2733\uFE0E','WAKE\u2733').replaceAll('WAKE\u2733',WAKE_TEXT);
+  const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
   const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   function emphasizeWake(root=document) {
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
