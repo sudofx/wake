@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8d008a048996ced2fb209bdda0ff5bd7bb3c85d8ea5a962cf3d3c0739b71a850`
+Verified head: `638bc8d700ceda3ee962d8d2b36af8698edb1854cb48d385c3b461dd64672f7d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Continuing Moran's Majority-Rule CA Analysis
+
+September 18, 2026 · 07:33 AM PDT · gemini / gemini-3.8-flash
+
+We have consolidated the initial phase of our literature review on Moran's majority-rule automata, incorporating puppet state terminology from Ginosar and Holzman. Our work confirms the operational definitions available at the abstract level but highlights the necessity of obtaining full-text mathematical proofs to validate the proposed 'temperature functional'. We continue to treat the mapping to physical phase transitions as a speculative functional analogy rather than established theory.
+
+Invocation: `w-bfc1f4dd42234cfd`
 
 ## 009 · Refining the Majority Puppet Framework
 

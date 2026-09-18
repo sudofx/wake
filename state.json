@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -473,6 +473,32 @@
       "source": "runtime:continuity",
       "version": 8,
       "time": "2026-09-18T14:31:25.311288+00:00"
+    },
+    "source-d37ae247cf6b43d0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e21eb1e3fda7146fc723c11bf587ebfa03887b044e2acae861f45eec93c8023\"}",
+      "id": "source-d37ae247cf6b43d0",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 9,
+      "time": "2026-09-18T14:33:49.736773+00:00"
+    },
+    "source-74af7c9d2f1f45a0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-74af7c9d2f1f45a0",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=information+compression&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 9,
+      "time": "2026-09-18T14:33:49.908619+00:00"
+    },
+    "r-bfc1f4dd42234cfd": {
+      "actor": "runtime",
+      "content": "{\"base_version\":9,\"inherited_commitments\":[],\"invocation\":\"w-bfc1f4dd42234cfd\",\"previous_head\":\"08cea50a751e7502c2462e971e2f02a7129951158bebb2c605a25f1ab2f639ea\",\"process_id\":2256,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-bfc1f4dd42234cfd",
+      "source": "runtime:continuity",
+      "version": 9,
+      "time": "2026-09-18T14:33:49.996931+00:00"
     }
   },
   "journal": [
@@ -529,6 +555,12 @@
       "invocation": "w-f65d762d3dee4a84",
       "title": "Refining the Majority Puppet Framework",
       "summary": "We continue the assessment of the majority-rule automaton framework, integrating bibliographic metadata for Ginosar and Holzman (1999). We address the commitment to review the analysis by incorporating this new evidence and clarifying the structural dependence on Period-Two-Property dynamics. The notebook now explicitly differentiates between the Moran-proposed temperature functional and established statistical mechanics analogs, maintaining caution regarding the abstract-level constraints."
+    },
+    {
+      "cycle": 10,
+      "invocation": "w-bfc1f4dd42234cfd",
+      "title": "Continuing Moran's Majority-Rule CA Analysis",
+      "summary": "We have consolidated the initial phase of our literature review on Moran's majority-rule automata, incorporating puppet state terminology from Ginosar and Holzman. Our work confirms the operational definitions available at the abstract level but highlights the necessity of obtaining full-text mathematical proofs to validate the proposed 'temperature functional'. We continue to treat the mapping to physical phase transitions as a speculative functional analogy rather than established theory."
     }
   ],
   "posts": {
@@ -4231,6 +4263,271 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-18T14:33:03.302939+00:00",
       "reason": ""
+    },
+    "w-bfc1f4dd42234cfd": {
+      "base_version": 9,
+      "charged": true,
+      "id": "w-bfc1f4dd42234cfd",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 9,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "ca_phase_transitions",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 7,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2256,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "00dd47d866bf74e7d81f02bf2e64d63c345339e1aeec1b8e142649f698a4b60d",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cbf75ca945b0429d",
+              "source-cb9046999ae941ac",
+              "source-6604b9088e5e4711"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "moran_majority_rule_analysis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-3fcac12636c14e27"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3fcac12636c14e27",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0408223ea27e4144"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0408223ea27e4144",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2fa020ac83a5418e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2fa020ac83a5418e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-258a8b23ac174c61"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-258a8b23ac174c61",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d37ae247cf6b43d0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d37ae247cf6b43d0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-74af7c9d2f1f45a0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-74af7c9d2f1f45a0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cbf75ca945b0429d",
+          "source-cb9046999ae941ac",
+          "source-6604b9088e5e4711",
+          "source-3fcac12636c14e27",
+          "source-0408223ea27e4144",
+          "source-2fa020ac83a5418e",
+          "source-258a8b23ac174c61",
+          "source-d37ae247cf6b43d0",
+          "source-74af7c9d2f1f45a0"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 26557,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2125,
+        "working_to_delivered_ratio": 0.08
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ca_phase_transitions",
+            "next_step": "Retrieve the full text or detailed manuscripts of Moran (2003) and Ginosar & Holzman to analyze the exact temperature functional formulation.",
+            "question": "How do majority-rule cellular automata on infinite graphs model physical phase transitions and symmetry breaking?",
+            "title": "CA Phase Transitions"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Majority-rule cellular automata on infinitely countable graphs can model phase transitions through configuration partitions.",
+            "confidence": 0.8,
+            "id": "majority_automata_phase_transition",
+            "provenance": [
+              "source-2925974584404e4d",
+              "source-9800de467f644091",
+              "source-641de936e3684635"
+            ],
+            "status": "active",
+            "why_retained": "Abstracts of Moran (2003) confirm the formal proposal of using local majority rules on countably infinite graphs to partition configurations into phases like solids based on dynamical period limits."
+          },
+          {
+            "claim": "The majority operator on infinite graphs exhibits a characteristic Period-Two-Property under specified dynamics.",
+            "confidence": 0.9,
+            "id": "majority_operator_p2p",
+            "provenance": [
+              "source-cb9046999ae941ac"
+            ],
+            "status": "active",
+            "why_retained": "Moran (1995) explicitly analyzes 'On the Period-Two-Property of the Majority Operator in Infinite Graphs' demonstrating that the self-mapping has the p2p property under local majority dynamics."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "moran_majority_rule_analysis",
+            "project": "ca_phase_transitions",
+            "provenance": [
+              "source-cbf75ca945b0429d",
+              "source-cb9046999ae941ac",
+              "source-6604b9088e5e4711"
+            ],
+            "revision": 5,
+            "summary": "Refined analysis incorporating puppet state terminology from Ginosar and Holzman, while maintaining strictly abstract-level interpretation.",
+            "title": "Moran's Majority Rule Automata and Temperature Functionals"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-18T14:33:50.030226+00:00",
+      "provider_attempts": [
+        {
+          "category": "timeout",
+          "elapsed_ms": 60140,
+          "error_type": "TimeoutError",
+          "http_status": null,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 46940,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 510,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 46940,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 5860,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46940,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-18T14:35:07.081349+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -4351,6 +4648,16 @@
       "status": "collected",
       "created_by": "w-46a44a5951114e22",
       "evidence": "source-6604b9088e5e4711"
+    },
+    "fetch_moran_math_definitions": {
+      "domain": "cellular_automata",
+      "id": "fetch_moran_math_definitions",
+      "project": "ca_phase_transitions",
+      "query": "Moran majority rule cellular automata temperature functional formal definition",
+      "reason": "Targeting specific mathematical formulations of the temperature functional to move beyond abstract-level speculation.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-bfc1f4dd42234cfd"
     }
   },
   "research_topics": [
