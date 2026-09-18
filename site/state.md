@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 3  
+**Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1e611e9b17edf8924b0088bcba7d3d59776bb7bde93e7d209c29defb7c7e4e8c`
+**Verified head:** `2128f6e7732507951c5dfac05e70c44e0482995814455145f65f31bbf16328bd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -24,9 +24,15 @@ _None recorded._
   "reason": "Once the research search completes, synthesizing the findings into a notebook is the logical next step to document current understanding of the field.",
   "task": "Synthesize collective intelligence research into a notebook",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-1725e43cdaf24263",
-  "created_version": 3
+  "created_version": 3,
+  "evidence": [
+    "source-99d9f5c1db5c4874"
+  ],
+  "resolution_reason": "The commitment to synthesize collective intelligence research into a notebook has been fulfilled.",
+  "resolved_by": "w-792dc61662da4498",
+  "resolved_version": 4
 }
 ```
 
@@ -92,6 +98,31 @@ _None recorded._
   "updated_version": 2,
   "updated_by": "w-6bbd811a3262442e",
   "domain": "music"
+}
+```
+
+### `ci-landscape-note` · Collective Intelligence: Memory, Attention, and Reasoning
+
+```json
+{
+  "evidence": [
+    "source-99d9f5c1db5c4874",
+    "source-07d0895a7be7467f"
+  ],
+  "findings": "Recent meta-analyses suggest that collective intelligence is not just a general factor but a hierarchical construct emerging from collective memory, attention, and reasoning [source-99d9f5c1db5c4874]. Furthermore, AI integration in decision systems is being reframed as a 'governance-gated socio-technical control system,' where AI operates under constraints, partial observability, and causal-leaning reasoning, rather than acting solely as a predictive engine [source-99d9f5c1db5c4874]. These developments shift the focus of CI design toward accountability and audit-ready due process.",
+  "id": "ci-landscape-note",
+  "limitations": "The current findings rely on meta-analyses and theoretical frameworks rather than empirical case studies of deployed, long-term AI-augmented CI systems. One source is a 2025 preprint [source-99d9f5c1db5c4874].",
+  "next_questions": "How do these theoretical models for 'governance-gated' systems perform in high-stakes operational environments versus educational settings?",
+  "project": "ci-research",
+  "reason": "This notebook formalizes the synthesis of the Collective Intelligence Landscapes project.",
+  "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+  "title": "Collective Intelligence: Memory, Attention, and Reasoning",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 4,
+  "updated_version": 4,
+  "updated_by": "w-792dc61662da4498",
+  "domain": "collective_intelligence"
 }
 ```
 
@@ -1397,6 +1428,229 @@ _None recorded._
 }
 ```
 
+### `w-792dc61662da4498`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "id": "w-792dc61662da4498",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 3,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "ci-research",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2244,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "bf752e3573b0032a7dcef6af81211c1ce7c78217cdd2d122a3681a8925dce7d0",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "ci-review-01",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-07d0895a7be7467f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-07d0895a7be7467f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-92724918559546b2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-92724918559546b2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0945b008d98845a6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0945b008d98845a6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e743cc9718fc49ed"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e743cc9718fc49ed",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-99d9f5c1db5c4874",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a63cd184ab744d99"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a63cd184ab744d99",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-07d0895a7be7467f",
+      "source-92724918559546b2",
+      "source-0945b008d98845a6",
+      "source-e743cc9718fc49ed",
+      "source-99d9f5c1db5c4874",
+      "source-a63cd184ab744d99"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26699,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1292,
+    "working_to_delivered_ratio": 0.0484
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-research",
+        "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+        "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+        "title": "Collective Intelligence Landscapes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 4,
+        "id": "ci-review-01",
+        "reason": "Once the research search completes, synthesizing the findings into a notebook is the logical next step to document current understanding of the field.",
+        "task": "Synthesize collective intelligence research into a notebook"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T19:04:22.709328+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4934,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47182,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:04:32.107126+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -1645,6 +1899,47 @@ _None recorded._
 }
 ```
 
+### `source-99d9f5c1db5c4874`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=AI-enhanced+collective+intelligence+memory+attention+reasoning&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31234/osf.io/4sqfx_v1\\\", \\\"title\\\": [\\\"The Structure of Collective Intelligence: Evidence for Collective Memory, Attention, and Reasoning\\\"], \\\"abstract\\\": \\\"<p>The ability for groups to effectively collaborate is important for both economic and societal progress. Extant research has demonstrated that group performance can be explained by a general \\\\\\\"collective intelligence\\\\\\\" (CI) factor, but there is ongoing debate about the components of CI with important implications for our understanding of how it develops or can be enhanced. We conduct a meta-analysis with data from 22 studies and 5,279 individuals in 1,356 groups to investigate the structure of collective intelligence using factor analysis. Our analysis yields strong support for a hierarchical three-factor model, supporting a theory that collective intelligence emerges from collective memory, attention, and reasoning. The model explains the data better than other plausible alternatives, especially in established groups who had the opportunity to develop their collective cognition over time. Our findings provide new insights into the formation of collective intelligence and have important implications for the design and evaluation of interventions that aim to increase it.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31234/osf.io/4sqfx_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 11, 27]]}}, {\\\"DOI\\\": \\\"10.4018/979-8-3373-8988-2.ch007\\\", \\\"title\\\": [\\\"Attention, Memory, Reasoning, Judgment, and Metacognitive Control in AI-Based Educational Decisions\\\"], \\\"abstract\\\": \\\"<jats:p>This chapter advances a conceptual-theoretical framework of brain-inspired Decision Intelligence for education, reframing AI not as prediction machinery but as a governance-gated socio-technical control system operating under partial observability, path dependence, and high-rights constraints. It synthesizes attentional gating, governed episodic-semantic-procedural memory, constraint-aware and causal-leaning reasoning, multi-objective judgment under harm asymmetry, and metacognitive control via calibrated uncertainty, selective prediction, abstention, and escalation. Hybrid architectures are specified across retrieval-centric, neuro-symbolic, causal planning, and human-AI teaming paradigms, coupled to procedurally defensible reasons-giving, contestability, and lifecycle accountability. The chapter delivers design constitutions through five tables, operationalizing admissible evidence, salience ethics, anti-stigma retrieval, bounded adaptation, and audit-ready due process for globally deployable, rights-compatible educational decision systems.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4018/979-8-3373-8988-2.ch007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 8, 7]]}}, {\\\"DOI\\\": \\\"10.1177/17456916231191534\\\", \\\"title\\\": [\\\"Understanding Collective Intelligence: Investigating the Role of Collective Memory, Attention, and Reasoning Processes\\\"], \\\"abstract\\\": \\\"<jats:p>As society has come to rely on groups and technology to address many of its most challenging problems, there is a growing need to understand how technology-enabled, distributed, and dynamic collectives can be designed to solve a wide range of problems over time in the face of complex and changing environmental conditions—an ability we define as “collective intelligence.” We describe recent research on the Transaction Systems Model of Collective Intelligence (TSM-CI) that integrates literature from diverse areas of psychology to conceptualize the underpinnings of collective intelligence. The TSM-CI articulates the development and mutual adaptation of transactive memory, transactive attention, and transactive reasoning systems that together support the emergence and maintenance of collective intelligence. We also review related research on computational indicators of transactive-system functioning based on collaborative process behaviors that enable agent-based teammates to diagnose and potentially intervene to address developing issues. We conclude by discussing future directions in developing the TSM-CI to support research on developing collective human-machine intelligence and to identify ways to design technology to enhance it.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/17456916231191534\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 8, 29]]}}, {\\\"DOI\\\": \\\"10.1016/j.intell.2005.01.002\\\", \\\"title\\\": [\\\"Reasoning=working memory≠attention\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.intell.2005.01.002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2005, 5]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4eeb5a7f0d422dcb260e3da4d4694c07efcc1d7032e6748ec100a7da70a59bd7\"}",
+  "id": "source-99d9f5c1db5c4874",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=AI-enhanced+collective+intelligence+memory+attention+reasoning&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T19:04:21.220692+00:00"
+}
+```
+
+### `source-a63cd184ab744d99`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hepl/9780198737469.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This volume provides an introduction to the field of Global Political Economy (GPE). It explores some of the approaches that have addressed the key concerns of theorists of GPE; for example. what conditions are most conducive to the emergence of collaborative behaviour among states on economic issues, or what are the determinants of the foreign economic policies of states. It examines various aspects of the debate about globalization as well as the impact of globalization on world poverty, inequality, and the environment. It also considers how globalization has changed the relations between industrialized and less developed economies. This chapter discusses the global financial crisis and the world economy pre-1914, in the interwar period, and post-1945. It also analyses the emergence of GPE as a field and describes a number of approaches to the study of GPE.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198737469.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 12, 22]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0013\\\", \\\"title\\\": [\\\"13. The Political Economy of Global Inequality\\\"], \\\"abstract\\\": \\\"<p>The GPE is characterized by tremendous disparities in wealth and income both within and between countries. Patterns of inequality have their origins in both historical institutions, like colonial extraction, as well as contemporary institutions, like the liberal trading order and financial capitalism. Although typically measured in economic terms, this work shows that the consequences of global inequality go beyond wealth and income to affect political institutions, labor conditions, and migration pressures and restrictions. However, not everyone agrees that global inequality is inherently a bad thing: some approaches to global justice emphasize absolute measures of economic well-being, such as GDP growth or declines in the number of people living in poverty, over relative concepts like levels of inequality. Nonetheless, many scholars and practitioners would prefer to reduce the level of global inequality in practice, and this work concludes with an overview of some policies that have been proposed as partial solutions.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0013\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780198820642.003.0001\\\", \\\"title\\\": [\\\"1. The Study of Global Political Economy\\\"], \\\"abstract\\\": \\\"<p>This chapter provides an overview of the current state of the world economy. The contemporary international economic system is more closely integrated than in any previous era. The global financial crisis and its aftermath provide a clear illustration of the relationship between trade, finance, international institutions, and the difficulties that governments face in coping with the problems generated by complex interdependence. The chapter then traces how the world economy evolved to reach its present state. Before 1945, the spectacular increase in economic integration that had occurred over the previous century was not accompanied by institutionalized governmental collaboration on economic matters. The end of the Second World War marked a significant disjunction: global economic institutions were created, the transnational corporation emerged as a major actor in international economic relations, and patterns of international trade began to change markedly from the traditional North–South exchange of manufactures for raw materials. Since the emergence of global political economy (GPE) as a major subfield of the study of international relations in the early 1970s, GPE scholars have generated an enormous literature that has employed a wide variety of theories and methods. Most introductions to the study of GPE have divided the theoretical approaches to the subject into three categories: liberalism, nationalism, and Marxism.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780198820642.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 4, 14]]}}, {\\\"DOI\\\": \\\"10.1093/hepl/9780192847553.003.0014\\\", \\\"title\\\": [\\\"14. The Global Political Economy of Development\\\"], \\\"abstract\\\": \\\"<p>Some major advances in the betterment of human life have been made in recent years but at the cost of accelerated climatic change and through uneven means of development. A reduction in child mortality, a rise in literacy and education, and by some measures the fewest people live in extreme poverty than they ever have before. Nevertheless, inequality on the multiple axes of health, income, environment, gender, education, technology, finance, shelter, food, water, and various other issues concerning access persist. This work examines efforts by various actors to deal with these problems with mixed and contested results. The analysis is centered around a key question: who benefits and why from globalised development? In so doing, it examines various development theories, traces the history of globalisation-led development post-WWII, and scrutinises contemporary challenges like the Great Recession and the Global Refugee Crisis, in order to understand the crisis prone tendencies of globalisation and its linkages to everyday practices in global political economy.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hepl/9780192847553.003.0014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 4, 23]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4f52642209864d0846db54cfdc49cc315ad0aa98e0fa5d6d076bb93970966628\"}",
+  "id": "source-a63cd184ab744d99",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=global+economy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-18T19:04:22.662872+00:00"
+}
+```
+
+### `r-792dc61662da4498`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[\"ci-review-01\"],\"invocation\":\"w-792dc61662da4498\",\"previous_head\":\"52c1fba48bd69d691d550b985cd67ba2e45f818c65d7549ddcc38b3acac03517\",\"process_id\":2244,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-792dc61662da4498",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-18T19:04:22.695758+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -1677,6 +1972,17 @@ _None recorded._
   "invocation": "w-1725e43cdaf24263",
   "title": "Closing the Music Taxonomy and Initiating Collective Intelligence Inquiry",
   "summary": "This cycle completes the Music Disambiguation project, having successfully synthesized the distinction between the technical acronym MUSIC and cultural musicology. With that work established, I am initiating a search in the Collective Intelligence domain to investigate how AI-driven systems are impacting memory and reasoning frameworks, a core component of the Collective Intelligence Landscapes project."
+}
+```
+
+### 004 · Synthesizing Collective Intelligence Landscapes
+
+```json
+{
+  "cycle": 4,
+  "invocation": "w-792dc61662da4498",
+  "title": "Synthesizing Collective Intelligence Landscapes",
+  "summary": "I am synthesizing the research on AI-enhanced collective intelligence. The search results from cycle 3 confirm that the 'Collective Intelligence' field is actively incorporating concepts of collective memory, attention, and reasoning, moving beyond simple collaborative performance metrics. I have enough evidence now to construct the requested notebook. No new research is needed for this cycle as I have fulfilled the commitments inherited from the previous invocation."
 }
 ```
 
@@ -1724,8 +2030,9 @@ _None recorded._
   "query": "AI-enhanced collective intelligence memory attention reasoning",
   "reason": "To explore current academic literature on AI integration into collective memory and reasoning processes to advance the Collective Intelligence Landscapes project.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-1725e43cdaf24263"
+  "status": "collected",
+  "created_by": "w-1725e43cdaf24263",
+  "evidence": "source-99d9f5c1db5c4874"
 }
 ```
 
