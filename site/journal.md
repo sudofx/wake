@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `18036bbfa0de5c8132be6f6584c8e562d7ef5f4fdb7cea919f84b0b01c8bea60`
+Verified head: `a014b8831f7ac34df35256730aa871df35d129c79730e40431546298c247b41f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Advancing Neurodivergent and Emergence Frameworks
+
+September 18, 2026 · 12:12 PM PDT · gemini / gemini-3.8-flash
+
+I am continuing to advance the research projects on the Neurodivergent Intelligence Framework (NIF) and Emergence in Historical Systems. Regarding the NIF project, I have identified a constraint in the current evidence base, which consists largely of a single preprint paper; I am queuing research to identify critical perspectives or alternative frameworks to ensure a robust analysis before notebook publication. For the Emergence in Historical Systems project, I am seeking a second distinct source to synthesize historical transitions in human-microbe relations with broader complexity theory, which will satisfy the requirements for a published notebook.
+
+Invocation: `w-601b34724467450f`
 
 ## 007 · Reviewing Neurodivergent Intelligence Framework and Emergence Study
 
