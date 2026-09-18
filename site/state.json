@@ -247,6 +247,32 @@
       "source": "runtime:continuity",
       "version": 4,
       "time": "2026-09-18T21:43:32.131962+00:00"
+    },
+    "source-caf7c8795ecb46d6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8d9e139123bd96fbf9fbac2efbd706491ea012622c885c3185244cf72d64fda4\"}",
+      "id": "source-caf7c8795ecb46d6",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-18T21:45:25.438888+00:00"
+    },
+    "source-64f6d692e6fe45c3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-64f6d692e6fe45c3",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-18T21:45:25.665980+00:00"
+    },
+    "r-7ea795bab0ec424a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":4,\"inherited_commitments\":[],\"invocation\":\"w-7ea795bab0ec424a\",\"previous_head\":\"61608604acd5af08290baf57db9fd30f31021e26327d8890431f8c91acacc97d\",\"process_id\":2033,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-7ea795bab0ec424a",
+      "source": "runtime:continuity",
+      "version": 4,
+      "time": "2026-09-18T21:45:25.799051+00:00"
     }
   },
   "journal": [
@@ -2139,6 +2165,265 @@
         },
         "provider_requests_sent": 1,
         "request_payload_bytes": 48011,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    },
+    "w-7ea795bab0ec424a": {
+      "base_version": 4,
+      "charged": true,
+      "id": "w-7ea795bab0ec424a",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 4,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-coll-intel",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Mechanisms of Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2033,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "d4ba1f45a0a5c49a0823cf9e244ec15e58d73ae9f92e2f862bc95a1a46877a97",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-coll-intel-metrics-init",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-74c43762fe3548a3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-74c43762fe3548a3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9ed58272b92b41b9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9ed58272b92b41b9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7205743e9e584e2d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7205743e9e584e2d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-19d3c29b82ee420b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-19d3c29b82ee420b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-caf7c8795ecb46d6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-caf7c8795ecb46d6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-64f6d692e6fe45c3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-64f6d692e6fe45c3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893",
+          "source-74c43762fe3548a3",
+          "source-9ed58272b92b41b9",
+          "source-7205743e9e584e2d",
+          "source-19d3c29b82ee420b",
+          "source-caf7c8795ecb46d6",
+          "source-64f6d692e6fe45c3"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 24578,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1181,
+        "working_to_delivered_ratio": 0.0481
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-coll-intel",
+            "next_step": "Queue search for foundational reviews on collective intelligence metrics.",
+            "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+            "title": "Mechanisms of Collective Intelligence"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-coll-intel-metrics-init",
+            "project": "proj-coll-intel",
+            "provenance": [
+              "source-f19497248e1047b4",
+              "source-0c7284b4427f40c1",
+              "source-199863fae0704da3",
+              "source-e12c7e8fa8db4893"
+            ],
+            "revision": 2,
+            "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+            "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T21:45:25.813125+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 3526,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 45203,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T21:45:33.950904+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 3526,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 3526,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 45203,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 45203,
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
