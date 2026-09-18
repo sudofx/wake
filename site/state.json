@@ -1390,6 +1390,32 @@
       "source": "runtime:continuity",
       "version": 28,
       "time": "2026-09-18T20:00:07.316986+00:00"
+    },
+    "source-88b7c61f47554700": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e0368ca9beddc66b963359f47e10a6fa4c5afeabc4cc504676b17116785b1cb6\"}",
+      "id": "source-88b7c61f47554700",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 28,
+      "time": "2026-09-18T20:01:50.502346+00:00"
+    },
+    "source-2e0d950ee41a4831": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7f275ddea8d293f50a5cd0eac30597e6a348e8e21eba130670fb4c308f721e9\"}",
+      "id": "source-2e0d950ee41a4831",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 28,
+      "time": "2026-09-18T20:01:51.406277+00:00"
+    },
+    "r-6efba83e70a744d4": {
+      "actor": "runtime",
+      "content": "{\"base_version\":28,\"inherited_commitments\":[],\"invocation\":\"w-6efba83e70a744d4\",\"previous_head\":\"13a4b8155b09d9fdff1de44ec39ffc6621283402c2096e22065309beb0aeafbe\",\"process_id\":2279,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-6efba83e70a744d4",
+      "source": "runtime:continuity",
+      "version": 28,
+      "time": "2026-09-18T20:01:51.739170+00:00"
     }
   },
   "journal": [
@@ -15558,6 +15584,326 @@
         },
         "provider_requests_sent": 1,
         "request_payload_bytes": 46094,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    },
+    "w-6efba83e70a744d4": {
+      "base_version": 28,
+      "charged": true,
+      "id": "w-6efba83e70a744d4",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 28,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2279,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "9640268aea327e7a17d8f4497c1e3a961a712bd49c5d3574604cf56d316741a0",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-99d9f5c1db5c4874",
+              "source-07d0895a7be7467f",
+              "source-7ac6f0f279384f11",
+              "source-8752ca6d34d04e84"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "ci-landscape-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "neuro-cog-governance-note",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-c93d249739cc46e5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c93d249739cc46e5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-af345c34edb2462d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-af345c34edb2462d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-75cb59b8149b41bc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-75cb59b8149b41bc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-02c3513aaaca4c92"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-02c3513aaaca4c92",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-88b7c61f47554700"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-88b7c61f47554700",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2e0d950ee41a4831"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2e0d950ee41a4831",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84",
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175",
+          "source-e749c4be40014051",
+          "source-b36d520b619945ce",
+          "source-c93d249739cc46e5",
+          "source-af345c34edb2462d",
+          "source-75cb59b8149b41bc",
+          "source-02c3513aaaca4c92",
+          "source-88b7c61f47554700",
+          "source-2e0d950ee41a4831"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 15,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23941,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 15,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3001,
+        "working_to_delivered_ratio": 0.1253
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "emergence-study-note",
+            "project": "emergence-study",
+            "provenance": [
+              "source-75db2b6f397040b7",
+              "source-83571cd33d7a4186"
+            ],
+            "revision": 1,
+            "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+            "title": "Historical Transitions and Theories of Emergence"
+          },
+          {
+            "id": "neuro-cog-note",
+            "project": "neuro-cog-framework",
+            "provenance": [
+              "source-377e857d478847c3",
+              "source-616711c74f684726",
+              "source-3b6d506685c94175"
+            ],
+            "revision": 2,
+            "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+            "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+          },
+          {
+            "id": "entropy-study-note",
+            "project": "entropy-study",
+            "provenance": [
+              "source-384a8d6a463d47b5",
+              "source-dee6f382dd844519"
+            ],
+            "revision": 1,
+            "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+            "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+          },
+          {
+            "id": "symmetry-study-note",
+            "project": "symmetry-study",
+            "provenance": [
+              "source-e01b0e425e9341d1",
+              "source-436a0cd287a946c8"
+            ],
+            "revision": 1,
+            "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+            "title": "Symmetry Breaking: Mechanism for Emergence"
+          },
+          {
+            "id": "neuro-cog-governance-note",
+            "project": "neuro-cog-extension",
+            "provenance": [
+              "source-e749c4be40014051",
+              "source-377e857d478847c3",
+              "source-b36d520b619945ce"
+            ],
+            "revision": 2,
+            "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+            "title": "Cognitive Architecture and Institutional Resilience"
+          },
+          {
+            "id": "climate-governance-note",
+            "project": "climate-governance",
+            "provenance": [
+              "source-b36d70d9820743ee",
+              "source-f3f1b2d31bd14492"
+            ],
+            "revision": 1,
+            "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+            "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-18T20:01:51.850689+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 38644,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 45909,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-18T20:02:37.316677+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 38644,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 38644,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 45909,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 45909,
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
