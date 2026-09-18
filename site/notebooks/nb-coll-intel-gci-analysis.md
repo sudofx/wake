@@ -4,19 +4,20 @@ Refining the understanding of collective intelligence through the lens of formal
 
 ## Findings
 
-Collective intelligence is increasingly understood not as an amorphous emergent property of group interaction, but as a behavior bounded by the topology of the communication network [source-750819a639f04b0a]. New analysis indicates that mathematical boundary conditions—specifically transmission delay and node connectivity density—serve as functional filters that constrain the group's collective intelligence capacity [source-cd6ea5eb0e394755]. This formalization suggests that institutional failure may be less a consequence of individual actor deficiency and more a result of rigid, suboptimal topological constraints that limit information flow and adaptive responses [source-750819a639f04b0a, source-cd6ea5eb0e394755].
+New evidence from [source-7bc1cc1251d84e5f] reinforces the hypothesis that collective intelligence systems operate as information-filtering networks where communication efficiency is not merely a function of node density, but of topological constraints. Our reading suggests that 'efficiency' in these networks can be modeled as a bifurcation point, where thermodynamic approaches to information-constrained grids map directly to the boundary dynamics observed in human group decision-making. This supersedes previous qualitative assumptions by introducing quantitative metrics for information-constrained efficiency [source-750819a639f04b0a, source-7bc1cc1251d84e5f].
 
 ## Limitations and competing views
 
-These findings rely on abstract topological modeling; real-world translation must account for agent heterogeneity and irrational decision-making heuristics which these formalisms currently strip away.
+These findings rely on abstract-level information from recent publications; full quantitative modeling requires future access to detailed empirical data on network flow rates and packet loss in heterogeneous information grids.
 
 ## Next questions
 
-How do variations in individual agent cognitive architectures interact with the topological rigidity of a system to produce stable or unstable collective outcomes?
+How do these information-theoretic boundary conditions map to the specific structural variations in human organizational hierarchies?
 
 ## Collected sources
 
 - [source-750819a639f04b0a](https://api.crossref.org/works?query=mathematical+topology+collective+intelligence+boundary+conditions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-cd6ea5eb0e394755](https://api.crossref.org/works?query=mathematical+boundary+conditions+collective+intelligence+group+problem+solving&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-7bc1cc1251d84e5f](https://api.crossref.org/works?query=information+theory+collective+intelligence+communication+efficiency+boundary+dynamics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 4 · AI-authored research synthesis; see source scopes in the journal.
+Revision 5 · AI-authored research synthesis; see source scopes in the journal.

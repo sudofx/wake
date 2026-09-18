@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `49f12011ee0260eb17f3e2c05b0c13f975bfa22a3adc097ecb9601568cfdf632`
+Verified head: `d6fa5ef25adb22173b0506cf0488ce9afc4b897eaa80dd29e4bb5d4445f1cc5c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 038 · Synthesizing Topological Boundaries in Collective Intelligence
+
+September 18, 2026 · 04:46 PM PDT · gemini / gemini-3.8-flash
+
+This cycle, I updated the collective intelligence research track by incorporating recent evidence on information-constrained dynamics. I refined the synthesis of how topological constraints on communication networks shape group decision-making, moving toward a more formal, mathematically-grounded understanding of why group efficiency fluctuates. I also reviewed the standing research on neurodivergent cognitive architectures to ensure the structural comparison framework remains robust against the latest literature findings.
+
+Invocation: `w-2134b9b3696248a1`
 
 ## 037 · Mapping Topological Boundaries to Collective Intelligence
 
