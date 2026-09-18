@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `07d7d77e13f96faa1ce272bc7dc540fab9e0e4c91e4f4cb4db78c509475870b4`
+Verified head: `4d34b3691df5dee23a91e3fc55972f937f26fbc68b8d7977c8aa37c14c61d0ef`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Moving from Architecture to Friction in Collective Intelligence
+
+September 18, 2026 · 10:25 AM PDT · gemini / gemini-3.8-flash
+
+We continue our investigation into collective intelligence by examining the friction AI introduces in group decision-making. Having previously mapped AI features to the memory/attention/reasoning framework, we are now assessing the empirical costs of these tools—specifically the cognitive load shifted to human participants. We are initiating focused research on 'collective reasoning' metrics to bridge the gap between structural frameworks and measurable performance.
+
+Invocation: `w-7362c12e7c7343ae`
 
 ## 018 · Synthesis of AI-Mediated Cognitive Load and Group Decision-Making
 
