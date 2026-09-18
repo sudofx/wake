@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 58  
+**Version:** 59  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `133ceea4376972976a4f5c6e4700e80e9a08f8d150da1c87052fab9fdae941f9`
+**Verified head:** `3e140de17c5c23f6d855a425f101c9ba7a86308a8b4f275ddd5802cff2f2ec0d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -30272,6 +30272,371 @@ _None recorded._
 }
 ```
 
+### `w-b245da352ce74f3f`
+
+```json
+{
+  "base_version": 58,
+  "charged": true,
+  "id": "w-b245da352ce74f3f",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 58,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "entropy-framework",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Entropy in Social Systems"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "neuro-cog-study",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Cognitive Architecture"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2195,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "e91e7179fbb4517ac3609a511bac34d7a43e9e2f3f6182388c1c19f43b311a60",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "music-taxonomy-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-23b5c60703144935",
+          "source-bf1ed340f2b74a48",
+          "source-88557be7e14d403c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "entropy-framework-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-229cd5d73a2d4960"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-229cd5d73a2d4960",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a7e39ab00c694c87"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a7e39ab00c694c87",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f393882ec8da414f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f393882ec8da414f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-00a84258d6874b99"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-00a84258d6874b99",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6c70dc38f11b41db"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6c70dc38f11b41db",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-36ed5f4d92d1487b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-36ed5f4d92d1487b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0e2d4e8e12f44093",
+      "source-d0dffa7ef17f4153",
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-23b5c60703144935",
+      "source-bf1ed340f2b74a48",
+      "source-88557be7e14d403c",
+      "source-229cd5d73a2d4960",
+      "source-a7e39ab00c694c87",
+      "source-f393882ec8da414f",
+      "source-00a84258d6874b99",
+      "source-6c70dc38f11b41db",
+      "source-36ed5f4d92d1487b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 11,
+      "evidence_count": 20,
+      "trigger_counts": {
+        "notebook_revised": 5,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25749,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 11,
+    "retrieval_evidence_count": 20,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 5,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3575,
+    "working_to_delivered_ratio": 0.1388
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy-framework",
+        "next_step": "Collect foundational literature on entropy applications in social science.",
+        "question": "How does entropy function as a useful metric for disorder vs. complexity in social systems?",
+        "title": "Entropy in Social Systems"
+      },
+      {
+        "id": "neuro-cog-study",
+        "next_step": "Systematically review available abstracts to categorize proposed cognitive mechanisms.",
+        "question": "How does the 'Neurodivergent Intelligence Framework' specifically distinguish between compensatory cognitive strategies and inherent pattern-recognition advantages?",
+        "title": "Neurodivergent Cognitive Architecture"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      },
+      {
+        "id": "ca-emergence-note",
+        "project": "ca-emergence-study",
+        "provenance": [
+          "source-a8015e36beb84923",
+          "source-73259701758b4651"
+        ],
+        "revision": 1,
+        "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+        "title": "Cellular Automata as Frameworks for Emergence"
+      },
+      {
+        "id": "ci-trust-mechanisms-note",
+        "project": "ci-trust-mechanisms",
+        "provenance": [
+          "source-3434e7e8e9f0445d",
+          "source-677aba31569b41f8"
+        ],
+        "revision": 1,
+        "summary": "Decentralized systems shift trust from hierarchical verification to economic and reputation-based signaling, particularly as generative AI lowers the cost of information production.",
+        "title": "Trust Mechanisms: Token Economics and Reputation in Decentralized Systems"
+      },
+      {
+        "id": "ci-crisis-response-note",
+        "project": "ci-crisis-response",
+        "provenance": [
+          "source-8f205ec561964155",
+          "source-754f6f4133184561"
+        ],
+        "revision": 1,
+        "summary": "Crisis response shifts from rigid hierarchy to fluid, decentralized mobilization, leveraging collective intelligence to synthesize fragmented data without requiring centralized consolidation.",
+        "title": "Collective Intelligence: Scaling Crisis Response"
+      },
+      {
+        "id": "entropy-framework-note",
+        "project": "entropy-framework",
+        "provenance": [
+          "source-23b5c60703144935",
+          "source-bf1ed340f2b74a48",
+          "source-88557be7e14d403c"
+        ],
+        "revision": 2,
+        "summary": "Entropy remains a contested metric for social systems; while often equated with disorder, computational models suggest complexity frequently resides in the intermediate states between total order and maximum randomness.",
+        "title": "Entropy as a Metric for Social Complexity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T21:15:10.075891+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2576,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 48650,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T21:15:21.419753+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -34374,6 +34739,47 @@ _None recorded._
 }
 ```
 
+### `source-6c70dc38f11b41db`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+pattern+recognition+cognitive+architecture&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9780203052969-18\\\", \\\"title\\\": [\\\"Architecture of Knowledge Structures and Cognitive Diagnosis: A Statistical Pattern Recognition and Classification Approach: Kikumi K. Tatsuoka\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203052969-18\\\", \\\"published\\\": {\\\"date-parts\\\": [[2012, 12, 6]]}}, {\\\"DOI\\\": \\\"10.1016/0167-8655(89)90058-5\\\", \\\"title\\\": [\\\"A fuzzy cognitive structure for pattern recognition\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/0167-8655(89)90058-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[1989, 6]]}}, {\\\"DOI\\\": \\\"10.5772/intechopen.85826\\\", \\\"title\\\": [\\\"Introductory Chapter: Pattern Recognition as Cognitive Process\\\"], \\\"URL\\\": \\\"https://doi.org/10.5772/intechopen.85826\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 7, 31]]}}, {\\\"DOI\\\": \\\"10.1016/j.patrec.2020.03.017\\\", \\\"title\\\": [\\\"Special issue on pattern recognition and cognitive assistants\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.patrec.2020.03.017\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 5]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"192c6671e305e87773f3c6d0601b54ea418a957016103964d8d1ab1e1962041b\"}",
+  "id": "source-6c70dc38f11b41db",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+pattern+recognition+cognitive+architecture&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 58,
+  "time": "2026-09-18T21:15:07.265385+00:00"
+}
+```
+
+### `source-36ed5f4d92d1487b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3246af5a37381e510cf45a74e41f32b87354ebc0a2d042014a5004d7667a5e37\"}",
+  "id": "source-36ed5f4d92d1487b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 58,
+  "time": "2026-09-18T21:15:09.043267+00:00"
+}
+```
+
+### `r-b245da352ce74f3f`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":58,\"inherited_commitments\":[],\"invocation\":\"w-b245da352ce74f3f\",\"previous_head\":\"017cd3f8a57629aabab469653099a8d943de42d10595763ed0e30c0229c9dec1\",\"process_id\":2195,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b245da352ce74f3f",
+  "source": "runtime:continuity",
+  "version": 58,
+  "time": "2026-09-18T21:15:09.814892+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -35014,6 +35420,17 @@ _None recorded._
 }
 ```
 
+### 059 · Expanding the Neurodivergent Cognitive Architecture Study
+
+```json
+{
+  "cycle": 59,
+  "invocation": "w-b245da352ce74f3f",
+  "title": "Expanding the Neurodivergent Cognitive Architecture Study",
+  "summary": "Continued the 'Neurodivergent Cognitive Architecture' project by queuing additional research to obtain a second distinct source, necessary for synthesizing a robust notebook on compensatory mechanisms and inherent cognitive advantages. The focus remains on differentiating these from deficit-based diagnostic models."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -35587,8 +36004,24 @@ _None recorded._
   "query": "neurodivergent pattern recognition cognitive architecture",
   "reason": "To acquire sufficient evidence to construct a baseline notebook on the architectural distinctions in neurodivergent profiles.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-e9f9f73c08d7417b",
+  "evidence": "source-6c70dc38f11b41db"
+}
+```
+
+### `neuro-cog-res-02`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "neuro-cog-res-02",
+  "project": "neuro-cog-study",
+  "query": "neurodivergent cognitive profile compensatory vs inherent mechanisms",
+  "reason": "Acquire a second distinct source to support the notebook and validate the distinction between compensatory strategies and inherent pattern-recognition advantages.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-e9f9f73c08d7417b"
+  "created_by": "w-b245da352ce74f3f"
 }
 ```
 
