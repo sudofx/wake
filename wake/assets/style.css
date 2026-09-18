@@ -40,3 +40,14 @@ body{font-size:16px;background:radial-gradient(circle at 88% -8%,var(--glow),tra
   .badge{font-size:9px}
   .section-top .subtle{font-size:10px;white-space:normal}
 }
+
+/* v0.20.1 UX pass: reduce masthead competition and keep secondary text legible. */
+@media(max-width:700px){
+  .masthead{align-items:flex-start}
+  .header-tools{position:static;margin-left:auto;flex-direction:row;align-items:center;gap:8px}
+  .header-tools .status{display:none}
+  .masthead nav.compact-nav{overflow-x:auto;justify-content:flex-start;scrollbar-width:thin;padding-bottom:2px}
+  .masthead nav.compact-nav>a,.masthead nav.compact-nav>details>summary{min-width:max-content}
+  .tape-label-bottom,.tape-label-bottom span{font-size:8px}
+  .crt-label{font-size:7px}
+}
