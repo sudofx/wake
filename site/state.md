@@ -5,7 +5,7 @@
 **Version:** 31  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7ac2e7289baf15d43b7db0a58edeaec80b1e00d89aebd55a30d4e164c515e6a9`
+**Verified head:** `f49716e434eec0e687d3d8ae42714724a35080eb9c585dee1238ec2d22ca8e68`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -16869,6 +16869,304 @@
 }
 ```
 
+### `w-bb188fbdfa0f4b6a`
+
+```json
+{
+  "base_version": 31,
+  "charged": true,
+  "id": "w-bb188fbdfa0f4b6a",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 31,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-collective-attention-001",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Collective Attention Metrics"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2336,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "938ed89c279b46bd3e02d189751f25273418f1cb04210e8fa777343403fc6388",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-1ba654396b7a4c16",
+          "source-1d5910d21b6c488c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-ci-structure-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-09153859893848b2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-09153859893848b2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0db979181cdf4844"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0db979181cdf4844",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b4448fa7888442a6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b4448fa7888442a6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c91b0b2e5dc04cb8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c91b0b2e5dc04cb8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e1e2edfb57354b04"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e1e2edfb57354b04",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3b6f860f7bc84a89"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3b6f860f7bc84a89",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-1ba654396b7a4c16",
+      "source-1d5910d21b6c488c",
+      "source-09153859893848b2",
+      "source-0db979181cdf4844",
+      "source-b4448fa7888442a6",
+      "source-c91b0b2e5dc04cb8",
+      "source-e1e2edfb57354b04",
+      "source-3b6f860f7bc84a89"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 22745,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4174,
+    "working_to_delivered_ratio": 0.1835
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-collective-attention-001",
+        "next_step": "Systematically review collected literature for attentional metrics.",
+        "question": "How can collective attention be empirically quantified in team environments?",
+        "title": "Collective Attention Metrics"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence (CI) can be structurally modeled as a hierarchical system comprised of collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "ci-structure-three-factor",
+        "provenance": [
+          "source-1ba654396b7a4c16"
+        ],
+        "status": "active",
+        "why_retained": "The meta-analysis meta-analyzed 22 studies and found strong empirical support for this three-factor model over other alternatives, particularly in established groups."
+      },
+      {
+        "claim": "Centralized team networks exhibit a trade-off where they take longer to develop a shared language but ultimately derive greater performance benefits from that language.",
+        "confidence": 0.7,
+        "id": "belief-net-centralization",
+        "provenance": [
+          "source-f816ad486a324c20"
+        ],
+        "status": "active",
+        "why_retained": "Source-f816ad486a324c20 meta-analyzed 77 teams and found that network centralization influences both the emergence rate and the performance efficacy of shared problem-solving frameworks (shared language)."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-nif-synthesis",
+        "project": "project-neuro-cognition",
+        "provenance": [
+          "source-a53d284f781844ef",
+          "source-f816ad486a324c20"
+        ],
+        "revision": 1,
+        "summary": "The Neurodivergent Intelligence Framework (NIF) suggests that amplified pattern recognition, often pathologized in ASD/ADHD contexts, constitutes a distinct cognitive architecture that may structurally impact group-level collective intelligence factors.",
+        "title": "Mapping Neurodivergent Pattern Recognition to Collective Intelligence"
+      },
+      {
+        "id": "nb-metrics-collective-memory",
+        "project": "project-emergence-metrics",
+        "provenance": [
+          "source-33a17dc3cd5a4168",
+          "source-0da21a56c51e4b71"
+        ],
+        "revision": 1,
+        "summary": "Collective memory in teams can be quantified through Transactive Memory Systems (TMS), which correlate with team performance over time.",
+        "title": "Quantitative Measures of Collective Memory"
+      },
+      {
+        "id": "nb-ci-cognitive-load-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-86b820b68e784d3c",
+          "source-8626e58cc64f468c"
+        ],
+        "revision": 1,
+        "summary": "AI mediation in group decision-making introduces a 'human readiness' gap, where the cognitive load of managing AI systems often conflicts with the required capacity for effective human oversight.",
+        "title": "Empirical Trade-offs in AI-Mediated Group Decision-Making"
+      },
+      {
+        "id": "nb-ci-reasoning-metrics-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-d20ab1413e58417c",
+          "source-a5e8ba80d420417d"
+        ],
+        "revision": 1,
+        "summary": "Collective reasoning in teams can be decomposed into individual contribution, communication, and coalescing, with performance heavily influenced by attributional biases regarding coworker effort.",
+        "title": "Operationalizing Collective Reasoning Metrics"
+      },
+      {
+        "id": "nb-ci-ai-reasoning-impact-001",
+        "project": "ci-ai-foundations",
+        "provenance": [
+          "source-cb700d6060ba423e",
+          "source-d20ab1413e58417c"
+        ],
+        "revision": 1,
+        "summary": "AI interventions differentially impact collective reasoning and collective memory, often creating a bottleneck in reasoning-heavy tasks due to the cognitive load of oversight.",
+        "title": "Comparative Impact of AI Interventions on Reasoning and Memory Metrics"
+      },
+      {
+        "id": "nb-symmetry-emergence-precursors-001",
+        "project": "project-symmetry-emergence",
+        "provenance": [
+          "source-6c55fcfa1118426e",
+          "source-d751f6c7263d4d63"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational control mechanism in self-organizing systems, facilitating transitions from homogeneous states to structured, emergent behaviors.",
+        "title": "Symmetry Breaking as a Precursor to Emergence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T18:37:01.862950+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 11324,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 43960,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T18:37:20.002503+00:00",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs"
+}
+```
+
 ## Evidence
 
 ### `source-49f19aec89e64836`
@@ -19290,6 +19588,47 @@
 }
 ```
 
+### `source-e1e2edfb57354b04`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=empirical+measures+of+collective+attention+in+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.26034/ne.vals-asla.2010.922\\\", \\\"title\\\": [\\\"Collective decision-making in rehabilitation teams:\\\\npractices of talking work\\\"], \\\"URL\\\": \\\"https://doi.org/10.26034/ne.vals-asla.2010.922\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 1]]}}, {\\\"DOI\\\": \\\"10.1108/s1535-120320190000012004\\\", \\\"title\\\": [\\\"Temporal Dynamics of Collective Global Leadership and Team Psychological Safety in Multinational Teams: An Empirical Investigation\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>Collective global leadership requires team members to attempt to influence as well as accept influence from each other across multiple cultural, linguistic, and national boundaries, which is affected by the extent to which team members perceive the team as being safe for interpersonal risk-taking or the level of psychological safety in the team. The higher levels of collective leadership can, in turn, enhance the perceived psychological safety, and thereby create more positive outcomes for the team. This reciprocal relationship may be influenced by changes in team dynamics across the different stages of a team lifecycle. Using an inductive longitudinal study of 76 teams for nine months, we uncover the time-variant mutually reinforcing relationship between collective global leadership and team psychological safety. Our results show that the strength of this reciprocal relationship varies such that it is absent in the initial stage, becomes prominent in the middle stage, and then remains present, yet somewhat weakened, in the final stage of the team lifecycle. Our results also show that the initial collective leadership patterns in the team positively affect final leadership patterns, and this relationship is mediated by the team’s psychological safety in the middle stage of the team lifecycle. We discuss implications of this study on the theory and practice of global leadership and multinational teams.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1108/s1535-120320190000012004\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 11, 18]]}}, {\\\"DOI\\\": \\\"10.1111/j.1911-3846.2011.01095.x\\\", \\\"title\\\": [\\\"Teams, Leaders, and Performance Measures*\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1911-3846.2011.01095.x\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 24]]}}, {\\\"DOI\\\": \\\"10.1037/e537052012-233\\\", \\\"title\\\": [\\\"Empirical Measures of Attention Allocation in Classification Learning: A Replication of Medin and Schaffer (1978)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/e537052012-233\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e6c5392a364525d93a33503e3506d265c259bdbc87cd8b8c384390ce775001cb\"}",
+  "id": "source-e1e2edfb57354b04",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=empirical+measures+of+collective+attention+in+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-18T18:36:59.908683+00:00"
+}
+```
+
+### `source-3b6f860f7bc84a89`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"88daad9ce2186a1376adea731b20e38db1794af89fda5112c04f108c02e20ce3\"}",
+  "id": "source-3b6f860f7bc84a89",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-18T18:37:01.345490+00:00"
+}
+```
+
+### `r-bb188fbdfa0f4b6a`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":31,\"inherited_commitments\":[],\"invocation\":\"w-bb188fbdfa0f4b6a\",\"previous_head\":\"07c61086745e0a9414747033ea1129eb17b5110ecf2b1bba6ace7bcf639513ea\",\"process_id\":2336,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-bb188fbdfa0f4b6a",
+  "source": "runtime:continuity",
+  "version": 31,
+  "time": "2026-09-18T18:37:01.731040+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating inquiry into collective intelligence
@@ -19901,8 +20240,9 @@
   "query": "empirical measures of collective attention in teams",
   "reason": "To identify foundational metrics for collective attention that allow for quantitative analysis of team performance.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-4551dbc724754d1a"
+  "status": "collected",
+  "created_by": "w-4551dbc724754d1a",
+  "evidence": "source-e1e2edfb57354b04"
 }
 ```
 
