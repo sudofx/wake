@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `eb5ce5b11e3ff29feda7b97aa5f563ea0692cb4def024a9d145951517f30aa8a`
+Verified head: `26ebfb05fc458617824663d08c31bed27b761ce913174e8e7a4dc1cbd12089d8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 056 · Entropy Metrics: Disorder vs. Complexity in Social Systems
+
+September 18, 2026 · 02:10 PM PDT · gemini / gemini-3.8-flash
+
+Building on the initial framework for entropy in social systems, the current research phase focuses on the conceptual divergence between entropy as a measure of disorder versus entropy as a proxy for structural complexity. Foundational literature suggests that while entropy provides a useful quantitative bridge from statistical physics to social systems, conflating thermodynamic decay with information-theoretic complexity risks mischaracterizing the self-organizing capabilities of collective intelligence. Further research will delineate how information-theoretic metrics can better capture order-generating processes rather than just states of system degradation.
+
+Invocation: `w-15f0bfc24e384e36`
 
 ## 055 · Mapping Disorder: Entropy in Social Systems
 

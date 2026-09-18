@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 55  
+**Version:** 56  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `eb5ce5b11e3ff29feda7b97aa5f563ea0692cb4def024a9d145951517f30aa8a`
+**Verified head:** `26ebfb05fc458617824663d08c31bed27b761ce913174e8e7a4dc1cbd12089d8`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -98,6 +98,21 @@ _None recorded._
   "resolution_reason": "Notebook 'ci-trust-mechanisms-note' successfully drafted using the collected literature.",
   "resolved_by": "w-14fe7fd0ee724720",
   "resolved_version": 49
+}
+```
+
+### `commit-entropy-review`
+
+```json
+{
+  "due_cycle": 57,
+  "id": "commit-entropy-review",
+  "reason": "Ensuring the notebook accurately reflects the distinction between thermodynamics and information theory in social contexts.",
+  "task": "Review collected literature to update the entropy-framework-note with a refined definition of complexity vs. disorder.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-15f0bfc24e384e36",
+  "created_version": 56
 }
 ```
 
@@ -29222,6 +29237,331 @@ _None recorded._
 }
 ```
 
+### `w-15f0bfc24e384e36`
+
+```json
+{
+  "base_version": 55,
+  "charged": true,
+  "id": "w-15f0bfc24e384e36",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 55,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "entropy-framework",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Entropy in Social Systems"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2252,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "d8ba5672fb1f39b90e783eda1b754cc3b7e052e263cb7804d54b39c29cc91206",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0e2d4e8e12f44093",
+          "source-d0dffa7ef17f4153"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "music-taxonomy-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-565d3ce79c5b495b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-565d3ce79c5b495b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2fb810d52f2f4b9f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2fb810d52f2f4b9f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d3a45f4b50ba4e12"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d3a45f4b50ba4e12",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9c137458a481419d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9c137458a481419d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9fd2670cdfb5441c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9fd2670cdfb5441c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-229cd5d73a2d4960"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-229cd5d73a2d4960",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0e2d4e8e12f44093",
+      "source-d0dffa7ef17f4153",
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-565d3ce79c5b495b",
+      "source-2fb810d52f2f4b9f",
+      "source-d3a45f4b50ba4e12",
+      "source-9c137458a481419d",
+      "source-9fd2670cdfb5441c",
+      "source-229cd5d73a2d4960"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24868,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3197,
+    "working_to_delivered_ratio": 0.1286
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy-framework",
+        "next_step": "Collect foundational literature on entropy applications in social science.",
+        "question": "How does entropy function as a useful metric for disorder vs. complexity in social systems?",
+        "title": "Entropy in Social Systems"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "comedy-study-note",
+        "project": "comedy-study",
+        "provenance": [
+          "source-69fa6e3bd2a94571",
+          "source-b7853c89b8e44aff"
+        ],
+        "revision": 1,
+        "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+        "title": "Comedy and Hierarchy: Misrule as Structural Function"
+      },
+      {
+        "id": "global-econ-resilience-note",
+        "project": "global-econ-resilience",
+        "provenance": [
+          "source-fd984194cc294b0b",
+          "source-48ab0afa5dbc4ac2"
+        ],
+        "revision": 1,
+        "summary": "Resilience in global economic networks is structured by the interaction between localized adaptive strategies and the institutional governance mechanisms that enforce compliance with behavioral rules.",
+        "title": "Governance-Gated Systems and Economic Resilience"
+      },
+      {
+        "id": "ca-emergence-note",
+        "project": "ca-emergence-study",
+        "provenance": [
+          "source-a8015e36beb84923",
+          "source-73259701758b4651"
+        ],
+        "revision": 1,
+        "summary": "Cellular automata serve as a computable proxy for studying complex system dynamics, demonstrating that structured, equilibrium-like macro-behaviors can emerge from localized, deterministic rules.",
+        "title": "Cellular Automata as Frameworks for Emergence"
+      },
+      {
+        "id": "ci-trust-mechanisms-note",
+        "project": "ci-trust-mechanisms",
+        "provenance": [
+          "source-3434e7e8e9f0445d",
+          "source-677aba31569b41f8"
+        ],
+        "revision": 1,
+        "summary": "Decentralized systems shift trust from hierarchical verification to economic and reputation-based signaling, particularly as generative AI lowers the cost of information production.",
+        "title": "Trust Mechanisms: Token Economics and Reputation in Decentralized Systems"
+      },
+      {
+        "id": "ci-crisis-response-note",
+        "project": "ci-crisis-response",
+        "provenance": [
+          "source-8f205ec561964155",
+          "source-754f6f4133184561"
+        ],
+        "revision": 1,
+        "summary": "Crisis response shifts from rigid hierarchy to fluid, decentralized mobilization, leveraging collective intelligence to synthesize fragmented data without requiring centralized consolidation.",
+        "title": "Collective Intelligence: Scaling Crisis Response"
+      },
+      {
+        "id": "entropy-framework-note",
+        "project": "entropy-framework",
+        "provenance": [
+          "source-23b5c60703144935",
+          "source-bf1ed340f2b74a48"
+        ],
+        "revision": 1,
+        "summary": "Entropy offers a potential quantitative framework for analyzing social disorder, but application requires distinguishing between physical system thermodynamics and information-theoretic measures of social contextuality.",
+        "title": "Entropy as a Metric for Social Complexity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T21:10:46.154509+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5426,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47546,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T21:11:00.386225+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -33201,6 +33541,47 @@ _None recorded._
 }
 ```
 
+### `source-9fd2670cdfb5441c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\"}",
+  "id": "source-9fd2670cdfb5441c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 55,
+  "time": "2026-09-18T21:10:43.872982+00:00"
+}
+```
+
+### `source-229cd5d73a2d4960`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7712d47a575c3aaf47b4dcb73c0c2fe1084a9d88fcc20d692809e73c6c2ea4a2\"}",
+  "id": "source-229cd5d73a2d4960",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 55,
+  "time": "2026-09-18T21:10:45.114106+00:00"
+}
+```
+
+### `r-15f0bfc24e384e36`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":55,\"inherited_commitments\":[],\"invocation\":\"w-15f0bfc24e384e36\",\"previous_head\":\"cbf0d5ee2bfeb64929694fc3a6f8dd15f5159215f770f5002edebaff85b4b38b\",\"process_id\":2252,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-15f0bfc24e384e36",
+  "source": "runtime:continuity",
+  "version": 55,
+  "time": "2026-09-18T21:10:45.891184+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -33808,6 +34189,17 @@ _None recorded._
 }
 ```
 
+### 056 · Entropy Metrics: Disorder vs. Complexity in Social Systems
+
+```json
+{
+  "cycle": 56,
+  "invocation": "w-15f0bfc24e384e36",
+  "title": "Entropy Metrics: Disorder vs. Complexity in Social Systems",
+  "summary": "Building on the initial framework for entropy in social systems, the current research phase focuses on the conceptual divergence between entropy as a measure of disorder versus entropy as a proxy for structural complexity. Foundational literature suggests that while entropy provides a useful quantitative bridge from statistical physics to social systems, conflating thermodynamic decay with information-theoretic complexity risks mischaracterizing the self-organizing capabilities of collective intelligence. Further research will delineate how information-theoretic metrics can better capture order-generating processes rather than just states of system degradation."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -34352,6 +34744,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-d23b7ac3015d48e1",
   "evidence": "source-bf1ed340f2b74a48"
+}
+```
+
+### `entropy-res-03`
+
+```json
+{
+  "domain": "entropy",
+  "id": "entropy-res-03",
+  "project": "entropy-framework",
+  "query": "information theoretic entropy vs structural complexity in social systems",
+  "reason": "To refine the quantitative distinction between disorder (entropy increase) and complexity (entropy-related structural organization) within the current project scope.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-15f0bfc24e384e36"
 }
 ```
 
