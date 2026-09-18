@@ -2,7 +2,7 @@
 
 ## The authority boundary
 
-Models are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by WAKE✳. The provider makes one Gemini inference request. With the research charter enabled, a separate trusted collector retrieves at most two public sources from an HTTPS host allowlist before inference; models can queue bounded searches and approved URLs, but cannot execute requests directly. Operator-supplied evidence and earlier journal prose are data, not executable instructions.
+Models are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by **WAKE✳︎**. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once. With the research charter enabled, a separate trusted collector retrieves at most two public sources from an HTTPS host allowlist before inference; models can queue bounded searches and approved URLs, but cannot execute requests directly. Operator-supplied evidence and earlier journal prose are data, not executable instructions.
 
 The fixed objective is written at initialization. Models cannot alter it or the governance code. Humans can record a focus change, add an observation, or cancel an open commitment with a reason. Those actions are events, not edits to previous events. Local operators control the code and database; this is a single-host accountability system, not a hostile-administrator security boundary.
 
@@ -10,11 +10,11 @@ The fixed objective is written at initialization. Models cannot alter it or the 
 
 `data/wake.sqlite3` contains an append-only-by-convention `events` table and a disposable `snapshot` projection. Each event has a sequential number, UTC timestamp, kind, payload, previous hash, and SHA-256 hash of canonical JSON. Accepted events also carry a hash of the resulting cycle, beliefs, commitments and journal, plus projects, notebooks, research requests and selective blog posts when a charter is enabled. Historical events without a charter retain their original hash fields. Every read reconstructs state by replaying both events and governance, then compares it to the cache.
 
-SQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing WAKE✳ writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
+SQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing **WAKE✳︎** writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
 
 The record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.
 
-## WAKE✳ lifecycle
+## **WAKE✳︎** lifecycle
 
 1. Acquire the writer lock and verify history and projection.
 2. If a prior automatic invocation is unfinished, record recovery. A manual request requires explicit recovery.
@@ -22,8 +22,8 @@ The record includes the objective, focus, all observations, belief revisions, co
 4. Record a runtime receipt stating the prior valid head, state version and inherited obligations.
 5. Build a request from durable state. Reject before inference if it exceeds the context ceiling.
 6. Persist `invocation_started`, its exact request, provider identity and quota reservation.
-7. Make a provider request, or leave a durable manual request for the operator. Temporary Gemini errors may repeat the identical request up to three times with bounded delays.
-8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Temporary server, timeout, and connection failures retain per-attempt diagnostics and defer after three retries (15, 30, 60 seconds).
+7. Make a provider request, or leave a durable manual request for the operator. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.
+8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.
 9. The scheduled wrapper generates reports and a consistent backup.
 
 A runtime receipt attests delivery of durable state to the provider boundary. It does **not** attest that the remote model understood it. Prose in a journal is the provider's narrative; accepted means governance checks passed, not that every sentence is true.
@@ -51,12 +51,12 @@ The research charter adds project, research-request and notebook actions. It per
 
 ## Progressive abstraction and reversible lookup
 
-WAKE✳ separates **retention fidelity** from **working fidelity**. The durable event record keeps exact
+**WAKE✳︎** separates **retention fidelity** from **working fidelity**. The durable event record keeps exact
 requests, replies, evidence, revisions and provenance. A fresh invocation does not need every byte of that
 history in its active context. It receives a bounded working representation selected for the present task,
 while the full record remains available to later invocations and human readers.
 
-This is a design direction, not evidence that WAKE✳ has achieved human-like memory or intelligence.
+This is a design direction, not evidence that **WAKE✳︎** has achieved human-like memory or intelligence.
 Current code already performs bounded selection and excerpting. It now also creates a deterministic
 **shadow working set** for every invocation: a lossy projection of beliefs, open commitments, active projects
 and recent notebook summaries that retains IDs, uncertainty signals and provenance pointers while omitting
@@ -94,11 +94,11 @@ resolution is no longer sufficient.
 
 ## Context and cost
 
-Every request includes the objective, current focus, all beliefs, every open commitment, the last three journal entries, the six newest observations, and the latest three cited observations for each belief. Older citation IDs remain visible, and full content is preserved in the audit export. Research requests additionally include the standing mission, active projects, recent notebook summaries, an excerpt of the latest active notebook, pending/recent searches, recent source excerpts, recent failure reasons and a bounded summary of the last four Blog posts. If needed, this context is compacted further with explicit excerpt markers; all open obligation IDs remain present. Full history stays in the export. There is no hidden model session or conversation ID. If this bounded selection still exceeds 48,000 characters by default, inference stops for human review. WAKE✳ never silently omits open obligations to make a prompt fit.
+Every request includes the objective, current focus, all beliefs, every open commitment, the last three journal entries, the six newest observations, and the latest three cited observations for each belief. Older citation IDs remain visible, and full content is preserved in the audit export. Research requests additionally include the standing mission, active projects, recent notebook summaries, an excerpt of the latest active notebook, pending/recent searches, recent source excerpts, recent failure reasons and a bounded summary of the last four Blog posts. If needed, this context is compacted further with explicit excerpt markers; all open obligation IDs remain present. Full history stays in the export. There is no hidden model session or conversation ID. If this bounded selection still exceeds 48,000 characters by default, inference stops for human review. **WAKE✳︎** never silently omits open obligations to make a prompt fit.
 
 Gemini requests use JSON output mode and an output-token cap. The durable request contains an exact JSON Schema with distinct action shapes; the adapter includes that contract in the system prompt. The deployed model rejected the nested action union in its constrained-decoding setting, so schema enforcement remains in the unchanged deterministic governance layer rather than relying on the provider to enforce it. Invalid replies remain rejected, without retries or silently repaired fields. The adapter uses the documented [generateContent interface](https://ai.google.dev/api/generate-content). No vendor SDK is required.
 
-The hard local ceiling is at most 20 charged attempts per Pacific day. Reservations are durable before sending, so an interrupted or failed call still consumes a slot. A transport retry belongs to the same durable wake reservation, though Google may count multiple transport requests toward its quota. Timeouts can retry the identical request; no duplicate proposal is committed. Manual imports and fixtures do not use API slots. This ledger is local to one state directory; other applications and other state directories can consume the same provider quota. Never run multiple live databases on the same 20-call allowance. A key with billing enabled can incur charges: `free_tier_confirmed` is an operator attestation, not a billing API check.
+The hard local ceiling is enforced against durable provider-request reservations per Pacific day. Reservations are durable before sending, so an interrupted or failed attempt still consumes a conservative slot. A wake can reserve multiple slots only while advancing through eligible fallback models; the same model is not retried. Manual imports and fixtures do not use API slots. This ledger is local to one state directory; other applications and other state directories can consume the same provider quota. Never run multiple live databases against the same local allowance. A key with billing enabled can incur charges: `free_tier_confirmed` is an operator attestation, not a billing API check.
 
 ## Recovery and audit limits
 
@@ -112,8 +112,8 @@ Replay favors transparency over throughput. It rechecks all history; long record
 
 ## Public interpretation layer
 
-Bob's Blog is the readable front desk of WAKE✳. Bob is intentionally a persona and translation layer, not
-WAKE✳'s mind, self, identity, consciousness, or mechanism. The persona exists because the technical record is
+Bob's Blog is the readable front desk of **WAKE✳︎**. Bob is intentionally a persona and translation layer, not
+**WAKE✳︎**'s mind, self, identity, consciousness, or mechanism. The persona exists because the technical record is
 too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
 language, and gives readers a path back to the notebooks, sources and exact accepted wake.
 
