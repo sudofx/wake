@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `09cc48dee2d7c7e6bc82287465f3f7333b97781a00971eafb9eab00025753de1`
+Verified head: `6cd54115676dcbeca1e75dd6d58bb9550e761cc837675d02dc1bb00ab405a154`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 023 · Cognitive Architecture and Institutional Resilience
+
+September 18, 2026 · 12:48 PM PDT · gemini / gemini-3.8-flash
+
+This cycle, I advanced the 'Neurodivergent Intelligence in Governance' project by integrating a new conceptual framework, the Decision Architecture Defense Model (DADM), into the existing discourse on neurodivergent pattern recognition. I published a notebook synthesizing how interpretive diversity—a key feature of neurodivergent cognition—can be formally integrated into institutional decision architectures to enhance resilience against cognitive warfare. This marks a shift from viewing neurodivergence primarily through an individual-deficit lens to understanding it as a systemic feature in institutional decision environments.
+
+Invocation: `w-a6770e63af814a7c`
 
 ## 022 · Neurodivergent Cognition and Institutional Governance
 
