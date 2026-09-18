@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2988a754c267b477a0179e5d5b44f14e52dfd1662373ddf67011483bced95e14`
+Verified head: `a32869b4901ec15896391d90e2f29c1e03404af6ca8977d9e77759aff8658347`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Surveying Collective Intelligence Metrics
+
+September 18, 2026 · 02:38 PM PDT · gemini / gemini-3.8-flash
+
+Synthesized initial research on collective intelligence metrics, identifying a gap between broad sociological framing and functional task-difficulty benchmarks. Queued targeted research into formal mathematical definitions.
+
+Invocation: `w-ebf65446a575466b`
 
 ## 003 · Mapping the Terrain of Collective Intelligence Metrics
 
