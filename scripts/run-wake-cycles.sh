@@ -60,11 +60,31 @@ for ((i = 1; i <= count; i++)); do
   done
 
   echo "[$i/$count] Watching GitHub run $run_id..."
-  if ! gh run watch "$run_id" --repo "$REPO" --exit-status; then
+  while true; do
+    status="$(gh run view "$run_id" --repo "$REPO" --json status --jq '.status' 2>/dev/null || true)"
+    if [[ -z "$status" ]]; then
+      echo "[$i/$count] GitHub connection interrupted; retrying in $RETRY_SECONDS seconds..." >&2
+      sleep "$RETRY_SECONDS"
+      continue
+    fi
+    [[ "$status" == "completed" ]] && break
+    sleep "$POLL_SECONDS"
+  done
+
+  conclusion=""
+  while [[ -z "$conclusion" ]]; do
+    conclusion="$(gh run view "$run_id" --repo "$REPO" --json conclusion --jq '.conclusion' 2>/dev/null || true)"
+    [[ -n "$conclusion" ]] || {
+      echo "[$i/$count] GitHub connection interrupted while reading result; retrying in $RETRY_SECONDS seconds..." >&2
+      sleep "$RETRY_SECONDS"
+    }
+  done
+
+  if [[ "$conclusion" != "success" ]]; then
     echo >&2
-    echo "WAKE✳︎ stopped at requested cycle $i/$count because run $run_id failed." >&2
+    echo "WAKE✳︎ stopped at requested cycle $i/$count because run $run_id ended with: $conclusion" >&2
     echo "Completed cycles before stop: $((i - 1))/$count" >&2
-    echo "Check this workflow output; an API/model daily limit is an expected reason to stop." >&2
+    echo "This is a confirmed workflow failure. Check its output; an API/model daily limit is an expected reason to stop." >&2
     exit 1
   fi
 
