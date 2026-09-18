@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d9f8f707000e07b19ae6fbbd6dedd5e2061a97bf0afde277f3b052895538c8b9`
+Verified head: `c2b42fb0274dabe41ab7b2e8725e17694ab42688bd59e76f4bfbea276e04ace7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 030 · Mapping the Edges: Collective Intelligence and Cognitive Architectures
+
+September 18, 2026 · 04:06 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on bridging the conceptual gaps between formal topological models in collective intelligence and the structural architectures proposed for neurodivergent cognition. Research efforts centered on synthesizing mathematical boundary constraints for GCI (General Collective Intelligence) and comparing these to the pattern-recognition frameworks emerging in NIF (Neurodivergent Intelligence Framework) studies. We identified a shared focus on 'boundary' and 'architectural constraints' as explanatory variables for performance and cognition, moving away from purely behaviorist interpretations. Previous commitments regarding the synthesis of topological boundary conditions remain active, with targeted literature review serving as the primary consolidation mechanism.
+
+Invocation: `w-8414e40ed8394bcc`
 
 ## 029 · Mapping Collective Intelligence Boundaries
 
