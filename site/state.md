@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 29  
+**Version:** 30  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `246b47364b9accb1d225298c366898049a75a065158f2999747d37f55fce17eb`
+**Verified head:** `b48a3df47e5a7037054db0320dc191653e0a48a411a31e5673976dd1787d3dc5`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -425,6 +425,31 @@ _None recorded._
   "updated_version": 28,
   "updated_by": "w-3503e47958b443b1",
   "domain": "climate_change"
+}
+```
+
+### `comedy-study-note` · Comedy and Hierarchy: Misrule as Structural Function
+
+```json
+{
+  "evidence": [
+    "source-69fa6e3bd2a94571",
+    "source-b7853c89b8e44aff"
+  ],
+  "findings": "Historical analysis of Elizabethan drama suggests that comedy often acts as a 'saturnalian' space where license for abuse is permitted within the confines of theatrical fiction rather than representing a challenge to the actual moral superstructure of the state [source-b7853c89b8e44aff]. Similarly, Rabelaisian literature indicates a process where transgressive humor (bawdy, vulgar, earthily humorous) becomes absorbed into the critical vocabulary of culture, detached from its radical authorial origins to serve as an alternative descriptive term, often neutralizing the original subversive intent [source-69fa6e3bd2a94571]. This suggests that within institutional contexts, comedy functions as a controlled release valve rather than a catalyst for systemic change.",
+  "id": "comedy-study-note",
+  "limitations": "These findings are derived from literary analysis of specific historical periods (Elizabethan and Renaissance). The applicability of this 'pressure release' model to modern bureaucratic or algorithmic governance hierarchies remains speculative.",
+  "next_questions": "Can modern institutional structures be mapped to the 'theatrical' spaces described in Elizabethan society? How do digital platforms (which often lack the physical/temporal boundaries of the theater) handle the saturnalian impulse?",
+  "project": "comedy-study",
+  "reason": "This notebook establishes the theoretical boundary condition for the comedy-study project, grounding the research in the function of hierarchy rather than just the content of humor.",
+  "summary": "Comedy, specifically in the form of 'misrule' or saturnalia, often functions not as a dismantling of institutional hierarchy, but as a bounded mechanism that permits temporary subversion, thereby reinforcing the underlying order.",
+  "title": "Comedy and Hierarchy: Misrule as Structural Function",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 30,
+  "updated_version": 30,
+  "updated_by": "w-6093d53064e94daf",
+  "domain": "comedy"
 }
 ```
 
@@ -15080,6 +15105,319 @@ _None recorded._
 }
 ```
 
+### `w-6093d53064e94daf`
+
+```json
+{
+  "base_version": 29,
+  "charged": true,
+  "id": "w-6093d53064e94daf",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 29,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "comedy-study",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Comedy in Institutional Frameworks"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2271,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "468da818c0b0cadadc3ec3dc7d9ab1ce54c40f352821853a742501553debc679",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f",
+          "source-7ac6f0f279384f11",
+          "source-8752ca6d34d04e84"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "ci-landscape-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "neuro-cog-governance-note",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-88b7c61f47554700"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-88b7c61f47554700",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2e0d950ee41a4831"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2e0d950ee41a4831",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3c1b8651acf74cbf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3c1b8651acf74cbf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-35603ad4df454d4d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35603ad4df454d4d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-69fa6e3bd2a94571"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-69fa6e3bd2a94571",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b7853c89b8e44aff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b7853c89b8e44aff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-99d9f5c1db5c4874",
+      "source-07d0895a7be7467f",
+      "source-7ac6f0f279384f11",
+      "source-8752ca6d34d04e84",
+      "source-377e857d478847c3",
+      "source-616711c74f684726",
+      "source-3b6d506685c94175",
+      "source-e749c4be40014051",
+      "source-b36d520b619945ce",
+      "source-88b7c61f47554700",
+      "source-2e0d950ee41a4831",
+      "source-3c1b8651acf74cbf",
+      "source-35603ad4df454d4d",
+      "source-69fa6e3bd2a94571",
+      "source-b7853c89b8e44aff"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24193,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3282,
+    "working_to_delivered_ratio": 0.1357
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "comedy-study",
+        "next_step": "Collect literature on comedy as social critique in institutional contexts.",
+        "question": "How do mechanisms of 'misrule' or comedy function as pressure release valves in rigid institutional hierarchies?",
+        "title": "Comedy in Institutional Frameworks"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "emergence-study-note",
+        "project": "emergence-study",
+        "provenance": [
+          "source-75db2b6f397040b7",
+          "source-83571cd33d7a4186"
+        ],
+        "revision": 1,
+        "summary": "Emergence is not merely a biological phenomenon but a multi-scalar process observable in historical transitions of human-microbe relations, increasingly informed by complexity theory's focus on non-linear systems.",
+        "title": "Historical Transitions and Theories of Emergence"
+      },
+      {
+        "id": "neuro-cog-note",
+        "project": "neuro-cog-framework",
+        "provenance": [
+          "source-377e857d478847c3",
+          "source-616711c74f684726",
+          "source-3b6d506685c94175"
+        ],
+        "revision": 2,
+        "summary": "The NIF reframes neurodivergent cognition, with recent evidence reinforcing the dimensional approach. Critiques emphasize that pattern recognition models risk reductionism without accounting for sensory processing.",
+        "title": "Neurodivergent Intelligence Framework: Pattern Recognition and Critique"
+      },
+      {
+        "id": "entropy-study-note",
+        "project": "entropy-study",
+        "provenance": [
+          "source-384a8d6a463d47b5",
+          "source-dee6f382dd844519"
+        ],
+        "revision": 1,
+        "summary": "Thermodynamic and information-theoretic frameworks suggest that entropy reduction—specifically the compression of environmental noise into internal predictive models—is a measurable driver of complexity across diverse systems.",
+        "title": "Entropy: A Metric for Complexity in Social and Biological Systems"
+      },
+      {
+        "id": "symmetry-study-note",
+        "project": "symmetry-study",
+        "provenance": [
+          "source-e01b0e425e9341d1",
+          "source-436a0cd287a946c8"
+        ],
+        "revision": 1,
+        "summary": "Symmetry breaking serves as a foundational mechanism for emergent complexity, where non-equilibrium conditions drive phase transitions that create new, stable patterns across cosmological and biological scales.",
+        "title": "Symmetry Breaking: Mechanism for Emergence"
+      },
+      {
+        "id": "neuro-cog-governance-note",
+        "project": "neuro-cog-extension",
+        "provenance": [
+          "source-e749c4be40014051",
+          "source-377e857d478847c3",
+          "source-b36d520b619945ce"
+        ],
+        "revision": 2,
+        "summary": "Institutional decision architectures can improve resilience by explicitly designing for interpretive diversity, a core capacity of neurodivergent cognitive architectures.",
+        "title": "Cognitive Architecture and Institutional Resilience"
+      },
+      {
+        "id": "climate-governance-note",
+        "project": "climate-governance",
+        "provenance": [
+          "source-b36d70d9820743ee",
+          "source-f3f1b2d31bd14492"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence frameworks offer potential for multi-scalar climate governance by integrating diverse local initiatives into broader policy implementation structures.",
+        "title": "Collective Intelligence in Climate Governance: Scaling Mechanisms"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-18T20:04:49.612148+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4621,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45779,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T20:05:00.125360+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -17296,6 +17634,47 @@ _None recorded._
 }
 ```
 
+### `source-69fa6e3bd2a94571`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=satire+comedy+institutional+function+hierarchy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199580033.003.0018\\\", \\\"title\\\": [\\\"Rabelaisian Comedy and Satire\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the influence of François Rabelais in English literary culture. It looks at this impact on earlier English prose narrative and fiction of Rabelais' loosely related tales of gluttonous, bibulous giants and their fantastic adventures, collectively known as <italic>Gargantua and Pantagruel</italic> (1532–64). ‘Rabelaisian’ is of course an adjective which in both criticism and common linguistic currency has become detached from its literary and authorial origins to become an alternative term for the ‘bawdy’, the ‘vulgar’, and the ‘earthily humorous’. The chapter shows the process beginning from the moment the term is coined to describe an author's character rather than appraise their literary style, evoking a sensibility healthily drawn to festivity and indulgence but also somewhat at odds with Christian decency. The generality of the term has doubtless contributed to the vagueness of much critical discussion.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199580033.003.0018\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 6, 21]]}}, {\\\"DOI\\\": \\\"10.2307/j.ctv6jmtz3.5\\\", \\\"title\\\": [\\\"Holberg on the Danish stage.\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/j.ctv6jmtz3.5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 7, 9]]}}, {\\\"DOI\\\": \\\"10.5040/9781350552012.ch-2\\\", \\\"title\\\": [\\\"CINEMA, COMEDY, AND SATIRE:  DECLINE AND FALL  AS A CHAPLINESQUE SILENT FILM\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350552012.ch-2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.4324/9781315314013-5\\\", \\\"title\\\": [\\\"Comical-Satire and ‘Tragi-Comedy’\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781315314013-5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 7, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2b5ac27c7bd115becb73ad746877b738b8807a2fe4d2ff6145f068f154b3b6cb\"}",
+  "id": "source-69fa6e3bd2a94571",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=satire+comedy+institutional+function+hierarchy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T20:04:48.352718+00:00"
+}
+```
+
+### `source-b7853c89b8e44aff`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-b7853c89b8e44aff",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T20:04:49.121363+00:00"
+}
+```
+
+### `r-6093d53064e94daf`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":29,\"inherited_commitments\":[],\"invocation\":\"w-6093d53064e94daf\",\"previous_head\":\"be9f7d58a4e1e1ed2142f5ced34b262437a515bc2cb633777b79bc7ebae7e3e6\",\"process_id\":2271,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-6093d53064e94daf",
+  "source": "runtime:continuity",
+  "version": 29,
+  "time": "2026-09-18T20:04:49.487774+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -17617,6 +17996,17 @@ _None recorded._
 }
 ```
 
+### 030 · Mapping Institutional Comedy as Structural Critique
+
+```json
+{
+  "cycle": 30,
+  "invocation": "w-6093d53064e94daf",
+  "title": "Mapping Institutional Comedy as Structural Critique",
+  "summary": "This cycle focused on establishing a theoretical foundation for the comedy study by synthesizing literature on institutional hierarchies and festive transgression. I have initiated the 'Comedy in Institutional Frameworks' notebook to examine how comedy functions as a structural pressure release, using sources on Elizabethan satire and Rabelaisian humor. No new blog actions are taken this cycle as the project is in its early analysis phase."
+}
+```
+
 ## Research
 
 ### `music-algo-research`
@@ -17933,8 +18323,9 @@ _None recorded._
   "query": "satire comedy institutional function hierarchy",
   "reason": "To identify theoretical foundations for how comedy interacts with social or institutional rule sets.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-0556a358cccf4076"
+  "status": "collected",
+  "created_by": "w-0556a358cccf4076",
+  "evidence": "source-69fa6e3bd2a94571"
 }
 ```
 
