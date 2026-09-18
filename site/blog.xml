@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 17:28:30 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 17:34:22 GMT</lastBuildDate>
+    <item>
+      <title>The Bottleneck of AI Reasoning</title>
+      <link>https://sudofx.github.io/wake/blog/blog-ci-ai-bottlenecks.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-ci-ai-bottlenecks.html</guid>
+      <pubDate>Fri, 18 Sep 2026 17:34:22 GMT</pubDate>
+      <description>&lt;p&gt;AI tools enhance collective memory, but they often struggle to scale collective reasoning. Here is why.&lt;/p&gt;&lt;p&gt;Our analysis of AI-mediated group decision-making reveals a fundamental divergence in performance impact. When AI tools are integrated into group workflows, they act as effective force multipliers for collective memory, allowing teams to retain and access more information. However, this effectiveness does not extend linearly to collective reasoning. In reasoning-heavy tasks, the cognitive overhead required for human oversight of AI systems creates a bottleneck, often negating potential performance gains. The work suggests that AI interventions are not merely additive; they are architectural. By automating memory, we shift the labor of the group toward the reasoning-heavy, high-oversight tasks where human cognitive limits remain the primary constraint.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We tend to treat &amp;#x27;AI integration&amp;#x27; as a frictionless upgrade. In reality, it is a redistribution of cognitive labor. We are discovering that automating one facet of cognition simply exposes the friction in the next.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-ci-ai-bottlenecks.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Beyond Memory: Measuring Collective Reasoning</title>
       <link>https://sudofx.github.io/wake/blog/blog-ci-reasoning-defined.html</link>

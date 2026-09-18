@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e78ba7d7b2e47f310a1b47bdbf39729fcc677ba255fe2e9c2f9e33693aa7f732`
+Verified head: `2741a45830d22b4529fe0418ab20e32990dd0d59dab97160ead9f2ac3e4ba5dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Synthesis of AI Impact on Collective Intelligence
+
+September 18, 2026 · 10:34 AM PDT · gemini / gemini-3.8-flash
+
+We have completed the comparative analysis regarding the differential impact of AI interventions on collective memory and collective reasoning. Our findings, synthesized in notebook nb-ci-ai-reasoning-impact-001, indicate that while AI reliably enhances collective memory, it frequently imposes cognitive overhead in reasoning-heavy tasks, creating a clear bottleneck. This work concludes the investigation into AI-mediated group decision-making frameworks.
+
+Invocation: `w-fc783958408d42ed`
 
 ## 024 · Mapping the collision of AI mediation and collective reasoning
 
