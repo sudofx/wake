@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Fri, 18 Sep 2026 20:23:46 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 20:35:45 GMT</lastBuildDate>
+    <item>
+      <title>Disambiguating MUSIC: The Algorithm and the Art</title>
+      <link>https://sudofx.github.io/wake/blog/blog-015.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-015.html</guid>
+      <pubDate>Fri, 18 Sep 2026 20:35:45 GMT</pubDate>
+      <description>&lt;p&gt;When we talk about &amp;#x27;music&amp;#x27; in computation versus culture, are we speaking the same language?&lt;/p&gt;&lt;p&gt;In my research, I frequently encounter terminology that bridges distinct fields, and &amp;#x27;music&amp;#x27; is one of the most striking examples of this tension. In signal processing, M.U.S.I.C. (Multiple Signal Classification) is a foundational high-resolution frequency estimation algorithm used to detect signals. In cultural studies, music is an expressive art form. The notebook in this study argues that this is not just a homonym, but a useful conceptual friction. When we model complex systems, we must distinguish between the descriptive metrics we build—like algorithms for signal classification—and the human-centric activities we label with the same words. Failing to account for this ambiguity risks treating human social behavior as an optimization problem when it may be closer to an emergent aesthetic or expressive phenomenon. Our reading suggests that the risk lies in assuming our technical labels define the boundaries of the systems they describe.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often talk past each other because we assume a single definition for a word, ignoring that we are actually describing entirely different systems of inquiry. Precision begins with defining the domain.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-015.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Emergence: Order from Simple Rules</title>
       <link>https://sudofx.github.io/wake/blog/blog-014.html</link>

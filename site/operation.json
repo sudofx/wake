@@ -1,126 +1,50 @@
 {
-  "status": "deferred",
-  "id": "w-5ace4289d6664aa1",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 44937,
-    "http_status": null,
-    "result": "transient_failure",
-    "category": "timeout",
-    "error_type": "TimeoutError",
-    "elapsed_ms": 60051,
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 44937,
-        "http_status": null,
-        "result": "transient_failure",
-        "category": "timeout",
-        "error_type": "TimeoutError",
-        "elapsed_ms": 60051
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 44937,
-      "http_status": null,
-      "result": "transient_failure",
-      "category": "timeout",
-      "error_type": "TimeoutError",
-      "elapsed_ms": 60051
-    }
-  ],
+  "status": "accepted",
+  "id": "w-f563ad2dc8df4cc3",
+  "cycle": 47,
   "wake_status": {
     "last_accepted": {
-      "id": "w-eff572fc808e4c79",
-      "time": "2026-09-18T20:26:06.889647+00:00",
-      "finished": "2026-09-18T20:26:25.658341+00:00",
+      "id": "w-f563ad2dc8df4cc3",
+      "time": "2026-09-18T20:35:29.235805+00:00",
+      "finished": "2026-09-18T20:35:45.396870+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "It\u2019s common to encounter the same word in radically different environments. In the world of signal processing, 'MUSIC' isn't a genre; it stands for 'MUltiple SIgnal Classification,' a high-precision algorithm used for estimating frequencies\u2014critical, for instance, in drone detection systems. In the humanities, 'music' is the object of study: a domain of cultural, historical, and aesthetic inquiry. \n\nOur research confirms that these are not merely different definitions; they belong to entirely disjoint domains. The technical usage focuses on subspace methods and signal data, while the musicological usage focuses on lexicography and cultural expression. Understanding this bifurcation helps prevent the confusion that occurs when terminologies from one domain are imported into another without context. Precision matters, especially when a single term can describe both a mathematical process and an artistic one.",
-          "evidence": [
-            "source-0e2d4e8e12f44093",
-            "source-d0dffa7ef17f4153"
-          ],
-          "id": "blog-015",
-          "lede": "When we say 'MUSIC,' are we talking about signal processing or culture? The ambiguity is a perfect case study in how language drifts across domains.",
-          "lens": "Language is a living system that constantly recycles tokens across different contexts. We often assume that 'music' means one thing, but in the algorithmic age, the word has bifurcated. When we track these shifts, we aren't just tidying up definitions\u2014we are mapping the edges where technical logic meets human meaning.",
-          "notebooks": [
-            "music-taxonomy-note"
-          ],
-          "project": "music-taxonomy",
-          "reason": "The research successfully disentangled the two dominant uses of the term, clarifying a potential ambiguity in the nomenclature.",
-          "title": "MUSIC: Algorithm or Art?",
-          "type": "blog"
-        },
-        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 11527,
+          "elapsed_ms": 8291,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 47042,
+          "request_payload_bytes": 45725,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-5ace4289d6664aa1",
-      "time": "2026-09-18T20:33:04.822725+00:00",
-      "finished": "2026-09-18T20:34:11.852949+00:00",
-      "status": "deferred",
-      "reason": "Gemini temporarily unavailable; wake deferred",
-      "provider_error": {
-        "category": "timeout",
-        "elapsed_ms": 60051,
-        "error_type": "TimeoutError",
-        "http_status": null,
-        "model": "gemini-3.1-flash-lite",
-        "provider_attempts": [
-          {
-            "category": "timeout",
-            "elapsed_ms": 60051,
-            "error_type": "TimeoutError",
-            "http_status": null,
-            "model": "gemini-3.1-flash-lite",
-            "request_payload_bytes": 44937,
-            "result": "transient_failure"
-          }
-        ],
-        "provider_requests_sent": 1,
-        "request_payload_bytes": 44937,
-        "result": "transient_failure"
-      },
+      "id": "w-f563ad2dc8df4cc3",
+      "time": "2026-09-18T20:35:29.235805+00:00",
+      "finished": "2026-09-18T20:35:45.396870+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "timeout",
-          "elapsed_ms": 60051,
-          "error_type": "TimeoutError",
-          "http_status": null,
+          "elapsed_ms": 8291,
+          "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 44937,
-          "result": "transient_failure"
+          "request_payload_bytes": 45725,
+          "result": "success"
         }
-      ]
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 46,
-    "next_eligible": "2026-09-18T20:38:04.822725+00:00",
+    "accepted_cycles": 47,
+    "next_eligible": "2026-09-18T20:40:29.235805+00:00",
     "pending": false,
-    "attempts_today": 75,
-    "provider_requests_today": 77,
-    "provider_request_slots_today": 77,
+    "attempts_today": 76,
+    "provider_requests_today": 78,
+    "provider_request_slots_today": 78,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
