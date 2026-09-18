@@ -4,8 +4,9 @@ provider = "gemini"
 model = "gemini-3.8-flash"
 # Ordered availability failover only; each model is attempted at most once.
 gemini_fallback_models = ["gemini-3.5-flash", "gemini-3.1-flash-lite"]
-# Local ceiling, not a claim about Google's current allowance.
+# Legacy aggregate ceiling for compatibility. Live Gemini budgeting uses the per-model RPD buckets below.
 daily_call_limit = 20
+model_daily_call_limits = { "gemini-3.8-flash" = 20, "gemini-3.5-flash" = 20, "gemini-3.1-flash-lite" = 500 }
 max_context_chars = 48000
 max_output_tokens = 8192
 timeout_seconds = 60
