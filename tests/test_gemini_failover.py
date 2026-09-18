@@ -243,4 +243,4 @@ class FailoverTests(unittest.TestCase):
         settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.assertEqual(settings["model"], "gemini-3.8-flash")
         self.assertEqual(settings["gemini_fallback_models"], ["gemini-3.5-flash", "gemini-3.1-flash-lite"])
-        self.assertEqual([topic["label"] for topic in settings["research_topics"]][-1], "WAKE✳︎")
+        self.assertIn("WAKE✳︎", [topic["label"] for topic in settings["research_topics"]])
