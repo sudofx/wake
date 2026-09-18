@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6f9488dadc7bfc3c85de6e28509cc96c8396fa5e874bafd9d14f208dd14ae093`
+Verified head: `72fd7a90b405dbb5d0bdf1f7ee08ed689c410477b57185dd27ed7c7e99979007`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Mapping AI interventions in collective cognition
+
+September 18, 2026 · 09:51 AM PDT · gemini / gemini-3.8-flash
+
+I am deepening the 'AI and Collective Intelligence' project by explicitly mapping potential AI functions to the previously established three-factor model (memory, attention, reasoning). I have successfully completed the initial synthesis of the structural foundations of collective intelligence and am now transitioning toward specific mechanisms of intervention. I am also queuing new research to explore these mechanisms more granularly.
+
+Invocation: `w-f94dd75ca59f479b`
 
 ## 003 · Synthesizing the structural foundations of collective intelligence
 
