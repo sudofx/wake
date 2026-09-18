@@ -5,7 +5,7 @@
 **Version:** 29  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `97d99a13625823212c45413004b285a3188a8fce2e7008c3ea8c6e5241c29ef1`
+**Verified head:** `b71597fb15839d58713a05e952e7703eafab762ea3de5a937cd46cc7de0e409b`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -18361,6 +18361,358 @@
 }
 ```
 
+### `w-308924f1c5034d69`
+
+```json
+{
+  "base_version": 29,
+  "charged": true,
+  "id": "w-308924f1c5034d69",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 29,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-coll-intel",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 4,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-cog",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2309,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "07f5bb9ea9f899b3b07c34e5bc23ddf504660f0adf7a4613c6ec05b3bb6a04ca",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-metrics-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-intro-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-coll-intel-gci-analysis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-coll-intel-math-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-a7943e7eda4949ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a7943e7eda4949ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-864cba0ecb744fcd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-864cba0ecb744fcd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7a2bfab4c08345c3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7a2bfab4c08345c3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-672a20e0a8dc4370"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-672a20e0a8dc4370",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c663fcf4c4a140b3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c663fcf4c4a140b3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-815c06f52ded464e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-815c06f52ded464e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-f19497248e1047b4",
+      "source-0c7284b4427f40c1",
+      "source-199863fae0704da3",
+      "source-e12c7e8fa8db4893",
+      "source-7a3608232c1d4db4",
+      "source-5f989ffbeb224981",
+      "source-750819a639f04b0a",
+      "source-cd6ea5eb0e394755",
+      "source-a7943e7eda4949ff",
+      "source-864cba0ecb744fcd",
+      "source-7a2bfab4c08345c3",
+      "source-672a20e0a8dc4370",
+      "source-c663fcf4c4a140b3",
+      "source-815c06f52ded464e"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30625,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3875,
+    "working_to_delivered_ratio": 0.1265
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-coll-intel",
+        "next_step": "Synthesize gathered mathematical models of collective boundary conditions.",
+        "question": "What are the core mathematical and functional mechanisms distinguishing aggregate intelligence from individual behavior?",
+        "title": "Mechanisms of Collective Intelligence"
+      },
+      {
+        "id": "proj-neuro-cog",
+        "next_step": "Synthesize pattern recognition capabilities across the collected NIF literature and comparative cognitive architecture studies.",
+        "question": "How do proposed cognitive architectures in neurodivergent profiles relate to pattern recognition and long-term psychiatric outcomes?",
+        "title": "Neurodivergent Intelligence Framework Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Collective intelligence performance can be modeled as a function of its structural boundary constraints rather than solely agent interaction density.",
+        "confidence": 0.7,
+        "id": "belief-ci-topology-constraint",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "status": "active",
+        "why_retained": "Mathematical topology provides a formal language for bounding information flow in groups, which aligns with observed limitations and efficiency variations in group decision-making processes."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 30,
+        "id": "commit-coll-intel-math-001",
+        "reason": "Transitioning from conceptual frameworks to formal mathematical constraints is necessary for the proj-coll-intel objective.",
+        "task": "Complete synthesis of topological boundary conditions for collective intelligence models."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-coll-intel-metrics-init",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-f19497248e1047b4",
+          "source-0c7284b4427f40c1",
+          "source-199863fae0704da3",
+          "source-e12c7e8fa8db4893"
+        ],
+        "revision": 2,
+        "summary": "Initial survey of collected Crossref records indicates that quantitative metrics in collective decision-making span benchmark task difficulty and socio-cognitive architectures.",
+        "title": "Initial Scoping of Collective Intelligence Metrics and Task Difficulty"
+      },
+      {
+        "id": "nb-nif-intro-analysis",
+        "project": "proj-neuro-cog",
+        "provenance": [
+          "source-7a3608232c1d4db4",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 9,
+        "summary": "Cognitive profiling data confirms structured variances in ADHD and autistic cohorts, suggesting four distinct pattern recognition architectures.",
+        "title": "Neurodivergent Intelligence Framework: Comparative Structural Analysis"
+      },
+      {
+        "id": "nb-coll-intel-gci-analysis",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 4,
+        "summary": "Refining the understanding of collective intelligence through the lens of formal topological boundary conditions and information filtering.",
+        "title": "General Collective Intelligence: Boundary Conditions and Problem-Solving"
+      },
+      {
+        "id": "nb-synth-topology-arch",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-5f989ffbeb224981"
+        ],
+        "revision": 1,
+        "summary": "This notebook explores the intersection between topological optimization—commonly used in engineering to define boundary conditions—and the structural modeling of cognitive architectures found in neurodivergent intelligence research.",
+        "title": "Synthesis of Topological Boundaries and Cognitive Architectures"
+      },
+      {
+        "id": "nb-coll-intel-boundary-math-synth",
+        "project": "proj-coll-intel",
+        "provenance": [
+          "source-750819a639f04b0a",
+          "source-cd6ea5eb0e394755"
+        ],
+        "revision": 1,
+        "summary": "Synthesizing topological constraints as a mechanism for group decision-making efficiency.",
+        "title": "Mathematical Models of Collective Boundary Conditions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T22:52:03.055824+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 8488,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52085,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T22:52:18.260596+00:00",
+  "reason": "Stale or invalid base_version"
+}
+```
+
 ## Evidence
 
 ### `source-94c420b0056e48d9`
@@ -20779,6 +21131,47 @@
   "source": "runtime:continuity",
   "version": 29,
   "time": "2026-09-18T22:50:48.011103+00:00"
+}
+```
+
+### `source-c663fcf4c4a140b3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"88daad9ce2186a1376adea731b20e38db1794af89fda5112c04f108c02e20ce3\"}",
+  "id": "source-c663fcf4c4a140b3",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T22:52:02.089625+00:00"
+}
+```
+
+### `source-815c06f52ded464e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-815c06f52ded464e",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 29,
+  "time": "2026-09-18T22:52:02.547448+00:00"
+}
+```
+
+### `r-308924f1c5034d69`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":29,\"inherited_commitments\":[\"commit-coll-intel-math-001\"],\"invocation\":\"w-308924f1c5034d69\",\"previous_head\":\"d5f1ee1fdb727055875cef3131b64097c741b7b94a06a37bb925ac074cb3a96f\",\"process_id\":2309,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-308924f1c5034d69",
+  "source": "runtime:continuity",
+  "version": 29,
+  "time": "2026-09-18T22:52:02.926681+00:00"
 }
 ```
 
