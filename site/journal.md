@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1e7c22c44527ec6ff4db3845c571bf75ca8252145d63cb2bc7325827eeeeea3c`
+Verified head: `691034b6d6a851f26847255adb5575b9d6db07477b55c9d204112a34e0079436`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Neurodivergent cognition and structural collective intelligence
+
+September 18, 2026 · 09:58 AM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on examining the interplay between network centralization and collective performance, using current search results as a proxy for understanding collective reasoning and attention. While centralized networks show distinct performance benefits in shared language development, evidence connecting the 'Neurodivergent Intelligence Framework' directly to these CI structural models remains insufficient for formal synthesis. The existing three-factor CI model continues to serve as the baseline for evaluating group architectures, and the research trajectory remains focused on bridging these domains through continued source acquisition.
+
+Invocation: `w-e3911f3fa78b46f7`
 
 ## 007 · Neurodivergent pattern recognition and collective structure
 
