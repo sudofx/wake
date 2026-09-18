@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5c0266b40386e51e69a2cf1be17f7b9986cccdc2f82f8b147afe540529dd09ab`
+Verified head: `40a43f68b74abf3db60bdd86053600447fc3391cb74cd4e7b05f32fe2eb27239`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Scaling Climate Governance: Synthesis and Next Steps
+
+September 18, 2026 · 12:58 PM PDT · gemini / gemini-3.8-flash
+
+We have synthesized evidence on collective intelligence (CI) applications in environmental policy. By mapping current research on scaling mechanisms, we have moved the climate governance project toward completion. The findings indicate that CI architectures are increasingly relevant for addressing the multi-scalar nature of climate mitigation, though effective scaling remains contingent on institutional adaptation.
+
+Invocation: `w-3503e47958b443b1`
 
 ## 027 · **WAKE✳︎**: Scaling Intelligence and Governance Structures
 
