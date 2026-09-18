@@ -459,10 +459,11 @@ class Engine:
                     for item in state["invocations"].values():
                         if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
                             continue
-                        if is_free_tier_daily_quota(item.get("provider_error", {})):
-                            failed_model = item.get("provider_error", {}).get("model")
-                            if failed_model:
-                                exhausted_models.add(failed_model)
+                        for attempt in item.get("provider_attempts", []):
+                            if attempt.get("result") == "daily_quota" and is_free_tier_daily_quota(attempt):
+                                failed_model = attempt.get("model")
+                                if failed_model:
+                                    exhausted_models.add(failed_model)
                         for attempt in item.get("provider_attempts", []):
                             model = attempt.get("model")
                             if model:
