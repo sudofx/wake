@@ -5,7 +5,7 @@
 **Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `eae1ccc146c6f4a83b8e33472b5f00d4fac488cf794d7ba4bf474afa35f30620`
+**Verified head:** `8f227913db514fd4d2fc754cdfa8a2c6a18e8568edbdbfa28d2706155d06f5b2`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1885,6 +1885,245 @@ _None recorded._
 }
 ```
 
+### `w-19a1d42bcf364890`
+
+```json
+{
+  "base_version": 5,
+  "charged": true,
+  "id": "w-19a1d42bcf364890",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 5,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "ci-research",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Collective Intelligence Landscapes"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "emergence-study",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Emergence in Historical Systems"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2241,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "4593b96fd05abee3ada657f6da140140ac9f1d5cd9eb98aeb49b32fa45331dbe",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-e743cc9718fc49ed"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e743cc9718fc49ed",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a63cd184ab744d99"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a63cd184ab744d99",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d56e11aef7b743e1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d56e11aef7b743e1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8a65fb35b91b4344"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8a65fb35b91b4344",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-12a470e1855c4d83"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-12a470e1855c4d83",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-03c9616b064246df"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-03c9616b064246df",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-e743cc9718fc49ed",
+      "source-a63cd184ab744d99",
+      "source-d56e11aef7b743e1",
+      "source-8a65fb35b91b4344",
+      "source-12a470e1855c4d83",
+      "source-03c9616b064246df"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27961,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1691,
+    "working_to_delivered_ratio": 0.0605
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-research",
+        "next_step": "Review abstracts concerning AI-enhanced collective memory, attention, and reasoning.",
+        "question": "How is the field of Collective Intelligence evolving in the context of recent AI integration?",
+        "title": "Collective Intelligence Landscapes"
+      },
+      {
+        "id": "emergence-study",
+        "next_step": "Synthesize the historical emergence transitions identified in existing literature.",
+        "question": "How do historic transitions in human-microbe relations inform current theories of emergence?",
+        "title": "Emergence in Historical Systems"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "music-taxonomy-note",
+        "project": "music-taxonomy",
+        "provenance": [
+          "source-07c3805f950c466e",
+          "source-74aa821b50c44386"
+        ],
+        "revision": 1,
+        "summary": "The term 'MUSIC' functions as both a cultural category and a technical acronym, creating significant noise in bibliographic datasets.",
+        "title": "Disambiguating 'MUSIC': Algorithm vs. Art"
+      },
+      {
+        "id": "ci-landscape-note",
+        "project": "ci-research",
+        "provenance": [
+          "source-99d9f5c1db5c4874",
+          "source-07d0895a7be7467f"
+        ],
+        "revision": 1,
+        "summary": "Collective intelligence (CI) is increasingly theorized through hierarchical frameworks involving memory, attention, and reasoning, with AI serving as a socio-technical control system.",
+        "title": "Collective Intelligence: Memory, Attention, and Reasoning"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-18T19:06:20.913614+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5018,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49054,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-18T19:06:29.926375+00:00",
+  "reason": "Only open commitments can be resolved"
+}
+```
+
 ## Evidence
 
 ### `source-07c3805f950c466e`
@@ -2215,6 +2454,47 @@ _None recorded._
 }
 ```
 
+### `source-12a470e1855c4d83`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=AI+systems+governance+collective+intelligence+framework&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2139/ssrn.6110147\\\", \\\"title\\\": [\\\"Collective Severance Events: A Governance Framework for Population-Level AI Relationship Management\\\"], \\\"abstract\\\": \\\"<jats:p>When AI companion platforms discontinue services or undergo radical behavioral modification, the consequences extend beyond consumer inconvenience to encompass genuine psychological harm at population scale. Analysis of documented cases from companion chatbot platforms and established psychological theory introduces two governanceoriented constructs, namely perceived relational history (PRH), referring to users' accumulated sense of shared temporal experience with AI systems, and collective severance events (CSE), referring to platform-level decisions that simultaneously disrupt high-PRH relationships for large numbers of users. These constructs address a critical gap in AI governance, which is that current regulatory frameworks attend extensively to how AI systems begin, including their training data, deployment conditions, and operational safety, while remaining systematically inattentive to how they end. The paper argues that CSEs represent a distinct category of AI-related harm that requires dedicated governance attention and proposes that existing consumer protection and AI safety frameworks can be extended to address this emerging challenge without entirely new regulatory architectures.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.6110147\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.1109/ais69919.2026.11621232\\\", \\\"title\\\": [\\\"A Governance Framework for the Generative AI Commons\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/ais69919.2026.11621232\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 5]]}}, {\\\"DOI\\\": \\\"10.1109/icaiset66439.2026.11542162\\\", \\\"title\\\": [\\\"AI-Assisted Bias Detection and Fairness Auditing in Engineering Performance Evaluation Systems: A Responsible AI Governance Framework\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/icaiset66439.2026.11542162\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 4, 21]]}}, {\\\"DOI\\\": \\\"10.17762/ijisae.v14i1s.8221\\\", \\\"title\\\": [\\\"Augmenting Retail Intelligence: A Human–AI Framework for Operational Decision-Making and Digital Governance\\\"], \\\"URL\\\": \\\"https://doi.org/10.17762/ijisae.v14i1s.8221\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 2, 14]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"0989009b416409282e3a85bae42f678e3af55eeac755a4aaa83cb15e5c3b7ec9\"}",
+  "id": "source-12a470e1855c4d83",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=AI+systems+governance+collective+intelligence+framework&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-18T19:06:20.517010+00:00"
+}
+```
+
+### `source-03c9616b064246df`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"aa8ffd2a9fd6f629e872244e50d21e08d96d6a4f1664602da13b471798b4147c\"}",
+  "id": "source-03c9616b064246df",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-18T19:06:20.851576+00:00"
+}
+```
+
+### `r-19a1d42bcf364890`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":5,\"inherited_commitments\":[],\"invocation\":\"w-19a1d42bcf364890\",\"previous_head\":\"f1878d4a63e4cea1a6732faa4989e6b61ea63078af4e45a010093ce733b1fc4c\",\"process_id\":2241,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-19a1d42bcf364890",
+  "source": "runtime:continuity",
+  "version": 5,
+  "time": "2026-09-18T19:06:20.896083+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE✳ Research: Music and Signals
@@ -2332,8 +2612,9 @@ _None recorded._
   "query": "AI systems governance collective intelligence framework",
   "reason": "To acquire a second distinct, high-quality source to validate the theoretical framework of 'governance-gated' collective intelligence systems and meet notebook publication requirements.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-89138b948ed64a67"
+  "status": "collected",
+  "created_by": "w-89138b948ed64a67",
+  "evidence": "source-12a470e1855c4d83"
 }
 ```
 
