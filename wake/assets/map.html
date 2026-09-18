@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAP / WAKE✳︎</title><script>try{if(localStorage.getItem('wake-theme')==='dark')document.documentElement.dataset.theme='dark'}catch{}</script>
+<title>MAP / WAKE✳︎</title><script>try{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}catch{}</script>
 <style>/* MAP_STYLE */
 /* NAV_STYLE */</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml">
 <link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml">
