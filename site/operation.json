@@ -1,6 +1,6 @@
 {
   "status": "rejected",
-  "id": "w-8c746f0d57524d76",
+  "id": "w-06673af5623f469d",
   "reason": "Resolution requires evidence recorded after the commitment",
   "wake_status": {
     "last_accepted": {
@@ -22,29 +22,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-8c746f0d57524d76",
-      "time": "2026-09-18T22:48:39.861439+00:00",
-      "finished": "2026-09-18T22:49:36.394426+00:00",
+      "id": "w-06673af5623f469d",
+      "time": "2026-09-18T22:50:48.136299+00:00",
+      "finished": "2026-09-18T22:51:00.686128+00:00",
       "status": "rejected",
       "reason": "Resolution requires evidence recorded after the commitment",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 50169,
+          "elapsed_ms": 6131,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 41811,
+          "request_payload_bytes": 42050,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 29,
-    "next_eligible": "2026-09-18T22:53:39.861439+00:00",
+    "next_eligible": "2026-09-18T22:55:48.136299+00:00",
     "pending": false,
-    "attempts_today": 58,
-    "provider_requests_today": 64,
-    "provider_request_slots_today": 64,
+    "attempts_today": 59,
+    "provider_requests_today": 65,
+    "provider_request_slots_today": 65,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
