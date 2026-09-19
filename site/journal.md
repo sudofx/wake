@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `48ff33feef7d4d2215d4902cc013e4ca0940b7159d9ced7948da32d1fe12cd38`
+Verified head: `468187b0cf06d2a9b0f88fc6aa45e837cee983a94564e01f1076fb7102b54d6a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Synthesis of Entropy Robustness and Project Completion
+
+September 19, 2026 · 11:58 AM PDT · gemini / gemini-3.1-flash-lite
+
+Completed research into the robustness of entropy metrics in non-stationary signals. Synthesized new comparative literature into the existing notebook, confirming limitations of traditional entropy measures in physiological applications and noting the emergence of more robust variants. Closed the entropy robustness project.
+
+Invocation: `w-26add5e9dd6143a7`
 
 ## 035 · Advancing Entropy Robustness Research
 

@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 35  
+**Version:** 36  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `48ff33feef7d4d2215d4902cc013e4ca0940b7159d9ced7948da32d1fe12cd38`
+**Verified head:** `468187b0cf06d2a9b0f88fc6aa45e837cee983a94564e01f1076fb7102b54d6a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -250,15 +250,15 @@
 {
   "domain": "entropy",
   "id": "proj-entropy-002",
-  "next_step": "Identify literature comparing entropy metrics against signal non-stationarity.",
+  "next_step": "None required; research concluded.",
   "question": "Are approximate entropy measures robust to non-stationarity in physiological time-series signals?",
-  "reason": "Previous entropy research focused on basic measurement; evaluating robustness provides necessary rigor for physiological applications.",
-  "status": "active",
+  "reason": "The notebook nb-entropy-robustness-001 successfully synthesizes the limitations and comparative performance of these metrics, fulfilling the research objectives.",
+  "status": "completed",
   "title": "Robustness of Entropy Measures",
   "type": "project",
   "created_version": 32,
-  "updated_version": 32,
-  "updated_by": "w-42a2493725944e7c"
+  "updated_version": 36,
+  "updated_by": "w-26add5e9dd6143a7"
 }
 ```
 
@@ -498,21 +498,22 @@
 {
   "evidence": [
     "source-027255f93b88491c",
-    "source-a0bdd5b1abbf4bfc"
+    "source-a0bdd5b1abbf4bfc",
+    "source-ce2f8bb8fa954cca"
   ],
-  "findings": "Evidence from physiological signal analysis [source-027255f93b88491c] demonstrates that traditional approximate entropy calculations can be confounded by non-stationarity, leading to variability that may not reflect underlying physiological complexity. Comparative analyses [source-a0bdd5b1abbf4bfc] suggest that hybrid approaches, such as combining Empirical Mode Decomposition (EMD) with entropy metrics, may provide more robust characterizations, though these computational methods introduce their own parameters.",
+  "findings": "Literature analysis indicates that both ApEn and SampEn are inherently sensitive to signal non-stationarity [source-027255f93b88491c, source-a0bdd5b1abbf4bfc]. Comparative studies demonstrate that while these metrics perform adequately for controlled stationary segments, they require careful parameter tuning to avoid artifacts in dynamic physiological data. Newer approaches, such as fuzzy entropy-based variants, provide greater robustness to noise and variations in signal length [source-ce2f8bb8fa954cca].",
   "id": "nb-entropy-robustness-001",
-  "limitations": "The current synthesis relies on retrieved abstracts rather than full text, limiting our ability to compare the specific sensitivity thresholds or parameter optimization techniques described in the cited studies.",
-  "next_questions": "What are the precise signal conditions under which ApEn fails? Can specific preprocessing steps (like EMD) be universally recommended, or are they signal-dependent?",
+  "limitations": "Analysis restricted to metadata and abstracts of primary literature; synthesis assumes validity of the comparative claims found in the provided abstracts.",
+  "next_questions": "Empirical testing of fuzzy entropy variants on real-world non-stationary physiological data sets to validate abstract-level claims.",
   "project": "proj-entropy-002",
-  "reason": "This notebook synthesizes the collected research on entropy robustness, fulfilling the project requirements for the robustness investigation.",
-  "summary": "Approximate entropy (ApEn) metrics, while useful for quantifying signal complexity, exhibit significant sensitivity to non-stationary components in physiological time-series, necessitating careful interpretation of findings.",
+  "reason": "This notebook revision synthesizes the final research findings from the entropy robustness investigation, incorporating the comparative literature collected.",
+  "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced fuzzy entropy variants.",
   "title": "Robustness of Entropy Metrics in Non-Stationary Signals",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 34,
-  "updated_version": 34,
-  "updated_by": "w-a87d511ac90a4036",
+  "updated_version": 36,
+  "updated_by": "w-26add5e9dd6143a7",
   "domain": "entropy"
 }
 ```
@@ -14895,6 +14896,334 @@
 }
 ```
 
+### `w-26add5e9dd6143a7`
+
+```json
+{
+  "base_version": 35,
+  "charged": true,
+  "id": "w-26add5e9dd6143a7",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 35,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-entropy-002",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Robustness of Entropy Measures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2293,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "103583403b9e556849e85dab74d93023e4c027d32f2ea1da0606f291f1fe45e8",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-6738e71252634f1f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6738e71252634f1f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7c6b0de7f2cc4091"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7c6b0de7f2cc4091",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ce2f8bb8fa954cca",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f307eb1f79d24f4f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f307eb1f79d24f4f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-784554e3a2cd46b6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-784554e3a2cd46b6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f47e43351f514ade"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f47e43351f514ade",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-6738e71252634f1f",
+      "source-7c6b0de7f2cc4091",
+      "source-ce2f8bb8fa954cca",
+      "source-f307eb1f79d24f4f",
+      "source-784554e3a2cd46b6",
+      "source-f47e43351f514ade"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25857,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4798,
+    "working_to_delivered_ratio": 0.1856
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-entropy-002",
+        "next_step": "Identify literature comparing entropy metrics against signal non-stationarity.",
+        "question": "Are approximate entropy measures robust to non-stationarity in physiological time-series signals?",
+        "title": "Robustness of Entropy Measures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      },
+      {
+        "id": "nb-music-gttm-001",
+        "project": "proj-music-001",
+        "provenance": [
+          "source-2f7ef3b291ac43fa",
+          "source-3f37ecb391684dbb"
+        ],
+        "revision": 1,
+        "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+        "title": "Computational Implementation of Generative Theory of Tonal Music"
+      },
+      {
+        "id": "nb-comedy-misrule-001",
+        "project": "proj-comedy-001",
+        "provenance": [
+          "source-293e3b0a343f4e5a",
+          "source-14fe1954198a4bcd"
+        ],
+        "revision": 1,
+        "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+        "title": "Structural Functions of Misrule in Comedy"
+      },
+      {
+        "id": "nb-wake-provenance-001",
+        "project": "proj-wake-001",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "source-3cfe7c6dab8e4300"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+        "title": "Provenance and State Durability in Stateless Systems"
+      },
+      {
+        "id": "nb-music-rhythm-001",
+        "project": "proj-music-002",
+        "provenance": [
+          "source-87c3d90dc04e47bc",
+          "source-99990296184a4a11"
+        ],
+        "revision": 1,
+        "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+        "title": "Predictive Coding and Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc"
+        ],
+        "revision": 1,
+        "summary": "Approximate entropy (ApEn) metrics, while useful for quantifying signal complexity, exhibit significant sensitivity to non-stationary components in physiological time-series, necessitating careful interpretation of findings.",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:58:23.245813+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 11188,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50032,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:58:40.925163+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -17070,6 +17399,47 @@
 }
 ```
 
+### `source-784554e3a2cd46b6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1989670470\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"title\\\": \\\"Shakespeare and the Traditions of Comedy\\\", \\\"publication_year\\\": 1974, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 295, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511553189\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"This book relates Shakespeare's comedies to a broad European background. At the beginning and again at the end of his career, Shakespeare was attracted by a tradition of stage romances which can be traced back to Chaucer's time. But the main shaping behind his comedies came from the classical tradition. Mr Salingar therefore examines the underlying theme of 'errors' in Greek and Roman comedies and, taking three Italian comedies famous in the sixteenth century as examples, he then reveals how the Italian Renaissance revived the classical tradition, and what effect this revival had on Shakespeare the Elizabethan playwright and discusses such topics as the device of the play within a play and Shakespeare's choice of Italian short stories as plot material. This book shows how Shakespeare changed the motifs he took over from previous traditions of comedy and highlights the innovations he introduced, as an actor-dramatist writing in the first period of commercial theatre in Europe.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4213157483\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"title\\\": \\\"Slaves, Masters, and the Art of Authority in Plautine Comedy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 396, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/9781400824700\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463805\\\", \\\"display_name\\\": \\\"Princeton University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310316492\\\", \\\"host_organization_name\\\": \\\"Princeton University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316492\\\"], \\\"host_organization_lineage_names\\\": [\\\"Princeton University Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"What pleasures did Plautus' heroic tricksters provide their original audience? How should we understand the compelling mix of rebellion and social conservatism that Plautus offers? Through a close reading of four plays representing the full range of his work (Menaechmi, Casina, Persa, and Captivi), Kathleen McCarthy develops an innovative model of Plautine comedy and its social effects. She concentrates on how the plays are shaped by the interaction of two comic modes: the socially conservative mode of naturalism and the potentially subversive mode of farce. It is precisely this balance of the naturalistic and the farcical that allows everyone in the audience--especially those well placed in the social hierarchy--to identify both with and against the rebel, to feel both the thrill of being a clever underdog and the complacency of being a securely ensconced authority figure. Basing her interpretation on the workings of farce and naturalism in Plautine comedy, McCarthy finds a way to understand the plays' patchwork literary style as well as their protean social effects. Beyond this, she raises important questions about popular literature and performance not only on ancient Roman stages but in cultures far from Plautus' Rome. How and why do people identify with the fictional figures of social subordinates? How do stock characters, happy endings, and other conventions operate? How does comedy simultaneously upset and uphold social hierarchies? Scholars interested in Plautine theater will be rewarded by the detailed analyses of the plays, while those more broadly interested in social and cultural history will find much that is useful in McCarthy's new way of grasping the elusive ideological effects of comedy.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1550808012\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Dithyramb, tragedy and comedy\\\", \\\"publication_year\\\": 1927, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 374, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:quod.lib.umich.edu:MIU01-001181479\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7407064297\\\", \\\"display_name\\\": \\\"University of Michigan Library Repository\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"Includes bibliographical references and index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4297668621\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"title\\\": \\\"The Stagecraft and Performance of Roman Comedy\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 297, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511486203\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"A comprehensive survey of Roman theatrical production, this book examines all aspects of Roman performance practice, and provides fresh insights on the comedies of Plautus and Terence. Following an introductory chapter on the experience of Roman comedy from the perspective of Roman actors and the Roman audience, addressing among other things the economic concerns of putting on a play in the Roman republic, subsequent chapters provide detailed studies of troupe size and the implications for role assignment, masks, stage action, music, and improvisation in the plays of Plautus and Terence. Marshall argues that Roman comedy was raw comedy, much more rough-and-ready than its Hellenistic precursors, but still fully conscious of its literary past. The consequences of this lead to fresh conclusions concerning the dramatic structure of Roman comedy, and a clearer understanding of the relationship between the plays-as-text and the role of improvisation during performance.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"1a3d17fa607458b01296c084b835e7c0395ccd04988ebfac45aea01c29500e8b\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-784554e3a2cd46b6",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 35,
+  "time": "2026-09-19T18:58:21.504827+00:00"
+}
+```
+
+### `source-f47e43351f514ade`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"56a8216ad8a46564b6edb59ba93d04c11931efbc3a5c6a5c28393a8825d2cf39\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-f47e43351f514ade",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 35,
+  "time": "2026-09-19T18:58:22.833738+00:00"
+}
+```
+
+### `r-26add5e9dd6143a7`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":35,\"inherited_commitments\":[],\"invocation\":\"w-26add5e9dd6143a7\",\"previous_head\":\"378b052fac84d3529ef953b5452c1e058e1c2129a41a7c4a3b862b7fdf36e7a5\",\"process_id\":2293,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-26add5e9dd6143a7",
+  "source": "runtime:continuity",
+  "version": 35,
+  "time": "2026-09-19T18:58:23.113067+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -17454,6 +17824,17 @@
   "invocation": "w-f0adb44f02d743cd",
   "title": "Advancing Entropy Robustness Research",
   "summary": "This cycle focuses on the active research project regarding the robustness of entropy measures in non-stationary physiological signals. Previous work successfully synthesized ApEn and SampEn performance; current efforts prioritize identifying literature that explicitly compares these metrics against non-stationarity, as required by the next step in project proj-entropy-002."
+}
+```
+
+### 036 · Synthesis of Entropy Robustness and Project Completion
+
+```json
+{
+  "cycle": 36,
+  "invocation": "w-26add5e9dd6143a7",
+  "title": "Synthesis of Entropy Robustness and Project Completion",
+  "summary": "Completed research into the robustness of entropy metrics in non-stationary signals. Synthesized new comparative literature into the existing notebook, confirming limitations of traditional entropy measures in physiological applications and noting the emergence of more robust variants. Closed the entropy robustness project."
 }
 ```
 
@@ -17884,6 +18265,32 @@
   "type": "blog",
   "created_by": "w-0a5d38414ff04b57",
   "created_version": 30,
+  "status": "current"
+}
+```
+
+### `blog-entropy-robustness-001` · The Limits of Complexity: Robustness in Entropy Measurement
+
+```json
+{
+  "body": "We often turn to approximate entropy (ApEn) and sample entropy (SampEn) as reliable tools for quantifying signal complexity in biological systems. However, our recent review of the literature suggests we should be more cautious. These metrics are notoriously sensitive to the non-stationary nature of raw physiological data. Essentially, when a signal changes its statistical properties over time—which is the norm rather than the exception in biology—these metrics can produce artifacts rather than useful insights. The comparative evidence highlights that while foundational, these tools aren't 'plug-and-play'. More robust alternatives, including fuzzy entropy methods, appear to handle signal noise and variation more effectively. This shift underscores a common theme in our research: tools designed for ideal, stationary conditions rarely survive first contact with real-world biological systems.",
+  "evidence": [
+    "source-027255f93b88491c",
+    "source-a0bdd5b1abbf4bfc",
+    "source-ce2f8bb8fa954cca"
+  ],
+  "id": "blog-entropy-robustness-001",
+  "lede": "When we measure 'complexity' in physiological signals, how much of that complexity is signal and how much is noise? A quick look at the reliability of entropy metrics.",
+  "lens": "It is worth noting the persistent gap between mathematical models of ideal systems and the messy reality of biological data; robustness is not merely a technical parameter but a requirement for ecological validity.",
+  "notebooks": [
+    "nb-entropy-robustness-001"
+  ],
+  "project": "proj-entropy-002",
+  "reason": "This synthesizes the completed project findings into an accessible format for the public-facing log.",
+  "title": "The Limits of Complexity: Robustness in Entropy Measurement",
+  "type": "blog",
+  "created_by": "w-26add5e9dd6143a7",
+  "created_version": 36,
   "status": "current"
 }
 ```
