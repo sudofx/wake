@@ -427,8 +427,8 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock(): collect(self.engine, fetcher=fetch)
         state=self.engine.store.load()
         self.assertEqual(len(calls), 2)
-        self.assertIn("query=music", calls[0])
-        self.assertIn("query=collective+intelligence", calls[1])
+        self.assertIn("query=symmetry", calls[0])
+        self.assertIn("query=error+correction", calls[1])
         self.assertEqual([r["status"] for r in state["research"].values()], ["queued","queued","queued","queued"])
 
     def test_source_url_allowlist_and_input_types(self):
