@@ -306,32 +306,37 @@ def transition(state, proposal, invocation, historical=False):
             keys(action, expected, "Blog post")
             identifier(action["id"])
             require(action["id"] not in result["posts"], "Blog post ID already exists")
+            reflection_due = (state["version"] + 1) % 10 == 0
             require(action["project"] in result["projects"], "Blog post needs an existing project")
             for key, limit in (("title", 120), ("lede", 500), ("body", 6000), ("reason", 1000)):
                 text(action[key], key, limit)
             require(len(action["body"].strip()) >= 300, "Blog posts must contain at least 300 characters")
             if "lens" in action:
                 text(action["lens"], "Bob's Lens", 320)
-            require(isinstance(action["notebooks"], list) and 1 <= len(action["notebooks"]) <= 3
-                    and len(set(action["notebooks"])) == len(action["notebooks"]),
-                    "Blog posts must reference 1–3 distinct notebooks")
+            require(isinstance(action["notebooks"], list)
+                    and len(set(action["notebooks"])) == len(action["notebooks"])
+                    and (0 <= len(action["notebooks"]) <= 3 if reflection_due else 1 <= len(action["notebooks"]) <= 3),
+                    "Blog posts must reference 1–3 distinct notebooks, except ten-cycle reflections may use none")
             notebooks = [result["notebooks"].get(item) for item in action["notebooks"]]
             require(all(notebook and notebook["project"] == action["project"] for notebook in notebooks),
                     "Blog notebooks must exist and belong to the related project")
-            references(action["evidence"], result)
+            require(isinstance(action["evidence"], list), "Blog evidence must be a list")
+            if action["evidence"]:
+                references(action["evidence"], result)
             cited = [result["evidence"][item] for item in action["evidence"]]
-            require(all(item.get("actor") == "collector" and item.get("scope") == "collected" for item in cited),
-                    "Blog research support must use collected external evidence")
-            require(len({item["source"] for item in cited}) >= 2,
-                    "Blog posts need evidence from at least two distinct source URLs")
-            if not historical:
-                verification = _verification_evidence(
-                    cited, result["projects"][action["project"]]["domain"], "Blog body")
-                if verification:
-                    _verify_claim_support(action["body"], verification, "Blog body")
-            notebook_evidence = {item for notebook in notebooks for item in notebook["evidence"]}
-            require(set(action["evidence"]) <= notebook_evidence,
-                    "Blog evidence must be traceable through its referenced notebooks")
+            if not reflection_due:
+                require(all(item.get("actor") == "collector" and item.get("scope") == "collected" for item in cited),
+                        "Blog research support must use collected external evidence")
+                require(len({item["source"] for item in cited}) >= 2,
+                        "Blog posts need evidence from at least two distinct source URLs")
+                if not historical:
+                    verification = _verification_evidence(
+                        cited, result["projects"][action["project"]]["domain"], "Blog body")
+                    if verification:
+                        _verify_claim_support(action["body"], verification, "Blog body")
+                notebook_evidence = {item for notebook in notebooks for item in notebook["evidence"]}
+                require(set(action["evidence"]) <= notebook_evidence,
+                        "Blog evidence must be traceable through its referenced notebooks")
             supersedes = action.get("supersedes")
             if supersedes:
                 require(supersedes in result["posts"], "A correction must reference an existing blog post")
