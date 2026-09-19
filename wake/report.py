@@ -440,19 +440,12 @@ def _human_page(title, subtitle, body, head, raw_href, markdown_href):
 </style><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Bob’s Blog\" href=\"https://sudofx.github.io/wake/blog.xml\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"WAKE Journal\" href=\"https://sudofx.github.io/wake/journal.xml\"></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"https://sudofx.github.io/wake/\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\" aria-pressed=\"false\" aria-label=\"Use dark theme\">DARK</button></div><div class=\"eyebrow\">READABLE EXPORT</div><h1>{html.escape(title)}</h1><p>{html.escape(subtitle)}</p><p class=\"meta\">Verified head: <code>{html.escape(head)}</code></p><nav><a href=\"index.html\">Main journal</a><a href=\"map.html\">MAP</a><a href=\"{html.escape(markdown_href)}\">Markdown source</a><a href=\"{html.escape(raw_href)}\">Raw data</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');b.setAttribute('aria-pressed',String(d))}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
 
 # ---------------------------------------------------------------------------
-
 # STEP: _human_events_html
-
 #
-
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
 # ---------------------------------------------------------------------------
 
 def _human_events_html(events, head):
@@ -585,19 +578,12 @@ def _reading_page(title, eyebrow, body, source_href, back_href="../index.html"):
 </style><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Bob’s Blog\" href=\"https://sudofx.github.io/wake/blog.xml\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"WAKE Journal\" href=\"https://sudofx.github.io/wake/journal.xml\"></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"https://sudofx.github.io/wake/\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\">DARK</button></div><div class=\"eyebrow\">{html.escape(eyebrow)}</div><h1>{html.escape(title)}</h1><nav><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(source_href)}\">Markdown source</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
 
 # ---------------------------------------------------------------------------
-
 # STEP: _notebook_html
-
 #
-
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
 # ---------------------------------------------------------------------------
 
 def _notebook_html(notebook, state):
