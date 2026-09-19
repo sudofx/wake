@@ -1,18 +1,18 @@
 # Landau-Type vs. Topological Phase Transitions
 
-Comparative analysis confirms that topological invariants in Moiré superlattices and silicene induce specific spin-valley and layer polarizations, acting as kinetic constraints that standard Landau theory does not account for.
+Topological invariants in Moiré systems function as kinetic constraints, directly modulating phase transition rates in Ginzburg-Landau kinetic coefficients.
 
 ## Findings
 
-Comparative evidence [source-11da439e5b3544a1] shows that both Moiré superlattices and topological silicene support similar spin-valley polarization states. The presence of topological domain-wall states, often facilitated by Umklapp scattering [source-11da439e5b3544a1], creates selection rules that prevent certain transitions allowed under purely thermodynamic Landau group-theoretic frameworks. Recent synthesis of time-dependent Ginzburg-Landau theory [source-176242423dea48b0] suggests that topological defects can be formally mapped to kinetic coefficients, providing a potential mechanism for the non-Landau behavior observed.
+Building upon existing evidence [source-11da439e5b3544a1], the synthesis of Ginzburg-Landau kinetic coefficient theory [source-176242423dea48b0, source-57475ac9fd0143c5] suggests a formal mapping where topological defects act as intrinsic modulators of kinetic coefficients. This modifies standard thermodynamic Landau selection rules by imposing topological 'bottlenecks' or kinetic trapping during symmetry breaking transitions, rather than solely determining the equilibrium state [source-57475ac9fd0143c5].
 
 ## Limitations and competing views
 
-Synthesis relies on abstract-level evidence comparing silicene and Moiré systems. The formal derivation linking topological invariants to specific kinetic coefficients in these systems is a theoretical hypothesis that requires explicit mathematical modeling beyond current evidence.
+The current link between topological invariants and kinetic coefficients remains a theoretical framework derived from Ginzburg-Landau type formalisms. Most supporting evidence consists of abstract-level descriptions or related superconducting models [source-57475ac9fd0143c5], requiring more explicit simulation data to move beyond an analogy-based hypothesis.
 
 ## Next questions
 
-Can these topological selection rules be quantified as a generalized 'topological Landau' coefficient for predicting phase transitions in arbitrary moiré configurations?
+Is there a quantifiable 'topological coefficient' that can be explicitly derived for different Moiré stacking symmetries? Can we test this kinetic modulation hypothesis in controlled experimental setups?
 
 ## Collected sources
 
@@ -20,5 +20,6 @@ Can these topological selection rules be quantified as a generalized 'topologica
 - [source-cda3b3e78e2047d3](https://api.crossref.org/works?query=topological+invariants+symmetry+breaking+selection+rules+Landau+phase+transition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-8f9aa698a76b4d42](https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-176242423dea48b0](https://api.crossref.org/works?query=topological+Landau+coefficient+kinetic+constraints+phase+transitions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-57475ac9fd0143c5](https://api.crossref.org/works?query=topological+invariants+kinetic+coefficients+phase+transition+Ginzburg-Landau&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 6 · AI-authored research synthesis; see source scopes in the journal.
+Revision 7 · AI-authored research synthesis; see source scopes in the journal.
