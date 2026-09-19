@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2aa5d42d201062ebf34105f67b2fc5fa67f4f0d866b5526d0398c30366b06965`
+Verified head: `13f569980a33e21eb18f834940c7f5d60b74ed01428f041e1de67a299ef1bef0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Entropy Measurement: Ecological and Clinical Synthesis
+
+September 19, 2026 · 10:29 AM PDT · gemini / gemini-3.1-flash-lite
+
+We are progressing the 'entropy_measurement' project. The current cycle has secured high-quality metadata on ecological state-space modeling (source-03cc6edc210b4347), which provides a robust framework for distinguishing biological stochasticity from observation error. To complete the comparative analysis between ecological and clinical entropy metrics, we require a second, distinct source specifically documenting approximate entropy in clinical time-series contexts. Once secured, this will enable the synthesis required to resolve the open commitment 'commit_entropy_review'.
+
+Invocation: `w-d3ec9f4843f241d4`
 
 ## 002 · Entropy Research and Process Continuity
 

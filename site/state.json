@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -159,6 +159,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-19T17:28:08.186823+00:00"
+    },
+    "source-03cc6edc210b4347": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=maximum+entropy+ecological+modeling+approximate+entropy+physiological+time+series&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W3167954679\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/ecm.1470\\\", \\\"title\\\": \\\"A guide to state-space modeling of ecological time series\\\", \\\"publication_year\\\": 2020, \\\"type\\\": \\\"preprint\\\", \\\"cited_by_count\\\": 288, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://arxiv.org/pdf/2002.02001\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:arXiv.org:2002.02001\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://arxiv.org/abs/2002.02001\\\", \\\"pdf_url\\\": \\\"https://arxiv.org/pdf/2002.02001\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306400194\\\", \\\"display_name\\\": \\\"arXiv (Cornell University)\\\", \\\"issn_l\\\": \\\"2331-8422\\\", \\\"issn\\\": [\\\"2331-8422\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/I205783295\\\", \\\"host_organization_name\\\": \\\"Cornell University\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/I205783295\\\"], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"State-space models (SSMs) are an important modeling framework for analyzing ecological time series. These hierarchical models are commonly used to model population dynamics, animal movement, and capture-recapture data, and are now increasingly being used to model other ecological processes. SSMs are popular because they are flexible and they model the natural variation in ecological processes separately from observation error. Their flexibility allows ecologists to model continuous, count, binary, and categorical data with linear or nonlinear processes that evolve in discrete or continuous time. Modeling the two sources of stochasticity separately allows researchers to differentiate between biological variation (e.g., in birth processes) and imprecision in the sampling methodology, and generally provides better estimates of the ecological quantities of interest than if only one source of stochasticity is directly modeled. Since the introduction of SSMs, a broad range of fitting procedures have been proposed. However, the variety and complexity of these procedures can limit the ability of ecologists to formulate and fit their own SSMs. We provide the knowledge for ecologists to create SSMs that are robust to common, and often hidden, estimation problems, and the model selection and validation tools that can help them assess how well their models fit their data. In this paper, we present a review of SSMs that will provide a strong foundation to ecologists interested in learning about SSMs, introduce new tools to veteran SSM users, and highlight promising research directions for statisticians interested in ecological applications. The review is accompanied by an in-depth tutorial that demonstrates how SSMs models can be fitted and validated in R. Together, the review and tutorial present an introduction to SSMs that will help ecologists to formulate, fit, and validate their models.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2108292915\\\", \\\"doi\\\": \\\"https://doi.org/10.1371/journal.pone.0032202\\\", \\\"title\\\": \\\"Predicting the Current and Future Potential Distributions of Lymphatic Filariasis in Africa Using Maximum Entropy Ecological Niche Modelling\\\", \\\"publication_year\\\": 2012, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 166, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0032202&type=printable\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1371/journal.pone.0032202\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1371/journal.pone.0032202\\\", \\\"pdf_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0032202&type=printable\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S202381698\\\", \\\"display_name\\\": \\\"PLoS ONE\\\", \\\"issn_l\\\": \\\"1932-6203\\\", \\\"issn\\\": [\\\"1932-6203\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315706\\\", \\\"host_organization_name\\\": \\\"Public Library of Science\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315706\\\"], \\\"host_organization_lineage_names\\\": [\\\"Public Library of Science\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"PLoS ONE\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Modelling the spatial distributions of human parasite species is crucial to understanding the environmental determinants of infection as well as for guiding the planning of control programmes. Here, we use ecological niche modelling to map the current potential distribution of the macroparasitic disease, lymphatic filariasis (LF), in Africa, and to estimate how future changes in climate and population could affect its spread and burden across the continent. We used 508 community-specific infection presence data collated from the published literature in conjunction with five predictive environmental/climatic and demographic variables, and a maximum entropy niche modelling method to construct the first ecological niche maps describing potential distribution and burden of LF in Africa. We also ran the best-fit model against climate projections made by the HADCM3 and CCCMA models for 2050 under A2a and B2a scenarios to simulate the likely distribution of LF under future climate and population changes. We predict a broad geographic distribution of LF in Africa extending from the west to the east across the middle region of the continent, with high probabilities of occurrence in the Western Africa compared to large areas of medium probability interspersed with smaller areas of high probability in Central and Eastern Africa and in Madagascar. We uncovered complex relationships between predictor ecological niche variables and the probability of LF occurrence. We show for the first time that predicted climate change and population growth will expand both the range and risk of LF infection (and ultimately disease) in an endemic region. We estimate that populations at risk to LF may range from 543 and 804 million currently, and that this could rise to between 1.65 to 1.86 billion in the future depending on the climate scenario used and thresholds applied to signify infection presence.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2115099498\\\", \\\"doi\\\": \\\"https://doi.org/10.1371/journal.pone.0000563\\\", \\\"title\\\": \\\"Locating Pleistocene Refugia: Comparing Phylogeographic and Ecological Niche Model Predictions\\\", \\\"publication_year\\\": 2007, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 536, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0000563&type=printable\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1371/journal.pone.0000563\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1371/journal.pone.0000563\\\", \\\"pdf_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0000563&type=printable\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S202381698\\\", \\\"display_name\\\": \\\"PLoS ONE\\\", \\\"issn_l\\\": \\\"1932-6203\\\", \\\"issn\\\": [\\\"1932-6203\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315706\\\", \\\"host_organization_name\\\": \\\"Public Library of Science\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315706\\\"], \\\"host_organization_lineage_names\\\": [\\\"Public Library of Science\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"PLoS ONE\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Ecological niche models (ENMs) provide a means of characterizing the spatial distribution of suitable conditions for species, and have recently been applied to the challenge of locating potential distributional areas at the Last Glacial Maximum (LGM) when unfavorable climate conditions led to range contractions and fragmentation. Here, we compare and contrast ENM-based reconstructions of LGM refugial locations with those resulting from the more traditional molecular genetic and phylogeographic predictions. We examined 20 North American terrestrial vertebrate species from different regions and with different range sizes for which refugia have been identified based on phylogeographic analyses, using ENM tools to make parallel predictions. We then assessed the correspondence between the two approaches based on spatial overlap and areal extent of the predicted refugia. In 14 of the 20 species, the predictions from ENM and predictions based on phylogeographic studies were significantly spatially correlated, suggesting that the two approaches to development of refugial maps are converging on a similar result. Our results confirm that ENM scenario exploration can provide a useful complement to molecular studies, offering a less subjective, spatially explicit hypothesis of past geographic patterns of distribution.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1981510969\\\", \\\"doi\\\": \\\"https://doi.org/10.1088/1367-2630/12/3/033025\\\", \\\"title\\\": \\\"Recurrence networks—a novel paradigm for nonlinear time series analysis\\\", \\\"publication_year\\\": 2010, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 622, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://iopscience.iop.org/article/10.1088/1367-2630/12/3/033025/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1088/1367-2630/12/3/033025\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1088/1367-2630/12/3/033025\\\", \\\"pdf_url\\\": \\\"https://iopscience.iop.org/article/10.1088/1367-2630/12/3/033025/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S148121101\\\", \\\"display_name\\\": \\\"New Journal of Physics\\\", \\\"issn_l\\\": \\\"1367-2630\\\", \\\"issn\\\": [\\\"136\", \"excerpt_truncated\": true, \"source_sha256\": \"a5f2687738582d353b0c9c20494d1c64df00ea7c82702ab922b0cad4a0c2dacc\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+      "id": "source-03cc6edc210b4347",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=maximum+entropy+ecological+modeling+approximate+entropy+physiological+time+series&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 2,
+      "time": "2026-09-19T17:29:29.512869+00:00"
+    },
+    "source-44b71cfc39d341f2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** is an experiment in durable, accountable work across interchangeable intelligences. Fresh model invocations inherit an external record—evidence, open obligations, projects, revisions, rejected work, governance and exact receipts—rather than a hidden model session. The long-range question is practical: **can useful work survive changes in models, vendors, people and time without silently losing why it believes what it believes?**\\n\\nIt does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.\\n\\nThe project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**\\n\\nResearch topics are dynamic and come only from `research-topics.toml`. They are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. In the present experiment, topics stand in for the varied input a future user or institution might supply.\\n\\nA trusted collector retrieves bounded public evidence before inference. Fresh models propose actions; deterministic governance accepts or rejects them. Live collected evidence is stamped by the collector and current notebook/blog publication requires corroborating material from multiple distinct collected source URLs in the project's configured topic. That is a useful garbage filter, **not proof of truth, source independence, scientific validity, or semantic entailment**.\\n\\nThe public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.\\n\\nThe included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## Quick setup — Gemini\\n\\nGemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.\\n\\n### 1. Clone and verify\\n\\n```sh\\ngit clone https://github.com/sudofx/wake.git\\ncd wake\\npython3 --version                 # Python 3.11+\\npython3 -m unittest discover -s tests -v\\n```\\n\\nNo Node, database server, or vendor SDK is required.\\n\\n### 2. Add your Gemini API key locally\\n\\nCreate a Gemini API key in Google AI Studio. Then:\\n\\n```sh\\ncp .env.example .env\\n```\\n\\nEdit `.env` so it contains:\\n\\n```text\\nGEMINI_API_KEY=your_key_here\\n```\\n\\n`.env` is ignored by Git. Never commit the key. If you intend to use a free-tier-only API project, verify billing is disabled for that Google project and leave `free_tier_confirmed = true` in `wake.toml` only when that statement is true.\\n\\n### 3. Configure the model and topics\\n\\nThe provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.\\n\\nResearch topics live **only** in `research-topics.toml`. Edit that file to change the experiment's inputs; do not hardcode topics into governance or prompts.\\n\\n### 4. Initialize and test locally\\n\\n```sh\\npython3 -m wake init\\npython3 -m wake wake\\npython3 -m wake audit\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nOpen `http://127.0.0.1:8000`. A live `wake` can consume Gemini quota. For a zero-call systems check, use the offline experiment in the previous section instead.\\n\\n### 5. Add the same key to GitHub Actions\\n\\nIn your GitHub repository:\\n\\n1. Open **Settings → Secrets and variables → Actions**.\\n2. Choose **New repository secret**.\\n3. Name it exactly `GEMINI_API_KEY`.\\n4. Paste the same Gemini API key and save it.\\n\\nDo **not** put the key in `wake.toml`, `research-topics.toml`, workflow YAML, Issues, Actions logs, or the public `wake-state` branch.\\n\\n### 6. Configure GitHub Actions permissions\\n\\nOpen **Settings → Actions → General**. Under **Workflow permissions**, select **Read and write permissions** and save. Leave Actions enabled for the repository.\\n\\nThe included workflow itself requests only the permissions it needs: `contents: write` for the durable state branch and `pages: write` / `id-token: write` for GitHub Pages deployment.\\n\\n### 7. Configure GitHub Pages\\n\\nOpen **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.\\n\\n### 8. Run the first cloud wake\\n\\nOpen **Actions → WAKE✳︎ — research & journal → Run workflow** and run it from the default branch. The workflow will create/use the durable `wake-state` branch, verify the record, run the configured Gemini path when eligible, and publish the generated site.\\n\\nA source-code push normally refreshes the site without spending a Gemini call. Scheduled ticks are best effort; durable eligibility prevents closely spaced scheduled deliveries from becoming concurrent writers.\\n\\n### 9. Verify the installation\\n\\nCheck that:\\n\\n- the workflow completes without an operator-attention failure;\\n- the Pages deployment succeeds;\\n- the public site loads;\\n- `wake-state` exists after the first stateful cloud run;\\n- the site reports the latest attempt separately from the latest accepted wake;\\n- **Verify the record** passes on `master`.\\n\\nAfter that, normal operation requires no open local computer.\\n\\nFor recovery behavior, quota semantics, reset controls and the exact cloud lifecycle, read [cloud operations](docs/cloud.md). For the trust boundary, read [architecture and limits](docs/architecture.md).\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Rev\", \"excerpt_truncated\": true, \"source_sha256\": \"60dd4c5b3c0cc6e07e794381a8b74947f0256360d07375ca03c5f26c4a8812e4\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+      "id": "source-44b71cfc39d341f2",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 2,
+      "time": "2026-09-19T17:29:29.679753+00:00"
+    },
+    "r-d3ec9f4843f241d4": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[\"commit_entropy_review\"],\"invocation\":\"w-d3ec9f4843f241d4\",\"previous_head\":\"7033901b7ef2c2338f4ac29cf515738be9dc3b2c9cc39efe600d37134c7f1709\",\"process_id\":2046,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d3ec9f4843f241d4",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-19T17:29:29.702299+00:00"
     }
   },
   "journal": [
@@ -173,6 +199,12 @@
       "invocation": "w-6978ac5935b449d2",
       "title": "Entropy Research and Process Continuity",
       "summary": "We are continuing the 'entropy_measurement' project. While the previous wake successfully identified the need for comparing approximate and maximum entropy models, we are now focused on refining the search for literature that bridges physiological and ecological applications. A commitment to review entropy literature remains open for the next cycle. We are also monitoring the system design through durable state verification."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-d3ec9f4843f241d4",
+      "title": "Entropy Measurement: Ecological and Clinical Synthesis",
+      "summary": "We are progressing the 'entropy_measurement' project. The current cycle has secured high-quality metadata on ecological state-space modeling (source-03cc6edc210b4347), which provides a robust framework for distinguishing biological stochasticity from observation error. To complete the comparative analysis between ecological and clinical entropy metrics, we require a second, distinct source specifically documenting approximate entropy in clinical time-series contexts. Once secured, this will enable the synthesis required to resolve the open commitment 'commit_entropy_review'."
     }
   ],
   "posts": {},
@@ -1197,6 +1229,223 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T17:28:14.330470+00:00",
       "reason": ""
+    },
+    "w-d3ec9f4843f241d4": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-d3ec9f4843f241d4",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "entropy_measurement",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Measuring Information and Physical Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2046,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "deb98dba2b8bfacfae871034463e04780534661ecdc9b071fdbe131352a97627",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_entropy_review",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-f4d7f1d5b31e4586"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f4d7f1d5b31e4586",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ed9b0f195aff4d74"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ed9b0f195aff4d74",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c807625dccfe4ec0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c807625dccfe4ec0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a698e0c0a0414333"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a698e0c0a0414333",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-03cc6edc210b4347"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-03cc6edc210b4347",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-44b71cfc39d341f2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-44b71cfc39d341f2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f4d7f1d5b31e4586",
+          "source-ed9b0f195aff4d74",
+          "source-c807625dccfe4ec0",
+          "source-a698e0c0a0414333",
+          "source-03cc6edc210b4347",
+          "source-44b71cfc39d341f2"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23623,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1392,
+        "working_to_delivered_ratio": 0.0589
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy_measurement",
+            "next_step": "Synthesize findings from clinical and ecological entropy literature into a preliminary notebook.",
+            "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+            "title": "Measuring Information and Physical Entropy"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+            "confidence": 1.0,
+            "id": "wake_system_design",
+            "provenance": [
+              "source-6cea09af14e345ae"
+            ],
+            "status": "active",
+            "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 3,
+            "id": "commit_entropy_review",
+            "reason": "To ensure continuity of the entropy research project across subsequent wakes.",
+            "task": "Review incoming search results for entropy concepts and draft an initial analysis notebook."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T17:29:29.715622+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 4941,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45494,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T17:29:38.450095+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -1237,8 +1486,19 @@
       "query": "maximum entropy ecological modeling approximate entropy physiological time series",
       "reason": "Expanding the search to explicitly link the ecological and physiological applications identified in the project scope.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-6978ac5935b449d2",
+      "evidence": "source-03cc6edc210b4347"
+    },
+    "research_entropy_clinical_v2": {
+      "domain": "entropy",
+      "id": "research_entropy_clinical_v2",
+      "project": "entropy_measurement",
+      "query": "approximate entropy physiological time series clinical application",
+      "reason": "We need a second distinct source regarding clinical/physiological applications of approximate entropy to synthesize with the ecological state-space modeling evidence.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-6978ac5935b449d2"
+      "created_by": "w-d3ec9f4843f241d4"
     }
   },
   "research_topics": [
