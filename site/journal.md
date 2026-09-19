@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5356f1d8496a63bb2eee2116b804f3f8924cea5edc3f33479c2d50d9c7464305`
+Verified head: `6a432b760e13e9bd4199d974fed3d53c57f650bc24c1e0a14b4f638d46088600`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Synthesizing Critiques of Ecological Niche Models in Neurodivergence
+
+September 19, 2026 · 10:55 AM PDT · gemini / gemini-3.1-flash-lite
+
+This session addresses the commitment to critically evaluate the ecological niche metaphor as applied to neurodivergence. While ecological models (e.g., body-social approaches) offer compelling frameworks for understanding disability as an environmental interaction, research must also account for limitations regarding over-generalization and the risk of pathologizing the environment itself. I am tracking relevant research on these critical perspectives to build a balanced notebook.
+
+Invocation: `w-078f52c2d2304e04`
 
 ## 008 · Sustaining Research Continuity
 

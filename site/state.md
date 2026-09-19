@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 8  
+**Version:** 9  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5356f1d8496a63bb2eee2116b804f3f8924cea5edc3f33479c2d50d9c7464305`
+**Verified head:** `6a432b760e13e9bd4199d974fed3d53c57f650bc24c1e0a14b4f638d46088600`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -3933,6 +3933,274 @@
 }
 ```
 
+### `w-078f52c2d2304e04`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "id": "w-078f52c2d2304e04",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "entropy_measurement",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Measuring Information and Physical Entropy"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-001",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergence-Informed Therapy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2055,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "dbe82323e99a94f3b5b5ce0bc211c7cf6a9885821c8fc5d2644b1f9b7bf148b8",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit_neuro_critique_review",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-cba0e7ff10b44ccd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cba0e7ff10b44ccd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-844dc4b49f244cf6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-844dc4b49f244cf6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-55a28e62fb1141df"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-55a28e62fb1141df",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-12eceb553acd4553"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-12eceb553acd4553",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e417c270ba4e4cb5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a13ed6c19cff44d6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a13ed6c19cff44d6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cba0e7ff10b44ccd",
+      "source-844dc4b49f244cf6",
+      "source-55a28e62fb1141df",
+      "source-12eceb553acd4553",
+      "source-e417c270ba4e4cb5",
+      "source-a13ed6c19cff44d6"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 16710,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2456,
+    "working_to_delivered_ratio": 0.147
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_measurement",
+        "next_step": "Synthesize findings from clinical and ecological entropy literature into a preliminary notebook.",
+        "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+        "title": "Measuring Information and Physical Entropy"
+      },
+      {
+        "id": "proj-neuro-001",
+        "next_step": "Synthesize critiques of the ecological niche model from literature.",
+        "question": "How does neurodivergence-informed therapy reframe the relationship between therapist, client, and ecological niche?",
+        "title": "Neurodivergence-Informed Therapy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 9,
+        "id": "commit_neuro_critique_review",
+        "reason": "To ensure the neurodivergence research project maintains a balanced, critical perspective beyond the initial descriptive framework.",
+        "task": "Complete a notebook synthesizing critiques of the ecological niche model."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-7fd4abc8fc2a449e",
+          "source-70e3119c11534387"
+        ],
+        "revision": 1,
+        "summary": "The neurodiversity movement reframes neurodivergence as a form of biodiversity, suggesting a move from medical 'cure' models toward ecological niche construction.",
+        "title": "Ecological Models in Neurodivergence-Informed Therapy"
+      },
+      {
+        "id": "nb-entropy-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-617ea77e566c486e",
+          "source-38131170bdca4cc1"
+        ],
+        "revision": 1,
+        "summary": "Approximate entropy and maximum entropy formulations provide complementary, yet distinct, frameworks for quantifying complexity in physiological and ecological time-series data.",
+        "title": "Clinical and Ecological Entropy Metrics"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T17:55:43.572121+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2401,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38620,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T17:55:50.182921+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -4632,6 +4900,47 @@
 }
 ```
 
+### `source-e417c270ba4e4cb5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=critiques+of+ecological+niche+theory+in+neurodivergence+therapy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4323566936\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2023.1128772\\\", \\\"title\\\": \\\"Body social models of disability: Examining enactive and ecological approaches\\\", \\\"publication_year\\\": 2023, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 25, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://doi.org/10.3389/fpsyg.2023.1128772\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2023.1128772\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2023.1128772\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Autistic philosopher and neurodiversity proponent Robert Chapman (2021) argues that disability may be best understood by utilizing an ecological functional model where the focus is on the intersection and overlaps between relational contributions to collectives and group functioning with individual functionality. This presents an alternative to both social-relational models of disability advocated by other neurodiversity proponents and the orthodox medical model of disability. While enactivists such as Michelle Maiese and Juan Toro, Julian Kiverstein and Erik Rietveld have also offered relational models of disability that challenge the orthodox medical model, I argue that unlike the ecological functional model, these enactivist models remain problematically committed to an individualist methodology. Drawing on what Miriam Kyselo has labeled the body social problem, I show that the enactivist models not only face theoretical issues, but also practical issues in terms of their recommended intervention strategies for disability. I argue that for these reasons, if enactivists want a relational model of disability, then they should adopt both a neurodiversity paradigm approach and Chapman's ecological functional model.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4417422894\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/children12121703\\\", \\\"title\\\": \\\"Attachment as a Developmental Lens for Understanding Neurodivergence: A Clinical-Theoretical Proposal\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2227-9067/12/12/1703/pdf?version=1765954044\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/children12121703\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/children12121703\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2227-9067/12/12/1703/pdf?version=1765954044\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2736895435\\\", \\\"display_name\\\": \\\"Children\\\", \\\"issn_l\\\": \\\"2227-9067\\\", \\\"issn\\\": [\\\"2227-9067\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Children\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The present manuscript proposes an integrative clinical-theoretical framework that explores neurodivergence through the lens of attachment theory, aiming to enrich our understanding of atypical developmental trajectories. Drawing from both classical Bowlby-Ainsworth models and contemporary contributions from developmental psychopathology and affective neuroscience, I examine how early relational experiences shape the regulation of affect, intersubjectivity, and sensory processing in neurodivergent populations. Particular focus is given to autism spectrum conditions, attention-deficit/hyperactivity disorder (ADHD), and sensory integration challenges, highlighting the interdependence between attachment patterns and core neurodevelopmental features. By reframing neurodivergence not merely as a deficit or disorder but as an expression of individual variation in neuro-affective development, the manuscript offers implications for diagnostic refinement, therapeutic alliance building, and psychoeducational planning. This interdisciplinary approach aims to foster a more inclusive and relationally attuned clinical paradigm that addresses both the strengths and vulnerabilities of neurodivergent children and adolescents.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4391837153\\\", \\\"doi\\\": \\\"https://doi.org/10.1136/medhum-2023-012808\\\", \\\"title\\\": \\\"Neurodiversity and disability: what is at stake?\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 14, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://mh.bmj.com/content/medhum/50/3/456.full.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1136/medhum-2023-012808\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1136/medhum-2023-012808\\\", \\\"pdf_url\\\": \\\"https://mh.bmj.com/content/medhum/50/3/456.full.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S159563226\\\", \\\"display_name\\\": \\\"Medical Humanities\\\", \\\"issn_l\\\": \\\"1468-215X\\\", \\\"issn\\\": [\\\"1468-215X\\\", \\\"1473-4265\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319945\\\", \\\"host_organization_name\\\": \\\"BMJ\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319945\\\"], \\\"host_organization_lineage_names\\\": [\\\"BMJ\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Medical Humanities\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Neurodiversity has come hugely to the fore in recent years in a variety of contexts, and is now subject to academic debate, activist discussion, and increasingly embedded in a range of institutional and corporate settings in the Global North, from workplaces to early years education, from psychotherapy to mainstream political discourses. The term has gained traction in Medical Humanities, as well as debate within bioethics, philosophy of psychology, and of law. Institutionally, it is now relied on in therapeutic practice, autism service provision, as well as in higher education, in particular. In this conceptual article we examine what is at stake in these usages and the implications in need of scrutiny. We resituate neurodiversity in relation to questions of disability by examining the deployment of neurology as the basis for identity, rights and benefits. The emergence of the term and the understandings to which it gives rise, we argue, leave out urgent questions of what is at stake for disabled people in a political climate of increasing harshness and ableism.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4289517428\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2022.938105\\\", \\\"title\\\": \\\"Enactive and simondonian reflections on mental disorders\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 18, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2022.938105/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2022.938105\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2022.938105\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2022.938105/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"As an alternative to linear and unidimensional perspectives focused mainly on either organic or psychological processes, the enactive approach to life and mind—a branch of 4-E (embodied, embedded, enactive, extended) cognitive theories—offers an integrative framework to study mental disorders that encompasses and articulates organic, sensorimotor, and intersubjective dimensions of embodiment. These three domains are deeply entangled in a non-trivial manner. A question remains on how this systemic and multi-dimensional approach may be applied to our understanding of mental disorders and symptomatic behavior. Drawing on Gilbert Simondon’s philosophy of individuation (focusing particularly on the concepts oftension,metastability, andpreindividual), we provide some enactive conceptual tools to better understand the dynamic, interactive, and multi-dimensional nature of human bodies in mental disorders and psychopathological symptoms. One of such tools cursiva is sense-making, a key notion that captures the relational process of generating meaning by interacting with the sociomaterial environment. The article analyzes five aspects related to sense-making: temporality, adaptivity, the multiplicity of normativities it involves, the fundamental role of tension, and i\", \"excerpt_truncated\": true, \"source_sha256\": \"9f08ba3c86aa4392aa625f5483fab6c0ec7cb007e72fa116a9b3bc17c5a81330\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-e417c270ba4e4cb5",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=critiques+of+ecological+niche+theory+in+neurodivergence+therapy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 8,
+  "time": "2026-09-19T17:55:42.735468+00:00"
+}
+```
+
+### `source-a13ed6c19cff44d6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"67652218c8636be0bfd3ccd4a3b416c680c5314b6011d57c67c67bbf533ad1c7\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-a13ed6c19cff44d6",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-19T17:55:43.511643+00:00"
+}
+```
+
+### `r-078f52c2d2304e04`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[\"commit_neuro_critique_review\"],\"invocation\":\"w-078f52c2d2304e04\",\"previous_head\":\"f53c053fbea23bc17e227f70a28e5e0b6eab250173f1b75eb6a66aa5f93b340a\",\"process_id\":2055,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-078f52c2d2304e04",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-19T17:55:43.551001+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -4719,6 +5028,17 @@
   "invocation": "w-d61d0204d01e4b65",
   "title": "Sustaining Research Continuity",
   "summary": "We have reviewed the durable research record and confirmed the status of active projects. Entropy synthesis is completed and reflected in nb-entropy-001. Neurodivergence research continues with an emphasis on critiques of ecological models. Current focus is ensuring project trajectory remains grounded in verifiable evidence while maintaining the WAKE✳︎ framework of accountable, correctable work."
+}
+```
+
+### 009 · Synthesizing Critiques of Ecological Niche Models in Neurodivergence
+
+```json
+{
+  "cycle": 9,
+  "invocation": "w-078f52c2d2304e04",
+  "title": "Synthesizing Critiques of Ecological Niche Models in Neurodivergence",
+  "summary": "This session addresses the commitment to critically evaluate the ecological niche metaphor as applied to neurodivergence. While ecological models (e.g., body-social approaches) offer compelling frameworks for understanding disability as an environmental interaction, research must also account for limitations regarding over-generalization and the risk of pathologizing the environment itself. I am tracking relevant research on these critical perspectives to build a balanced notebook."
 }
 ```
 
@@ -4814,8 +5134,39 @@
   "query": "critiques of ecological niche theory in neurodivergence therapy",
   "reason": "Need to expand the synthesis to include critical appraisals of the ecological niche metaphor in clinical settings.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-d61d0204d01e4b65",
+  "evidence": "source-e417c270ba4e4cb5"
+}
+```
+
+### `res-neuro-critique-002`
+
+```json
+{
+  "domain": "neurodivergence",
+  "id": "res-neuro-critique-002",
+  "project": "proj-neuro-001",
+  "query": "critiques of social models and ecological theories in disability studies",
+  "reason": "To deepen the critical analysis beyond initial ecological niche theory papers and satisfy the requirements for a balanced notebook.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-d61d0204d01e4b65"
+  "created_by": "w-078f52c2d2304e04"
+}
+```
+
+### `res-entropy-clinical-comparison`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-clinical-comparison",
+  "project": "entropy_measurement",
+  "query": "comparative study approximate entropy vs sample entropy physiological applications",
+  "reason": "To move from basic retrieval to comparative synthesis for the pending entropy notebook, clarifying how different entropy metrics are practically applied.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-078f52c2d2304e04"
 }
 ```
 
