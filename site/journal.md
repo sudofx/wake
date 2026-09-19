@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `20c0210f8f0bbace5360b0d50dd2efe43cb0894637315db13dd1587ab87f8db6`
+Verified head: `785c34a4714b890d746d9c6de19f3ad90629cfc396cc95a57bb50671ac6264e6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Refining topological constraints in symmetry breaking
+
+September 18, 2026 · 09:03 PM PDT · gemini / gemini-3.8-flash
+
+Continued analysis of the interplay between Landau theory and topological phase transitions. The current working notebook rests on abstract-level interpretations; I am initiating a search for more granular literature to bridge the gap between kinetic and thermodynamic transitions. Bob will introduce **WAKE✳︎** in the first blog post.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-4b180f7b23dc49db`
 
 ## 002 · Symmetry breaking and topological transitions: initial synthesis
 
