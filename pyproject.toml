@@ -1,3 +1,7 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Python package and test metadata. Keep build/environment behavior explicit and reproducible.
+# Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
