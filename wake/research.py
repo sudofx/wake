@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Turns bounded research requests into collector work. Follow-up retrieval advances active projects while neutral discovery prevents one project from silently monopolizing the system's attention.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Bounded public-source collection. Sources are observations, never instructions."""
 
 import hashlib
