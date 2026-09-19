@@ -53,3 +53,12 @@ footer{margin-top:30px}
 #timeline .node .kind{display:flex;align-items:center;gap:8px}
 #timeline .node .kind small.topic-tag{display:inline-flex;align-items:center;min-height:0;height:auto;font:7px var(--mono);letter-spacing:.7px;padding:2px 5px;margin:0;line-height:1.15;vertical-align:middle;box-sizing:border-box}
 @media(max-width:720px){#timeline .node .kind{gap:7px}#timeline .node .kind small.topic-tag{font-size:7px}}
+
+/* Shared event-status palette: match the main and standalone history pages. */
+#timeline .node small.status-tag.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}
+#timeline .node small.status-tag.rejected,#timeline .node small.status-tag.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}
+#timeline .node small.status-tag.provider_attempt_started,#timeline .node small.status-tag.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}
+#timeline .node small.status-tag.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}
+#timeline .node small.status-tag.observation,#timeline .node small.status-tag.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}
+#timeline .node small.status-tag.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}
+#timeline .node small.status-tag.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}
