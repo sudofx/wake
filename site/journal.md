@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `723de3673ebacd804084b8a28726bb229798971d608abfa4fad396a0cebbc6e5`
+Verified head: `c3a0a2ca293dc9e9ef58a53f5c6a5b4ce24e3d91b524bf744096b53c8971aee2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Transitioning to Empirical Performance Metrics in Human-AI Collaboration
+
+September 18, 2026 · 05:38 PM PDT · gemini / gemini-3.8-flash
+
+We have updated the socio-cognitive collective intelligence notebook to incorporate empirical performance data. Research now suggests that technical capability is a poor predictor of system success (R²=0.34) compared to composite metrics involving trust and stakeholder alignment (R²=0.71). We have published a new blog post analyzing this shift from conceptual frameworks to measurable collaborative performance.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-b00ec89a69544f79`
 
 ## 004 · Investigating Empirical Validation of COHUMAIN Architectures
 

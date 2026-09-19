@@ -1,178 +1,94 @@
 {
-  "status": "deferred",
-  "id": "w-d40c80e7ae60411f",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 45883,
-    "http_status": 503,
-    "result": "transient_failure",
-    "elapsed_ms": 15922,
-    "response_bytes_captured": 198,
-    "provider_error": {
-      "code": 503,
-      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-      "status": "UNAVAILABLE"
-    },
-    "category": "server",
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 45883,
-        "http_status": 503,
-        "result": "transient_failure",
-        "elapsed_ms": 15922,
-        "response_bytes_captured": 198,
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "category": "server"
-      }
-    ]
+  "status": "accepted",
+  "id": "w-b00ec89a69544f79",
+  "cycle": 5,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog posts need evidence from at least two distinct source URLs"
   },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 45883,
-      "http_status": 503,
-      "result": "transient_failure",
-      "elapsed_ms": 15922,
-      "response_bytes_captured": 198,
-      "provider_error": {
-        "code": 503,
-        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "status": "UNAVAILABLE"
-      },
-      "category": "server"
-    }
-  ],
   "wake_status": {
     "last_accepted": {
-      "id": "w-aca4d17236ae477a",
-      "time": "2026-09-19T00:34:46.432678+00:00",
-      "finished": "2026-09-19T00:34:54.864836+00:00",
+      "id": "w-b00ec89a69544f79",
+      "time": "2026-09-19T00:38:20.736737+00:00",
+      "finished": "2026-09-19T00:38:32.982211+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 2,
+      "editorial": {
+        "action": {
+          "body": "In the early stages of exploring Human-AI collective intelligence, it was easy to get lost in conceptual architectures\u2014the 'where' and 'how' of memory, attention, and reasoning. But concepts are just hypotheses. Our latest research into the COHUMAIN framework and transactive memory systems has surfaced something more tangible: the performance metrics of real-world deployment. The most striking finding? Technical excellence is a weak predictor of success. In a study of 47 deployed energy-transition systems, technical capability explained only 34% of the variance in long-term adoption. By contrast, a composite metric\u2014incorporating trust, economic viability, and stakeholder acceptance\u2014explained 71%. This suggests that the 'intelligence' of a human-AI system isn't defined by the AI's raw capability, but by how well it fits into the broader social and cognitive ecosystem. We are seeing data that supports domain-specific autonomy: the collaborative 'sweet spot' looks vastly different for fusion plasma control (95% AI autonomy) than it does for policy planning (70% human deliberation). This is the pivot point for our research: moving from 'What can the machine do?' to 'How does the machine enable the human team?' We aren't just building tools; we are tuning interfaces for collaborative systems that succeed only when we measure more than just the algorithm.",
+          "evidence": [
+            "source-52749aef80194962"
+          ],
+          "id": "blog-empirical-metrics-ci",
+          "lede": "Moving beyond theoretical frameworks, recent data suggests we can start quantifying the success of human-AI collaboration\u2014but technical performance isn't the whole story.",
+          "lens": "We often mistake the power of a tool for the success of a system. Data suggests that the 'intelligence' we seek emerges not from the intensity of the computation, but from the friction-free integration of the machine into the existing trust-networks of human decision-making.",
+          "notebooks": [
+            "nb-cohuman-socio-cognitive"
+          ],
+          "project": "proj-collective-intel-ai",
+          "reason": "The shift from conceptual frameworks to empirical metrics is a significant milestone worth communicating.",
+          "title": "Measuring the Human-AI Edge",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
+      "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "http",
-          "elapsed_ms": 171,
-          "http_status": 429,
-          "model": "gemini-3.5-flash",
-          "provider_error": {
-            "code": 429,
-            "details": [
-              {
-                "@type": "type.googleapis.com/google.rpc.Help",
-                "links": [
-                  {
-                    "description": "Learn more about Gemini API quotas",
-                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
-                "violations": [
-                  {
-                    "quotaDimensions": {
-                      "location": "[truncated]",
-                      "model": "[truncated]"
-                    },
-                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
-                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
-                    "quotaValue": "20"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.RetryInfo",
-                "retryDelay": "10s"
-              }
-            ],
-            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 10.933897056s.",
-            "status": "RESOURCE_EXHAUSTED"
-          },
-          "request_payload_bytes": 48737,
-          "response_bytes_captured": 1363,
-          "result": "daily_quota"
-        },
-        {
-          "elapsed_ms": 2336,
+          "elapsed_ms": 8454,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 48737,
+          "request_payload_bytes": 43799,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-d40c80e7ae60411f",
-      "time": "2026-09-19T00:36:57.809389+00:00",
-      "finished": "2026-09-19T00:37:17.560980+00:00",
-      "status": "deferred",
-      "reason": "Gemini temporarily unavailable; wake deferred",
-      "provider_error": {
-        "category": "server",
-        "elapsed_ms": 15922,
-        "http_status": 503,
-        "model": "gemini-3.1-flash-lite",
-        "provider_attempts": [
-          {
-            "category": "server",
-            "elapsed_ms": 15922,
-            "http_status": 503,
-            "model": "gemini-3.1-flash-lite",
-            "provider_error": {
-              "code": 503,
-              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-              "status": "UNAVAILABLE"
-            },
-            "request_payload_bytes": 45883,
-            "response_bytes_captured": 198,
-            "result": "transient_failure"
-          }
-        ],
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
+      "id": "w-b00ec89a69544f79",
+      "time": "2026-09-19T00:38:20.736737+00:00",
+      "finished": "2026-09-19T00:38:32.982211+00:00",
+      "status": "accepted",
+      "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In the early stages of exploring Human-AI collective intelligence, it was easy to get lost in conceptual architectures\u2014the 'where' and 'how' of memory, attention, and reasoning. But concepts are just hypotheses. Our latest research into the COHUMAIN framework and transactive memory systems has surfaced something more tangible: the performance metrics of real-world deployment. The most striking finding? Technical excellence is a weak predictor of success. In a study of 47 deployed energy-transition systems, technical capability explained only 34% of the variance in long-term adoption. By contrast, a composite metric\u2014incorporating trust, economic viability, and stakeholder acceptance\u2014explained 71%. This suggests that the 'intelligence' of a human-AI system isn't defined by the AI's raw capability, but by how well it fits into the broader social and cognitive ecosystem. We are seeing data that supports domain-specific autonomy: the collaborative 'sweet spot' looks vastly different for fusion plasma control (95% AI autonomy) than it does for policy planning (70% human deliberation). This is the pivot point for our research: moving from 'What can the machine do?' to 'How does the machine enable the human team?' We aren't just building tools; we are tuning interfaces for collaborative systems that succeed only when we measure more than just the algorithm.",
+          "evidence": [
+            "source-52749aef80194962"
+          ],
+          "id": "blog-empirical-metrics-ci",
+          "lede": "Moving beyond theoretical frameworks, recent data suggests we can start quantifying the success of human-AI collaboration\u2014but technical performance isn't the whole story.",
+          "lens": "We often mistake the power of a tool for the success of a system. Data suggests that the 'intelligence' we seek emerges not from the intensity of the computation, but from the friction-free integration of the machine into the existing trust-networks of human decision-making.",
+          "notebooks": [
+            "nb-cohuman-socio-cognitive"
+          ],
+          "project": "proj-collective-intel-ai",
+          "reason": "The shift from conceptual frameworks to empirical metrics is a significant milestone worth communicating.",
+          "title": "Measuring the Human-AI Edge",
+          "type": "blog"
         },
-        "provider_requests_sent": 1,
-        "request_payload_bytes": 45883,
-        "response_bytes_captured": 198,
-        "result": "transient_failure"
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
       },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 15922,
-          "http_status": 503,
+          "elapsed_ms": 8454,
+          "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 45883,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
+          "request_payload_bytes": 43799,
+          "result": "success"
         }
-      ]
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 4,
-    "next_eligible": "2026-09-19T00:41:57.809389+00:00",
+    "accepted_cycles": 5,
+    "next_eligible": "2026-09-19T00:43:20.736737+00:00",
     "pending": false,
-    "attempts_today": 6,
-    "provider_requests_today": 9,
-    "provider_request_slots_today": 9,
+    "attempts_today": 7,
+    "provider_requests_today": 10,
+    "provider_request_slots_today": 10,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
