@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 11  
+**Version:** 12  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `03516c461c3d6b3550a7f982b3a337815f97f90138d6a43c7177cb51ecfe1e8b`
+**Verified head:** `9d27257a102b633b551195f4f8bbc4ba382224785e45a438195c16cad4db6a27`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -171,21 +171,22 @@
 {
   "evidence": [
     "source-e417c270ba4e4cb5",
-    "source-f39263a146dd492b"
+    "source-f39263a146dd492b",
+    "source-84b9bd5305444c08"
   ],
-  "findings": "Literature critiques emphasize that ecological approaches, while useful for de-pathologizing neurodivergence, must be careful not to obscure social and political power imbalances [source-f39263a146dd492b]. Some scholarship suggests that enactive and ecological models of disability are not inherently immune to medicalization and require ongoing interrogation of how they define 'functionality' [source-e417c270ba4e4cb5].",
+  "findings": "Ecological niche theory in disability studies attempts to move beyond the medical model by focusing on environmental-individual interaction. However, critiques suggest this approach risks individualizing systemic inequality if the 'niche' is interpreted as purely about behavioral or social adjustment [source-e417c270ba4e4cb5]. Adding a social epidemiological lens emphasizes that health disparities are often products of inequitable social and structural power dynamics that predate the individual's 'niche' entry, suggesting that ecological models may benefit from explicitly incorporating material and political determinants [source-84b9bd5305444c08, source-f39263a146dd492b].",
   "id": "nb-neuro-critique-001",
-  "limitations": "These findings are based on scholarly metadata and abstracts; they do not represent a comprehensive review of the full-text debates within these disciplines.",
-  "next_questions": "How can ecological models explicitly incorporate structural power analysis to avoid the pitfalls identified by critics?",
+  "limitations": "The ecological niche metaphor is borrowed from biology and its application to human social systems may oversimplify complex historical and political determinants of health.",
+  "next_questions": "How can ecological models be operationally defined to include systemic power without diluting their focus on environmental fit?",
   "project": "proj-neuro-001",
-  "reason": "This synthesizes the critiques required by the open commitment, balancing the initial descriptive framework.",
-  "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures.",
+  "reason": "Integrates new evidence from social epidemiology to strengthen the critique of ecological niche theory.",
+  "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures. Perspectives from social epidemiology suggest that 'niche construction' must account for material and structural determinants rather than just interpersonal fit.",
   "title": "Critiques of Ecological Models in Disability Studies",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 10,
-  "updated_version": 10,
-  "updated_by": "w-15b95db5b29047eb",
+  "updated_version": 12,
+  "updated_by": "w-d6e782bd6b6240a4",
   "domain": "neurodivergence"
 }
 ```
@@ -5577,6 +5578,278 @@
 }
 ```
 
+### `w-d6e782bd6b6240a4`
+
+```json
+{
+  "base_version": 11,
+  "charged": true,
+  "id": "w-d6e782bd6b6240a4",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 11,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "entropy_measurement",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Measuring Information and Physical Entropy"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Neurodivergence-Informed Therapy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2268,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "8f500001f8082ccdbefb8beeb8bcc7f34ccb243d127cefd2c522ff89c0f1aaaf",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-dec2db58e8514444"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dec2db58e8514444",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2723aab6812c442b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2723aab6812c442b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b6c76f436e7649e1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b6c76f436e7649e1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7522a8b0c3ce436d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7522a8b0c3ce436d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-84b9bd5305444c08",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b3eb0fcab9db4372"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b3eb0fcab9db4372",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-dec2db58e8514444",
+      "source-2723aab6812c442b",
+      "source-b6c76f436e7649e1",
+      "source-7522a8b0c3ce436d",
+      "source-84b9bd5305444c08",
+      "source-b3eb0fcab9db4372"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19221,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3169,
+    "working_to_delivered_ratio": 0.1649
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_measurement",
+        "next_step": "Compare empirical performance of ApEn and SampEn across simulated noisy datasets to validate theoretical preferences.",
+        "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+        "title": "Measuring Information and Physical Entropy"
+      },
+      {
+        "id": "proj-neuro-001",
+        "next_step": "Synthesize critiques of the ecological niche model from literature.",
+        "question": "How does neurodivergence-informed therapy reframe the relationship between therapist, client, and ecological niche?",
+        "title": "Neurodivergence-Informed Therapy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-7fd4abc8fc2a449e",
+          "source-70e3119c11534387"
+        ],
+        "revision": 1,
+        "summary": "The neurodiversity movement reframes neurodivergence as a form of biodiversity, suggesting a move from medical 'cure' models toward ecological niche construction.",
+        "title": "Ecological Models in Neurodivergence-Informed Therapy"
+      },
+      {
+        "id": "nb-entropy-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-617ea77e566c486e",
+          "source-38131170bdca4cc1"
+        ],
+        "revision": 1,
+        "summary": "Approximate entropy and maximum entropy formulations provide complementary, yet distinct, frameworks for quantifying complexity in physiological and ecological time-series data.",
+        "title": "Clinical and Ecological Entropy Metrics"
+      },
+      {
+        "id": "nb-neuro-critique-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b"
+        ],
+        "revision": 1,
+        "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures.",
+        "title": "Critiques of Ecological Models in Disability Studies"
+      },
+      {
+        "id": "nb-entropy-comparison-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-98d885ce27cf41ed",
+          "source-617ea77e566c486e"
+        ],
+        "revision": 1,
+        "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+        "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:07:33.657535+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6879,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41545,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:07:44.986512+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -6522,6 +6795,47 @@
 }
 ```
 
+### `source-84b9bd5305444c08`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=critiques+of+social+model+and+ecological+niche+theory+in+disability+studies&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2153539202\\\", \\\"doi\\\": \\\"https://doi.org/10.1136/jech.55.10.693\\\", \\\"title\\\": \\\"A glossary for social epidemiology\\\", \\\"publication_year\\\": 2001, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 838, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://jech.bmj.com/content/jech/55/10/693.full.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1136/jech.55.10.693\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1136/jech.55.10.693\\\", \\\"pdf_url\\\": \\\"https://jech.bmj.com/content/jech/55/10/693.full.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S156988948\\\", \\\"display_name\\\": \\\"Journal of Epidemiology & Community Health\\\", \\\"issn_l\\\": \\\"0141-7681\\\", \\\"issn\\\": [\\\"0141-7681\\\", \\\"0142-467X\\\", \\\"0143-005X\\\", \\\"1470-2738\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319945\\\", \\\"host_organization_name\\\": \\\"BMJ\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319945\\\"], \\\"host_organization_lineage_names\\\": [\\\"BMJ\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of Epidemiology and Community Health\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Why “social epidemiology”? Is not all epidemiology, after all, “social” epidemiology? In so far as people are simultaneously social and biological organisms, is any biological process ever expressed devoid of social context?—or any social process ever unmediated by the corporal reality of our profoundly generative and mortal bodies?1 2 Yet, despite the seeming truism that social as well as biological processes inherently shape population health—a truism recognised even in the founding days of epidemiology as a scientific discipline in the early 19th century—not all epidemiology is “social epidemiology”.3 4 Instead, “social epidemiology” (which first attained its name as such in English in 19503 5) is distinguished by its insistence on explicitly investigating social determinants of population distributions of health, disease, and wellbeing, rather than treating such determinants as mere background to biomedical phenomena. Tackling this task requires attention to theories, concepts, and methods conducive to illuminating intimate links between our bodies and the body politic; toward this end, the glossary below provides a selection of critical terms for the field.\\\\n\\\\nOne brief note of explanation. Some entries contain only one term; others include several related terms whose meanings are interdependent or refer to specific aspects of a broader construct. Additionally, each entry is cast in relation to its significance to social epidemiology; explication of salience to other disciplines is beyond the scope of this particular glossary.\\\\n\\\\nBiological expressions of social inequality refers to how people literally embody and biologically express experiences of economic and social inequality, from in utero to death, thereby producing social inequalities in health across a wide spectrum of outcomes.1 2 6 Core to social epidemiology, this construct of “biological expressions of social inequality” has been evident in epidemiological thought—albeit not always explicitly named as such—since the discipline's emergence in the early 19th …\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2981731882\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.inffus.2019.12.012\\\", \\\"title\\\": \\\"Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 9967, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/20.500.11824/1166\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.inffus.2019.12.012\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.inffus.2019.12.012\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7560371\\\", \\\"display_name\\\": \\\"Information Fusion\\\", \\\"issn_l\\\": \\\"1566-2535\\\", \\\"issn\\\": [\\\"1566-2535\\\", \\\"1872-6305\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Information Fusion\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2670298746\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.emj.2017.06.005\\\", \\\"title\\\": \\\"Understanding platform business models: A mixed methods study of marketplaces\\\", \\\"publication_year\\\": 2017, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 601, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://pure.manchester.ac.uk/ws/files/78787819/2017_Taeuscher_Laudien_Platform_Business_Models_Author_version.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.emj.2017.06.005\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.emj.2017.06.005\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S105567970\\\", \\\"display_name\\\": \\\"European Management Journal\\\", \\\"issn_l\\\": \\\"0263-2373\\\", \\\"issn\\\": [\\\"0263-2373\\\", \\\"1873-5681\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-2\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"European Management Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W4383551991\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/su151310682\\\", \\\"title\\\": \\\"Sustainalism: An Integrated Socio-Economic-Environmental Model to Address Sustainable Development and Sustainability\\\", \\\"publication_year\\\": 2023, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 692, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2071-1050/15/13/10682/pdf?version=1688693173\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/su151310682\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/su151310682\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2071-1050/15/13/10682/pdf?version=1688693173\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S10134376\\\", \\\"display_name\\\": \\\"Sustainability\\\", \\\"issn_l\\\": \\\"2071-1050\\\", \\\"issn\\\": [\\\"2071-1050\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Sustainability\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This paper delves into the multifaceted concept of sustainability, covering its evolution, laws, principles, as well as the different domains and challenges related to achieving it in the modern world. Although capitalism, socialism, and communism have been utilized throughout history, their strengths and drawbacks have failed to address sustainable development comprehensively. Therefore, a holistic approach is necessary, which forms the basis for a new development model called sustainalism. This study proposes a new socio-economic theory of sustainalism that prioritizes quality of life, social equity, culture, world peace, social justice, and well-being. This paper outlines the six principles of sustainalism and identifies sustainalists as individuals who embrace these new concepts. This study also explores how to attain sustainalism in the modern world through a sustainable revolution, representing a step toward a sustainable era. In conclusion, this paper summarizes the key points and emphasizes the need for a new approach to sustainalism in the broader sense. The insights provided are valuable for further research on sustainalism and sustainability.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fd3acddb5d9ae0d0e7c16d9e5fef1bb0084a527e778381a3cb764682dc11efb7\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-84b9bd5305444c08",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=critiques+of+social+model+and+ecological+niche+theory+in+disability+studies&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 11,
+  "time": "2026-09-19T18:07:32.951711+00:00"
+}
+```
+
+### `source-b3eb0fcab9db4372`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"67652218c8636be0bfd3ccd4a3b416c680c5314b6011d57c67c67bbf533ad1c7\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-b3eb0fcab9db4372",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 11,
+  "time": "2026-09-19T18:07:33.516309+00:00"
+}
+```
+
+### `r-d6e782bd6b6240a4`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":11,\"inherited_commitments\":[],\"invocation\":\"w-d6e782bd6b6240a4\",\"previous_head\":\"dd1759fc7ccbecb96edbae7b8ec495e54d8e185ff92077f7692b94a4c64cfd97\",\"process_id\":2268,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d6e782bd6b6240a4",
+  "source": "runtime:continuity",
+  "version": 11,
+  "time": "2026-09-19T18:07:33.609597+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -6642,6 +6956,17 @@
   "invocation": "w-e6461300064c4581",
   "title": "Deepening Entropy Metric Synthesis and Neurodivergence Critique",
   "summary": "This shift focuses on synthesizing comparative data for entropy metrics in time-series analysis and deepening the critique of ecological niche models. I am moving from retrieval to comparative synthesis by creating a new notebook on entropy metrics and initiating a targeted search for the limitations of social model/ecological niche frameworks in disability studies to broaden the scope of our neurodivergence project."
+}
+```
+
+### 012 · Synthesis of Social Epidemiology and Ecological Models
+
+```json
+{
+  "cycle": 12,
+  "invocation": "w-d6e782bd6b6240a4",
+  "title": "Synthesis of Social Epidemiology and Ecological Models",
+  "summary": "Updating the critique of ecological models in neurodivergence therapy by integrating perspectives from social epidemiology, which emphasizes the structural determinants of health often overlooked by purely ecological niche frameworks."
 }
 ```
 
@@ -6785,8 +7110,9 @@
   "query": "critiques of social model and ecological niche theory in disability studies",
   "reason": "To identify specific limitations or counter-arguments to ecological niche models in clinical therapy settings, addressing the recent gaps in our synthesis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-e6461300064c4581"
+  "status": "collected",
+  "created_by": "w-e6461300064c4581",
+  "evidence": "source-84b9bd5305444c08"
 }
 ```
 

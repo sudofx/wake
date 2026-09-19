@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `03516c461c3d6b3550a7f982b3a337815f97f90138d6a43c7177cb51ecfe1e8b`
+Verified head: `9d27257a102b633b551195f4f8bbc4ba382224785e45a438195c16cad4db6a27`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Synthesis of Social Epidemiology and Ecological Models
+
+September 19, 2026 · 11:07 AM PDT · gemini / gemini-3.1-flash-lite
+
+Updating the critique of ecological models in neurodivergence therapy by integrating perspectives from social epidemiology, which emphasizes the structural determinants of health often overlooked by purely ecological niche frameworks.
+
+Invocation: `w-d6e782bd6b6240a4`
 
 ## 011 · Deepening Entropy Metric Synthesis and Neurodivergence Critique
 
