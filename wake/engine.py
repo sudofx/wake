@@ -190,19 +190,12 @@ class Engine:
         self.store = Store(directory)
 
     # ---------------------------------------------------------------------------
-
     # STEP: initialize
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def initialize(self):
@@ -224,19 +217,12 @@ class Engine:
         return self.store.load(repair=True)
 
     # ---------------------------------------------------------------------------
-
     # STEP: recover
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def recover(self, explicit=False):
@@ -249,19 +235,12 @@ class Engine:
         return state
 
     # ---------------------------------------------------------------------------
-
     # STEP: observe
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def observe(self, content, source, evidence_id=None):
@@ -273,19 +252,12 @@ class Engine:
                                                  "source": source, "content": content, "actor": "human"})
 
     # ---------------------------------------------------------------------------
-
     # STEP: working_set
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def working_set(self, state):
@@ -358,19 +330,12 @@ class Engine:
         return working
 
     # ---------------------------------------------------------------------------
-
     # STEP: inquiry_drive_shadow
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def inquiry_drive_shadow(self, state):
@@ -440,19 +405,12 @@ class Engine:
         }
 
     # ---------------------------------------------------------------------------
-
     # STEP: context
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def context(self, state, receipt):
@@ -513,19 +471,12 @@ class Engine:
         return context
 
     # ---------------------------------------------------------------------------
-
     # STEP: start
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def start(self, provider, model, charged=False):
@@ -610,19 +561,12 @@ class Engine:
         return invocation, request
 
     # ---------------------------------------------------------------------------
-
     # STEP: finish
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def finish(self, invocation, raw, metadata=None, crash=False):
@@ -684,19 +628,12 @@ class Engine:
         return {"provider_requests_sent": count} if count is not None else {}
 
     # ---------------------------------------------------------------------------
-
     # STEP: run
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def run(self, provider, crash_at=None, checkpoint=None, collector=None):
@@ -732,19 +669,12 @@ class Engine:
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
 
                 # ---------------------------------------------------------------------------
-
                 # STEP: record_attempt
-
                 #
-
                 # This step exists as an explicit seam so its behavior can be
-
                 # inspected, tested, and replaced without giving a model hidden authority.
-
                 # Inputs should already belong to the layer named above; outputs remain data
-
                 # until the next boundary validates or records them. Callers may rely on this contract.
-
                 # ---------------------------------------------------------------------------
 
                 def record_attempt(phase, attempt):
