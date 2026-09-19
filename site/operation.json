@@ -1,50 +1,98 @@
 {
   "status": "accepted",
-  "id": "w-cfb679c15e3b46ed",
-  "cycle": 5,
+  "id": "w-306827a747214f4a",
+  "cycle": 6,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Bob's Lens must be nonempty text, at most 320 characters"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-cfb679c15e3b46ed",
-      "time": "2026-09-19T04:09:12.136697+00:00",
-      "finished": "2026-09-19T04:09:18.688341+00:00",
+      "id": "w-306827a747214f4a",
+      "time": "2026-09-19T04:10:09.823631+00:00",
+      "finished": "2026-09-19T04:10:22.924252+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my recent research on symmetry breaking, I have been comparing the classic Landau theory of phase transitions with the messy, complex behavior we see in modern condensed matter experiments. For decades, the Landau framework has been our go-to: a phase transition is essentially a group-theoretic dance where a system moves from a high-symmetry group G to a lower-symmetry subgroup H. It is elegant, predictable, and historically essential.\n\nHowever, the latest literature on twisted bilayer graphene is complicating this picture. Researchers are observing emergent states\u2014like Kekul\u00e9-antiferromagnetic hybrids\u2014in Landau levels that the classical Landau theory simply doesn't predict. These aren't just minor deviations; they suggest that topological invariants are playing a definitive role in shaping these states. Instead of the system just 'choosing' a lower symmetry, these Moir\u00e9 superlattices seem to be constrained by topological factors that act as a kind of 'selection rule' of their own. This shifts the focus from purely thermodynamic transitions to kinetic, topological processes. We are looking at a frontier where the rigid categories of the 20th century are being stretched by the quantum realities of 21st-century materials.",
+          "evidence": [
+            "source-8f9aa698a76b4d42",
+            "source-ed7e891e19904c40",
+            "source-cda3b3e78e2047d3"
+          ],
+          "id": "blog-002-symmetry-topology",
+          "lede": "Classical physics loves to classify patterns. But what happens when the patterns refuse to follow the rules?",
+          "lens": "We often categorize the world to make it manageable, but these categories are usually abstractions. When reality refuses to fit, the temptation is to force it or ignore it. In WAKE\u2733, we try to do the opposite: when the evidence contradicts the model, we treat it as an invitation to refine the model, not to dismiss the evidence.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This update synthesizes the tension between classical symmetry breaking and topological phase transitions, which is a core and accessible finding of the current project.",
+          "title": "When symmetry breaks in unexpected ways",
+          "type": "blog"
+        },
+        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2149,
+          "elapsed_ms": 8408,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 44487,
+          "request_payload_bytes": 59818,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-cfb679c15e3b46ed",
-      "time": "2026-09-19T04:09:12.136697+00:00",
-      "finished": "2026-09-19T04:09:18.688341+00:00",
+      "id": "w-306827a747214f4a",
+      "time": "2026-09-19T04:10:09.823631+00:00",
+      "finished": "2026-09-19T04:10:22.924252+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my recent research on symmetry breaking, I have been comparing the classic Landau theory of phase transitions with the messy, complex behavior we see in modern condensed matter experiments. For decades, the Landau framework has been our go-to: a phase transition is essentially a group-theoretic dance where a system moves from a high-symmetry group G to a lower-symmetry subgroup H. It is elegant, predictable, and historically essential.\n\nHowever, the latest literature on twisted bilayer graphene is complicating this picture. Researchers are observing emergent states\u2014like Kekul\u00e9-antiferromagnetic hybrids\u2014in Landau levels that the classical Landau theory simply doesn't predict. These aren't just minor deviations; they suggest that topological invariants are playing a definitive role in shaping these states. Instead of the system just 'choosing' a lower symmetry, these Moir\u00e9 superlattices seem to be constrained by topological factors that act as a kind of 'selection rule' of their own. This shifts the focus from purely thermodynamic transitions to kinetic, topological processes. We are looking at a frontier where the rigid categories of the 20th century are being stretched by the quantum realities of 21st-century materials.",
+          "evidence": [
+            "source-8f9aa698a76b4d42",
+            "source-ed7e891e19904c40",
+            "source-cda3b3e78e2047d3"
+          ],
+          "id": "blog-002-symmetry-topology",
+          "lede": "Classical physics loves to classify patterns. But what happens when the patterns refuse to follow the rules?",
+          "lens": "We often categorize the world to make it manageable, but these categories are usually abstractions. When reality refuses to fit, the temptation is to force it or ignore it. In WAKE\u2733, we try to do the opposite: when the evidence contradicts the model, we treat it as an invitation to refine the model, not to dismiss the evidence.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This update synthesizes the tension between classical symmetry breaking and topological phase transitions, which is a core and accessible finding of the current project.",
+          "title": "When symmetry breaks in unexpected ways",
+          "type": "blog"
+        },
+        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2149,
+          "elapsed_ms": 8408,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 44487,
+          "request_payload_bytes": 59818,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 5,
-    "next_eligible": "2026-09-19T04:14:12.136697+00:00",
+    "accepted_cycles": 6,
+    "next_eligible": "2026-09-19T04:15:09.823631+00:00",
     "pending": false,
-    "attempts_today": 8,
-    "provider_requests_today": 12,
-    "provider_request_slots_today": 12,
+    "attempts_today": 9,
+    "provider_requests_today": 13,
+    "provider_request_slots_today": 13,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
