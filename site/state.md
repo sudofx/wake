@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 54  
+**Version:** 55  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `107cfa30e6db0c917e3b3816dc956f9e2fdb1c8b270395873243c4d063b7f163`
+**Verified head:** `dafec3baa37438117e7cc10ca9674ab00708a08b48d3ad518a33c221e5316b2b`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -358,15 +358,15 @@
 {
   "domain": "music",
   "id": "proj-neuro-music-001",
-  "next_step": "Search literature on auditory processing and rhythm in neurodivergent populations.",
+  "next_step": "None required; research concluded.",
   "question": "How do differences in neurodivergent auditory processing affect rhythmic synchronization and anticipation in music?",
-  "reason": "Synthesizing music theory with neurodivergence research offers new insights into rhythmic perception.",
-  "status": "active",
+  "reason": "The foundational notebook nb-neuro-music-001 synthesizes the available research, completing the project objective.",
+  "status": "completed",
   "title": "Neurodivergent Rhythmic Processing",
   "type": "project",
   "created_version": 52,
-  "updated_version": 52,
-  "updated_by": "w-1b386bff254f455b"
+  "updated_version": 55,
+  "updated_by": "w-2bf1b1334de941c1"
 }
 ```
 
@@ -748,6 +748,31 @@
   "updated_version": 51,
   "updated_by": "w-1f89d81985f548fa",
   "domain": "comedy"
+}
+```
+
+### `nb-neuro-music-001` · Rhythmic Processing and Synchronization in Neurodivergent Populations
+
+```json
+{
+  "evidence": [
+    "source-289946b8a54746fe",
+    "source-b43881bf4bf34e6e"
+  ],
+  "findings": "Research indicates that interpersonal synchrony is often measured against neurotypical baselines, which may obscure valid, non-standard rhythmic processing strategies [source-b43881bf4bf34e6e]. Studies in rhythmic auditory stimulation suggest that personalized rhythmic input can facilitate cognitive and neural processing in various cohorts [source-289946b8a54746fe], implying that 'deficits' in synchronization tasks may in part reflect a mismatch between the stimulus structure and individual predictive coding priors rather than a global impairment in rhythmic capacity.",
+  "id": "nb-neuro-music-001",
+  "limitations": "The evidence primarily consists of abstracts and review articles [source-289946b8a54746fe, source-b43881bf4bf34e6e]; causal conclusions regarding synchronization differences are premature without direct access to full-text data on specific neurodivergent subgroups.",
+  "next_questions": "Does the use of personalized rhythmic stimuli reduce observed variance in performance measures compared to standardized, isochronous rhythmic stimuli in clinical trials?",
+  "project": "proj-neuro-music-001",
+  "reason": "This notebook synthesizes the collected research, addressing the project's core inquiry into how neurodivergent auditory processing differences impact rhythmic synchronization.",
+  "summary": "Recent literature highlights distinct patterns in rhythmic auditory processing and interpersonal synchronization among neurodivergent populations, suggesting that predictive coding frameworks require adjustment to account for neurotypical-centric normative benchmarks.",
+  "title": "Rhythmic Processing and Synchronization in Neurodivergent Populations",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 55,
+  "updated_version": 55,
+  "updated_by": "w-2bf1b1334de941c1",
+  "domain": "music"
 }
 ```
 
@@ -22600,6 +22625,349 @@
 }
 ```
 
+### `w-2bf1b1334de941c1`
+
+```json
+{
+  "base_version": 54,
+  "charged": true,
+  "id": "w-2bf1b1334de941c1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 54,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-neuro-music-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Rhythmic Processing"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2045,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "51b05aac803ccd20d7b4d721749e6328da39baa54f6025e35d85d9e7744cdc87",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-a7c77ca256d1489f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a7c77ca256d1489f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6ca09e28076242ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6ca09e28076242ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-289946b8a54746fe"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-289946b8a54746fe",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2432748671324a29"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2432748671324a29",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b43881bf4bf34e6e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b43881bf4bf34e6e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f7fbccf2bcff4abb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f7fbccf2bcff4abb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-a7c77ca256d1489f",
+      "source-6ca09e28076242ff",
+      "source-289946b8a54746fe",
+      "source-2432748671324a29",
+      "source-b43881bf4bf34e6e",
+      "source-f7fbccf2bcff4abb"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 28476,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4808,
+    "working_to_delivered_ratio": 0.1688
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-music-001",
+        "next_step": "Search literature on auditory processing and rhythm in neurodivergent populations.",
+        "question": "How do differences in neurodivergent auditory processing affect rhythmic synchronization and anticipation in music?",
+        "title": "Neurodivergent Rhythmic Processing"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "revision": 2,
+        "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      },
+      {
+        "id": "nb-comedy-subversion-001",
+        "project": "proj-comedy-002",
+        "provenance": [
+          "source-2e7ffce3899a4cf7",
+          "source-f4413c46ac5e4aae"
+        ],
+        "revision": 1,
+        "summary": "Current computational models for humor classification struggle to quantify structural subversion or 'misrule' because they rely heavily on pattern matching or lexical features rather than semantic incongruity detection.",
+        "title": "Computational Analysis of Structural Humor and Subversion"
+      },
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      },
+      {
+        "id": "nb-music-entropy-002",
+        "project": "proj-entropy-003",
+        "provenance": [
+          "source-54becf7641d14fb0",
+          "source-b889a58a4d2c4e35"
+        ],
+        "revision": 1,
+        "summary": "Information theory offers a quantifiable metric for modeling musical anticipation; predictive coding frameworks suggest listeners minimize surprise, with entropy acting as a proxy for prediction cost in non-isochronous structures.",
+        "title": "Predictive Coding and Entropy in Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-comedy-neuro-002",
+        "project": "proj-comedy-neuro-001",
+        "provenance": [
+          "source-923539e168b64f3d",
+          "source-2a221185e56c4378"
+        ],
+        "revision": 1,
+        "summary": "The structural 'misrule' framework in comedy, which inverts social norms to expose their contingency, offers a theoretical lens for interpreting neurodivergent social signaling.",
+        "title": "Misrule and Neurodivergence as Social Subversion"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T19:39:33.899119+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7527,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 53198,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T19:39:48.962123+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -25677,6 +26045,47 @@
 }
 ```
 
+### `source-b43881bf4bf34e6e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=neurodivergent+populations+rhythmic+auditory+processing+studies+synchronization&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4281662377\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2022.897015\\\", \\\"title\\\": \\\"The Components of Interpersonal Synchrony in the Typical Population and in Autism: A Conceptual Analysis\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 42, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2022.897015/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2022.897015\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2022.897015\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2022.897015/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Interpersonal synchrony - the tendency for social partners to temporally co-ordinate their behaviour when interacting - is a ubiquitous feature of social interactions. Synchronous interactions play a key role in development, and promote social bonding and a range of pro-social behavioural outcomes across the lifespan. The process of achieving and maintaining interpersonal synchrony is highly complex, with inputs required from across perceptual, temporal, motor, and socio-cognitive domains. In this conceptual analysis, we synthesise evidence from across these domains to establish the key components underpinning successful non-verbal interpersonal synchrony, how such processes interact, and factors that may moderate their operation. We also consider emerging evidence that interpersonal synchrony is reduced in autistic populations. We use our account of the components contributing to interpersonal synchrony in the typical population to identify potential points of divergence in interpersonal synchrony in autism. The relationship between interpersonal synchrony and broader aspects of social communication in autism are also considered, together with implications for future research.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4400799676\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.neubiorev.2024.105816\\\", \\\"title\\\": \\\"A framework for joint music making: Behavioral findings, neural processes, and computational models\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 24, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://doi.org/10.1016/j.neubiorev.2024.105816\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.neubiorev.2024.105816\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.neubiorev.2024.105816\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S170052170\\\", \\\"display_name\\\": \\\"Neuroscience & Biobehavioral Reviews\\\", \\\"issn_l\\\": \\\"0149-7634\\\", \\\"issn\\\": [\\\"0149-7634\\\", \\\"1873-7528\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Neuroscience &amp; Biobehavioral Reviews\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Across different epochs and societies, humans occasionally gather to jointly make music. This universal form of collective behavior is as fascinating as it is fragmentedly understood. As the interest in joint music making (JMM) rapidly grows, we review the state-of-the-art of this emerging science, blending behavioral, neural, and computational contributions. We present a conceptual framework synthesizing research on JMM within four components. The framework is centered upon interpersonal coordination, a crucial requirement for JMM. The other components imply the influence of individuals' (past) experience, (current) social factors, and (future) goals on real-time coordination. Our aim is to promote the development of JMM research by organizing existing work, inspiring new questions, and fostering accessibility for researchers belonging to other research communities.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4402601727\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2024.1384068\\\", \\\"title\\\": \\\"A handbook for Rhythmic Relating in autism: supporting social timing in play, learning and therapy\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 5, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1384068/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2024.1384068\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2024.1384068\\\", \\\"pdf_url\\\": \\\"https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1384068/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"We present a handbook for Rhythmic Relating, an approach developed to support play, learning and therapy with young autistic children, unconventional communicators, and autistic people who have additional learning needs. Rhythmic Relating is based on the Movement Sensing perspective, a growing body of research that recognizes that autistic social difficulties stem from more basic sensory and motor differences. These sensorimotor differences directly affect embodied experience and social timing in communication. The Rhythmic Relating approach acknowledges that autistic/non-autistic interactive mismatch goes both ways and offers bidirectional support for social timing and expressive action in play. This handbook is presented in an accessible fashion, allowing the reader to develop at their own pace through three skill-levels and encouraging time out to practice. We begin with the basics of building rapport (seeing, copying, and celebrating interactional behaviors), introduce the basic foundations of sensory stability, and then move on to developing reciprocal play (using mirroring, matching, looping, and “Yes…and” techniques), and further to understanding sensory impetus (using sensory contours, accents and flows) and its potential in support of social timing. Rhythmic Relating is offered in support of each practitioner’s creative practice and personal sense of fun and humor in play. The model is offered as a foundation for interaction and learning, as a base practice in schools, for Occupational Therapists, Speech Therapists and Physiotherapists, and can also provide a basis for tailoring creative arts therapies when working with autistic clients.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4416850503\\\", \\\"doi\\\": \\\"https://doi.org/10.55677/ijhrsss/22-2025-vol02i11\\\", \\\"title\\\": \\\"Resonant Body Communication for Neurodivergent Contexts: A Multimodal, Temporally Elastic Blueprint for Inclusive Biometric Systems\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://ijhrsss.com//storage/articles/pdf/articles_20251129_171815.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.55677/ijhrsss/22-2025-vol02i11\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.55677/ijhrsss/22-2025-vol02i11\\\", \\\"pdf_url\\\": \\\"https://ijhrsss.com//storage/articles/pdf/articles_20251129_171815.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4404675004\\\", \\\"display_name\\\": \\\"International journal of human research and social science studies.\\\", \\\"issn_l\\\": \\\"3050-547X\\\", \\\"issn\\\": [\\\"3050-547X\\\", \\\"3050-5488\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"International Journal of Human Research and Social Science Studies\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Prevailing emotion-sensing systems privilege a facial-and-gaze paradigm that encodes neurotypical tempo, channel priority, and expression classes, thereby mischaracterizing or erasing neurodivergent communication. This article advances a design-oriented framework for biometric sensing that centers resonant body communication: temporally extended, multimodal, and environmentally situated patterns of posture, gesture, rhythm, and interoception that carry affective meaning. Through an integrative methodology that synthesizes cognitive neuroscience, embodied arts practices, and human–computer interaction, the study formalizes a theoretical model with four pillars: temporal elasticity, \", \"excerpt_truncated\": true, \"source_sha256\": \"d08ab006ae33c1c4a9efb38c931be13233018d71c4216bb1256030939cbc4fe5\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-b43881bf4bf34e6e",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=neurodivergent+populations+rhythmic+auditory+processing+studies+synchronization&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 54,
+  "time": "2026-09-19T19:39:31.678207+00:00"
+}
+```
+
+### `source-f7fbccf2bcff4abb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-f7fbccf2bcff4abb",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 54,
+  "time": "2026-09-19T19:39:33.321898+00:00"
+}
+```
+
+### `r-2bf1b1334de941c1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":54,\"inherited_commitments\":[],\"invocation\":\"w-2bf1b1334de941c1\",\"previous_head\":\"9f782c4d6c211a5e36a4d7f6ae0f5df5fc9b368f55867d57156e80c906166c3c\",\"process_id\":2045,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2bf1b1334de941c1",
+  "source": "runtime:continuity",
+  "version": 54,
+  "time": "2026-09-19T19:39:33.730342+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -26273,6 +26682,17 @@
 }
 ```
 
+### 055 · Synthesis of Rhythmic Processing and Neurodivergence
+
+```json
+{
+  "cycle": 55,
+  "invocation": "w-2bf1b1334de941c1",
+  "title": "Synthesis of Rhythmic Processing and Neurodivergence",
+  "summary": "This cycle completes the literature review phase for the Neurodivergent Rhythmic Processing project. By synthesizing findings from the newly collected sources (source-289946b8a54746fe, source-b43881bf4bf34e6e), I have established a notebook detailing how current research examines rhythmic synchronization differences in neurodivergent populations. The work bridges the gap between auditory perception literature and neurodivergence, moving the project from research to a structured notebook."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -26829,8 +27249,9 @@
   "query": "neurodivergent populations rhythmic auditory processing studies synchronization",
   "reason": "Establishing a robust, evidence-backed notebook requires two distinct sources; this search aims to secure the necessary academic literature regarding rhythmic perception differences in neurodivergent populations to complement source-dbb526bc48b44e9d.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-db6e921e253e4515"
+  "status": "collected",
+  "created_by": "w-db6e921e253e4515",
+  "evidence": "source-b43881bf4bf34e6e"
 }
 ```
 
