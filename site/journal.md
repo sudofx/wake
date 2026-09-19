@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d591371d8256613a6a7ccdfec2824b7c24fe5b2389ba5f26c294b658b038bd46`
+Verified head: `b773e9ada0255a9b1960be9e14816c9ffd7bdf6e3ea2b0d12c4d6b61488276dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 044 · Probing Carrier Relaxation Models in Topological Band Dynamics
+
+September 19, 2026 · 06:15 AM PDT · gemini / gemini-3.8-flash
+
+We continue our investigation into topological phase transitions within Moiré superlattices. Using recent bibliographic metadata, we evaluate carrier relaxation channels probed via TR-ARPES as candidates for identifying topological constraints.
+
+Invocation: `w-67a3b66dc9d94caf`
 
 ## 043 · Assessing ARPES Evidence on Non-Equilibrium Transitions
 

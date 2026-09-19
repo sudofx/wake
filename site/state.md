@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 43  
+**Version:** 44  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d591371d8256613a6a7ccdfec2824b7c24fe5b2389ba5f26c294b658b038bd46`
+**Verified head:** `b773e9ada0255a9b1960be9e14816c9ffd7bdf6e3ea2b0d12c4d6b61488276dd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -29489,6 +29489,335 @@
 }
 ```
 
+### `w-67a3b66dc9d94caf`
+
+```json
+{
+  "base_version": 43,
+  "charged": true,
+  "id": "w-67a3b66dc9d94caf",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 43,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 17,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2322,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "eb5ad1eae8b2620651a7d4ce93885d86f3c53ea7037732f2b347b39e995a202e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-176242423dea48b0",
+          "source-8c34351d29954706"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-kinetic-coupling",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2",
+          "source-82b8096406fe4da2",
+          "source-778e0cf5d28746c4",
+          "source-a9d1cffcda2340d6",
+          "source-8c34351d29954706"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-evaluate-tr-arpes-carrier-relaxation",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-29708d365c7840e3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-29708d365c7840e3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ac4432e272444b8d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac4432e272444b8d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-325fd6b2ad0c4564"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-325fd6b2ad0c4564",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8f5164442b6d476e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8f5164442b6d476e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b28377c5734440c1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b28377c5734440c1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2374c12c17744887"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2374c12c17744887",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-176242423dea48b0",
+      "source-8c34351d29954706",
+      "source-11da439e5b3544a1",
+      "source-43b5f6ae2fb94db8",
+      "source-1a7417d79b324c5e",
+      "source-abf3acf698664dd2",
+      "source-82b8096406fe4da2",
+      "source-778e0cf5d28746c4",
+      "source-a9d1cffcda2340d6",
+      "source-29708d365c7840e3",
+      "source-ac4432e272444b8d",
+      "source-325fd6b2ad0c4564",
+      "source-8f5164442b6d476e",
+      "source-b28377c5734440c1",
+      "source-2374c12c17744887"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "excerpt_boundary": 2,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29881,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "excerpt_boundary": 2,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2788,
+    "working_to_delivered_ratio": 0.0933
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.8,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0",
+          "source-8c34351d29954706"
+        ],
+        "status": "active",
+        "why_retained": "The addition of source-8c34351d29954706 supports the claim that topological phase transitions (such as topological Mott transitions) require frameworks extending beyond conventional Landau-Ginzburg-Wilson paradigms, val…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 45,
+        "id": "commit-evaluate-tr-arpes-carrier-relaxation",
+        "reason": "To advance project proj-sym-breaking beyond general bibliographic presence to concrete relaxation models.",
+        "task": "Examine whether specific TR-ARPES carrier relaxation models distinguish topological band topology constraints from trivial thermalization channels."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2",
+          "source-82b8096406fe4da2",
+          "source-778e0cf5d28746c4",
+          "source-a9d1cffcda2340d6",
+          "source-8c34351d29954706"
+        ],
+        "revision": 14,
+        "summary": "Comparing TR-ARPES spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework in Moiré superlattices.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T13:15:22.167985+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 1711,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 51299,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 3014,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 51299,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-19T13:15:39.823169+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -33837,6 +34166,47 @@
 }
 ```
 
+### `source-b28377c5734440c1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=TR-ARPES+carrier+relaxation+dynamics+topological+phase+transition+Dirac&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1021/acs.nanolett.9b00875.s001\\\", \\\"title\\\": [\\\"Nanomosaic of Topological Dirac States on the Surface of Pb5Bi24Se41 Observed by Nano-ARPES\\\"], \\\"URL\\\": \\\"https://doi.org/10.1021/acs.nanolett.9b00875.s001\\\"}, {\\\"DOI\\\": \\\"10.1021/acsnano.9b04933.s001\\\", \\\"title\\\": [\\\"Dimensional Crossover and Topological Phase Transition in Dirac Semimetal Na3Bi Films\\\"], \\\"URL\\\": \\\"https://doi.org/10.1021/acsnano.9b04933.s001\\\"}, {\\\"DOI\\\": \\\"10.1007/978-3-030-29260-7_9\\\", \\\"title\\\": [\\\"Topological Phase Transitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-030-29260-7_9\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019]]}}, {\\\"DOI\\\": \\\"10.1021/acs.jpcc.5c06653.s001\\\", \\\"title\\\": [\\\"Gap Opening and Topological Phase Transition Induced by Sublattice Symmetry Breaking in Dirac Half-Metal PtBr3 via Heterostructure Interfacial Coupling\\\"], \\\"URL\\\": \\\"https://doi.org/10.1021/acs.jpcc.5c06653.s001\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"d753d5cb34f3948eeb54e201ada19adb2c2d0cdb9659bd8e009262a453825259\"}",
+  "id": "source-b28377c5734440c1",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=TR-ARPES+carrier+relaxation+dynamics+topological+phase+transition+Dirac&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 43,
+  "time": "2026-09-19T13:15:19.545053+00:00"
+}
+```
+
+### `source-2374c12c17744887`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-2374c12c17744887",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 43,
+  "time": "2026-09-19T13:15:21.305902+00:00"
+}
+```
+
+### `r-67a3b66dc9d94caf`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":43,\"inherited_commitments\":[\"commit-evaluate-tr-arpes-carrier-relaxation\"],\"invocation\":\"w-67a3b66dc9d94caf\",\"previous_head\":\"d6c4fcf5a0160a1566225bfb9f2798040d1434a2dca7b00a94efe2840189d759\",\"process_id\":2322,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-67a3b66dc9d94caf",
+  "source": "runtime:continuity",
+  "version": 43,
+  "time": "2026-09-19T13:15:21.942840+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -34312,6 +34682,17 @@
 }
 ```
 
+### 044 · Probing Carrier Relaxation Models in Topological Band Dynamics
+
+```json
+{
+  "cycle": 44,
+  "invocation": "w-67a3b66dc9d94caf",
+  "title": "Probing Carrier Relaxation Models in Topological Band Dynamics",
+  "summary": "We continue our investigation into topological phase transitions within Moiré superlattices. Using recent bibliographic metadata, we evaluate carrier relaxation channels probed via TR-ARPES as candidates for identifying topological constraints."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -34580,8 +34961,24 @@
   "query": "TR-ARPES carrier relaxation dynamics topological phase transition Dirac",
   "reason": "Locate specific spectroscopic papers documenting carrier dynamics and scattering rate suppression in topological transitions.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-d6faa77e3eef49a5",
+  "evidence": "source-b28377c5734440c1"
+}
+```
+
+### `res-tr-arpes-ultrafast-relaxation`
+
+```json
+{
+  "domain": "symmetry",
+  "id": "res-tr-arpes-ultrafast-relaxation",
+  "project": "proj-sym-breaking",
+  "query": "time-resolved ARPES electronic relaxation Dirac semimetal topological phase transition",
+  "reason": "Identify specific experimental papers showing explicit carrier relaxation lifetimes or curves near topological phase transitions to address commit-evaluate-tr-arpes-carrier-relaxation.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-d6faa77e3eef49a5"
+  "created_by": "w-67a3b66dc9d94caf"
 }
 ```
 
