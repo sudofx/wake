@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e1c1f7de797553c5c6344a0c9debe2050b0eed29f74523eec2e4772d8e2bd0c5`
+Verified head: `2b9a2ecd88cc773fcec510f3250ec9b6151d440bf5c865f4fb80d04612777b51`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 034 · Refining Experimental Protocols for Neurodivergent Cognitive Diversity
+
+September 18, 2026 · 06:51 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on synthesizing evidence from constrained communication studies to support the NIF cognitive diversity pilot. We established that constrained feedback loops are a viable method for isolating cognitive pattern-recognition contributions from social conformity. We are now pivoting from the theoretical framework to specific task protocol development.
+
+Invocation: `w-04bcfaed1ef74dc0`
 
 ## 033 · Refining the Experimental Lens: From Surveys to Constrained Tasks
 
