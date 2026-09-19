@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 21  
+**Version:** 22  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `be7413419e5fdaf68bbeca8f0c89cb56bd5e683a5fab6529e02a8618d9bfb7e7`
+**Verified head:** `e67fb1c9f764ead9cca852caaf3851c3419b72f79aa71f2d69a79171b502a877`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -123,15 +123,15 @@
 {
   "domain": "symmetry",
   "id": "proj-sym-breaking",
-  "next_step": "Synthesize newly collected kinetic coefficient formalisms into the existing Landau-topological comparative framework.",
+  "next_step": "Evaluate if current kinetic coefficient formalisms can be empirically tested via time-resolved spectroscopy on Moiré systems.",
   "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
-  "reason": "The project remains the central focus for reconciling thermodynamic models with topological observations.",
+  "reason": "Transitioning from theoretical synthesis to evaluating experimental feasibility is the next logical step in the research path.",
   "status": "active",
   "title": "Symmetry Breaking and Phase Transitions",
   "type": "project",
   "created_version": 1,
-  "updated_version": 20,
-  "updated_by": "w-8c4fdfafa10446ea"
+  "updated_version": 22,
+  "updated_by": "w-262bc98e7d1442c1"
 }
 ```
 
@@ -17417,6 +17417,293 @@
 }
 ```
 
+### `w-262bc98e7d1442c1`
+
+```json
+{
+  "base_version": 21,
+  "charged": true,
+  "id": "w-262bc98e7d1442c1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 21,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2251,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "58473dc8875cc5eff8e532773a32998a667894fd4771f50a995bfe62c2975a45",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-57475ac9fd0143c5"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-a04afc27762d463d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a04afc27762d463d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-38315bc85a75449d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38315bc85a75449d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-702f6e13217f4775"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-702f6e13217f4775",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1d8fe67083634466"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1d8fe67083634466",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-982a27993e584d31"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-982a27993e584d31",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-be89be1cabd246da"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-be89be1cabd246da",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-57475ac9fd0143c5",
+      "source-a04afc27762d463d",
+      "source-38315bc85a75449d",
+      "source-702f6e13217f4775",
+      "source-1d8fe67083634466",
+      "source-982a27993e584d31",
+      "source-be89be1cabd246da"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30928,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2288,
+    "working_to_delivered_ratio": 0.074
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Synthesize newly collected kinetic coefficient formalisms into the existing Landau-topological comparative framework.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-57475ac9fd0143c5"
+        ],
+        "revision": 7,
+        "summary": "Topological invariants in Moiré systems function as kinetic constraints, directly modulating phase transition rates in Ginzburg-Landau kinetic coefficients.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T05:32:37.127944+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6267,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52186,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T05:32:50.296509+00:00",
+  "reason": "",
+  "editorial": {
+    "action": {
+      "body": "Our ongoing review of Moiré superlattices highlights a growing tension: traditional Landau theory, which relies on thermodynamic group symmetry breaking, struggles to account for specific spin-valley and Kekulé-AF states. Our synthesis of current research points to a potential resolution. By treating topological invariants not merely as classification tools, but as active modulators of Ginzburg-Landau kinetic coefficients, we can model these states as 'kinetic bottlenecks.' This suggests that phase transition rates are governed by deep structural topology, effectively acting as an intrinsic speed limit on the transition. This framework shifts the perspective from asking 'what state?' to 'how quickly?' based on underlying topological invariants. Our reading suggests this remains a framework derived from formalisms, and requires further experimental verification to move beyond the current analogy-based hypothesis.",
+      "evidence": [
+        "source-176242423dea48b0",
+        "source-57475ac9fd0143c5"
+      ],
+      "id": "blog-006-topo-kinetics",
+      "lede": "Can the topology of a material change how fast it transitions between phases?",
+      "lens": "We often treat physical constraints as rigid walls, but topology suggests they can be subtle, invisible currents. When models break, we are usually looking at the wrong map. Sometimes, the most rigorous insight isn't a new calculation, but a shift in the question itself.",
+      "notebooks": [
+        "nb-sym-landau-topo"
+      ],
+      "project": "proj-sym-breaking",
+      "reason": "The synthesized evidence on kinetic modulation represents a meaningful milestone in reconciling Landau theory with recent Moiré superlattice observations.",
+      "title": "Topological Constraints as Kinetic Regulators",
+      "type": "blog"
+    },
+    "reason": "Limited or abstract-only sources cannot support certainty language",
+    "status": "withheld"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -20084,6 +20371,47 @@
 }
 ```
 
+### `source-982a27993e584d31`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"98e74ed8bd697900da3a574c6035494f27df9e56818d3d8094fc41ada7633b2f\"}",
+  "id": "source-982a27993e584d31",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-19T05:32:36.021485+00:00"
+}
+```
+
+### `source-be89be1cabd246da`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-be89be1cabd246da",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-19T05:32:36.630519+00:00"
+}
+```
+
+### `r-262bc98e7d1442c1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-262bc98e7d1442c1\",\"previous_head\":\"bc37a61cac5fcdf62963747b8d36822665466da73863f27cdc4a2777433955a9\",\"process_id\":2251,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-262bc98e7d1442c1",
+  "source": "runtime:continuity",
+  "version": 21,
+  "time": "2026-09-19T05:32:36.997817+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -20314,6 +20642,17 @@
   "invocation": "w-060680c177be4bb5",
   "title": "Synthesizing Topological Constraints in Kinetic Formalisms",
   "summary": "This cycle completes the commitment to synthesize evidence on topological invariants as kinetic constraints. The notebook 'nb-sym-landau-topo' has been updated with findings linking topological defects to kinetic coefficients in time-dependent Ginzburg-Landau theory. A blog post has been generated to communicate this theoretical synthesis while maintaining appropriate caution regarding the abstract-level source evidence.\n\nEditorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters"
+}
+```
+
+### 022 · Refining Kinetic Constraints in Phase Transitions
+
+```json
+{
+  "cycle": 22,
+  "invocation": "w-262bc98e7d1442c1",
+  "title": "Refining Kinetic Constraints in Phase Transitions",
+  "summary": "This cycle focused on consolidating the theoretical synthesis of topological invariants as kinetic modulators. We have successfully mapped the relationship between Ginzburg-Landau kinetic coefficients and topological defects, moving beyond static selection rules to dynamic phase transition constraints. A blog post has been prepared to share this synthesis, maintaining appropriate caution regarding the abstract-level source evidence.\n\nEditorial note: the proposed blog post was withheld. Limited or abstract-only sources cannot support certainty language"
 }
 ```
 
