@@ -235,10 +235,13 @@ footer{margin-top:48px}
 :root[data-theme="dark"] .blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#82ff7d 62%,var(--line))}
 
 
-/* Topic tags are navigational metadata, not status badges. Keep them quiet in
-   the record line, but make their click target large enough for touch. */
-.topic-tag{display:inline-block;font:inherit;letter-spacing:0;color:var(--green);padding:2px 3px;margin-left:3px;text-transform:lowercase}
-.topic-tag:hover{color:var(--hot);text-decoration:none}
+/* Topic tags reuse the visual language of WAKE✳︎ status badges while staying
+   links. The softer green treatment keeps topic metadata distinct from the
+   stronger accepted/rejected state signals beside it. */
+.topic-tag{display:inline-block;font:8px var(--mono);letter-spacing:.8px;padding:4px 7px;margin-left:3px;background:#e3e8dc;color:#426047;border:1px solid #c7d2c0;line-height:1.2;text-transform:lowercase}
+.topic-tag:hover{color:var(--hot);border-color:var(--hot);text-decoration:none}
+:root[data-theme="dark"] .topic-tag{background:color-mix(in srgb,var(--green) 12%,var(--surface));color:color-mix(in srgb,#82ff7d 72%,var(--muted));border-color:color-mix(in srgb,#82ff7d 30%,var(--line))}
+@media(max-width:700px){.topic-tag{font-size:7px}}
 .topic-filter-note{font:12px/1.6 var(--mono);color:var(--muted);padding:10px 0 18px;border-bottom:1px solid var(--line)}
 .topic-filter-note strong{color:var(--green);font-weight:700}.topic-filter-note a{color:var(--green)}
 .notebook-card article{margin:0}
