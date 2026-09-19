@@ -344,7 +344,7 @@ def export(store, destination="site", experiment=None, operation=None):
             invocation = state["invocations"][item["invocation"]]
             date = datetime.fromisoformat(invocation["time"]).astimezone(ZoneInfo("America/Los_Angeles"))
             lines += [f"## {item['cycle']:03d} · {_md_text(item['title'])}", "",
-                      f"{date:%B %d, %Y · %I:%M %p %Z} · {invocation['provider']} / {invocation['model']}", "",
+                      f"{date:%B %d, %Y · %I:%M %p %Z} · {invocation['provider']} / {invocation.get('successful_model') or invocation['model']}", "",
                       _md_text(item["summary"]), "", f"Invocation: `{item['invocation']}`", ""]
         from .feeds import build_feeds
         for filename, content in build_feeds(state).items():
@@ -352,7 +352,7 @@ def export(store, destination="site", experiment=None, operation=None):
         for entry in state["journal"]:
             invocation = state["invocations"][entry["invocation"]]
             body = (f'<p class="meta">Cycle {entry["cycle"]} · {_html_text(invocation["time"])} · '
-                    f'{_html_text(invocation["provider"])} / {_html_text(invocation["model"])}</p>'
+                    f'{_html_text(invocation["provider"])} / {_html_text(invocation.get("successful_model") or invocation["model"])}</p>'
                     + "".join(f"<p>{_html_text(part)}</p>" for part in entry["summary"].split("\n\n") if part.strip())
                     + ('<p class="note">Deterministic simulation, not a live model result.</p>'
                        if invocation["provider"] == "fixture" else "")
