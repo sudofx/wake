@@ -329,19 +329,12 @@ class Store:
         """)
 
     # ---------------------------------------------------------------------------
-
     # STEP: close
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def close(self):
@@ -368,19 +361,12 @@ class Store:
                 fcntl.flock(lock, fcntl.LOCK_UN)
 
     # ---------------------------------------------------------------------------
-
     # STEP: events
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def events(self):
@@ -389,19 +375,12 @@ class Store:
                 for row in self.db.execute("SELECT * FROM events ORDER BY seq")]
 
     # ---------------------------------------------------------------------------
-
     # STEP: replay
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def replay(self):
@@ -421,19 +400,12 @@ class Store:
         return state, head
 
     # ---------------------------------------------------------------------------
-
     # STEP: load
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def load(self, repair=False):
@@ -448,19 +420,12 @@ class Store:
         return state
 
     # ---------------------------------------------------------------------------
-
     # STEP: reset
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def reset(self):
@@ -474,19 +439,12 @@ class Store:
         return self.load(repair=True)
 
     # ---------------------------------------------------------------------------
-
     # STEP: append
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def append(self, kind, payload, crash=False):
@@ -504,19 +462,12 @@ class Store:
         return state
 
     # ---------------------------------------------------------------------------
-
     # STEP: backup
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def backup(self, destination):
