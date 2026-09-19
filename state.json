@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -239,6 +239,32 @@
       "source": "runtime:continuity",
       "version": 5,
       "time": "2026-09-19T00:40:09.145768+00:00"
+    },
+    "source-2a4ade7440274075": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"9dffabff3542c8547e7be17cb3ef44c8d23ccd1edd2e6b20a398fed0327a2860\"}",
+      "id": "source-2a4ade7440274075",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 6,
+      "time": "2026-09-19T00:41:14.626812+00:00"
+    },
+    "source-8130467e248c4069": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-8130467e248c4069",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 6,
+      "time": "2026-09-19T00:41:14.884883+00:00"
+    },
+    "r-4830283030214656": {
+      "actor": "runtime",
+      "content": "{\"base_version\":6,\"inherited_commitments\":[],\"invocation\":\"w-4830283030214656\",\"previous_head\":\"51d72a15ab8824399b440bfbcf6e44f314a34dbf559089c817ea597b6efbc8a2\",\"process_id\":2255,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-4830283030214656",
+      "source": "runtime:continuity",
+      "version": 6,
+      "time": "2026-09-19T00:41:14.932109+00:00"
     }
   },
   "journal": [
@@ -277,6 +303,12 @@
       "invocation": "w-0d42e9b8259440bc",
       "title": "Empirical Shifts in Human-AI Collaboration",
       "summary": "We continue our analysis of human-AI collective intelligence. Our findings indicate that technical performance metrics (e.g., raw AI capability) are insufficient predictors of system success, with stakeholder alignment and trust calibration emerging as the primary determinants of outcome. We are publishing a blog post to synthesize these results."
+    },
+    {
+      "cycle": 7,
+      "invocation": "w-4830283030214656",
+      "title": "Broadening Empirical Scope for Human-AI Collaborative Success",
+      "summary": "We are expanding our investigation into human-AI collective intelligence beyond the industrial and energy-transition contexts currently represented in our notebook. While transactive memory systems and composite performance metrics show promise in structured environments, their applicability to open-ended creative or social tasks remains a critical unknown. We are initiating targeted research to determine if existing empirical models of trust and stakeholder alignment hold in these less-structured domains."
     }
   ],
   "posts": {
@@ -2144,6 +2176,249 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T00:40:17.580408+00:00",
       "reason": ""
+    },
+    "w-4830283030214656": {
+      "base_version": 6,
+      "charged": true,
+      "id": "w-4830283030214656",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 6,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-collective-intel-ai",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "AI in Collective Intelligence Architectures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2255,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "5e5b403b4785e913930ad95edf436b7d3bd9ac4faecaf73f4df5791e58741925",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-cohuman-socio-cognitive",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-d77b87d0edf1408c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d77b87d0edf1408c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2d83bbd1d316491b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2d83bbd1d316491b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2b13a2eaa1d24f1c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2b13a2eaa1d24f1c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fca1734464ae4939"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fca1734464ae4939",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2a4ade7440274075"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2a4ade7440274075",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8130467e248c4069"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8130467e248c4069",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-d77b87d0edf1408c",
+          "source-2d83bbd1d316491b",
+          "source-2b13a2eaa1d24f1c",
+          "source-fca1734464ae4939",
+          "source-2a4ade7440274075",
+          "source-8130467e248c4069"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 23396,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2213,
+        "working_to_delivered_ratio": 0.0946
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-collective-intel-ai",
+            "next_step": "Synthesize empirical performance frameworks into a generalized model of human-AI collaborative success that bridges industrial metrics with broader socio-cognitive theory.",
+            "question": "How does artificial intelligence alter or enhance socio-cognitive collective intelligence structures, specifically collective memory, attention, and reasoning?",
+            "title": "AI in Collective Intelligence Architectures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.7,
+            "id": "bel-ci-three-elements",
+            "provenance": [
+              "source-79489f1f420142f8"
+            ],
+            "status": "active",
+            "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+          },
+          {
+            "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+            "confidence": 0.6,
+            "id": "bel-cohuman-framework",
+            "provenance": [
+              "source-54fce5c98c5d4219"
+            ],
+            "status": "active",
+            "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-cohuman-socio-cognitive",
+            "project": "proj-collective-intel-ai",
+            "provenance": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a"
+            ],
+            "revision": 3,
+            "summary": "Analysis of empirical performance metrics in human-AI collaborative systems, moving beyond conceptual architectural frameworks.",
+            "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T00:41:14.950522+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 4248,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 44054,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T00:41:23.079201+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -2232,6 +2507,16 @@
       "status": "collected",
       "created_by": "w-aca4d17236ae477a",
       "evidence": "source-52749aef80194962"
+    },
+    "res-ci-creative-empirical": {
+      "domain": "collective_intelligence",
+      "id": "res-ci-creative-empirical",
+      "project": "proj-collective-intel-ai",
+      "query": "\"human-AI\" AND \"creative tasks\" AND \"empirical\" AND \"collective intelligence\"",
+      "reason": "The current empirical evidence is limited to industrial and energy-transition sectors. Expanding the search to creative domains addresses a stated limitation in the existing notebook regarding generalizability.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-4830283030214656"
     }
   },
   "research_topics": [

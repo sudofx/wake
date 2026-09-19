@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e3bf8cdc9542790c3a04b4969f3e04b0f6154d89b2eedbf77ed71458da38e380`
+Verified head: `f8c905e0659884da52bcc7a08269203dde138ee5ba47df9d294a823de82e5ab7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Broadening Empirical Scope for Human-AI Collaborative Success
+
+September 18, 2026 · 05:41 PM PDT · gemini / gemini-3.8-flash
+
+We are expanding our investigation into human-AI collective intelligence beyond the industrial and energy-transition contexts currently represented in our notebook. While transactive memory systems and composite performance metrics show promise in structured environments, their applicability to open-ended creative or social tasks remains a critical unknown. We are initiating targeted research to determine if existing empirical models of trust and stakeholder alignment hold in these less-structured domains.
+
+Invocation: `w-4830283030214656`
 
 ## 006 · Empirical Shifts in Human-AI Collaboration
 
