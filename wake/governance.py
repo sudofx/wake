@@ -57,6 +57,27 @@ def _limited_sources(evidence):
 
 
 
+def _evidence_payload(item):
+    try:
+        payload = json.loads(item.get("content", ""))
+    except (ValueError, TypeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _verification_evidence(evidence, project_domain, label):
+    marked = [item for item in evidence if _evidence_payload(item).get("verification_required") is True]
+    if not marked:
+        return []
+    require(len(marked) == len(evidence),
+            f"{label} cannot mix legacy unverified evidence with verification-required evidence")
+    require(all(_evidence_payload(item).get("topic_domain") == project_domain for item in marked),
+            f"{label} evidence must come from the same research topic as its project")
+    require(len({item.get("source") for item in marked}) >= 2,
+            f"{label} requires two independently retrieved source URLs from its project topic")
+    return marked
+
+
 def _claim_tokens(value):
     """Conservative lexical tokens for deterministic evidence/claim overlap."""
     stop = {"about","after","again","also","among","because","been","before","being","between",
@@ -264,8 +285,11 @@ def transition(state, proposal, invocation, historical=False):
             require(all(e.get("actor") == "collector" and e.get("scope") == "collected" for e in cited),
                     "Research notebooks must cite successfully retrieved external sources")
             require(len({e["source"] for e in cited}) >= 2, "Research notebooks need at least two distinct retrieved source URLs")
-            if not historical and any(json.loads(e.get("content", "{}")).get("verification_required") for e in cited):
-                _verify_claim_support(action["findings"], cited, "Notebook findings")
+            if not historical:
+                verification = _verification_evidence(
+                    cited, result["projects"][action["project"]]["domain"], "Notebook findings")
+                if verification:
+                    _verify_claim_support(action["findings"], verification, "Notebook findings")
             if result["projects"][action["project"]]["domain"] == "wake_analysis":
                 require(all(e["source"].startswith("https://raw.githubusercontent.com/sudofx/wake/") for e in cited),
                         "WAKE analysis notebooks must cite only source-controlled sudofx/wake files")
@@ -303,8 +327,11 @@ def transition(state, proposal, invocation, historical=False):
                     "Blog research support must use collected external evidence")
             require(len({item["source"] for item in cited}) >= 2,
                     "Blog posts need evidence from at least two distinct source URLs")
-            if not historical and any(json.loads(e.get("content", "{}")).get("verification_required") for e in cited):
-                _verify_claim_support(action["body"], cited, "Blog body")
+            if not historical:
+                verification = _verification_evidence(
+                    cited, result["projects"][action["project"]]["domain"], "Blog body")
+                if verification:
+                    _verify_claim_support(action["body"], verification, "Blog body")
             notebook_evidence = {item for notebook in notebooks for item in notebook["evidence"]}
             require(set(action["evidence"]) <= notebook_evidence,
                     "Blog evidence must be traceable through its referenced notebooks")
