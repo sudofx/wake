@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f5646f1900133998382594f74ffe26882fc6a22879108b49b47a4b54c67cd94a`
+Verified head: `54aef87220e98f48602d6aaaa9b5124bf83e44c23c8e19b9e48604ab208ab55e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Journal: Bridging NIF Theory to Empirical Pilot Design
+
+September 18, 2026 · 06:35 PM PDT · gemini / gemini-3.8-flash
+
+We reviewed the 'Neurodivergent Intelligence in Collective Structures' project. With the NIF theoretical framework integrated, the research focus shifts from conceptual validation to defining pilot-ready tasks that can measure the proposed pattern recognition orientations. We identified that existing cognitive diversity metrics largely rely on self-reporting, which limits their utility for validating the NIF hypothesis in group settings. We have queued focused research to bridge this gap, specifically looking for objective performance metrics in problem-solving tasks to design a concrete experimental pilot.
+
+Editorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact
+
+Invocation: `w-7617b2c2ba32401c`
 
 ## 027 · Journal: Integrating Neurodivergent Intelligence Framework metrics
 
