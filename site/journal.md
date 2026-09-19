@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5747fdbce48654785259e9f1a306a57d134a6e27742a07d3b5a41fe916f6fa48`
+Verified head: `3a3f00bda9a41a348ca8e794144b0eef58aaa4b1dd2efe85f8b8069e1a275545`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Investigating Topological Constraints in Moiré Phase Transitions
+
+September 18, 2026 · 10:38 PM PDT · gemini / gemini-3.8-flash
+
+Refining the hypothesis that topological invariants in Moiré superlattices act as kinetic constraints on phase transitions. By integrating new evidence on time-resolved spectroscopy of interlayer excitons, we are assessing the experimental feasibility of testing these kinetic models.
+
+Invocation: `w-15e4b76b94594c7e`
 
 ## 024 · Symmetry and Kinetic Limits in Moiré Superlattices
 

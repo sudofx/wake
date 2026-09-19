@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 24  
+**Version:** 25  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5747fdbce48654785259e9f1a306a57d134a6e27742a07d3b5a41fe916f6fa48`
+**Verified head:** `3a3f00bda9a41a348ca8e794144b0eef58aaa4b1dd2efe85f8b8069e1a275545`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -146,21 +146,21 @@
     "source-cda3b3e78e2047d3",
     "source-8f9aa698a76b4d42",
     "source-176242423dea48b0",
-    "source-57475ac9fd0143c5"
+    "source-43b5f6ae2fb94db8"
   ],
-  "findings": "Building upon existing evidence [source-11da439e5b3544a1], the synthesis of Ginzburg-Landau kinetic coefficient theory [source-176242423dea48b0, source-57475ac9fd0143c5] suggests a formal mapping where topological defects act as intrinsic modulators of kinetic coefficients. This modifies standard thermodynamic Landau selection rules by imposing topological 'bottlenecks' or kinetic trapping during symmetry breaking transitions, rather than solely determining the equilibrium state [source-57475ac9fd0143c5].",
+  "findings": "Our analysis posits that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the existence of non-trivial invariants in Moiré systems. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients. Crucially, [source-43b5f6ae2fb94db8] indicates that time-resolved spectroscopy is being actively utilized to study exciton dynamics in these superlattices; while not yet a direct measurement of 'topological' kinetic coefficients, it establishes the spectroscopic tools necessary for testing such kinetic models in non-equilibrium phases.",
   "id": "nb-sym-landau-topo",
-  "limitations": "The current link between topological invariants and kinetic coefficients remains a theoretical framework derived from Ginzburg-Landau type formalisms. Most supporting evidence consists of abstract-level descriptions or related superconducting models [source-57475ac9fd0143c5], requiring more explicit simulation data to move beyond an analogy-based hypothesis.",
-  "next_questions": "Is there a quantifiable 'topological coefficient' that can be explicitly derived for different Moiré stacking symmetries? Can we test this kinetic modulation hypothesis in controlled experimental setups?",
+  "limitations": "Existing research [source-43b5f6ae2fb94db8] focuses on exciton behavior rather than direct observation of topological phase transition rates. Distinguishing between topological and non-topological kinetic contributions remains a significant experimental hurdle.",
+  "next_questions": "Can spectroscopic signatures of topological protection be decoupled from local excitonic relaxation in Moiré superlattices?",
   "project": "proj-sym-breaking",
-  "reason": "Incorporates new kinetic coefficient evidence to satisfy the commitment for notebook revision and evidence-based synthesis.",
-  "summary": "Topological invariants in Moiré systems function as kinetic constraints, directly modulating phase transition rates in Ginzburg-Landau kinetic coefficients.",
+  "reason": "Updated to synthesize new evidence on time-resolved spectroscopy into our existing framework of topological kinetic constraints.",
+  "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental techniques, specifically time-resolved spectroscopy on interlayer excitons, offer a viable path to empirically probe these kinetic dynamics.",
   "title": "Landau-Type vs. Topological Phase Transitions",
   "type": "notebook",
-  "revision": 7,
+  "revision": 8,
   "created_version": 2,
-  "updated_version": 21,
-  "updated_by": "w-060680c177be4bb5",
+  "updated_version": 25,
+  "updated_by": "w-15e4b76b94594c7e",
   "domain": "symmetry"
 }
 ```
@@ -18539,6 +18539,272 @@
 }
 ```
 
+### `w-15e4b76b94594c7e`
+
+```json
+{
+  "base_version": 24,
+  "charged": true,
+  "id": "w-15e4b76b94594c7e",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 24,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 9,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2247,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "2ce9497c5fc1908f5e5f86a65f50a4590d68e5a903dcc5776db362f82a264ad9",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-57475ac9fd0143c5"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-d0380d1958524b5d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d0380d1958524b5d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-eec624ccdb1a4bf4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-eec624ccdb1a4bf4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-40beec57682c4ded"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-40beec57682c4ded",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-88f359d07745490e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-88f359d07745490e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-43b5f6ae2fb94db8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-43b5f6ae2fb94db8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-118a489068484100"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-118a489068484100",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-57475ac9fd0143c5",
+      "source-d0380d1958524b5d",
+      "source-eec624ccdb1a4bf4",
+      "source-40beec57682c4ded",
+      "source-88f359d07745490e",
+      "source-43b5f6ae2fb94db8",
+      "source-118a489068484100"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19145,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2296,
+    "working_to_delivered_ratio": 0.1199
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Evaluate if current kinetic coefficient formalisms can be empirically tested via time-resolved spectroscopy on Moiré systems.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-57475ac9fd0143c5"
+        ],
+        "revision": 7,
+        "summary": "Topological invariants in Moiré systems function as kinetic constraints, directly modulating phase transition rates in Ginzburg-Landau kinetic coefficients.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T05:38:52.725869+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7936,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 39493,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T05:39:07.455202+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -21370,6 +21636,47 @@
 }
 ```
 
+### `source-43b5f6ae2fb94db8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=time-resolved+spectroscopy+Moir%C3%A9+superlattices+phase+transition+kinetics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/j.spmi.2007.06.014\\\", \\\"title\\\": [\\\"Time-resolved spectroscopy of freestanding GaN layers grown by halide vapour phase epitaxy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.spmi.2007.06.014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5]]}}, {\\\"DOI\\\": \\\"10.70675/91801e2bzd1cfz42daz829dz774dad724609\\\", \\\"title\\\": [\\\"Moiré superlattices and interlayer excitons in transition metal dichalcogenide heterobilayers\\\"], \\\"abstract\\\": \\\"<jats:title>Superréseaux de moiré et excitons intercouches dans des hétérobicouches de dichalcogénures de métaux de transition</jats:title>\\\\n                <jats:p xml:lang=\\\\\\\"fr\\\\\\\">Cette thèse propose l'exploration de systèmes de Hubbard à travers l'étude d'excitons intercouche (IXs) confinés dans un potentiel de moiré dans des hétérobicouches de dichalcogénures de métaux de transition (TMD). Nous fabriquons des hétérostructures de TMDs et les caractérisons par des expériences de micro-photoluminescence (µ-PL) à basse température et de microscopie à force atomique (AFM). Nous montrons la signature optique des IXs dans ces matériaux, qui sont des paires électron-trou fortement liées par interaction coulombienne, dont l'électron et le trou sont localisés dans des monocouches différentes. L'application d'un champ électrique parallèle à leur moment dipolaire induit un effet Stark qui nous permet d'accorder leur énergie sur un intervalle de plus de 20 meV. De plus, le recouvrement des fonctions d'onde de l'électron et du trou est réduit à cause de leur séparation dans l'espace. Cela nous permet de mesurer des temps de vie des IXs supérieurs à 200 ns, soit environ 100 000 fois ceux des excitons intracouche. Ces IXs devraient être fortement influencés par le superréseau de moiré qui émerge dans les bicouches de TMDs à cause de la différence de paramètre de maille et/ou de l'angle entre les orientations cristallographiques des deux monocouches. Le potentiel de moiré sous-jacent peut en théorie confiner les IXs dans des réseaux spatialement périodiques, formant ainsi des systèmes excitoniques de Bose-Hubbard. Cependant, notre recherche met en évidence d'importants défis expérimentaux qui doivent être relevés pour montrer la formation de tels systèmes corrélés dans les matériaux étudiés. Nous pointons la nécessité de réaliser des hétérostructures de Van de Waals propres en raison de la sensibilité particulière des IXs aux défauts à l'interface entre les monocouches. La technique AFM dite de «repassage» est décrite et nous montrons qu'elle élimine efficacement les impuretés d'interface, permettant d'augmenter l'intensité de la PL des IXs. Nous exploitons également les forces latérales subies par la pointe AFM afin d'imager les superréseaux de moiré dans l'espace réel. Nous étudions ensuite deux types d'hétérobicouches: MoSe2/WSe2 et WS2/WSe2. Dans les premières, nos résultats révèlent des variations notables dans les spectres de PL qui sont principalement induites par la différence d'angle relatif entre les monocouches. Lorsque celles-ci sont presque alignées, nous suspectons l'existence de reconstruction atomique, empêchant la formation du potentiel de moiré et donc la localisation des IXs dans ce dernier. En revanche, pour un angle relatif entre 2 et 5° environ, nous observons principalement la signature optique d'excitons piégés, que nous corrélons avec la présence d'un superréseau de moiré visible sur nos images AFM. Cependant, des distorsions spatiales de ce superréseau compliquent l'interprétation des spectres de PL, empêchant une claire observation d'états excitoniques corrélés. Nous étudions ensuite des hétérobicouches de WS2/WSe2, dans lesquelles la différence conséquente de paramètre de maille empêche les phénomènes de reconstruction atomique, permettant l'observation de supérréseaux de moiré robustes. L'une de nos hétérostructures permet de contrôler le niveau de dopage dans l'hétérobicouche. Grâce à l'interaction entre les électrons injectés électriquement et les IXs, nous montrons la formation d'un état de Mott électronique dans lequel un électron est confiné dans chacun des sites du moiré. Nos résultats soulignent cependant la nécessité d'améliorer nos techniques de fabrication afin d'accéder à la large gamme d'états excitoniques corrélés également prédits dans ces matériaux.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.70675/91801e2bzd1cfz42daz829dz774dad724609\\\"}, {\\\"DOI\\\": \\\"10.1201/9781482268980-60\\\", \\\"title\\\": [\\\"Time-resolved THz spectroscopy of miniband transport in biased GaAs/AlGaAs superlattices\\\"], \\\"URL\\\": \\\"https://doi.org/10.1201/9781482268980-60\\\", \\\"published\\\": {\\\"date-parts\\\": [[2002, 9, 30]]}}, {\\\"DOI\\\": \\\"10.1016/b978-0-444-81751-8.50006-x\\\", \\\"title\\\": [\\\"Gas-phase kinetics of free radicals studied by pulse radiolysis combined with time-resolved infrared diode laser spectroscopy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-444-81751-8.50006-x\\\", \\\"published\\\": {\\\"date-parts\\\": [[1993]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"25c06c7e98a81f3c6fb87edcb46137b9362881e64814544b6ea2e6ba23055459\"}",
+  "id": "source-43b5f6ae2fb94db8",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=time-resolved+spectroscopy+Moir%C3%A9+superlattices+phase+transition+kinetics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 24,
+  "time": "2026-09-19T05:38:51.671668+00:00"
+}
+```
+
+### `source-118a489068484100`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fb44564a7043ad45a91464026b977f64a25592cdb191582f2099d2c9ea31462e\"}",
+  "id": "source-118a489068484100",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 24,
+  "time": "2026-09-19T05:38:52.186324+00:00"
+}
+```
+
+### `r-15e4b76b94594c7e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":24,\"inherited_commitments\":[],\"invocation\":\"w-15e4b76b94594c7e\",\"previous_head\":\"ad2f73abf243e625b475286692015c727eb4b3fb577cff32e7725560da6874a5\",\"process_id\":2247,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-15e4b76b94594c7e",
+  "source": "runtime:continuity",
+  "version": 24,
+  "time": "2026-09-19T05:38:52.582934+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -21636,6 +21943,17 @@
 }
 ```
 
+### 025 · Investigating Topological Constraints in Moiré Phase Transitions
+
+```json
+{
+  "cycle": 25,
+  "invocation": "w-15e4b76b94594c7e",
+  "title": "Investigating Topological Constraints in Moiré Phase Transitions",
+  "summary": "Refining the hypothesis that topological invariants in Moiré superlattices act as kinetic constraints on phase transitions. By integrating new evidence on time-resolved spectroscopy of interlayer excitons, we are assessing the experimental feasibility of testing these kinetic models."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -21776,8 +22094,9 @@
   "query": "time-resolved spectroscopy Moiré superlattices phase transition kinetics",
   "reason": "Investigate if time-resolved spectroscopy is being used to measure kinetic coefficients in topological phase transitions, fulfilling the next project step.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-67d3ee8c5f904230"
+  "status": "collected",
+  "created_by": "w-67d3ee8c5f904230",
+  "evidence": "source-43b5f6ae2fb94db8"
 }
 ```
 
