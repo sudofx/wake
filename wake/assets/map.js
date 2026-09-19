@@ -14,7 +14,7 @@ const adjacency=new Map(); for(const edge of data.edges){for(const id of [edge.s
 let context=null, selected=null, lastFocus=null;
 const labels={journal:'Journal',blog:'Blog',belief:'Belief',notebook:'Notebook',evidence:'Source / receipt',project:'Project',commitment:'Commitment',research:'Research request',invocation:'Invocation',editorial:'Editorial decision'};
 function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)mark(e,String(text));return e}
-function mark(e,text){const parts=text.split(/(WAKE✳︎?)/g);for(const part of parts){if(/^WAKE✳︎?$/.test(part)){const b=document.createElement('strong');b.className='wake-mark';b.textContent='WAKE✳︎';e.append(b)}else e.append(document.createTextNode(part))}}
+function mark(e,text){text=text.replace(/^\[([^\[\]\n]+)\]$/,'$1');const parts=text.split(/(WAKE✳︎?)/g);for(const part of parts){if(/^WAKE✳︎?$/.test(part)){const b=document.createElement('strong');b.className='wake-mark';b.textContent='WAKE✳︎';e.append(b)}else e.append(document.createTextNode(part))}}
 function related(id){return new Set([id,...(adjacency.get(id)||[]).map(e=>e.source===id?e.target:e.source)])}
 function button(id){const n=nodes.get(id), b=el('button','node '+n.kind);b.type='button';b.dataset.node=id;b.setAttribute('aria-label',labels[n.kind]+': '+n.title);b.append(el('span','kind',labels[n.kind]));b.append(el('span','node-title',n.title));if(n.kind==='blog'&&n.detail.status)b.append(el('small','',n.detail.status));b.addEventListener('click',()=>select(id));b.addEventListener('pointerenter',()=>emphasis(id));b.addEventListener('pointerleave',()=>emphasis());return b}
 function emphasis(hover){
