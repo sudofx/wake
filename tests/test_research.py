@@ -18,7 +18,7 @@ from wake.report import export
 
 def project(identifier="p", status="active"):
     return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
-                domain="symmetry", status=status, next_step="Compare collected sources", reason="A tractable question")
+                domain="entropy", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
 def notebook(evidence, findings="A bounded comparison [s1] [s2]."):
@@ -106,17 +106,17 @@ class ResearchTests(unittest.TestCase):
 
     def test_project_can_queue_research_in_another_configured_topic(self):
         action = dict(type="research", id="q", project="p", query="symmetry breaking",
-                      domain="symmetry", reason="Test a cross-topic relationship")
+                      domain="entropy", reason="Test a cross-topic relationship")
         self.assertEqual(self.propose([project(), action])["status"], "accepted")
 
     def test_project_can_research_its_retired_original_topic(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
-            topic for topic in self.engine.config["research_topics"] if topic["id"] != "symmetry"]
+            topic for topic in self.engine.config["research_topics"] if topic["id"] != "entropy"]
         with self.engine.store.lock():
             self.engine.initialize()
         action = dict(type="research", id="q", project="p", query="cellular automata",
-                      domain="symmetry", reason="Continue the existing investigation")
+                      domain="entropy", reason="Continue the existing investigation")
         self.assertEqual(self.propose([action])["status"], "accepted")
 
     def test_completion_requires_a_notebook(self):
@@ -417,7 +417,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(posts["post-two"]["supersedes"], "post-one")
 
     def test_collector_attempts_two_requests_and_records_failures(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="symmetry", reason="Compare") for i in range(4)]
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="entropy", reason="Compare") for i in range(4)]
         self.propose(actions)
         calls=[]
         def fetch(url):
@@ -435,7 +435,9 @@ class ResearchTests(unittest.TestCase):
         }
         self.assertTrue(collected_domains <= configured)
         self.assertEqual(len(collected_domains), 1)  # first fetch failed; second succeeded
-        self.assertEqual([r["status"] for r in state["research"].values()], ["superseded","superseded","superseded","superseded"])
+        statuses = [r["status"] for r in state["research"].values()]
+        self.assertEqual(statuses.count("failed"), 1)
+        self.assertEqual(statuses.count("queued"), 3)
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
@@ -444,7 +446,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_queued_followup_gets_one_slot_and_neutral_discovery_keeps_one(self):
         self.propose([project(), dict(type="research", id="q-follow", project="p",
-            query="cellular automata symmetry followup", domain="symmetry", reason="Continue active work")])
+            query="cellular automata symmetry followup", domain="entropy", reason="Continue active work")])
         calls = []
         with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
              patch("wake.research.secrets.SystemRandom.sample", side_effect=lambda seq, n: list(seq)[:n]):
@@ -473,13 +475,16 @@ class ResearchTests(unittest.TestCase):
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
         actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="follow up",
-            domain="symmetry", reason="Test queue lifecycle") for i in range(4)]
+            domain="entropy", reason="Test queue lifecycle") for i in range(4)]
         self.propose(actions)
-        with self.engine.store.lock():
-            collect(self.engine, fetcher=lambda url: dict(url=url, scope="fixture",
-                excerpt="cellular automata bounded comparison evidence"))
+        for _ in range(4):
+            with self.engine.store.lock():
+                collect(self.engine, fetcher=lambda url: dict(url=url, scope="fixture",
+                    excerpt="cellular automata bounded comparison evidence"))
+        self.assertTrue(all(item["status"] == "collected"
+                            for item in self.engine.store.load()["research"].values()))
         result = self.propose([dict(type="research", id="q-next", project="p", query="next follow up",
-            domain="symmetry", reason="Queue remains usable")])
+            domain="entropy", reason="Queue remains usable")])
         self.assertEqual(result["status"], "accepted")
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
@@ -501,13 +506,13 @@ class ResearchTests(unittest.TestCase):
                     content=json.dumps({"scope":"synthetic test fixture",
                                         "excerpt":"bounded comparison cellular automata explanations",
                                         "verification_required":True,
-                                        "topic_domain":"symmetry"}),
+                                        "topic_domain":"entropy"}),
                     actor="collector", scope="collected"))
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
 
     def test_verified_notebook_rejects_cross_topic_evidence(self):
         with self.engine.store.lock():
-            for identifier, domain in (("s1", "symmetry"), ("s2", "entropy")):
+            for identifier, domain in (("s1", "entropy"), ("s2", "music")):
                 self.engine.store.append("observation", dict(
                     id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
                     content=json.dumps({"scope":"synthetic test fixture",
