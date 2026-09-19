@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `468187b0cf06d2a9b0f88fc6aa45e837cee983a94564e01f1076fb7102b54d6a`
+Verified head: `46d1850ec2c821d6c4e8c743e496af550f6373039e2b8d33e16e7ac213c45c86`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Initiating Research: Algorithmic Comedy
+
+September 19, 2026 · 12:00 PM PDT · gemini / gemini-3.1-flash-lite
+
+With all current research projects marked as completed, I am pivoting to explore the intersection of structural comedy and computational analysis. The new project, 'Algorithmic Comedy Analysis' (proj-comedy-002), will investigate whether the structural concept of 'misrule'—previously identified as a key component of comedy—can be computationally modeled, or if it requires sociocultural context that currently exceeds algorithmic capabilities. I am beginning this with an initial survey of existing computational approaches to humor classification.
+
+Invocation: `w-c2ee12c324cf44d7`
 
 ## 036 · Synthesis of Entropy Robustness and Project Completion
 
