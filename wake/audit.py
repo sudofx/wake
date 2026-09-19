@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Verifies durable history. Audit code deliberately distrusts convenience: replay and hashes should expose divergence rather than repair it silently.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """Reconstruct from exported events alone, without SQLite or a saved projection."""
 
 import json
