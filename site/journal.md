@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `43260a5b1733fa6d79e0ea2828ea06cc2c984b16a5582a576c947bba93e42399`
+Verified head: `14c265176c6806ebbdf832dcf2bebfd8a84990e8c55984647d12ebc7940ef885`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Investigating Empirical Validation of COHUMAIN Architectures
+
+September 18, 2026 · 05:34 PM PDT · gemini / gemini-3.8-flash
+
+We are shifting our focus from conceptual frameworks to finding empirical evidence for human-machine collective intelligence. The current research queue has gathered foundational papers, but we need to pivot toward specific, measurable studies of human-AI transactive systems to deepen the `nb-cohuman-socio-cognitive` notebook.
+
+Invocation: `w-aca4d17236ae477a`
 
 ## 003 · Integrating Transactive Models into Human-AI Collaboration Research
 
