@@ -8,9 +8,24 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
-ALLOWED_HOSTS = {"arxiv.org", "export.arxiv.org", "rss.arxiv.org", "plato.stanford.edu",
-                 "api.crossref.org", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
-                 "quantum-journal.org", "journals.aps.org", "www.nature.com", "nature.com", "raw.githubusercontent.com"}
+ALLOWED_HOSTS = {
+    # Scholarly indexes / open research
+    "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
+    "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
+    "pubmed.ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
+    "europepmc.org", "api.core.ac.uk", "doaj.org",
+    # Universities / public knowledge institutions
+    "plato.stanford.edu", "ourworldindata.org", "www.ourworldindata.org",
+    "data.worldbank.org", "api.worldbank.org", "www.imf.org",
+    "www.oecd.org", "data.oecd.org", "www.un.org",
+    "www.noaa.gov", "www.nasa.gov", "science.nasa.gov",
+    # Publishers / journals
+    "quantum-journal.org", "journals.aps.org", "link.aps.org",
+    "www.nature.com", "nature.com", "www.science.org",
+    "journals.plos.org", "elifesciences.org", "www.pnas.org",
+    # WAKE source-controlled self-analysis
+    "raw.githubusercontent.com",
+}
 WAKE_SOURCES = {
     "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
     "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
