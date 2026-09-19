@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-a71ac450ec6e4502",
-  "cycle": 1,
+  "status": "rejected",
+  "id": "w-02ede87b8aaf43e1",
+  "reason": "Evidence reference does not exist",
   "wake_status": {
     "last_accepted": {
       "id": "w-a71ac450ec6e4502",
@@ -65,18 +65,18 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-a71ac450ec6e4502",
-      "time": "2026-09-19T17:22:14.364939+00:00",
-      "finished": "2026-09-19T17:22:46.276196+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-02ede87b8aaf43e1",
+      "time": "2026-09-19T17:24:02.909423+00:00",
+      "finished": "2026-09-19T17:24:19.628932+00:00",
+      "status": "rejected",
+      "reason": "Evidence reference does not exist",
       "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "http",
-          "elapsed_ms": 205,
+          "elapsed_ms": 184,
           "http_status": 429,
-          "model": "gemini-3.8-flash",
+          "model": "gemini-3.5-flash",
           "provider_error": {
             "code": 429,
             "details": [
@@ -105,32 +105,32 @@
               },
               {
                 "@type": "type.googleapis.com/google.rpc.RetryInfo",
-                "retryDelay": "43s"
+                "retryDelay": "54s"
               }
             ],
-            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 43.12412593s.",
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 54.489229826s.",
             "status": "RESOURCE_EXHAUSTED"
           },
-          "request_payload_bytes": 28979,
-          "response_bytes_captured": 1362,
+          "request_payload_bytes": 38120,
+          "response_bytes_captured": 1363,
           "result": "daily_quota"
         },
         {
-          "elapsed_ms": 25879,
+          "elapsed_ms": 10529,
           "http_status": 200,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 28979,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 38120,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.5-flash"
+      "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 1,
-    "next_eligible": "2026-09-19T17:27:14.364939+00:00",
+    "next_eligible": "2026-09-19T17:29:02.909423+00:00",
     "pending": false,
-    "attempts_today": 1,
-    "provider_requests_today": 2,
-    "provider_request_slots_today": 2,
+    "attempts_today": 2,
+    "provider_requests_today": 4,
+    "provider_request_slots_today": 4,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
