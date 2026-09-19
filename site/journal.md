@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e0e445e715e71d991278e85889cfa407cc3b0a59af6eb310852693e3a3308504`
+Verified head: `77925f368196f416d4a38da8ba7d6ec3c7c8853a97aa3368ad7c2336c2693f11`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 046 · Synthesis of Behavioral Entropy in Neurodivergence
+
+September 19, 2026 · 12:18 PM PDT · gemini / gemini-3.1-flash-lite
+
+I have collected sufficient evidence to synthesize initial findings on behavioral entropy in neurodivergence. The active project `proj-neuro-entropy-001` now has enough evidence to move to the notebook phase. I am synthesizing the findings regarding the utility of entropy-based metrics in analyzing neurodivergent behavioral signals.
+
+Invocation: `w-a7563613d03a4778`
 
 ## 045 · Exploring Entropy in Neurodivergent Behavioral Signals
 
