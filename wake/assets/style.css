@@ -469,3 +469,33 @@ footer{margin-top:48px}
   #metrics .hypothesis-card p:last-child{font-size:8px;line-height:1.4}
   #metrics .dashboard-footnote{padding:8px 0;font-size:7px}
 }
+
+
+/* Metrics composition: analytical rack first, pulse + telemetry console second. */
+.metrics-row-one{display:block}
+.metrics-row-two{display:grid;grid-template-columns:1fr;gap:16px;margin-top:12px}
+.metrics-row-two-left,.metrics-row-two-right{min-width:0}
+.metrics-row-two-left{display:grid;grid-template-columns:1fr;gap:8px}
+.metrics-row-two .dashboard-feature{grid-column:auto}
+.metrics-row-two-right .command-strip,.metrics-row-two-right .telemetry-grid,.metrics-row-two-right .dashboard-kpis{margin-top:0}
+@media(min-width:1200px){
+  #metrics .metrics-row-two{grid-template-columns:1fr 1fr;align-items:start}
+  #metrics .metrics-row-two-left{grid-template-columns:1fr}
+  #metrics .metrics-row-two-right .command-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .metrics-row-two-right .command-strip>div:first-child{grid-column:span 2}
+  #metrics .metrics-row-two-right .telemetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .metrics-row-two-right .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:3000px){
+  #metrics .metrics-row-one .dashboard-grid{grid-template-columns:repeat(6,minmax(0,1fr));padding-top:0}
+  #metrics .metrics-row-one .hypothesis-section{padding-top:8px}
+  #metrics .metrics-row-two{grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  #metrics .metrics-row-two-left{gap:8px}
+  #metrics .metrics-row-two-left .dashboard-feature{padding:10px 12px}
+  #metrics .metrics-row-two-right{display:grid;grid-template-columns:1fr 1fr;align-content:start;border:1px solid var(--line)}
+  #metrics .metrics-row-two-right .command-strip{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);margin:0;grid-template-columns:1.4fr repeat(7,1fr)}
+  #metrics .metrics-row-two-right .command-strip>div:first-child{grid-column:auto}
+  #metrics .metrics-row-two-right .telemetry-grid{grid-column:1;grid-template-columns:repeat(2,minmax(0,1fr));border:0;border-right:1px solid var(--line);margin:0}
+  #metrics .metrics-row-two-right .dashboard-kpis{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
+  #metrics .metrics-row-two-right .telemetry-cell,#metrics .metrics-row-two-right .metric-card{padding:6px 8px}
+}
