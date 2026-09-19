@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Optional zero-cycle/hidden-data presentation. This hides rendered data only; it never deletes or alters durable state.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (() => {
   'use strict';
   const storageKey = 'wake-hide-current-data';
