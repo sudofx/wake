@@ -227,4 +227,9 @@ footer{margin-top:48px}
 
 /* Milestone reflections use the ordinary blog-card design. The top rule is the
    only visual distinction: green instead of the theme's normal card accent. */
-.blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,var(--green) 62%,var(--line))}
+/* Light theme: use a deeper leaf green so the rule remains visible against the
+   warm paper surface without becoming louder than the surrounding interface. */
+.blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#397a3d 68%,var(--line))}
+/* Dark theme: the brighter source green needs the dark theme's line color to
+   pull it back into WAKE✳︎'s muted palette. */
+:root[data-theme="dark"] .blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#82ff7d 62%,var(--line))}
