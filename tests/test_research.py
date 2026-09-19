@@ -18,7 +18,7 @@ from wake.report import export
 
 def project(identifier="p", status="active"):
     return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
-                domain="cellular_automata", status=status, next_step="Compare collected sources", reason="A tractable question")
+                domain="symmetry", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
 def notebook(evidence, findings="A bounded comparison [s1] [s2]."):
@@ -112,11 +112,11 @@ class ResearchTests(unittest.TestCase):
     def test_project_can_research_its_retired_original_topic(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
-            topic for topic in self.engine.config["research_topics"] if topic["id"] != "cellular_automata"]
+            topic for topic in self.engine.config["research_topics"] if topic["id"] != "symmetry"]
         with self.engine.store.lock():
             self.engine.initialize()
         action = dict(type="research", id="q", project="p", query="cellular automata",
-                      domain="cellular_automata", reason="Continue the existing investigation")
+                      domain="symmetry", reason="Continue the existing investigation")
         self.assertEqual(self.propose([action])["status"], "accepted")
 
     def test_completion_requires_a_notebook(self):
@@ -417,7 +417,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(posts["post-two"]["supersedes"], "post-one")
 
     def test_collector_attempts_two_requests_and_records_failures(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="cellular_automata", reason="Compare") for i in range(4)]
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="symmetry", reason="Compare") for i in range(4)]
         self.propose(actions)
         calls=[]
         def fetch(url):
@@ -438,13 +438,13 @@ class ResearchTests(unittest.TestCase):
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
         actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="follow up",
-            domain="cellular_automata", reason="Test queue lifecycle") for i in range(4)]
+            domain="symmetry", reason="Test queue lifecycle") for i in range(4)]
         self.propose(actions)
         with self.engine.store.lock():
             collect(self.engine, fetcher=lambda url: dict(url=url, scope="fixture",
                 excerpt="cellular automata bounded comparison evidence"))
         result = self.propose([dict(type="research", id="q-next", project="p", query="next follow up",
-            domain="cellular_automata", reason="Queue remains usable")])
+            domain="symmetry", reason="Queue remains usable")])
         self.assertEqual(result["status"], "accepted")
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
@@ -466,13 +466,13 @@ class ResearchTests(unittest.TestCase):
                     content=json.dumps({"scope":"synthetic test fixture",
                                         "excerpt":"bounded comparison cellular automata explanations",
                                         "verification_required":True,
-                                        "topic_domain":"cellular_automata"}),
+                                        "topic_domain":"symmetry"}),
                     actor="collector", scope="collected"))
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
 
     def test_verified_notebook_rejects_cross_topic_evidence(self):
         with self.engine.store.lock():
-            for identifier, domain in (("s1", "cellular_automata"), ("s2", "symmetry")):
+            for identifier, domain in (("s1", "symmetry"), ("s2", "symmetry")):
                 self.engine.store.append("observation", dict(
                     id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
                     content=json.dumps({"scope":"synthetic test fixture",
