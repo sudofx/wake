@@ -186,8 +186,6 @@ Only this explicit retraction of real prior wording is exempt from the overclaim
 Keep the narrower replacement claim in a separate paragraph. Do not repeat the overstatement in
 other prose, headlines, or summaries; every other claim still needs calibrated notebook support.
 """
-
-
 # ---------------------------------------------------------------------------
 # STEP: action_schema
 #
@@ -195,8 +193,6 @@ other prose, headlines, or summaries; every other claim still needs calibrated n
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -231,8 +227,6 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
-
-
 # ---------------------------------------------------------------------------
 # STEP: schema_for_context
 #
@@ -240,8 +234,6 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -276,8 +268,6 @@ def schema_for_context(context):
         props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
         props["evidence"]["items"]["enum"] = evidence
     return schema
-
-
 # ---------------------------------------------------------------------------
 # STEP: retractable_quotes
 #
@@ -285,8 +275,6 @@ def schema_for_context(context):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -298,8 +286,6 @@ def retractable_quotes(post):
         r"|\b(?:clean|clear|sharp)\s+(?:functional\s+)?(?:fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
         r"|\b(?:cleanly|sharply)\s+(?:separates?|demarcates?|distinguishes?)\b"
         r"|\b(?:proves?|demonstrates?|establishes?|confirms?)\s+that\b", prose, re.I)))
-
-
 # ---------------------------------------------------------------------------
 # STEP: load_env
 #
@@ -307,8 +293,6 @@ def retractable_quotes(post):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -318,8 +302,6 @@ def load_env(path=Path(".env")):
             key, sep, value = line.strip().partition("=")
             if sep and key == "GEMINI_API_KEY" and key not in os.environ:
                 os.environ[key] = value.strip().strip("\"'")
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: TransientProviderError
 #
@@ -327,8 +309,6 @@ def load_env(path=Path(".env")):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -345,8 +325,6 @@ class TransientProviderError(RuntimeError):
     def __init__(self, message, details=None):
         super().__init__(message)
         self.details = details or {}
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: ProviderRequestError
 #
@@ -354,8 +332,6 @@ class TransientProviderError(RuntimeError):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -367,8 +343,6 @@ class ProviderRequestError(Rejected):
 
 
 FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: DailyQuotaExceeded
 #
@@ -376,15 +350,11 @@ FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
 class DailyQuotaExceeded(ProviderRequestError):
     """Gemini reported the exact per-day free-tier project/model quota."""
-
-
 # ---------------------------------------------------------------------------
 # STEP: _quota_ids
 #
@@ -392,8 +362,6 @@ class DailyQuotaExceeded(ProviderRequestError):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -406,8 +374,6 @@ def _quota_ids(value):
     elif isinstance(value, list):
         for item in value:
             yield from _quota_ids(item)
-
-
 # ---------------------------------------------------------------------------
 # STEP: is_free_tier_daily_quota
 #
@@ -415,16 +381,12 @@ def _quota_ids(value):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
 def is_free_tier_daily_quota(details):
     """Classify only Google's exact free-tier daily quota identifier."""
     return FREE_TIER_DAILY_QUOTA_ID in set(_quota_ids(details or {}))
-
-
 # ---------------------------------------------------------------------------
 # STEP: _safe_provider_value
 #
@@ -432,8 +394,6 @@ def is_free_tier_daily_quota(details):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -462,8 +422,6 @@ def _safe_provider_value(value, depth=0):
     if value is None or isinstance(value, (bool, int, float)):
         return value
     return str(value)[:500]
-
-
 # ---------------------------------------------------------------------------
 # STEP: _http_error_details
 #
@@ -471,8 +429,6 @@ def _safe_provider_value(value, depth=0):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -500,8 +456,6 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
             error = parsed.get("error", parsed) if isinstance(parsed, dict) else parsed
             details["provider_error"] = _safe_provider_value(error)
     return details
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: Gemini
 #
@@ -509,8 +463,6 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -518,7 +470,6 @@ class Gemini:
     name = "gemini"
     charged = True
     transient_http_codes = frozenset({500, 502, 503, 504})
-
     # ---------------------------------------------------------------------------
     # STEP: __init__
     #
@@ -549,7 +500,6 @@ class Gemini:
         require(config["free_tier_confirmed"] is True,
                 "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled")
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
-
     # ---------------------------------------------------------------------------
     # STEP: propose
     #
@@ -651,7 +601,6 @@ class Gemini:
             if not isinstance(error, TransientProviderError):
                 raise error
         raise error
-
     # ---------------------------------------------------------------------------
     # STEP: diagnostics
     #
@@ -665,8 +614,6 @@ class Gemini:
         return {"provider_requests_sent": self.provider_requests_sent,
                 "provider_attempts": list(self.provider_attempts),
                 **({"successful_model": self.successful_model} if self.successful_model else {})}
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: Fixture
 #
@@ -674,8 +621,6 @@ class Gemini:
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
