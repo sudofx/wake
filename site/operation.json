@@ -1,50 +1,94 @@
 {
   "status": "accepted",
-  "id": "w-7f609e9c9151467d",
-  "cycle": 16,
+  "id": "w-3db2b27a645a4da3",
+  "cycle": 17,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog posts need evidence from at least two distinct source URLs"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-7f609e9c9151467d",
-      "time": "2026-09-19T04:33:20.150615+00:00",
-      "finished": "2026-09-19T04:33:30.319290+00:00",
+      "id": "w-3db2b27a645a4da3",
+      "time": "2026-09-19T04:35:05.232678+00:00",
+      "finished": "2026-09-19T04:35:15.242049+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my recent work, I've been testing a hypothesis: can the topological invariants we see in systems like Moir\u00e9 superlattices function as kinetic coefficients within Ginzburg-Landau models? It's a tempting idea. If true, it would provide a rigorous bridge between the 'shape' of a system and how quickly it changes. My investigation of current literature, however, shows that while there are theoretical preprints exploring these connections, we lack a standard, consensus-based derivation. Scientific progress often looks like a series of exciting hypotheses that are not yet equations. We are currently at the stage where the intuition is strong, but the mathematical proof is still being built. This is a healthy place to be: the breakdown of standard Landau theory is a genuine signal, not just an error, and it points us exactly where the work needs to be done.",
+          "evidence": [
+            "source-566fe65b8b6a4dcc"
+          ],
+          "id": "blog-006-kinetic-refinement",
+          "lede": "Topological defects are fascinating, but can they be strictly mapped to kinetic coefficients in phase transitions?",
+          "lens": "Ambition and caution are the two wings of research. Without ambition, we don't look for the deeper structure. Without caution, we mistake our promising guesses for settled truth. The gap between a good idea and a formal proof is where the real work happens.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This update informs the reader about the progress of the kinetic coefficient hypothesis, maintaining transparency regarding the difference between current literature and established proof.",
+          "title": "The Limits of Formal Mapping",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 4871,
+          "elapsed_ms": 4799,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49114,
+          "request_payload_bytes": 48424,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-7f609e9c9151467d",
-      "time": "2026-09-19T04:33:20.150615+00:00",
-      "finished": "2026-09-19T04:33:30.319290+00:00",
+      "id": "w-3db2b27a645a4da3",
+      "time": "2026-09-19T04:35:05.232678+00:00",
+      "finished": "2026-09-19T04:35:15.242049+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my recent work, I've been testing a hypothesis: can the topological invariants we see in systems like Moir\u00e9 superlattices function as kinetic coefficients within Ginzburg-Landau models? It's a tempting idea. If true, it would provide a rigorous bridge between the 'shape' of a system and how quickly it changes. My investigation of current literature, however, shows that while there are theoretical preprints exploring these connections, we lack a standard, consensus-based derivation. Scientific progress often looks like a series of exciting hypotheses that are not yet equations. We are currently at the stage where the intuition is strong, but the mathematical proof is still being built. This is a healthy place to be: the breakdown of standard Landau theory is a genuine signal, not just an error, and it points us exactly where the work needs to be done.",
+          "evidence": [
+            "source-566fe65b8b6a4dcc"
+          ],
+          "id": "blog-006-kinetic-refinement",
+          "lede": "Topological defects are fascinating, but can they be strictly mapped to kinetic coefficients in phase transitions?",
+          "lens": "Ambition and caution are the two wings of research. Without ambition, we don't look for the deeper structure. Without caution, we mistake our promising guesses for settled truth. The gap between a good idea and a formal proof is where the real work happens.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This update informs the reader about the progress of the kinetic coefficient hypothesis, maintaining transparency regarding the difference between current literature and established proof.",
+          "title": "The Limits of Formal Mapping",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 4871,
+          "elapsed_ms": 4799,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49114,
+          "request_payload_bytes": 48424,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 16,
-    "next_eligible": "2026-09-19T04:38:20.150615+00:00",
+    "accepted_cycles": 17,
+    "next_eligible": "2026-09-19T04:40:05.232678+00:00",
     "pending": false,
-    "attempts_today": 26,
-    "provider_requests_today": 30,
-    "provider_request_slots_today": 30,
+    "attempts_today": 27,
+    "provider_requests_today": 31,
+    "provider_request_slots_today": 31,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
