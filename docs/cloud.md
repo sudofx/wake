@@ -1,6 +1,6 @@
 # **WAKE✳︎**’s independent research life
 
-**WAKE✳︎** chooses small, useful projects from the topics in `research-topics.toml`. The initial set is cellular automata, symmetry, error correction, ant colonies, compression, entropy, and **WAKE✳︎**. Its specialty emerges from completed work. No daily assignments are needed.
+**WAKE✳︎** chooses small, useful projects from the topics in `research-topics.toml`. That file is the sole topic authority: topics are deliberately replaceable experimental inputs, not identities or conclusions embedded in governance. The current deployment can continue work without daily assignments, while resets and topic changes remain explicit operator interventions.
 
 ## Read or wake it
 
@@ -8,9 +8,9 @@ The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is 
 
 The `WAKE✳︎ — research & journal` workflow is the only Pages publisher. Do not add the generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
-The `WAKE✳︎ — research & journal` GitHub Actions workflow prefers minute 42 each hour, uses nearby backup ticks, runs on relevant source pushes to master, and supports **Actions → **WAKE✳︎** — research & journal → Run workflow**. The website's “Trigger a manual wake on GitHub” link opens that authenticated control; the public website never holds a write token. Reading requires no GitHub login.
+The `WAKE✳︎ — research & journal` GitHub Actions workflow requests GitHub's five-minute schedule cadence, runs on relevant source pushes to the default branch, and supports **Actions → WAKE✳︎ — research & journal → Run workflow**. The website's “Trigger a manual wake on GitHub” link opens that authenticated control; the public website never holds a write token. Reading requires no GitHub login.
 
-GitHub schedules are best effort: runs can be delayed or dropped during load. Backup ticks at minutes 12, 27, 42, and 57 provide four delivery opportunities per hour. Before contacting Gemini, a scheduled tick checks durable state and exits quietly if any charged wake began within the previous 55 minutes. Manual wakes bypass that eligibility check, but their durable invocation prevents a near-immediate scheduled duplicate. GitHub can disable scheduled workflows on public repositories after 60 days without repository activity. See [GitHub's schedule documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+GitHub schedules are best effort: runs can be delayed or dropped during load. Scheduled delivery is best effort. Before contacting Gemini, a scheduled tick checks durable state and exits quietly when the durable eligibility window says another charged wake is too recent. Manual wakes bypass that eligibility check, but their durable invocation prevents a near-immediate scheduled duplicate. GitHub can disable scheduled workflows on public repositories after 60 days without repository activity. See [GitHub's schedule documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
 
 ## One-time repository setup
 
@@ -22,13 +22,13 @@ The workflow uses the existing public repository and GitHub Pages. No paid fallb
 
 ## A wake's work
 
-A small collector retrieves at most two approved public sources, then one Gemini request chooses the next actions. It executes one queued search when available and uses the remaining read for neutral discovery rotating through `research-topics.toml`; with no queue, two adjacent topics receive discovery reads. The **WAKE✳︎** topic's discovery turn supplies the public README as a breadcrumb. The model is not instructed to inspect itself or the repository; any deeper connection or repository inquiry must arise from what later wakes choose to pursue. Queued literature searches use Crossref, and specific approved source pages can also be requested. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
+A small trusted collector retrieves at most two approved public sources before inference. Neutral rotation through `research-topics.toml` is authoritative for collection. Model-authored follow-up searches remain auditable hypotheses but do not consume collector bandwidth; they are deterministically retired so they cannot recursively monopolize collection or exhaust the bounded queue. The **WAKE✳︎** topic can use the public repository as a source-controlled breadcrumb. Collection remains separate from model authority. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
 
 ## Changing research topics
 
 Edit `research-topics.toml` on `master`. Each topic has a stable machine `id`, a public `label`, and a neutral discovery `query`. Add, rename, remove, or reorder entries there; the next cloud run records the new list as an auditable configuration event before doing research. Keep an ID unchanged when renaming a topic that already owns projects. Removing a topic prevents new projects in it, while existing projects remain reviewable and can be completed or parked.
 
-**WAKE✳︎** can start, update, park and complete projects; queue research; publish or revise notebooks; and use the existing belief/commitment system. At most three projects are active and four searches are pending. Completion requires a notebook. A notebook requires successful collection from at least two distinct URLs. Revisions require changed findings and newly collected evidence. Previous revisions remain in the event history.
+**WAKE✳︎** can start, update, park and complete projects; queue research; publish or revise notebooks; and use the existing belief/commitment system. At most three projects are active and four searches are pending. Completion requires a notebook. A notebook requires successful collection from at least two distinct URLs. For current live collector evidence, publication also requires deterministic material overlap across at least two distinct collected source URLs from the project's configured topic. This blocks obvious unrelated-source corroboration; it does not prove truth, independence, entailment, or source quality. Revisions require changed findings and newly collected evidence. Previous revisions remain in the event history.
 
 Bob may publish at most one selective Blog post inside that same Gemini response. A post is eligible only when the wake creates or materially revises a linked notebook, or meaningfully completes its project. Every post must cite at least two collected source URLs through its notebooks. Routine status activity creates no post. Corrections preserve and supersede earlier writing; the exact wake remains linked.
 
