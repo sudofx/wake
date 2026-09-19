@@ -13,3 +13,26 @@
 
 /* v0.20.1 UX cohesion */
 @media(max-width:720px){nav.compact-nav{overflow-x:auto;justify-content:flex-start;scrollbar-width:thin}nav.compact-nav>a,nav.compact-nav>details>summary{min-width:max-content}.field-head{font-size:11px}.node .kind,.node small,.detail-label,.relationship small{font-size:11px}}
+
+
+/* v0.21 hierarchy: keep the graph dense in information, quiet in chrome. */
+header{padding-top:20px;padding-bottom:18px;gap:22px}
+main{padding-top:24px}
+.intro{margin-bottom:22px;max-width:900px}
+.toolbar{padding:11px 0}
+.workspace{gap:18px}
+#map-field,#details{box-shadow:none}
+.field-head{padding:13px 15px}
+#timeline,#constellation{padding:16px}
+.timeline-row{padding-bottom:21px}
+.node{padding:9px 11px}
+#details{padding:18px}
+.detail-field{padding:10px 0}
+footer{margin-top:30px}
+@media(max-width:720px){
+  header{padding:18px;gap:12px}
+  main{padding-top:20px}
+  .intro{margin-bottom:18px}
+  .workspace{gap:14px}
+  #timeline,#constellation{padding:14px}
+}
