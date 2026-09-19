@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Owns durable state and the append-only event chain. Continuity belongs in the record rather than inside any model session; hashes and replay make accepted history inspectable and reconstructable.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """SQLite transactions + hash-linked events. The projection is disposable too."""
 
 from contextlib import contextmanager
