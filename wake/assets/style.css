@@ -324,3 +324,32 @@ footer{margin-top:48px}
 @media(min-width:2200px){#metrics .command-strip>div{padding:16px 18px}#metrics .command-strip strong{font-size:28px}#metrics .command-strip b{font-size:21px}#metrics .telemetry-cell{padding:16px 18px}}
 @media(max-width:1000px){.command-strip{grid-template-columns:repeat(4,1fr)}.command-strip>div{border-bottom:1px solid var(--line)}.command-strip>div:first-child{grid-column:span 2}.telemetry-grid{grid-template-columns:repeat(2,1fr)}.telemetry-cell:nth-child(5n){border-right:1px solid var(--line)}.telemetry-cell:nth-child(2n){border-right:0}}
 @media(max-width:700px){.command-strip{grid-template-columns:repeat(2,1fr)}.command-strip>div:first-child{grid-column:1/-1}.command-strip>div:nth-child(even){border-right:0}.telemetry-grid{grid-template-columns:repeat(2,1fr)}}
+
+
+/* Command-center layout correction: ultrawide gains columns, not stretched rows. */
+@media(min-width:1200px){
+  #metrics .command-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .command-strip>div:first-child{grid-column:span 2}
+  #metrics .command-strip>div{border-bottom:1px solid var(--line)}
+  #metrics .telemetry-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  #metrics .telemetry-cell{border-bottom:1px solid var(--line)}
+  #metrics .dashboard-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #metrics .hypothesis-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:1600px){
+  #metrics .command-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .telemetry-grid{grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:0}
+  #metrics .telemetry-cell{border-bottom:1px solid var(--line)}
+  #metrics .telemetry-cell:nth-child(5n){border-right:0}
+  #metrics .dashboard-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .wake-timeline{grid-template-columns:repeat(25,minmax(8px,1fr))}
+}
+@media(min-width:2200px){
+  #metrics .command-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .telemetry-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  #metrics .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .wake-timeline{grid-template-columns:repeat(25,minmax(8px,1fr))}
+  #metrics .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
