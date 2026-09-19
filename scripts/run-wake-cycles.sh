@@ -49,18 +49,25 @@ for ((i = 1; i <= count; i++)); do
 
   # Retry transient dispatch failures. The batch should stop only when a
   # WAKE✳︎ workflow itself reports a real failure (such as an API limit).
-  started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  dispatch_token="batch-$(hostname 2>/dev/null | tr -cd '[:alnum:]._-' | cut -c1-32)-$-$i-$(date -u +%s)-$RANDOM"
 
-  until gh workflow run "$WORKFLOW" --repo "$REPO" --ref master; do
+  until gh workflow run "$WORKFLOW" --repo "$REPO" --ref master -f "dispatch_token=$dispatch_token"; do
     echo "[$i/$count] Dispatch failed transiently; retrying in $RETRY_SECONDS seconds..." >&2
     sleep "$RETRY_SECONDS"
-    started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   done
 
   run_id=""
   while [[ -z "$run_id" ]]; do
     run_id="$(
-      gh run list         --repo "$REPO"         --workflow "$WORKFLOW"         --event workflow_dispatch         --branch master         --limit 10         --json databaseId,createdAt         --jq ".[] | select(.createdAt >= \"$started_at\") | .databaseId"         | head -n 1
+      gh run list \
+        --repo "$REPO" \
+        --workflow "$WORKFLOW" \
+        --event workflow_dispatch \
+        --branch master \
+        --limit 100 \
+        --json databaseId,displayTitle \
+        --jq ".[] | select(.displayTitle == \"WAKE✳︎ $dispatch_token\") | .databaseId" \
+        | head -n 1
     )"
 
     [[ -n "$run_id" ]] || sleep "$POLL_SECONDS"
