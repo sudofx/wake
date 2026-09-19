@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3348028ea419b4d04c11aaae48b47f8d6bc6aa2aa4b3a54ba4438da35b278548`
+Verified head: `b7cfed5e063bf398dbfebd36d31c5c84b58bcaa2170ddf4a95249ea10c12316e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Quantifying Topological Constraints in Phase Transitions
+
+September 18, 2026 · 09:23 PM PDT · gemini / gemini-3.8-flash
+
+Refining the project focus toward formalizing topological constraints as potential kinetic coefficients. The comparative analysis between Moiré superlattices and silicene is now synthesized in the active notebook. Research has pivoted toward identifying quantitative mappings for these selection rules.
+
+Editorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact
+
+Invocation: `w-6c76a098d8494efe`
 
 ## 012 · Consolidating Moiré Topological Invariants
 

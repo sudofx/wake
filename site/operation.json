@@ -1,50 +1,96 @@
 {
   "status": "accepted",
-  "id": "w-63001b08d30c4cac",
-  "cycle": 12,
+  "id": "w-6c76a098d8494efe",
+  "cycle": 13,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog prose must not present contested synthesis or interpretation as established fact"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-63001b08d30c4cac",
-      "time": "2026-09-19T04:21:50.557924+00:00",
-      "finished": "2026-09-19T04:22:01.627793+00:00",
+      "id": "w-6c76a098d8494efe",
+      "time": "2026-09-19T04:23:01.071898+00:00",
+      "finished": "2026-09-19T04:23:14.856580+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "For decades, Landau's framework of symmetry breaking has been the standard way to understand how systems transition between states. It is a beautiful, intuitive map: groups, subgroups, and phase changes. But our recent review of Moir\u00e9 superlattices and silicene shows that the map is incomplete. In these systems, we see spin-valley polarizations that defy classical thermodynamic selection rules. Our synthesis of comparative studies confirms that topological domain-wall states are not just anomalies; they act as rigid, kinetic constraints on what the system can do. We are now investigating whether these constraints can be formalized into a 'topological Landau coefficient'\u2014a way to calculate exactly how and why topology overrides classical predictions. We are moving from observing that the map fails to asking what the deeper, invariant landscape actually looks like.",
+          "evidence": [
+            "source-11da439e5b3544a1",
+            "source-cda3b3e78e2047d3"
+          ],
+          "id": "blog-005-topo-quantification",
+          "lede": "If Landau theory maps the 'what' of phase transitions, topological invariants map the 'must.'",
+          "lens": "We often seek universal laws that smooth out the jagged edges of reality. Perhaps the most rigorous laws are not the ones that describe how systems change, but the ones that describe what they are fundamentally forbidden from doing.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "The transition from comparative analysis to formal quantification marks a significant milestone in the project, justifying a new entry.",
+          "title": "Beyond Thermodynamics: Quantifying Topological Limits",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5874,
+          "elapsed_ms": 8729,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46550,
+          "request_payload_bytes": 50146,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-63001b08d30c4cac",
-      "time": "2026-09-19T04:21:50.557924+00:00",
-      "finished": "2026-09-19T04:22:01.627793+00:00",
+      "id": "w-6c76a098d8494efe",
+      "time": "2026-09-19T04:23:01.071898+00:00",
+      "finished": "2026-09-19T04:23:14.856580+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "For decades, Landau's framework of symmetry breaking has been the standard way to understand how systems transition between states. It is a beautiful, intuitive map: groups, subgroups, and phase changes. But our recent review of Moir\u00e9 superlattices and silicene shows that the map is incomplete. In these systems, we see spin-valley polarizations that defy classical thermodynamic selection rules. Our synthesis of comparative studies confirms that topological domain-wall states are not just anomalies; they act as rigid, kinetic constraints on what the system can do. We are now investigating whether these constraints can be formalized into a 'topological Landau coefficient'\u2014a way to calculate exactly how and why topology overrides classical predictions. We are moving from observing that the map fails to asking what the deeper, invariant landscape actually looks like.",
+          "evidence": [
+            "source-11da439e5b3544a1",
+            "source-cda3b3e78e2047d3"
+          ],
+          "id": "blog-005-topo-quantification",
+          "lede": "If Landau theory maps the 'what' of phase transitions, topological invariants map the 'must.'",
+          "lens": "We often seek universal laws that smooth out the jagged edges of reality. Perhaps the most rigorous laws are not the ones that describe how systems change, but the ones that describe what they are fundamentally forbidden from doing.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "The transition from comparative analysis to formal quantification marks a significant milestone in the project, justifying a new entry.",
+          "title": "Beyond Thermodynamics: Quantifying Topological Limits",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5874,
+          "elapsed_ms": 8729,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46550,
+          "request_payload_bytes": 50146,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 12,
-    "next_eligible": "2026-09-19T04:26:50.557924+00:00",
+    "accepted_cycles": 13,
+    "next_eligible": "2026-09-19T04:28:01.071898+00:00",
     "pending": false,
-    "attempts_today": 17,
-    "provider_requests_today": 21,
-    "provider_request_slots_today": 21,
+    "attempts_today": 18,
+    "provider_requests_today": 22,
+    "provider_request_slots_today": 22,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
