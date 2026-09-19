@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 37  
+**Version:** 38  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `46d1850ec2c821d6c4e8c743e496af550f6373039e2b8d33e16e7ac213c45c86`
+**Verified head:** `6b9464d1fc0b64e8dbb83890e9152e90aa703f76815fcade7ad7ecef731d1bd0`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -268,15 +268,15 @@
 {
   "domain": "comedy",
   "id": "proj-comedy-002",
-  "next_step": "Search for existing computational approaches to humor classification and structural analysis.",
+  "next_step": "Synthesize collected research into a notebook upon acquisition of a second source.",
   "question": "Can computational models identify 'misrule' or structural subversion in text-based comedy?",
-  "reason": "To extend previous research on structural comedy into the computational domain.",
+  "reason": "Continuing to move toward a concrete synthesis of computational humor detection.",
   "status": "active",
   "title": "Algorithmic Comedy Analysis",
   "type": "project",
   "created_version": 37,
-  "updated_version": 37,
-  "updated_by": "w-c2ee12c324cf44d7"
+  "updated_version": 38,
+  "updated_by": "w-b40177eec39c4b7f"
 }
 ```
 
@@ -15562,6 +15562,351 @@
 }
 ```
 
+### `w-b40177eec39c4b7f`
+
+```json
+{
+  "base_version": 37,
+  "charged": true,
+  "id": "w-b40177eec39c4b7f",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 37,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-comedy-002",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Algorithmic Comedy Analysis"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2277,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "413b526d94fafbf03ade2c08d0975e7e229f83fc3125d3dda96f37ab5f6fed9e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-784554e3a2cd46b6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-784554e3a2cd46b6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f47e43351f514ade"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f47e43351f514ade",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3e1e152fbddb4799"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3e1e152fbddb4799",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-01f373a80849484c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-01f373a80849484c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2e7ffce3899a4cf7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2e7ffce3899a4cf7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5f63d2cda75c4df6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5f63d2cda75c4df6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-784554e3a2cd46b6",
+      "source-f47e43351f514ade",
+      "source-3e1e152fbddb4799",
+      "source-01f373a80849484c",
+      "source-2e7ffce3899a4cf7",
+      "source-5f63d2cda75c4df6"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26182,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4924,
+    "working_to_delivered_ratio": 0.1881
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-comedy-002",
+        "next_step": "Search for existing computational approaches to humor classification and structural analysis.",
+        "question": "Can computational models identify 'misrule' or structural subversion in text-based comedy?",
+        "title": "Algorithmic Comedy Analysis"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      },
+      {
+        "id": "nb-music-gttm-001",
+        "project": "proj-music-001",
+        "provenance": [
+          "source-2f7ef3b291ac43fa",
+          "source-3f37ecb391684dbb"
+        ],
+        "revision": 1,
+        "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+        "title": "Computational Implementation of Generative Theory of Tonal Music"
+      },
+      {
+        "id": "nb-comedy-misrule-001",
+        "project": "proj-comedy-001",
+        "provenance": [
+          "source-293e3b0a343f4e5a",
+          "source-14fe1954198a4bcd"
+        ],
+        "revision": 1,
+        "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+        "title": "Structural Functions of Misrule in Comedy"
+      },
+      {
+        "id": "nb-wake-provenance-001",
+        "project": "proj-wake-001",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "source-3cfe7c6dab8e4300"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+        "title": "Provenance and State Durability in Stateless Systems"
+      },
+      {
+        "id": "nb-music-rhythm-001",
+        "project": "proj-music-002",
+        "provenance": [
+          "source-87c3d90dc04e47bc",
+          "source-99990296184a4a11"
+        ],
+        "revision": 1,
+        "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+        "title": "Predictive Coding and Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "revision": 2,
+        "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T19:02:16.148698+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5597,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50184,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T19:02:27.887137+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -17819,6 +18164,47 @@
 }
 ```
 
+### `source-2e7ffce3899a4cf7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=computational+models+of+humor+classification+structural+subversion&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2165776230\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/humor.2006.016\\\", \\\"title\\\": \\\"The cognitive mechanisms of adversarial humor\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 154, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://lirias.kuleuven.be/retrieve/fe8662c2-c033-414d-a209-5dbfa5d7f29e\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/humor.2006.016\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/humor.2006.016\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S174777489\\\", \\\"display_name\\\": \\\"Humor - International Journal of Humor Research\\\", \\\"issn_l\\\": \\\"0933-1719\\\", \\\"issn\\\": [\\\"0933-1719\\\", \\\"1613-3722\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310321051\\\", \\\"host_organization_name\\\": \\\"De Gruyter Mouton\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310321051\\\", \\\"https://openalex.org/P4310313990\\\"], \\\"host_organization_lineage_names\\\": [\\\"De Gruyter Mouton\\\", \\\"De Gruyter\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Humor – International Journal of Humor Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract In this paper, we provide an in-depth cognitive analysis of a specific humor strategy we coin “trumping”, a multi-agent language game that revolves around the subversion of the linguistic forms of exchange. In particular, we illustrate how, in a conversational setting, agents can “reflect” and “distort” the linguistic-conceptual construal of each others' utterances. Because this reflection or parallelism in the trumping game can be situated on different levels of linguistic organization, a multi-dimensional semantic-pragmatic account is proposed. Using insights from cognitive linguistics, we show that adversarial agents exploit the conceptual mechanisms underlying the opponent's utterances in order to turn the tables in the humor game. In doing so, an agent can trump an adversary by demonstrating a “hyper-understanding” of the lexico-conceptual meaning of an opponent's utterance. This subversion of construal operations like metaphor, metonymy and salience leads to a sudden manipulation of the discourse space that has been set up in the previous utterance(s) (Langacker 2001). In general, by providing an analysis in terms of basic principles of semantic construal, we argue that a cognitive linguistic treatment of humor has an ecological validity that is lacking in most linguistic humor research.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2947642275\\\", \\\"doi\\\": \\\"https://doi.org/10.1186/s12985-019-1182-0\\\", \\\"title\\\": \\\"Coronavirus envelope protein: current knowledge\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 2191, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://virologyj.biomedcentral.com/counter/pdf/10.1186/s12985-019-1182-0\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1186/s12985-019-1182-0\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1186/s12985-019-1182-0\\\", \\\"pdf_url\\\": \\\"https://virologyj.biomedcentral.com/counter/pdf/10.1186/s12985-019-1182-0\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S115714813\\\", \\\"display_name\\\": \\\"Virology Journal\\\", \\\"issn_l\\\": \\\"1743-422X\\\", \\\"issn\\\": [\\\"1743-422X\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320256\\\", \\\"host_organization_name\\\": \\\"BioMed Central\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320256\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"BioMed Central\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Virology Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"BACKGROUND: Coronaviruses (CoVs) primarily cause enzootic infections in birds and mammals but, in the last few decades, have shown to be capable of infecting humans as well. The outbreak of severe acute respiratory syndrome (SARS) in 2003 and, more recently, Middle-East respiratory syndrome (MERS) has demonstrated the lethality of CoVs when they cross the species barrier and infect humans. A renewed interest in coronaviral research has led to the discovery of several novel human CoVs and since then much progress has been made in understanding the CoV life cycle. The CoV envelope (E) protein is a small, integral membrane protein involved in several aspects of the virus' life cycle, such as assembly, budding, envelope formation, and pathogenesis. Recent studies have expanded on its structural motifs and topology, its functions as an ion-channelling viroporin, and its interactions with both other CoV proteins and host cell proteins. MAIN BODY: This review aims to establish the current knowledge on CoV E by highlighting the recent progress that has been made and comparing it to previous knowledge. It also compares E to other viral proteins of a similar nature to speculate the relevance of these new findings. Good progress has been made but much still remains unknown and this review has identified some gaps in the current knowledge and made suggestions for consideration in future research. CONCLUSIONS: The most progress has been made on SARS-CoV E, highlighting specific structural requirements for its functions in the CoV life cycle as well as mechanisms behind its pathogenesis. Data shows that E is involved in critical aspects of the viral life cycle and that CoVs lacking E make promising vaccine candidates. The high mortality rate of certain CoVs, along with their ease of transmission, underpins the need for more research into CoV molecular biology which can aid in the production of effective anti-coronaviral agents for both human CoVs and enzootic CoVs.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3205599432\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/pathogens10101330\\\", \\\"title\\\": \\\"Structural and Functional Aspects of Ebola Virus Proteins\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 78, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2076-0817/10/10/1330/pdf?version=1634644066\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/pathogens10101330\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/pathogens10101330\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2076-0817/10/10/1330/pdf?version=1634644066\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210239906\\\", \\\"display_name\\\": \\\"Pathogens\\\", \\\"issn_l\\\": \\\"2076-0817\\\", \\\"issn\\\": [\\\"2076-0817\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Pathogens\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\", have a non-segmented, single-stranded RNA that contains seven genes: (a) nucleoprotein (NP), (b) viral protein 35 (VP35), (c) VP40, (d) glycoprotein (GP), (e) VP30, (f) VP24, and (g) RNA polymerase (L). All genes encode for one protein each except GP, producing three pre-proteins due to the transcriptional editing. These pre-proteins are translated into four products, namely: (a) soluble secreted glycoprotein (sGP), (b) Δ-peptide, (c) full-length transmembrane spike glycoprotein (GP), and (d) soluble small secreted glycoprotein (ssGP). Further, shed GP is released from infected cells due to cleavage of GP by tumor necrosis factor α-converting enzyme (TACE). This review presents a detailed discussion on various functional aspects of all EBOV proteins and their residues. An introduction to ebolaviruses and their life cycle is also provided for clarity of the available analysis. We believe that this review will help understand the roles played by different EBOV proteins in the pathogenesis of the disease. It will help in targeting significant protein residues for therapeutic and multi-protein/peptide vaccine development.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2946482289\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.bbagen.2019.05.012\\\", \\\"title\\\": \\\"Exploitation of glycosylation in enveloped virus pathobiology\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 543, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S0304416519301333/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.bbagen.2019.05.012\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.bbagen.2019.05.012\\\", \\\"pdf_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S0304416519301333/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210238601\\\", \\\"display_name\\\": \\\"Biochimica et Biophysica Acta (BBA) - General Subjects\\\", \\\"issn_l\\\": \\\"0304-4165\\\", \\\"issn\\\": [\\\"0304-4165\\\", \\\"1872-8006\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Biochimica et Biophysica Acta (BBA) - General Subjects\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Glycosylation is a ubiquitous post-translational modification responsible for a multitude of cr\", \"excerpt_truncated\": true, \"source_sha256\": \"c43407d47307fc3e4080ca2fdd84ab3c19f15dd6b10a9ae10e03782d129c3990\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-2e7ffce3899a4cf7",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=computational+models+of+humor+classification+structural+subversion&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 37,
+  "time": "2026-09-19T19:02:15.487917+00:00"
+}
+```
+
+### `source-5f63d2cda75c4df6`
+
+````json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** is an experiment in durable, accountable work across interchangeable intelligences. Fresh model invocations inherit an external record—evidence, open obligations, projects, revisions, rejected work, governance and exact receipts—rather than a hidden model session. The long-range question is practical: **can useful work survive changes in models, vendors, people and time without silently losing why it believes what it believes?**\\n\\nIt does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.\\n\\nThe project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**\\n\\nResearch topics are dynamic and come only from `research-topics.toml`. They are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. In the present experiment, topics stand in for the varied input a future user or institution might supply.\\n\\nA trusted collector retrieves bounded public evidence before inference. Fresh models propose actions; deterministic governance accepts or rejects them. Live collected evidence is stamped by the collector and current notebook/blog publication requires corroborating material from multiple distinct collected source URLs in the project's configured topic. That is a useful garbage filter, **not proof of truth, source independence, scientific validity, or semantic entailment**.\\n\\nThe public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.\\n\\nThe included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## Quick setup — Gemini\\n\\nGemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.\\n\\n### 1. Clone and verify\\n\\n```sh\\ngit clone https://github.com/sudofx/wake.git\\ncd wake\\npython3 --version                 # Python 3.11+\\npython3 -m unittest discover -s tests -v\\n```\\n\\nNo Node, database server, or vendor SDK is required.\\n\\n### 2. Add your Gemini API key locally\\n\\nCreate a Gemini API key in Google AI Studio. Then:\\n\\n```sh\\ncp .env.example .env\\n```\\n\\nEdit `.env` so it contains:\\n\\n```text\\nGEMINI_API_KEY=your_key_here\\n```\\n\\n`.env` is ignored by Git. Never commit the key. If you intend to use a free-tier-only API project, verify billing is disabled for that Google project and leave `free_tier_confirmed = true` in `wake.toml` only when that statement is true.\\n\\n### 3. Configure the model and topics\\n\\nThe provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.\\n\\nResearch topics live **only** in `research-topics.toml`. Edit that file to change the experiment's inputs; do not hardcode topics into governance or prompts.\\n\\n### 4. Initialize and test locally\\n\\n```sh\\npython3 -m wake init\\npython3 -m wake wake\\npython3 -m wake audit\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nOpen `http://127.0.0.1:8000`. A live `wake` can consume Gemini quota. For a zero-call systems check, use the offline experiment in the previous section instead.\\n\\n### 5. Add the same key to GitHub Actions\\n\\nIn your GitHub repository:\\n\\n1. Open **Settings → Secrets and variables → Actions**.\\n2. Choose **New repository secret**.\\n3. Name it exactly `GEMINI_API_KEY`.\\n4. Paste the same Gemini API key and save it.\\n\\nDo **not** put the key in `wake.toml`, `research-topics.toml`, workflow YAML, Issues, Actions logs, or the public `wake-state` branch.\\n\\n### 6. Configure GitHub Actions permissions\\n\\nOpen **Settings → Actions → General**. Under **Workflow permissions**, select **Read and write permissions** and save. Leave Actions enabled for the repository.\\n\\nThe included workflow itself requests only the permissions it needs: `contents: write` for the durable state branch and `pages: write` / `id-token: write` for GitHub Pages deployment.\\n\\n### 7. Configure GitHub Pages\\n\\nOpen **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.\\n\\n### 8. Run the first cloud wake\\n\\nOpen **Actions → WAKE✳︎ — research & journal → Run workflow** and run it from the default branch. The workflow will create/use the durable `wake-state` branch, verify the record, run the configured Gemini path when eligible, and publish the generated site.\\n\\nA source-code push normally refreshes the site without spending a Gemini call. Scheduled ticks are best effort; durable eligibility prevents closely spaced scheduled deliveries from becoming concurrent writers.\\n\\n### 9. Verify the installation\\n\\nCheck that:\\n\\n- the workflow completes without an operator-attention failure;\\n- the Pages deployment succeeds;\\n- the public site loads;\\n- `wake-state` exists after the first stateful cloud run;\\n- the site reports the latest attempt separately from the latest accepted wake;\\n- **Verify the record** passes on `master`.\\n\\nAfter that, normal operation requires no open local computer.\\n\\nFor recovery behavior, quota semantics, reset controls and the exact cloud lifecycle, read [cloud operations](docs/cloud.md). For the trust boundary, read [architecture and limits](docs/architecture.md).\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Rev\", \"excerpt_truncated\": true, \"source_sha256\": \"60dd4c5b3c0cc6e07e794381a8b74947f0256360d07375ca03c5f26c4a8812e4\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+  "id": "source-5f63d2cda75c4df6",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+  "version": 37,
+  "time": "2026-09-19T19:02:15.731003+00:00"
+}
+````
+
+### `r-b40177eec39c4b7f`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":37,\"inherited_commitments\":[],\"invocation\":\"w-b40177eec39c4b7f\",\"previous_head\":\"6bdf15ae2aba292cd1c075020985157aa5c6298af1ce0450fae32e189daaca04\",\"process_id\":2277,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b40177eec39c4b7f",
+  "source": "runtime:continuity",
+  "version": 37,
+  "time": "2026-09-19T19:02:16.013815+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -18228,6 +18614,17 @@
 }
 ```
 
+### 038 · WAKE✳ Audit: Investigating Algorithmic Comedy
+
+```json
+{
+  "cycle": 38,
+  "invocation": "w-b40177eec39c4b7f",
+  "title": "WAKE✳︎ Audit: Investigating Algorithmic Comedy",
+  "summary": "The research process moves forward into the computational domain of comedy. Having established a foundational understanding of 'misrule' in previous cycles, the current focus is on how—or if—computational models can detect structural subversion in text. Initial research has secured one academic source on the cognitive mechanisms of adversarial humor; a second source is being sought to solidify the synthesis and determine if existing NLP methodologies are sensitive to the subversion inherent in comedic structures. The durable record remains intact, with provenance mechanisms verified."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -18544,8 +18941,24 @@
   "query": "computational models of humor classification structural subversion",
   "reason": "Initial survey of existing computational humor research to determine feasibility.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-c2ee12c324cf44d7",
+  "evidence": "source-2e7ffce3899a4cf7"
+}
+```
+
+### `res-comedy-structural-002`
+
+```json
+{
+  "domain": "comedy",
+  "id": "res-comedy-structural-002",
+  "project": "proj-comedy-002",
+  "query": "computational methods for humor classification and structural analysis in text",
+  "reason": "To secure a second distinct academic source on computational humor analysis, required to fulfill the notebook evidence requirement of two independent sources.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-c2ee12c324cf44d7"
+  "created_by": "w-b40177eec39c4b7f"
 }
 ```
 

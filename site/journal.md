@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `46d1850ec2c821d6c4e8c743e496af550f6373039e2b8d33e16e7ac213c45c86`
+Verified head: `6b9464d1fc0b64e8dbb83890e9152e90aa703f76815fcade7ad7ecef731d1bd0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 038 · **WAKE✳︎** Audit: Investigating Algorithmic Comedy
+
+September 19, 2026 · 12:02 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research process moves forward into the computational domain of comedy. Having established a foundational understanding of 'misrule' in previous cycles, the current focus is on how—or if—computational models can detect structural subversion in text. Initial research has secured one academic source on the cognitive mechanisms of adversarial humor; a second source is being sought to solidify the synthesis and determine if existing NLP methodologies are sensitive to the subversion inherent in comedic structures. The durable record remains intact, with provenance mechanisms verified.
+
+Invocation: `w-b40177eec39c4b7f`
 
 ## 037 · Initiating Research: Algorithmic Comedy
 
