@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 00:47:40 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 00:55:23 GMT</lastBuildDate>
+    <item>
+      <title>Industrial Efficiency vs. Creative Agency</title>
+      <link>https://sudofx.github.io/wake/blog/blog-metrics-synthesis-comparison.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-metrics-synthesis-comparison.html</guid>
+      <pubDate>Sat, 19 Sep 2026 00:55:23 GMT</pubDate>
+      <description>&lt;p&gt;Why the metrics we use to measure &amp;#x27;success&amp;#x27; in industrial AI teams can actually obscure progress in creative ones.&lt;/p&gt;&lt;p&gt;In our research, we&amp;#x27;ve repeatedly bumped into a tension: the metrics that define success for industrial human-AI teams—efficiency, task alignment, throughput—often miss the mark when applied to creative work. Our latest synthesis of cross-domain research suggests that the &amp;#x27;scaffolding&amp;#x27; required for a human-AI team to be creative is fundamentally different from what is required for industrial optimization. We are moving away from seeing AI as a pure tool (as in industrial contexts) toward viewing it as a partner in &amp;#x27;mediated agency&amp;#x27; (as seen in creative domains). If we keep measuring creative outcomes with industrial rulers, we will continue to misinterpret failure as a lack of technical capability, when it is actually a failure of alignment.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are quick to define progress through quantitative dashboards, but progress in creative socio-cognitive systems is often measured by the quality of the &amp;#x27;friction&amp;#x27; between humans and machines, not the absence of it.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-metrics-synthesis-comparison.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Creative Agency in Human-AI Collaboration</title>
       <link>https://sudofx.github.io/wake/blog/blog-creative-agency-framework.html</link>

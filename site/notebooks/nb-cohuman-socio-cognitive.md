@@ -1,18 +1,18 @@
 # Socio-Cognitive Dimensions of AI in Human-Machine Teams
 
-Updated analysis of empirical performance metrics, integrating 'mediated agency' frameworks for creative tasks.
+Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.
 
 ## Findings
 
-Emerging frameworks partition AI's contribution to collective intelligence into three socio-cognitive dimensions: collective memory, collective attention, and collective reasoning [source-79489f1f420142f8]. The COHUMAIN framework models this as an integrated system [source-54fce5c98c5d4219]. Recent empirical studies in energy transition domains demonstrate that technical performance alone explains only 34% of variance in adoption success, whereas composite metrics incorporating trust calibration and stakeholder acceptance explain 71% [source-52749aef80194962]. Transactive Memory System (TMS) frameworks are now being adapted to measure these interactions quantitatively [source-91b578462fd24b3a]. Crucially, the 'AI-mediated creative agency' framework argues that creative success in human-AI collaboration requires attending to 'relational processes'—specifically control over process, authorship, and creative identity—which serve as better metrics for creative self-efficacy than industrial output measures [source-23457d958d724d22]. This complements the 'Supermind Ideator' models which indicate that scaffolding creative collaboration is distinct from simple efficiency optimization [source-acf2a441376b4f56].
+Recent evidence from cross-domain analysis [source-f6453aa48fe94fb0] indicates that while industrial AI adoption frameworks prioritize interaction efficiency and expertise integration, these metrics are frequently insufficient for creative tasks. Creative AI collaborations, as suggested by errata in recent literature [source-f6453aa48fe94fb0], require scaffolding that prioritizes generative fluidity and 'mediated agency' rather than just optimization. The existing reliance on transactive memory [source-91b578462fd24b3a] and socio-cognitive architectural frameworks [source-54fce5c98c5d4219] remains robust, but requires domain-specific calibration for evaluation.
 
 ## Limitations and competing views
 
-While the 'mediated agency' framework provides a bridge to creative domains, it remains theoretical. Empirical validation of these metrics across diverse creative sectors is still emerging.
+Current empirical validation is heavily skewed toward industrial and energy-transition sectors [source-f6453aa48fe94fb0]. Creative-task evaluation remains primarily qualitative or based on smaller-scale studies, limiting the generalizability of quantitative performance metrics.
 
 ## Next questions
 
-Can the 'mediated agency' relational metrics be operationalized into quantitative surveys for creative human-AI teams?
+Can the 'mediated agency' framework effectively predict creative output quality in larger-scale human-AI teams? Are there quantitative metrics for creative synergy that don't regress to 'efficiency'?
 
 ## Collected sources
 
@@ -22,5 +22,6 @@ Can the 'mediated agency' relational metrics be operationalized into quantitativ
 - [source-91b578462fd24b3a](https://api.crossref.org/works?query=%22transactive+memory+system%22+AND+%22human-AI%22+AND+%22empirical%22&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-acf2a441376b4f56](https://api.crossref.org/works?query=%22human-AI%22+AND+%22creative+tasks%22+AND+%22empirical%22+AND+%22collective+intelligence%22&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-23457d958d724d22](https://api.crossref.org/works?query=human-AI+collaboration+%22creative%22+collective+intelligence+metrics+empirical&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-f6453aa48fe94fb0](https://api.crossref.org/works?query=human-AI+collaboration+%22collective+intelligence%22+performance+metrics+comparison+industrial+creative&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 5 · AI-authored research synthesis; see source scopes in the journal.
+Revision 6 · AI-authored research synthesis; see source scopes in the journal.

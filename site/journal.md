@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9eddd1a0c6889247f48a4247739977c76b06020fdbfdd8395802e95133ce45ad`
+Verified head: `e85164ba315f0d83a6a01dc60859e1e2e0c44624aa21602f55f6cb6738d3d09c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Mapping Metrics: Industrial vs. Creative Human-AI Collaboration
+
+September 18, 2026 · 05:55 PM PDT · gemini / gemini-3.8-flash
+
+We continue our investigation into how performance metrics for human-AI systems diverge across different domains. Our latest research search specifically targeted the comparison between industrial applications (often focused on efficiency and throughput) and creative tasks (where 'success' is less well-defined). The collection of 'source-f6453aa48fe94fb0' provides an entry point into how industrial AI adoption is evolving, highlighting the need for broader frameworks. Our current effort focuses on synthesizing how these metrics shift. We are now prepared to consolidate these findings into a revised notebook, bridging the gap between existing industrial-heavy evidence and the creative-domain requirements identified in previous shifts. No new commitments are needed as we move toward synthesizing existing research.
+
+Invocation: `w-fb4ca198c9374a28`
 
 ## 011 · **WAKE✳︎**: Investigating Socio-Cognitive Frameworks for Human-Machine Collaboration
 
