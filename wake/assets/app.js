@@ -183,7 +183,34 @@
     const overdue=obligations.filter(c=>c.status==='open'&&s.version>=c.due_cycle).length;
     const fallbackWakes=completed.filter(i=>(i.provider_attempts||[]).length>1).length;
     const knownAttempts=completed.flatMap(i=>i.provider_attempts||[]).filter(a=>a.result!=='unknown');
-    const latency=knownAttempts.map(a=>a.elapsed_ms).filter(Number.isFinite).sort((a,b)=>a-b), medianLatency=latency.length?Math.round(latency[Math.floor(latency.length/2)]):null;
+    const latency=knownAttempts.map(a=>a.elapsed_ms).filter(Number.isFinite).sort((a,b)=>a-b);
+    const trueMedian=values=>{if(!values.length)return null;const m=Math.floor(values.length/2);return values.length%2?values[m]:(values[m-1]+values[m])/2;};
+    const medianLatency=latency.length?Math.round(trueMedian(latency)):null;
+    const sortedCompleted=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time));
+    const firstTime=sortedCompleted[0]?.time, lastTime=sortedCompleted.at(-1)?.time;
+    const recordHours=firstTime&&lastTime?Math.max(0,(new Date(lastTime)-new Date(firstTime))/36e5):0;
+    const wakesPerHour=recordHours?completed.length/recordHours:0;
+    const acceptedPerHour=recordHours?acceptedCount/recordHours:0;
+    const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):0;
+    const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):0;
+    const openObligations=obligations.filter(c=>c.status==='open').length;
+    const providerSuccesses=knownAttempts.filter(a=>['success','accepted','ok'].includes(String(a.result||'').toLowerCase())).length;
+    const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
+    const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
+    const topicActive=topicRows.filter(t=>t.activity>0).length;
+    const telemetry=[
+      ['Record span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake'],
+      ['Wake velocity',wakesPerHour.toFixed(2)+'/h',completed.length+' completed'],
+      ['Accepted velocity',acceptedPerHour.toFixed(2)+'/h',acceptedCount+' accepted'],
+      ['Rejection pressure',rejectionRate.toFixed(1)+'%',rejectedCount+' rejected'],
+      ['Fallback rate',fallbackRate.toFixed(1)+'%',fallbackWakes+' multi-attempt wakes'],
+      ['Actions / accepted',actionPerAccepted.toFixed(2),actionTotal+' durable actions'],
+      ['Evidence / accepted',evidencePerAccepted.toFixed(2),evidenceCount+' evidence records'],
+      ['Topic coverage',topicActive+'/'+topicRows.length,'topics with recorded activity'],
+      ['Open obligations',openObligations,String(overdue)+' overdue'],
+      ['Known attempts',knownAttempts.length,providerSuccesses+' success-labelled']
+    ];
+    const telemetryHtml=telemetry.map(([label,value,note])=>`<article class="telemetry-cell"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join('');
     const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;
 
     const hypotheses=[];
@@ -195,6 +222,8 @@
     const hypothesisHtml=hypotheses.map(h=>`<article class="hypothesis-card"><p class="eyebrow">DATA-DERIVED HYPOTHESIS</p><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></article>`).join('');
 
     $('metrics-dashboard').innerHTML=`
+      <section class="command-strip"><div><p class="eyebrow">LIVE RECORD TELEMETRY</p><strong>CYCLE ${s.version}</strong></div><div><span>COMPLETED</span><b>${completed.length}</b></div><div><span>ACCEPTED</span><b>${acceptedCount}</b></div><div><span>REJECTED</span><b>${rejectedCount}</b></div><div><span>DEFERRED</span><b>${deferredCount}</b></div><div><span>FALLBACK</span><b>${fallbackWakes}</b></div><div><span>OPEN WORK</span><b>${openObligations}</b></div><div><span>TOPICS ACTIVE</span><b>${topicActive}/${topicRows.length}</b></div></section>
+      <section class="telemetry-grid">${telemetryHtml}</section>
       <section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}</section>
       <section class="dashboard-section"><div class="dashboard-heading"><div><p class="eyebrow">LAST ${attempts.length} COMPLETED WAKES</p><h2>The pulse of the experiment.</h2></div><p>One cell per wake. Color is outcome—not quality. Tap any cell for its receipt.</p></div><div class="wake-timeline" role="group" aria-label="Recent wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div><div class="timeline-legend">${statuses.map(([name])=>`<span><i class="${name}"></i>${name}</span>`).join('')}</div></section>
       <section class="dashboard-section"><div class="dashboard-heading"><div><p class="eyebrow">OUTCOME TREND / 10-WAKE WINDOWS</p><h2>Are the conditions changing?</h2></div><p>Each column is a consecutive ten-wake window. Height is share of outcomes.</p></div><div class="trend-chart">${trend||'<span class="empty">No completed wakes yet.</span>'}</div></section>
