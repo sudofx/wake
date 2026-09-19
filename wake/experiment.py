@@ -1,9 +1,13 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# EXPERIMENT — the offline measurement harness. Deterministic fixtures isolate architectural claims from live-provider variability. Measurements describe observed behavior; they do not become governance merely because a test reports them.
 #
-# Captures experiment metadata and measurements separately from model narrative. Instrumentation describes behavior without granting measurements semantic authority.
-#
-# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
-# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# The architecture is intentionally explicit.  A future human or AI maintainer
+# should be able to follow authority from input, through validation, to durable
+# record without relying on folklore.  Comments explain why boundaries exist,
+# what failure means, and which tempting shortcuts would weaken accountability.
+# =============================================================================
 
 """Executable claims, isolated state, deterministic fixtures. Zero API calls."""
 
@@ -21,12 +25,52 @@ from .report import atomic_write, export
 from .store import canonical, now
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: run_experiment
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
+
+
 def run_experiment(directory, cycles=100, output="site"):
     root = Path(directory).resolve()
     require(cycles >= 100 and cycles <= 1000, "Use 100–1000 cycles for the longitudinal experiment")
     require(not (root / "wake.sqlite3").exists(), "Experiment requires a new data directory; existing state is never erased")
     root.mkdir(parents=True, exist_ok=True)
     calls = []
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: cli
+
+    #
+
+    # Keep this function explicit because it marks a testable boundary in the
+
+    # chain from operator/provider input to durable/public output.  Do not fold it
+
+    # into a neighboring layer if doing so would hide validation, provenance,
+
+    # failure handling, or the distinction between accepted state and a derived view.
+
+    # ---------------------------------------------------------------------------
 
     def cli(*args, expected=0, data_dir=root):
         result = subprocess.run([sys.executable, "-m", "wake", "--data", str(data_dir), *args],
