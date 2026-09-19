@@ -5,7 +5,7 @@
 **Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `14c265176c6806ebbdf832dcf2bebfd8a84990e8c55984647d12ebc7940ef885`
+**Verified head:** `ff63535e3c7861e68410582fa9ebab1b3b35d7b88ece7deb805dc868199bb3cd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -924,6 +924,251 @@ _None recorded._
 }
 ```
 
+### `w-b2f20ebef85a4e84`
+
+```json
+{
+  "base_version": 4,
+  "charged": true,
+  "id": "w-b2f20ebef85a4e84",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 4,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-collective-intel-ai",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "AI in Collective Intelligence Architectures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2199,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "c3b7026f762d47e5ee8fa8283a929fc90d594fe6cdc9797ed6ee7cb05f093464",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-13d98a9d8e2e44c9"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-6a2778f074e645a3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6a2778f074e645a3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3efbe8d2d571414d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3efbe8d2d571414d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-140a27056fed42a7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-140a27056fed42a7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c248bebd6522427c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c248bebd6522427c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-91b578462fd24b3a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-91b578462fd24b3a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9507cb132fbb4f86"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9507cb132fbb4f86",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-13d98a9d8e2e44c9",
+      "source-6a2778f074e645a3",
+      "source-3efbe8d2d571414d",
+      "source-140a27056fed42a7",
+      "source-c248bebd6522427c",
+      "source-91b578462fd24b3a",
+      "source-9507cb132fbb4f86"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25107,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2146,
+    "working_to_delivered_ratio": 0.0855
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-collective-intel-ai",
+        "next_step": "Search for specific empirical case studies or experimental validations of transactive memory systems in human-AI collaborative teams.",
+        "question": "How does artificial intelligence alter or enhance socio-cognitive collective intelligence structures, specifically collective memory, attention, and reasoning?",
+        "title": "AI in Collective Intelligence Architectures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-13d98a9d8e2e44c9"
+        ],
+        "revision": 2,
+        "summary": "Analysis of emerging conceptual models and transactive system architectures for integrating AI into collective intelligence.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T00:35:53.982441+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5468,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45844,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T00:36:03.561212+00:00",
+  "reason": "Only open commitments can be resolved"
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -1090,6 +1335,47 @@ _None recorded._
 }
 ```
 
+### `source-91b578462fd24b3a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=%22transactive+memory+system%22+AND+%22human-AI%22+AND+%22empirical%22&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1145/3772318.3790980\\\", \\\"title\\\": [\\\"Cultural Variations in Human-AI Partnership: Initial Cross-Cultural Validation of the Transactive Memory System with GenAI (TMS-GenAI) Measurement Tool\\\"], \\\"URL\\\": \\\"https://doi.org/10.1145/3772318.3790980\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 4, 13]]}}, {\\\"DOI\\\": \\\"10.1037/t01808-000\\\", \\\"title\\\": [\\\"Transactive Memory System Scale\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/t01808-000\\\", \\\"published\\\": {\\\"date-parts\\\": [[2003]]}}, {\\\"DOI\\\": \\\"10.5220/0005026200050014\\\", \\\"title\\\": [\\\"Transactive Memory System in Clusters - The Knowledge Management Platform Experience\\\"], \\\"URL\\\": \\\"https://doi.org/10.5220/0005026200050014\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014]]}}, {\\\"DOI\\\": \\\"10.1037/t34282-000\\\", \\\"title\\\": [\\\"Transactive Memory Interaction Behavior Coding System\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/t34282-000\\\", \\\"published\\\": {\\\"date-parts\\\": [[2012]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"db78f8641b29ea299c685be1b93ea060f52cbbf0c8a01b53e839c017cf51e47e\"}",
+  "id": "source-91b578462fd24b3a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=%22transactive+memory+system%22+AND+%22human-AI%22+AND+%22empirical%22&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-19T00:35:53.684240+00:00"
+}
+```
+
+### `source-9507cb132fbb4f86`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-9507cb132fbb4f86",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-19T00:35:53.946060+00:00"
+}
+```
+
+### `r-b2f20ebef85a4e84`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":4,\"inherited_commitments\":[],\"invocation\":\"w-b2f20ebef85a4e84\",\"previous_head\":\"0e35863461f2441405fc39aae4e1e7669034004503173ef4effe308bcf8c7e58\",\"process_id\":2199,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b2f20ebef85a4e84",
+  "source": "runtime:continuity",
+  "version": 4,
+  "time": "2026-09-19T00:35:53.971631+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -1180,8 +1466,9 @@ _None recorded._
   "query": "\"transactive memory system\" AND \"human-AI\" AND \"empirical\"",
   "reason": "To move beyond conceptual architecture, we need to locate specific empirical research testing how transactive memory functions when integrated with AI agents.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-aca4d17236ae477a"
+  "status": "collected",
+  "created_by": "w-aca4d17236ae477a",
+  "evidence": "source-91b578462fd24b3a"
 }
 ```
 
