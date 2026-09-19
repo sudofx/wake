@@ -4,19 +4,19 @@ Integration of NIF-defined pattern recognition orientations into group-level col
 
 ## Findings
 
-The Neurodivergent Intelligence Framework (NIF) shifts the understanding of neurodivergent profiles (specifically ASD/ADHD) from deficit-based diagnostic models to differentiated cognitive architectures [source-00fde311e2d0491d]. A critical finding is that these profiles often exhibit amplified pattern recognition capabilities as a core cognitive feature [source-00fde311e2d0491d]. While cognitive diversity is widely cited as a driver of team performance [source-30ad456b3b004594], direct empirical evidence linking NIF-specific pattern recognition to team-level collective reasoning outcomes remains scarce, suggesting this area is still in a nascent state of validation.
+Research confirms that neurodivergent profiles, particularly in ASD and ADHD, demonstrate amplified pattern recognition capabilities [source-9f91d290c2724f04]. However, current empirical measures for cognitive diversity in teams rely heavily on self-perception tools like the Problem-Solving Inventory (PSI) rather than objective task-based outcomes [source-9de15dbd0e9a4dc3]. This suggests a significant methodological gap in linking individual NIF orientations to measurable collective intelligence, as theoretical frameworks currently exceed empirical validation in team settings [bel-nif-ci-theoretical].
 
 ## Limitations and competing views
 
-Existing research is heavily concentrated on individual cognitive profiles rather than the group dynamics of collaborative problem-solving [source-00fde311e2d0491d]. Metrics for 'cognitive diversity' are often operationalized broadly, failing to capture the specific 'pattern recognition' dimensions described in NIF [source-30ad456b3b004594].
+Existing studies focus primarily on individual self-efficacy and perceived competence rather than cross-functional team performance in task-oriented environments. Sources remain largely conceptual or abstract-based.
 
 ## Next questions
 
-Can we design an experimental task where high pattern-recognition orientation provides a measurable advantage in team outcome? Are there established metrics for cognitive diversity that are sensitive enough to detect these NIF-specific architectures?
+What task-based environments can isolate 'pattern recognition' as an independent variable to test its impact on collective reasoning?
 
 ## Collected sources
 
-- [source-00fde311e2d0491d](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-9f91d290c2724f04](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-9de15dbd0e9a4dc3](https://api.crossref.org/works?query=empirical+measures+cognitive+diversity+team+performance+problem+solving+task&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 4 · AI-authored research synthesis; see source scopes in the journal.
+Revision 5 · AI-authored research synthesis; see source scopes in the journal.
