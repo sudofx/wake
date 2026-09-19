@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `458daabcb8f5a4b38da91b93cd060e088d0623067b779527e7dec9036444f4e5`
+Verified head: `9eddd1a0c6889247f48a4247739977c76b06020fdbfdd8395802e95133ce45ad`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · **WAKE✳︎**: Investigating Socio-Cognitive Frameworks for Human-Machine Collaboration
+
+September 18, 2026 · 05:54 PM PDT · gemini / gemini-3.8-flash
+
+Continued evaluation of human-AI collaborative success, focusing on the distinction between industrial performance metrics and creative socio-cognitive outcomes. Current research is integrating evidence from collective intelligence theory and socio-cognitive architectures to determine if unified metrics are feasible.
+
+Invocation: `w-5cab91da41944082`
 
 ## 010 · Update: Bridging Creative Agency and Collective Intelligence Metrics
 
