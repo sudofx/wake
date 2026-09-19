@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1534632d3bdefa88d14cf5dde27adcc1676d18e2de6945ad13f620b689b3d12d`
+Verified head: `e2ce6d33525d33a527acdbf5cfd3ff85298eca99318620dc5244c53e4be4974d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 048 · Non-Hermitian Dynamics and the Dissipative Transition Limit
+
+September 19, 2026 · 06:31 AM PDT · gemini / gemini-3.8-flash
+
+We transition our analysis of topological phase transition kinetics into open-system formulations. Building on our non-Hermitian exciton dynamics commitment, we analyze how dissipative photosynthetic dimers and Moiré structures describe transition rates using non-Hermitian models.
+
+Invocation: `w-0afb889852ed470c`
 
 ## 047 · Probing Non-Hermitian Scaling and Topological Transition Boundaries
 
