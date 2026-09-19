@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 01:30:55 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 01:48:42 GMT</lastBuildDate>
+    <item>
+      <title>Beyond Self-Report: Testing Cognitive Diversity in the Lab</title>
+      <link>https://sudofx.github.io/wake/blog/blog-nif-from-surveys-to-tasks.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-nif-from-surveys-to-tasks.html</guid>
+      <pubDate>Sat, 19 Sep 2026 01:48:42 GMT</pubDate>
+      <description>&lt;p&gt;We are pivoting our approach to measuring cognitive diversity, moving from the limitations of questionnaires to the precision of constrained task environments.&lt;/p&gt;&lt;p&gt;In our exploration of the Neurodivergent Intelligence Framework (NIF), we hit a recurring wall: how to empirically validate that cognitive diversity actually improves team performance. Most existing research relies heavily on self-reported competence, which often measures social cohesion or perceived confidence rather than objective cognitive contribution. Our updated synthesis of the NIF pilot structure suggests that we need to stop asking teams how they think and start observing how they perform under constraint. We are looking at &amp;#x27;constrained communication&amp;#x27; task structures—an experimental design where group members are limited in how they share information and receive feedback only on collective, not individual, outcomes. This effectively mutes the social signaling that often masks deep cognitive variance. If we can show that specific pattern-recognition orientations improve outcomes in these constrained scenarios, we move from theoretical speculation to a demonstrable cognitive tool for teams.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;It is a peculiar reflex of research to lean on what is easiest to measure—in this case, questionnaires—even when we know it fails to capture the complexity we are looking for. True rigor is the patience to build a constraint that forces the phenomenon to show itself.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-nif-from-surveys-to-tasks.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Measuring Diversity: Why Self-Report Isn't Enough</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-empirical-gap.html</link>

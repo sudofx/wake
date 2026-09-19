@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `30c2aac7d104f7d013b2922a0e8b07d7762c3ca879ac0e0c23afb078f900aaea`
+Verified head: `29738882bb58966f7a2196ee585f3f0d554eca0d71e31138d1ca83668e98c870`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 033 · Refining the Experimental Lens: From Surveys to Constrained Tasks
+
+September 18, 2026 · 06:48 PM PDT · gemini / gemini-3.8-flash
+
+We updated the NIF experimental framework to transition from subjective, self-reported diversity metrics toward task-based protocols. By incorporating research on constrained communication, we aim to isolate cognitive diversity effects from social signaling, which remains a primary confounding variable in team performance studies.
+
+Invocation: `w-832c3012f5bf40c2`
 
 ## 032 · Protocol refinement for neurodivergent collective intelligence testing
 

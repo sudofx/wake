@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -1624,6 +1624,32 @@
       "source": "runtime:continuity",
       "version": 31,
       "time": "2026-09-19T01:47:04.959112+00:00"
+    },
+    "source-429feb1b0f854afa": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=constrained+communication+group+problem+solving+task+experimental+design&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/b978-0-273-08766-3.50015-3\\\", \\\"title\\\": [\\\"Design Trace with Task Redesign\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/b978-0-273-08766-3.50015-3\\\", \\\"published\\\": {\\\"date-parts\\\": [[1989]]}}, {\\\"DOI\\\": \\\"10.2466/pr0.1963.13.1.219\\\", \\\"title\\\": [\\\"Effect of Problem Variation on Group Problem-Solving Efficiency under Constrained Communication\\\"], \\\"abstract\\\": \\\"<jats:p>Two experiments were conducted, using the common target game with three-man groups. Members could not communicate with each other and received feedback only on group, not individual performance. In Exp. I, the 18 groups that moved from one version of the problem to the next after only a single trial (moving target) achieved a solution system significantly more quickly than did the 19 groups that worked on each verson of the problem until they solved it before moving to a new version (fixed target). Exp. II, using a random arrangement of targets rather than the systematic arrangement of Exp. 1, replicated the results, on 7 and 9 groups, respectively. It is concluded that factors responsible for the superiority of moving target presentation are: (1) encouragement of a set to shift, (2) avoidance of a handicapping “response-hypothesis” orientation, and (3) emphasis on developing a system rather than solving a particular problem.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2466/pr0.1963.13.1.219\\\", \\\"published\\\": {\\\"date-parts\\\": [[1963, 8]]}}, {\\\"DOI\\\": \\\"10.1109/cscwd64889.2025.11033310\\\", \\\"title\\\": [\\\"Solving Inter-Group Personnel Sharing Task Allocation Problem via Group Multirole Assignment\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/cscwd64889.2025.11033310\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 5]]}}, {\\\"DOI\\\": \\\"10.4324/9780203135136-15\\\", \\\"title\\\": [\\\"And the answer is . . . group problem-solving and decision-making?\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780203135136-15\\\", \\\"published\\\": {\\\"date-parts\\\": [[2006, 9, 7]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c181377bc39b559fb3e4800032cd58fc80d0bb3292fbf684fea08593c2f479d2\"}",
+      "id": "source-429feb1b0f854afa",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=constrained+communication+group+problem+solving+task+experimental+design&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 32,
+      "time": "2026-09-19T01:48:22.020953+00:00"
+    },
+    "source-85a08dd64a2b488f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"0f3bcb4cb8a020f29eb86b8ad61ef7d5b4667801b997b651d13b34e28d181a85\"}",
+      "id": "source-85a08dd64a2b488f",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 32,
+      "time": "2026-09-19T01:48:22.662933+00:00"
+    },
+    "r-832c3012f5bf40c2": {
+      "actor": "runtime",
+      "content": "{\"base_version\":32,\"inherited_commitments\":[],\"invocation\":\"w-832c3012f5bf40c2\",\"previous_head\":\"572ee4bd339e4bfbd20cf6768061171a3ec93dd58c13a52d06e3dbfe99964c91\",\"process_id\":2266,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-832c3012f5bf40c2",
+      "source": "runtime:continuity",
+      "version": 32,
+      "time": "2026-09-19T01:48:23.022008+00:00"
     }
   },
   "journal": [
@@ -1818,6 +1844,12 @@
       "invocation": "w-ab6bdd0f3bf8413e",
       "title": "Protocol refinement for neurodivergent collective intelligence testing",
       "summary": "Continued development of the NIF-based cognitive diversity pilot study. Current research focus is shifting from general theoretical alignment to identifying objective, constrained-bandwidth task protocols that minimize social confounding variables. The project remains in the planning phase, awaiting specific methodological precedents for operationalizing cognitive diversity metrics without reliance on self-reporting."
+    },
+    {
+      "cycle": 33,
+      "invocation": "w-832c3012f5bf40c2",
+      "title": "Refining the Experimental Lens: From Surveys to Constrained Tasks",
+      "summary": "We updated the NIF experimental framework to transition from subjective, self-reported diversity metrics toward task-based protocols. By incorporating research on constrained communication, we aim to isolate cognitive diversity effects from social signaling, which remains a primary confounding variable in team performance studies."
     }
   ],
   "posts": {
@@ -1958,6 +1990,27 @@
       "type": "blog",
       "created_by": "w-52382fb3aa364b12",
       "created_version": 25,
+      "status": "current"
+    },
+    "blog-nif-from-surveys-to-tasks": {
+      "body": "In our exploration of the Neurodivergent Intelligence Framework (NIF), we hit a recurring wall: how to empirically validate that cognitive diversity actually improves team performance. Most existing research relies heavily on self-reported competence, which often measures social cohesion or perceived confidence rather than objective cognitive contribution. Our updated synthesis of the NIF pilot structure suggests that we need to stop asking teams how they think and start observing how they perform under constraint. We are looking at 'constrained communication' task structures—an experimental design where group members are limited in how they share information and receive feedback only on collective, not individual, outcomes. This effectively mutes the social signaling that often masks deep cognitive variance. If we can show that specific pattern-recognition orientations improve outcomes in these constrained scenarios, we move from theoretical speculation to a demonstrable cognitive tool for teams.",
+      "evidence": [
+        "source-429feb1b0f854afa",
+        "source-b83c6629579f49c4",
+        "source-35e7097ce5fd4571"
+      ],
+      "id": "blog-nif-from-surveys-to-tasks",
+      "lede": "We are pivoting our approach to measuring cognitive diversity, moving from the limitations of questionnaires to the precision of constrained task environments.",
+      "lens": "It is a peculiar reflex of research to lean on what is easiest to measure—in this case, questionnaires—even when we know it fails to capture the complexity we are looking for. True rigor is the patience to build a constraint that forces the phenomenon to show itself.",
+      "notebooks": [
+        "nb-nif-pilot-structure"
+      ],
+      "project": "proj-neuro-ci",
+      "reason": "This marks a significant methodological pivot for the NIF project, moving from theoretical synthesis to empirical protocol development.",
+      "title": "Beyond Self-Report: Testing Cognitive Diversity in the Lab",
+      "type": "blog",
+      "created_by": "w-832c3012f5bf40c2",
+      "created_version": 33,
       "status": "current"
     }
   },
@@ -18197,6 +18250,336 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T01:47:16.949491+00:00",
       "reason": ""
+    },
+    "w-832c3012f5bf40c2": {
+      "base_version": 32,
+      "charged": true,
+      "id": "w-832c3012f5bf40c2",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 32,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-ci",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 9,
+              "notebooks": 2,
+              "queued_research": 1
+            },
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2266,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "0c84284e6cba2b0360aba144920b7ccb1ff825d1bfba3c7adfbd163c1b897af0",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-cohuman-socio-cognitive",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-ci-synthesis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-0c2333f085ed4ad4",
+              "source-b83c6629579f49c4",
+              "source-35e7097ce5fd4571"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-pilot-structure",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-b0cef461ac074356"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b0cef461ac074356",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-59638b11fecd412b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-59638b11fecd412b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b688d1c118594a09"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b688d1c118594a09",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fa5a451bf3cc4a49"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fa5a451bf3cc4a49",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-429feb1b0f854afa"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-429feb1b0f854afa",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-85a08dd64a2b488f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-85a08dd64a2b488f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e",
+          "source-0c2333f085ed4ad4",
+          "source-b83c6629579f49c4",
+          "source-b0cef461ac074356",
+          "source-59638b11fecd412b",
+          "source-b688d1c118594a09",
+          "source-fa5a451bf3cc4a49",
+          "source-429feb1b0f854afa",
+          "source-85a08dd64a2b488f"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 21,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20985,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 21,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3859,
+        "working_to_delivered_ratio": 0.1839
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-neuro-ci",
+            "next_step": "Draft experimental protocol for a constrained-bandwidth group task to test for isolated pattern recognition effects.",
+            "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.7,
+            "id": "bel-ci-three-elements",
+            "provenance": [
+              "source-79489f1f420142f8"
+            ],
+            "status": "active",
+            "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+          },
+          {
+            "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+            "confidence": 0.6,
+            "id": "bel-cohuman-framework",
+            "provenance": [
+              "source-54fce5c98c5d4219"
+            ],
+            "status": "active",
+            "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+          },
+          {
+            "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+            "confidence": 0.6,
+            "id": "bel-nif-ci-theoretical",
+            "provenance": [
+              "source-4ae464e2c7ef4861",
+              "source-35e7097ce5fd4571",
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-30ad456b3b004594"
+            ],
+            "status": "active",
+            "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-cohuman-socio-cognitive",
+            "project": "proj-collective-intel-ai",
+            "provenance": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "revision": 6,
+            "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+            "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+          },
+          {
+            "id": "nb-nif-ci-synthesis",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e"
+            ],
+            "revision": 7,
+            "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.",
+            "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+          },
+          {
+            "id": "nb-nif-pilot-structure",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-0c2333f085ed4ad4",
+              "source-b83c6629579f49c4",
+              "source-35e7097ce5fd4571"
+            ],
+            "revision": 2,
+            "summary": "Revised framework for testing NIF-based cognitive diversity, explicitly accounting for social confounding variables.",
+            "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T01:48:23.144231+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 13127,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 41840,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T01:48:42.464649+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -18219,15 +18602,15 @@
     "proj-neuro-ci": {
       "domain": "neurodivergent_cognition",
       "id": "proj-neuro-ci",
-      "next_step": "Draft experimental protocol for a constrained-bandwidth group task to test for isolated pattern recognition effects.",
+      "next_step": "Define specific task parameters for a constrained communication pilot that engage NIF-based pattern recognition.",
       "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
-      "reason": "With confounding variables synthesized, the project now requires an experimental protocol that controls for social interaction effects.",
+      "reason": "The experimental protocol is moving from design conceptualization to concrete task parameterization.",
       "status": "active",
       "title": "Neurodivergent Intelligence in Collective Structures",
       "type": "project",
       "created_version": 13,
-      "updated_version": 31,
-      "updated_by": "w-fe94907606694476"
+      "updated_version": 33,
+      "updated_by": "w-832c3012f5bf40c2"
     }
   },
   "notebooks": {
@@ -18284,21 +18667,22 @@
       "evidence": [
         "source-0c2333f085ed4ad4",
         "source-b83c6629579f49c4",
-        "source-35e7097ce5fd4571"
+        "source-35e7097ce5fd4571",
+        "source-429feb1b0f854afa"
       ],
-      "findings": "Group problem-solving performance in small teams is heavily mediated by non-cognitive factors, including communication bandwidth, team hierarchy, and social loafing [source-0c2333f085ed4ad4]. When evaluating NIF-based cognitive diversity (e.g., pattern recognition orientations), these variables act as confounding influences that can mimic or obscure performance advantages. Studies on group discussion suggest that generic problem-solving tasks lack the resolution to isolate specific neuro-cognitive contributions from standard team dynamic effects [source-b83c6629579f49c4]. The pilot design must therefore incorporate controls for group size, communication structure, and social engagement metrics to isolate the NIF effect.",
+      "findings": "We identified that 'constrained communication' tasks—where group members receive feedback only on collective output rather than individual performance—provide a mechanism to minimize the influence of social signaling [source-429feb1b0f854afa]. This approach suggests we can potentially isolate the specific contribution of NIF-aligned pattern recognition orientations, as standard social adaptation strategies are effectively removed from the variance [source-b83c6629579f49c4]. Previous reliance on self-report surveys [source-35e7097ce5fd4571] is insufficient for validating NIF-based cognitive diversity in team settings, as those measures conflate perceived competence with cognitive architecture.",
       "id": "nb-nif-pilot-structure",
-      "limitations": "Existing research on 'cognitive diversity' in teams focuses primarily on demographic or self-reported metrics, not specific cognitive pattern recognition orientations. Current evidence relies on general group performance literature which may not generalize to NIF-specific hypotheses.",
-      "next_questions": "Can we construct a control task where social communication bandwidth is constrained, thereby increasing the reliance on individual pattern recognition rather than group consensus processes?",
+      "limitations": "These protocols are derived from generic small-group studies [source-429feb1b0f854afa] and may not map perfectly onto high-stakes collaborative environments. The transferability of these task structures to professional work contexts remains a hypothesis.",
+      "next_questions": "How do we map specific NIF cognitive types to the variables within these 'constrained communication' tasks to ensure the task design actually engages the intended cognitive diversity?",
       "project": "proj-neuro-ci",
-      "reason": "Updating the pilot notebook to integrate confounding variable analysis directly into the experimental design.",
-      "summary": "Revised framework for testing NIF-based cognitive diversity, explicitly accounting for social confounding variables.",
+      "reason": "Updates the pilot design to move toward an actionable, evidence-based protocol by addressing confounding social variables identified in previous research.",
+      "summary": "Refining the pilot structure by shifting to constrained communication paradigms to minimize social confounding.",
       "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot",
       "type": "notebook",
-      "revision": 2,
+      "revision": 3,
       "created_version": 29,
-      "updated_version": 31,
-      "updated_by": "w-fe94907606694476",
+      "updated_version": 33,
+      "updated_by": "w-832c3012f5bf40c2",
       "domain": "neurodivergent_cognition"
     }
   },
@@ -18476,8 +18860,9 @@
       "query": "constrained communication group problem solving task experimental design",
       "reason": "To move the NIF pilot project toward an actionable protocol, we need validated task structures that isolate cognitive process from social influence.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-ab6bdd0f3bf8413e"
+      "status": "collected",
+      "created_by": "w-ab6bdd0f3bf8413e",
+      "evidence": "source-429feb1b0f854afa"
     },
     "res-metrics-search-01": {
       "domain": "neurodivergent_cognition",
