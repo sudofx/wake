@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 30  
+**Version:** 31  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7df406ed32f066a02c7ebc32e54d49911a0734d0716fe6c29e113f55ab59848c`
+**Verified head:** `8b81c4ad03d4e0aef63e3a6f874cc16a18989cd46543af666f3faebb8177b740`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -232,15 +232,15 @@
 {
   "domain": "music",
   "id": "proj-music-002",
-  "next_step": "Identify literature comparing human beat perception with predictive coding models of rhythm.",
+  "next_step": "Research concluded.",
   "question": "To what extent can current predictive algorithmic models replicate human-like rhythm perception in non-isochronous musical structures?",
-  "reason": "Building on the completed GTTM analysis, this project addresses the limitations of rule-based systems by investigating dynamic, predictive alternatives.",
-  "status": "active",
+  "reason": "The foundational notebook nb-music-rhythm-001 has been published, addressing the research question.",
+  "status": "completed",
   "title": "Algorithmic Rhythm Perception",
   "type": "project",
   "created_version": 28,
-  "updated_version": 29,
-  "updated_by": "w-32dbaccaa0af4ca5"
+  "updated_version": 31,
+  "updated_by": "w-95237edc8b0848ff"
 }
 ```
 
@@ -446,6 +446,31 @@
   "updated_version": 24,
   "updated_by": "w-ea23c7a852f847c1",
   "domain": "wake_analysis"
+}
+```
+
+### `nb-music-rhythm-001` · Predictive Coding and Non-Isochronous Rhythm
+
+```json
+{
+  "evidence": [
+    "source-87c3d90dc04e47bc",
+    "source-99990296184a4a11"
+  ],
+  "findings": "Research indicates that predictive coding models, such as those relying on hierarchical neural networks, successfully capture fundamental beat induction [source-87c3d90dc04e47bc]. However, [source-99990296184a4a11] highlights significant computational limitations when these models are applied to non-isochronous structures, where human listeners rely on hierarchical integration and context that current algorithms struggle to encode without overfitting to specific datasets. The synthesis of these sources suggests a persistent gap between the 'generative' predictive frameworks and the 'interpretive' reality of human beat perception.",
+  "id": "nb-music-rhythm-001",
+  "limitations": "The analysis relies on secondary literature, reviews, and abstracts rather than direct implementation or bench-testing of the cited computational models.",
+  "next_questions": "Future research could address whether hybrid models combining rule-based heuristics with predictive coding provide better performance in syncopated contexts.",
+  "project": "proj-music-002",
+  "reason": "This notebook synthesizes the collected evidence to address the core project question on algorithmic replication of human rhythm perception.",
+  "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+  "title": "Predictive Coding and Non-Isochronous Rhythm",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 31,
+  "updated_version": 31,
+  "updated_by": "w-95237edc8b0848ff",
+  "domain": "music"
 }
 ```
 
@@ -12227,6 +12252,335 @@
 }
 ```
 
+### `w-95237edc8b0848ff`
+
+```json
+{
+  "base_version": 30,
+  "charged": true,
+  "id": "w-95237edc8b0848ff",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 30,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-music-002",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Algorithmic Rhythm Perception"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2233,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "4cb74345f001a4764ab30088ef5e9cc0253f79ad91b2478522bd8b8969fec4a2",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-29aea50b2bb64231"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-29aea50b2bb64231",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1ebe0a6c268947f0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1ebe0a6c268947f0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-87c3d90dc04e47bc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-87c3d90dc04e47bc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-25984bac71c34fd1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-25984bac71c34fd1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-99990296184a4a11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-99990296184a4a11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5e0af5641c874534"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5e0af5641c874534",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-29aea50b2bb64231",
+      "source-1ebe0a6c268947f0",
+      "source-87c3d90dc04e47bc",
+      "source-25984bac71c34fd1",
+      "source-99990296184a4a11",
+      "source-5e0af5641c874534"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25248,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 5014,
+    "working_to_delivered_ratio": 0.1986
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-music-002",
+        "next_step": "Identify literature comparing human beat perception with predictive coding models of rhythm.",
+        "question": "To what extent can current predictive algorithmic models replicate human-like rhythm perception in non-isochronous musical structures?",
+        "title": "Algorithmic Rhythm Perception"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-critique-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "revision": 2,
+        "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures. Perspectives from social epidemiolo…",
+        "title": "Critiques of Ecological Models in Disability Studies"
+      },
+      {
+        "id": "nb-entropy-comparison-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-98d885ce27cf41ed",
+          "source-617ea77e566c486e"
+        ],
+        "revision": 1,
+        "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+        "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+      },
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      },
+      {
+        "id": "nb-music-gttm-001",
+        "project": "proj-music-001",
+        "provenance": [
+          "source-2f7ef3b291ac43fa",
+          "source-3f37ecb391684dbb"
+        ],
+        "revision": 1,
+        "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+        "title": "Computational Implementation of Generative Theory of Tonal Music"
+      },
+      {
+        "id": "nb-comedy-misrule-001",
+        "project": "proj-comedy-001",
+        "provenance": [
+          "source-293e3b0a343f4e5a",
+          "source-14fe1954198a4bcd"
+        ],
+        "revision": 1,
+        "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+        "title": "Structural Functions of Misrule in Comedy"
+      },
+      {
+        "id": "nb-wake-provenance-001",
+        "project": "proj-wake-001",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "source-3cfe7c6dab8e4300"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+        "title": "Provenance and State Durability in Stateless Systems"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:43:50.569642+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6510,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49153,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:44:02.847037+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -14074,6 +14428,47 @@
 }
 ```
 
+### `source-99990296184a4a11`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=computational+predictive+coding+models+non-isochronous+rhythm+beat+perception&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2224233427\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fnsys.2015.00159\\\", \\\"title\\\": \\\"Neural Networks for Beat Perception in Musical Rhythm\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 329, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fnsys.2015.00159/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fnsys.2015.00159\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fnsys.2015.00159\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fnsys.2015.00159/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S97434221\\\", \\\"display_name\\\": \\\"Frontiers in Systems Neuroscience\\\", \\\"issn_l\\\": \\\"1662-5137\\\", \\\"issn\\\": [\\\"1662-5137\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Systems Neuroscience\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Entrainment of cortical rhythms to acoustic rhythms has been hypothesized to be the neural correlate of pulse and meter perception in music. Dynamic attending theory first proposed synchronization of endogenous perceptual rhythms nearly 40 years ago, but only recently has the pivotal role of neural synchrony been demonstrated. Significant progress has since been made in understanding the role of neural oscillations and the neural structures that support synchronized responses to musical rhythm. Synchronized neural activity has been observed in auditory and motor networks, and has been linked with attentional allocation and movement coordination. Here we describe a neurodynamic model that shows how self-organization of oscillations in interacting sensory and motor networks could be responsible for the formation of the pulse percept in complex rhythms. In a pulse synchronization study, we test the model's key prediction that pulse can be perceived at a frequency for which no spectral energy is present in the amplitude envelope of the acoustic rhythm. The result shows that participants perceive the pulse at the theoretically predicted frequency. This model is one of the few consistent with neurophysiological evidence on the role of neural oscillation, and it explains a phenomenon that other computational models fail to explain. Because it is based on a canonical model, the predictions hold for an entire family of dynamical systems, not only a specific one. Thus, this model provides a theoretical link between oscillatory neurodynamics and the induction of pulse and meter in musical rhythm.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2137560425\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01111\\\", \\\"title\\\": \\\"Rhythmic complexity and predictive coding: a novel approach to modeling rhythm and meter perception in music\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 313, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01111/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2014.01111\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01111\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01111/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Musical rhythm, consisting of apparently abstract intervals of accented temporal events, has a remarkable capacity to move our minds and bodies. How does the cognitive system enable our experiences of rhythmically complex music? In this paper, we describe some common forms of rhythmic complexity in music and propose the theory of predictive coding (PC) as a framework for understanding how rhythm and rhythmic complexity are processed in the brain. We also consider why we feel so compelled by rhythmic tension in music. First, we consider theories of rhythm and meter perception, which provide hierarchical and computational approaches to modeling. Second, we present the theory of PC, which posits a hierarchical organization of brain responses reflecting fundamental, survival-related mechanisms associated with predicting future events. According to this theory, perception and learning is manifested through the brain's Bayesian minimization of the error between the input to the brain and the brain's prior expectations. Third, we develop a PC model of musical rhythm, in which rhythm perception is conceptualized as an interaction between what is heard (\\\\\\\"rhythm\\\\\\\") and the brain's anticipatory structuring of music (\\\\\\\"meter\\\\\\\"). Finally, we review empirical studies of the neural and behavioral effects of syncopation, polyrhythm and groove, and propose how these studies can be seen as special cases of the PC theory. We argue that musical rhythm exploits the brain's general principles of prediction and propose that pleasure and desire for sensorimotor synchronization from musical rhythm may be a result of such mechanisms.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2051850587\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.tics.2012.05.003\\\", \\\"title\\\": \\\"Cortical oscillations and sensory predictions\\\", \\\"publication_year\\\": 2012, \\\"type\\\": \\\"review\\\", \\\"cited_by_count\\\": 1203, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"http://www.cell.com/article/S1364661312001210/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.tics.2012.05.003\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.tics.2012.05.003\\\", \\\"pdf_url\\\": \\\"http://www.cell.com/article/S1364661312001210/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S192051125\\\", \\\"display_name\\\": \\\"Trends in Cognitive Sciences\\\", \\\"issn_l\\\": \\\"1364-6613\\\", \\\"issn\\\": [\\\"1364-6613\\\", \\\"1879-307X\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Trends in Cognitive Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2743406877\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.neuroscience.2017.07.061\\\", \\\"title\\\": \\\"Great Expectations: Is there Evidence for Predictive Coding in Auditory Cortex?\\\", \\\"publication_year\\\": 2017, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 484, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S030645221730547X/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.neuroscience.2017.07.061\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.neuroscience.2017.07.061\\\", \\\"pdf_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S030645221730547X/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S30122339\\\", \\\"display_name\\\": \\\"Neuroscience\\\", \\\"issn_l\\\": \\\"0306-4522\\\", \\\"issn\\\": [\\\"0306-4522\\\", \\\"1873-7544\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Neuroscience\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Predictive coding is possibly one of the most influential, comprehensive, and controversial theories of neural function. While proponents praise its explanatory potential, critics object that key tenets of the theory are untested or even untestable. The present article critically examines existing evidence for predictive coding in the auditory modality. Specifically, we identify five key assumptions of the theory and evaluate each in the light of animal, human and modeling studies of auditory pattern processing. For the first two assumptions - that neural responses are shaped by expectations and that these expectations are hierarchically organized - animal and human studies provide compelling evidence. The anticipatory, predictive nature of these expectations also enjoys empirical support, especially from studies on unexpected stimulus omission. However, for the existence of separate error and prediction neurons, a key assumption of the theory, evidence is lacking. More work exists on the proposed oscillatory signatures of predictive coding, and on the relation between attention and precision. However, results on these latter two assumptions are mixed or contradictory. Looking to the future, more collaboration between human and animal studies, aided by model-based analyses will be needed to test specific assumptions and implementations of predictive co\", \"excerpt_truncated\": true, \"source_sha256\": \"47603165d5a5567f87adfbfc710b19bb30896147da45c8d8f50d4a5f797bae9c\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-99990296184a4a11",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=computational+predictive+coding+models+non-isochronous+rhythm+beat+perception&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 30,
+  "time": "2026-09-19T18:43:49.183895+00:00"
+}
+```
+
+### `source-5e0af5641c874534`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-5e0af5641c874534",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 30,
+  "time": "2026-09-19T18:43:50.217688+00:00"
+}
+```
+
+### `r-95237edc8b0848ff`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":30,\"inherited_commitments\":[],\"invocation\":\"w-95237edc8b0848ff\",\"previous_head\":\"8e4498da43122a0112f48b3272a8d3f9ff3bc917ea2369e6a8c8398f8ba470c2\",\"process_id\":2233,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-95237edc8b0848ff",
+  "source": "runtime:continuity",
+  "version": 30,
+  "time": "2026-09-19T18:43:50.450311+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -14406,6 +14801,17 @@
 }
 ```
 
+### 031 · Predictive Coding and Algorithmic Rhythm Perception
+
+```json
+{
+  "cycle": 31,
+  "invocation": "w-95237edc8b0848ff",
+  "title": "Predictive Coding and Algorithmic Rhythm Perception",
+  "summary": "This cycle completes the investigation into algorithmic rhythm perception by synthesizing recent findings on predictive coding models. The durable record now includes a notebook analyzing how computational architectures attempt to bridge the gap between abstract predictive theory and the empirical realities of human rhythm perception, particularly in non-isochronous musical structures."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -14658,8 +15064,9 @@
   "query": "computational predictive coding models non-isochronous rhythm beat perception",
   "reason": "To secure a second distinct source detailing computational implementations of rhythm perception, necessary for establishing the two-source requirement for a notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-0a5d38414ff04b57"
+  "status": "collected",
+  "created_by": "w-0a5d38414ff04b57",
+  "evidence": "source-99990296184a4a11"
 }
 ```
 
