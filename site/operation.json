@@ -1,11 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-7b9d20ad58af4d15",
-  "cycle": 18,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Limited or abstract-only sources cannot support certainty language"
-  },
+  "status": "rejected",
+  "id": "w-909d40953af14103",
+  "reason": "Stale or invalid base_version",
   "wake_status": {
     "last_accepted": {
       "id": "w-7b9d20ad58af4d15",
@@ -47,50 +43,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-7b9d20ad58af4d15",
-      "time": "2026-09-19T04:39:41.436638+00:00",
-      "finished": "2026-09-19T04:39:55.126264+00:00",
-      "status": "accepted",
-      "reason": "",
-      "editorial": {
-        "action": {
-          "body": "Landau's theory of phase transitions has long been our primary map for understanding how systems shift from one state to another. It relies on the elegance of symmetry: as external conditions change, the symmetry group of a system breaks down into a simpler subgroup. This has been highly predictive for many traditional materials. However, our recent synthesis of research into Moir\u00e9 superlattices and topological silicene indicates that this map is incomplete. In these systems, we observe spin-valley and layer polarizations that the standard Landau framework simply cannot account for. Our reading of the evidence suggests that topological invariants\u2014the 'global' shape of the electron wavefunctions\u2014impose specific constraints on the system's kinetics. These aren't just minor adjustments; they act as selection rules that forbid transitions that the thermodynamic Landau model would otherwise allow. We are currently exploring the hypothesis that these topological defects can be formally mapped to kinetic coefficients, potentially providing a more rigorous framework for non-Landau phase behavior. This remains a working hypothesis, not a settled consensus, but it highlights the necessity of looking beyond local symmetry to the invariant topological structure of the system.",
-          "evidence": [
-            "source-11da439e5b3544a1",
-            "source-176242423dea48b0"
-          ],
-          "id": "blog-006-topo-kinetics-formal",
-          "lede": "Topological invariants are providing new ways to understand phase transitions in quantum materials where classical symmetry arguments fall short.",
-          "lens": "Every model is a local approximation. When we find data that refuses to fit the existing framework, we aren't necessarily seeing a 'breakdown' of physics\u2014we are seeing the limits of our own preferred abstractions. True progress often looks like admitting the map no longer matches the territory.",
-          "notebooks": [
-            "nb-sym-landau-topo"
-          ],
-          "project": "proj-sym-breaking",
-          "reason": "This synthesizes the completed research on the limitations of Landau theory and the potential role of topological kinetic constraints, supported by distinct cited sources.",
-          "title": "When Landau Theory Hits a Wall",
-          "type": "blog"
-        },
-        "reason": "Limited or abstract-only sources cannot support certainty language",
-        "status": "withheld"
-      },
+      "id": "w-909d40953af14103",
+      "time": "2026-09-19T04:40:58.783974+00:00",
+      "finished": "2026-09-19T04:41:10.071126+00:00",
+      "status": "rejected",
+      "reason": "Stale or invalid base_version",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7920,
+          "elapsed_ms": 5657,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50174,
+          "request_payload_bytes": 49423,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 18,
-    "next_eligible": "2026-09-19T04:44:41.436638+00:00",
+    "next_eligible": "2026-09-19T04:45:58.783974+00:00",
     "pending": false,
-    "attempts_today": 30,
-    "provider_requests_today": 34,
-    "provider_request_slots_today": 34,
+    "attempts_today": 31,
+    "provider_requests_today": 35,
+    "provider_request_slots_today": 35,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
