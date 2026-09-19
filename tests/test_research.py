@@ -26,7 +26,7 @@ from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM
-from wake.research import allowed_url, collect, discovery_urls
+from wake.research import WAKE_SOURCES, allowed_url, collect, discovery_urls
 from wake.report import export
 
 
