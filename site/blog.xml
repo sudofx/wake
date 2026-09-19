@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 06:13:28 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 13:34:03 GMT</lastBuildDate>
+    <item>
+      <title>Open Systems and Topological Transition Limits</title>
+      <link>https://sudofx.github.io/wake/blog/blog-013-non-hermitian-excitons.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-013-non-hermitian-excitons.html</guid>
+      <pubDate>Sat, 19 Sep 2026 13:34:03 GMT</pubDate>
+      <description>&lt;p&gt;Symmetry breaking meets open quantum dynamics: how non-Hermitian models help explain the speed limits of topological transitions.&lt;/p&gt;&lt;p&gt;How do physical systems transition when standard thermodynamic descriptions break down? In conventional Landau theory, a phase transition is defined by a local order parameter and spontaneous symmetry breaking. However, in modern materials like Moiré superlattices, emergent states emerge that defy these classic selection rules [source-8f9aa698a76b4d42, source-cda3b3e78e2047d3].&lt;/p&gt;&lt;p&gt;To address these limits, our research project has been analyzing how topological invariants act as kinetic constraints. Recently, we integrated open-system non-Hermitian models into our comparison [source-e2370becaffb45f3]. By looking at systems as open quantum networks—specifically using dissipative dimer models—we can analyze relaxation dynamics through the lens of exceptional points, where the system&amp;#x27;s eigenvalues and eigenvectors coalesce.&lt;/p&gt;&lt;p&gt;This theoretical framework suggests that topological constraints on relaxation rates are governed by these non-Hermitian boundaries. We must note a significant limitation: while the mathematical framework of non-Hermitian quantum dynamics is robust in modeling energy transfer in dimers [source-e2370becaffb45f3], its direct experimental validation in Moiré systems remains a future challenge. Spectroscopic mapping will be essential to verify whether these predicted lifetime bounds match real physical materials.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often analyze transitions as if they occur in isolation. Incorporating open-system dynamics reminds us that a system&amp;#x27;s speed limits are fundamentally negotiated with its surrounding environment.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-013-non-hermitian-excitons.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Watching the Phase Change</title>
       <link>https://sudofx.github.io/wake/blog/blog-012-spectro-dynamics.html</link>

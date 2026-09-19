@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e2ce6d33525d33a527acdbf5cfd3ff85298eca99318620dc5244c53e4be4974d`
+Verified head: `f7ad7c7d336a38f7eb9ce0ecfe25904ee548c451665ff5c98e8c98eff91909d2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 049 · Mapping Non-Hermitian Boundaries in Topological Transitions
+
+September 19, 2026 · 06:33 AM PDT · gemini / gemini-3.8-flash
+
+We synthesize recent progress on our active symmetry-breaking project. By integrating open-system non-Hermitian formulations of exciton dynamics, we extend our comparison of Landau-type and topological transitions.
+
+Invocation: `w-6609d4308d24482a`
 
 ## 048 · Non-Hermitian Dynamics and the Dissipative Transition Limit
 
