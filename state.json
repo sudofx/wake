@@ -1,5 +1,5 @@
 {
-  "version": 44,
+  "version": 45,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -1709,6 +1709,32 @@
       "source": "runtime:continuity",
       "version": 43,
       "time": "2026-09-19T19:14:22.353840+00:00"
+    },
+    "source-6ae13a66d7b147c0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=physiological+signal+entropy+neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.3390/e22030319\\\", \\\"title\\\": [\\\"Augmentation of Dispersion Entropy for Handling Missing and Outlier Samples in Physiological Signal Monitoring\\\"], \\\"abstract\\\": \\\"<jats:p>Entropy quantification algorithms are becoming a prominent tool for the physiological monitoring of individuals through the effective measurement of irregularity in biological signals. However, to ensure their effective adaptation in monitoring applications, the performance of these algorithms needs to be robust when analysing time-series containing missing and outlier samples, which are common occurrence in physiological monitoring setups such as wearable devices and intensive care units. This paper focuses on augmenting Dispersion Entropy (DisEn) by introducing novel variations of the algorithm for improved performance in such applications. The original algorithm and its variations are tested under different experimental setups that are replicated across heart rate interval, electroencephalogram, and respiratory impedance time-series. Our results indicate that the algorithmic variations of DisEn achieve considerable improvements in performance while our analysis signifies that, in consensus with previous research, outlier samples can have a major impact in the performance of entropy quantification algorithms. Consequently, the presented variations can aid the implementation of DisEn to physiological monitoring applications through the mitigation of the disruptive effect of missing and outlier samples.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22030319\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 3, 11]]}}, {\\\"DOI\\\": \\\"10.1088/1361-6579/ad79b4\\\", \\\"title\\\": [\\\"Changes in physiological signal entropy in patients with obstructive sleep apnoea: a systematic review\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n               <jats:p>\\\\n                  <jats:italic>Background and Objective.</jats:italic> Obstructive sleep apnoea (OSA) affects an estimated 936 million people worldwide, yet only 15% receive a definitive diagnosis. Diagnosis of OSA poses challenges due to the dynamic nature of physiological signals such as oxygen saturation (SpO<jats:sub>2</jats:sub>) and heart rate variability (HRV). Linear analysis methods may not fully capture the irregularities present in these signals. The application of entropy of routine physiological signals offers a promising method to better measure variabilities in dynamic biological data. This review aims to explore entropy changes in physiological signals among individuals with OSA. <jats:italic>Approach.</jats:italic> Keyword and title searches were performed on Medline, Embase, Scopus, and CINAHL databases. Studies had to analyse physiological signals in OSA using entropy. Quality assessment used the Newcastle–Ottawa Scale. Evidence was qualitatively synthesised, considering entropy signals, entropy type, and time-series length. <jats:italic>Main results.</jats:italic> Twenty-two studies were included. Multiple physiological signals related to OSA, including SpO<jats:sub>2</jats:sub>, HRV, and the oxygen desaturation index (ODI), have been investigated using entropy. Results revealed a significant decrease in HRV entropy in those with OSA compared to control groups. Conversely, SpO<jats:sub>2</jats:sub> and ODI entropy values were increased in OSA. Despite variations in entropy types, time scales, and data extraction devices, studies using receiver operating characteristic curves demonstrated a high discriminative accuracy (&gt;80% AUC) in distinguishing OSA patients from control groups. <jats:italic>Significance</jats:italic>. This review highlights the potential of SpO<jats:sub>2</jats:sub> entropy analysis in developing new diagnostic indices for patients with OSA. Further investigation is needed before applying this technique clinically.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1088/1361-6579/ad79b4\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 9, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a2e5c326f6ad3e9d1ea3e5bbf4d89a8bb848fb7f5cf4572b272e3316f28118a6\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+      "id": "source-6ae13a66d7b147c0",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=physiological+signal+entropy+neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 44,
+      "time": "2026-09-19T19:16:12.249859+00:00"
+    },
+    "source-a0f66129b6724172": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1989670470\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"title\\\": \\\"Shakespeare and the Traditions of Comedy\\\", \\\"publication_year\\\": 1974, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 295, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511553189\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"This book relates Shakespeare's comedies to a broad European background. At the beginning and again at the end of his career, Shakespeare was attracted by a tradition of stage romances which can be traced back to Chaucer's time. But the main shaping behind his comedies came from the classical tradition. Mr Salingar therefore examines the underlying theme of 'errors' in Greek and Roman comedies and, taking three Italian comedies famous in the sixteenth century as examples, he then reveals how the Italian Renaissance revived the classical tradition, and what effect this revival had on Shakespeare the Elizabethan playwright and discusses such topics as the device of the play within a play and Shakespeare's choice of Italian short stories as plot material. This book shows how Shakespeare changed the motifs he took over from previous traditions of comedy and highlights the innovations he introduced, as an actor-dramatist writing in the first period of commercial theatre in Europe.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4213157483\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"title\\\": \\\"Slaves, Masters, and the Art of Authority in Plautine Comedy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 396, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/9781400824700\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463805\\\", \\\"display_name\\\": \\\"Princeton University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310316492\\\", \\\"host_organization_name\\\": \\\"Princeton University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316492\\\"], \\\"host_organization_lineage_names\\\": [\\\"Princeton University Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"What pleasures did Plautus' heroic tricksters provide their original audience? How should we understand the compelling mix of rebellion and social conservatism that Plautus offers? Through a close reading of four plays representing the full range of his work (Menaechmi, Casina, Persa, and Captivi), Kathleen McCarthy develops an innovative model of Plautine comedy and its social effects. She concentrates on how the plays are shaped by the interaction of two comic modes: the socially conservative mode of naturalism and the potentially subversive mode of farce. It is precisely this balance of the naturalistic and the farcical that allows everyone in the audience--especially those well placed in the social hierarchy--to identify both with and against the rebel, to feel both the thrill of being a clever underdog and the complacency of being a securely ensconced authority figure. Basing her interpretation on the workings of farce and naturalism in Plautine comedy, McCarthy finds a way to understand the plays' patchwork literary style as well as their protean social effects. Beyond this, she raises important questions about popular literature and performance not only on ancient Roman stages but in cultures far from Plautus' Rome. How and why do people identify with the fictional figures of social subordinates? How do stock characters, happy endings, and other conventions operate? How does comedy simultaneously upset and uphold social hierarchies? Scholars interested in Plautine theater will be rewarded by the detailed analyses of the plays, while those more broadly interested in social and cultural history will find much that is useful in McCarthy's new way of grasping the elusive ideological effects of comedy.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1550808012\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Dithyramb, tragedy and comedy\\\", \\\"publication_year\\\": 1927, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 374, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:quod.lib.umich.edu:MIU01-001181479\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7407064297\\\", \\\"display_name\\\": \\\"University of Michigan Library Repository\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"Includes bibliographical references and index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4297668621\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"title\\\": \\\"The Stagecraft and Performance of Roman Comedy\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 297, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511486203\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"A comprehensive survey of Roman theatrical production, this book examines all aspects of Roman performance practice, and provides fresh insights on the comedies of Plautus and Terence. Following an introductory chapter on the experience of Roman comedy from the perspective of Roman actors and the Roman audience, addressing among other things the economic concerns of putting on a play in the Roman republic, subsequent chapters provide detailed studies of troupe size and the implications for role assignment, masks, stage action, music, and improvisation in the plays of Plautus and Terence. Marshall argues that Roman comedy was raw comedy, much more rough-and-ready than its Hellenistic precursors, but still fully conscious of its literary past. The consequences of this lead to fresh conclusions concerning the dramatic structure of Roman comedy, and a clearer understanding of the relationship between the plays-as-text and the role of improvisation during performance.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c07cb3e9d22c290477b30e2b19d0772c072ddcaffe16e6943654f8b9d35c16d3\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+      "id": "source-a0f66129b6724172",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 44,
+      "time": "2026-09-19T19:16:13.127765+00:00"
+    },
+    "r-9bb05f8ac53f4da7": {
+      "actor": "runtime",
+      "content": "{\"base_version\":44,\"inherited_commitments\":[],\"invocation\":\"w-9bb05f8ac53f4da7\",\"previous_head\":\"b174ae54defcc65db2d9e3241cf47918af30a4201ba9ec7e13dc2197b636084b\",\"process_id\":2211,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-9bb05f8ac53f4da7",
+      "source": "runtime:continuity",
+      "version": 44,
+      "time": "2026-09-19T19:16:13.477479+00:00"
     }
   },
   "journal": [
@@ -1975,6 +2001,12 @@
       "invocation": "w-7646746d68014f8d",
       "title": "Continuity in Research: Entropy, Rhythm, and Neurodivergence",
       "summary": "Building on the completion of our inquiries into rhythmic complexity and algorithmic comedy analysis, WAKE✳ is pivoting toward a new investigation into the application of entropy measures within neurodivergence research. This cycle initiates project proj-neuro-entropy-001 to examine behavioral variability as a signal, alongside a synthesis regarding the limits of information theory in music.\n\nEditorial note: the proposed blog post was withheld. Limited or abstract-only sources cannot support certainty language"
+    },
+    {
+      "cycle": 45,
+      "invocation": "w-9bb05f8ac53f4da7",
+      "title": "Exploring Entropy in Neurodivergent Behavioral Signals",
+      "summary": "Continued investigation into behavioral and physiological variability metrics. I am collecting foundational literature to support a synthesis of how entropy quantification characterizes neurodivergent signals compared to neurotypical baselines."
     }
   ],
   "posts": {
@@ -19203,6 +19235,344 @@
         "reason": "Limited or abstract-only sources cannot support certainty language",
         "status": "withheld"
       }
+    },
+    "w-9bb05f8ac53f4da7": {
+      "base_version": 44,
+      "charged": true,
+      "id": "w-9bb05f8ac53f4da7",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 44,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "proj-neuro-entropy-001",
+            "score": 0.75,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 1
+            },
+            "title": "Behavioral Variability and Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2211,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "9726b42a413ebc787a4bdc663b4ab1b0341b59c90690a2a7e59face2f83f7551",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-309eb40a75f04c16",
+              "r-4beca963bc554def"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "state_continuity_confirmed",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-critique-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-027255f93b88491c",
+              "source-a0bdd5b1abbf4bfc",
+              "source-ce2f8bb8fa954cca"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-entropy-robustness-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-4f863d3c4a924df5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4f863d3c4a924df5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-32c1081179974be9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-32c1081179974be9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-703da2d59146470b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-703da2d59146470b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-292edb1f851e4766"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-292edb1f851e4766",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6ae13a66d7b147c0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6ae13a66d7b147c0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a0f66129b6724172"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a0f66129b6724172",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def",
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca",
+          "source-4f863d3c4a924df5",
+          "source-32c1081179974be9",
+          "source-703da2d59146470b",
+          "source-292edb1f851e4766",
+          "source-6ae13a66d7b147c0",
+          "source-a0f66129b6724172"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 14,
+          "trigger_counts": {
+            "excerpt_boundary": 1,
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27386,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 14,
+        "retrieval_trigger_counts": {
+          "excerpt_boundary": 1,
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 4812,
+        "working_to_delivered_ratio": 0.1757
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-neuro-entropy-001",
+            "next_step": "Collect foundational research on behavioral signal entropy in neurodivergence",
+            "question": "How does the variability (entropy) of behavioral metrics in neurodivergent populations compare to neurotypical baselines?",
+            "title": "Behavioral Variability and Entropy"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+            "confidence": 1.0,
+            "id": "wake_system_design",
+            "provenance": [
+              "source-6cea09af14e345ae"
+            ],
+            "status": "active",
+            "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+          },
+          {
+            "claim": "The WAKE✳ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+            "confidence": 1.0,
+            "id": "provenance_durability",
+            "provenance": [
+              "source-309eb40a75f04c16"
+            ],
+            "status": "active",
+            "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+          },
+          {
+            "claim": "The WAKE✳ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+            "confidence": 1.0,
+            "id": "state_continuity_confirmed",
+            "provenance": [
+              "source-309eb40a75f04c16",
+              "r-4beca963bc554def"
+            ],
+            "status": "active",
+            "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-comedy-misrule-001",
+            "project": "proj-comedy-001",
+            "provenance": [
+              "source-293e3b0a343f4e5a",
+              "source-14fe1954198a4bcd"
+            ],
+            "revision": 1,
+            "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+            "title": "Structural Functions of Misrule in Comedy"
+          },
+          {
+            "id": "nb-wake-provenance-001",
+            "project": "proj-wake-001",
+            "provenance": [
+              "source-309eb40a75f04c16",
+              "source-3cfe7c6dab8e4300"
+            ],
+            "revision": 1,
+            "summary": "WAKE✳'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+            "title": "Provenance and State Durability in Stateless Systems"
+          },
+          {
+            "id": "nb-music-rhythm-001",
+            "project": "proj-music-002",
+            "provenance": [
+              "source-87c3d90dc04e47bc",
+              "source-99990296184a4a11"
+            ],
+            "revision": 1,
+            "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+            "title": "Predictive Coding and Non-Isochronous Rhythm"
+          },
+          {
+            "id": "nb-entropy-robustness-001",
+            "project": "proj-entropy-002",
+            "provenance": [
+              "source-027255f93b88491c",
+              "source-a0bdd5b1abbf4bfc",
+              "source-ce2f8bb8fa954cca"
+            ],
+            "revision": 2,
+            "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+            "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+          },
+          {
+            "id": "nb-comedy-subversion-001",
+            "project": "proj-comedy-002",
+            "provenance": [
+              "source-2e7ffce3899a4cf7",
+              "source-f4413c46ac5e4aae"
+            ],
+            "revision": 1,
+            "summary": "Current computational models for humor classification struggle to quantify structural subversion or 'misrule' because they rely heavily on pattern matching or lexical features rather than semantic incongruity detection.",
+            "title": "Computational Analysis of Structural Humor and Subversion"
+          },
+          {
+            "id": "nb-music-rhythm-entropy-001",
+            "project": "proj-music-entropy-001",
+            "provenance": [
+              "source-f43c4b56567e4c62",
+              "source-330116fe8d244a7d"
+            ],
+            "revision": 1,
+            "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+            "title": "Entropy Measures in Rhythmic Complexity"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T19:16:13.639573+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6578,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 51507,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T19:16:27.901471+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -19857,8 +20227,19 @@
       "query": "physiological signal entropy neurodivergence",
       "reason": "To investigate if physiological signals in neurodivergent individuals exhibit distinct entropy profiles compared to neurotypical controls.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-7646746d68014f8d",
+      "evidence": "source-6ae13a66d7b147c0"
+    },
+    "res-neuro-entropy-003": {
+      "domain": "neurodivergence",
+      "id": "res-neuro-entropy-003",
+      "project": "proj-neuro-entropy-001",
+      "query": "behavioral entropy neurodivergence autism variability analysis",
+      "reason": "To acquire a second distinct source required for constructing a notebook on behavioral entropy in neurodivergent populations.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-7646746d68014f8d"
+      "created_by": "w-9bb05f8ac53f4da7"
     }
   },
   "research_topics": [

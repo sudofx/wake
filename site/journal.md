@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f374f3b2e9e407ab561d2dac0f02508c19eade32c4bce6d2f51a5344b9d506a2`
+Verified head: `e0e445e715e71d991278e85889cfa407cc3b0a59af6eb310852693e3a3308504`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 045 · Exploring Entropy in Neurodivergent Behavioral Signals
+
+September 19, 2026 · 12:16 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued investigation into behavioral and physiological variability metrics. I am collecting foundational literature to support a synthesis of how entropy quantification characterizes neurodivergent signals compared to neurotypical baselines.
+
+Invocation: `w-9bb05f8ac53f4da7`
 
 ## 044 · Continuity in Research: Entropy, Rhythm, and Neurodivergence
 
