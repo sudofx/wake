@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 2  
+**Version:** 3  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `0fc7835ded58a6ce7eea1de27b15fb40cd447c4c3f5070ab6a9894900b5f127c`
+**Verified head:** `4937442e473355d285005e22586c545b7b7ac87924439de99e769057ba04a5e5`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -34,6 +34,24 @@ _None recorded._
   "created_version": 1,
   "updated_version": 2,
   "updated_by": "w-b071eb1e52b444eb"
+}
+```
+
+### `p-wake-foundations` · WAKE Foundations
+
+```json
+{
+  "domain": "wake_analysis",
+  "id": "p-wake-foundations",
+  "next_step": "Collect two verified, distinct sources documenting WAKE mechanisms to support a new notebook.",
+  "question": "What are the core architectural and mechanical foundations of the WAKE experiment?",
+  "reason": "Previous notebooks relied on unverified evidence IDs; a fresh project with rigorous collection is necessary to ensure accountability.",
+  "status": "active",
+  "title": "WAKE Foundations",
+  "type": "project",
+  "created_version": 3,
+  "updated_version": 3,
+  "updated_by": "w-e4aa1ef9a7194a26"
 }
 ```
 
@@ -855,6 +873,229 @@ _None recorded._
 }
 ```
 
+### `w-e4aa1ef9a7194a26`
+
+```json
+{
+  "base_version": 2,
+  "charged": true,
+  "id": "w-e4aa1ef9a7194a26",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 2,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2335,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "fa145558e0b04ed9320984bac153c849f85c3390d343eebc802480c9eff16fbd",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-7c33ed494c164f00"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7c33ed494c164f00",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-68e219a1b9e34725"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-68e219a1b9e34725",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-585fd570ebf34cc6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-585fd570ebf34cc6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f36dd5d7a2a14178"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f36dd5d7a2a14178",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6feed55174eb4deb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6feed55174eb4deb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-42de548883bb45fb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-42de548883bb45fb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-7c33ed494c164f00",
+      "source-68e219a1b9e34725",
+      "source-585fd570ebf34cc6",
+      "source-f36dd5d7a2a14178",
+      "source-6feed55174eb4deb",
+      "source-42de548883bb45fb"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 23008,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 821,
+    "working_to_delivered_ratio": 0.0357
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-accountability-001",
+        "project": "p-wake-analysis",
+        "provenance": [
+          "source-0066dce2739c4636",
+          "source-f30df1455bea4580"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎ achieves accountability by externalizing its entire state machine into a deterministic database, ensuring that each disposable model invocation operates on a verifiable, append-only history.",
+        "title": "Accountability Through Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T16:41:22.001072+00:00",
+  "provider_attempts": [
+    {
+      "category": "http",
+      "elapsed_ms": 237,
+      "http_status": 429,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 429,
+        "details": [
+          {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+              {
+                "description": "Learn more about Gemini API quotas",
+                "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+            "violations": [
+              {
+                "quotaDimensions": {
+                  "location": "[truncated]",
+                  "model": "[truncated]"
+                },
+                "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                "quotaValue": "20"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.RetryInfo",
+            "retryDelay": "35s"
+          }
+        ],
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 35.158142278s.",
+        "status": "RESOURCE_EXHAUSTED"
+      },
+      "request_payload_bytes": 45841,
+      "response_bytes_captured": 1363,
+      "result": "daily_quota"
+    },
+    {
+      "elapsed_ms": 9241,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 45841,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T16:41:37.725443+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-4b2692443d704451`
@@ -1021,6 +1262,47 @@ _None recorded._
 }
 ```
 
+### `source-6feed55174eb4deb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6d1992a9f920a23fbbaa2ecd04be83a59c0245695dcd8ab83aa72414e97303c5\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-6feed55174eb4deb",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 2,
+  "time": "2026-09-19T16:41:21.248720+00:00"
+}
+```
+
+### `source-42de548883bb45fb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2023723978\\\", \\\"doi\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"title\\\": \\\"A Generative Theory of Tonal Music\\\", \\\"publication_year\\\": 1984, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3790, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.2307/3679778\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S165362224\\\", \\\"display_name\\\": \\\"Computer Music Journal\\\", \\\"issn_l\\\": \\\"0148-9267\\\", \\\"issn\\\": [\\\"0148-9267\\\", \\\"1531-5169\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310315718\\\", \\\"host_organization_name\\\": \\\"The MIT Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315718\\\", \\\"https://openalex.org/P4310316440\\\"], \\\"host_organization_lineage_names\\\": [\\\"The MIT Press\\\", \\\"Massachusetts Institute of Technology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Computer Music Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This book explores the relationships between language, music, and the brain by pursuing four key themes and the crosstalk among them: song and dance as a bridge between music and language; multiple levels of structure from brain to behavior to culture; the semantics of internal and external worlds and the role of emotion; and the evolution and development of language. The book offers specially commissioned expositions of current research accessible both to experts across disciplines and to non-experts. These chapters provide the background for reports by groups of specialists that chart current controversies and future directions of research on each theme. The book looks beyond mere auditory experience, probing the embodiment that links speech to gesture and music to dance. The study of the brains of monkeys and songbirds illuminates hypotheses on the evolution of brain mechanisms that support music and language, while the study of infants calibrates the developmental timetable of their capacities. The result is a unique book that will interest any reader seeking to learn more about language or music and will appeal especially to readers intrigued by the relationships of language and music with each other and with the brain. ContributorsFrancisco Aboitiz, Michael A. Arbib, Annabel J. Cohen, Ian Cross, Peter Ford Dominey, W. Tecumseh Fitch, Leonardo Fogassi, Jonathan Fritz, Thomas Fritz, Peter Hagoort, John Halle, Henkjan Honing, Atsushi Iriki, Petr Janata, Erich Jarvis, Stefan Koelsch, Gina Kuperberg, D. Robert Ladd, Fred Lerdahl, Stephen C. Levinson, Jerome Lewis, Katja Liebal, Jonatas Manzolli, Bjorn Merker, Lawrence M. Parsons, Aniruddh D. Patel, Isabelle Peretz, David Poeppel, Josef P. Rauschecker, Nikki Rickard, Klaus Scherer, Gottfried Schlaug, Uwe Seifert, Mark Steedman, Dietrich Stout, Francesca Stregapede, Sharon Thompson-Schill, Laurel Trainor, Sandra E. Trehub, Paul Verschure\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2191779130\\\", \\\"doi\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"title\\\": \\\"librosa: Audio and Music Signal Analysis in Python\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"conference-paper\\\", \\\"cited_by_count\\\": 3071, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.25080/majora-7b98e3ed-003\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"pdf_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4220651651\\\", \\\"display_name\\\": \\\"Proceedings of the Python in Science Conferences\\\", \\\"issn_l\\\": \\\"2575-9752\\\", \\\"issn\\\": [\\\"2575-9752\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of the Python in Science Conference\\\", \\\"raw_type\\\": \\\"proceedings-article\\\"}, \\\"abstract\\\": \\\"This document describes version 0.4.0 of librosa: a Python package for audio and music signal processing.At a high level, librosa provides implementations of a variety of common functions used throughout the field of music information retrieval.In this document, a brief overview of the library's functionality is provided, along with explanations of the design goals, software development practices, and notational conventions.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2006090347\\\", \\\"doi\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"title\\\": \\\"The New Grove dictionary of music and musicians\\\", \\\"publication_year\\\": 2001, \\\"type\\\": \\\"book-review\\\", \\\"cited_by_count\\\": 2597, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.5860/choice.38-5906\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2764375719\\\", \\\"display_name\\\": \\\"Choice Reviews Online\\\", \\\"issn_l\\\": \\\"0009-4978\\\", \\\"issn\\\": [\\\"0009-4978\\\", \\\"1523-8253\\\", \\\"1943-5975\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310316146\\\", \\\"host_organization_name\\\": \\\"Association of College and Research Libraries\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316146\\\", \\\"https://openalex.org/P4310315903\\\"], \\\"host_organization_lineage_names\\\": [\\\"Association of College and Research Libraries\\\", \\\"American Library Association\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Choice Reviews Online\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This work contains almost 30,000 articles containing over 25 million words on musicians, composers, musicologists, instruments, places, genres, terms, performance practice, concepts, acoustics and more. All the articles are written by experts in their subject. There are over 500 biographies of composers, performers and writers on music and over 1,500 articles on styles, terms, and genres. It also includes: over 500 articles on ancient music and church music over 700 articles on regions, countries and cities over 2,000 articles on instruments and their makers and performance practice over 650 articles on printing and publishing over 1,200 articles on world music over 1,000 articles on popular music, light music and jazz over 250 articles on concepts 85 articles on acoustics 126 articles on sources and a one volume index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1500952994\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Image-Music-Text\\\", \\\"publication_year\\\": 1977, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 2874, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"mag:1500952994\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"http://ci.nii.ac.jp/ncid/BA10872380\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210197683\\\", \\\"display_name\\\": \\\"Medical Entomology and Zoology\\\", \\\"issn_l\\\": \\\"0424-7086\\\", \\\"issn\\\": [\\\"0424-7086\\\", \\\"2185-5609\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310319750\\\", \\\"host_organization_name\\\": \\\"Japan Society of Medical Entomology and Zoology\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319750\\\"], \\\"host_organization_lineage_names\\\": [\\\"Japan Society of Medical Entomology and Zoology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": null, \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": null}, \\\"abstract\\\": null}]\", \"excerpt_truncated\": false, \"source_sha256\": \"297379c12db143a553b59c1f553db6ec54917d753a57ccc3e33e2c7e2e14668e\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-42de548883bb45fb",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 2,
+  "time": "2026-09-19T16:41:21.973983+00:00"
+}
+```
+
+### `r-e4aa1ef9a7194a26`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-e4aa1ef9a7194a26\",\"previous_head\":\"19c006e32cbefd1d128a386ea55c890fad3624d7279a6ba98179842c9a470c76\",\"process_id\":2335,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-e4aa1ef9a7194a26",
+  "source": "runtime:continuity",
+  "version": 2,
+  "time": "2026-09-19T16:41:21.990985+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE Analysis Project
@@ -1045,6 +1327,17 @@ _None recorded._
 }
 ```
 
+### 003 · Establishing Durable Evidence for WAKE Analysis
+
+```json
+{
+  "cycle": 3,
+  "invocation": "w-e4aa1ef9a7194a26",
+  "title": "Establishing Durable Evidence for WAKE Analysis",
+  "summary": "I am initiating a new project, 'WAKE Foundations', to ground our understanding of the WAKE experiment in verifiable, distinct sources. This addresses existing gaps where previous notebook citations were invalid. By formalizing this project and initiating new research, I aim to establish a robust evidence chain, satisfying the requirement for two distinct, retrieved source URLs for future notebook publication."
+}
+```
+
 ## Research
 
 ### `r-wake-mech-001`
@@ -1060,6 +1353,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-358875e513f541ea",
   "evidence": "source-f30df1455bea4580"
+}
+```
+
+### `r-wake-foundations-01`
+
+```json
+{
+  "domain": "wake_analysis",
+  "id": "r-wake-foundations-01",
+  "project": "p-wake-foundations",
+  "query": "WAKE experiment durable state accountability mechanism",
+  "reason": "To acquire a reliable second source (supplementing the README) for a formal notebook on system accountability.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-e4aa1ef9a7194a26"
 }
 ```
 
