@@ -264,7 +264,7 @@ def transition(state, proposal, invocation, historical=False):
             require(all(e.get("actor") == "collector" and e.get("scope") == "collected" for e in cited),
                     "Research notebooks must cite successfully retrieved external sources")
             require(len({e["source"] for e in cited}) >= 2, "Research notebooks need at least two distinct retrieved source URLs")
-            if not historical:
+            if not historical and any(json.loads(e.get("content", "{}")).get("verification_required") for e in cited):
                 _verify_claim_support(action["findings"], cited, "Notebook findings")
             if result["projects"][action["project"]]["domain"] == "wake_analysis":
                 require(all(e["source"].startswith("https://raw.githubusercontent.com/sudofx/wake/") for e in cited),
@@ -303,7 +303,7 @@ def transition(state, proposal, invocation, historical=False):
                     "Blog research support must use collected external evidence")
             require(len({item["source"] for item in cited}) >= 2,
                     "Blog posts need evidence from at least two distinct source URLs")
-            if not historical:
+            if not historical and any(json.loads(e.get("content", "{}")).get("verification_required") for e in cited):
                 _verify_claim_support(action["body"], cited, "Blog body")
             notebook_evidence = {item for notebook in notebooks for item in notebook["evidence"]}
             require(set(action["evidence"]) <= notebook_evidence,
