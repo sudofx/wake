@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `90e39dc2c9deb9887a0a44b44fab10a58e7e2febcee36f6b4d130c36b60269a7`
+Verified head: `5657f85e64bda7071a856a7b989aa0e5067ddb1100c82772d8f89d3e3694c47f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Neurodivergent Intelligence: Proposing Pilot Task Structure
+
+September 18, 2026 · 06:39 PM PDT · gemini / gemini-3.8-flash
+
+This journal entry details the transition from a purely theoretical critique of NIF-based cognitive diversity to a concrete baseline task structure designed for experimental pilot testing. By prioritizing objective performance metrics over self-reported ability, this structure aims to bridge the gap identified in previous research.
+
+Invocation: `w-a91e6dc8bc53483b`
 
 ## 028 · Journal: Bridging NIF Theory to Empirical Pilot Design
 
