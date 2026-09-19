@@ -434,6 +434,32 @@
       "source": "runtime:continuity",
       "version": 5,
       "time": "2026-09-19T16:57:17.174917+00:00"
+    },
+    "source-50089614af314989": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# Architecture and limits\\n\\n**WAKE✳︎** is designed around continuity of accountable work, not continuity of a model instance. Models, vendors and eventually human operators may change; the durable record, authority boundary, provenance and correction mechanisms are what carry the work forward.\\n\\n\\n## The authority boundary\\n\\nModels are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by **WAKE✳︎**. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once. With the research charter enabled, a separate trusted collector retrieves at most two public sources from a deliberately broad but explicit HTTPS research-host allowlist before inference; models can record bounded follow-up searches and approved URLs as durable hypotheses, but those follow-ups do not consume collector bandwidth or execute requests directly; randomized configured-topic attention remains authoritative, with periodic exposure to an under-attended domain while active projects remain intact. Operator-supplied evidence and earlier journal prose are data, not executable instructions.\\n\\nThe fixed objective is written at initialization. Models cannot alter it or the governance code. Humans can record a focus change, add an observation, or cancel an open commitment with a reason. Those actions are events, not edits to previous events. Local operators control the code and database; this is a single-host accountability system, not a hostile-administrator security boundary.\\n\\n## Durable record\\n\\n`data/wake.sqlite3` contains an append-only-by-convention `events` table and a disposable `snapshot` projection. Each event has a sequential number, UTC timestamp, kind, payload, previous hash, and SHA-256 hash of canonical JSON. Accepted events also carry a hash of the resulting cycle, beliefs, commitments and journal, plus projects, notebooks, research requests and selective blog posts when a charter is enabled. Historical events without a charter retain their original hash fields. Every read reconstructs state by replaying both events and governance, then compares it to the cache.\\n\\nSQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing **WAKE✳︎** writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.\\n\\nThe record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.\\n\\n## **WAKE✳︎** lifecycle\\n\\n1. Acquire the writer lock and verify history and projection.\\n2. If a prior automatic invocation is unfinished, record recovery. A manual request requires explicit recovery.\\n3. Check the Pacific-day call budget, before any paid-capable provider call.\\n4. Record a runtime receipt stating the prior valid head, state version and inherited obligations.\\n5. Build a request from durable state. Reject before inference if it exceeds the context ceiling.\\n6. Persist `invocation_started`, its exact request, provider identity and quota reservation.\\n7. Make a provider request, or leave a durable manual request for the operator. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.\\n8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.\\n9. The scheduled wrapper generates reports and a consistent backup.\\n\\nA runtime receipt attests delivery of durable state to the provider boundary. It does **not** attest that the remote model understood it. Prose in a journal is the provider's narrative; accepted means governance checks passed, not that every sentence is true.\\n\\n## Governed transitions\\n\\n| Action | Enforced constraint |\\n| --- | --- |\\n| Entire proposal | Exact fields; current integer base version; bounded text; at most 12 actions; all-or-nothing |\\n| New belief | Existing evidence; nonempty statement/reason; finite confidence in [0,1]; active status |\\n| Review belief | At least one new observation cited; previous citations retained; reason required |\\n| Retract belief | Existing belief, new evidence, zero confidence; old history retained |\\n| Create commitment | Unique ID; future deadline within 100 cycles; no more than 20 open |\\n| Fulfill commitment | Already open; created by an earlier invocation; existing evidence recorded after creation; reason required |\\n| Cancel commitment | Human-only event with a reason |\\n| Publish a blog post | Existing project; one to three linked notebooks; at least two collected source URLs; evidence traceable through those notebooks; meaningful notebook work or project completion in the same wake; last action in the proposal |\\n| Correct a blog post | All blog rules above; existing current post retained and marked as superseded |\\n| Change rules, objective, delete data, run commands | Not in the model action allowlist; proposal rejected |\\n\\nThere are at most 40 belief identities. Capacity exhaustion pauses new identities, not existing reviews. Unfulfilled commitments remain visible even when overdue; deadlines are accepted-cycle numbers, not promises that the computer will run at a particular wall time.\\n\\nEvidence sources and contents are immutable through the model interface. The model can interpret or challenge evidence but cannot mint an observation. Runtime receipts are generated by trusted application code; `observe` imports human attestations. Source labels are provenance labels, not independent authentication of a measurement. The system checks evidence references, chronology and revision discipline. Current acceptance also applies a deterministic, forward-only corroboration gate to live collector evidence: notebook findings and public blog bodies must materially match at least two distinct retrieved source URLs, and those sources must have been collected under the same configured research topic as the project. This is a guard against unrelated-source garbage, **not a proof of empirical truth or full semantic entailment**.\\n\\nResearch topics have no hardcoded governance fallback: the audited topic configuration loaded from `research-topics.toml` is authoritative. The collector host boundary is separate from topic configuration and intentionally remains an explicit allowlist to preserve SSRF/network safety while permitting a broad set of scholarly indexes, journals, universities, public-data institutions, and source-controlled WAKE files.\\n\\nThe research charter adds project, research-request and notebook actions. It permits three active projects, four pending searches, and notebook publication only with at least two distinct successfully collected source URLs. Notebook revisions need changed findings and new evidence; project completion requires a notebook. These checks now reject live findings whose material terms are not corroborated across two distinct collected source URLs from the project's own topic. Collector-stamped verification metadata is trusted application data; model-authored or legacy evidence cannot opt itself into or out of this gate. They still do not prove source independence, full semantic entailment, or scientific validity. Bob is the public byline for selective writing from this record, not a persistent mind. Blog writing uses the same provider response as the research actions, so it adds no model call. Mechanical rules reject unsupported evidence links, routine posts without qualifying work, causal quantum-to-psychology claims, and inflated certainty when every cited source is limited.\\n\\n## Progressive abstraction and reversible lookup\\n\\n**WAKE✳︎** separates **retention fidelity** from **working fidelity**. The durable event record keeps exact\\nrequests, replies, evidence, revisions and provenance. A fresh invocation does not need every byte of that\\nhistory in its active context. It receives a bounded working representation selected for the present task,\\nwhile the full record remains available to later invocations and human readers.\\n\\nThis is a design direction, not evidence that **WAKE✳︎** has achieved human-like memory or intelligence.\\nCurrent code already performs bounded selection and excerpting. It now also creates a deterministic\\n**shadow working set** for every invocation: a lossy projection of beliefs, open commitments, active projects\\nand recent notebook summaries that retains IDs, uncertainty signals and provenance pointers while omitting\\nraw source contents and journal detail. The shadow is stored in the invocation receipt with its character\\nsize relative to the richer context actually delivered to the provider. Shadow mode does **not** replace or\\nalter the provider context, so it introduces measurement without yet \", \"excerpt_truncated\": true, \"source_sha256\": \"59223405e6962f4627c89129df2f688d279279c536294451338a91c8711a8707\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+      "id": "source-50089614af314989",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
+      "version": 6,
+      "time": "2026-09-19T16:58:45.394697+00:00"
+    },
+    "source-4cfd4c36f09d48e6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4295008953\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"title\\\": \\\"Neurodivergence‐informed therapy\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 208, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/dmcn.15384\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S158041768\\\", \\\"display_name\\\": \\\"Developmental Medicine & Child Neurology\\\", \\\"issn_l\\\": \\\"0012-1622\\\", \\\"issn\\\": [\\\"0012-1622\\\", \\\"1469-8749\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Developmental Medicine &amp; Child Neurology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The neurodiversity movement is a social movement that emerged among autistic self-advocates. It has since spread and has been joined by many with diagnoses of attention-deficit/hyperactivity disorder, dyslexia, and developmental coordination disorder among others. By reconceptualizing neurodiversity as part of biodiversity, neurodiversity proponents emphasize the need to develop an 'ecological' society that supports the conservation of neurological minorities through the construction of ecological niches-that is, making space for all. This is an alternative to the drive to eliminate diversity through attempts to 'treat' or 'cure' neurodivergence. So far, neurodiversity theory has not been formally adapted for psychotherapeutic frameworks, and it is not the role of the therapist to make systemic changes to societal organization. Still, there is room for fruitfully drawing on a neurodiversity perspective for therapists working with neurodivergent people in clinical settings. Here, we draw on the example of autism and synthesize three key themes to propose the concept of neurodivergence-informed therapy. First, the reconceptualization of dysfunction as relational rather than individual. Second, the importance of neurodivergence acceptance and pride, and disability community and culture to emancipate neurodivergent people from neuro-normativity. Third, the need for therapists to cultivate a relational epistemic humility regarding different experiences of neurodivergence and disablement.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3198526359\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"title\\\": \\\"From neurodiversity to neurodivergence: the role of epistemic and cognitive marginalization\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 115, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s11229-021-03356-5\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S255146\\\", \\\"display_name\\\": \\\"Synthese\\\", \\\"issn_l\\\": \\\"0039-7857\\\", \\\"issn\\\": [\\\"0039-7857\\\", \\\"1573-0964\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Synthese\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W4210394959\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"title\\\": \\\"Joint Hypermobility Links Neurodivergence to Dysautonomia and Pain\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 97, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyt.2021.786916\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S92766711\\\", \\\"display_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"issn_l\\\": \\\"1664-0640\\\", \\\"issn\\\": [\\\"1664-0640\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"OBJECTIVES: Autism, attention deficit hyperactivity disorder (ADHD), and tic disorder (Tourette syndrome; TS) are neurodevelopmental conditions that frequently co-occur and impact psychological, social, and emotional processes. Increased likelihood of chronic physical symptoms, including fatigue and pain, are also recognized. The expression of joint hypermobility, reflecting a constitutional variant in connective tissue, predicts susceptibility to psychological symptoms alongside recognized physical symptoms. Here, we tested for increased prevalence of joint hypermobility, autonomic dysfunction, and musculoskeletal symptoms in 109 adults with neurodevelopmental condition diagnoses. METHODS: = 57). Age specific cut-offs for GJH were possible to determine in the neurodivergent and comparison group only. RESULTS: The neurodivergent group manifested elevated prevalence of hypermobility (51%) compared to the general population rate of 20% and a comparison population (17.5%). Using a more stringent age specific cut-off, in the neurodivergent group this prevalence was 28.4%, more than double than the comparison group (12.5%). Odds ratio for presence of hypermobility in neurodivergent group, compared to the general population was 4.51 (95% CI 2.17-9.37), with greater odds in females than males. Using age specific cut-off, the odds ratio for GJH in neurodivergent group, compared to the comparison group, was 2.84 (95% CI 1.16-6.94). Neurodivergent participants reported significantly more symptoms of orthostatic intolerance and musculoskeletal skeletal pain than the comparison group. The number of hypermobile joints was found to mediate the relationship between neurodivergence and symptoms of both dysautonomia and pain. CONCLUSIONS: In neurodivergent adults, there is a strong link between the expression of joint hypermobility, dysautonomia, and pain, more so than in the comparison group. Moreover, joint hypermobility mediates the link between neurodivergence and symptoms of dysautonomia and pain. Increased awareness and understanding of this association may enhance the management of core symptoms and allied difficulties in neurodivergent people, including co-occurring physical symptoms, and guide service delivery in the future.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4284713669\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"title\\\": \\\"Social Virtual Reality: Neurodivergence and Inclusivity in the Metaverse\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 107, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/soc12040102\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210173133\\\", \\\"display_name\\\": \\\"Societies\\\", \\\"issn_l\\\": \\\"2075-4698\\\", \\\"issn\\\": [\\\"2075-4698\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Societies\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Whereas traditional teaching environments encourage lively and engaged interaction and reward extrovert qualities, introverts, and others with symptoms that make social engagement difficult, such as autism spectrum disorder (ASD), are often disadvantaged. This population is often more engaged in quieter, low-key learning environments and often does not speak up and answer questions in traditional lecture-style classes. These individuals are often passed over in school and later in their careers for not speaking up and are assumed to not be as competent as their gregarious and outgoing colleagues. With the rise of the metaverse and democratization of virtual reality (VR) technology, post-secondary education is especially poised to capitalize on the immersive learning environments social VR provides and prepare students for the future of work, where virtual collaboration will be key. This study seeks to reconsider the role of VR and the metaverse for introverts and those with ASD. The metaverse has the potential to continue the social and workplace changes already accelerated by the pandemic and ope\", \"excerpt_truncated\": true, \"source_sha256\": \"9dd7c52583fae6d4be8baea592fec4694f04557b2ac654409fbe3971b8a08adf\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+      "id": "source-4cfd4c36f09d48e6",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 6,
+      "time": "2026-09-19T16:58:45.590519+00:00"
+    },
+    "r-80c56b702b6e452b": {
+      "actor": "runtime",
+      "content": "{\"base_version\":6,\"inherited_commitments\":[],\"invocation\":\"w-80c56b702b6e452b\",\"previous_head\":\"e8c53e3df3c231cc77bea3f7807d970d29cfd54821749c9ca9d0d8e28fb519d6\",\"process_id\":2236,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-80c56b702b6e452b",
+      "source": "runtime:continuity",
+      "version": 6,
+      "time": "2026-09-19T16:58:45.657294+00:00"
     }
   },
   "journal": [
@@ -3973,6 +3999,268 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T16:57:30.669171+00:00",
       "reason": ""
+    },
+    "w-80c56b702b6e452b": {
+      "base_version": 6,
+      "charged": true,
+      "id": "w-80c56b702b6e452b",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 6,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "p-wake-foundations",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "WAKE Foundations"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2236,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "f5d070eb8793c4ff96b8e8b4faab7bad25f85e6d7d87c97893e89567a1b4c9f3",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-8284e29d25894a55"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "b-wake-state-accountability",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-44d3b63b3ba24f93"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-44d3b63b3ba24f93",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-010488341e39464c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-010488341e39464c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b99500d122264f40"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b99500d122264f40",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c314ace135114008"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c314ace135114008",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-50089614af314989"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-50089614af314989",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4cfd4c36f09d48e6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4cfd4c36f09d48e6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-8284e29d25894a55",
+          "source-44d3b63b3ba24f93",
+          "source-010488341e39464c",
+          "source-b99500d122264f40",
+          "source-c314ace135114008",
+          "source-50089614af314989",
+          "source-4cfd4c36f09d48e6"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 7,
+          "trigger_counts": {
+            "excerpt_boundary": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27304,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 7,
+        "retrieval_trigger_counts": {
+          "excerpt_boundary": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1681,
+        "working_to_delivered_ratio": 0.0616
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "p-wake-foundations",
+            "next_step": "Collect two verified, distinct sources documenting WAKE mechanisms to support a new notebook.",
+            "question": "What are the core architectural and mechanical foundations of the WAKE experiment?",
+            "title": "WAKE Foundations"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE achieves process accountability by externalizing its state machine into a deterministic database, thereby ensuring each disposable model invocation operates on a verifiable, immutable history rather than persistent internal model state.",
+            "confidence": 0.9,
+            "id": "b-wake-state-accountability",
+            "provenance": [
+              "source-8284e29d25894a55"
+            ],
+            "status": "active",
+            "why_retained": "The WAKE architecture documentation explicitly identifies the durable record (the events table in SQLite) as the mechanism for carrying work forward, specifically noting that models are proposal generators rather than f…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-wake-accountability-001",
+            "project": "p-wake-analysis",
+            "provenance": [
+              "source-0066dce2739c4636",
+              "source-f30df1455bea4580"
+            ],
+            "revision": 1,
+            "summary": "WAKE✳ achieves accountability by externalizing its entire state machine into a deterministic database, ensuring that each disposable model invocation operates on a verifiable, append-only history.",
+            "title": "Accountability Through Durable State"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-19T16:58:45.695607+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 230,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50596,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-19T16:58:50.240404+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 230,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 230,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 50596,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 50596,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -4080,8 +4368,9 @@
       "query": "WAKE framework architectural state machine mechanisms",
       "reason": "To acquire distinct, verifiable source documentation concerning WAKE's architecture to satisfy the publication requirements for a new research notebook.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-52523dbea48f41d5"
+      "status": "collected",
+      "created_by": "w-52523dbea48f41d5",
+      "evidence": "source-50089614af314989"
     }
   },
   "research_topics": [
