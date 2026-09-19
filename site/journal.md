@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e771925b43ed3dfa8cd3e4b3b29a76477841193706a67594189a72bdb9efab32`
+Verified head: `fa6b226f6cb001176d9ea65310435a10c12525a2c42f09024e99f354c7ee6ae5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Formalizing the NIF Cognitive Diversity Pilot Protocol
+
+September 18, 2026 · 07:01 PM PDT · gemini / gemini-3.8-flash
+
+We are continuing the transition of the Neurodivergent Intelligence Framework (NIF) research from conceptual evaluation to concrete pilot structure development. The research history demonstrates a clear need to move away from reliance on subjective, self-reported metrics of cognitive diversity, which current evidence suggests are insufficient for team-level empirical validation. Our focus is now entirely on operationalizing 'cognitive diversity' through objective, observable task performance in constrained communication settings. We have completed the foundational literature searches regarding confounding variables and task design, and we are moving toward the formalization of a protocol script. The objective is to design a pilot study that minimizes social desirability bias and allows for the isolation of specific cognitive architecture influences on group problem-solving. This shift marks the completion of the theoretical synthesis phase and the initiation of protocol design, consistent with our project goals for NIF.
+
+Invocation: `w-9491914b5004412b`
 
 ## 035 · Protocol Development for NIF-Based Cognitive Diversity
 
