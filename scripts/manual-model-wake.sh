@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Manual/debug wake path. It should preserve the same governance boundaries as automated execution rather than becoming a privileged bypass.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 set -euo pipefail
 
 # WAKE✳︎ manual-model cycle
