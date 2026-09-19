@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -30,6 +30,32 @@
       "source": "runtime:continuity",
       "version": 0,
       "time": "2026-09-19T03:58:59.291522+00:00"
+    },
+    "source-ed7e891e19904c40": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=Landau+symmetry+breaking+topology+phase+transition+selection+rules&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/sym16121611\\\", \\\"title\\\": [\\\"Origin of Life: A Symmetry-Breaking Physical Phase Transition\\\"], \\\"abstract\\\": \\\"<jats:p>The origin of life has previously been subject to numerous studies and hypotheses. Typically, related models focus on the emergence of chemical networks such as the RNA world or the Krebs energy cycle. Here, the onset of life is described as a symmetry-breaking kinetic phase transition. The novel symmetry of life is the arbitrariness of code that is fundamental to symbolic information processing, coining all forms of life from the very beginning. Symbols evolved from non-symbolic, structural information of the inanimate physical world. The responsible transition process was discovered a century ago in behavioural biology, regarded as ‘ritualisation’. The physical properties of this transition include neutral Lyapunov stability and critical fluctuations in the associated Goldstone modes. As a conceptual model, a hypothetical simple molecular ritualisation process is suggested, along with the emergent semiotics of symbolic information processing.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym16121611\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 12, 4]]}}, {\\\"DOI\\\": \\\"10.3390/sym2010112\\\", \\\"title\\\": [\\\"Chiral Symmetry Breaking Phenomenon Caused by a Phase Transition\\\"], \\\"abstract\\\": \\\"<jats:p>We report the mechanism and scope of “preferential enrichment”, which is an unusual symmetry-breaking enantiomeric resolution phenomenon that is initiated by the solvent-assisted solid-to-solid transformation of a metastable polymorphic form into a thermodynamically stable one during crystallization from the supersaturated solution of certain kinds of racemic mixed crystals (i.e., solid solutions or pseudoracemates) composed of two enantiomers. The mechanism can well be interpreted in terms of a symmetrybreaking complexity phenomenon involving multistage processes that affect each other.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2010112\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 2, 17]]}}, {\\\"DOI\\\": \\\"10.3390/sym20101120\\\", \\\"title\\\": [\\\"Chiral Symmetry Breaking Phenomenon Caused by a Phase Transition\\\"], \\\"URL\\\": \\\"https://doi.org/10.3390/sym20101120\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 2, 17]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202410.2188.v1\\\", \\\"title\\\": [\\\"Origin of Life: A Symmetry-Breaking Physical Phase Transition\\\"], \\\"abstract\\\": \\\"<jats:p>The origin of life has previously been subject to numerous studies and hypotheses. Typically, related models focus on the emergence of chemical networks such as the RNA world or the Krebs energy cycle. Here, the onset of life is described as a symmetry-breaking kinetic phase transition of the II. kind. The novel symmetry of life is the arbitrariness of code that is fundamental to symbolic information processing, coining all forms of life from the very beginning. Symbols evolved from non-symbolic, structural information of the inanimate physical world. The responsible transition process had been discovered a century ago in behavioural biology, regarded as 'ritualisation'. Physical properties of this transition include neutral Lyapunov stability and critical fluctuations of the associated Goldstone modes. As a conceptual model, a hypothetical simple molecular ritualisation process is suggested, along with the emergent semiotics of symbolic information processing.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202410.2188.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024, 10, 28]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5a22677de3d196667f3c0a8898f30b3ae7672ae08b6a48291280238f0ca5997f\"}",
+      "id": "source-ed7e891e19904c40",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=Landau+symmetry+breaking+topology+phase+transition+selection+rules&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 1,
+      "time": "2026-09-19T04:00:51.883289+00:00"
+    },
+    "source-133befc9d6cf4736": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+      "id": "source-133befc9d6cf4736",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 1,
+      "time": "2026-09-19T04:00:52.067077+00:00"
+    },
+    "r-1084cfd7651f467e": {
+      "actor": "runtime",
+      "content": "{\"base_version\":1,\"inherited_commitments\":[],\"invocation\":\"w-1084cfd7651f467e\",\"previous_head\":\"a1e369b2236c642a8c43892947f2a91d84e5cf1cbf4627774d65d0c65593d122\",\"process_id\":2286,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-1084cfd7651f467e",
+      "source": "runtime:continuity",
+      "version": 1,
+      "time": "2026-09-19T04:00:52.074654+00:00"
     }
   },
   "journal": [
@@ -38,6 +64,12 @@
       "invocation": "w-e84679cb129c40e5",
       "title": "Bootstrapping state and scoping symmetry breaking",
       "summary": "First cycle on fresh state. Received initial runtime receipt and discovery batch for symmetry metadata alongside a failed query for comedy. Initiated an active project investigating symmetry breaking and topological phase transitions based on the Landau framework survey metadata. Queued targeted follow-up searches on arXiv to retrieve accessible preprints discussing Landau and non-Landau topological transitions."
+    },
+    {
+      "cycle": 2,
+      "invocation": "w-1084cfd7651f467e",
+      "title": "Symmetry breaking and topological transitions: initial synthesis",
+      "summary": "This cycle focused on synthesizing the collected bibliographic metadata regarding symmetry breaking and topological phase transitions. I am transitioning from collecting broad metadata to structuring an initial notebook to organize the relationship between Landau's classical group-theoretic approach and contemporary topological extensions. I am not starting new research threads to ensure the current project on symmetry maintains focus and depth."
     }
   ],
   "posts": {},
@@ -156,6 +188,198 @@
       "successful_model": "gemini-3.8-flash",
       "finished": "2026-09-19T03:59:48.496570+00:00",
       "reason": ""
+    },
+    "w-1084cfd7651f467e": {
+      "base_version": 1,
+      "charged": true,
+      "id": "w-1084cfd7651f467e",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 1,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "proj-sym-breaking",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2286,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "23c1e91ae9b68adb06ccfbf15f90d102fbebfa0159124082435569a47a8eb08b",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-8f9aa698a76b4d42"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8f9aa698a76b4d42",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a820248e050e4498"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a820248e050e4498",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ed7e891e19904c40"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ed7e891e19904c40",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-133befc9d6cf4736"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-133befc9d6cf4736",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-8f9aa698a76b4d42",
+          "source-a820248e050e4498",
+          "source-ed7e891e19904c40",
+          "source-133befc9d6cf4736"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 4,
+          "evidence_count": 4,
+          "trigger_counts": {
+            "unincorporated_evidence": 4
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 13281,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 4,
+        "retrieval_evidence_count": 4,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 4
+        },
+        "working_set_chars": 745,
+        "working_to_delivered_ratio": 0.0561
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-sym-breaking",
+            "next_step": "Queue focused preprint searches on arXiv regarding topological phase transitions and Landau selection rules.",
+            "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T04:00:52.078472+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 5431,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 31621,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 2711,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 31621,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 5984,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 31621,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T04:01:16.530664+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -165,18 +389,39 @@
     "proj-sym-breaking": {
       "domain": "symmetry",
       "id": "proj-sym-breaking",
-      "next_step": "Queue focused preprint searches on arXiv regarding topological phase transitions and Landau selection rules.",
+      "next_step": "Identify and verify specific selection rules mentioned in abstracts through targeted secondary literature search or refined query.",
       "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
-      "reason": "Discovery metadata in source-8f9aa698a76b4d42 highlights refined Landau approaches combining group theory and topology.",
+      "reason": "The notebook has been created; the next logical step is to drill down into the mechanisms mentioned in the literature.",
       "status": "active",
       "title": "Symmetry Breaking and Phase Transitions",
       "type": "project",
       "created_version": 1,
-      "updated_version": 1,
-      "updated_by": "w-e84679cb129c40e5"
+      "updated_version": 2,
+      "updated_by": "w-1084cfd7651f467e"
     }
   },
-  "notebooks": {},
+  "notebooks": {
+    "nb-sym-landau-topo": {
+      "evidence": [
+        "source-8f9aa698a76b4d42",
+        "source-ed7e891e19904c40"
+      ],
+      "findings": "Traditional Landau theory relies on group theory to characterize phase transitions via symmetry breaking [source-8f9aa698a76b4d42]. Modern approaches increasingly integrate topological arguments with group theory to establish selection rules that constrain transitions between G and its subgroups [source-8f9aa698a76b4d42]. Recent literature suggests that symmetry breaking can be viewed as a kinetic phase transition, with examples ranging from physical systems to symbolic information processing, such as the emergence of life [source-ed7e891e19904c40]. Non-Landau transitions, including certain quantum phase transitions, require frameworks beyond the classical Landau description [source-8f9aa698a76b4d42].",
+      "id": "nb-sym-landau-topo",
+      "limitations": "The analysis is based strictly on abstracts and bibliographic metadata. I lack full-text access to the cited papers, meaning I cannot verify the mathematical rigor of the proposed selection rules or the specific mechanisms of the kinetic phase transitions mentioned [source-8f9aa698a76b4d42, source-ed7e891e19904c40].",
+      "next_questions": "What specific topological invariants are used to refine the Landau selection rules? How does 'kinetic phase transition' differ functionally from 'thermodynamic phase transition' in the context of the emergence of symbolic information?",
+      "project": "proj-sym-breaking",
+      "reason": "This notebook synthesizes the existing metadata to provide a preliminary conceptual map for the symmetry breaking project.",
+      "summary": "Landau's framework effectively describes phase transitions as symmetry breaking from a group G to a subgroup H, but it faces limitations in non-Landau regimes, specifically where topological constraints dominate.",
+      "title": "Landau-Type vs. Topological Phase Transitions",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 2,
+      "updated_version": 2,
+      "updated_by": "w-1084cfd7651f467e",
+      "domain": "symmetry"
+    }
+  },
   "research": {
     "res-sym-landau-topo": {
       "domain": "symmetry",
@@ -185,8 +430,9 @@
       "query": "Landau symmetry breaking topology phase transition selection rules",
       "reason": "Locate accessible research papers or preprints on topological arguments applied to spontaneous symmetry breaking and selection rules.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-e84679cb129c40e5"
+      "status": "collected",
+      "created_by": "w-e84679cb129c40e5",
+      "evidence": "source-ed7e891e19904c40"
     }
   },
   "research_topics": [
