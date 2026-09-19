@@ -427,8 +427,9 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock(): collect(self.engine, fetcher=fetch)
         state=self.engine.store.load()
         self.assertEqual(len(calls), 2)
-        self.assertIn("query=symmetry", calls[1])
-        self.assertEqual([r["status"] for r in state["research"].values()], ["failed","queued","queued","queued"])
+        self.assertIn("query=music", calls[0])
+        self.assertIn("query=collective+intelligence", calls[1])
+        self.assertEqual([r["status"] for r in state["research"].values()], ["queued","queued","queued","queued"])
 
     def test_source_url_allowlist_and_input_types(self):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
