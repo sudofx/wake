@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Captures experiment metadata and measurements separately from model narrative. Instrumentation describes behavior without granting measurements semantic authority.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """Executable claims, isolated state, deterministic fixtures. Zero API calls."""
 
 import json
