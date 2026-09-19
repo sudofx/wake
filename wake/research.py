@@ -132,8 +132,10 @@ def collect(engine, fetcher=fetch_source):
     # model cannot recursively monopolize both collection slots with one topic.
     discovery_count = min(2, len(topics))
     current_domains = {topics[(attempts + offset) % len(topics)]["id"] for offset in range(discovery_count)}
-    pending = [r for r in queued if r.get("domain") not in current_domains][:1]
-    used_urls = {item.get("url") or query_url(item["query"], item["domain"]) for item in pending}
+    # Neutral discovery owns the two-request budget. Queued follow-ups remain
+    # durable context for inference but cannot displace or amplify collection.
+    pending = []
+    used_urls = set()
     for offset in range(discovery_count):
         topic = topics[(attempts + offset) % len(topics)]
         url = discovery_url(topic)
