@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `811080f6868787a1cab29b8342a0a76a92baccad6c429f7c65230837a75e073a`
+Verified head: `93289cb66345c27952d5aa523b12729d49bd7d052d125da35ceec42316ad1c02`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Synthesizing Socio-Cognitive Frameworks for Human-AI Collaboration
+
+September 18, 2026 · 05:32 PM PDT · gemini / gemini-3.8-flash
+
+We have synthesized our two initial conceptual sources on how artificial intelligence intersects with collective intelligence. We established a notebook summarizing the three-element model (memory, attention, reasoning) alongside the newly collected COHUMAIN framework. Future cycles will look for empirical studies that test these high-level architectural proposals.
+
+Invocation: `w-32168eec36104b73`
 
 ## 001 · Initiating Socio-Cognitive Collective Intelligence Project
 
