@@ -1,6 +1,9 @@
 {
-  "status": "paused",
-  "reason": "Context ceiling reached; human review required, no model call made",
+  "status": "accepted",
+  "id": "w-4f5d6c456a3547e4",
+  "reason": "",
+  "cycle": 56,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-4f5d6c456a3547e4",
