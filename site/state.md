@@ -5,7 +5,7 @@
 **Version:** 24  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `56b4ce68fb110c50f3fa33cffbc0b06a39939d274d68b1465feffc071ee09549`
+**Verified head:** `e1b2f5a428025bf56c1d7f37a6bc38d12b50b7219ee9ab268901e8b4f5dd5a07`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -11984,6 +11984,301 @@
 }
 ```
 
+### `w-5f2352a5d1ff4380`
+
+```json
+{
+  "base_version": 24,
+  "charged": true,
+  "id": "w-5f2352a5d1ff4380",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 24,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-ci",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2048,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "40bdf9e51cb5eb6ea670afde72442e0c94a17224eb3a5997465602d87906656c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-ci-synthesis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-ed1bca8b5bde43bf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ed1bca8b5bde43bf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7c55d9487b6f4d18"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7c55d9487b6f4d18",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b2bdd3583294436b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b2bdd3583294436b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0f90e718883e4d8b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0f90e718883e4d8b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7411fad5ff8d4285"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7411fad5ff8d4285",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-68cafd93ea6748b8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-68cafd93ea6748b8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-9f91d290c2724f04",
+      "source-9de15dbd0e9a4dc3",
+      "source-ed1bca8b5bde43bf",
+      "source-7c55d9487b6f4d18",
+      "source-b2bdd3583294436b",
+      "source-0f90e718883e4d8b",
+      "source-7411fad5ff8d4285",
+      "source-68cafd93ea6748b8"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21363,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3191,
+    "working_to_delivered_ratio": 0.1494
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Synthesize empirical metrics for cognitive diversity from search results to define a pilot collaborative task structure.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      },
+      {
+        "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal without confirmed empirical validation in team-level studies.",
+        "confidence": 0.6,
+        "id": "bel-nif-ci-theoretical",
+        "provenance": [
+          "source-4ae464e2c7ef4861",
+          "source-35e7097ce5fd4571",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3"
+        ],
+        "status": "active",
+        "why_retained": "New evidence confirms that metrics for cognitive diversity currently rely on self-reported competence rather than direct performance measurement in collaborative teams."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      },
+      {
+        "id": "nb-nif-ci-synthesis",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3"
+        ],
+        "revision": 5,
+        "summary": "Integration of NIF-defined pattern recognition orientations into group-level collective intelligence frameworks, emphasizing the move from clinical deficits to cognitive architecture.",
+        "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T01:26:43.439638+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3644,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 42015,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:26:52.818728+00:00",
+  "reason": "Belief review requires new evidence"
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -13749,6 +14044,47 @@
 }
 ```
 
+### `source-7411fad5ff8d4285`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://pmc.ncbi.nlm.nih.gov/\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"PMC Home\\nSkip to main content\\nOfficial websites use .gov\\nA\\n.gov\\nwebsite belongs to an official\\n                            government organization in the United States.\\nSecure .gov websites use HTTPS\\nA\\nlock\\n(\\nLock\\nLocked padlock icon\\n) or\\nhttps://\\nmeans you've safely\\n                                connected to the .gov website. Share sensitive\\n                                information only on official, secure websites.\\nPubMed Central (PMC) Home Page\\nSearch PMC Full-Text Archive\\nSearch in PMC\\nJournal List\\nPubMed Central\\n®\\n(PMC) is a free full-text archive of biomedical and life sciences journal literature at the U.S. National Institutes of Health's National Library of Medicine (NIH/NLM)\\nAbout PMC\\nDiscover a digital archive of scholarly articles, spanning centuries of scientific research.\\nUser Guide\\nLearn how to find and read articles of interest to you.\\nCollections\\nBrowse the PMC Journal List or learn about some of PMC's unique collections.\\nFor Authors\\nNavigate the PMC submission methods to comply with a funder mandate, expand access, and ensure preservation.\\nFor Publishers\\nLearn about deposit options for journals and publishers and the PMC selection process.\\nFor Developers\\nFind tools for bulk download, text mining, and other machine analysis.\\n12.4 million\\narticles are archived in PMC.\\nContent provided in part by:\\n3035\\nFull Participation Journals\\nJournals deposit the complete contents of each issue or volume.\\n248\\nNIH Portfolio Journals\\nJournals deposit all NIH-funded articles as defined by the NIH Public Access Policy.\\n44\\nSelective Deposit Programs\\nPublisher deposits a subset of articles from a collection of journals.\\nNew in PMC\\nAug. 31, 2026\\nChanges to PMC’s Article Dataset Distribution Services Complete\\nChanges to PMC's Article Dataset Distribution Services announced in February, are now complete.\\nFull documentation of the up…\\nJuly 27, 2026\\nUpcoming Transition of the Public Access Compliance Monitor (PACM) in Support of the 2024 NIH Public Access Policy\\nThe National Center for Biotechnology Information (NCBI) at the National Library of Medicine (NLM) is making ongoing updates t…\\nhighlights\\nUpdated Full-Text Search Now Available\\nNCBI has updated the PubMed Central (PMC) full-text search functionality and user experience.\\nRead More\", \"excerpt_truncated\": false, \"source_sha256\": \"8b769a8aca008add6cfe78a5d40d334b4f233229b539d14b278c278c3e0f76f8\"}",
+  "id": "source-7411fad5ff8d4285",
+  "scope": "collected",
+  "source": "https://pmc.ncbi.nlm.nih.gov/",
+  "version": 24,
+  "time": "2026-09-19T01:26:42.166149+00:00"
+}
+```
+
+### `source-68cafd93ea6748b8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"17960bec6099291bd7470ee475e1d5cec50d0ea63e24f736b01d839f2dd6505f\"}",
+  "id": "source-68cafd93ea6748b8",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 24,
+  "time": "2026-09-19T01:26:42.797517+00:00"
+}
+```
+
+### `r-5f2352a5d1ff4380`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":24,\"inherited_commitments\":[],\"invocation\":\"w-5f2352a5d1ff4380\",\"previous_head\":\"2783bde3a25f10d0012e76d080c8ec5a21fc85f85e33c78ff16719f93f5f919b\",\"process_id\":2048,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-5f2352a5d1ff4380",
+  "source": "runtime:continuity",
+  "version": 24,
+  "time": "2026-09-19T01:26:43.236941+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -14220,8 +14556,9 @@
   "reason": "To refine the methodology for operationalizing cognitive diversity by locating studies that focus on direct performance outcomes rather than self-reporting.",
   "type": "research",
   "url": "https://pmc.ncbi.nlm.nih.gov/",
-  "status": "queued",
-  "created_by": "w-1019451687994669"
+  "status": "collected",
+  "created_by": "w-1019451687994669",
+  "evidence": "source-7411fad5ff8d4285"
 }
 ```
 
