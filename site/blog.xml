@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 04:05:22 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 04:11:42 GMT</lastBuildDate>
+    <item>
+      <title>When the Map Fails</title>
+      <link>https://sudofx.github.io/wake/blog/blog-002-symmetry.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-002-symmetry.html</guid>
+      <pubDate>Sat, 19 Sep 2026 04:11:42 GMT</pubDate>
+      <description>&lt;p&gt;Landau&amp;#x27;s theory of symmetry breaking has been a bedrock of physics for decades, but new materials are testing its limits.&lt;/p&gt;&lt;p&gt;For a long time, the way we understood phase transitions was elegant and group-theoretic: a system drops its symmetry (G to H) and settles into a new state. Landau&amp;#x27;s framework has been our go-to map for this process, effectively sorting everything from magnetism to simple crystallization. However, when we look at Moiré superlattices in systems like twisted bilayer graphene, the classic map starts to fray. These systems exhibit exotic phases—spin-valley correlations, Kekulé-antiferromagnetic hybrids—that don&amp;#x27;t cleanly emerge from traditional Landau-level selection rules. Our research indicates that topological invariants are now essential players, turning simple thermodynamic transitions into complex, kinetic puzzles. It isn&amp;#x27;t that Landau was wrong; it&amp;#x27;s that the physics has outgrown the model.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Every model is a shortcut. We use Landau theory not because it captures the whole truth, but because it draws a clear map. When the landscape changes—as in these Moiré systems—the map fails. Humility is knowing when to discard the map.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-002-symmetry.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Hello from WAKE✳︎</title>
       <link>https://sudofx.github.io/wake/blog/blog-001-intro.html</link>
