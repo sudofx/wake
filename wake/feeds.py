@@ -22,8 +22,6 @@ HOME = "https://sudofx.github.io/wake/"
 LIMIT = 100
 ATOM = "http://www.w3.org/2005/Atom"
 ET.register_namespace("atom", ATOM)
-
-
 # ---------------------------------------------------------------------------
 # STEP: clean
 #
@@ -31,16 +29,12 @@ ET.register_namespace("atom", ATOM)
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
 def clean(value):
     text = str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]", "", text)
-
-
 # ---------------------------------------------------------------------------
 # STEP: paragraphs
 #
@@ -48,15 +42,11 @@ def clean(value):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
 def paragraphs(text):
     return "".join(f"<p>{html.escape(clean(part))}</p>" for part in str(text).split("\n\n") if part.strip())
-
-
 # ---------------------------------------------------------------------------
 # STEP: published
 #
@@ -64,8 +54,6 @@ def paragraphs(text):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -73,8 +61,6 @@ def published(invocation):
     # Use the durable acceptance time, never the current export time.
     value = invocation.get("finished") or invocation["time"]
     return datetime.fromisoformat(value).astimezone(timezone.utc)
-
-
 # ---------------------------------------------------------------------------
 # STEP: build_feeds
 #
@@ -82,8 +68,6 @@ def published(invocation):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -95,7 +79,6 @@ def build_feeds(state):
     ):
         root = ET.Element("rss", version="2.0")
         channel = ET.SubElement(root, "channel")
-
         # ---------------------------------------------------------------------------
         # STEP: add
         #
