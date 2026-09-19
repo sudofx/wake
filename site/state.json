@@ -3017,6 +3017,32 @@
       "source": "runtime:continuity",
       "version": 44,
       "time": "2026-09-19T13:17:10.792355+00:00"
+    },
+    "source-fc30a0235ba245a6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"af0a7be42dc4ee5e4d88f061e8363ab1268b950967a0a927d028b2fbd8660cb9\"}",
+      "id": "source-fc30a0235ba245a6",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 45,
+      "time": "2026-09-19T13:19:26.288476+00:00"
+    },
+    "source-378a2e1f5de74609": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"67d04e37762ec4d9ac35d98ddb4fc38c295e68a1af83207cd1a0f4a80368e0d7\"}",
+      "id": "source-378a2e1f5de74609",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 45,
+      "time": "2026-09-19T13:19:28.421126+00:00"
+    },
+    "r-41a71f94e2794b2d": {
+      "actor": "runtime",
+      "content": "{\"base_version\":45,\"inherited_commitments\":[\"commit-evaluate-non-hermitian-exciton-relaxation\"],\"invocation\":\"w-41a71f94e2794b2d\",\"previous_head\":\"0c7e2bed875ecbf7e08e42c61e472722cd535e031fb109e6ee6a9a9950529ab6\",\"process_id\":2243,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-41a71f94e2794b2d",
+      "source": "runtime:continuity",
+      "version": 45,
+      "time": "2026-09-19T13:19:29.135708+00:00"
     }
   },
   "journal": [
@@ -32829,6 +32855,350 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-19T13:17:53.938216+00:00",
       "reason": ""
+    },
+    "w-41a71f94e2794b2d": {
+      "base_version": 45,
+      "charged": true,
+      "id": "w-41a71f94e2794b2d",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 45,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-sym-breaking",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 18,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2243,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "f9014a5af3f74ccbe0a5fcdaf9db609fe3344c4d578d7a9724116f5cd97db9c9",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "belief-landau-topo-limits",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-176242423dea48b0",
+              "source-8c34351d29954706",
+              "source-b28377c5734440c1",
+              "source-24fc78bdbbd841d2"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "belief-kinetic-coupling",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-11da439e5b3544a1",
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42",
+              "source-176242423dea48b0",
+              "source-43b5f6ae2fb94db8",
+              "source-1a7417d79b324c5e",
+              "source-abf3acf698664dd2",
+              "source-82b8096406fe4da2",
+              "source-778e0cf5d28746c4",
+              "source-a9d1cffcda2340d6",
+              "source-8c34351d29954706"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-sym-landau-topo",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-evaluate-non-hermitian-exciton-relaxation",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-325fd6b2ad0c4564"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-325fd6b2ad0c4564",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8f5164442b6d476e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8f5164442b6d476e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2374c12c17744887"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2374c12c17744887",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d020ca384bb64702"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d020ca384bb64702",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fc30a0235ba245a6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fc30a0235ba245a6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-378a2e1f5de74609"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-378a2e1f5de74609",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-8c34351d29954706",
+          "source-b28377c5734440c1",
+          "source-24fc78bdbbd841d2",
+          "source-11da439e5b3544a1",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2",
+          "source-82b8096406fe4da2",
+          "source-778e0cf5d28746c4",
+          "source-a9d1cffcda2340d6",
+          "source-325fd6b2ad0c4564",
+          "source-8f5164442b6d476e",
+          "source-2374c12c17744887",
+          "source-d020ca384bb64702",
+          "source-fc30a0235ba245a6",
+          "source-378a2e1f5de74609"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 10,
+          "evidence_count": 19,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "excerpt_boundary": 2,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 30119,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 10,
+        "retrieval_evidence_count": 19,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "excerpt_boundary": 2,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2829,
+        "working_to_delivered_ratio": 0.0939
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-sym-breaking",
+            "next_step": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints.",
+            "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+            "confidence": 0.8,
+            "id": "belief-landau-topo-limits",
+            "provenance": [
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "status": "active",
+            "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+          },
+          {
+            "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+            "confidence": 0.85,
+            "id": "belief-kinetic-coupling",
+            "provenance": [
+              "source-176242423dea48b0",
+              "source-8c34351d29954706",
+              "source-b28377c5734440c1",
+              "source-24fc78bdbbd841d2"
+            ],
+            "status": "active",
+            "why_retained": "The addition of specific TR-ARPES and topological phase transition models in Na3Bi and Pb5Bi24Se41 (source-b28377c5734440c1, source-24fc78bdbbd841d2) strengthens the claim that non-equilibrium relaxation routes are cons…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 46,
+            "id": "commit-evaluate-non-hermitian-exciton-relaxation",
+            "reason": "To refine the link between excitonic lifetimes and topological invariants as observed in ultrafast spectroscopic profiles.",
+            "task": "Examine how non-Hermitian models of exciton relaxation in Moiré systems scale near topological transition points."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-sym-landau-topo",
+            "project": "proj-sym-breaking",
+            "provenance": [
+              "source-11da439e5b3544a1",
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42",
+              "source-176242423dea48b0",
+              "source-43b5f6ae2fb94db8",
+              "source-1a7417d79b324c5e",
+              "source-abf3acf698664dd2",
+              "source-82b8096406fe4da2",
+              "source-778e0cf5d28746c4",
+              "source-a9d1cffcda2340d6",
+              "source-8c34351d29954706"
+            ],
+            "revision": 14,
+            "summary": "Comparing TR-ARPES spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework in Moiré superlattices.",
+            "title": "Landau-Type vs. Topological Phase Transitions"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-19T13:19:29.376366+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 3090,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 51463,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 4737,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 51463,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 8410,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 51463,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T13:20:05.728266+00:00",
+      "reason": "Resolution requires evidence recorded after the commitment"
     }
   },
   "pending": null,
