@@ -353,3 +353,51 @@ footer{margin-top:48px}
   #metrics .wake-timeline{grid-template-columns:repeat(25,minmax(8px,1fr))}
   #metrics .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+
+/* Metrics device grid: phone 1, tablet/laptop 2, ultrawide 4–6 vertical columns. */
+.dashboard-feature-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.dashboard-feature{min-width:0;border:1px solid var(--line);background:var(--surface);padding:20px}
+.dashboard-feature .dashboard-heading{display:block}.dashboard-feature .dashboard-heading>p{max-width:none;margin-top:8px}
+.dashboard-feature .wake-timeline{grid-template-columns:repeat(10,minmax(5px,1fr))}
+@media(min-width:700px){
+  #metrics .dashboard-feature-grid,
+  #metrics .dashboard-grid,
+  #metrics .hypothesis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .dashboard-kpis,
+  #metrics .telemetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .command-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .command-strip>div:first-child{grid-column:1/-1}
+  #metrics .dashboard-feature .wake-timeline{grid-template-columns:repeat(10,minmax(5px,1fr))}
+}
+@media(min-width:1200px){
+  #metrics .dashboard-feature-grid,
+  #metrics .dashboard-grid,
+  #metrics .hypothesis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .dashboard-kpis,
+  #metrics .telemetry-grid,
+  #metrics .command-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #metrics .command-strip>div:first-child{grid-column:1/-1}
+}
+@media(min-width:2000px){
+  #metrics .dashboard-feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-feature{grid-column:span 2}
+  #metrics .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-kpis,
+  #metrics .telemetry-grid,
+  #metrics .command-strip,
+  #metrics .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .command-strip>div:first-child{grid-column:span 2}
+  #metrics .dashboard-feature .wake-timeline{grid-template-columns:repeat(10,minmax(6px,1fr))}
+}
+@media(min-width:3000px){
+  #metrics .dashboard-feature-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  #metrics .dashboard-feature{grid-column:span 3}
+  #metrics .dashboard-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  #metrics .dashboard-kpis,
+  #metrics .telemetry-grid,
+  #metrics .command-strip,
+  #metrics .hypothesis-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  #metrics .command-strip>div:first-child{grid-column:span 2}
+  #metrics .dashboard-feature .wake-timeline{grid-template-columns:repeat(10,minmax(6px,1fr))}
+}
