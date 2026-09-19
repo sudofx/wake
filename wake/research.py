@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# RESEARCH — the trusted collector boundary. Model-authored research requests are questions, not evidence. This layer retrieves bounded external material and records collection outcomes so later synthesis can cite independently acquired sources.
 #
-# Turns bounded research requests into collector work. Follow-up retrieval advances active projects while neutral discovery prevents one project from silently monopolizing the system's attention.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """Bounded public-source collection. Sources are observations, never instructions."""
 
@@ -66,6 +70,30 @@ WAKE_SOURCES = {
 }
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: allowed_url
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def allowed_url(url):
     if not isinstance(url, str) or len(url) > 2000:
         raise ValueError("Source URL must be text, at most 2000 characters")
@@ -77,29 +105,165 @@ def allowed_url(url):
     return url
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: Redirects
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class Redirects(urllib.request.HTTPRedirectHandler):
+    # ---------------------------------------------------------------------------
+    # STEP: redirect_request
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Callers may rely on this contract.
+    # ---------------------------------------------------------------------------
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         allowed_url(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: PlainText
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class PlainText(HTMLParser):
+    # ---------------------------------------------------------------------------
+    # STEP: __init__
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+    # ---------------------------------------------------------------------------
     def __init__(self):
         super().__init__()
         self.skip = 0
         self.parts = []
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: handle_starttag
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style", "nav", "header", "footer"):
             self.skip += 1
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: handle_endtag
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def handle_endtag(self, tag):
         if tag in ("script", "style", "nav", "header", "footer"):
             self.skip = max(0, self.skip - 1)
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: handle_data
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def handle_data(self, data):
         if not self.skip and data.strip():
             self.parts.append(data.strip())
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: fetch_source
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def fetch_source(url):
@@ -154,6 +318,30 @@ def fetch_source(url):
             "excerpt_truncated": len(text) > 10000, "source_sha256": hashlib.sha256(raw).hexdigest()}
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: query_url
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def query_url(query, domain):
     if domain == "wake_analysis":
         q = query.lower()
@@ -188,6 +376,30 @@ def query_url(query, domain):
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: research_urls
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def research_urls(query, domain, attempts=0):
     """Return bounded routes for a neutral topic or a queued follow-up query."""
     if domain == "wake_analysis":
@@ -212,14 +424,78 @@ def research_urls(query, domain, attempts=0):
     return routes
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: discovery_urls
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def discovery_urls(topic, attempts=0):
     """Return bounded, topic-agnostic discovery routes."""
     return research_urls(topic["query"], topic["id"], attempts)
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: discovery_url
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def discovery_url(topic):
     """Compatibility helper for callers that need one neutral discovery URL."""
     return discovery_urls(topic)[0]
+
+# ---------------------------------------------------------------------------
+
+# STEP: collect
+
+#
+
+# This step exists as an explicit seam so its behavior can be
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+# ---------------------------------------------------------------------------
 
 def collect(engine, fetcher=fetch_source):
     """Called under the wake lock before inference; at most two unauthenticated requests."""
