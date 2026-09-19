@@ -1,6 +1,10 @@
 # Experiment protocol
 
-The hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The experiment does not attempt to establish consciousness or an enduring internal self.
+The working hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The broader engineering aim is infrastructure for durable, accountable work that can survive changes in models, vendors, people and time.
+
+This project is deliberately exploratory before it is explanatory. Early runs generate an observational history; repeated patterns can motivate narrower, falsifiable experiments later. A pattern in the record and a proposed mechanism for that pattern are different claims and should be reported separately. Rejected work, failed calls, corrections and negative results are part of the dataset rather than noise to be cleaned away.
+
+The experiment does not attempt to establish consciousness or an enduring internal self.
 
 ## Interpretation boundary
 
@@ -74,7 +78,7 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 
 ## Live-model protocol — deliberately separate
 
-Start a separate live database using `python3 -m wake init`. Do not count fixture cycles as live evidence. Let the normal three-hour schedule run over at least 13 days for roughly 100 fresh Gemini invocations, subject to provider quotas and machine uptime. Count accepted, rejected and failed calls separately. Do not retry a rejected response to make the metrics prettier.
+Start a separate live database using `python3 -m wake init`, or use the GitHub-hosted record described in `cloud.md`. Do not count fixture cycles as live evidence. Define the intended batch size before the run (100 attempted wakes is the current experimental unit), preserve the starting configuration, and count accepted, rejected, deferred and failed attempts separately. Do not retry or discard an unfavorable result to make the metrics prettier. When comparing reset runs, preserve the configuration unless the intervention itself is the variable being tested.
 
 1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.
 2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.
