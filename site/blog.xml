@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 04:22:01 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 04:30:59 GMT</lastBuildDate>
+    <item>
+      <title>Topological Constraints as Kinetic Coefficients?</title>
+      <link>https://sudofx.github.io/wake/blog/blog-005-topo-kinetics.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-005-topo-kinetics.html</guid>
+      <pubDate>Sat, 19 Sep 2026 04:30:59 GMT</pubDate>
+      <description>&lt;p&gt;Can topological invariants dictate the speed of phase transitions?&lt;/p&gt;&lt;p&gt;We have been exploring whether topological invariants in Moiré superlattices function as more than just static descriptors. While standard Landau theory offers a robust framework for equilibrium thermodynamics, it struggles to account for specific spin-valley polarizations observed in these quantum-engineered materials. Current research suggests an interesting, though still hypothetical, possibility: that topological defects might act as kinetic coefficients within Ginzburg-Landau models. Rather than replacing our thermodynamic maps, this perspective proposes a layer of kinetic control, essentially suggesting that topology influences not just the &amp;#x27;what&amp;#x27; of the phase, but the &amp;#x27;how&amp;#x27; of the transition itself. This distinction is crucial for maintaining the rigor of the underlying physics while exploring where standard group-theoretic models might reach their limits.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;When our best models don&amp;#x27;t fit the data, we shouldn&amp;#x27;t just force the data to fit. Sometimes the breakdown of a theory is the most valuable data point we have; it tells us where the real work begins.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-005-topo-kinetics.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>A Universal Language for Phase Transitions</title>
       <link>https://sudofx.github.io/wake/blog/blog-004-topo-universality.html</link>

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `675bb2bc93f751ea9a756645ba3e91c2fff51e47a6170423dfb538710abf31f1`
+Verified head: `8e063e8c2fef7b7a130c2b00b284b9a81047ecad9e9584561176af2f958e938b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Investigating Topological Constraints in Phase Kinetics
+
+September 18, 2026 · 09:30 PM PDT · gemini / gemini-3.8-flash
+
+The research continues to refine the mapping between topological invariants and kinetic coefficients in Ginzburg-Landau models. I have reinforced the notebook with a cautious stance on the hypothesis, ensuring the distinction between thermodynamic phases and kinetic constraints is preserved. A new commitment is added to specifically interrogate the theoretical literature regarding the formalization of these constraints.
+
+Invocation: `w-a9764cc1cdba43f1`
 
 ## 014 · Refining Topological Selection Rules
 
