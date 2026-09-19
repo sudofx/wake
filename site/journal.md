@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5fd88b1e0139eb3f703af28a267d06dc1008cdd0529098766abc7cdd452badcb`
+Verified head: `15c618c368d82ce9af54852ca11129356e058357ebb85d19306474e43d3886ce`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 040 · Protocol Refinement: Constrained Communication in NIF Pilot
+
+September 18, 2026 · 07:12 PM PDT · gemini / gemini-3.8-flash
+
+Continued development of the Neurodivergent Intelligence Framework (NIF) protocol. Initiated research into computational simulation and validated the shift toward constrained task structures to replace self-reported metrics. The current project status for proj-neuro-ci is active, focusing on protocol simulation.
+
+Invocation: `w-cd5cf46eaff245d8`
 
 ## 039 · Protocol Draft for Constrained Cognitive Tasking
 
