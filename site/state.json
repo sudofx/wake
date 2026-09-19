@@ -107,6 +107,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-19T17:25:26.006278+00:00"
+    },
+    "source-f4d7f1d5b31e4586": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1989670470\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"title\\\": \\\"Shakespeare and the Traditions of Comedy\\\", \\\"publication_year\\\": 1974, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 295, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511553189\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"This book relates Shakespeare's comedies to a broad European background. At the beginning and again at the end of his career, Shakespeare was attracted by a tradition of stage romances which can be traced back to Chaucer's time. But the main shaping behind his comedies came from the classical tradition. Mr Salingar therefore examines the underlying theme of 'errors' in Greek and Roman comedies and, taking three Italian comedies famous in the sixteenth century as examples, he then reveals how the Italian Renaissance revived the classical tradition, and what effect this revival had on Shakespeare the Elizabethan playwright and discusses such topics as the device of the play within a play and Shakespeare's choice of Italian short stories as plot material. This book shows how Shakespeare changed the motifs he took over from previous traditions of comedy and highlights the innovations he introduced, as an actor-dramatist writing in the first period of commercial theatre in Europe.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4213157483\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"title\\\": \\\"Slaves, Masters, and the Art of Authority in Plautine Comedy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 396, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/9781400824700\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463805\\\", \\\"display_name\\\": \\\"Princeton University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310316492\\\", \\\"host_organization_name\\\": \\\"Princeton University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316492\\\"], \\\"host_organization_lineage_names\\\": [\\\"Princeton University Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"What pleasures did Plautus' heroic tricksters provide their original audience? How should we understand the compelling mix of rebellion and social conservatism that Plautus offers? Through a close reading of four plays representing the full range of his work (Menaechmi, Casina, Persa, and Captivi), Kathleen McCarthy develops an innovative model of Plautine comedy and its social effects. She concentrates on how the plays are shaped by the interaction of two comic modes: the socially conservative mode of naturalism and the potentially subversive mode of farce. It is precisely this balance of the naturalistic and the farcical that allows everyone in the audience--especially those well placed in the social hierarchy--to identify both with and against the rebel, to feel both the thrill of being a clever underdog and the complacency of being a securely ensconced authority figure. Basing her interpretation on the workings of farce and naturalism in Plautine comedy, McCarthy finds a way to understand the plays' patchwork literary style as well as their protean social effects. Beyond this, she raises important questions about popular literature and performance not only on ancient Roman stages but in cultures far from Plautus' Rome. How and why do people identify with the fictional figures of social subordinates? How do stock characters, happy endings, and other conventions operate? How does comedy simultaneously upset and uphold social hierarchies? Scholars interested in Plautine theater will be rewarded by the detailed analyses of the plays, while those more broadly interested in social and cultural history will find much that is useful in McCarthy's new way of grasping the elusive ideological effects of comedy.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1550808012\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Dithyramb, tragedy and comedy\\\", \\\"publication_year\\\": 1927, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 374, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:quod.lib.umich.edu:MIU01-001181479\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7407064297\\\", \\\"display_name\\\": \\\"University of Michigan Library Repository\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"Includes bibliographical references and index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4297668621\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"title\\\": \\\"The Stagecraft and Performance of Roman Comedy\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 297, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511486203\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"A comprehensive survey of Roman theatrical production, this book examines all aspects of Roman performance practice, and provides fresh insights on the comedies of Plautus and Terence. Following an introductory chapter on the experience of Roman comedy from the perspective of Roman actors and the Roman audience, addressing among other things the economic concerns of putting on a play in the Roman republic, subsequent chapters provide detailed studies of troupe size and the implications for role assignment, masks, stage action, music, and improvisation in the plays of Plautus and Terence. Marshall argues that Roman comedy was raw comedy, much more rough-and-ready than its Hellenistic precursors, but still fully conscious of its literary past. The consequences of this lead to fresh conclusions concerning the dramatic structure of Roman comedy, and a clearer understanding of the relationship between the plays-as-text and the role of improvisation during performance.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"0fe5f9e234643ea7b642e8b2764cc2f0de362d02e9586ca95ef7c7c6d5916217\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+      "id": "source-f4d7f1d5b31e4586",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 1,
+      "time": "2026-09-19T17:26:51.898872+00:00"
+    },
+    "source-ed9b0f195aff4d74": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+      "id": "source-ed9b0f195aff4d74",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 1,
+      "time": "2026-09-19T17:26:52.982652+00:00"
+    },
+    "r-551641ece51d45ac": {
+      "actor": "runtime",
+      "content": "{\"base_version\":1,\"inherited_commitments\":[\"commit_entropy_review\"],\"invocation\":\"w-551641ece51d45ac\",\"previous_head\":\"083fcca6a8641cb1f40aa7a05d3976f13c60e606e7bb292d64f427ba7aa3e25c\",\"process_id\":2265,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-551641ece51d45ac",
+      "source": "runtime:continuity",
+      "version": 1,
+      "time": "2026-09-19T17:26:52.997601+00:00"
     }
   },
   "journal": [
@@ -705,6 +731,223 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T17:25:37.464026+00:00",
       "reason": "Evidence reference does not exist"
+    },
+    "w-551641ece51d45ac": {
+      "base_version": 1,
+      "charged": true,
+      "id": "w-551641ece51d45ac",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 1,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "entropy_measurement",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Measuring Information and Physical Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2265,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "93ddb22a00164b58c10bafeebcf39a1c8ca1268b690437ffd324ded86a22506c",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_entropy_review",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-412751d2ead44fdd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-412751d2ead44fdd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4dc364b7299d4d46"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4dc364b7299d4d46",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2a5ea0967dae461a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2a5ea0967dae461a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e263aaa1b42a4d9c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e263aaa1b42a4d9c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f4d7f1d5b31e4586"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f4d7f1d5b31e4586",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ed9b0f195aff4d74"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ed9b0f195aff4d74",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-412751d2ead44fdd",
+          "source-4dc364b7299d4d46",
+          "source-2a5ea0967dae461a",
+          "source-e263aaa1b42a4d9c",
+          "source-f4d7f1d5b31e4586",
+          "source-ed9b0f195aff4d74"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21953,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1367,
+        "working_to_delivered_ratio": 0.0623
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy_measurement",
+            "next_step": "Search for more clinical and ecological definitions of entropy metrics.",
+            "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+            "title": "Measuring Information and Physical Entropy"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+            "confidence": 1.0,
+            "id": "wake_system_design",
+            "provenance": [
+              "source-6cea09af14e345ae"
+            ],
+            "status": "active",
+            "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 3,
+            "id": "commit_entropy_review",
+            "reason": "To ensure continuity of the entropy research project across subsequent wakes.",
+            "task": "Review incoming search results for entropy concepts and draft an initial analysis notebook."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-19T17:26:53.005742+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2044,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 43800,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T17:26:58.995517+00:00",
+      "reason": "Commitment ID already exists"
     }
   },
   "pending": null,
