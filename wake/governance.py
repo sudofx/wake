@@ -10,11 +10,6 @@ class Rejected(ValueError):
     pass
 
 
-LEGACY_RESEARCH_TOPICS = {
-    "cellular_automata", "symmetry", "error_correction", "ant_colonies",
-    "compression", "entropy", "wake_analysis",
-}
-
 
 def require(condition, message):
     if not condition:
@@ -238,8 +233,9 @@ def transition(state, proposal, invocation, historical=False):
             identifier(action["id"])
             for key in ("title", "question", "next_step", "reason"):
                 text(action[key], key, 1000)
-            domains = ({topic["id"] for topic in state["research_topics"]}
-                       if "research_topics" in state else LEGACY_RESEARCH_TOPICS)
+            require(isinstance(state.get("research_topics"), list) and state["research_topics"],
+                    "Research topics must be loaded from research-topics.toml")
+            domains = {topic["id"] for topic in state["research_topics"]}
             require(action["status"] in ("active", "parked", "completed"), "Invalid project status")
             old = result["projects"].get(action["id"])
             require((old and action["domain"] == old["domain"]) or (not old and action["domain"] in domains),
@@ -264,8 +260,9 @@ def transition(state, proposal, invocation, historical=False):
                 from .research import allowed_url
                 allowed_url(action["url"])
             require(action["project"] in result["projects"], "Research needs an existing project")
-            domains = ({topic["id"] for topic in state["research_topics"]}
-                       if "research_topics" in state else LEGACY_RESEARCH_TOPICS)
+            require(isinstance(state.get("research_topics"), list) and state["research_topics"],
+                    "Research topics must be loaded from research-topics.toml")
+            domains = {topic["id"] for topic in state["research_topics"]}
             project_domain = result["projects"][action["project"]]["domain"]
             require(action["domain"] in domains or action["domain"] == project_domain,
                     "Research must use a configured topic or its project's retained topic")
