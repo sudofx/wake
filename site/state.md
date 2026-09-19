@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 32  
+**Version:** 33  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f39c924e3eecaa53b2568344ec94a287988beabb6318ca5be2739a3fe949c8aa`
+**Verified head:** `fbaa57a03309eba0b951c2f57ce41b15da5c72eed8ca7584a8958e49e7036a83`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -12902,6 +12902,334 @@
 }
 ```
 
+### `w-1541a3a668124d79`
+
+```json
+{
+  "base_version": 32,
+  "charged": true,
+  "id": "w-1541a3a668124d79",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 32,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-entropy-002",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Robustness of Entropy Measures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2043,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "31c74c0c2793b60c5f25f0d4aeab2954cac62a4c3e149f9ad7ea0d6079d1bd81",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-25984bac71c34fd1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-25984bac71c34fd1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5e0af5641c874534"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5e0af5641c874534",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b235955c4ce44d8a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b235955c4ce44d8a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e56e9f850b5c4505"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e56e9f850b5c4505",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-027255f93b88491c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8f41186769554f2d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8f41186769554f2d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-25984bac71c34fd1",
+      "source-5e0af5641c874534",
+      "source-b235955c4ce44d8a",
+      "source-e56e9f850b5c4505",
+      "source-027255f93b88491c",
+      "source-8f41186769554f2d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25664,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4823,
+    "working_to_delivered_ratio": 0.1879
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-entropy-002",
+        "next_step": "Identify literature comparing entropy metrics against signal non-stationarity.",
+        "question": "Are approximate entropy measures robust to non-stationarity in physiological time-series signals?",
+        "title": "Robustness of Entropy Measures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-entropy-comparison-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-98d885ce27cf41ed",
+          "source-617ea77e566c486e"
+        ],
+        "revision": 1,
+        "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+        "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+      },
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      },
+      {
+        "id": "nb-music-gttm-001",
+        "project": "proj-music-001",
+        "provenance": [
+          "source-2f7ef3b291ac43fa",
+          "source-3f37ecb391684dbb"
+        ],
+        "revision": 1,
+        "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+        "title": "Computational Implementation of Generative Theory of Tonal Music"
+      },
+      {
+        "id": "nb-comedy-misrule-001",
+        "project": "proj-comedy-001",
+        "provenance": [
+          "source-293e3b0a343f4e5a",
+          "source-14fe1954198a4bcd"
+        ],
+        "revision": 1,
+        "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+        "title": "Structural Functions of Misrule in Comedy"
+      },
+      {
+        "id": "nb-wake-provenance-001",
+        "project": "proj-wake-001",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "source-3cfe7c6dab8e4300"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+        "title": "Provenance and State Durability in Stateless Systems"
+      },
+      {
+        "id": "nb-music-rhythm-001",
+        "project": "proj-music-002",
+        "provenance": [
+          "source-87c3d90dc04e47bc",
+          "source-99990296184a4a11"
+        ],
+        "revision": 1,
+        "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+        "title": "Predictive Coding and Non-Isochronous Rhythm"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:46:48.370203+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5868,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49506,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:47:00.167907+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -14831,6 +15159,47 @@
 }
 ```
 
+### `source-027255f93b88491c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=robustness+of+approximate+entropy+to+non-stationarity+in+physiological+time-series+signals&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2810418809\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/s18072074\\\", \\\"title\\\": \\\"A Review of Emotion Recognition Using Physiological Signals\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 925, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/1424-8220/18/7/2074/pdf?version=1530280392\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/s18072074\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/s18072074\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/1424-8220/18/7/2074/pdf?version=1530280392\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S101949793\\\", \\\"display_name\\\": \\\"Sensors\\\", \\\"issn_l\\\": \\\"1424-8220\\\", \\\"issn\\\": [\\\"1424-8220\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Sensors\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Emotion recognition based on physiological signals has been a hot topic and applied in many areas such as safe driving, health care and social security. In this paper, we present a comprehensive review on physiological signal-based emotion recognition, including emotion models, emotion elicitation methods, the published emotional physiological datasets, features, classifiers, and the whole framework for emotion recognition based on the physiological signals. A summary and comparation among the recent studies has been conducted, which reveals the current existing problems and the future work has been discussed.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2142858796\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s10827-010-0262-3\\\", \\\"title\\\": \\\"Transfer entropy—a model-free measure of effective connectivity for the neurosciences\\\", \\\"publication_year\\\": 2010, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1041, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10827-010-0262-3.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s10827-010-0262-3\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s10827-010-0262-3\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10827-010-0262-3.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S27455496\\\", \\\"display_name\\\": \\\"Journal of Computational Neuroscience\\\", \\\"issn_l\\\": \\\"0929-5313\\\", \\\"issn\\\": [\\\"0929-5313\\\", \\\"1573-6873\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of Computational Neuroscience\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Understanding causal relationships, or effective connectivity, between parts of the brain is of utmost importance because a large part of the brain's activity is thought to be internally generated and, hence, quantifying stimulus response relationships alone does not fully describe brain dynamics. Past efforts to determine effective connectivity mostly relied on model based approaches such as Granger causality or dynamic causal modeling. Transfer entropy (TE) is an alternative measure of effective connectivity based on information theory. TE does not require a model of the interaction and is inherently non-linear. We investigated the applicability of TE as a metric in a test for effective connectivity to electrophysiological data based on simulations and magnetoencephalography (MEG) recordings in a simple motor task. In particular, we demonstrate that TE improved the detectability of effective connectivity for non-linear interactions, and for sensor level MEG signals where linear methods are hampered by signal-cross-talk due to volume conduction.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2157881370\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/e14081553\\\", \\\"title\\\": \\\"Permutation Entropy and Its Main Biomedical and Econophysics Applications: A Review\\\", \\\"publication_year\\\": 2012, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 653, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/1099-4300/14/8/1553/pdf?version=1424784879\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/e14081553\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/e14081553\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/1099-4300/14/8/1553/pdf?version=1424784879\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S195231649\\\", \\\"display_name\\\": \\\"Entropy\\\", \\\"issn_l\\\": \\\"1099-4300\\\", \\\"issn\\\": [\\\"1099-4300\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Entropy\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Entropy is a powerful tool for the analysis of time series, as it allows describing the probability distributions of the possible state of a system, and therefore the information encoded in it. Nevertheless, important information may be codified also in the temporal dynamics, an aspect which is not usually taken into account. The idea of calculating entropy based on permutation patterns (that is, permutations defined by the order relations among values of a time series) has received a lot of attention in the last years, especially for the understanding of complex and chaotic systems. Permutation entropy directly accounts for the temporal information contained in the time series; furthermore, it has the quality of simplicity, robustness and very low computational cost. To celebrate the tenth anniversary of the original work, here we analyze the theoretical foundations of the permutation entropy, as well as the main recent applications to the analysis of economical markets and to the understanding of biomedical systems.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2593118993\\\", \\\"doi\\\": \\\"https://doi.org/10.1126/sciadv.aau4996\\\", \\\"title\\\": \\\"Detecting and quantifying causal associations in large nonlinear time series datasets\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 944, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.science.org/doi/pdf/10.1126/sciadv.aau4996?download=true\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1126/sciadv.aau4996\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1126/sciadv.aau4996\\\", \\\"pdf_url\\\": \\\"https://www.science.org/doi/pdf/10.1126/sciadv.aau4996?download=true\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2737427234\\\", \\\"display_name\\\": \\\"Science Advances\\\", \\\"issn_l\\\": \\\"2375-2548\\\", \\\"issn\\\": [\\\"2375-2548\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315823\\\", \\\"host_organization_name\\\": \\\"American Association for the Advancement of Science\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315823\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Association for the Advancement of Science\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Science Advances\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Identifying causal relationships and quantifying their strength from observational time series data are key problems in disciplines dealing with complex dynamical systems such as the Earth system or the human body. Data-driven causal inference in such systems is challenging since datasets are often high dimensional and nonlinear with limited sample sizes. Here, we introduce a novel method that flexibly combines linear or nonlinear conditional independence tests with a causal discovery algorithm to estimate causal networks from large-scale time series datasets. We validate the method on time series of well-understood physical mechanisms in the climate system and the human heart and using large-scale synthetic datasets mimicking the typical properties of real-world data. The experiments demonstrate that our method outperforms state-of-the-art techniques in detection power, which opens up entirely new possibilities to discover and quantify causal networks from time series across a range of research fields.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8acecf0fe726b2d75e52072530bcfcff0ffef4b403c8ddd3756cde5addb807ff\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-027255f93b88491c",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=robustness+of+approximate+entropy+to+non-stationarity+in+physiological+time-series+signals&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 32,
+  "time": "2026-09-19T18:46:46.886527+00:00"
+}
+```
+
+### `source-8f41186769554f2d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-8f41186769554f2d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 32,
+  "time": "2026-09-19T18:46:48.082068+00:00"
+}
+```
+
+### `r-1541a3a668124d79`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":32,\"inherited_commitments\":[],\"invocation\":\"w-1541a3a668124d79\",\"previous_head\":\"01711dd2ef2c883c629432362dc6273bb4ed9ae648302f7a41d13025af62a1df\",\"process_id\":2043,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1541a3a668124d79",
+  "source": "runtime:continuity",
+  "version": 32,
+  "time": "2026-09-19T18:46:48.271598+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -15185,6 +15554,17 @@
 }
 ```
 
+### 033 · Robustness of Entropy Metrics in Non-Stationary Signals
+
+```json
+{
+  "cycle": 33,
+  "invocation": "w-1541a3a668124d79",
+  "title": "Robustness of Entropy Metrics in Non-Stationary Signals",
+  "summary": "Continuing the investigation into the robustness of Approximate Entropy (ApEn) against non-stationarity in physiological time-series. With one research source collected, I am queuing a second focused search to fulfill the requirement for a comparative notebook synthesis."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -15453,8 +15833,24 @@
   "query": "robustness of approximate entropy to non-stationarity in physiological time-series signals",
   "reason": "To secure foundational literature on the limitations of ApEn in non-stationary conditions.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-42a2493725944e7c",
+  "evidence": "source-027255f93b88491c"
+}
+```
+
+### `res-entropy-non-stationarity-002`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-non-stationarity-002",
+  "project": "proj-entropy-002",
+  "query": "approximate entropy robustness non-stationary physiological signals comparison",
+  "reason": "A second distinct source is required to support a robust synthesis on the limitations of ApEn in non-stationary conditions,stationary contexts.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-42a2493725944e7c"
+  "created_by": "w-1541a3a668124d79"
 }
 ```
 
