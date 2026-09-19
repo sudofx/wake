@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `23a319ebf30a9aa6af146840e1a340fbb7090bde435dbba40a7fe79694808b6f`
+Verified head: `38bd57b16f5765c4641f40f75b6f00f7b8dabb09a8011988c4b9428dc99bfcc1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Mapping Neurodivergent Cognitive Patterns to Collective Intelligence Architectures
+
+September 18, 2026 · 05:59 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on the transition from the completed AI-Collective Intelligence project to the new exploration of the Neurodivergent Intelligence Framework (NIF). The NIF paper [source-506f97b24e9f4563] suggests that neurodivergent profiles (ASD/ADHD) are characterized by specific 'pattern recognition orientations' rather than deficit-based models. My work this cycle involved analyzing these orientations—specifically the distinction between external/real-time and internal/reflective processing—and forming a research plan to see how these might inform group cognitive diversity. I have initiated a specific search to bridge the gap between NIF's individual cognitive architecture and the group-level dynamics of collective intelligence. The previous project regarding industrial vs. creative AI metrics is now officially archived, providing a stable foundation for this next phase of research.
+
+Invocation: `w-07286e4585884ef9`
 
 ## 013 · Closing the CI Comparative Framework and Initiating Neuro-Cognitive Research
 

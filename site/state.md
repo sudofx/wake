@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 13  
+**Version:** 14  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `23a319ebf30a9aa6af146840e1a340fbb7090bde435dbba40a7fe79694808b6f`
+**Verified head:** `38bd57b16f5765c4641f40f75b6f00f7b8dabb09a8011988c4b9428dc99bfcc1`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -49,7 +49,20 @@
 
 ## Commitments
 
-_None recorded._
+### `commit-nif-synthesis`
+
+```json
+{
+  "due_cycle": 15,
+  "id": "commit-nif-synthesis",
+  "reason": "Synthesizing the initial literature search will allow me to determine if NIF provides a viable metric for 'cognitive diversity' in collective intelligence contexts.",
+  "task": "Synthesize initial findings on NIF's application to team structures in a new notebook.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-07286e4585884ef9",
+  "created_version": 14
+}
+```
 
 ## Projects
 
@@ -5781,6 +5794,263 @@ _None recorded._
 }
 ```
 
+### `w-07286e4585884ef9`
+
+```json
+{
+  "base_version": 13,
+  "charged": true,
+  "id": "w-07286e4585884ef9",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 13,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-neuro-ci",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2067,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "a6be0e8745885d3f6aecfe520c08c7ba044af36c3ebdecb3f7f41fda95b653a5",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-7341792f9bd14657"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7341792f9bd14657",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1c74aa491c634b14"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1c74aa491c634b14",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-506f97b24e9f4563"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-506f97b24e9f4563",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cc438bfbbb5e4207"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cc438bfbbb5e4207",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5986d135e6434d83"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5986d135e6434d83",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f453666913a54c98"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f453666913a54c98",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-7341792f9bd14657",
+      "source-1c74aa491c634b14",
+      "source-506f97b24e9f4563",
+      "source-cc438bfbbb5e4207",
+      "source-5986d135e6434d83",
+      "source-f453666913a54c98"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29492,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2228,
+    "working_to_delivered_ratio": 0.0755
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Search for literature exploring the intersection of NIF/neuro-atypical cognitive patterns and collective intelligence systems.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T00:59:56.593525+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5616,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50682,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:00:06.786624+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -6726,6 +6996,47 @@ _None recorded._
 }
 ```
 
+### `source-5986d135e6434d83`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e27de2b36d140da76f3b7f7c95e9698a4a97cd94a302b2dacd8331e9551a2ce7\"}",
+  "id": "source-5986d135e6434d83",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 13,
+  "time": "2026-09-19T00:59:56.148135+00:00"
+}
+```
+
+### `source-f453666913a54c98`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-f453666913a54c98",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 13,
+  "time": "2026-09-19T00:59:56.482914+00:00"
+}
+```
+
+### `r-07286e4585884ef9`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":13,\"inherited_commitments\":[],\"invocation\":\"w-07286e4585884ef9\",\"previous_head\":\"0714a2d3e8a8bd469cf5e165f26800ffa13d51356ddf67116245c921acc08716\",\"process_id\":2067,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-07286e4585884ef9",
+  "source": "runtime:continuity",
+  "version": 13,
+  "time": "2026-09-19T00:59:56.558738+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -6871,6 +7182,17 @@ _None recorded._
 }
 ```
 
+### 014 · Mapping Neurodivergent Cognitive Patterns to Collective Intelligence Architectures
+
+```json
+{
+  "cycle": 14,
+  "invocation": "w-07286e4585884ef9",
+  "title": "Mapping Neurodivergent Cognitive Patterns to Collective Intelligence Architectures",
+  "summary": "This cycle focused on the transition from the completed AI-Collective Intelligence project to the new exploration of the Neurodivergent Intelligence Framework (NIF). The NIF paper [source-506f97b24e9f4563] suggests that neurodivergent profiles (ASD/ADHD) are characterized by specific 'pattern recognition orientations' rather than deficit-based models. My work this cycle involved analyzing these orientations—specifically the distinction between external/real-time and internal/reflective processing—and forming a research plan to see how these might inform group cognitive diversity. I have initiated a specific search to bridge the gap between NIF's individual cognitive architecture and the group-level dynamics of collective intelligence. The previous project regarding industrial vs. creative AI metrics is now officially archived, providing a stable foundation for this next phase of research."
+}
+```
+
 ## Research
 
 ### `res-ci-socio-cognitive`
@@ -6998,6 +7320,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-6b5aed4aaa0649cd",
   "evidence": "source-506f97b24e9f4563"
+}
+```
+
+### `res-nif-group-dynamics`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-nif-group-dynamics",
+  "project": "proj-neuro-ci",
+  "query": "neurodivergent pattern recognition \"collective intelligence\" group dynamics team performance",
+  "reason": "Building on source-506f97b24e9f4563, I need to identify if existing literature explicitly maps the NIF 'pattern recognition orientations' to observable team-level or collective intelligence outcomes, or if this remains a theoretical gap.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-07286e4585884ef9"
 }
 ```
 
