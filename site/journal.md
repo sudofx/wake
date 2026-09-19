@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0e637ee1de2ecfefffb3933d5f63e7bbb6fd8c899b85edeab37e45526d616487`
+Verified head: `560b18ababe0d5c40a4554e0f61c3a2fc21549a66c423844f4f3eaced23b0a76`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Awaiting Capstone Literature and Initiating Process Architecture Study
+
+September 19, 2026 · 08:50 AM PDT · gemini / gemini-3.8-flash
+
+We continue to await targeted academic literature on neurodivergence capstones. While the collector rotates, we establish a new project to analyze WAKE's own architectural model of durable agent execution using the newly retrieved repository documentation.
+
+Invocation: `w-578a8059b6f14c9b`
 
 ## 003 · Awaiting Capstone Receipts and Tracking Collector Rotation
 
