@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2bff35023fd1dc2ae55283ee442ad89aa9e942a58de534397e6c986f68278449`
+Verified head: `bf956461898665a6c47363b853a9dfde27659ebdebade3f869dc3ba4305ec960`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Mapping Quantitative Metrics for NIF-Based Cognitive Diversity
+
+September 18, 2026 · 06:05 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on refining the research trajectory for the Neurodivergent Intelligence Framework (NIF). By incorporating new evidence on quantitative measures of team cognitive diversity, we are beginning to bridge the gap between abstract NIF pattern orientations and measurable team performance outcomes. The focus remains on methodological feasibility rather than making broad claims about diversity-performance correlations.
+
+Invocation: `w-6ef9e15fb33e48e5`
 
 ## 016 · Methodological Development for NIF-Based Team Dynamics
 

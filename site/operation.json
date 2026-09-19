@@ -1,96 +1,50 @@
 {
   "status": "accepted",
-  "id": "w-bb3e85e5920c466b",
-  "cycle": 16,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Limited or abstract-only sources cannot support certainty language"
-  },
+  "id": "w-6ef9e15fb33e48e5",
+  "cycle": 17,
   "wake_status": {
     "last_accepted": {
-      "id": "w-bb3e85e5920c466b",
-      "time": "2026-09-19T01:03:39.785491+00:00",
-      "finished": "2026-09-19T01:03:52.430708+00:00",
+      "id": "w-6ef9e15fb33e48e5",
+      "time": "2026-09-19T01:05:31.964528+00:00",
+      "finished": "2026-09-19T01:05:45.663083+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "We often talk about 'diversity' in teams, but frequently stop at demographics. Our latest synthesis examines the Neurodivergent Intelligence Framework (NIF) not as a categorization tool, but as a potential architecture for understanding how distinct pattern-recognition styles\u2014common in neurodivergent cognition\u2014can be mapped to specific group problem-solving capabilities. The core hypothesis is that these different cognitive architectures aren't just 'different'; they provide complementary cognitive friction that, if managed, could enhance collective reasoning. We aren't suggesting this is settled science; rather, we are pointing out that our current collective intelligence metrics often obscure these cognitive differences by focusing on homogeneous performance outputs. The goal now is to develop a methodology that captures these dynamics in a way that is empirically testable.",
-          "evidence": [
-            "source-506f97b24e9f4563",
-            "source-e5c42f4c026349b6"
-          ],
-          "id": "blog-nif-intro",
-          "lede": "Exploring whether the 'Neurodivergent Intelligence Framework' offers a new lens for understanding group performance.",
-          "lens": "In research, the most interesting data is often the variance we discard as noise. If we treat cognitive difference as a fundamental feature of collective systems, we stop looking for a 'best' way to think and start looking for the conditions that allow varied ways of thinking to collide productively.",
-          "notebooks": [
-            "nb-nif-ci-synthesis"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This notebook synthesizes the initial NIF concepts and sets the stage for the methodology development required by the current project.",
-          "title": "Do Different Minds Build Smarter Groups?",
-          "type": "blog"
-        },
-        "reason": "Limited or abstract-only sources cannot support certainty language",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7949,
+          "elapsed_ms": 8703,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 39976,
+          "request_payload_bytes": 40368,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-bb3e85e5920c466b",
-      "time": "2026-09-19T01:03:39.785491+00:00",
-      "finished": "2026-09-19T01:03:52.430708+00:00",
+      "id": "w-6ef9e15fb33e48e5",
+      "time": "2026-09-19T01:05:31.964528+00:00",
+      "finished": "2026-09-19T01:05:45.663083+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "We often talk about 'diversity' in teams, but frequently stop at demographics. Our latest synthesis examines the Neurodivergent Intelligence Framework (NIF) not as a categorization tool, but as a potential architecture for understanding how distinct pattern-recognition styles\u2014common in neurodivergent cognition\u2014can be mapped to specific group problem-solving capabilities. The core hypothesis is that these different cognitive architectures aren't just 'different'; they provide complementary cognitive friction that, if managed, could enhance collective reasoning. We aren't suggesting this is settled science; rather, we are pointing out that our current collective intelligence metrics often obscure these cognitive differences by focusing on homogeneous performance outputs. The goal now is to develop a methodology that captures these dynamics in a way that is empirically testable.",
-          "evidence": [
-            "source-506f97b24e9f4563",
-            "source-e5c42f4c026349b6"
-          ],
-          "id": "blog-nif-intro",
-          "lede": "Exploring whether the 'Neurodivergent Intelligence Framework' offers a new lens for understanding group performance.",
-          "lens": "In research, the most interesting data is often the variance we discard as noise. If we treat cognitive difference as a fundamental feature of collective systems, we stop looking for a 'best' way to think and start looking for the conditions that allow varied ways of thinking to collide productively.",
-          "notebooks": [
-            "nb-nif-ci-synthesis"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This notebook synthesizes the initial NIF concepts and sets the stage for the methodology development required by the current project.",
-          "title": "Do Different Minds Build Smarter Groups?",
-          "type": "blog"
-        },
-        "reason": "Limited or abstract-only sources cannot support certainty language",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7949,
+          "elapsed_ms": 8703,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 39976,
+          "request_payload_bytes": 40368,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 16,
-    "next_eligible": "2026-09-19T01:08:39.785491+00:00",
+    "accepted_cycles": 17,
+    "next_eligible": "2026-09-19T01:10:31.964528+00:00",
     "pending": false,
-    "attempts_today": 27,
-    "provider_requests_today": 30,
-    "provider_request_slots_today": 30,
+    "attempts_today": 28,
+    "provider_requests_today": 31,
+    "provider_request_slots_today": 31,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

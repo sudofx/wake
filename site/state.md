@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 16  
+**Version:** 17  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `2bff35023fd1dc2ae55283ee442ad89aa9e942a58de534397e6c986f68278449`
+**Verified head:** `bf956461898665a6c47363b853a9dfde27659ebdebade3f869dc3ba4305ec960`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -97,15 +97,15 @@
 {
   "domain": "neurodivergent_cognition",
   "id": "proj-neuro-ci",
-  "next_step": "Define a methodology for testing whether NIF-based cognitive diversity correlates with performance variance in collaborative tasks.",
+  "next_step": "Identify or design a pilot collaborative task where neurodivergent-associated pattern recognition might plausibly yield a measurable difference in team output compared to non-diverse baselines.",
   "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
-  "reason": "The project has shifted from literature search to formalizing research questions after the initial synthesis.",
+  "reason": "The project has moved from theoretical inquiry to synthesizing potential quantitative metrics, necessitating a move toward experimental design.",
   "status": "active",
   "title": "Neurodivergent Intelligence in Collective Structures",
   "type": "project",
   "created_version": 13,
-  "updated_version": 15,
-  "updated_by": "w-f538ca12b7a44aa6"
+  "updated_version": 17,
+  "updated_by": "w-6ef9e15fb33e48e5"
 }
 ```
 
@@ -147,21 +147,22 @@
 {
   "evidence": [
     "source-506f97b24e9f4563",
-    "source-e5c42f4c026349b6"
+    "source-e5c42f4c026349b6",
+    "source-35e7097ce5fd4571"
   ],
-  "findings": "Current literature identifies collective emotional intelligence and general self-efficacy as predictors of team success [source-e5c42f4c026349b6]. There is a noticeable absence of research explicitly mapping the NIF 'pattern recognition orientations' to collective intelligence metrics. While NIF provides a framework for individual cognitive diversity, its application to socio-cognitive team architectures remains speculative [source-506f97b24e9f4563].",
+  "findings": "Existing research in high-tech environments identifies 'cognitive diversity' as a significant enabler for team performance, though operationalization remains fragmented [source-35e7097ce5fd4571]. The NIF-based hypothesis—that distinct pattern recognition orientations (e.g., specific neurodivergent cognitive styles) constitute a form of cognitive diversity—finds conceptual support in literature on team diversity [source-506f97b24e9f4563], but empirical mapping to specific NIF archetypes requires defining new, task-specific metrics rather than relying on generic diversity indices [source-e5c42f4c026349b6].",
   "id": "nb-nif-ci-synthesis",
-  "limitations": "Existing studies on 'collective intelligence' metrics frequently rely on homogenized group variables like 'potency' or 'general self-efficacy', potentially masking the nuanced benefits of cognitive diversity. No direct empirical link between NIF patterns and team performance was identified in the collected metadata.",
-  "next_questions": "Can the 'pattern recognition' dimension of NIF be operationalized as a variable in team composition studies? Does higher cognitive diversity, as defined by NIF, correlate with increased team-level innovation in non-routine tasks?",
+  "limitations": "Sources consist of bibliographic metadata and abstracts; full methodological details of the cited performance metrics are not available [source-35e7097ce5fd4571]. No existing literature explicitly tests NIF-defined neurodivergent orientations within these collective intelligence frameworks, making this an extrapolation rather than a confirmed synthesis.",
+  "next_questions": "Can the 'pattern recognition' variables in NIF be operationalized as distinct inputs in team-based cognitive diversity models? What specific collaborative tasks (e.g., pattern-heavy anomaly detection) are most likely to show variance based on NIF-based diversity?",
   "project": "proj-neuro-ci",
-  "reason": "This notebook synthesizes the current state of literature on NIF and CI, formalizing the project's direction.",
-  "summary": "Exploratory synthesis of whether NIF-defined cognitive orientations influence team-level problem solving.",
+  "reason": "Incorporating recent search findings on cognitive diversity metrics provides a concrete path to operationalize the NIF research project.",
+  "summary": "Exploratory synthesis of how NIF-defined cognitive orientations influence team-level problem solving, now updated with quantitative diversity measurement perspectives.",
   "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 15,
-  "updated_version": 15,
-  "updated_by": "w-f538ca12b7a44aa6",
+  "updated_version": 17,
+  "updated_by": "w-6ef9e15fb33e48e5",
   "domain": "neurodivergent_cognition"
 }
 ```
@@ -6922,6 +6923,274 @@
 }
 ```
 
+### `w-6ef9e15fb33e48e5`
+
+```json
+{
+  "base_version": 16,
+  "charged": true,
+  "id": "w-6ef9e15fb33e48e5",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 16,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-ci",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2240,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "0eabf7000debbeeda6da2a89834cf7d144c88005480cc15b4fa34b7c93f3eae8",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-897d27e33ead40f0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-897d27e33ead40f0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c239847ee8c24bb9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c239847ee8c24bb9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4f26f0e2900042c0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4f26f0e2900042c0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-188842f1476249e7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-188842f1476249e7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-35e7097ce5fd4571"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35e7097ce5fd4571",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ac8de9fdb9914e18"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac8de9fdb9914e18",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-897d27e33ead40f0",
+      "source-c239847ee8c24bb9",
+      "source-4f26f0e2900042c0",
+      "source-188842f1476249e7",
+      "source-35e7097ce5fd4571",
+      "source-ac8de9fdb9914e18"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19795,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2553,
+    "working_to_delivered_ratio": 0.129
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Define a methodology for testing whether NIF-based cognitive diversity correlates with performance variance in collaborative tasks.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      },
+      {
+        "id": "nb-nif-ci-synthesis",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-506f97b24e9f4563",
+          "source-e5c42f4c026349b6"
+        ],
+        "revision": 1,
+        "summary": "Exploratory synthesis of whether NIF-defined cognitive orientations influence team-level problem solving.",
+        "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T01:05:31.964528+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 8703,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 40368,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:05:45.663083+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -8031,6 +8300,47 @@
 }
 ```
 
+### `source-35e7097ce5fd4571`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.21694/2379-1047.21008\\\", \\\"title\\\": [\\\"Cognitive Diversity – An Enabler for Team Performance\\\"], \\\"URL\\\": \\\"https://doi.org/10.21694/2379-1047.21008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021]]}}, {\\\"DOI\\\": \\\"10.21694/2379-1047.21010\\\", \\\"title\\\": [\\\"Cognitive Diversity – An Enabler for Team Performance\\\"], \\\"URL\\\": \\\"https://doi.org/10.21694/2379-1047.21010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021]]}}, {\\\"DOI\\\": \\\"10.5465/ambpp.2019.16586abstract\\\", \\\"title\\\": [\\\"Cognitive Team Diversity and Team Creative Performance in High-Technology Firms\\\"], \\\"URL\\\": \\\"https://doi.org/10.5465/ambpp.2019.16586abstract\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 8, 1]]}}, {\\\"DOI\\\": \\\"10.4018/979-8-3373-0710-7.ch008\\\", \\\"title\\\": [\\\"Knowledge Sharing as a Mediator Between Workplace Diversity and Team Performance\\\"], \\\"abstract\\\": \\\"<jats:p>This study investigates the mediating role of knowledge sharing (KS) in the relationship between workplace diversity (WD) and team performance (TP), while also examining the direct impact of workplace diversity on team performance. Data were collected from 277 employees working in diverse teams across Pakistan's corporate sector. A structured questionnaire was used, incorporating adapted scales for workplace diversity, knowledge sharing, and team performance, all measured on a 5-point Likert scale. A purposive stratified sampling method ensured that participants represented different demographic backgrounds, job roles, and organizational levels to capture the true essence of workplace diversity.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4018/979-8-3373-0710-7.ch008\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"3183661783256f913add6ac95509ce8bfe7005be6913c8bec3fac49d653d239d\"}",
+  "id": "source-35e7097ce5fd4571",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 16,
+  "time": "2026-09-19T01:05:31.135084+00:00"
+}
+```
+
+### `source-ac8de9fdb9914e18`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6e08f907642f4fec719ab2441ec36122f60fba18daa7cfc2d492252c051be2c0\"}",
+  "id": "source-ac8de9fdb9914e18",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 16,
+  "time": "2026-09-19T01:05:31.753390+00:00"
+}
+```
+
+### `r-6ef9e15fb33e48e5`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":16,\"inherited_commitments\":[],\"invocation\":\"w-6ef9e15fb33e48e5\",\"previous_head\":\"26de92c8756622e44f4afe736657c82540130edc283b33321138f6f3b316d92a\",\"process_id\":2240,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-6ef9e15fb33e48e5",
+  "source": "runtime:continuity",
+  "version": 16,
+  "time": "2026-09-19T01:05:31.910202+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -8209,6 +8519,17 @@
 }
 ```
 
+### 017 · Mapping Quantitative Metrics for NIF-Based Cognitive Diversity
+
+```json
+{
+  "cycle": 17,
+  "invocation": "w-6ef9e15fb33e48e5",
+  "title": "Mapping Quantitative Metrics for NIF-Based Cognitive Diversity",
+  "summary": "This cycle focuses on refining the research trajectory for the Neurodivergent Intelligence Framework (NIF). By incorporating new evidence on quantitative measures of team cognitive diversity, we are beginning to bridge the gap between abstract NIF pattern orientations and measurable team performance outcomes. The focus remains on methodological feasibility rather than making broad claims about diversity-performance correlations."
+}
+```
+
 ## Research
 
 ### `res-ci-socio-cognitive`
@@ -8365,8 +8686,9 @@
   "query": "quantitative measures of cognitive diversity in collaborative team performance",
   "reason": "Establishing a methodology for NIF-based cognitive diversity requires finding existing metrics for 'cognitive diversity' that can be operationalized for research.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-bb3e85e5920c466b"
+  "status": "collected",
+  "created_by": "w-bb3e85e5920c466b",
+  "evidence": "source-35e7097ce5fd4571"
 }
 ```
 
