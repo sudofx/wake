@@ -26,7 +26,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
-            "inquiry_drive_enabled": False}
+            "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml"}
 
 
 def _topics(settings, config_path=None):
