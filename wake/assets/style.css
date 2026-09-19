@@ -233,3 +233,12 @@ footer{margin-top:48px}
 /* Dark theme: the brighter source green needs the dark theme's line color to
    pull it back into WAKE✳︎'s muted palette. */
 :root[data-theme="dark"] .blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#82ff7d 62%,var(--line))}
+
+
+/* Topic tags are navigational metadata, not status badges. Keep them quiet in
+   the record line, but make their click target large enough for touch. */
+.topic-tag{display:inline-block;font:inherit;letter-spacing:0;color:var(--green);padding:2px 3px;margin-left:3px;text-transform:lowercase}
+.topic-tag:hover{color:var(--hot);text-decoration:none}
+.topic-filter-note{font:12px/1.6 var(--mono);color:var(--muted);padding:10px 0 18px;border-bottom:1px solid var(--line)}
+.topic-filter-note strong{color:var(--green);font-weight:700}.topic-filter-note a{color:var(--green)}
+.notebook-card article{margin:0}
