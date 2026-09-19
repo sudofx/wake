@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# The mechanical rulebook. Models propose; this module decides. Rules are deterministic so a persuasive model cannot waive provenance, continuity, capacity, or publication constraints. Rejection is an expected experimental result, not merely an error.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Pure, deterministic transition rules. No model gets to edit the rulebook."""
 
 from copy import deepcopy
@@ -6,6 +14,7 @@ import math
 import re
 
 
+# Rejection is a normal governance outcome: preserve the failed attempt, never partially mutate accepted state.
 class Rejected(ValueError):
     pass
 
@@ -155,6 +164,7 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
         require(not inflated, "Limited or abstract-only sources cannot support certainty language")
 
 
+# Atomic transition: a candidate copy must pass every rule before it may become accepted history.
 def transition(state, proposal, invocation, historical=False):
     """Return a new projection or reject the entire proposal, never a partial write."""
     keys(proposal, "base_version title summary actions", "Proposal")
@@ -173,6 +183,7 @@ def transition(state, proposal, invocation, historical=False):
     for action in proposal["actions"]:
         require(isinstance(action, dict), "Each action must be an object")
         kind = action.get("type")
+        # BELIEF — revisions require evidence; durable beliefs cannot drift by prose alone.
         if kind == "belief":
             keys(action, "type id statement confidence status evidence reason", "Belief")
             identifier(action["id"])
@@ -196,6 +207,7 @@ def transition(state, proposal, invocation, historical=False):
                 **action, "evidence": list(dict.fromkeys((old or {}).get("evidence", []) + action["evidence"])),
                 "updated_by": invocation, "updated_version": state["version"] + 1,
             }
+        # COMMITMENT — create a future obligation that must survive beyond this invocation.
         elif kind == "commit":
             keys(action, "type id task due_cycle reason", "Commitment")
             identifier(action["id"])
@@ -211,6 +223,7 @@ def transition(state, proposal, invocation, historical=False):
                 **action, "status": "open", "created_by": invocation,
                 "created_version": state["version"] + 1,
             }
+        # RESOLUTION — later evidence may fulfill an obligation; a model may not cancel one.
         elif kind == "resolve":
             keys(action, "type id status evidence reason", "Resolution")
             identifier(action["id"])
@@ -227,6 +240,7 @@ def transition(state, proposal, invocation, historical=False):
                 "resolution_reason": action["reason"], "resolved_by": invocation,
                 "resolved_version": state["version"] + 1,
             }
+        # PROJECT — bounded research thread inside the operator-configured topic space.
         elif kind == "project":
             require(bool(state.get("charter")), "Research charter is not enabled")
             keys(action, "type id title question domain status next_step reason", "Project")
@@ -250,6 +264,7 @@ def transition(state, proposal, invocation, historical=False):
                         "Completed projects need a published research notebook")
             result["projects"][action["id"]] = {**action, "created_version": (old or {}).get("created_version", state["version"] + 1),
                 "updated_version": state["version"] + 1, "updated_by": invocation}
+        # RESEARCH — queue collector work; a request is never evidence by itself.
         elif kind == "research":
             require(bool(state.get("charter")), "Research charter is not enabled")
             keys(action, "type id project query domain reason" + (" url" if "url" in action else ""), "Research request")
@@ -269,6 +284,7 @@ def transition(state, proposal, invocation, historical=False):
             require(action["id"] not in result["research"], "Research request ID already exists")
             require(sum(r["status"] == "queued" for r in result["research"].values()) < 4, "At most four queued source searches")
             result["research"][action["id"]] = {**action, "status": "queued", "created_by": invocation}
+        # NOTEBOOK — synthesis requires independently collected external evidence.
         elif kind == "notebook":
             require(bool(state.get("charter")), "Research charter is not enabled")
             keys(action, "type id project title summary findings limitations next_questions evidence reason", "Notebook")
@@ -299,6 +315,7 @@ def transition(state, proposal, invocation, historical=False):
                 "created_version": (old or {}).get("created_version", state["version"] + 1),
                 "updated_version": state["version"] + 1, "updated_by": invocation,
                 "domain": result["projects"][action["project"]]["domain"]}
+        # BLOG — public interpretation comes last, after underlying research validates.
         elif kind == "blog":
             require(bool(state.get("charter")), "Research charter is not enabled")
             require(action is proposal["actions"][-1], "A blog action must be last so its research is already validated")
