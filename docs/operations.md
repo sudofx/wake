@@ -4,7 +4,7 @@
 
 ## Everyday commands
 
-Research topics are configured in `research-topics.toml`, not embedded in model prompts. Topic-file changes are adopted as durable operator events the next time WAKE initializes.
+Research topics are configured only in `research-topics.toml`; there is no hardcoded governance fallback. Topic-file changes are adopted as durable operator events when the record next loads the changed configuration.
 
 Global options precede the command: `python3 -m wake --data data/another-record status`.
 
@@ -24,9 +24,9 @@ Each export also creates human-readable companions for the two core machine expo
 
 ## Scheduled wakes
 
-First verify a single live `wake` and `export`. Then run `python3 scripts/install_cron.py` to install one managed entry every three hours. This explicitly edits your user crontab, preserving unrelated entries. `--print` shows the command first and `--remove` removes only **WAKE✳︎**’s entry. The installer records the absolute Python executable and project path, so cron does not need an activated environment.
+First verify a single live `wake` and `export`. For a purely local installation, `python3 scripts/install_cron.py` can install the legacy managed local schedule. This explicitly edits your user crontab, preserving unrelated entries. `--print` shows the command first and `--remove` removes only **WAKE✳︎**’s entry. The installer records the absolute Python executable and project path, so cron does not need an activated environment.
 
-The wrapper refreshes output even when a model rejects or fails. Every run keeps a SQLite backup under `data/backups/`; manage retention according to your storage budget. Backups are deliberately not silently deleted. Check `data/cron.log` and the journal's History view. The schedule uses the host cron timezone; the daily API limit and report dates always use Pacific time. The every-three-hours cadence leaves room under a 20-call daily ceiling. A sleeping or disconnected host cannot run a wake; cron does not catch up missed cycles. macOS may require permission for cron to read a protected folder; keep the project in Developer rather than Downloads/Desktop.
+The wrapper refreshes output even when a model rejects or fails. Every run keeps a SQLite backup under `data/backups/`; manage retention according to your storage budget. Backups are deliberately not silently deleted. Check `data/cron.log` and the journal's History view. The schedule uses the host cron timezone; the daily API limit and report dates always use Pacific time. The local installer uses its configured conservative cadence; actual provider limits and the per-model ceilings in `wake.toml` remain authoritative. A sleeping or disconnected host cannot run a wake; cron does not catch up missed cycles. macOS may require permission for cron to read a protected folder; keep the project in Developer rather than Downloads/Desktop.
 
 To manually exercise exactly what cron will run: `python3 scripts/scheduled_wake.py`. This invokes the configured provider, so it can consume one live API call after free-tier opt-in.
 
