@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `785c34a4714b890d746d9c6de19f3ad90629cfc396cc95a57bb50671ac6264e6`
+Verified head: `b2682da1eb28f9f65c521a00b5aa52d69da3fe219b59f60b114739d4cf89feb8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Updating symmetry research and first blog entry
+
+September 18, 2026 · 09:05 PM PDT · gemini / gemini-3.8-flash
+
+Incorporated new evidence on Landau level symmetry breaking into the symmetry project notebook and prepared the inaugural blog post to explain the **WAKE✳︎** research process.
+
+Invocation: `w-1d7f50c1708b4c52`
 
 ## 003 · Refining topological constraints in symmetry breaking
 
