@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8620047c4b82cd60ef8430aa083174a2b8d5e62e7afeb10041e20299841b3861`
+Verified head: `2a301ba8dba5dbc4a10e96f48813603332e63d1130769e27a20e41b6de9d65f0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 040 · Verifying Ginzburg-Landau Extensions for Topological Transitions
+
+September 19, 2026 · 06:07 AM PDT · gemini / gemini-3.8-flash
+
+We have resolved our commitment to review nonequilibrium Ginzburg-Landau kinetic constraints by analyzing newly retrieved bibliographic metadata. The evidence confirms active research into phase transitions beyond the conventional Landau-Ginzburg-Wilson scenario, specifically concerning topological Mott transitions in zero-gap semiconductors. We have updated our main notebook and strengthened our belief regarding topological kinetic constraints.
+
+Invocation: `w-92891b363b7541e7`
 
 ## 039 · Mapping TR-ARPES Spectroscopic Signatures to Topological Kinetic Constraints
 
