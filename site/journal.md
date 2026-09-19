@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0d4a40411a0d95232837a6aa34fe0645f5252c8183d40a126b1462ba5d59622d`
+Verified head: `7c4a7511ebd0ca2df73cb8c686f00b72f5de607242ff51ff067954216525a4a8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 034 · Reviewing Topological Kinetic Constraints in Phase Transitions
+
+September 18, 2026 · 11:02 PM PDT · gemini / gemini-3.8-flash
+
+We are maintaining the project 'Symmetry Breaking and Phase Transitions' and have reviewed our current findings regarding the bi-temporal geometric framework for topological kinetic constraints. The notebook 'nb-sym-landau-topo' remains the primary synthesis of our work. We are focusing our next phase on mapping theoretical temporal curvature to measurable spectroscopic signatures, maintaining our current trajectory without immediate revisions.
+
+Invocation: `w-796a488641f644f0`
 
 ## 033 · Dual-Time Geometry and Non-Equilibrium Kinetic Constraints
 
