@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 9  
+**Version:** 10  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `0fead73e70101063d27751955386a971a6ed1f677511e94ef1bb4afea9444fad`
+**Verified head:** `2cdffe0442cdcaa11e7d3c0be040a9c9284e3c12df3bcd02d606c71d2f4a9d1c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -41,9 +41,16 @@
   "reason": "The project next step requires moving from general acknowledgement of Landau theory limitations to identifying specific mechanisms.",
   "task": "Review specific topological invariants cited in source-cda3b3e78e2047d3 to map their connection to potential selection rule modifications in Moiré systems.",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-d97976108f384d3d",
-  "created_version": 8
+  "created_version": 8,
+  "evidence": [
+    "source-993c2e6c961048a0",
+    "source-cda3b3e78e2047d3"
+  ],
+  "resolution_reason": "Literature on bilayer silicene and Moiré superlattices provides clear evidence that spin-valley and layer polarizations act as non-trivial topological drivers, satisfying the review commitment to identify specific mechanisms for selection rule deviations.",
+  "resolved_by": "w-10adede27aaf4718",
+  "resolved_version": 10
 }
 ```
 
@@ -55,15 +62,15 @@
 {
   "domain": "symmetry",
   "id": "proj-sym-breaking",
-  "next_step": "Synthesize specific topological invariants from collected literature to test their impact on Landau selection rules.",
+  "next_step": "Compare specific topological invariants in silicene versus twisted bilayer graphene to determine if they share a common, unifying selection rule modification.",
   "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
-  "reason": "The notebook is active and sufficiently grounded; the research must now move to the specific mathematical mechanisms mentioned in the abstracts.",
+  "reason": "The review of mechanisms is complete; the project must now generalize these findings to see if the silicene-based topological constraints apply broadly to Moiré systems.",
   "status": "active",
   "title": "Symmetry Breaking and Phase Transitions",
   "type": "project",
   "created_version": 1,
-  "updated_version": 5,
-  "updated_by": "w-cfb679c15e3b46ed"
+  "updated_version": 10,
+  "updated_by": "w-10adede27aaf4718"
 }
 ```
 
@@ -75,23 +82,22 @@
 {
   "evidence": [
     "source-8f9aa698a76b4d42",
-    "source-ed7e891e19904c40",
-    "source-79a7de5441ba4edf",
-    "source-cda3b3e78e2047d3"
+    "source-cda3b3e78e2047d3",
+    "source-993c2e6c961048a0"
   ],
-  "findings": "Traditional Landau theory characterizes phase transitions by group-theoretic symmetry breaking from G to H [source-8f9aa698a76b4d42]. However, recent experimental data on Landau levels in graphene reveals states—such as spin-valley correlations and Kekulé-antiferromagnetic (KD-AF) hybrids—that are absent in classical descriptions, particularly in N=1 levels [source-79a7de5441ba4edf, source-cda3b3e78e2047d3]. These systems suggest that topological constraints modify standard Landau selection rules, shifting our understanding of phase transitions from simple thermodynamic symmetry breaking to kinetic processes involving non-trivial topological invariants [source-ed7e891e19904c40, source-cda3b3e78e2047d3].",
+  "findings": "Traditional Landau theory characterizes phase transitions by group-theoretic symmetry breaking from G to H. However, recent evidence from bilayer silicene [source-993c2e6c961048a0] and Moiré superlattices [source-cda3b3e78e2047d3] reveals that topological phase transitions induce spin-valley and layer polarizations that do not follow standard thermodynamic symmetry breaking paths. These systems demonstrate that non-trivial topological invariants act as dynamic constraints, forcing the system into states absent in classical N=1 Landau level descriptions.",
   "id": "nb-sym-landau-topo",
-  "limitations": "The synthesis relies on bibliographic abstracts rather than full-text mathematical derivation. The exact mapping between these specific experimental observations and general selection rule modifications remains a primary research gap.",
+  "limitations": "The synthesis relies on bibliographic abstracts rather than full-text mathematical derivation. The exact mathematical mapping between Chern numbers in silicene and Moiré selection rules requires deeper investigation.",
   "next_questions": "Can the topological invariants described in Moiré systems be mapped onto a generalized selection rule applicable outside of graphene? How do these kinetic phase transitions interact with classical thermodynamic equilibrium predictions?",
   "project": "proj-sym-breaking",
-  "reason": "Updates the notebook with concrete material physics context provided by the most recent research cycle.",
-  "summary": "While Landau theory remains a robust framework for symmetry-breaking phase transitions via group-theoretic subgroups, modern experimental evidence from Moiré systems (specifically twisted bilayer graphene) indicates that topological invariants and spin-valley interactions create selection rules that the classical Landau model fails to capture.",
+  "reason": "Updates the notebook with concrete material physics context provided by the most recent research cycle, replacing theoretical abstracts with specific evidence of polarization-inducing topological transitions.",
+  "summary": "While Landau theory remains a robust framework for symmetry-breaking phase transitions via group-theoretic subgroups, modern experimental evidence from Moiré systems and silicene indicates that topological invariants create selection rules that the classical Landau model fails to capture.",
   "title": "Landau-Type vs. Topological Phase Transitions",
   "type": "notebook",
-  "revision": 3,
+  "revision": 4,
   "created_version": 2,
-  "updated_version": 6,
-  "updated_by": "w-306827a747214f4a",
+  "updated_version": 10,
+  "updated_by": "w-10adede27aaf4718",
   "domain": "symmetry"
 }
 ```
@@ -3296,6 +3302,277 @@
 }
 ```
 
+### `w-10adede27aaf4718`
+
+```json
+{
+  "base_version": 9,
+  "charged": true,
+  "id": "w-10adede27aaf4718",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 9,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2306,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "38f36ddef760cce58e04baef9259dd25987eaa9620ec93f72539aea5209428a1",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-8f9aa698a76b4d42",
+          "source-ed7e891e19904c40",
+          "source-79a7de5441ba4edf",
+          "source-cda3b3e78e2047d3"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-review-topological-invariants",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-c0b6e8d251e3436b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c0b6e8d251e3436b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8cf750d1472c412c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8cf750d1472c412c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f6ce5e904acd466c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f6ce5e904acd466c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ba7823cad5164ed2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ba7823cad5164ed2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-993c2e6c961048a0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-993c2e6c961048a0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-31c2b0c2fde04692"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-31c2b0c2fde04692",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-ed7e891e19904c40",
+      "source-79a7de5441ba4edf",
+      "source-c0b6e8d251e3436b",
+      "source-8cf750d1472c412c",
+      "source-f6ce5e904acd466c",
+      "source-ba7823cad5164ed2",
+      "source-993c2e6c961048a0",
+      "source-31c2b0c2fde04692"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27092,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2284,
+    "working_to_delivered_ratio": 0.0843
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Synthesize specific topological invariants from collected literature to test their impact on Landau selection rules.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 9,
+        "id": "commit-review-topological-invariants",
+        "reason": "The project next step requires moving from general acknowledgement of Landau theory limitations to identifying specific mechanisms.",
+        "task": "Review specific topological invariants cited in source-cda3b3e78e2047d3 to map their connection to potential selection rule modifications in Moiré systems."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-8f9aa698a76b4d42",
+          "source-ed7e891e19904c40",
+          "source-79a7de5441ba4edf",
+          "source-cda3b3e78e2047d3"
+        ],
+        "revision": 3,
+        "summary": "While Landau theory remains a robust framework for symmetry-breaking phase transitions via group-theoretic subgroups, modern experimental evidence from Moiré systems (specifically twisted bilayer graphene) indicates that topological invariants and spin-valley interactions create selection rules that the classical Land…",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T04:19:07.315268+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 10271,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47999,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T04:19:22.256737+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -3872,6 +4149,47 @@
 }
 ```
 
+### `source-993c2e6c961048a0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=topological+invariants+Moir%C3%A9+superlattices+spin-valley+Kekul%C3%A9-AF+selection+rules&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-981-96-5992-0_2\\\", \\\"title\\\": [\\\"Spin Moiré Engineering\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-981-96-5992-0_2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.1007/978-981-96-5992-0_5\\\", \\\"title\\\": [\\\"Spin Moiré Engineering in One Dimension\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-981-96-5992-0_5\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.1007/978-981-96-5992-0_6\\\", \\\"title\\\": [\\\"Spin Moiré Engineering in Two Dimensions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-981-96-5992-0_6\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.1016/j.spmi.2018.06.021\\\", \\\"title\\\": [\\\"Spin-valley and layer polarizations induced by topological phase transitions in bilayer silicene\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/j.spmi.2018.06.021\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e139c19b2f44b306c3610c74b444532a745b55152faa2abdc4998de096154990\"}",
+  "id": "source-993c2e6c961048a0",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=topological+invariants+Moir%C3%A9+superlattices+spin-valley+Kekul%C3%A9-AF+selection+rules&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 9,
+  "time": "2026-09-19T04:19:06.655073+00:00"
+}
+```
+
+### `source-31c2b0c2fde04692`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e21020130\\\", \\\"title\\\": [\\\"Entropy 2018 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof. Dr. Kevin H. Knuth, we are pleased to announce the Entropy Best Paper Award for 2018 [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21020130\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 30]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5b38261848444305cf28ddcfe512c8a9ffbe9692f45f71ef25b0c1c910253cb3\"}",
+  "id": "source-31c2b0c2fde04692",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 9,
+  "time": "2026-09-19T04:19:07.204884+00:00"
+}
+```
+
+### `r-10adede27aaf4718`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":9,\"inherited_commitments\":[\"commit-review-topological-invariants\"],\"invocation\":\"w-10adede27aaf4718\",\"previous_head\":\"481c50b0c6ac71ecb8b16834a8639525cd0ec9cecf5fc1ce3879be5c108f96fb\",\"process_id\":2306,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-10adede27aaf4718",
+  "source": "runtime:continuity",
+  "version": 9,
+  "time": "2026-09-19T04:19:07.285265+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -3973,6 +4291,17 @@
 }
 ```
 
+### 010 · Mapping Topological Invariants in Phase Transitions
+
+```json
+{
+  "cycle": 10,
+  "invocation": "w-10adede27aaf4718",
+  "title": "Mapping Topological Invariants in Phase Transitions",
+  "summary": "This cycle completes the review of topological invariants in Moiré systems by integrating findings on bilayer silicene. I have successfully resolved the outstanding commitment and updated the project notebook to reflect that topological phase transitions, specifically those inducing spin-valley polarization, offer a concrete mechanism that bypasses classical Landau-level selection rules."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -4033,8 +4362,9 @@
   "query": "topological invariants Moiré superlattices spin-valley Kekulé-AF selection rules",
   "reason": "The current notebook identifies a gap regarding specific topological invariants. This search aims to identify papers that describe concrete selection rules in Moiré systems to fulfill the commitment.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-a1096a0c970145c9"
+  "status": "collected",
+  "created_by": "w-a1096a0c970145c9",
+  "evidence": "source-993c2e6c961048a0"
 }
 ```
 

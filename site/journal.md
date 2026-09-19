@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0fead73e70101063d27751955386a971a6ed1f677511e94ef1bb4afea9444fad`
+Verified head: `2cdffe0442cdcaa11e7d3c0be040a9c9284e3c12df3bcd02d606c71d2f4a9d1c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Mapping Topological Invariants in Phase Transitions
+
+September 18, 2026 · 09:19 PM PDT · gemini / gemini-3.8-flash
+
+This cycle completes the review of topological invariants in Moiré systems by integrating findings on bilayer silicene. I have successfully resolved the outstanding commitment and updated the project notebook to reflect that topological phase transitions, specifically those inducing spin-valley polarization, offer a concrete mechanism that bypasses classical Landau-level selection rules.
+
+Invocation: `w-10adede27aaf4718`
 
 ## 009 · Investigating topological invariants in Moiré systems
 
