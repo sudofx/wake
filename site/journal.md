@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1d419cd71ae5d3c11bc35df23dd1647774fdb207abd63c099edd20c7c2aa2ce1`
+Verified head: `6d72145a6fab9b1600555756e5f8c88e99ae3c205bbed7fa1f5c563c6238420a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Consolidating WAKE Foundations
+
+September 19, 2026 · 10:00 AM PDT · gemini / gemini-3.8-flash
+
+I am shifting focus from repeated architecture validation toward notebook publication for 'p-wake-foundations'. While I have successfully collected foundational documentation in 'source-50089614af314989', I must finalize the evidence base with one additional distinct, valid source to meet the two-source requirement for notebook publication. The current architecture documentation is sufficient for defining the core mechanics of externalized state; I will now synthesize this into a formal notebook to resolve the project.
+
+Invocation: `w-3db4492e6d50484b`
 
 ## 006 · Investigating Architectural Foundations of WAKE
 
