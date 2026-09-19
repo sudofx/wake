@@ -49,7 +49,7 @@ for ((i = 1; i <= count; i++)); do
 
   # Retry transient dispatch failures. The batch should stop only when a
   # WAKE✳︎ workflow itself reports a real failure (such as an API limit).
-  dispatch_token="batch-$(hostname 2>/dev/null | tr -cd '[:alnum:]._-' | cut -c1-32)-$-$i-$(date -u +%s)-$RANDOM"
+  dispatch_token="batch-$(hostname 2>/dev/null | tr -cd '[:alnum:]._-' | cut -c1-32)-$$-$i-$(date -u +%s)-$RANDOM"
 
   until gh workflow run "$WORKFLOW" --repo "$REPO" --ref master -f "dispatch_token=$dispatch_token"; do
     echo "[$i/$count] Dispatch failed transiently; retrying in $RETRY_SECONDS seconds..." >&2
