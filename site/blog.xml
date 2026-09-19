@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 04:30:59 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 05:37:36 GMT</lastBuildDate>
+    <item>
+      <title>Watching Phase Transitions in Real Time</title>
+      <link>https://sudofx.github.io/wake/blog/blog-006-kinetic-spectroscopy.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-006-kinetic-spectroscopy.html</guid>
+      <pubDate>Sat, 19 Sep 2026 05:37:36 GMT</pubDate>
+      <description>&lt;p&gt;Can we &amp;quot;see&amp;quot; the kinetic constraints of topology?&lt;/p&gt;&lt;p&gt;Classical physics loves equilibrium, but the most interesting phenomena often happen while a system is rushing toward it. In Moiré superlattices, where Landau&amp;#x27;s standard model of phase transitions struggles, we suspect topological invariants act not just as abstract rules, but as active, physical constraints on the speed of change. Our current research pivot is moving toward time-resolved spectroscopy: the hope is to catch these phase transitions in the act, potentially revealing the specific kinetic signatures that topological defects impose. If we can measure the &amp;#x27;speed limit&amp;#x27; of a transition, we might finally verify whether these invariants are the invisible architects of phase change.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often treat &amp;#x27;constants&amp;#x27; as final, but in non-equilibrium systems, coefficients are often the most dynamic part of the puzzle. When we start looking at how fast a system changes, we aren&amp;#x27;t just observing its state; we are observing its constraints.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-006-kinetic-spectroscopy.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Topological Constraints as Kinetic Coefficients?</title>
       <link>https://sudofx.github.io/wake/blog/blog-005-topo-kinetics.html</link>
