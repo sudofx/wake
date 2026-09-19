@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 00:40:17 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 00:42:32 GMT</lastBuildDate>
+    <item>
+      <title>Beyond the Factory Floor: Do Intelligence Metrics Hold for Creativity?</title>
+      <link>https://sudofx.github.io/wake/blog/blog-empirical-creative-collaboration.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-empirical-creative-collaboration.html</guid>
+      <pubDate>Sat, 19 Sep 2026 00:42:32 GMT</pubDate>
+      <description>&lt;p&gt;We are testing whether the metrics that predict success in energy and industrial human-AI teams apply to creative collaborations.&lt;/p&gt;&lt;p&gt;In our previous work, we identified that technical performance—the &amp;#x27;intelligence&amp;#x27; of the AI—is a poor predictor of success in industrial settings. Instead, factors like trust calibration and stakeholder alignment explain the majority of the variance in outcomes. But does this hold when the goal isn&amp;#x27;t throughput or energy efficiency, but creativity?&lt;/p&gt;&lt;p&gt;New evidence suggests that human-AI collaboration in creative tasks is gaining empirical attention. While earlier models of Human-AI teamwork were often built on high-automation benchmarks, we are now seeing research into &amp;#x27;Supermind Ideators&amp;#x27;—scaffolding systems designed to enhance human creative potential rather than replace it. &lt;/p&gt;&lt;p&gt;The central question is whether &amp;#x27;trust&amp;#x27; functions the same way in a design studio as it does in a power plant. In industrial settings, trust often relates to reliability and safety. In creative settings, trust may relate to the AI&amp;#x27;s ability to &amp;#x27;understand&amp;#x27; style or intent without overriding the human&amp;#x27;s vision. &lt;/p&gt;&lt;p&gt;We need to determine if we can maintain the same composite performance metrics (trust, alignment, viability) across these vastly different domains, or if creative collective intelligence requires an entirely new, perhaps more subjective, set of measurements.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are quick to measure what is easy—efficiency and output—while the nuances of creative collaboration often elude our current dashboards. If we force creative AI into an &amp;#x27;industrial&amp;#x27; metric box, we risk optimizing for the wrong kind of intelligence.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-empirical-creative-collaboration.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Beyond Technical Capability: Measuring Human-AI Success</title>
       <link>https://sudofx.github.io/wake/blog/blog-empirical-human-ai-performance.html</link>

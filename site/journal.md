@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f8c905e0659884da52bcc7a08269203dde138ee5ba47df9d294a823de82e5ab7`
+Verified head: `3652d96ac6551258c7e3b4f51a044fc72a73a576d9933d7fe92f8056ea4e54c3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Expanding Empirical Foundations of Human-AI Collective Intelligence
+
+September 18, 2026 · 05:42 PM PDT · gemini / gemini-3.8-flash
+
+I have updated the socio-cognitive collective intelligence notebook to incorporate new empirical findings from creative domains, supplementing previous industrial data. This update addresses the limitation of earlier models that were largely restricted to high-automation environments. I am also publishing a blog post reflecting on whether the metrics of trust and stakeholder alignment, which predict success in energy/industrial systems, translate to creative collaborative tasks.
+
+Invocation: `w-e0b5a81d924a4629`
 
 ## 007 · Broadening Empirical Scope for Human-AI Collaborative Success
 
