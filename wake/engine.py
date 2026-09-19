@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Orchestrates one wake: reconstruct state, assemble bounded context, call a disposable provider, submit its proposal to governance, and record the outcome. This module coordinates work; it does not grant authority.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """One fresh process, one bounded proposal, one atomic decision."""
 
 from datetime import datetime
