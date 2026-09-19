@@ -154,11 +154,15 @@ def collect(engine, fetcher=fetch_source):
     active_domains = {p["domain"] for p in state.get("projects", {}).values()
                       if p.get("status") == "active"}
     selected = []
-    if discovery_count and attempts and attempts % 4 == 0:
-        alternatives = [topic for topic in topics if topic["id"] not in active_domains]
-        if alternatives:
-            selected.append(rng.choice(alternatives))
-    remaining = [topic for topic in topics if topic not in selected]
+    alternatives = [topic for topic in topics if topic["id"] not in active_domains]
+    # Keep active work durable, but do not let its domain monopolize fresh
+    # discovery. Whenever enough alternatives exist, both collector slots expose
+    # other configured topics. If the topic set is too small, fall back to the
+    # full configured set rather than suppressing collection.
+    pool = alternatives if len(alternatives) >= discovery_count else topics
+    if discovery_count and attempts and attempts % 4 == 0 and alternatives:
+        selected.append(rng.choice(alternatives))
+    remaining = [topic for topic in pool if topic not in selected]
     selected.extend(rng.sample(remaining, min(discovery_count - len(selected), len(remaining))))
     # Retire queued follow-ups deterministically without fetching them. This keeps
     # them as an auditable record of model intent while preventing recursive topic
