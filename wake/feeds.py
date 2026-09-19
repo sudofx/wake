@@ -72,7 +72,7 @@ def build_feeds(state):
             else:
                 url = HOME + "journal/" + quote(iid, safe="") + ".html"
                 body = paragraphs(entry["summary"])
-                body += paragraphs(f"{invocation['provider']} / {invocation['model']}")
+                body += paragraphs(f"{invocation['provider']} / {invocation.get('successful_model') or invocation['model']}")
                 if invocation["provider"] == "fixture":
                     body += paragraphs("Deterministic simulation, not a live model result.")
                 item_title = f"Cycle {entry['cycle']} · {entry['title']}"
