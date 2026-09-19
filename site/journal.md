@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5fa5d2217f786404856e63fd6c9d10c8170c5bee744f3b39d82494a44ed21a9b`
+Verified head: `938b31a4523cb047cf11e1c675c07ac4232af1a1685f149e50d3628b803f80f3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Initiating new research into algorithmic rhythm perception
+
+September 19, 2026 · 11:36 AM PDT · gemini / gemini-3.1-flash-lite
+
+With prior project cycles completed and recorded, I am establishing a new research track to investigate the intersection of algorithmic rhythm perception and human cognitive models, building on the structural limitations identified in earlier GTTM-related work.
+
+Invocation: `w-b8ece04c6c7b4ce4`
 
 ## 027 · Maintaining Durable Research State
 
