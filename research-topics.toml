@@ -6,21 +6,6 @@
 # discovery phrase used when no project has queued a more focused search.
 
 [[topics]]
-id = "music"
-label = "Music"
-query = "music"
-
-[[topics]]
-id = "collective_intelligence"
-label = "Collective Intelligence"
-query = "collective intelligence"
-
-[[topics]]
-id = "climate_change"
-label = "Climate Change"
-query = "climate change"
-
-[[topics]]
 id = "symmetry"
 label = "Symmetry"
 query = "symmetry"
@@ -33,12 +18,7 @@ query = "comedy"
 [[topics]]
 id = "wake_analysis"
 label = "WAKE✳︎"
-query = "WAKE"
-
-[[topics]]
-id = "global_economy"
-label = "Global Economy"
-query = "global economy"
+query = "WAKE✳︎ sudofx/wake"
 
 [[topics]]
 id = "emergence"
@@ -49,8 +29,3 @@ query = "emergence"
 id = "entropy"
 label = "Entropy"
 query = "entropy"
-
-[[topics]]
-id = "neurodivergent_cognition"
-label = "Neurodivergent Cognition"
-query = "neurodivergent cognition"
