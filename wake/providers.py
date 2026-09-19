@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# PROVIDERS — the replaceable cognition boundary. Prompts and schemas define what a disposable model may propose; network/failover code records which model was attempted and which actually answered. A provider never receives direct write authority.
 #
-# Defines the replaceable model boundary: prompts, schemas, Gemini calls, fallback behavior, and Bob's editorial instructions. Provider intelligence may change; the durable protocol around it should remain explicit.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """Provider boundary: one JSON request in, one untrusted proposal out."""
 
@@ -184,6 +188,30 @@ other prose, headlines, or summaries; every other claim still needs calibrated n
 """
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: action_schema
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def action_schema(kind, fields, enums=None, optional=()):
     """Keep each action's shape distinct, matching mechanical governance exactly."""
     required = ["type", *fields.split()]
@@ -215,6 +243,30 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: schema_for_context
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def schema_for_context(context):
@@ -250,6 +302,30 @@ def schema_for_context(context):
     return schema
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: retractable_quotes
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def retractable_quotes(post):
     """Short exact phrases from the original post, not fabricated model quotations."""
     prose = "\n".join(str(post.get(k, "")) for k in ("title", "lede", "body", "lens"))
@@ -260,6 +336,30 @@ def retractable_quotes(post):
         r"|\b(?:proves?|demonstrates?|establishes?|confirms?)\s+that\b", prose, re.I)))
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: load_env
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def load_env(path=Path(".env")):
     if path.is_file():
         for line in path.read_text().splitlines():
@@ -268,11 +368,67 @@ def load_env(path=Path(".env")):
                 os.environ[key] = value.strip().strip("\"'")
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: TransientProviderError
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class TransientProviderError(RuntimeError):
     "Temporary provider/network outage; the wake should be retried later."
+    # ---------------------------------------------------------------------------
+    # STEP: __init__
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+    # ---------------------------------------------------------------------------
     def __init__(self, message, details=None):
         super().__init__(message)
         self.details = details or {}
+
+
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: ProviderRequestError
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 class ProviderRequestError(Rejected):
@@ -285,8 +441,56 @@ class ProviderRequestError(Rejected):
 FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: DailyQuotaExceeded
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class DailyQuotaExceeded(ProviderRequestError):
     """Gemini reported the exact per-day free-tier project/model quota."""
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: _quota_ids
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+
+
+# ---------------------------------------------------------------------------
 
 
 def _quota_ids(value):
@@ -300,9 +504,57 @@ def _quota_ids(value):
             yield from _quota_ids(item)
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: is_free_tier_daily_quota
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def is_free_tier_daily_quota(details):
     """Classify only Google's exact free-tier daily quota identifier."""
     return FREE_TIER_DAILY_QUOTA_ID in set(_quota_ids(details or {}))
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: _safe_provider_value
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+
+
+# ---------------------------------------------------------------------------
 
 
 def _safe_provider_value(value, depth=0):
@@ -332,6 +584,30 @@ def _safe_provider_value(value, depth=0):
     return str(value)[:500]
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: _http_error_details
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+
+
+# ---------------------------------------------------------------------------
+
+
 def _http_error_details(exc, elapsed_ms, payload_bytes):
     """Extract only bounded, non-secret diagnostics from a provider HTTP error."""
     details = {
@@ -358,10 +634,50 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
     return details
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: Gemini
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class Gemini:
     name = "gemini"
     charged = True
     transient_http_codes = frozenset({500, 502, 503, 504})
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: __init__
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+
+    # ---------------------------------------------------------------------------
 
     def __init__(self, config, model=None):
         load_env()
@@ -384,6 +700,22 @@ class Gemini:
         require(config["free_tier_confirmed"] is True,
                 "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled")
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: propose
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def propose(self, request):
         self.provider_requests_sent = 0
@@ -478,10 +810,50 @@ class Gemini:
                 raise error
         raise error
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: diagnostics
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def diagnostics(self):
         return {"provider_requests_sent": self.provider_requests_sent,
                 "provider_attempts": list(self.provider_attempts),
                 **({"successful_model": self.successful_model} if self.successful_model else {})}
+
+
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: Fixture
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 class Fixture:
