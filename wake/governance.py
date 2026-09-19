@@ -1441,7 +1441,7 @@ def transition(state, proposal, invocation, historical=False):
                     else 1 <= len(action["notebooks"]) <= 3
                 ),
                 "Blog posts must reference 1–3 distinct notebooks, "
-                "except ten-cycle reflections may use none",
+                "except twenty-cycle reflections may use none",
             )
 
             notebooks = [
@@ -1484,7 +1484,7 @@ def transition(state, proposal, invocation, historical=False):
             #
             # Research-oriented posts require strong traceability.
             #
-            # Ten-cycle reflections intentionally bypass these particular
+            # Twenty-cycle reflections intentionally bypass these particular
             # research-source requirements because they are reflections on the
             # durable journey rather than ordinary research publications.
 
