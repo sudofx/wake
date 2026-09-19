@@ -74,6 +74,8 @@ Additional exact action shapes:
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"<configured-topic-id>","reason":"What this search will resolve"}
+Research IDs are immutable durable identities: NEVER reuse an ID already present in supplied research,
+even for a retry or a similar query. Give every genuinely new search request a new ID.
 At most four model-proposed follow-up searches may be recorded as hypotheses. The trusted collector's
 randomized attention across configured topics is authoritative. The collector may spend one bounded slot on a queued
 follow-up while preserving another slot for neutral topic exposure, so active work can progress without monopolizing
