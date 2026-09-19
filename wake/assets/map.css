@@ -41,3 +41,10 @@ footer{margin-top:30px}
   .workspace{gap:14px}
   #timeline,#constellation{padding:14px}
 }
+
+/* Keep map timeline topic/status chips visually identical to the main site. */
+#timeline .node small.topic-tag,#timeline .node small.status-tag{display:inline-flex;align-items:center;min-height:19px;font:8px var(--mono);letter-spacing:.8px;padding:4px 7px;margin:5px 3px 0 0;background:#e3e8dc;color:#426047;border:1px solid #c7d2c0;line-height:1.2;box-sizing:border-box;text-transform:uppercase}
+:root[data-theme=dark] #timeline .node small.topic-tag{background:color-mix(in srgb,var(--green) 12%,var(--surface));color:color-mix(in srgb,#82ff7d 72%,var(--muted));border-color:color-mix(in srgb,#82ff7d 30%,var(--surface))}
+#timeline .node small.status-tag.rejected,#timeline .node small.status-tag.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}
+#timeline .node small.status-tag.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}
+@media(max-width:700px){#timeline .node small.topic-tag,#timeline .node small.status-tag{font-size:7px}}
