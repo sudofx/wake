@@ -592,3 +592,22 @@ footer{margin-top:48px}
   #metrics .metrics-row-one>.hypothesis-section .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
   #metrics .metrics-row-one>.hypothesis-section .hypothesis-card{min-height:108px}
 }
+
+
+/* Ultrawide landscape rack legibility pass. */
+@media(min-width:3000px){
+  #metrics .metrics-row-one .dashboard-panel{padding:13px 14px}
+  #metrics .metrics-row-one .dashboard-panel .eyebrow{font-size:9px}
+  #metrics .metrics-row-one .dashboard-panel h2{font-size:18px;line-height:1.2}
+  #metrics .metrics-row-one .dashboard-panel h3{font-size:10px}
+  #metrics .metrics-row-one .dashboard-panel .small{font-size:9px;line-height:1.4}
+  #metrics .metrics-row-one .dashboard-stat strong{font-size:20px}
+  #metrics .metrics-row-one .dashboard-stat span{font-size:10px}
+  #metrics .metrics-row-one .metric-bar-row,
+  #metrics .metrics-row-one .reason-row,
+  #metrics .metrics-row-one .model-metric-row,
+  #metrics .metrics-row-one .topic-metric-row,
+  #metrics .metrics-row-one .pie-key{font-size:9px}
+  #metrics .metrics-row-one .topic-legend{font-size:8px}
+  #metrics .dashboard-hypothesis-summary .dashboard-stat strong{font-size:34px}
+}
