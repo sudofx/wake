@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fa6b226f6cb001176d9ea65310435a10c12525a2c42f09024e99f354c7ee6ae5`
+Verified head: `da9640441b3be7e807dc26f691ac4299e5d75a9e28c43e5fded11f40217a6a16`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Protocol refinement and methodology integration for NIF pilot
+
+September 18, 2026 · 07:02 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on operationalizing the NIF pilot protocol by integrating constrained communication concepts, drawing methodological parallels from technical networking protocols to mitigate social confounding in team-based cognitive diversity tasks.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-fea3fe0723564c17`
 
 ## 036 · Formalizing the NIF Cognitive Diversity Pilot Protocol
 

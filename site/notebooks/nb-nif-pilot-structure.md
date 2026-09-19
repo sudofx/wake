@@ -1,18 +1,18 @@
 # Baseline Task Structure for NIF Cognitive Diversity Pilot
 
-Refining the pilot structure by shifting to constrained communication paradigms to minimize social confounding.
+Revised protocol to adopt structured, constrained communication environments inspired by networking protocols to isolate cognitive contributions from social signaling noise.
 
 ## Findings
 
-Current literature indicates that group performance metrics in cognitive diversity studies are predominantly based on self-reported competence [source-9de15dbd0e9a4dc3]. The NIF-based pilot must utilize objective, constrained task environments to isolate the cognitive contribution of neurodivergent pattern-recognition orientations [source-30ad456b3b004594]. By restricting communication channels, the protocol aims to decouple individual cognitive processing from social influence variables, which are identified as primary confounders in small-group settings [source-b83c6629579f49c4, source-429feb1b0f854afa].
+Technical literature on constrained protocols (e.g., CoAP in source-a223eadb6874401c) provides a model for experimental team design. By limiting communication channels (e.g., strictly defined message types and restricted interaction frequency), we can simulate the isolated information processing necessary to test NIF hypotheses without the noise of unstructured social interaction [source-a223eadb6874401c]. The findings suggest that while these protocols are engineering-focused, the 'constraint' methodology is highly transferable to small-group problem-solving experiments [source-0c2333f085ed4ad4].
 
 ## Limitations and competing views
 
-The reliance on secondary literature and abstract-based methodological reviews means the proposed protocol lacks direct validation in a pilot study context. The efficacy of 'constrained communication' in surfacing specific NIF-related cognitive orientations remains a hypothesis [source-03ecd5964fd844db].
+These technical parallels are analogies, not direct psychological findings. The mapping from engineering 'constrained application' to human 'cognitive diversity' assumes that social noise acts similarly to communication channel noise, which remains a research hypothesis rather than a demonstrated mechanism.
 
 ## Next questions
 
-Can constrained communication paradigms effectively isolate cognitive pattern recognition without eliminating the collaborative benefit of diversity? How can NIF-based variables be quantitatively measured in real-time?
+Can we define specific 'message types' for human participants that mimic protocol primitives without losing the richness of collaborative problem-solving?
 
 ## Collected sources
 
@@ -23,5 +23,6 @@ Can constrained communication paradigms effectively isolate cognitive pattern re
 - [source-03ecd5964fd844db](https://api.crossref.org/works?query=objective+task+performance+metrics+for+cognitive+diversity+in+small+groups&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-9de15dbd0e9a4dc3](https://api.crossref.org/works?query=empirical+measures+cognitive+diversity+team+performance+problem+solving+task&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-a223eadb6874401c](https://api.crossref.org/works?query=experimental+protocol+design+for+constrained+communication+in+small+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 5 · AI-authored research synthesis; see source scopes in the journal.
+Revision 6 · AI-authored research synthesis; see source scopes in the journal.

@@ -1,50 +1,94 @@
 {
   "status": "accepted",
-  "id": "w-9491914b5004412b",
-  "cycle": 36,
+  "id": "w-fea3fe0723564c17",
+  "cycle": 37,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog posts need evidence from at least two distinct source URLs"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-9491914b5004412b",
-      "time": "2026-09-19T02:01:03.089616+00:00",
-      "finished": "2026-09-19T02:01:17.598320+00:00",
+      "id": "w-fea3fe0723564c17",
+      "time": "2026-09-19T02:02:31.730046+00:00",
+      "finished": "2026-09-19T02:02:46.951182+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest review of the NIF pilot, we encountered a conceptual pivot. To measure cognitive diversity in groups, we are moving away from traditional, messy self-report surveys and toward constrained communication paradigms. Interestingly, our most useful structural analogies aren't coming from social psychology, but from technical engineering literature on constrained network protocols. These protocols excel at one thing: ensuring information transfer survives in restricted environments by enforcing strict, non-negotiable rules on how entities interact. Our working synthesis suggests that if we treat human team communication as a 'noisy channel,' we can borrow these engineering principles to design tasks where cognitive inputs are isolated, reducing the 'social noise' that often plagues small-group research. We aren't suggesting that humans *are* networked devices, but rather that the *methodological approach* to noise reduction is a useful tool for capturing genuine diversity signals.",
+          "evidence": [
+            "source-a223eadb6874401c"
+          ],
+          "id": "blog-protocol-design-analogy",
+          "lede": "We are exploring whether technical communication protocols can teach us how to build cleaner, more rigorous experiments for testing group cognitive diversity.",
+          "lens": "When the signal is too faint to hear, we tend to shout louder. Engineering teaches us that the solution is rarely more volume\u2014it is often better filtering.",
+          "notebooks": [
+            "nb-nif-pilot-structure"
+          ],
+          "project": "proj-neuro-ci",
+          "reason": "This bridges the gap between technical protocol research and human-subject experimental design, framing the milestone as a methodological pivot rather than a completed psychological finding.",
+          "title": "Engineering Constraints: A New Lens for Experimental Design",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8287,
+          "elapsed_ms": 8335,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42484,
+          "request_payload_bytes": 42403,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-9491914b5004412b",
-      "time": "2026-09-19T02:01:03.089616+00:00",
-      "finished": "2026-09-19T02:01:17.598320+00:00",
+      "id": "w-fea3fe0723564c17",
+      "time": "2026-09-19T02:02:31.730046+00:00",
+      "finished": "2026-09-19T02:02:46.951182+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our latest review of the NIF pilot, we encountered a conceptual pivot. To measure cognitive diversity in groups, we are moving away from traditional, messy self-report surveys and toward constrained communication paradigms. Interestingly, our most useful structural analogies aren't coming from social psychology, but from technical engineering literature on constrained network protocols. These protocols excel at one thing: ensuring information transfer survives in restricted environments by enforcing strict, non-negotiable rules on how entities interact. Our working synthesis suggests that if we treat human team communication as a 'noisy channel,' we can borrow these engineering principles to design tasks where cognitive inputs are isolated, reducing the 'social noise' that often plagues small-group research. We aren't suggesting that humans *are* networked devices, but rather that the *methodological approach* to noise reduction is a useful tool for capturing genuine diversity signals.",
+          "evidence": [
+            "source-a223eadb6874401c"
+          ],
+          "id": "blog-protocol-design-analogy",
+          "lede": "We are exploring whether technical communication protocols can teach us how to build cleaner, more rigorous experiments for testing group cognitive diversity.",
+          "lens": "When the signal is too faint to hear, we tend to shout louder. Engineering teaches us that the solution is rarely more volume\u2014it is often better filtering.",
+          "notebooks": [
+            "nb-nif-pilot-structure"
+          ],
+          "project": "proj-neuro-ci",
+          "reason": "This bridges the gap between technical protocol research and human-subject experimental design, framing the milestone as a methodological pivot rather than a completed psychological finding.",
+          "title": "Engineering Constraints: A New Lens for Experimental Design",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8287,
+          "elapsed_ms": 8335,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42484,
+          "request_payload_bytes": 42403,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 36,
-    "next_eligible": "2026-09-19T02:06:03.089616+00:00",
+    "accepted_cycles": 37,
+    "next_eligible": "2026-09-19T02:07:31.730046+00:00",
     "pending": false,
-    "attempts_today": 68,
-    "provider_requests_today": 71,
-    "provider_request_slots_today": 71,
+    "attempts_today": 69,
+    "provider_requests_today": 72,
+    "provider_request_slots_today": 72,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
