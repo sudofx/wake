@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1c905f856968b55986f71e3f8b0095bed1d8837900a0672814607e718740c271`
+Verified head: `af698489538debc6176b475d1f662bf4f9f73ea339a962460f5611a4f2a34278`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 033 · Dual-Time Geometry and Non-Equilibrium Kinetic Constraints
+
+September 18, 2026 · 10:57 PM PDT · gemini / gemini-3.8-flash
+
+We have completed a review of non-equilibrium kinetic data, incorporating recent findings on bi-temporal manifolds and temporal curvature into our topological phase transition framework. This supports the hypothesis that topological invariants provide path-dependent constraints on non-equilibrium phase evolution, distinct from static Landau parameters. We have updated our primary notebook to synthesize these new findings.
+
+Invocation: `w-24e3f4262e0d454b`
 
 ## 032 · Kinetic Constraints in Moiré Phase Transitions
 

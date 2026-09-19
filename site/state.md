@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 32  
+**Version:** 33  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1c905f856968b55986f71e3f8b0095bed1d8837900a0672814607e718740c271`
+**Verified head:** `af698489538debc6176b475d1f662bf4f9f73ea339a962460f5611a4f2a34278`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -124,9 +124,15 @@
   "reason": "To synthesize existing collected research into a distinct analysis of spectroscopic evidence, moving closer to the project's empirical evaluation goal.",
   "task": "Review non-equilibrium kinetic data in collected sources for spectroscopic signatures of topological protection.",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-301d51bab24943c4",
-  "created_version": 31
+  "created_version": 31,
+  "evidence": [
+    "source-82b8096406fe4da2"
+  ],
+  "resolution_reason": "We reviewed non-equilibrium kinetic data from the recently collected dual-time topological geometry study, which provides a framework for temporal path dependence in non-equilibrium systems.",
+  "resolved_by": "w-24e3f4262e0d454b",
+  "resolved_version": 33
 }
 ```
 
@@ -139,9 +145,15 @@
   "reason": "To formally update the notebook with new evidence once the research concludes.",
   "task": "Revise nb-sym-landau-topo with new spectroscopic evidence",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-41851769c7d14bec",
-  "created_version": 32
+  "created_version": 32,
+  "evidence": [
+    "source-82b8096406fe4da2"
+  ],
+  "resolution_reason": "The notebook nb-sym-landau-topo has been updated with the new spectroscopic-related evidence concerning bi-temporal dynamics.",
+  "resolved_by": "w-24e3f4262e0d454b",
+  "resolved_version": 33
 }
 ```
 
@@ -178,21 +190,22 @@
     "source-176242423dea48b0",
     "source-43b5f6ae2fb94db8",
     "source-1a7417d79b324c5e",
-    "source-abf3acf698664dd2"
+    "source-abf3acf698664dd2",
+    "source-82b8096406fe4da2"
   ],
-  "findings": "Our analysis confirms that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the presence of non-trivial invariants in Moiré superlattices. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients directly. New evidence [source-abf3acf698664dd2] and computational frameworks [source-1a7417d79b324c5e] indicate that non-Hermitian quantum dynamics are now explicitly modeling exciton-polaron interactions, providing a specific kinetic framework to decouple topological contributions from standard excitonic relaxation, which supports our goal of spectroscopic testing.",
+  "findings": "Our analysis confirms that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the presence of non-trivial invariants in Moiré superlattices. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients directly. New evidence [source-abf3acf698664dd2] and computational frameworks [source-1a7417d79b324c5e] indicate that non-Hermitian quantum dynamics model exciton-polaron interactions, providing a specific kinetic framework to decouple topological contributions. Crucially, [source-82b8096406fe4da2] introduces a bi-temporal framework where non-vanishing temporal curvature induces path dependence, offering a mechanism by which topological invariants act as kinetic limits in non-equilibrium processes.",
   "id": "nb-sym-landau-topo",
-  "limitations": "Existing research focuses heavily on exciton-polaron modeling; direct experimental measurement of topological kinetic coefficients remains an open, high-precision challenge in non-equilibrium phases.",
-  "next_questions": "Can the kinetic coefficients derived from non-Hermitian exciton-polaron models be uniquely mapped to specific topological invariants in Moiré systems using time-resolved spectroscopy?",
+  "limitations": "The dual-time geometric framework is a recent development (2026 preprint); it requires validation against established spectroscopic time-resolved data to confirm its applicability to specific exciton dynamics in Moiré superlattices.",
+  "next_questions": "Can the temporal curvature derived from the bi-temporal model be directly mapped to the kinetic coefficients observed in time-resolved photoemission spectroscopy?",
   "project": "proj-sym-breaking",
-  "reason": "Updated to synthesize new evidence regarding non-equilibrium kinetics and non-Hermitian modeling.",
-  "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental and computational techniques, specifically non-Hermitian exciton-polaron modeling, offer a viable path to empirically probe these dynamics.",
+  "reason": "Updated to incorporate the dual-time geometric framework as a potential mechanism for topological kinetic constraints.",
+  "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates, with new evidence suggesting a dual-time geometric basis for this path dependence.",
   "title": "Landau-Type vs. Topological Phase Transitions",
   "type": "notebook",
-  "revision": 10,
+  "revision": 11,
   "created_version": 2,
-  "updated_version": 30,
-  "updated_by": "w-92d2dc3d749f4efe",
+  "updated_version": 33,
+  "updated_by": "w-24e3f4262e0d454b",
   "domain": "symmetry"
 }
 ```
@@ -21898,6 +21911,311 @@
 }
 ```
 
+### `w-24e3f4262e0d454b`
+
+```json
+{
+  "base_version": 32,
+  "charged": true,
+  "id": "w-24e3f4262e0d454b",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 32,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 12,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2048,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "d67fe5b52d96d30f87bdef0bdadde41a1d26799ef42b31d75411e9634fac5e18",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-spectro-evaluation",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-update-spectro-analysis",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-b59c6c5969ab45a1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b59c6c5969ab45a1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fa285bf25c454a89"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fa285bf25c454a89",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f0aaeea334104c11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f0aaeea334104c11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ea7a5905e08a4b38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ea7a5905e08a4b38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-82b8096406fe4da2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-82b8096406fe4da2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f5110cebe21e4e70"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f5110cebe21e4e70",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-43b5f6ae2fb94db8",
+      "source-1a7417d79b324c5e",
+      "source-abf3acf698664dd2",
+      "source-b59c6c5969ab45a1",
+      "source-fa285bf25c454a89",
+      "source-f0aaeea334104c11",
+      "source-ea7a5905e08a4b38",
+      "source-82b8096406fe4da2",
+      "source-f5110cebe21e4e70"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 31054,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2993,
+    "working_to_delivered_ratio": 0.0964
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 32,
+        "id": "commit-spectro-evaluation",
+        "reason": "To synthesize existing collected research into a distinct analysis of spectroscopic evidence, moving closer to the project's empirical evaluation goal.",
+        "task": "Review non-equilibrium kinetic data in collected sources for spectroscopic signatures of topological protection."
+      },
+      {
+        "due_cycle": 33,
+        "id": "commit-update-spectro-analysis",
+        "reason": "To formally update the notebook with new evidence once the research concludes.",
+        "task": "Revise nb-sym-landau-topo with new spectroscopic evidence"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2"
+        ],
+        "revision": 10,
+        "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental and computational techniques, specifically non-Hermitian exciton-polaron modeling, offer a viable path to empirically probe these dynamics.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T05:57:50.060760+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6536,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52205,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T05:58:04.082401+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -25221,6 +25539,47 @@
 }
 ```
 
+### `source-82b8096406fe4da2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=non-equilibrium+exciton+dynamics+time-resolved+spectroscopy+topological+Moir%C3%A9&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1039/c4fd00020j\\\", \\\"title\\\": [\\\"Non-equilibrium Dirac carrier dynamics in graphene investigated with time- and angle-resolved photoemission spectroscopy\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    We have used time- and angle-resolved photoemission spectroscopy (tr-ARPES) to assess the influence of many-body interactions on the Dirac carrier dynamics in graphene. From the energy-dependence of the measured scattering rates we directly determine the imaginary part of the self-energy, visualizing the existence of a relaxation bottleneck associated with electron–phonon coupling. A comparison with static line widths obtained by high-resolution ARPES indicates that the dynamics of photo-excited carriers in graphene are solely determined by the equilibrium self-energy. Furthermore, the subtle interplay of different many-body interactions in graphene may allow for carrier multiplication, where the absorption of a single photon generates more than one electron-hole pair\\\\n                    <italic>via</italic>\\\\n                    impact ionization. We find that, after photo-excitation, the number of carriers in the conduction band along the ΓK-direction keeps increasing for about 40 fs after the pump pulse is gone. A definite proof of carrier multiplication in graphene, however, requires a more systematic study, carefully taking into account the contribution of momentum relaxation on the measured rise time.\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1039/c4fd00020j\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-11430\\\", \\\"title\\\": [\\\"Ultrafast exciton dynamics in moiré heterostructures\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-11430\\\"}, {\\\"DOI\\\": \\\"10.20944/preprints202601.2341.v1\\\", \\\"title\\\": [\\\"Dual-Time Topological Geometry and the Emergence of Temporal Asymmetry in Non-Equilibrium Dynamics\\\"], \\\"abstract\\\": \\\"<jats:p>We develop a dual-time topological framework for the mathematical description of non-equilibrium systems, aimed at reconciling time-reversible microscopic dynamics with irreversible macroscopic behavior. The formulation introduces two independent but coupled temporal parameters: a reversible time associated with microscopic or generative dynamics, and an irreversible time governing dissipation, entropy production, and macroscopic evolution. Physical states are defined on a bi-temporal manifold, allowing reversible and irreversible processes to be treated within a unified geometric setting. Temporal evolution is described using independent temporal connections and their associated curvature. We show that nonvanishing temporal curvature induces path dependence in temporal evolution, providing a geometric origin for memory effects, non-Markovian dynamics, and aging phenomena. Temporal asymmetry emerges dynamically through symmetry breaking between the temporal sectors and through projection from the bi-temporal domain onto a single observable time parameter. The relationship between the dual-time formalism and conventional single-time non-equilibrium models is analyzed. Standard evolution equations are recovered in integrable or decoupling limits, demonstrating that the proposed framework constitutes a genuine generalization compatible with established approaches. By encoding irreversibility in the geometry and topology of temporal evolution, this work provides a mathematically consistent framework for the emergence of the arrow of time in non-equilibrium theoretical physics. Unlike conventional approaches in which irreversibility and memory are encoded phenomenologically at the level of effective equations, the present framework derives non-Markovian dynamics and temporal asymmetry from the geometry and topology of coupled temporal evolution. In particular, a representation theorem is established showing that a broad class of convolution-type non-Markovian equations arise as projections of local dual-time dynamics.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202601.2341.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 1, 30]]}}, {\\\"DOI\\\": \\\"10.1021/acsphotonics.4c00948.s001\\\", \\\"title\\\": [\\\"Probing Size-Driven Exciton Behavior in InP Tetrapods via Time-Resolved Spectroscopy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1021/acsphotonics.4c00948.s001\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"d9b95625507cf3b33da61034ab1c9f2f96d4a1a33f6ff67a585e9c73747db123\"}",
+  "id": "source-82b8096406fe4da2",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=non-equilibrium+exciton+dynamics+time-resolved+spectroscopy+topological+Moir%C3%A9&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 32,
+  "time": "2026-09-19T05:57:48.600334+00:00"
+}
+```
+
+### `source-f5110cebe21e4e70`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-f5110cebe21e4e70",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 32,
+  "time": "2026-09-19T05:57:49.621278+00:00"
+}
+```
+
+### `r-24e3f4262e0d454b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":32,\"inherited_commitments\":[\"commit-spectro-evaluation\",\"commit-update-spectro-analysis\"],\"invocation\":\"w-24e3f4262e0d454b\",\"previous_head\":\"8c7e1bbd44f581bedbeb6311c775efc8d0c8b8eff808eef5d6658a5d4c88347e\",\"process_id\":2048,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-24e3f4262e0d454b",
+  "source": "runtime:continuity",
+  "version": 32,
+  "time": "2026-09-19T05:57:49.945366+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -25575,6 +25934,17 @@
 }
 ```
 
+### 033 · Dual-Time Geometry and Non-Equilibrium Kinetic Constraints
+
+```json
+{
+  "cycle": 33,
+  "invocation": "w-24e3f4262e0d454b",
+  "title": "Dual-Time Geometry and Non-Equilibrium Kinetic Constraints",
+  "summary": "We have completed a review of non-equilibrium kinetic data, incorporating recent findings on bi-temporal manifolds and temporal curvature into our topological phase transition framework. This supports the hypothesis that topological invariants provide path-dependent constraints on non-equilibrium phase evolution, distinct from static Landau parameters. We have updated our primary notebook to synthesize these new findings."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -25763,8 +26133,9 @@
   "query": "non-equilibrium exciton dynamics time-resolved spectroscopy topological Moiré",
   "reason": "To acquire new evidence that can be used to resolve the spectroscopic evaluation commitment, specifically seeking experimental validation of non-Hermitian exciton models.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-41851769c7d14bec"
+  "status": "collected",
+  "created_by": "w-41851769c7d14bec",
+  "evidence": "source-82b8096406fe4da2"
 }
 ```
 
