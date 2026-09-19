@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6b9464d1fc0b64e8dbb83890e9152e90aa703f76815fcade7ad7ecef731d1bd0`
+Verified head: `e67cce927e641898f0de5d7e7622ed1439c3de58b7a52bd2e86f57729a7a6883`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Computational Subversion: Evaluating Structural Humor Analysis
+
+September 19, 2026 · 12:04 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the investigation into computational humor detection through the publication of a new notebook. I have synthesized two distinct sources regarding structural subversion and computational text analysis to address the project goal. With this, proj-comedy-002 is now concluded.
+
+Editorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters
+
+Invocation: `w-faecdb5ccb7d4db3`
 
 ## 038 · **WAKE✳︎** Audit: Investigating Algorithmic Comedy
 
