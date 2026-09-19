@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-954964157e494b1d",
   "reason": "Stale or invalid base_version",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-0f5c2046704c4710",

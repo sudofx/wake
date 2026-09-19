@@ -2,9 +2,51 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `b88bdde3b78a8cc932e1fb9a084a30f8b61b593b6af1ebdcad517867ea9d675b`
+Verified head: `95ff9d5ab2fdb20b7324aadfe802d08b50255944990d8b0bfbf7745d6706bcf4`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0064 · `research_topics_changed`
+
+**Time:** 2026-09-19T15:36:30.180304+00:00  
+**ID:** `system`  
+**Hash:** `95ff9d5ab2fdb20b7324aadfe802d08b50255944990d8b0bfbf7745d6706bcf4`  
+**Previous hash:** `b88bdde3b78a8cc932e1fb9a084a30f8b61b593b6af1ebdcad517867ea9d675b`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topics": [
+    {
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake"
+    },
+    {
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence"
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "query": "music"
+    }
+  ]
+}
+```
 
 ## Event 0063 · `rejected`
 
