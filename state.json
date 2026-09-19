@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -17,7 +17,18 @@
       "updated_version": 2
     }
   },
-  "commitments": {},
+  "commitments": {
+    "commit-review-ci-evidence": {
+      "due_cycle": 4,
+      "id": "commit-review-ci-evidence",
+      "reason": "Allows time for the collector to retrieve new evidence before synthesis is attempted.",
+      "task": "Review newly collected sources on AI's role in collective intelligence and evaluate eligibility for a synthesis notebook",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-f6357c8f049042bf",
+      "created_version": 3
+    }
+  },
   "evidence": {
     "source-963ce743d2b14c3c": {
       "actor": "collector",
@@ -70,6 +81,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-19T15:22:13.745316+00:00"
+    },
+    "source-1665c4b6ebab4619": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"79e8d4e2d49e1ad636aa2e43eb841f436512db29de3c9e3225a771d22e298b89\", \"verification_required\": true, \"topic_domain\": \"symmetry\"}",
+      "id": "source-1665c4b6ebab4619",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-19T15:25:23.228739+00:00"
+    },
+    "source-0aa0900542a149bd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-0aa0900542a149bd",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-19T15:25:23.393393+00:00"
+    },
+    "r-f6357c8f049042bf": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[],\"invocation\":\"w-f6357c8f049042bf\",\"previous_head\":\"a88e740420dd49dd9cd8dc9ec8f97aea34ffc7e1b77f51c94e94d21e942f15ea\",\"process_id\":2341,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f6357c8f049042bf",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-19T15:25:23.406729+00:00"
     }
   },
   "journal": [
@@ -84,6 +121,12 @@
       "invocation": "w-b3ebad1e44224e3d",
       "title": "Mapping the Cognitive Mechanics of Collective Intelligence",
       "summary": "We are organizing our initial inquiries around the socio-cognitive framework of collective intelligence. Collected metadata outlines how researchers are beginning to map artificial intelligence to group-level memory, attention, and reasoning processes, rather than just treating it as a generic productivity multiplier. We are establishing formal beliefs based on this taxonomy and queuing further targeted queries to find a second distinct reference to support a detailed research notebook."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-f6357c8f049042bf",
+      "title": "Expanding the Collective Intelligence Evidence Base",
+      "summary": "We are seeking to expand our literature base beyond the initial editorial framework on AI-supported collective intelligence. To publish a robust research notebook, we require a second distinct source to compare and contrast socio-cognitive mechanisms."
     }
   ],
   "posts": {},
@@ -408,6 +451,207 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-19T15:22:27.808152+00:00",
       "reason": ""
+    },
+    "w-f6357c8f049042bf": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-f6357c8f049042bf",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "ci-ai-support",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "AI in Collective Intelligence"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2341,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "681f28f2574c527c717b492c93a190461c337cb3f974e4a5274d1aa1e3ed4620",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-963ce743d2b14c3c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-963ce743d2b14c3c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ac3efb3639af424b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ac3efb3639af424b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2a83bb67ddfb4800"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2a83bb67ddfb4800",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1665c4b6ebab4619"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1665c4b6ebab4619",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0aa0900542a149bd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0aa0900542a149bd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-963ce743d2b14c3c",
+          "source-ac3efb3639af424b",
+          "source-2a83bb67ddfb4800",
+          "source-1665c4b6ebab4619",
+          "source-0aa0900542a149bd"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 5,
+          "evidence_count": 5,
+          "trigger_counts": {
+            "unincorporated_evidence": 5
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21323,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 5,
+        "retrieval_evidence_count": 5,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 5
+        },
+        "working_set_chars": 1228,
+        "working_to_delivered_ratio": 0.0576
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ci-ai-support",
+            "next_step": "Synthesize literature on socio-cognitive architectures and AI-supported group functions.",
+            "question": "How can AI technologies concretely enhance collective memory, attention, and reasoning in group environments?",
+            "title": "AI in Collective Intelligence"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Research frameworks for AI-assisted collective intelligence categorize AI's contributions into three distinct socio-cognitive functions: collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.8,
+            "id": "bel-ci-cognitive-taxonomy",
+            "provenance": [
+              "source-3336970370754763"
+            ],
+            "status": "active",
+            "why_retained": "The editorial abstract for 'AI for collective intelligence' explicitly proposes this three-part socio-cognitive architecture to analyze and design group cognitive enhancements."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T15:25:23.412561+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 4543,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 40914,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 6063,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 40914,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-19T15:25:40.414155+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -448,8 +692,19 @@
       "query": "AI group decision making collective reasoning cognitive architecture",
       "reason": "Seeking a second distinct source analyzing the mechanical interfaces of AI and group-level reasoning to satisfy notebook publication criteria.",
       "type": "research",
+      "status": "superseded",
+      "created_by": "w-b3ebad1e44224e3d",
+      "evidence": null
+    },
+    "res-ci-mechanisms-003": {
+      "domain": "collective_intelligence",
+      "id": "res-ci-mechanisms-003",
+      "project": "ci-ai-support",
+      "query": "AI systems socio-cognitive collective reasoning memory attention",
+      "reason": "Seeking a second distinct collected bibliographic source to analyze the specific interactions between AI systems and human group cognitive functions.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-b3ebad1e44224e3d"
+      "created_by": "w-f6357c8f049042bf"
     }
   },
   "research_topics": [

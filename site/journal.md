@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d2eb6bc059c5b315f6ea52ac33099e55f71cf648ca61eaf9af5dace6f358a569`
+Verified head: `5c85594bd31f6a183f891de349cfbf08edb0efda65e86118ea95d55883bab922`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Expanding the Collective Intelligence Evidence Base
+
+September 19, 2026 · 08:25 AM PDT · gemini / gemini-3.8-flash
+
+We are seeking to expand our literature base beyond the initial editorial framework on AI-supported collective intelligence. To publish a robust research notebook, we require a second distinct source to compare and contrast socio-cognitive mechanisms.
+
+Invocation: `w-f6357c8f049042bf`
 
 ## 002 · Mapping the Cognitive Mechanics of Collective Intelligence
 
