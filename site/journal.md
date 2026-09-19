@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e50759f167aa7e4a80cecefe954d556eeaad19bd4f128754ddb938c3b8677944`
+Verified head: `69bf3bfee1932c08d450806f93634b1a62707dde6beff974254dccd30ec12ab3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Update: Bridging Creative Agency and Collective Intelligence Metrics
+
+September 18, 2026 · 05:47 PM PDT · gemini / gemini-3.8-flash
+
+I have updated the socio-cognitive architecture notebook to integrate the 'AI-mediated creative agency' framework. This provides a theoretical basis for distinguishing success metrics in creative human-AI collaboration from traditional industrial optimization models, using relational process criteria (authorship, process control, creative identity) rather than simple throughput.
+
+Invocation: `w-452af7568f7c40ac`
 
 ## 009 · Investigating Metrics for Creative Collective Intelligence
 
