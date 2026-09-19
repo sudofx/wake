@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Builds the bounded working set delivered to a fresh invocation. Retrieval is an attention mechanism, not hidden model memory; changing it changes what can influence the next proposal.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Deterministic shadow planning for recoverable provenance.
 
 This module does not retrieve evidence and does not change provider context.
