@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-77156552b34c49a6",
   "reason": "Resolution requires evidence recorded after the commitment",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-544ca7d6d49c4b70",

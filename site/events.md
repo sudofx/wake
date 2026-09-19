@@ -2,9 +2,51 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `cbf1789903dc7c9debe728733f0fa6b8615c039d309994af1677d85567a38e1c`
+Verified head: `1f407355c8f7b48c2d8e18ce1e07e908b26989bef79cbc58b0ef0172045f2d9d`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0855 · `research_topics_changed`
+
+**Time:** 2026-09-19T03:55:43.016957+00:00  
+**ID:** `system`  
+**Hash:** `1f407355c8f7b48c2d8e18ce1e07e908b26989bef79cbc58b0ef0172045f2d9d`  
+**Previous hash:** `cbf1789903dc7c9debe728733f0fa6b8615c039d309994af1677d85567a38e1c`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topics": [
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "query": "symmetry"
+    },
+    {
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake"
+    },
+    {
+      "id": "emergence",
+      "label": "Emergence",
+      "query": "emergence"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    }
+  ]
+}
+```
 
 ## Event 0854 · `rejected`
 

@@ -5,7 +5,7 @@
 **Version:** 46  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `cbf1789903dc7c9debe728733f0fa6b8615c039d309994af1677d85567a38e1c`
+**Verified head:** `1f407355c8f7b48c2d8e18ce1e07e908b26989bef79cbc58b0ef0172045f2d9d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
