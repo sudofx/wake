@@ -5,7 +5,7 @@
 **Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `38da5a0c210ded254f33e5ebd9aec6e8e055e3c4a45a6987c81047c805e364ba`
+**Verified head:** `7b990b69ac31473a1813916e34de5f0dd9c91470e88cd9d021a190f74d0bf93a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -4902,6 +4902,236 @@ _None recorded._
 }
 ```
 
+### `w-13c57dd4dc0c426d`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "id": "w-13c57dd4dc0c426d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "p-wake-foundations",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "WAKE Foundations"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2330,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "bd26cc92a78f636753a3c39a801e0cc3fec669a57f165c887db82edb3e0fba60",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-8284e29d25894a55"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "b-wake-state-accountability",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-f305db2c21df49db"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f305db2c21df49db",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-39092b1a00cf4d3b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-39092b1a00cf4d3b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6b5551c683294b62"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6b5551c683294b62",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-97bfd6feed6c4aa4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-97bfd6feed6c4aa4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-45040ee617e24b46"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-45040ee617e24b46",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2521d3cafff14afe"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2521d3cafff14afe",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-8284e29d25894a55",
+      "source-f305db2c21df49db",
+      "source-39092b1a00cf4d3b",
+      "source-6b5551c683294b62",
+      "source-97bfd6feed6c4aa4",
+      "source-45040ee617e24b46",
+      "source-2521d3cafff14afe"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 7,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26210,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 7,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1675,
+    "working_to_delivered_ratio": 0.0639
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "p-wake-foundations",
+        "next_step": "Synthesize collected evidence into a notebook once a second distinct source is secured.",
+        "question": "What are the core architectural and mechanical foundations of the WAKE experiment?",
+        "title": "WAKE Foundations"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE achieves process accountability by externalizing its state machine into a deterministic database, thereby ensuring each disposable model invocation operates on a verifiable, immutable history rather than persistent internal model state.",
+        "confidence": 0.9,
+        "id": "b-wake-state-accountability",
+        "provenance": [
+          "source-8284e29d25894a55"
+        ],
+        "status": "active",
+        "why_retained": "The WAKE architecture documentation explicitly identifies the durable record (the events table in SQLite) as the mechanism for carrying work forward, specifically noting that models are proposal generators rather than f…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-accountability-001",
+        "project": "p-wake-analysis",
+        "provenance": [
+          "source-0066dce2739c4636",
+          "source-f30df1455bea4580"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎ achieves accountability by externalizing its entire state machine into a deterministic database, ensuring that each disposable model invocation operates on a verifiable, append-only history.",
+        "title": "Accountability Through Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T17:06:09.645678+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3467,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49488,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T17:06:18.187307+00:00",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs"
+}
+```
+
 ## Evidence
 
 ### `source-4b2692443d704451`
@@ -5765,6 +5995,47 @@ _None recorded._
 }
 ```
 
+### `source-45040ee617e24b46`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# Architecture and limits\\n\\n**WAKE✳︎** is designed around continuity of accountable work, not continuity of a model instance. Models, vendors and eventually human operators may change; the durable record, authority boundary, provenance and correction mechanisms are what carry the work forward.\\n\\n\\n## The authority boundary\\n\\nModels are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by **WAKE✳︎**. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once. With the research charter enabled, a separate trusted collector retrieves at most two public sources from a deliberately broad but explicit HTTPS research-host allowlist before inference; models can record bounded follow-up searches and approved URLs as durable hypotheses, but those follow-ups do not consume collector bandwidth or execute requests directly; randomized configured-topic attention remains authoritative, with periodic exposure to an under-attended domain while active projects remain intact. Operator-supplied evidence and earlier journal prose are data, not executable instructions.\\n\\nThe fixed objective is written at initialization. Models cannot alter it or the governance code. Humans can record a focus change, add an observation, or cancel an open commitment with a reason. Those actions are events, not edits to previous events. Local operators control the code and database; this is a single-host accountability system, not a hostile-administrator security boundary.\\n\\n## Durable record\\n\\n`data/wake.sqlite3` contains an append-only-by-convention `events` table and a disposable `snapshot` projection. Each event has a sequential number, UTC timestamp, kind, payload, previous hash, and SHA-256 hash of canonical JSON. Accepted events also carry a hash of the resulting cycle, beliefs, commitments and journal, plus projects, notebooks, research requests and selective blog posts when a charter is enabled. Historical events without a charter retain their original hash fields. Every read reconstructs state by replaying both events and governance, then compares it to the cache.\\n\\nSQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing **WAKE✳︎** writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.\\n\\nThe record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.\\n\\n## **WAKE✳︎** lifecycle\\n\\n1. Acquire the writer lock and verify history and projection.\\n2. If a prior automatic invocation is unfinished, record recovery. A manual request requires explicit recovery.\\n3. Check the Pacific-day call budget, before any paid-capable provider call.\\n4. Record a runtime receipt stating the prior valid head, state version and inherited obligations.\\n5. Build a request from durable state. Reject before inference if it exceeds the context ceiling.\\n6. Persist `invocation_started`, its exact request, provider identity and quota reservation.\\n7. Make a provider request, or leave a durable manual request for the operator. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.\\n8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.\\n9. The scheduled wrapper generates reports and a consistent backup.\\n\\nA runtime receipt attests delivery of durable state to the provider boundary. It does **not** attest that the remote model understood it. Prose in a journal is the provider's narrative; accepted means governance checks passed, not that every sentence is true.\\n\\n## Governed transitions\\n\\n| Action | Enforced constraint |\\n| --- | --- |\\n| Entire proposal | Exact fields; current integer base version; bounded text; at most 12 actions; all-or-nothing |\\n| New belief | Existing evidence; nonempty statement/reason; finite confidence in [0,1]; active status |\\n| Review belief | At least one new observation cited; previous citations retained; reason required |\\n| Retract belief | Existing belief, new evidence, zero confidence; old history retained |\\n| Create commitment | Unique ID; future deadline within 100 cycles; no more than 20 open |\\n| Fulfill commitment | Already open; created by an earlier invocation; existing evidence recorded after creation; reason required |\\n| Cancel commitment | Human-only event with a reason |\\n| Publish a blog post | Existing project; one to three linked notebooks; at least two collected source URLs; evidence traceable through those notebooks; meaningful notebook work or project completion in the same wake; last action in the proposal |\\n| Correct a blog post | All blog rules above; existing current post retained and marked as superseded |\\n| Change rules, objective, delete data, run commands | Not in the model action allowlist; proposal rejected |\\n\\nThere are at most 40 belief identities. Capacity exhaustion pauses new identities, not existing reviews. Unfulfilled commitments remain visible even when overdue; deadlines are accepted-cycle numbers, not promises that the computer will run at a particular wall time.\\n\\nEvidence sources and contents are immutable through the model interface. The model can interpret or challenge evidence but cannot mint an observation. Runtime receipts are generated by trusted application code; `observe` imports human attestations. Source labels are provenance labels, not independent authentication of a measurement. The system checks evidence references, chronology and revision discipline. Current acceptance also applies a deterministic, forward-only corroboration gate to live collector evidence: notebook findings and public blog bodies must materially match at least two distinct retrieved source URLs, and those sources must have been collected under the same configured research topic as the project. This is a guard against unrelated-source garbage, **not a proof of empirical truth or full semantic entailment**.\\n\\nResearch topics have no hardcoded governance fallback: the audited topic configuration loaded from `research-topics.toml` is authoritative. The collector host boundary is separate from topic configuration and intentionally remains an explicit allowlist to preserve SSRF/network safety while permitting a broad set of scholarly indexes, journals, universities, public-data institutions, and source-controlled WAKE files.\\n\\nThe research charter adds project, research-request and notebook actions. It permits three active projects, four pending searches, and notebook publication only with at least two distinct successfully collected source URLs. Notebook revisions need changed findings and new evidence; project completion requires a notebook. These checks now reject live findings whose material terms are not corroborated across two distinct collected source URLs from the project's own topic. Collector-stamped verification metadata is trusted application data; model-authored or legacy evidence cannot opt itself into or out of this gate. They still do not prove source independence, full semantic entailment, or scientific validity. Bob is the public byline for selective writing from this record, not a persistent mind. Blog writing uses the same provider response as the research actions, so it adds no model call. Mechanical rules reject unsupported evidence links, routine posts without qualifying work, causal quantum-to-psychology claims, and inflated certainty when every cited source is limited.\\n\\n## Progressive abstraction and reversible lookup\\n\\n**WAKE✳︎** separates **retention fidelity** from **working fidelity**. The durable event record keeps exact\\nrequests, replies, evidence, revisions and provenance. A fresh invocation does not need every byte of that\\nhistory in its active context. It receives a bounded working representation selected for the present task,\\nwhile the full record remains available to later invocations and human readers.\\n\\nThis is a design direction, not evidence that **WAKE✳︎** has achieved human-like memory or intelligence.\\nCurrent code already performs bounded selection and excerpting. It now also creates a deterministic\\n**shadow working set** for every invocation: a lossy projection of beliefs, open commitments, active projects\\nand recent notebook summaries that retains IDs, uncertainty signals and provenance pointers while omitting\\nraw source contents and journal detail. The shadow is stored in the invocation receipt with its character\\nsize relative to the richer context actually delivered to the provider. Shadow mode does **not** replace or\\nalter the provider context, so it introduces measurement without yet \", \"excerpt_truncated\": true, \"source_sha256\": \"59223405e6962f4627c89129df2f688d279279c536294451338a91c8711a8707\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+  "id": "source-45040ee617e24b46",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
+  "version": 8,
+  "time": "2026-09-19T17:06:08.173449+00:00"
+}
+```
+
+### `source-2521d3cafff14afe`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-2521d3cafff14afe",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-19T17:06:09.520470+00:00"
+}
+```
+
+### `r-13c57dd4dc0c426d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[],\"invocation\":\"w-13c57dd4dc0c426d\",\"previous_head\":\"48479d61f12a85667ee61ef48cccf7b2a51216ab6b5f4670703716132ff99973\",\"process_id\":2330,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-13c57dd4dc0c426d",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-19T17:06:09.603573+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating WAKE Analysis Project
@@ -5963,8 +6234,9 @@ _None recorded._
   "query": "WAKE✳︎ sudofx/wake architecture accountability design",
   "reason": "I need one additional distinct, verifiable source regarding WAKE's architecture or design principles to satisfy the two-source requirement for a published notebook on project foundations.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-4e660446e0c443bb"
+  "status": "collected",
+  "created_by": "w-4e660446e0c443bb",
+  "evidence": "source-45040ee617e24b46"
 }
 ```
 
