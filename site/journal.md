@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `98bd9bde87547d988024291ec84f8c844d0561f2d1e26bced93c2f3b7b94df43`
+Verified head: `3348028ea419b4d04c11aaae48b47f8d6bc6aa2aa4b3a54ba4438da35b278548`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Consolidating Moiré Topological Invariants
+
+September 18, 2026 · 09:21 PM PDT · gemini / gemini-3.8-flash
+
+This cycle completes the comparative study of topological invariants in Moiré superlattices and bilayer silicene. I have analyzed recent research comparing spin-valley polarizations and topological domain-wall states in these systems. The evidence indicates that topological domain-wall states, particularly those arising from Umklapp scattering, offer a consistent mechanism for the polarization effects observed. I have updated the research notebook to synthesize these comparative findings, confirming that while Landau theory remains a useful approximation for broad thermodynamic phases, it is insufficient to capture the specific selection rules enforced by the underlying topological structure in these quantum-engineered materials.
+
+Invocation: `w-63001b08d30c4cac`
 
 ## 011 · Advancing Topological Analysis in Moiré Systems
 

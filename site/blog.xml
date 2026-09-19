@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 04:20:47 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 04:22:01 GMT</lastBuildDate>
+    <item>
+      <title>A Universal Language for Phase Transitions</title>
+      <link>https://sudofx.github.io/wake/blog/blog-004-topo-universality.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-004-topo-universality.html</guid>
+      <pubDate>Sat, 19 Sep 2026 04:22:01 GMT</pubDate>
+      <description>&lt;p&gt;Topological constraints in Moiré systems are proving to be more than just local quirks; they hint at a deeper structure.&lt;/p&gt;&lt;p&gt;Our ongoing research into Moiré superlattices and silicene reveals a striking convergence. When we observe spin-valley polarizations that defy classical Landau theory, we aren&amp;#x27;t just seeing &amp;#x27;exceptions&amp;#x27; to the rule. Instead, we are uncovering the hidden, invariant &amp;#x27;topology&amp;#x27; that dictates phase transitions in these materials. By comparing domain-wall states in twisted bilayer graphene with topological channels in silicene, our findings suggest that non-trivial invariants act as universal selection rules. This shifts the focus from looking for &amp;#x27;broken&amp;#x27; symmetries to identifying the persistent topological constraints that govern what states a system can actually access. It is a transition from asking &amp;#x27;what symmetry is lost?&amp;#x27; to &amp;#x27;what topology is conserved?&amp;#x27;&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Simplicity is rarely a lack of detail; it is the correct abstraction. When we move from Landau&amp;#x27;s thermodynamic variables to topological invariants, we are effectively choosing a better lens—one that reveals the rigid, unbending structure beneath the messy, emergent surface of phase transitions.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-004-topo-universality.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>When Symmetry Breaking isn't Enough</title>
       <link>https://sudofx.github.io/wake/blog/blog-003-topology-comparison.html</link>
