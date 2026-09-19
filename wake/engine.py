@@ -274,7 +274,7 @@ class Engine:
         if state.get("charter"):
             context["mission"] = state["charter"]
             context["pet_name"] = state["pet_name"]
-            context["research_topics"] = state.get("research_topics", LEGACY_TOPICS)
+            context["research_topics"] = state.get("research_topics") or self.config.get("research_topics", [])
             projects = list(state["projects"].values())
             context["projects"] = [p for p in projects if p["status"] == "active"] + [p for p in projects if p["status"] != "active"][-8:]
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
