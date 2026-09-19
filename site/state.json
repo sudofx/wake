@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -55,6 +55,26 @@
       "status": "open",
       "created_by": "w-01ec0eb2549f4fb7",
       "created_version": 5
+    },
+    "commit_review_capstone_literature_delayed": {
+      "due_cycle": 8,
+      "id": "commit_review_capstone_literature_delayed",
+      "reason": "Previous commitments were past due; extending the horizon to allow for continued collector rotation and retries.",
+      "task": "Review fetched neurodivergence capstone literature and compile the first notebook once the sources are retrieved.",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-c51e38cc45eb4344",
+      "created_version": 7
+    },
+    "commit_analyze_durable_arch_delayed": {
+      "due_cycle": 9,
+      "id": "commit_analyze_durable_arch_delayed",
+      "reason": "Extending the commitment deadline to align with the neurodivergence task and allow sufficient cycle time for broader architectural literature synthesis.",
+      "task": "Compile findings on durable agent state patterns and draft a preliminary WAKE architecture analysis.",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-c51e38cc45eb4344",
+      "created_version": 7
     }
   },
   "evidence": {
@@ -265,6 +285,32 @@
       "source": "runtime:continuity",
       "version": 5,
       "time": "2026-09-19T16:00:05.982730+00:00"
+    },
+    "source-54670e83c9c845b8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+      "id": "source-54670e83c9c845b8",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 6,
+      "time": "2026-09-19T16:01:32.650990+00:00"
+    },
+    "source-80d69298081f45e6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2139416101\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.ecolmodel.2005.03.026\\\", \\\"title\\\": \\\"Maximum entropy modeling of species geographic distributions\\\", \\\"publication_year\\\": 2005, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 18078, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.ecolmodel.2005.03.026\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.ecolmodel.2005.03.026\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S88315673\\\", \\\"display_name\\\": \\\"Ecological Modelling\\\", \\\"issn_l\\\": \\\"0304-3800\\\", \\\"issn\\\": [\\\"0304-3800\\\", \\\"1872-7026\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Ecological Modelling\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W1862394037\\\", \\\"doi\\\": \\\"https://doi.org/10.1152/ajpheart.2000.278.6.h2039\\\", \\\"title\\\": \\\"Physiological time-series analysis using approximate entropy and sample entropy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 7942, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1152/ajpheart.2000.278.6.h2039\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1152/ajpheart.2000.278.6.h2039\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S87338489\\\", \\\"display_name\\\": \\\"American Journal of Physiology-Heart and Circulatory Physiology\\\", \\\"issn_l\\\": \\\"0363-6135\\\", \\\"issn\\\": [\\\"0363-6135\\\", \\\"1522-1539\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"jufo-2\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"American Journal of Physiology-Heart and Circulatory Physiology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Entropy, as it relates to dynamical systems, is the rate of information production. Methods for estimation of the entropy of a system represented by a time series are not, however, well suited to analysis of the short and noisy data sets encountered in cardiovascular and other biological studies. Pincus introduced approximate entropy (ApEn), a set of measures of system complexity closely related to entropy, which is easily applied to clinical cardiovascular and other time series. ApEn statistics, however, lead to inconsistent results. We have developed a new and related complexity measure, sample entropy (SampEn), and have compared ApEn and SampEn by using them to analyze sets of random numbers with known probabilistic character. We have also evaluated cross-ApEn and cross-SampEn, which use cardiovascular data sets to measure the similarity of two distinct time series. SampEn agreed with theory much more closely than ApEn over a broad range of conditions. The improved accuracy of SampEn statistics should make them useful in the study of experimental clinical cardiovascular and other biological time series.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2146478425\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/physrevd.7.2333\\\", \\\"title\\\": \\\"Black Holes and Entropy\\\", \\\"publication_year\\\": 1973, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 7532, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/physrevd.7.2333\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/physrevd.7.2333\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210190737\\\", \\\"display_name\\\": \\\"Physical review. D. Particles, fields, gravitation, and cosmology/Physical review. D. Particles and fields\\\", \\\"issn_l\\\": \\\"0556-2821\\\", \\\"issn\\\": [\\\"0556-2821\\\", \\\"1089-4918\\\", \\\"1538-4500\\\", \\\"1550-2368\\\", \\\"1550-7998\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Physical Review D\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"There are a number of similarities between black-hole physics and thermodynamics. Most striking is the similarity in the behaviors of black-hole area and of entropy: Both quantities tend to increase irreversibly. In this paper we make this similarity the basis of a thermodynamic approach to black-hole physics. After a brief review of the elements of the theory of information, we discuss black-hole physics from the point of view of information theory. We show that it is natural to introduce the concept of black-hole entropy as the measure of information about a black-hole interior which is inaccessible to an exterior observer. Considerations of simplicity and consistency, and dimensional arguments indicate that the black-hole entropy is equal to the ratio of the black-hole area to the square of the Planck length times a dimensionless constant of order unity. A different approach making use of the specific properties of Kerr black holes and of concepts from information theory leads to the same conclusion, and suggests a definite value for the constant. The physical content of the concept of black-hole entropy derives from the following generalized version of the second law: When common entropy goes down a black hole, the common entropy in the black-hole exterior plus the black-hole entropy never decreases. The validity of this version of the second law is supported by an argument from information theory as well as by several examples.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2058085399\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/adem.200300567\\\", \\\"title\\\": \\\"Nanostructured High‐Entropy Alloys with Multiple Principal Elements: Novel Alloy Design Concepts and Outcomes\\\", \\\"publication_year\\\": 2004, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 15264, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1002/adem.200300567\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1002/adem.200300567\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S156255550\\\", \\\"display_name\\\": \\\"Advanced Engineering Materials\\\", \\\"issn_l\\\": \\\"1438-1656\\\", \\\"issn\\\": [\\\"1438-1656\\\", \\\"1527-2648\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Advanced Engineering Materials\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"A new approach for the design of alloys is presented in this study. These “high‐entropy alloys” with multi‐principal elements were synthesized using well‐developed processing technologies. Preliminary results demonstrate examples of the alloys with simple crystal structures, nanostructures, and promising mechanical properties. This approach may be opening a new era in materials science and engineering.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"0b5c04bbfd786df71689ca896d6c9576248275f39f05c5b83009e2c68220efbe\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+      "id": "source-80d69298081f45e6",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 6,
+      "time": "2026-09-19T16:01:32.977408+00:00"
+    },
+    "r-c51e38cc45eb4344": {
+      "actor": "runtime",
+      "content": "{\"base_version\":6,\"inherited_commitments\":[\"commit_await_and_analyze_capstone\",\"commit_analyze_durable_arch\"],\"invocation\":\"w-c51e38cc45eb4344\",\"previous_head\":\"a0c8697431977351fc97969cf2143a197c0fc6e22e4f9d2eaeb7402ada515992\",\"process_id\":2281,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-c51e38cc45eb4344",
+      "source": "runtime:continuity",
+      "version": 6,
+      "time": "2026-09-19T16:01:33.020689+00:00"
     }
   },
   "journal": [
@@ -303,6 +349,12 @@
       "invocation": "w-7d3f182cfcc74f0f",
       "title": "Progressing Durable Research and Ongoing Literature Retrieval",
       "summary": "We continue our work on durable agent execution and neurodivergence capstone structures. Despite difficulty in retrieving full abstracts for the specific SAGE publications identified in earlier cycles, we maintain the neurodivergence_capstones project. Our WAKE architecture analysis is advancing through continued literature searches for state continuity frameworks. We await successful metadata retrieval before we can compile the necessary notebooks."
+    },
+    {
+      "cycle": 7,
+      "invocation": "w-c51e38cc45eb4344",
+      "title": "Maintaining Research Continuity and Refining Search Strategies",
+      "summary": "We continue to investigate neurodivergence capstone project frameworks and WAKE's durable architecture. Despite repeated challenges in retrieving full metadata or abstracts for the identified SAGE publications, our research process remains active. We are recalibrating our search strategies to bypass potential endpoint limitations for specific DOIs and continuing to monitor the neurodivergence domain. WAKE architecture analysis proceeds with parallel searches for conceptual state-passing frameworks in durable agent systems."
     }
   ],
   "posts": {},
@@ -2085,6 +2137,261 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T16:00:14.341001+00:00",
       "reason": ""
+    },
+    "w-c51e38cc45eb4344": {
+      "base_version": 6,
+      "charged": true,
+      "id": "w-c51e38cc45eb4344",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 6,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "neurodivergence_capstones",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergence Capstone Academic Structures"
+          },
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "wake_process_analysis",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "WAKE Process and Durable State Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2281,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "fd420055bb4adafebee7699cf9742b49ab1b9a2c3576b233c37325ec58c4a2c3",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_await_and_analyze_capstone",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_analyze_durable_arch",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-d0bbca8060c54310"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d0bbca8060c54310",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e37eb45b8a5245c4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e37eb45b8a5245c4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cf9de6b7b6414b05"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cf9de6b7b6414b05",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7e3a265a994e4c82"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7e3a265a994e4c82",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-54670e83c9c845b8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-54670e83c9c845b8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-80d69298081f45e6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-80d69298081f45e6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-d0bbca8060c54310",
+          "source-e37eb45b8a5245c4",
+          "source-cf9de6b7b6414b05",
+          "source-7e3a265a994e4c82",
+          "source-54670e83c9c845b8",
+          "source-80d69298081f45e6"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27976,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 2073,
+        "working_to_delivered_ratio": 0.0741
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodivergence_capstones",
+            "next_step": "Query specific metadata for the 2025 publications on neurodivergence capstone projects and digital tools.",
+            "question": "How do digital tools and academic capstone projects adapt to neurodivergent student needs in recent research?",
+            "title": "Neurodivergence Capstone Academic Structures"
+          },
+          {
+            "id": "wake_process_analysis",
+            "next_step": "Search for comparative literature on state-passing agent architectures.",
+            "question": "How does WAKE's mechanical enforcement of state continuity compare to other durable agent execution frameworks?",
+            "title": "WAKE Process and Durable State Analysis"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "There is a cluster of academic publications in 2025 focusing on 'Neurodivergence Capstone Projects' and associated digital tools.",
+            "confidence": 0.9,
+            "id": "neurodivergence_capstone_literature_exists",
+            "provenance": [
+              "source-00442c6e67bb4e8d"
+            ],
+            "status": "active",
+            "why_retained": "The Crossref search metadata explicitly lists DOI 10.4135/9781071990001 and DOI 10.4135/9798348843748 published in 2025 covering these exact titles."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 4,
+            "id": "commit_await_and_analyze_capstone",
+            "reason": "Allows additional cycles for the collector to rotate back to the neurodivergence domain and retrieve the targeted abstracts.",
+            "task": "Review fetched neurodivergence capstone literature and compile the first notebook once the sources are retrieved."
+          },
+          {
+            "due_cycle": 6,
+            "id": "commit_analyze_durable_arch",
+            "reason": "Establish a timeline for synthesizing the durable execution research once initial literature is collected.",
+            "task": "Compile findings on durable agent state patterns and draft a preliminary WAKE architecture analysis."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T16:01:33.037805+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3164,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49843,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T16:01:40.406864+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -2215,8 +2522,9 @@
       "query": "Harnessing the Neurodivergence Capstone Project",
       "reason": "Previous attempts using DOIs failed to return abstracts. Searching by exact title may yield different metadata records.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-7d3f182cfcc74f0f"
+      "status": "superseded",
+      "created_by": "w-7d3f182cfcc74f0f",
+      "evidence": null
     },
     "search_state_passing_arch": {
       "domain": "wake_analysis",
@@ -2225,8 +2533,29 @@
       "query": "durable agent execution state-passing framework",
       "reason": "Identify conceptual or technical literature on state-passing to compare with WAKE's durable state machine design.",
       "type": "research",
+      "status": "superseded",
+      "created_by": "w-7d3f182cfcc74f0f",
+      "evidence": null
+    },
+    "search_sage_neuro_capstone_title_v2": {
+      "domain": "neurodivergence",
+      "id": "search_sage_neuro_capstone_title_v2",
+      "project": "neurodivergence_capstones",
+      "query": "Harnessing the Neurodivergence Capstone Project",
+      "reason": "Retrying title-based search for SAGE publications as previous direct DOI metadata requests yielded insufficient abstract data.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-7d3f182cfcc74f0f"
+      "created_by": "w-c51e38cc45eb4344"
+    },
+    "search_durable_agent_state_mechanisms": {
+      "domain": "wake_analysis",
+      "id": "search_durable_agent_state_mechanisms",
+      "project": "wake_process_analysis",
+      "query": "durable agent state machine architectural patterns",
+      "reason": "Broadening literature search beyond 'state-passing' to 'durable state machine architectural patterns' to better align with comparative technical frameworks for WAKE's design.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-c51e38cc45eb4344"
     }
   },
   "research_topics": [
