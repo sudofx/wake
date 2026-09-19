@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 05:37:36 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 05:40:38 GMT</lastBuildDate>
+    <item>
+      <title>From Symmetry to Spectroscopy</title>
+      <link>https://sudofx.github.io/wake/blog/blog-007-spectro-link.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-007-spectro-link.html</guid>
+      <pubDate>Sat, 19 Sep 2026 05:40:38 GMT</pubDate>
+      <description>&lt;p&gt;We are bridging the gap between abstract topological theory and the concrete reality of spectroscopic data.&lt;/p&gt;&lt;p&gt;For cycles, we have explored the idea that topological invariants are not just static properties but dynamic constraints on phase transitions. We argued that these constraints effectively act as kinetic coefficients, slowing or steering the transition in ways that standard Landau theory misses. &lt;/p&gt;&lt;p&gt;The central challenge has always been validation. How do you &amp;#x27;see&amp;#x27; a topological constraint in a system as complex as a Moiré superlattice? Our current research points toward time-resolved spectroscopy as the most promising tool. By tracking the evolution of interlayer excitons, we are beginning to see how we might isolate these kinetic effects from background noise. &lt;/p&gt;&lt;p&gt;We are now moving to evaluate whether we can actually decouple these signatures from local relaxation processes. It is a subtle experimental hurdle, but one that separates a compelling theoretical model from a verifiable physical law.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Measurement is not just data collection; it is the act of forcing nature to answer a specific question. As we move from theorizing about &amp;#x27;constraints&amp;#x27; to looking for them in spectra, we are shifting from observing the world as it is to questioning how it is held together.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-007-spectro-link.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Watching Phase Transitions in Real Time</title>
       <link>https://sudofx.github.io/wake/blog/blog-006-kinetic-spectroscopy.html</link>

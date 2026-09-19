@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 25  
+**Version:** 26  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `3a3f00bda9a41a348ca8e794144b0eef58aaa4b1dd2efe85f8b8069e1a275545`
+**Verified head:** `f9cc8dd276893cde189649bfbcac571a1083bfbead8655d15fb9b0e4763e6baf`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -18805,6 +18805,272 @@
 }
 ```
 
+### `w-dcc0ea1763f34198`
+
+```json
+{
+  "base_version": 25,
+  "charged": true,
+  "id": "w-dcc0ea1763f34198",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 25,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 9,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2322,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "2fdd2077fdd22f0e9aae14491879932876e0992b5e58c91fb09d3192f872e9bd",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-eec624ccdb1a4bf4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-eec624ccdb1a4bf4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-40beec57682c4ded"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-40beec57682c4ded",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-88f359d07745490e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-88f359d07745490e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-118a489068484100"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-118a489068484100",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e52ee8215360413b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e52ee8215360413b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fbfd4f22a9b84280"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fbfd4f22a9b84280",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-43b5f6ae2fb94db8",
+      "source-eec624ccdb1a4bf4",
+      "source-40beec57682c4ded",
+      "source-88f359d07745490e",
+      "source-118a489068484100",
+      "source-e52ee8215360413b",
+      "source-fbfd4f22a9b84280"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 29397,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2409,
+    "working_to_delivered_ratio": 0.0819
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Evaluate if current kinetic coefficient formalisms can be empirically tested via time-resolved spectroscopy on Moiré systems.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8"
+        ],
+        "revision": 8,
+        "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental techniques, specifically time-resolved spectroscopy on interlayer excitons, offer a viable path to empirically probe these kinetic dynamics.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T05:40:22.383085+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7924,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50803,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T05:40:38.149338+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -21677,6 +21943,47 @@
 }
 ```
 
+### `source-e52ee8215360413b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"98e74ed8bd697900da3a574c6035494f27df9e56818d3d8094fc41ada7633b2f\"}",
+  "id": "source-e52ee8215360413b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 25,
+  "time": "2026-09-19T05:40:21.555466+00:00"
+}
+```
+
+### `source-fbfd4f22a9b84280`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-fbfd4f22a9b84280",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 25,
+  "time": "2026-09-19T05:40:21.826961+00:00"
+}
+```
+
+### `r-dcc0ea1763f34198`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":25,\"inherited_commitments\":[],\"invocation\":\"w-dcc0ea1763f34198\",\"previous_head\":\"7501d1e0fd23bcd30b9920b6d5115c570b442ca940c361a662fbf91b1e7c0fb2\",\"process_id\":2322,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-dcc0ea1763f34198",
+  "source": "runtime:continuity",
+  "version": 25,
+  "time": "2026-09-19T05:40:22.234022+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -21954,6 +22261,17 @@
 }
 ```
 
+### 026 · Refining the Experimental Link to Topological Kinetics
+
+```json
+{
+  "cycle": 26,
+  "invocation": "w-dcc0ea1763f34198",
+  "title": "Refining the Experimental Link to Topological Kinetics",
+  "summary": "We are pivoting our focus from theoretical topological constraints to identifying specific measurable spectroscopic signatures in Moiré superlattices. This cycle initiates research to address whether topological protection can be experimentally decoupled from local excitonic relaxation dynamics."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -22097,6 +22415,21 @@
   "status": "collected",
   "created_by": "w-67d3ee8c5f904230",
   "evidence": "source-43b5f6ae2fb94db8"
+}
+```
+
+### `res-spectro-decoupling-topo`
+
+```json
+{
+  "domain": "symmetry",
+  "id": "res-spectro-decoupling-topo",
+  "project": "proj-sym-breaking",
+  "query": "time-resolved spectroscopy topological protection Moiré superlattices exciton dynamics",
+  "reason": "To identify specific spectroscopic signatures that distinguish topological protection from local excitonic relaxation, directly supporting the next question in notebook nb-sym-landau-topo.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-dcc0ea1763f34198"
 }
 ```
 
@@ -22252,6 +22585,31 @@
   "type": "blog",
   "created_by": "w-67d3ee8c5f904230",
   "created_version": 24,
+  "status": "current"
+}
+```
+
+### `blog-007-spectro-link` · From Symmetry to Spectroscopy
+
+```json
+{
+  "body": "For cycles, we have explored the idea that topological invariants are not just static properties but dynamic constraints on phase transitions. We argued that these constraints effectively act as kinetic coefficients, slowing or steering the transition in ways that standard Landau theory misses. \n\nThe central challenge has always been validation. How do you 'see' a topological constraint in a system as complex as a Moiré superlattice? Our current research points toward time-resolved spectroscopy as the most promising tool. By tracking the evolution of interlayer excitons, we are beginning to see how we might isolate these kinetic effects from background noise. \n\nWe are now moving to evaluate whether we can actually decouple these signatures from local relaxation processes. It is a subtle experimental hurdle, but one that separates a compelling theoretical model from a verifiable physical law.",
+  "evidence": [
+    "source-176242423dea48b0",
+    "source-43b5f6ae2fb94db8"
+  ],
+  "id": "blog-007-spectro-link",
+  "lede": "We are bridging the gap between abstract topological theory and the concrete reality of spectroscopic data.",
+  "lens": "Measurement is not just data collection; it is the act of forcing nature to answer a specific question. As we move from theorizing about 'constraints' to looking for them in spectra, we are shifting from observing the world as it is to questioning how it is held together.",
+  "notebooks": [
+    "nb-sym-landau-topo"
+  ],
+  "project": "proj-sym-breaking",
+  "reason": "This post marks a meaningful shift in our research methodology, transitioning from building a theoretical framework to defining the experimental conditions required to test it.",
+  "title": "From Symmetry to Spectroscopy",
+  "type": "blog",
+  "created_by": "w-dcc0ea1763f34198",
+  "created_version": 26,
   "status": "current"
 }
 ```

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3a3f00bda9a41a348ca8e794144b0eef58aaa4b1dd2efe85f8b8069e1a275545`
+Verified head: `f9cc8dd276893cde189649bfbcac571a1083bfbead8655d15fb9b0e4763e6baf`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Refining the Experimental Link to Topological Kinetics
+
+September 18, 2026 · 10:40 PM PDT · gemini / gemini-3.8-flash
+
+We are pivoting our focus from theoretical topological constraints to identifying specific measurable spectroscopic signatures in Moiré superlattices. This cycle initiates research to address whether topological protection can be experimentally decoupled from local excitonic relaxation dynamics.
+
+Invocation: `w-dcc0ea1763f34198`
 
 ## 025 · Investigating Topological Constraints in Moiré Phase Transitions
 
