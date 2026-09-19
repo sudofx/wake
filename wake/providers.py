@@ -192,11 +192,8 @@ other prose, headlines, or summaries; every other claim still needs calibrated n
 # STEP: action_schema
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -240,11 +237,8 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
 # STEP: schema_for_context
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -288,11 +282,8 @@ def schema_for_context(context):
 # STEP: retractable_quotes
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -313,11 +304,8 @@ def retractable_quotes(post):
 # STEP: load_env
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -336,11 +324,8 @@ def load_env(path=Path(".env")):
 # OBJECT: TransientProviderError
 #
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -366,11 +351,8 @@ class TransientProviderError(RuntimeError):
 # OBJECT: ProviderRequestError
 #
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -391,11 +373,8 @@ FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
 # OBJECT: DailyQuotaExceeded
 #
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -410,11 +389,8 @@ class DailyQuotaExceeded(ProviderRequestError):
 # STEP: _quota_ids
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -436,11 +412,8 @@ def _quota_ids(value):
 # STEP: is_free_tier_daily_quota
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -456,11 +429,8 @@ def is_free_tier_daily_quota(details):
 # STEP: _safe_provider_value
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -498,11 +468,8 @@ def _safe_provider_value(value, depth=0):
 # STEP: _http_error_details
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -539,11 +506,8 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
 # OBJECT: Gemini
 #
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -707,11 +671,8 @@ class Gemini:
 # OBJECT: Fixture
 #
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
