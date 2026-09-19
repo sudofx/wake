@@ -127,13 +127,17 @@ def collect(engine, fetcher=fetch_source):
     attempts = len(state["invocations"])
     topics = state.get("research_topics", [])
     queued = [r for r in state.get("research", {}).values() if r["status"] == "queued"]
-    # Topic rotation is authoritative for discovery. A queued model follow-up may
-    # consume one read only when it is outside the current discovery domain, so a
-    # model cannot recursively monopolize both collection slots with one topic.
+    # Topic rotation is authoritative. Model-authored follow-ups are durable
+    # hypotheses, but they cannot consume collection bandwidth or accumulate
+    # forever and eventually deadlock the four-item queue.
     discovery_count = min(2, len(topics))
     current_domains = {topics[(attempts + offset) % len(topics)]["id"] for offset in range(discovery_count)}
-    # Neutral discovery owns the two-request budget. Queued follow-ups remain
-    # durable context for inference but cannot displace or amplify collection.
+    # Retire queued follow-ups deterministically without fetching them. This keeps
+    # them as an auditable record of model intent while preventing recursive topic
+    # lock-in and permanent queue exhaustion.
+    for item in queued:
+        engine.store.append("research_collected", {
+            "id": item["id"], "status": "superseded", "evidence": None})
     pending = []
     used_urls = set()
     for offset in range(discovery_count):
