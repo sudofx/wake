@@ -224,3 +224,14 @@ footer{margin-top:48px}
 .data-visibility{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 4px;font:10px var(--mono);letter-spacing:.06em;color:var(--muted)}
 .data-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer}.data-switch input{position:absolute;opacity:0;pointer-events:none}.data-switch-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.data-switch-track i{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.data-switch input:checked+.data-switch-track i{transform:translateX(16px);background:var(--green)}.data-switch input:focus-visible+.data-switch-track{outline:2px solid var(--green);outline-offset:2px}.data-switch b{font:inherit;color:var(--ink)}
 @media(max-width:700px){.data-visibility{align-items:flex-start;flex-direction:column;gap:7px;margin-top:16px}}
+
+
+/* Bob's ten-cycle reflections are longitudinal landmarks, not ordinary research posts.
+   Give them a distinct visual hierarchy while keeping the same underlying blog structure. */
+.blog-card-reflection{position:relative;border:2px solid var(--green);border-top:5px solid var(--green);background:var(--pale)}
+.blog-card-reflection::after{content:"✳︎";position:absolute;top:18px;right:20px;font-size:28px;line-height:1;color:var(--green);opacity:.75}
+.blog-card-reflection h2{font-size:35px}
+.reflection-flag{display:inline-block;margin:0 42px 13px 0;padding:5px 8px;border:1px solid var(--green);font:9px/1.2 var(--mono);letter-spacing:1.15px;color:var(--green);text-transform:uppercase}
+:root[data-theme="dark"] .blog-card-reflection{background:color-mix(in srgb,var(--green) 7%,var(--surface));box-shadow:0 0 0 1px color-mix(in srgb,var(--green) 35%,transparent),0 0 22px color-mix(in srgb,var(--green) 12%,transparent)}
+:root[data-theme="dark"] .reflection-flag,:root[data-theme="dark"] .blog-card-reflection::after{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--green) 55%,transparent))}
+@media(max-width:700px){.blog-card-reflection h2{font-size:29px}.reflection-flag{font-size:8px;letter-spacing:.9px}}
