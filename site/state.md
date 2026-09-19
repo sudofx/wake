@@ -5,7 +5,7 @@
 **Version:** 59  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `adb1d982f2014f37bf1e19f64f06f34ddeb42f67080d0aeb56a97a082a413bc9`
+**Verified head:** `d2f2634ae66a7c483409bac6220768fadcd740adffb44e3701ce95a113c2b51c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -25665,6 +25665,348 @@
 }
 ```
 
+### `w-a432e7e85e634e85`
+
+```json
+{
+  "base_version": 59,
+  "charged": true,
+  "id": "w-a432e7e85e634e85",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 59,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-comedy-entropy-001",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Entropy in Comedic Timing and Structure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2312,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "9c101f4c918b00ee435dbaa29d014a2b5f71a7d96f1abfd92c6e67710c603c1a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-35c944b1aba14d26"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35c944b1aba14d26",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c6c88799be8d4981"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c6c88799be8d4981",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-783f68c059814578"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-783f68c059814578",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-eab22542247f4312"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-eab22542247f4312",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ffeea278635f4ecf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ffeea278635f4ecf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cd6b0526c4ec4a33"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cd6b0526c4ec4a33",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-35c944b1aba14d26",
+      "source-c6c88799be8d4981",
+      "source-783f68c059814578",
+      "source-eab22542247f4312",
+      "source-ffeea278635f4ecf",
+      "source-cd6b0526c4ec4a33"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 22301,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4794,
+    "working_to_delivered_ratio": 0.215
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-comedy-entropy-001",
+        "next_step": "Collect literature on comedy theory and entropy-based models of surprise.",
+        "question": "Can information-theoretic entropy metrics quantify the 'surprise' or subversion of expectations in comedic timing and structural punchlines?",
+        "title": "Entropy in Comedic Timing and Structure"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      },
+      {
+        "id": "nb-music-entropy-002",
+        "project": "proj-entropy-003",
+        "provenance": [
+          "source-54becf7641d14fb0",
+          "source-b889a58a4d2c4e35"
+        ],
+        "revision": 1,
+        "summary": "Information theory offers a quantifiable metric for modeling musical anticipation; predictive coding frameworks suggest listeners minimize surprise, with entropy acting as a proxy for prediction cost in non-isochronous structures.",
+        "title": "Predictive Coding and Entropy in Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-comedy-neuro-002",
+        "project": "proj-comedy-neuro-001",
+        "provenance": [
+          "source-923539e168b64f3d",
+          "source-2a221185e56c4378"
+        ],
+        "revision": 1,
+        "summary": "The structural 'misrule' framework in comedy, which inverts social norms to expose their contingency, offers a theoretical lens for interpreting neurodivergent social signaling.",
+        "title": "Misrule and Neurodivergence as Social Subversion"
+      },
+      {
+        "id": "nb-neuro-music-001",
+        "project": "proj-neuro-music-001",
+        "provenance": [
+          "source-289946b8a54746fe",
+          "source-b43881bf4bf34e6e"
+        ],
+        "revision": 1,
+        "summary": "Recent literature highlights distinct patterns in rhythmic auditory processing and interpersonal synchronization among neurodivergent populations, suggesting that predictive coding frameworks require adjustment to account for neurotypical-centric normative benchmarks.",
+        "title": "Rhythmic Processing and Synchronization in Neurodivergent Populations"
+      },
+      {
+        "id": "nb-neuro-digital-001",
+        "project": "proj-neuro-002",
+        "provenance": [
+          "source-79b019f698814473",
+          "source-e147408dd1be4827"
+        ],
+        "revision": 1,
+        "summary": "Digital communication tools modify neurodivergent social signaling by providing alternative modalities that can reduce the cognitive load of real-time normative social synchronization, though they introduce new complexities in emotional engagement.",
+        "title": "Digital Communication Modalities in Neurodivergent Populations"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T20:16:03.275329+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7918,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46769,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T20:16:19.995672+00:00",
+  "reason": "Notebook findings evidence must come from the same research topic as its project"
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -29190,6 +29532,47 @@
   "source": "runtime:continuity",
   "version": 59,
   "time": "2026-09-19T20:14:06.489939+00:00"
+}
+```
+
+### `source-ffeea278635f4ecf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1\", \"scope\": \"recursive source-controlled WAKE repository file index; paths and sizes, not file contents\", \"excerpt\": \"[{\\\"path\\\": \\\".env.example\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 83}, {\\\"path\\\": \\\".github/workflows/test.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1063}, {\\\"path\\\": \\\".github/workflows/wake.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4310}, {\\\"path\\\": \\\".gitignore\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 75}, {\\\"path\\\": \\\"LICENSE\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 34020}, {\\\"path\\\": \\\"README.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 22735}, {\\\"path\\\": \\\"assets/covers/cover-original.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2471510}, {\\\"path\\\": \\\"assets/covers/cover-variant-001.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3329007}, {\\\"path\\\": \\\"assets/covers/cover-variant-002.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3256389}, {\\\"path\\\": \\\"assets/covers/cover-variant-003.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3125985}, {\\\"path\\\": \\\"assets/covers/cover-variant-004.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2847631}, {\\\"path\\\": \\\"assets/playlists/Reality Bytes Playlist.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9999}, {\\\"path\\\": \\\"docs/architecture.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 17191}, {\\\"path\\\": \\\"docs/cloud.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9919}, {\\\"path\\\": \\\"docs/experiment.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9486}, {\\\"path\\\": \\\"docs/operations.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8136}, {\\\"path\\\": \\\"docs/quota-map-implementation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7590}, {\\\"path\\\": \\\"docs/retrieval.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3123}, {\\\"path\\\": \\\"docs/validation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2589}, {\\\"path\\\": \\\"examples/journal/events.jsonl\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1017120}, {\\\"path\\\": \\\"examples/journal/experiment.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 20205}, {\\\"path\\\": \\\"examples/journal/head.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 65}, {\\\"path\\\": \\\"examples/journal/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1266448}, {\\\"path\\\": \\\"examples/journal/journal.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 33437}, {\\\"path\\\": \\\"examples/journal/state.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 199768}, {\\\"path\\\": \\\"pyproject.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 662}, {\\\"path\\\": \\\"requirements.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 68}, {\\\"path\\\": \\\"research-topics.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 961}, {\\\"path\\\": \\\"scripts/checkpoint-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2693}, {\\\"path\\\": \\\"scripts/covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2093}, {\\\"path\\\": \\\"scripts/github_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8713}, {\\\"path\\\": \\\"scripts/install_cron.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1560}, {\\\"path\\\": \\\"scripts/manual-model-wake.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8257}, {\\\"path\\\": \\\"scripts/package.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1207}, {\\\"path\\\": \\\"scripts/publish.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5847}, {\\\"path\\\": \\\"scripts/run-wake-cycles.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4618}, {\\\"path\\\": \\\"scripts/scheduled_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1218}, {\\\"path\\\": \\\"scripts/sync-cloud-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2100}, {\\\"path\\\": \\\"tests/test_cloud_workflow.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18678}, {\\\"path\\\": \\\"tests/test_covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2879}, {\\\"path\\\": \\\"tests/test_editorial_corrections.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7432}, {\\\"path\\\": \\\"tests/test_feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7806}, {\\\"path\\\": \\\"tests/test_gemini_failover.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14062}, {\\\"path\\\": \\\"tests/test_provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8270}, {\\\"path\\\": \\\"tests/test_publishing.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4518}, {\\\"path\\\": \\\"tests/test_rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4751}, {\\\"path\\\": \\\"tests/test_research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 36256}, {\\\"path\\\": \\\"tests/test_status.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4452}, {\\\"path\\\": \\\"tests/test_system.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 28625}, {\\\"path\\\": \\\"wake.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1799}, {\\\"path\\\": \\\"wake/__init__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 789}, {\\\"path\\\": \\\"wake/__main__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12344}, {\\\"path\\\": \\\"wake/assets/app.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 22366}, {\\\"path\\\": \\\"wake/assets/data-view.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1551}, {\\\"path\\\": \\\"wake/assets/help.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9578}, {\\\"path\\\": \\\"wake/assets/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12362}, {\\\"path\\\": \\\"wake/assets/map.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7978}, {\\\"path\\\": \\\"wake/assets/map.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3797}, {\\\"path\\\": \\\"wake/assets/map.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11947}, {\\\"path\\\": \\\"wake/assets/nav.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2643}, {\\\"path\\\": \\\"wake/assets/nav.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1250}, {\\\"path\\\": \\\"wake/assets/pet.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 13259}, {\\\"path\\\": \\\"wake/assets/style.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49482}, {\\\"path\\\": \\\"wake/audit.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2259}, {\\\"path\\\": \\\"wake/engine.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 43416}, {\\\"path\\\": \\\"wake/experiment.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9323}, {\\\"path\\\": \\\"wake/feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7638}, {\\\"path\\\": \\\"wake/governance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 52402}, {\\\"path\\\": \\\"wake/provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11733}, {\\\"path\\\": \\\"wake/providers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 42836}, {\\\"path\\\": \\\"wake/rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10410}, {\\\"path\\\": \\\"wake/report.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 42067}, {\\\"path\\\": \\\"wake/research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 24064}, {\\\"path\\\": \\\"wake/retrieval.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6790}, {\\\"path\\\": \\\"wake/scheduling.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8308}, {\\\"path\\\": \\\"wake/store.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 19547}]\", \"excerpt_truncated\": false, \"source_sha256\": \"4a11163761bcbb71afbc8a8cbef45232c962d69fdf142466654c34ba72901795\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+  "id": "source-ffeea278635f4ecf",
+  "scope": "collected",
+  "source": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
+  "version": 59,
+  "time": "2026-09-19T20:16:01.542460+00:00"
+}
+```
+
+### `source-cd6b0526c4ec4a33`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1989670470\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"title\\\": \\\"Shakespeare and the Traditions of Comedy\\\", \\\"publication_year\\\": 1974, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 295, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511553189\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"This book relates Shakespeare's comedies to a broad European background. At the beginning and again at the end of his career, Shakespeare was attracted by a tradition of stage romances which can be traced back to Chaucer's time. But the main shaping behind his comedies came from the classical tradition. Mr Salingar therefore examines the underlying theme of 'errors' in Greek and Roman comedies and, taking three Italian comedies famous in the sixteenth century as examples, he then reveals how the Italian Renaissance revived the classical tradition, and what effect this revival had on Shakespeare the Elizabethan playwright and discusses such topics as the device of the play within a play and Shakespeare's choice of Italian short stories as plot material. This book shows how Shakespeare changed the motifs he took over from previous traditions of comedy and highlights the innovations he introduced, as an actor-dramatist writing in the first period of commercial theatre in Europe.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4213157483\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"title\\\": \\\"Slaves, Masters, and the Art of Authority in Plautine Comedy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 396, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/9781400824700\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463805\\\", \\\"display_name\\\": \\\"Princeton University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310316492\\\", \\\"host_organization_name\\\": \\\"Princeton University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316492\\\"], \\\"host_organization_lineage_names\\\": [\\\"Princeton University Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"What pleasures did Plautus' heroic tricksters provide their original audience? How should we understand the compelling mix of rebellion and social conservatism that Plautus offers? Through a close reading of four plays representing the full range of his work (Menaechmi, Casina, Persa, and Captivi), Kathleen McCarthy develops an innovative model of Plautine comedy and its social effects. She concentrates on how the plays are shaped by the interaction of two comic modes: the socially conservative mode of naturalism and the potentially subversive mode of farce. It is precisely this balance of the naturalistic and the farcical that allows everyone in the audience--especially those well placed in the social hierarchy--to identify both with and against the rebel, to feel both the thrill of being a clever underdog and the complacency of being a securely ensconced authority figure. Basing her interpretation on the workings of farce and naturalism in Plautine comedy, McCarthy finds a way to understand the plays' patchwork literary style as well as their protean social effects. Beyond this, she raises important questions about popular literature and performance not only on ancient Roman stages but in cultures far from Plautus' Rome. How and why do people identify with the fictional figures of social subordinates? How do stock characters, happy endings, and other conventions operate? How does comedy simultaneously upset and uphold social hierarchies? Scholars interested in Plautine theater will be rewarded by the detailed analyses of the plays, while those more broadly interested in social and cultural history will find much that is useful in McCarthy's new way of grasping the elusive ideological effects of comedy.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1550808012\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Dithyramb, tragedy and comedy\\\", \\\"publication_year\\\": 1927, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 374, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:quod.lib.umich.edu:MIU01-001181479\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7407064297\\\", \\\"display_name\\\": \\\"University of Michigan Library Repository\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"Includes bibliographical references and index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4297668621\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"title\\\": \\\"The Stagecraft and Performance of Roman Comedy\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 297, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511486203\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"A comprehensive survey of Roman theatrical production, this book examines all aspects of Roman performance practice, and provides fresh insights on the comedies of Plautus and Terence. Following an introductory chapter on the experience of Roman comedy from the perspective of Roman actors and the Roman audience, addressing among other things the economic concerns of putting on a play in the Roman republic, subsequent chapters provide detailed studies of troupe size and the implications for role assignment, masks, stage action, music, and improvisation in the plays of Plautus and Terence. Marshall argues that Roman comedy was raw comedy, much more rough-and-ready than its Hellenistic precursors, but still fully conscious of its literary past. The consequences of this lead to fresh conclusions concerning the dramatic structure of Roman comedy, and a clearer understanding of the relationship between the plays-as-text and the role of improvisation during performance.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"68bce790ce67ec0ab76c62af19d79dc60f91625bc0bc9ec844cd28d0bd6810be\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-cd6b0526c4ec4a33",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 59,
+  "time": "2026-09-19T20:16:02.503102+00:00"
+}
+```
+
+### `r-a432e7e85e634e85`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":59,\"inherited_commitments\":[],\"invocation\":\"w-a432e7e85e634e85\",\"previous_head\":\"c03721aa9f80db479cad50c23cf12fc366453a2b4472eaa457fb406fa8965b92\",\"process_id\":2312,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a432e7e85e634e85",
+  "source": "runtime:continuity",
+  "version": 59,
+  "time": "2026-09-19T20:16:03.024039+00:00"
 }
 ```
 
