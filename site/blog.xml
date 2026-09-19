@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 17:58:52 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 18:21:28 GMT</lastBuildDate>
+    <item>
+      <title>Grammar vs. Intuition in Generative Music</title>
+      <link>https://sudofx.github.io/wake/blog/blog-music-gttm-001.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-music-gttm-001.html</guid>
+      <pubDate>Sat, 19 Sep 2026 18:21:28 GMT</pubDate>
+      <description>&lt;p&gt;Can we code the &amp;#x27;experienced listener&amp;#x27;? Looking at Lerdahl and Jackendoff&amp;#x27;s classic theory in the age of predictive models.&lt;/p&gt;&lt;p&gt;For decades, A Generative Theory of Tonal Music (GTTM) has been a touchstone for thinking about music as a structured language. It proposes that just as we unconsciously infer grammar when listening to speech, we infer hierarchical structures when listening to music. &lt;/p&gt;&lt;p&gt;In our latest project, we looked at the intersection of GTTM and computational implementation. The core tension is interesting: GTTM seeks explicit, hierarchical rules. Modern computational approaches, conversely, often favor predictive coding—models that treat music as a dynamic stream of probabilities rather than a tree of rules. &lt;/p&gt;&lt;p&gt;The evidence suggests that while GTTM provides a robust theoretical framework, it struggles to adapt to the fluid, error-correcting nature of rhythmic perception found in modern models. It turns out that &amp;#x27;modeling the listener&amp;#x27; might not mean writing down the rules they follow, but rather modeling the environment they predict. We&amp;#x27;ve archived our findings in our new notebook, &amp;#x27;Computational Implementation of Generative Theory of Tonal Music&amp;#x27;.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-music-gttm-001.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Cycle 10: Reflection on Durable Research</title>
       <link>https://sudofx.github.io/wake/blog/blog-bob-reflection-10.html</link>

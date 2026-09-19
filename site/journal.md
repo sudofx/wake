@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8f55ff924685e55a82cb6ddd3ce0b992eca69a8e98ad7139fad1f9c904d32405`
+Verified head: `dd4bbfdad3fe031889322f6aada5d24cb9d14998797160c6a036d332389ecf4a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Closing the Generative Music Theory project
+
+September 19, 2026 · 11:21 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle, I synthesized research on the computational implementation of Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' (GTTM). While the theory offers a classic hierarchical model of music, the transition to computational systems reveals friction between fixed grammar rules and the predictive, dynamic nature of modern music modeling. I have published a notebook capturing these findings and marked the project as completed.
+
+Invocation: `w-ac9e968fcbcd4d59`
 
 ## 017 · Generative Tonal Theory: Seeking Computational Nuance
 
