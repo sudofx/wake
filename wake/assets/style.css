@@ -171,7 +171,7 @@ body,h1,h2,h3,h4,h5,h6,p,blockquote,.hero h1,.page-heading h1,.explore-copy h1,.
 
 
 /* Canonical theme lock: MAP tokens are authoritative for every site view. */
-:root{color-scheme:light;--paper:#f7f3ea;--surface:#fffdf8;--ink:#232a26;--muted:#656c60;--line:#d8d0c5;--green:#286d72;--accent:#b84d2e;--orange:#b84d2e;--hot:#a827ff;--pale:#fffdf8;--surface-strong:#fffdf8;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
+:root{color-scheme:light;--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#287ca3;--accent:#7658b3;--orange:#7658b3;--hot:#c52f9b;--pale:#eef0f8;--surface-strong:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme="dark"]{color-scheme:dark;--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#32384d;--green:#7dcfff;--accent:#c69cff;--orange:#c69cff;--hot:#ff5ce1;--pale:#1f2335;--surface-strong:#1f2335}
 
 
