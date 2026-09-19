@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Builds the provenance graph from explicit durable IDs and replayed events. Relationships shown to the reader come from recorded references, not browser-side narrative inference.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Static provenance derived only from replayed events and explicit durable IDs."""
 
 import json
