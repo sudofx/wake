@@ -19,11 +19,8 @@ from urllib.parse import quote
 # STEP: explanation
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
@@ -58,11 +55,8 @@ def explanation(reason):
 # STEP: _text
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
@@ -79,11 +73,8 @@ def _text(value):
 # STEP: _paragraphs
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
@@ -98,11 +89,8 @@ def _paragraphs(value):
 # STEP: rejected_html
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
