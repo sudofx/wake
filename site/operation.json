@@ -1,93 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-551641ece51d45ac",
-  "reason": "Commitment ID already exists",
+  "status": "accepted",
+  "id": "w-6978ac5935b449d2",
+  "cycle": 2,
   "wake_status": {
     "last_accepted": {
-      "id": "w-a71ac450ec6e4502",
-      "time": "2026-09-19T17:22:14.364939+00:00",
-      "finished": "2026-09-19T17:22:46.276196+00:00",
+      "id": "w-6978ac5935b449d2",
+      "time": "2026-09-19T17:28:08.195578+00:00",
+      "finished": "2026-09-19T17:28:14.330470+00:00",
       "status": "accepted",
       "reason": "",
-      "provider_requests_sent": 2,
-      "provider_attempts": [
-        {
-          "category": "http",
-          "elapsed_ms": 205,
-          "http_status": 429,
-          "model": "gemini-3.8-flash",
-          "provider_error": {
-            "code": 429,
-            "details": [
-              {
-                "@type": "type.googleapis.com/google.rpc.Help",
-                "links": [
-                  {
-                    "description": "Learn more about Gemini API quotas",
-                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
-                "violations": [
-                  {
-                    "quotaDimensions": {
-                      "location": "[truncated]",
-                      "model": "[truncated]"
-                    },
-                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
-                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
-                    "quotaValue": "20"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.RetryInfo",
-                "retryDelay": "43s"
-              }
-            ],
-            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 43.12412593s.",
-            "status": "RESOURCE_EXHAUSTED"
-          },
-          "request_payload_bytes": 28979,
-          "response_bytes_captured": 1362,
-          "result": "daily_quota"
-        },
-        {
-          "elapsed_ms": 25879,
-          "http_status": 200,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 28979,
-          "result": "success"
-        }
-      ],
-      "successful_model": "gemini-3.5-flash"
-    },
-    "latest_attempt": {
-      "id": "w-551641ece51d45ac",
-      "time": "2026-09-19T17:26:53.005742+00:00",
-      "finished": "2026-09-19T17:26:58.995517+00:00",
-      "status": "rejected",
-      "reason": "Commitment ID already exists",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2044,
+          "elapsed_ms": 2179,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43800,
+          "request_payload_bytes": 44415,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 1,
-    "next_eligible": "2026-09-19T17:31:53.005742+00:00",
+    "latest_attempt": {
+      "id": "w-6978ac5935b449d2",
+      "time": "2026-09-19T17:28:08.195578+00:00",
+      "finished": "2026-09-19T17:28:14.330470+00:00",
+      "status": "accepted",
+      "reason": "",
+      "provider_requests_sent": 1,
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2179,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 44415,
+          "result": "success"
+        }
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
+    },
+    "accepted_cycles": 2,
+    "next_eligible": "2026-09-19T17:33:08.195578+00:00",
     "pending": false,
-    "attempts_today": 4,
-    "provider_requests_today": 6,
-    "provider_request_slots_today": 6,
+    "attempts_today": 5,
+    "provider_requests_today": 7,
+    "provider_request_slots_today": 7,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
