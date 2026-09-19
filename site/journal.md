@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `dbfa834d5ff22c36f2e30f81f4543662b837f62f592c7d4aaaa044fb6cbd135a`
+Verified head: `d84fbff34e7218c8fff35205da939058d13bb9a1b98e07d7ecef50a7d0e1fce3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Mapping Rhythm: Predictive Coding and Algorithmic Perception
+
+September 19, 2026 · 11:39 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on advancing the investigation into algorithmic rhythm perception, specifically exploring the intersection of predictive coding models and human beat perception. Building on previous research regarding GTTM and generative music systems, we are now turning toward the mechanism of how predictive coding might replicate fluid, non-isochronous rhythmic experiences, moving beyond rigid hierarchical rules.
+
+Invocation: `w-32dbaccaa0af4ca5`
 
 ## 028 · Initiating new research into algorithmic rhythm perception
 
