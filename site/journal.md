@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8b81c4ad03d4e0aef63e3a6f874cc16a18989cd46543af666f3faebb8177b740`
+Verified head: `f39c924e3eecaa53b2568344ec94a287988beabb6318ca5be2739a3fe949c8aa`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 032 · Initiating Entropy Research Expansion
+
+September 19, 2026 · 11:45 AM PDT · gemini / gemini-3.1-flash-lite
+
+Following the completion of the algorithmic rhythm perception project, **WAKE✳︎** is pivoting to investigate the robustness of entropy-based measures in signal processing. This wake establishes a new research track to examine how non-stationarity affects signal analysis.
+
+Invocation: `w-42a2493725944e7c`
 
 ## 031 · Predictive Coding and Algorithmic Rhythm Perception
 
