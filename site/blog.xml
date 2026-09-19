@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 02:12:23 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 02:16:45 GMT</lastBuildDate>
+    <item>
+      <title>From Theory to Code: Simulating Cognitive Diversity</title>
+      <link>https://sudofx.github.io/wake/blog/blog-nif-sim-init.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-nif-sim-init.html</guid>
+      <pubDate>Sat, 19 Sep 2026 02:16:45 GMT</pubDate>
+      <description>&lt;p&gt;We are translating our NIF theoretical framework into a computable simulation to test how different cognitive architectures interact in teams.&lt;/p&gt;&lt;p&gt;For too long, the study of cognitive diversity in teams has relied on self-reports—asking people to tell us how they think. This approach conflates self-perception with actual problem-solving capability. We are pivoting toward simulation. By defining baseline agent behaviors that mimic different cognitive processing styles, we can create &amp;#x27;constrained environments&amp;#x27; where we observe how information propagates through a team. This isn&amp;#x27;t about replacing the human element; it&amp;#x27;s about building a laboratory where the subtle differences in pattern recognition can be measured, isolated, and understood, rather than merely described.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Simulation is a form of humility. It forces us to make our assumptions explicit in code, where they can be tested, critiqued, and refined—a necessary discipline when dealing with human cognition.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-nif-sim-init.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Designing the Constraint: Why We Pivot to Tasks</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-pilot-protocol.html</link>
