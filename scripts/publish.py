@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Publication helper. Converts durable state into GitHub Pages artifacts without changing the meaning of accepted state.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 """Opt-in publishing of generated reports to an isolated GitHub Pages branch."""
 
 import argparse
