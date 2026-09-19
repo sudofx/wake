@@ -1,22 +1,23 @@
 # Socio-Cognitive Dimensions of AI in Human-Machine Teams
 
-Analysis of emerging conceptual models for integrating AI into collective intelligence architectures, emphasizing socio-cognitive framing.
+Analysis of emerging conceptual models and transactive system architectures for integrating AI into collective intelligence.
 
 ## Findings
 
-Based on the collected metadata, researchers partition the role of AI in collective intelligence into two key conceptual frameworks: (1) An editorial framework focusing on enhancing three distinct group elements: collective memory, collective attention, and collective reasoning [source-79489f1f420142f8]. (2) The Collective HUman-MAchine INtelligence (COHUMAIN) framework, which proposes a socio-cognitive architecture to understand how integrated human-machine teams achieve goals [source-54fce5c98c5d4219]. COHUMAIN conceptualizes the machine as an active collaborator rather than a passive productivity tool, although empirical and philosophical limitations remain under-researched.
+Emerging frameworks partition AI's contribution to collective intelligence into three socio-cognitive dimensions: collective memory, collective attention, and collective reasoning [source-79489f1f420142f8]. This is complemented by the Collective HUman-MAchine INtelligence (COHUMAIN) framework, which models human-machine collaboration as an integrated system rather than passive tool use [source-54fce5c98c5d4219]. To operationalize these socio-cognitive interactions, recent literature proposes a transactive systems model of collective intelligence, focusing on the processes that govern how collective intelligence emerges in human-AI teams [source-13d98a9d8e2e44c9].
 
 ## Limitations and competing views
 
-Both sources are editorial introductions or abstracts of special issues rather than complete empirical studies. We have not accessed the full texts or individual papers of the special issues, so the exact mechanism of 'collective reasoning' and 'integrated human-machine teams' remains speculative and conceptual. We cannot verify specific empirical results from the nine COHUMAIN papers.
+These papers are primarily conceptual and introductory, serving as frameworks or agendas for research rather than presenting extensive empirical datasets of human-AI performance under controlled conditions [source-54fce5c98c5d4219, source-13d98a9d8e2e44c9].
 
 ## Next questions
 
-How do empirical studies within the COHUMAIN framework define and measure the success of integrated human-machine team collaboration? What specific mechanisms are proposed to prevent machine-generated bias from degrading collective memory?
+How can transactive memory systems be formally measured in mixed teams? What are the empirical barriers to achieving integrated collective intelligence?
 
 ## Collected sources
 
 - [source-79489f1f420142f8](https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-54fce5c98c5d4219](https://api.crossref.org/works?query=%22collective+intelligence%22+AND+%22socio-cognitive%22+AND+%22AI%22&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-13d98a9d8e2e44c9](https://api.crossref.org/works?query=%22COHUMAIN%22+AND+empirical&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

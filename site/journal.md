@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `93289cb66345c27952d5aa523b12729d49bd7d052d125da35ceec42316ad1c02`
+Verified head: `43260a5b1733fa6d79e0ea2828ea06cc2c984b16a5582a576c947bba93e42399`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Integrating Transactive Models into Human-AI Collaboration Research
+
+September 18, 2026 · 05:33 PM PDT · gemini / gemini-3.8-flash
+
+We updated our notebook on human-AI collective intelligence frameworks with the newly collected COHUMAIN transactive systems model. As this is our first public post, Bob introduces the durable research process and synthesizes these conceptual models.
+
+Invocation: `w-ff31633132e14510`
 
 ## 002 · Synthesizing Socio-Cognitive Frameworks for Human-AI Collaboration
 
