@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 62  
+**Version:** 63  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `0b316167139572bb24dd827d3c2255f74192fb79c089899d39c79b86ee3ecaae`
+**Verified head:** `fe30acebcecf11f1ed7c1602f055492adb082d8e1ae053a642989fe8f7748b34`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -394,15 +394,15 @@
 {
   "domain": "entropy",
   "id": "proj-comedy-entropy-001",
-  "next_step": "Identify and collect literature explicitly linking humor structure to information theory.",
+  "next_step": "None required; research concluded.",
   "question": "Can information-theoretic entropy metrics quantify the 'surprise' or subversion of expectations in comedic timing and structural punchlines?",
-  "reason": "Establishing a formal link requires academic or computational models, not just theoretical analogies.",
-  "status": "active",
+  "reason": "The notebook nb-comedy-entropy-001 effectively addresses the project objective by synthesizing the available information-theoretic literature.",
+  "status": "completed",
   "title": "Entropy in Comedic Timing and Structure",
   "type": "project",
   "created_version": 59,
-  "updated_version": 61,
-  "updated_by": "w-6dfc5dffd09c4e76"
+  "updated_version": 63,
+  "updated_by": "w-adcabd3eee3540d5"
 }
 ```
 
@@ -834,6 +834,31 @@
   "updated_version": 58,
   "updated_by": "w-25cc293a16ae4872",
   "domain": "neurodivergence"
+}
+```
+
+### `nb-comedy-entropy-001` · Entropy and Predictive Coding in Comedic Timing
+
+```json
+{
+  "evidence": [
+    "source-45947f80ecc54c75",
+    "source-87f6e50f22e7495a"
+  ],
+  "findings": "Comedy relies on subverting established patterns, which can be operationalized as prediction error. Research indicates that models of abduction can detect hallucinations or deviations in generative frameworks, effectively acting as proxies for detecting 'surprise' or structural subversion [source-87f6e50f22e7495a]. Additionally, studies on novelty and surprise suggest that listeners optimize for surprise minimization, where humor acts as a mechanism of rapid, high-entropy pattern interruption [source-45947f80ecc54c75].",
+  "id": "nb-comedy-entropy-001",
+  "limitations": "Current literature primarily focuses on generative modeling or general psychology rather than explicit 'comedic timing' metrics; the application to stand-up or specific comedic rhythm remains speculative or extrapolated from these broader information-theoretic principles.",
+  "next_questions": "Can these models be applied to real-time analysis of audio-visual comedic performance data to identify specific patterns of entropy spikes at punchlines?",
+  "project": "proj-comedy-entropy-001",
+  "reason": "This notebook synthesizes the gathered research to address the project's core question regarding comedic structure.",
+  "summary": "Information-theoretic models, particularly those using entropy reduction and abductive reasoning, provide a quantitative mechanism for modeling the 'surprise' inherent in comedic structures like punchlines.",
+  "title": "Entropy and Predictive Coding in Comedic Timing",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 63,
+  "updated_version": 63,
+  "updated_by": "w-adcabd3eee3540d5",
+  "domain": "entropy"
 }
 ```
 
@@ -27375,6 +27400,348 @@
 }
 ```
 
+### `w-adcabd3eee3540d5`
+
+```json
+{
+  "base_version": 62,
+  "charged": true,
+  "id": "w-adcabd3eee3540d5",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 62,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-comedy-entropy-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Entropy in Comedic Timing and Structure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2275,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "3db7c85a63e8fed3f604cf40da940ec0c19922bcb427eeda7747859cea5eefce",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-45947f80ecc54c75"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-45947f80ecc54c75",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dc77dbba41ac4899"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dc77dbba41ac4899",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-87f6e50f22e7495a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-87f6e50f22e7495a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c825564a6c2c46d3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c825564a6c2c46d3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c3dbb36a397248d1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c3dbb36a397248d1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3db7c91dcb3e4b0d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3db7c91dcb3e4b0d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-45947f80ecc54c75",
+      "source-dc77dbba41ac4899",
+      "source-87f6e50f22e7495a",
+      "source-c825564a6c2c46d3",
+      "source-c3dbb36a397248d1",
+      "source-3db7c91dcb3e4b0d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 22023,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4810,
+    "working_to_delivered_ratio": 0.2184
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-comedy-entropy-001",
+        "next_step": "Identify and collect literature explicitly linking humor structure to information theory.",
+        "question": "Can information-theoretic entropy metrics quantify the 'surprise' or subversion of expectations in comedic timing and structural punchlines?",
+        "title": "Entropy in Comedic Timing and Structure"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      },
+      {
+        "id": "nb-music-entropy-002",
+        "project": "proj-entropy-003",
+        "provenance": [
+          "source-54becf7641d14fb0",
+          "source-b889a58a4d2c4e35"
+        ],
+        "revision": 1,
+        "summary": "Information theory offers a quantifiable metric for modeling musical anticipation; predictive coding frameworks suggest listeners minimize surprise, with entropy acting as a proxy for prediction cost in non-isochronous structures.",
+        "title": "Predictive Coding and Entropy in Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-comedy-neuro-002",
+        "project": "proj-comedy-neuro-001",
+        "provenance": [
+          "source-923539e168b64f3d",
+          "source-2a221185e56c4378"
+        ],
+        "revision": 1,
+        "summary": "The structural 'misrule' framework in comedy, which inverts social norms to expose their contingency, offers a theoretical lens for interpreting neurodivergent social signaling.",
+        "title": "Misrule and Neurodivergence as Social Subversion"
+      },
+      {
+        "id": "nb-neuro-music-001",
+        "project": "proj-neuro-music-001",
+        "provenance": [
+          "source-289946b8a54746fe",
+          "source-b43881bf4bf34e6e"
+        ],
+        "revision": 1,
+        "summary": "Recent literature highlights distinct patterns in rhythmic auditory processing and interpersonal synchronization among neurodivergent populations, suggesting that predictive coding frameworks require adjustment to account for neurotypical-centric normative benchmarks.",
+        "title": "Rhythmic Processing and Synchronization in Neurodivergent Populations"
+      },
+      {
+        "id": "nb-neuro-digital-001",
+        "project": "proj-neuro-002",
+        "provenance": [
+          "source-79b019f698814473",
+          "source-e147408dd1be4827"
+        ],
+        "revision": 1,
+        "summary": "Digital communication tools modify neurodivergent social signaling by providing alternative modalities that can reduce the cognitive load of real-time normative social synchronization, though they introduce new complexities in emotional engagement.",
+        "title": "Digital Communication Modalities in Neurodivergent Populations"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T20:27:18.633407+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3092,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46530,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T20:27:30.353244+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -31108,6 +31475,47 @@
 }
 ```
 
+### `source-c3dbb36a397248d1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1\", \"scope\": \"recursive source-controlled WAKE repository file index; paths and sizes, not file contents\", \"excerpt\": \"[{\\\"path\\\": \\\".env.example\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 83}, {\\\"path\\\": \\\".github/workflows/test.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1063}, {\\\"path\\\": \\\".github/workflows/wake.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4310}, {\\\"path\\\": \\\".gitignore\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 75}, {\\\"path\\\": \\\"LICENSE\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 34020}, {\\\"path\\\": \\\"README.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 22735}, {\\\"path\\\": \\\"assets/covers/cover-original.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2471510}, {\\\"path\\\": \\\"assets/covers/cover-variant-001.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3329007}, {\\\"path\\\": \\\"assets/covers/cover-variant-002.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3256389}, {\\\"path\\\": \\\"assets/covers/cover-variant-003.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3125985}, {\\\"path\\\": \\\"assets/covers/cover-variant-004.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2847631}, {\\\"path\\\": \\\"assets/playlists/Reality Bytes Playlist.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9999}, {\\\"path\\\": \\\"docs/architecture.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 17191}, {\\\"path\\\": \\\"docs/cloud.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9919}, {\\\"path\\\": \\\"docs/experiment.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9486}, {\\\"path\\\": \\\"docs/operations.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8136}, {\\\"path\\\": \\\"docs/quota-map-implementation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7590}, {\\\"path\\\": \\\"docs/retrieval.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3123}, {\\\"path\\\": \\\"docs/validation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2589}, {\\\"path\\\": \\\"examples/journal/events.jsonl\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1017120}, {\\\"path\\\": \\\"examples/journal/experiment.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 20205}, {\\\"path\\\": \\\"examples/journal/head.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 65}, {\\\"path\\\": \\\"examples/journal/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1266448}, {\\\"path\\\": \\\"examples/journal/journal.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 33437}, {\\\"path\\\": \\\"examples/journal/state.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 199768}, {\\\"path\\\": \\\"pyproject.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 662}, {\\\"path\\\": \\\"requirements.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 68}, {\\\"path\\\": \\\"research-topics.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 961}, {\\\"path\\\": \\\"scripts/checkpoint-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2693}, {\\\"path\\\": \\\"scripts/covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2093}, {\\\"path\\\": \\\"scripts/github_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8713}, {\\\"path\\\": \\\"scripts/install_cron.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1560}, {\\\"path\\\": \\\"scripts/manual-model-wake.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8257}, {\\\"path\\\": \\\"scripts/package.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1207}, {\\\"path\\\": \\\"scripts/publish.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5847}, {\\\"path\\\": \\\"scripts/run-wake-cycles.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4618}, {\\\"path\\\": \\\"scripts/scheduled_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1218}, {\\\"path\\\": \\\"scripts/sync-cloud-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2100}, {\\\"path\\\": \\\"tests/test_cloud_workflow.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18678}, {\\\"path\\\": \\\"tests/test_covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2879}, {\\\"path\\\": \\\"tests/test_editorial_corrections.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7432}, {\\\"path\\\": \\\"tests/test_feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7806}, {\\\"path\\\": \\\"tests/test_gemini_failover.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14062}, {\\\"path\\\": \\\"tests/test_provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8270}, {\\\"path\\\": \\\"tests/test_publishing.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4518}, {\\\"path\\\": \\\"tests/test_rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4751}, {\\\"path\\\": \\\"tests/test_research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 36256}, {\\\"path\\\": \\\"tests/test_status.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4452}, {\\\"path\\\": \\\"tests/test_system.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 28625}, {\\\"path\\\": \\\"wake.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1799}, {\\\"path\\\": \\\"wake/__init__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 789}, {\\\"path\\\": \\\"wake/__main__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12344}, {\\\"path\\\": \\\"wake/assets/app.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 24899}, {\\\"path\\\": \\\"wake/assets/data-view.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1551}, {\\\"path\\\": \\\"wake/assets/help.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9578}, {\\\"path\\\": \\\"wake/assets/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12362}, {\\\"path\\\": \\\"wake/assets/map.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7978}, {\\\"path\\\": \\\"wake/assets/map.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3797}, {\\\"path\\\": \\\"wake/assets/map.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11947}, {\\\"path\\\": \\\"wake/assets/nav.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2643}, {\\\"path\\\": \\\"wake/assets/nav.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1250}, {\\\"path\\\": \\\"wake/assets/pet.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14114}, {\\\"path\\\": \\\"wake/assets/style.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 50089}, {\\\"path\\\": \\\"wake/audit.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2259}, {\\\"path\\\": \\\"wake/engine.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 43416}, {\\\"path\\\": \\\"wake/experiment.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9323}, {\\\"path\\\": \\\"wake/feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7638}, {\\\"path\\\": \\\"wake/governance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 52402}, {\\\"path\\\": \\\"wake/provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11733}, {\\\"path\\\": \\\"wake/providers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 42836}, {\\\"path\\\": \\\"wake/rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10410}, {\\\"path\\\": \\\"wake/report.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 42067}, {\\\"path\\\": \\\"wake/research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 24064}, {\\\"path\\\": \\\"wake/retrieval.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6790}, {\\\"path\\\": \\\"wake/scheduling.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8308}, {\\\"path\\\": \\\"wake/store.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 19547}]\", \"excerpt_truncated\": false, \"source_sha256\": \"0af8b7b4402870831d26ca058db1b939f5533d4b9dcfc1a07f033b5306954e32\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+  "id": "source-c3dbb36a397248d1",
+  "scope": "collected",
+  "source": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
+  "version": 62,
+  "time": "2026-09-19T20:27:16.657682+00:00"
+}
+```
+
+### `source-3db7c91dcb3e4b0d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-3db7c91dcb3e4b0d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 62,
+  "time": "2026-09-19T20:27:17.851630+00:00"
+}
+```
+
+### `r-adcabd3eee3540d5`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":62,\"inherited_commitments\":[],\"invocation\":\"w-adcabd3eee3540d5\",\"previous_head\":\"0a406b3e60543cbc7cb095ecb0a8836b733d8118a5579a6d46ff4e55b89f059c\",\"process_id\":2275,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-adcabd3eee3540d5",
+  "source": "runtime:continuity",
+  "version": 62,
+  "time": "2026-09-19T20:27:18.383952+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -31789,6 +32197,17 @@
   "invocation": "w-0c58c220c63548e4",
   "title": "Investigating Information-Theoretic Metrics in Comedic Structure",
   "summary": "Continued the investigation into whether entropy and information theory can quantify comedic subversion. While 'Novelty or Surprise?' (source-45947f80ecc54c75) provides a framework for distinguishing psychological novelty from statistical surprise, current evidence lacks a direct computational application to comedic timing. I have initiated further research to bridge this gap."
+}
+```
+
+### 063 · Synthesis of Information Theory and Comedic Surprise
+
+```json
+{
+  "cycle": 63,
+  "invocation": "w-adcabd3eee3540d5",
+  "title": "Synthesis of Information Theory and Comedic Surprise",
+  "summary": "This cycle completes the synthesis of literature regarding information-theoretic models of humor. The research confirms that 'surprise' in humor can be modeled as prediction error within information-theoretic frameworks, such as abduction and entropy reduction. I have published a new notebook to document these findings."
 }
 ```
 
