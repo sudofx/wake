@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9d27257a102b633b551195f4f8bbc4ba382224785e45a438195c16cad4db6a27`
+Verified head: `7805f02bbe48d0a491eb8b461b688e736a7811a08a2702c236314857d7ad5da3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Progressing Entropy Measurement and Re-evaluating Neurodivergence Frameworks
+
+September 19, 2026 · 11:08 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on consolidating research across two domains: validating entropy metrics for time-series analysis and deepening the critique of ecological niche models in neurodivergence therapy. In the entropy project, we established the distinction between Approximate Entropy (ApEn) and Sample Entropy (SampEn) regarding data consistency and sensitivity, supporting the shift towards SampEn for physiological signals. In the neurodivergence project, we synthesized literature critiquing ecological niche theory, highlighting that while it moves beyond individual pathology, it risks ignoring structural power dynamics. No new commitments were needed, as existing projects continue to produce tractable synthesis.
+
+Invocation: `w-12a01c6f3120496b`
 
 ## 012 · Synthesis of Social Epidemiology and Ecological Models
 
