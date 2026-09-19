@@ -32,11 +32,8 @@ from .store import IntegrityError
 # STEP: parser
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
@@ -97,11 +94,8 @@ def parser():
 # STEP: execute
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
@@ -208,11 +202,8 @@ def execute(args):
 # STEP: main
 #
 # Keep this function explicit because it marks a testable boundary in the
-
 # chain from operator/provider input to durable/public output.  Do not fold it
-
 # into a neighboring layer if doing so would hide validation, provenance,
-
 # failure handling, or the distinction between accepted state and a derived view.
 
 
