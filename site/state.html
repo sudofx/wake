@@ -7,7 +7,7 @@
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--accent:#7b3fc6;--green:#286d72;--pale:#ece6f0;--surface:#fffaf2;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{--paper:#24283b;--ink:#c0caf5;--muted:#a9b1d6;--line:#414868;--accent:#c69cff;--green:#7dcfff;--pale:#292e42;--surface:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:#a827ff;text-decoration:none;text-shadow:0 0 7px #a827ff99,0 0 15px #a827ff55}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--ink);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px;color:var(--accent)}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>e85164ba315f0d83a6a01dc60859e1e2e0c44624aa21602f55f6cb6738d3d09c</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 12<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>bel-ci-three-elements</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Use dark theme">DARK</button></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>d4c7788a63d9885bf4f3fb7ae7ef567a800f76835a4ade108b3689aed6011da5</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 12<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>bel-ci-three-elements</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.7,
   &quot;evidence&quot;: [
     &quot;source-79489f1f420142f8&quot;
@@ -4834,6 +4834,257 @@
   &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
   &quot;finished&quot;: &quot;2026-09-19T00:55:23.825891+00:00&quot;,
   &quot;reason&quot;: &quot;&quot;
+}</pre></div></details><details><summary>w-308fbee7efd34997</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 12,
+  &quot;charged&quot;: true,
+  &quot;id&quot;: &quot;w-308fbee7efd34997&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 12,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;proj-collective-intel-ai&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 7,
+          &quot;notebooks&quot;: 1,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;AI in Collective Intelligence Architectures&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2277,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-18&quot;,
+  &quot;request_hash&quot;: &quot;fb08c220a5b4b0e21139edd55fdba6c8efc06e8cc997511259053910c4992617&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-79489f1f420142f8&quot;,
+          &quot;source-54fce5c98c5d4219&quot;,
+          &quot;source-52749aef80194962&quot;,
+          &quot;source-91b578462fd24b3a&quot;,
+          &quot;source-acf2a441376b4f56&quot;,
+          &quot;source-23457d958d724d22&quot;,
+          &quot;source-f6453aa48fe94fb0&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-cohuman-socio-cognitive&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-58ccd38656f143e6&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-58ccd38656f143e6&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-ce1c8b69357b4876&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-ce1c8b69357b4876&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-9381f0b7c1704bfd&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-9381f0b7c1704bfd&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-2c52e942711a445e&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-2c52e942711a445e&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-c1ea3ff2ed4b4a2a&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-c1ea3ff2ed4b4a2a&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e601db5800334934&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e601db5800334934&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-79489f1f420142f8&quot;,
+      &quot;source-54fce5c98c5d4219&quot;,
+      &quot;source-52749aef80194962&quot;,
+      &quot;source-91b578462fd24b3a&quot;,
+      &quot;source-acf2a441376b4f56&quot;,
+      &quot;source-23457d958d724d22&quot;,
+      &quot;source-f6453aa48fe94fb0&quot;,
+      &quot;source-58ccd38656f143e6&quot;,
+      &quot;source-ce1c8b69357b4876&quot;,
+      &quot;source-9381f0b7c1704bfd&quot;,
+      &quot;source-2c52e942711a445e&quot;,
+      &quot;source-c1ea3ff2ed4b4a2a&quot;,
+      &quot;source-e601db5800334934&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 7,
+      &quot;evidence_count&quot;: 13,
+      &quot;trigger_counts&quot;: {
+        &quot;notebook_revised&quot;: 1,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 31194,
+    &quot;inquiry_drive_project_count&quot;: 1,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;retrieval_candidate_count&quot;: 7,
+    &quot;retrieval_evidence_count&quot;: 13,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;notebook_revised&quot;: 1,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;working_set_chars&quot;: 2245,
+    &quot;working_to_delivered_ratio&quot;: 0.072
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;proj-collective-intel-ai&quot;,
+        &quot;next_step&quot;: &quot;Complete a comparative analysis between industrial performance metrics and creative-task evaluation frameworks to identify where metrics diverge.&quot;,
+        &quot;question&quot;: &quot;How does artificial intelligence alter or enhance socio-cognitive collective intelligence structures, specifically collective memory, attention, and reasoning?&quot;,
+        &quot;title&quot;: &quot;AI in Collective Intelligence Architectures&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [
+      {
+        &quot;claim&quot;: &quot;Emerging frameworks partition AI&#x27;s contribution to collective intelligence into collective memory, collective attention, and collective reasoning.&quot;,
+        &quot;confidence&quot;: 0.7,
+        &quot;id&quot;: &quot;bel-ci-three-elements&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-79489f1f420142f8&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;The editorial metadata for &#x27;AI for collective intelligence&#x27; explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities.&quot;
+      },
+      {
+        &quot;claim&quot;: &quot;The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.&quot;,
+        &quot;confidence&quot;: 0.6,
+        &quot;id&quot;: &quot;bel-cohuman-framework&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-54fce5c98c5d4219&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure.&quot;
+      }
+    ],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;nb-cohuman-socio-cognitive&quot;,
+        &quot;project&quot;: &quot;proj-collective-intel-ai&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-79489f1f420142f8&quot;,
+          &quot;source-54fce5c98c5d4219&quot;,
+          &quot;source-52749aef80194962&quot;,
+          &quot;source-91b578462fd24b3a&quot;,
+          &quot;source-acf2a441376b4f56&quot;,
+          &quot;source-23457d958d724d22&quot;,
+          &quot;source-f6453aa48fe94fb0&quot;
+        ],
+        &quot;revision&quot;: 6,
+        &quot;summary&quot;: &quot;Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.&quot;,
+        &quot;title&quot;: &quot;Socio-Cognitive Dimensions of AI in Human-Machine Teams&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;time&quot;: &quot;2026-09-19T00:56:24.432005+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;elapsed_ms&quot;: 4096,
+      &quot;http_status&quot;: 200,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;request_payload_bytes&quot;: 52601,
+      &quot;result&quot;: &quot;success&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+  &quot;finished&quot;: &quot;2026-09-19T00:56:33.438735+00:00&quot;,
+  &quot;reason&quot;: &quot;A revision needs changed findings and newly retrieved evidence&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-e97cad0649244a6e</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=music&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Dance music (popular music genre)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Women’s music [womyn’s music]\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2014, 1, 31]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2010]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Warner Bros. Music (music publisher)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;01e4b61dbe0014f7f330aa0f9e58a838932fc12afb21098a928acb172946dd2e\&quot;}&quot;,
@@ -5294,6 +5545,29 @@
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 11,
   &quot;time&quot;: &quot;2026-09-19T00:55:05.609681+00:00&quot;
+}</pre></div></details><details><summary>source-c1ea3ff2ed4b4a2a</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=music&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Dance music (popular music genre)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.47215\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Women’s music [womyn’s music]\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2014, 1, 31]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.7763/ijcee.2010.v2.168\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2010]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Warner Bros. Music (music publisher)\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1093/gmo/9781561592630.article.42753\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2001]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;01e4b61dbe0014f7f330aa0f9e58a838932fc12afb21098a928acb172946dd2e\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-c1ea3ff2ed4b4a2a&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=music&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 12,
+  &quot;time&quot;: &quot;2026-09-19T00:56:23.538219+00:00&quot;
+}</pre></div></details><details><summary>source-e601db5800334934</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works?query=collective+intelligence&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\&quot;, \&quot;scope\&quot;: \&quot;bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;DOI\\\&quot;: \\\&quot;10.1177/26339137221114176\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1177/26339137221114176\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2022, 8]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1177/26339137251360003\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Opinion for collective intelligence\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:p&gt;This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1177/26339137251360003\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2025, 7]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1177/26339137251328909\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;AI for collective intelligence\\\&quot;], \\\&quot;abstract\\\&quot;: \\\&quot;&lt;jats:p&gt;AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.&lt;/jats:p&gt;\\\&quot;, \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1177/26339137251328909\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2025, 4]]}}, {\\\&quot;DOI\\\&quot;: \\\&quot;10.1177/26339137241285900\\\&quot;, \\\&quot;title\\\&quot;: [\\\&quot;Book Review: A few recent books on Collective Intelligence\\\&quot;], \\\&quot;URL\\\&quot;: \\\&quot;https://doi.org/10.1177/26339137241285900\\\&quot;, \\\&quot;published\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2025, 3, 3]]}}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c76b7da9235c42a5dfecdfdd1729b1a02e11631d14b89ff045bcd3a8ec431856\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-e601db5800334934&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works?query=collective+intelligence&amp;rows=4&amp;select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished&quot;,
+  &quot;version&quot;: 12,
+  &quot;time&quot;: &quot;2026-09-19T00:56:24.277557+00:00&quot;
+}</pre></div></details><details><summary>r-308fbee7efd34997</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:12,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-308fbee7efd34997\&quot;,\&quot;previous_head\&quot;:\&quot;c4e46931b6383e1f246c3ded7dd5e56c6c2d17c6a704951b473856de7a118e30\&quot;,\&quot;process_id\&quot;:2277,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-308fbee7efd34997&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 12,
+  &quot;time&quot;: &quot;2026-09-19T00:56:24.389929+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Initiating Socio-Cognitive Collective Intelligence Project</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-3cc9a9889469416a&quot;,
