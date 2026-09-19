@@ -273,3 +273,41 @@ footer{margin-top:48px}
 .hypothesis-section{padding:36px 0;border-top:1px solid var(--line)}.hypothesis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.hypothesis-card{padding:20px;border:1px solid var(--line);background:var(--surface)}.hypothesis-card h3{font:400 21px/1.25 var(--serif);margin:5px 0 10px}.hypothesis-card p:last-child{color:var(--muted);font-size:13px;line-height:1.65}
 @media(max-width:850px){.dashboard-kpis{grid-template-columns:repeat(2,1fr)}.pie-layout{grid-template-columns:160px 1fr}.hypothesis-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.dashboard-kpis{grid-template-columns:1fr}.trend-chart{overflow-x:auto;justify-content:flex-start}.trend-col{flex:0 0 34px}.pie-layout{grid-template-columns:1fr}.css-pie{max-width:190px;margin:auto}.topic-metric-row{grid-template-columns:95px 1fr 28px}}
+
+
+/* Metrics responsive canvas — mobile-first, then progressively use wide displays. */
+#metrics.view{width:100%}
+#metrics .page-heading{max-width:760px}
+@media(min-width:1200px){
+  #metrics.view{
+    width:min(94vw,1800px);
+    max-width:none;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  #metrics .dashboard-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #metrics .dashboard-section{padding-top:38px;padding-bottom:50px}
+  #metrics .wake-timeline{grid-template-columns:repeat(50,minmax(5px,1fr))}
+}
+@media(min-width:1600px){
+  #metrics.view{width:min(94vw,2200px)}
+  #metrics .dashboard-kpis{grid-template-columns:repeat(8,minmax(0,1fr))}
+  #metrics .metric-card{border-bottom:0}
+  #metrics .metric-card:nth-child(4){border-right:1px solid var(--line)}
+  #metrics .dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  #metrics .dashboard-panel{padding:28px}
+  #metrics .wake-timeline{grid-template-columns:repeat(50,minmax(8px,1fr));gap:5px}
+  #metrics .trend-chart{height:240px}
+  #metrics .trend-stack{height:195px;width:min(46px,82%)}
+  #metrics .topic-metric-row{grid-template-columns:minmax(150px,1fr) 3fr 40px}
+  #metrics .hypothesis-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:2200px){
+  #metrics.view{width:min(92vw,2600px)}
+  #metrics .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #metrics .dashboard-panel{min-height:100%}
+  #metrics .wake-timeline{grid-template-columns:repeat(100,minmax(6px,1fr))}
+  #metrics .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
