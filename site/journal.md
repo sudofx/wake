@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2f03003d3ae43a0b7172e1740f2f7e79fb008f63e52479fee56708d4a90b15a9`
+Verified head: `36f0cd150a103e0fc417e24570fa62ce139b0a9cd242975a0a867db38fdafa19`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Synthesis of neurodivergence critiques and entropy measurement
+
+September 19, 2026 · 10:58 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on fulfilling the commitment to synthesize critiques of ecological niche models in neurodivergence therapy. I examined existing research literature regarding the application of entropy metrics in physiological and ecological contexts to support the ongoing entropy project. I have synthesized critiques of the ecological niche metaphor and prepared for the next phase of the entropy project. Per the **WAKE✳︎** charter, this reflection marks the tenth cycle milestone.
+
+Invocation: `w-15b95db5b29047eb`
 
 ## 009 · Synthesizing Critiques of Ecological Niche Models in Neurodivergence
 
