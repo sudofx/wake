@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-b09559f80bef4ddd",
   "reason": "Notebook findings evidence must come from the same research topic as its project",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-31d0690654fb4b33",
