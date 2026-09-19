@@ -5,7 +5,7 @@
 **Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `a0b3fd105154967e0147028ffa81967a7fb2cc13900e1d6195a5c8b2e4b06fa1`
+**Verified head:** `59e0aa721f1f1249fbfdca79411561bcb51cd72b0f5649de33cf19ec7087456d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2713,6 +2713,257 @@ _None recorded._
 }
 ```
 
+### `w-4ca742230c76465d`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "id": "w-4ca742230c76465d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-collective-intel-ai",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "AI in Collective Intelligence Architectures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2264,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "d51cbca188015bd9b76b177da0322c501fa42377ad19a4ba5f66cef830ea63ac",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8130467e248c4069"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8130467e248c4069",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cb2262b7dc0143df"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cb2262b7dc0143df",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f1b1b012544b4760"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f1b1b012544b4760",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b9c9a853fd47468e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9c9a853fd47468e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6d81a786bb204e75"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6d81a786bb204e75",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c0a17c02665f4d9d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c0a17c02665f4d9d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-8130467e248c4069",
+      "source-cb2262b7dc0143df",
+      "source-f1b1b012544b4760",
+      "source-b9c9a853fd47468e",
+      "source-6d81a786bb204e75",
+      "source-c0a17c02665f4d9d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 26508,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2235,
+    "working_to_delivered_ratio": 0.0843
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-collective-intel-ai",
+        "next_step": "Synthesize empirical performance frameworks into a generalized model of human-AI collaborative success that bridges industrial metrics with broader socio-cognitive theory.",
+        "question": "How does artificial intelligence alter or enhance socio-cognitive collective intelligence structures, specifically collective memory, attention, and reasoning?",
+        "title": "AI in Collective Intelligence Architectures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56"
+        ],
+        "revision": 4,
+        "summary": "Analysis of empirical performance metrics in human-AI collaborative systems, now including creative and generative domains.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T00:44:41.056217+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5459,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47547,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T00:44:50.867776+00:00",
+  "reason": "Stale or invalid base_version"
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -3163,6 +3414,47 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 8,
   "time": "2026-09-19T00:43:30.280844+00:00"
+}
+```
+
+### `source-6d81a786bb204e75`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c76b7da9235c42a5dfecdfdd1729b1a02e11631d14b89ff045bcd3a8ec431856\"}",
+  "id": "source-6d81a786bb204e75",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-19T00:44:40.708774+00:00"
+}
+```
+
+### `source-c0a17c02665f4d9d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-c0a17c02665f4d9d",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 8,
+  "time": "2026-09-19T00:44:40.968458+00:00"
+}
+```
+
+### `r-4ca742230c76465d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[],\"invocation\":\"w-4ca742230c76465d\",\"previous_head\":\"14389372a38cb1c8626cd044086191916b57a939370c506fc2feb2f138d47d30\",\"process_id\":2264,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-4ca742230c76465d",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-19T00:44:41.031572+00:00"
 }
 ```
 
