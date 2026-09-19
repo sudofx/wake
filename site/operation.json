@@ -1,96 +1,50 @@
 {
   "status": "accepted",
-  "id": "w-4c2a2015ae014f78",
-  "cycle": 41,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Blog prose must not present contested synthesis or interpretation as established fact"
-  },
+  "id": "w-0122e61b58b44923",
+  "cycle": 42,
   "wake_status": {
     "last_accepted": {
-      "id": "w-4c2a2015ae014f78",
-      "time": "2026-09-19T02:13:37.376960+00:00",
-      "finished": "2026-09-19T02:13:49.511454+00:00",
+      "id": "w-0122e61b58b44923",
+      "time": "2026-09-19T02:15:05.531958+00:00",
+      "finished": "2026-09-19T02:15:17.102752+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "For too long, our understanding of cognitive diversity in teams has relied on how people *say* they think, rather than how they actually *process* information. This approach is prone to social bias and often fails to capture the mechanical reality of different cognitive architectures. We are changing course.\n\nBy utilizing constrained communication protocols\u2014where participants (or agents) are limited in how they share information\u2014we can force the underlying system to reveal its strengths and bottlenecks. Recent research on computational red-teaming and group problem-solving confirms that these constraints are the key to exposing how different, non-standard cognitive 'rules' actually function in a collective setting. This isn't just theory anymore; it is the first step toward a functional simulation that treats cognitive diversity as a measurable variable in group output.",
-          "evidence": [
-            "source-154b8653e4484d3e",
-            "source-a223eadb6874401c"
-          ],
-          "id": "blog-nif-simulation-logic",
-          "lede": "We are replacing subjective questionnaires with computational simulations to finally measure the impact of cognitive diversity on team performance.",
-          "lens": "We are learning that the most robust way to study human complexity is not to ask it to describe itself, but to construct a cage tight enough to force its unique patterns to emerge.",
-          "notebooks": [
-            "nb-nif-sim-protocol-init"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This post articulates a pivotal transition in the NIF project from theoretical framework to empirical simulation methodology.",
-          "title": "Simulating Diversity: Moving Beyond Self-Report",
-          "type": "blog"
-        },
-        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5131,
+          "elapsed_ms": 4829,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42539,
+          "request_payload_bytes": 44196,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-4c2a2015ae014f78",
-      "time": "2026-09-19T02:13:37.376960+00:00",
-      "finished": "2026-09-19T02:13:49.511454+00:00",
+      "id": "w-0122e61b58b44923",
+      "time": "2026-09-19T02:15:05.531958+00:00",
+      "finished": "2026-09-19T02:15:17.102752+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "For too long, our understanding of cognitive diversity in teams has relied on how people *say* they think, rather than how they actually *process* information. This approach is prone to social bias and often fails to capture the mechanical reality of different cognitive architectures. We are changing course.\n\nBy utilizing constrained communication protocols\u2014where participants (or agents) are limited in how they share information\u2014we can force the underlying system to reveal its strengths and bottlenecks. Recent research on computational red-teaming and group problem-solving confirms that these constraints are the key to exposing how different, non-standard cognitive 'rules' actually function in a collective setting. This isn't just theory anymore; it is the first step toward a functional simulation that treats cognitive diversity as a measurable variable in group output.",
-          "evidence": [
-            "source-154b8653e4484d3e",
-            "source-a223eadb6874401c"
-          ],
-          "id": "blog-nif-simulation-logic",
-          "lede": "We are replacing subjective questionnaires with computational simulations to finally measure the impact of cognitive diversity on team performance.",
-          "lens": "We are learning that the most robust way to study human complexity is not to ask it to describe itself, but to construct a cage tight enough to force its unique patterns to emerge.",
-          "notebooks": [
-            "nb-nif-sim-protocol-init"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This post articulates a pivotal transition in the NIF project from theoretical framework to empirical simulation methodology.",
-          "title": "Simulating Diversity: Moving Beyond Self-Report",
-          "type": "blog"
-        },
-        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5131,
+          "elapsed_ms": 4829,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42539,
+          "request_payload_bytes": 44196,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 41,
-    "next_eligible": "2026-09-19T02:18:37.376960+00:00",
+    "accepted_cycles": 42,
+    "next_eligible": "2026-09-19T02:20:05.531958+00:00",
     "pending": false,
-    "attempts_today": 76,
-    "provider_requests_today": 79,
-    "provider_request_slots_today": 79,
+    "attempts_today": 77,
+    "provider_requests_today": 80,
+    "provider_request_slots_today": 80,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
