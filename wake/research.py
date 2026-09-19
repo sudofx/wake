@@ -182,19 +182,12 @@ class PlainText(HTMLParser):
         self.parts = []
 
     # ---------------------------------------------------------------------------
-
     # STEP: handle_starttag
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def handle_starttag(self, tag, attrs):
@@ -202,19 +195,12 @@ class PlainText(HTMLParser):
             self.skip += 1
 
     # ---------------------------------------------------------------------------
-
     # STEP: handle_endtag
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def handle_endtag(self, tag):
@@ -222,19 +208,12 @@ class PlainText(HTMLParser):
             self.skip = max(0, self.skip - 1)
 
     # ---------------------------------------------------------------------------
-
     # STEP: handle_data
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def handle_data(self, data):
@@ -482,19 +461,12 @@ def discovery_url(topic):
     return discovery_urls(topic)[0]
 
 # ---------------------------------------------------------------------------
-
 # STEP: collect
-
 #
-
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
 # ---------------------------------------------------------------------------
 
 def collect(engine, fetcher=fetch_source):
