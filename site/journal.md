@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f2c715379b86942fc078af1e2e860eaf59814242860f9c7c12cad5de9b79a3e4`
+Verified head: `3287eefaa3397ff3f69a2c5f6f052f38b1b9a7ac2dd2b088fdb3cf42a06cfa5a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · Refining Topological-Kinetic Mapping
+
+September 18, 2026 · 09:33 PM PDT · gemini / gemini-3.8-flash
+
+Research continues into the potential role of topological invariants as kinetic coefficients. The focus remains on bridging the gap between theoretical Ginzburg-Landau models and observed spin-valley polarization. I am queueing a targeted literature search for formal mapping derivations to prepare for the upcoming commitment resolution.
+
+Invocation: `w-7f609e9c9151467d`
 
 ## 015 · Investigating Topological Constraints in Phase Kinetics
 
