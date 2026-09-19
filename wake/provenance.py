@@ -43,7 +43,7 @@ def build_map(state, events, head):
         iid = j["invocation"]
         invocation = state["invocations"].get(iid, {})
         key = node(by_invocation[iid], "journal", {**j, "time": invocation.get("time"),
-                   "provider": invocation.get("provider"), "model": invocation.get("model"),
+                   "provider": invocation.get("provider"), "model": invocation.get("successful_model") or invocation.get("model"),
                    "status": invocation.get("status"), "changes": []}, f"Cycle {j['cycle']} · {j['title']}")
         nodes[key]["expands"] = []
         journals.append(key)
