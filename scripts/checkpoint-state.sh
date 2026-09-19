@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Creates an explicit recoverable checkpoint before destructive/reset operations. Recovery should be boring, visible, and operator-controlled.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
