@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Projects canonical state into human-readable static artifacts. Presentation explains the record but never becomes authority; durable JSON/events remain canonical.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Portable static journal. No CDN, build pipeline, tracking, or API-key exposure."""
 
 from datetime import datetime
