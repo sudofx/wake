@@ -53,19 +53,12 @@ def build_map(state, events, head):
     by_invocation = {j["invocation"]: f"journal:{j['invocation']}" for j in state["journal"]}
 
     # ---------------------------------------------------------------------------
-
     # STEP: node
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def node(key, kind, detail, title=None):
@@ -79,19 +72,12 @@ def build_map(state, events, head):
         return key
 
     # ---------------------------------------------------------------------------
-
     # STEP: edge
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def edge(source, target, relation, record):
@@ -128,19 +114,12 @@ def build_map(state, events, head):
                 edge(f"blog:{pid}", f"blog:{post[field]}", field.replace("_", " "), f"posts.{pid}.{field}")
 
     # ---------------------------------------------------------------------------
-
     # STEP: artifact
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def artifact(kind, identifier, snapshot, cycle, expanded):
