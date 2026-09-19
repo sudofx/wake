@@ -499,3 +499,34 @@ footer{margin-top:48px}
   #metrics .metrics-row-two-right .dashboard-kpis{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
   #metrics .metrics-row-two-right .telemetry-cell,#metrics .metrics-row-two-right .metric-card{padding:6px 8px}
 }
+
+
+/* Ultrawide command-center rack — compact seven-instrument first row. */
+.metrics-landscape-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;border:1px solid var(--line);border-bottom:0;padding:18px 20px 14px;background:var(--surface)}
+.metrics-landscape-heading h2{margin:3px 0 0}.landscape-status{display:flex;align-items:center;gap:10px;font:9px var(--mono);letter-spacing:.08em;color:var(--muted)}.landscape-status strong{font-size:18px;color:var(--green)}
+@media(min-width:3000px){
+  #metrics .metrics-row-one{border:1px solid var(--line);background:var(--surface);padding:0 14px 12px}
+  #metrics .metrics-landscape-heading{border:0;border-bottom:1px solid var(--line);margin:0 -14px 8px;padding:10px 14px 8px}
+  #metrics .metrics-landscape-heading h2{font-size:20px}
+  #metrics .metrics-row-one .dashboard-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr 1fr 1.1fr;gap:7px;padding:0}
+  #metrics .metrics-row-one .dashboard-panel{border:1px solid var(--line);padding:10px 11px;min-height:230px;background:var(--bg)}
+  #metrics .metrics-row-one .dashboard-panel h2{font-size:15px;line-height:1.15}
+  #metrics .metrics-row-one .dashboard-panel .small{font-size:7px;line-height:1.25}
+  #metrics .metrics-row-one .topic-metric-row{grid-template-columns:minmax(74px,1fr) 1.6fr 20px;padding:2px 0;font-size:6px}
+  #metrics .metrics-row-one .topic-legend{font-size:5px}
+  #metrics .metrics-row-one .dashboard-stat{padding:4px 0}
+  #metrics .metrics-row-one .dashboard-stat strong{font-size:15px}
+  #metrics .metrics-row-one .dashboard-stat span{font-size:7px}
+  #metrics .metrics-row-one .model-metric-row{font-size:5px;padding:3px 0}
+  #metrics .metrics-row-one .reason-row{font-size:6px;padding:3px 0}
+  #metrics .metrics-row-one .pie-layout{grid-template-columns:82px 1fr;gap:7px}
+  #metrics .metrics-row-one .pie-key{font-size:6px;padding:2px 0}
+  #metrics .metrics-row-one .hypothesis-section{grid-column:1/-1;border:1px solid var(--line);padding:9px 11px;margin-top:0;background:var(--bg)}
+  #metrics .metrics-row-one .hypothesis-section .dashboard-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:7px}
+  #metrics .metrics-row-one .hypothesis-section .dashboard-heading h2{font-size:17px}
+  #metrics .metrics-row-one .hypothesis-section .dashboard-heading>p{max-width:420px;text-align:right;font-size:7px}
+  #metrics .metrics-row-one .hypothesis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  #metrics .metrics-row-one .hypothesis-card{padding:8px 9px;min-height:0}
+  #metrics .metrics-row-one .hypothesis-card h3{font-size:12px;margin:2px 0 4px}
+  #metrics .metrics-row-one .hypothesis-card p:last-child{font-size:7px;line-height:1.3}
+}
