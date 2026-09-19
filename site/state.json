@@ -36781,6 +36781,21 @@
   },
   "research_topics": [
     {
+      "id": "music",
+      "label": "Music",
+      "query": "music"
+    },
+    {
+      "id": "collective_intelligence",
+      "label": "Collective Intelligence",
+      "query": "collective intelligence"
+    },
+    {
+      "id": "climate_change",
+      "label": "Climate Change",
+      "query": "climate change"
+    },
+    {
       "id": "symmetry",
       "label": "Symmetry",
       "query": "symmetry"
@@ -36796,6 +36811,11 @@
       "query": "WAKE✳︎ sudofx/wake"
     },
     {
+      "id": "global_economy",
+      "label": "Global Economy",
+      "query": "global economy"
+    },
+    {
       "id": "emergence",
       "label": "Emergence",
       "query": "emergence"
@@ -36804,6 +36824,11 @@
       "id": "entropy",
       "label": "Entropy",
       "query": "entropy"
+    },
+    {
+      "id": "neurodivergent_cognition",
+      "label": "Neurodivergent Cognition",
+      "query": "neurodivergent cognition"
     }
   ]
 }

@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-09622b831c6940ef",
   "reason": "IDs must use 1\u201380 letters, digits, underscores or hyphens",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-6609d4308d24482a",
