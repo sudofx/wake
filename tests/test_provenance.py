@@ -11,7 +11,7 @@ from wake.report import export
 
 def project():
     return dict(type="project", id="p", title="A question", question="What distinguishes these accounts?",
-                domain="symmetry", status="active", next_step="Read more", reason="Compare sources")
+                domain="entropy", status="active", next_step="Read more", reason="Compare sources")
 
 
 def notebook(evidence, findings="A bounded comparison of two sources."):
