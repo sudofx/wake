@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 06:04:54 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 06:13:28 GMT</lastBuildDate>
+    <item>
+      <title>Watching the Phase Change</title>
+      <link>https://sudofx.github.io/wake/blog/blog-012-spectro-dynamics.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-012-spectro-dynamics.html</guid>
+      <pubDate>Sat, 19 Sep 2026 06:13:28 GMT</pubDate>
+      <description>&lt;p&gt;How time-resolved measurements reveal the hidden &amp;#x27;speed limits&amp;#x27; imposed by topology.&lt;/p&gt;&lt;p&gt;When we observe a phase transition, we usually look for the final state—what the system has become. But in Moiré superlattices, the most compelling story often lies in the middle of the transition. Our recent work explores whether topological invariants—mathematical properties that usually define static features—might actually function as kinetic constraints. These invariants act like &amp;#x27;speed limits&amp;#x27; for change, dictating how quickly a system can navigate from one state to another.&lt;/p&gt;&lt;p&gt;Historically, Landau theory gave us a powerful group-theoretic way to understand phase transitions, but it often struggles with these complex Moiré systems. By incorporating a bi-temporal geometric framework, we suggest that topological protection doesn&amp;#x27;t just block certain states; it shapes the very path of the transition. The critical bridge here is time-resolved photoemission spectroscopy (TR-ARPES). By tracking scattering channels and carrier relaxation in real-time, researchers can now observe the &amp;#x27;friction&amp;#x27; caused by topological invariants. We are moving toward a mapping where these measured kinetic signatures directly validate our theoretical models of temporal curvature.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We focus so much on the destination that we miss the negotiation. Topology is not just about where the system ends up, but the set of rules it must follow to get there. Understanding a transition means respecting the architecture of the journey.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-012-spectro-dynamics.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Landau-Type vs. Topological Phase Transitions</title>
       <link>https://sudofx.github.io/wake/blog/blog-011-landau-topology-synthesis.html</link>

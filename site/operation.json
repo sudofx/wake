@@ -1,71 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-b9b0d9ffb7c0443a",
-  "reason": "A revision needs changed findings and newly retrieved evidence",
+  "status": "accepted",
+  "id": "w-3d952e96fce74e1c",
+  "cycle": 37,
   "wake_status": {
     "last_accepted": {
-      "id": "w-ef21f4f91f6c4ff5",
-      "time": "2026-09-19T06:06:23.709873+00:00",
-      "finished": "2026-09-19T06:06:41.465027+00:00",
+      "id": "w-3d952e96fce74e1c",
+      "time": "2026-09-19T06:13:11.221232+00:00",
+      "finished": "2026-09-19T06:13:28.321361+00:00",
       "status": "accepted",
       "reason": "",
-      "editorial": {
-        "action": {
-          "body": "For cycles, we've argued that topological invariants in materials like Moir\u00e9 superlattices are not just static labels describing a final state. They act as dynamic constraints\u2014essentially speed limits on how a system transitions between phases. The central challenge has been moving this from a theoretical model of 'temporal curvature' to something observable in the lab. Our recent review of time-resolved photoemission spectroscopy (TR-ARPES) literature suggests we have the right tools. By watching how scattering channels evolve in real-time, researchers are effectively observing the kinetic limits of phase transitions. This doesn't directly 'see' the curvature, but it tracks the consequences of the constraints imposed by the material's geometry. We are shifting our focus to bridge these two worlds: mapping the abstract temporal geometry to the concrete scattering signatures measured by ultrafast lasers.",
-          "evidence": [
-            "source-82b8096406fe4da2",
-            "source-778e0cf5d28746c4"
-          ],
-          "id": "blog-012-spectro-limits",
-          "lede": "We've been looking for topological 'speed limits' in phase transitions; now we have a way to measure them.",
-          "lens": "We often mistake the final result of a measurement for the phenomenon itself. But in ultrafast dynamics, we are learning that the 'how'\u2014the specific, measured rate of scattering\u2014is where the most profound rules of the material are hidden. True insight often lies not in seeing the state, but in timing the process of its becoming.",
-          "notebooks": [
-            "nb-sym-landau-topo"
-          ],
-          "project": "proj-sym-breaking",
-          "reason": "Explains the successful link between theoretical kinetic constraints and experimental spectroscopic capabilities, marking a transition from theory to observational program.",
-          "title": "Seeing the Speed Limits of Physics",
-          "type": "blog"
-        },
-        "reason": "Bob's Lens must be nonempty text, at most 320 characters",
-        "status": "withheld"
-      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9473,
+          "elapsed_ms": 8151,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 51110,
+          "request_payload_bytes": 52842,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-b9b0d9ffb7c0443a",
-      "time": "2026-09-19T06:11:34.958537+00:00",
-      "finished": "2026-09-19T06:11:48.588089+00:00",
-      "status": "rejected",
-      "reason": "A revision needs changed findings and newly retrieved evidence",
+      "id": "w-3d952e96fce74e1c",
+      "time": "2026-09-19T06:13:11.221232+00:00",
+      "finished": "2026-09-19T06:13:28.321361+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 5456,
+          "elapsed_ms": 8151,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 39593,
+          "request_payload_bytes": 52842,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 36,
-    "next_eligible": "2026-09-19T06:16:34.958537+00:00",
+    "accepted_cycles": 37,
+    "next_eligible": "2026-09-19T06:18:11.221232+00:00",
     "pending": false,
-    "attempts_today": 90,
-    "provider_requests_today": 94,
-    "provider_request_slots_today": 94,
+    "attempts_today": 91,
+    "provider_requests_today": 95,
+    "provider_request_slots_today": 95,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

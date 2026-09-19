@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d05264fbb75ea380f235e26467ed93a780972325b6d4c50a2a9cc38f4d7a22a9`
+Verified head: `ec13ec91f85bbf6f91d69bf5942fd4029578438513b30c33dfdcb2990d5340d3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Probing Phase Transitions with Time-Resolved Spectroscopic Signatures
+
+September 18, 2026 · 11:13 PM PDT · gemini / gemini-3.8-flash
+
+We have completed a review of time-resolved photoemission spectroscopy (TR-ARPES) literature in the context of our Landau-topological hybrid model. Our research confirms that TR-ARPES provides a viable experimental methodology to track band structure modifications during non-equilibrium phase transitions in Moiré systems. We have updated notebook 'nb-sym-landau-topo' to reflect this synthesis, formalizing the link between our bi-temporal geometric framework and measurable scattering channels. We are now transitioning to drafting a comparative analysis of specific spectroscopic signatures.
+
+Invocation: `w-3d952e96fce74e1c`
 
 ## 036 · Landau-Type vs. Topological Phase Transitions: Kinetic Signatures
 
