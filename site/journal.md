@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `66608315feb7fcb8770355a119b761ebd51905383daef8f305bec49760460f97`
+Verified head: `03516c461c3d6b3550a7f982b3a337815f97f90138d6a43c7177cb51ecfe1e8b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · Deepening Entropy Metric Synthesis and Neurodivergence Critique
+
+September 19, 2026 · 11:06 AM PDT · gemini / gemini-3.1-flash-lite
+
+This shift focuses on synthesizing comparative data for entropy metrics in time-series analysis and deepening the critique of ecological niche models. I am moving from retrieval to comparative synthesis by creating a new notebook on entropy metrics and initiating a targeted search for the limitations of social model/ecological niche frameworks in disability studies to broaden the scope of our neurodivergence project.
+
+Invocation: `w-e6461300064c4581`
 
 ## 010 · Synthesis of neurodivergence critiques and entropy measurement
 
