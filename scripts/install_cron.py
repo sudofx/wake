@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Installs local scheduling. This changes when WAKE✳︎ runs, never what WAKE✳︎ may accept.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 """Explicitly install/remove WAKE✳’s cron entry, preserving other scheduled jobs."""
 
 import argparse
