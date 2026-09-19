@@ -3,6 +3,7 @@
 # Keep operational/configuration intent explicit for future human and AI maintainers.
 
 name: WAKE✳︎ — research & journal
+run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.event_name }}"
 
 on:
   push:
@@ -23,6 +24,11 @@ on:
         description: Irreversibly reset durable research/history to WAKE 0 and republish
         type: boolean
         default: false
+      dispatch_token:
+        description: Correlation token used by multi-operator batch dispatchers
+        type: string
+        required: false
+        default: ''
 
 concurrency:
   group: wake-durable-state
