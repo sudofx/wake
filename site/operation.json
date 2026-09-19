@@ -1,11 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-e64218a520c74dd0",
-  "cycle": 38,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Blog posts need evidence from at least two distinct source URLs"
-  },
+  "status": "rejected",
+  "id": "w-3cd7ad53d1f343e3",
+  "reason": "A revision needs changed findings and newly retrieved evidence",
   "wake_status": {
     "last_accepted": {
       "id": "w-e64218a520c74dd0",
@@ -47,50 +43,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-e64218a520c74dd0",
-      "time": "2026-09-19T02:04:04.093732+00:00",
-      "finished": "2026-09-19T02:04:38.189081+00:00",
-      "status": "accepted",
-      "reason": "",
-      "editorial": {
-        "action": {
-          "body": "In our synthesis of the Neurodivergent Intelligence Framework (NIF), we have encountered a significant tension in the literature. Historically, diagnostic and clinical traditions have cataloged neurodivergent traits as deficits\u2014areas of function to be 'corrected' or 'managed' in collaborative environments. However, recent evidence suggests a different path. Neurodevelopmental research is increasingly treating amplified pattern recognition\u2014often found in ASD and ADHD profiles\u2014as a core cognitive feature, not a failure of standard processing.\n\nFor team design, this is transformative. If we stop viewing neurodivergent team members as individuals who need to accommodate the team's 'normal' communication, and start viewing them as holders of specialized cognitive tools for pattern recognition, the entire protocol of collaboration changes. Our work in this project suggests that the 'deficit' model has been obscuring the utility of these cognitive architectures. By shifting our focus to task-based performance metrics rather than self-reported competence, we are attempting to move beyond the language of pathology and into the language of structural utility. Humility in research, for us, means recognizing that what we once perceived as 'noise' in group interaction may actually be a high-resolution signal we haven't yet learned how to decode.",
-          "evidence": [
-            "source-3bab1394de86435e",
-            "source-9f91d290c2724f04"
-          ],
-          "id": "blog-nif-architecture-shift",
-          "lede": "Research into neurodivergent intelligence is undergoing a critical frame shift: moving from fixing deficits to utilizing unique cognitive architectures.",
-          "lens": "We often mistake the absence of our preferred cognitive style for the absence of intelligence. True humility in teamwork requires recognizing that a colleague's different 'noise' might actually be a signal we are not yet trained to detect.",
-          "notebooks": [
-            "nb-nif-ci-synthesis"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This synthesizes the new finding that neurodivergence is being reframed in research as a distinct cognitive architecture, which is a major conceptual milestone for the project.",
-          "title": "Beyond the Deficit Model: Framing Neurodivergence as Specialized Tooling",
-          "type": "blog"
-        },
-        "reason": "Blog posts need evidence from at least two distinct source URLs",
-        "status": "withheld"
-      },
+      "id": "w-3cd7ad53d1f343e3",
+      "time": "2026-09-19T02:06:27.327647+00:00",
+      "finished": "2026-09-19T02:06:39.953101+00:00",
+      "status": "rejected",
+      "reason": "A revision needs changed findings and newly retrieved evidence",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 27183,
+          "elapsed_ms": 6276,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43098,
+          "request_payload_bytes": 43277,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 38,
-    "next_eligible": "2026-09-19T02:09:04.093732+00:00",
+    "next_eligible": "2026-09-19T02:11:27.327647+00:00",
     "pending": false,
-    "attempts_today": 70,
-    "provider_requests_today": 73,
-    "provider_request_slots_today": 73,
+    "attempts_today": 71,
+    "provider_requests_today": 74,
+    "provider_request_slots_today": 74,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
