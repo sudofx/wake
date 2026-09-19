@@ -5,7 +5,7 @@
 **Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `675854f3878dacbac7ee7c1811ccbcf4145440ad5baef9984d084b54be6bb3bc`
+**Verified head:** `820b3c5841fd9f7fa6cbc8e4dfce88c72c35c9bc357f0995a16deeb517541f64`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2006,6 +2006,228 @@ _None recorded._
 }
 ```
 
+### `w-77b1b72be7894efa`
+
+```json
+{
+  "base_version": 4,
+  "charged": true,
+  "id": "w-77b1b72be7894efa",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 4,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "entropy_measurement",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2268,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "5e9116ab5618859e36021ad2a207c27f17f1234f2fcdd772e5ed3220c4ea86d5",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit_entropy_review",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-bd6d14598faa4fae"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bd6d14598faa4fae",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2de3e3c25269473e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2de3e3c25269473e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9a8367d73a8a45b1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9a8367d73a8a45b1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-75b51006a55d419b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-75b51006a55d419b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-38131170bdca4cc1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38131170bdca4cc1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-98f3292a7b2a4f5d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-98f3292a7b2a4f5d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-bd6d14598faa4fae",
+      "source-2de3e3c25269473e",
+      "source-9a8367d73a8a45b1",
+      "source-75b51006a55d419b",
+      "source-38131170bdca4cc1",
+      "source-98f3292a7b2a4f5d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24236,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1392,
+    "working_to_delivered_ratio": 0.0574
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_measurement",
+        "next_step": "Synthesize findings from clinical and ecological entropy literature into a preliminary notebook.",
+        "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "commit_entropy_review",
+        "reason": "To ensure continuity of the entropy research project across subsequent wakes.",
+        "task": "Review incoming search results for entropy concepts and draft an initial analysis notebook."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T17:39:44.050703+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3993,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46251,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T17:39:52.359130+00:00",
+  "reason": "Evidence reference does not exist"
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -2377,6 +2599,47 @@ _None recorded._
 }
 ```
 
+### `source-38131170bdca4cc1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=ecological+state-space+entropy+modeling&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2107695795\\\", \\\"doi\\\": \\\"https://doi.org/10.1890/10-1171.1\\\", \\\"title\\\": \\\"Ecological niche modeling in Maxent: the importance of model complexity and the performance of model selection criteria\\\", \\\"publication_year\\\": 2010, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 2360, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1890/10-1171.1\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1890/10-1171.1\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1890/10-1171.1\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1890/10-1171.1\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S166870025\\\", \\\"display_name\\\": \\\"Ecological Applications\\\", \\\"issn_l\\\": \\\"1051-0761\\\", \\\"issn\\\": [\\\"1051-0761\\\", \\\"1939-5582\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Ecological Applications\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Maxent, one of the most commonly used methods for inferring species distributions and environmental tolerances from occurrence data, allows users to fit models of arbitrary complexity. Model complexity is typically constrained via a process known as L1 regularization, but at present little guidance is available for setting the appropriate level of regularization, and the effects of inappropriately complex or simple models are largely unknown. In this study, we demonstrate the use of information criterion approaches to setting regularization in Maxent, and we compare models selected using information criteria to models selected using other criteria that are common in the literature. We evaluate model performance using occurrence data generated from a known \\\\\\\"true\\\\\\\" initial Maxent model, using several different metrics for model quality and transferability. We demonstrate that models that are inappropriately complex or inappropriately simple show reduced ability to infer habitat quality, reduced ability to infer the relative importance of variables in constraining species' distributions, and reduced transferability to other time periods. We also demonstrate that information criteria may offer significant advantages over the methods commonly used in the literature.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2057314736\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.tree.2007.10.009\\\", \\\"title\\\": \\\"State–space models of individual animal movement\\\", \\\"publication_year\\\": 2008, \\\"type\\\": \\\"review\\\", \\\"cited_by_count\\\": 939, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"http://www.cell.com/article/S0169534707003588/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.tree.2007.10.009\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.tree.2007.10.009\\\", \\\"pdf_url\\\": \\\"http://www.cell.com/article/S0169534707003588/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S79131028\\\", \\\"display_name\\\": \\\"Trends in Ecology & Evolution\\\", \\\"issn_l\\\": \\\"0169-5347\\\", \\\"issn\\\": [\\\"0169-5347\\\", \\\"1872-8383\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"jufo-3\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Trends in Ecology &amp; Evolution\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W3167954679\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/ecm.1470\\\", \\\"title\\\": \\\"A guide to state-space modeling of ecological time series\\\", \\\"publication_year\\\": 2020, \\\"type\\\": \\\"preprint\\\", \\\"cited_by_count\\\": 288, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://arxiv.org/pdf/2002.02001\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:arXiv.org:2002.02001\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://arxiv.org/abs/2002.02001\\\", \\\"pdf_url\\\": \\\"https://arxiv.org/pdf/2002.02001\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306400194\\\", \\\"display_name\\\": \\\"arXiv (Cornell University)\\\", \\\"issn_l\\\": \\\"2331-8422\\\", \\\"issn\\\": [\\\"2331-8422\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/I205783295\\\", \\\"host_organization_name\\\": \\\"Cornell University\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/I205783295\\\"], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"State-space models (SSMs) are an important modeling framework for analyzing ecological time series. These hierarchical models are commonly used to model population dynamics, animal movement, and capture-recapture data, and are now increasingly being used to model other ecological processes. SSMs are popular because they are flexible and they model the natural variation in ecological processes separately from observation error. Their flexibility allows ecologists to model continuous, count, binary, and categorical data with linear or nonlinear processes that evolve in discrete or continuous time. Modeling the two sources of stochasticity separately allows researchers to differentiate between biological variation (e.g., in birth processes) and imprecision in the sampling methodology, and generally provides better estimates of the ecological quantities of interest than if only one source of stochasticity is directly modeled. Since the introduction of SSMs, a broad range of fitting procedures have been proposed. However, the variety and complexity of these procedures can limit the ability of ecologists to formulate and fit their own SSMs. We provide the knowledge for ecologists to create SSMs that are robust to common, and often hidden, estimation problems, and the model selection and validation tools that can help them assess how well their models fit their data. In this paper, we present a review of SSMs that will provide a strong foundation to ecologists interested in learning about SSMs, introduce new tools to veteran SSM users, and highlight promising research directions for statisticians interested in ecological applications. The review is accompanied by an in-depth tutorial that demonstrates how SSMs models can be fitted and validated in R. Together, the review and tutorial present an introduction to SSMs that will help ecologists to formulate, fit, and validate their models.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2129297365\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/j.1574-6941.2003.tb01040.x\\\", \\\"title\\\": \\\"Using ecological diversity measures with bacterial communities\\\", \\\"publication_year\\\": 2003, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 998, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://academic.oup.com/femsec/article-pdf/43/1/1/18090308/43-1-1.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/j.1574-6941.2003.tb01040.x\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/j.1574-6941.2003.tb01040.x\\\", \\\"pdf_url\\\": \\\"https://academic.oup.com/femsec/article-pdf/43/1/1/18090308/43-1-1.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S171282171\\\", \\\"display_name\\\": \\\"FEMS Microbiology Ecology\\\", \\\"issn_l\\\": \\\"0168-6496\\\", \\\"issn\\\": [\\\"0168-6496\\\", \\\"1574-6941\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310311648\\\", \\\"host_organization_name\\\": \\\"Oxford University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311648\\\", \\\"https://openalex.org/P4310311647\\\"], \\\"host_organization_lineage_names\\\": [\\\"Oxford University Press\\\", \\\"University of Oxford\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"FEMS Microbiology Ecology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract There are many ecological diversity measures, but their suitability for use with highly diverse bacterial communities is unclear and seldom considered. We assessed a range of species richness and evenness/dominance indices, and the use of species abundance models using samples of bacteria from zinc-contaminated and control soils. Bacteria were assigned to operational taxonomic units (OTUs) using amplified ribosomal DNA restriction analysis of 236 clones from each soil. The reduced diversity apparent in the contaminated soil was reflected by the diversity indices to varying degrees. The number of clones analysed and the weighting given to rare vs. abundant OTUs are the most important considerations when selecting measures. Our preferences, arrived at using theory and practical experience, include: the log series index alpha; the Q statistic (but only if coverage is 50% or more); the Berger-Parker and Simpson's indices, although their ecological relevance may be limited; and, unexpectedly, the Shannon-Wiener and Shannon evenness indices, even though their meanings may not be clear and their values inaccurate when coverage is low. For extrapolation, the equation for the log series distribution seems the best for extrapolating from OTU accumulation curves while non-parametric methods, such as Chao 1, show promise for estimating total OTU richness. Due to a preponderance of single-occurrence OTUs, none of the five species abundance models fit the OTU abundance distribution of the control soil, but both the log \", \"excerpt_truncated\": true, \"source_sha256\": \"493db888a5700621097ad4bbed72157e3eda9bf159416fd12b3c0500a39f54f6\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-38131170bdca4cc1",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=ecological+state-space+entropy+modeling&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 4,
+  "time": "2026-09-19T17:39:43.050300+00:00"
+}
+```
+
+### `source-98f3292a7b2a4f5d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-98f3292a7b2a4f5d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-19T17:39:43.993268+00:00"
+}
+```
+
+### `r-77b1b72be7894efa`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":4,\"inherited_commitments\":[\"commit_entropy_review\"],\"invocation\":\"w-77b1b72be7894efa\",\"previous_head\":\"b98862f606813cb4d84747cb16dd921cec844ad6b59314d4eff16576e0a9a3bd\",\"process_id\":2268,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-77b1b72be7894efa",
+  "source": "runtime:continuity",
+  "version": 4,
+  "time": "2026-09-19T17:39:44.028603+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -2483,8 +2746,9 @@ _None recorded._
   "query": "ecological state-space entropy modeling",
   "reason": "To secure a distinct ecological source to compare against clinical entropy metrics, fulfilling the source requirement for the preliminary synthesis notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-8b9ca7fe79234c6f"
+  "status": "collected",
+  "created_by": "w-8b9ca7fe79234c6f",
+  "evidence": "source-38131170bdca4cc1"
 }
 ```
 
