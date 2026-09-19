@@ -37,13 +37,19 @@ ALLOWED_HOSTS = {
     "www.nature.com", "nature.com", "www.science.org",
     "journals.plos.org", "elifesciences.org", "www.pnas.org",
     # WAKE source-controlled self-analysis
-    "raw.githubusercontent.com",
+    "raw.githubusercontent.com", "api.github.com",
 }
 # WAKE self-analysis is intentionally allowed to inspect the implementation,
 # not merely prose documentation. These are all source-controlled files from
 # the same repository, so WAKE✳︎ can compare stated design with executable
 # mechanics when it selects itself as a research topic.
 WAKE_SOURCES = {
+    # The recursive tree is the discovery index for self-analysis. It exposes
+    # repository paths, not file contents, so a disposable model can discover
+    # code/tests/assets/configuration that are not named in this hand-curated
+    # convenience map and then request the corresponding raw file on a later
+    # collector pass.
+    "tree": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
     "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
     "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
     "experiment": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
@@ -87,6 +93,8 @@ def allowed_url(url):
         raise ValueError("Source must use HTTPS on an approved research host")
     if parsed.hostname == "raw.githubusercontent.com" and not parsed.path.startswith("/sudofx/wake/"):
         raise ValueError("Repository research must stay within sudofx/wake")
+    if parsed.hostname == "api.github.com" and parsed.path != "/repos/sudofx/wake/git/trees/master":
+        raise ValueError("GitHub API research is limited to the sudofx/wake master tree")
     return url
 
 
@@ -220,6 +228,13 @@ def fetch_source(url):
         ns = {"a": "http://www.w3.org/2005/Atom"}
         text = "\n\n".join("\n".join(f"{key}: {entry.findtext('a:'+key, default='', namespaces=ns).strip()}" for key in ("title", "id", "published", "summary")) for entry in root.findall("a:entry", ns))
         scope = "paper abstracts; preprints, peer-review status not verified"
+    elif "api.github.com/repos/sudofx/wake/git/trees/master" in url:
+        tree = json.loads(decoded).get("tree", [])
+        text = json.dumps([
+            {"path": item.get("path"), "type": item.get("type"), "size": item.get("size")}
+            for item in tree if item.get("type") == "blob"
+        ], ensure_ascii=False)
+        scope = "recursive source-controlled WAKE repository file index; paths and sizes, not file contents"
     elif "raw.githubusercontent.com" in url:
         text = decoded
         scope = "raw source-controlled WAKE repository text"
@@ -276,7 +291,10 @@ def query_url(query, domain):
         for needles, source in choices:
             if any(needle in q for needle in needles):
                 return WAKE_SOURCES[source]
-        return WAKE_SOURCES["default"]
+        # Unknown self-analysis questions begin with the repository index rather
+        # than README. This prevents the curated map from becoming an accidental
+        # boundary on what future disposable workers are able to discover.
+        return WAKE_SOURCES["tree"]
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
