@@ -28,11 +28,8 @@ ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
 # STEP: build_map
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
