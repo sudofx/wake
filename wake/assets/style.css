@@ -235,3 +235,31 @@ footer{margin-top:48px}
 :root[data-theme="dark"] .blog-card-reflection{background:color-mix(in srgb,var(--green) 7%,var(--surface));box-shadow:0 0 0 1px color-mix(in srgb,var(--green) 35%,transparent),0 0 22px color-mix(in srgb,var(--green) 12%,transparent)}
 :root[data-theme="dark"] .reflection-flag,:root[data-theme="dark"] .blog-card-reflection::after{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--green) 55%,transparent))}
 @media(max-width:700px){.blog-card-reflection h2{font-size:29px}.reflection-flag{font-size:8px;letter-spacing:.9px}}
+
+
+/* Milestone reflections must read as a separate editorial class at a glance.
+   These declarations intentionally come last so ordinary .blog-card rules cannot flatten them. */
+.blog-grid .blog-card.blog-card-reflection{
+  border:2px solid #8fd35a;
+  border-top:7px solid #8fd35a;
+  background:linear-gradient(145deg,rgba(143,211,90,.18),rgba(143,211,90,.045) 55%,var(--surface));
+  box-shadow:inset 0 0 0 1px rgba(143,211,90,.12),0 0 28px rgba(143,211,90,.14);
+}
+.blog-grid .blog-card.blog-card-reflection h2 a{color:#a7e56f}
+.blog-grid .blog-card.blog-card-reflection blockquote{color:#b8e98f;border-left-color:#8fd35a}
+.blog-grid .blog-card.blog-card-reflection .reflection-flag{
+  display:inline-block;
+  color:#17200f;
+  background:#9cdd63;
+  border:1px solid #b8ed8b;
+  font-weight:900;
+  padding:7px 10px;
+  margin-bottom:15px;
+}
+.blog-grid .blog-card.blog-card-reflection::after{color:#a7e56f;opacity:1}
+:root:not([data-theme="dark"]) .blog-grid .blog-card.blog-card-reflection h2 a{color:#456f27}
+:root:not([data-theme="dark"]) .blog-grid .blog-card.blog-card-reflection blockquote{color:#456f27}
+@media(max-width:700px){
+  .blog-grid .blog-card.blog-card-reflection{border-top-width:6px}
+  .blog-grid .blog-card.blog-card-reflection .reflection-flag{padding:6px 8px}
+}
