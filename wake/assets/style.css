@@ -532,89 +532,9 @@ footer{margin-top:48px}
 }
 
 
-/* Ultrawide detection must follow shape, not native pixel count: macOS scaling can report ~1720 CSS px on a 3440 panel. */
-@media (min-width:1500px) and (min-aspect-ratio:2/1){
-  #metrics.view{width:96vw;max-width:none}
-  #metrics .metrics-row-one{border:1px solid var(--line);background:var(--surface);padding:0 10px 10px}
-  #metrics .metrics-landscape-heading{border:0;border-bottom:1px solid var(--line);margin:0 -10px 7px;padding:9px 11px 7px}
-  #metrics .metrics-landscape-heading h2{font-size:18px}
-  #metrics .metrics-row-one .dashboard-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr 1fr 1.1fr;gap:6px;padding:0}
-  #metrics .metrics-row-one .dashboard-panel{border:1px solid var(--line);padding:9px 10px;min-height:0;background:var(--bg)}
-  #metrics .metrics-row-one .dashboard-panel h2{font-size:14px;line-height:1.12}
-  #metrics .metrics-row-one .dashboard-panel h3{font-size:7px;margin:8px 0 4px}
-  #metrics .metrics-row-one .dashboard-panel .small{font-size:7px;line-height:1.22}
-  #metrics .metrics-row-one .topic-metric-row{grid-template-columns:minmax(68px,1fr) 1.6fr 18px;gap:4px;padding:2px 0;font-size:6px}
-  #metrics .metrics-row-one .topic-legend{font-size:5px;gap:4px}
-  #metrics .metrics-row-one .dashboard-stat{padding:4px 0;gap:5px}
-  #metrics .metrics-row-one .dashboard-stat strong{font-size:14px;min-width:30px}
-  #metrics .metrics-row-one .dashboard-stat span{font-size:7px}
-  #metrics .metrics-row-one .metric-bar-row{grid-template-columns:44px 1fr 20px;gap:4px;padding:2px 0;font-size:6px}
-  #metrics .metrics-row-one .reason-row{font-size:6px;padding:3px 0;grid-template-columns:18px 1fr}
-  #metrics .metrics-row-one .model-metric-row{font-size:5px;padding:2px 0;gap:3px}
-  #metrics .metrics-row-one .pie-layout{grid-template-columns:76px 1fr;gap:6px;margin-top:6px}
-  #metrics .metrics-row-one .pie-key{font-size:6px;padding:2px 0}
-  #metrics .metrics-row-one .hypothesis-section{grid-column:1/-1;border:1px solid var(--line);padding:8px 9px;margin-top:0;background:var(--bg)}
-  #metrics .metrics-row-one .hypothesis-section .dashboard-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:6px}
-  #metrics .metrics-row-one .hypothesis-section .dashboard-heading h2{font-size:16px}
-  #metrics .metrics-row-one .hypothesis-section .dashboard-heading>p{max-width:380px;text-align:right;font-size:7px}
-  #metrics .metrics-row-one .hypothesis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
-  #metrics .metrics-row-one .hypothesis-card{padding:7px 8px;min-height:0}
-  #metrics .metrics-row-one .hypothesis-card h3{font-size:11px;margin:2px 0 3px}
-  #metrics .metrics-row-one .hypothesis-card p:last-child{font-size:7px;line-height:1.25}
-
-  #metrics .metrics-row-two{grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}
-  #metrics .metrics-row-two-left{gap:7px}
-  #metrics .metrics-row-two-left .dashboard-feature{padding:9px 10px}
-  #metrics .metrics-row-two-right{display:grid;grid-template-columns:1fr 1fr;align-content:start;border:1px solid var(--line)}
-  #metrics .metrics-row-two-right .command-strip{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);margin:0;grid-template-columns:1.4fr repeat(7,1fr)}
-  #metrics .metrics-row-two-right .command-strip>div:first-child{grid-column:auto}
-  #metrics .metrics-row-two-right .command-strip>div{padding:6px 7px}
-  #metrics .metrics-row-two-right .telemetry-grid{grid-column:1;grid-template-columns:repeat(2,minmax(0,1fr));border:0;border-right:1px solid var(--line);margin:0}
-  #metrics .metrics-row-two-right .dashboard-kpis{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
-  #metrics .metrics-row-two-right .telemetry-cell,#metrics .metrics-row-two-right .metric-card{padding:6px 7px}
-}
-
-
-/* Mockup implementation: one seven-instrument landscape rack + hypothesis deck. */
-.metrics-landscape-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:14px 0 12px}
-.metrics-landscape-heading h2{margin:3px 0 0}.landscape-status{display:flex;align-items:center;gap:10px;font:9px var(--mono);letter-spacing:.08em;color:var(--muted)}.landscape-status strong{font-size:16px;color:var(--green)}
-@media(min-width:3000px){
-  #metrics .metrics-row-one{border:1px solid var(--line);padding:12px 18px 16px}
-  #metrics .metrics-landscape-heading{padding:2px 0 10px}
-  #metrics .metrics-landscape-heading h2{font-size:21px}
-  #metrics .metrics-row-one .dashboard-grid{display:grid;grid-template-columns:1.4fr .92fr .95fr .95fr 1.08fr 1.08fr 1fr;gap:8px;padding:0}
-  #metrics .metrics-row-one .dashboard-panel{padding:10px 12px;min-height:250px}
-  #metrics .metrics-row-one .dashboard-panel h2{font-size:14px;line-height:1.15}
-  #metrics .metrics-row-one .dashboard-panel .small{font-size:7px}
-  #metrics .dashboard-hypothesis-summary .dashboard-stat strong{font-size:32px}
-  #metrics .metrics-row-one>.hypothesis-section{margin:14px -18px -16px;padding:12px 18px 14px;border-top:1px solid var(--line)}
-  #metrics .metrics-row-one>.hypothesis-section .dashboard-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:8px}
-  #metrics .metrics-row-one>.hypothesis-section .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-  #metrics .metrics-row-one>.hypothesis-section .hypothesis-card{min-height:108px}
-}
-
-
-/* Ultrawide landscape rack legibility pass. */
-@media(min-width:3000px){
-  #metrics .metrics-row-one .dashboard-panel{padding:13px 14px}
-  #metrics .metrics-row-one .dashboard-panel .eyebrow{font-size:9px}
-  #metrics .metrics-row-one .dashboard-panel h2{font-size:18px;line-height:1.2}
-  #metrics .metrics-row-one .dashboard-panel h3{font-size:10px}
-  #metrics .metrics-row-one .dashboard-panel .small{font-size:9px;line-height:1.4}
-  #metrics .metrics-row-one .dashboard-stat strong{font-size:20px}
-  #metrics .metrics-row-one .dashboard-stat span{font-size:10px}
-  #metrics .metrics-row-one .metric-bar-row,
-  #metrics .metrics-row-one .reason-row,
-  #metrics .metrics-row-one .model-metric-row,
-  #metrics .metrics-row-one .topic-metric-row,
-  #metrics .metrics-row-one .pie-key{font-size:9px}
-  #metrics .metrics-row-one .topic-legend{font-size:8px}
-  #metrics .dashboard-hypothesis-summary .dashboard-stat strong{font-size:34px}
-}
-
-
 /* Ultrawide control-room correction: readable 5-column instrument rack. */
-@media(min-width:3000px){
+/* Use CSS viewport shape: macOS display scaling reports a 3440px panel as ~1720 CSS px. */
+@media (min-width:1500px) and (min-aspect-ratio:2/1){
   #metrics .metrics-row-one{padding:16px 20px 18px}
   #metrics .metrics-row-one .dashboard-grid{
     grid-template-columns:repeat(5,minmax(0,1fr));
