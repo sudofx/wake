@@ -227,11 +227,16 @@ def schema_for_context(context):
             action["properties"]["domain"]["enum"] = domains
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
-    if not evidence:
+    reflection_due = bool(context.get("bob_reflection_due"))
+    if not evidence and not reflection_due:
         choices.remove(blog)
     else:
         props = blog["properties"]
-        props["project"]["enum"] = sorted({project for project, _ in entries})
+        if reflection_due:
+            props["notebooks"]["minItems"] = 0
+            props["evidence"]["minItems"] = 0
+        props["project"]["enum"] = sorted({project for project, _ in entries} or
+                                           {p["id"] for p in context.get("projects", [])})
         props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
         props["evidence"]["items"]["enum"] = evidence
     return schema
