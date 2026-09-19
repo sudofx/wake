@@ -5,7 +5,7 @@
 **Version:** 19  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `385884a03bbb2c7b4168a68e8ae057b45d50d0d5c41c6887b8a16efe30522919`
+**Verified head:** `12978d00f1225ec87d19b84a8816f9b4b064ef1a4cec8ea7013cda52b4c99828`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -12930,6 +12930,324 @@
 }
 ```
 
+### `w-6e7cda1de4a6492b`
+
+```json
+{
+  "base_version": 19,
+  "charged": true,
+  "id": "w-6e7cda1de4a6492b",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 19,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 7,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2328,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "3b9605cb16aaccdd245b2a29a37251006bed3e911c26d904bc3613b55d3fada2",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-rev-nb-landau",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-ad3d7f5f58594ab3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ad3d7f5f58594ab3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-604b93baedc54c66"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-604b93baedc54c66",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ee5da31f5cdf4547"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ee5da31f5cdf4547",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ef8a9c7a3dbe4d5f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ef8a9c7a3dbe4d5f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-533c9d14b7254fd4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-533c9d14b7254fd4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9f9cace8a2ca440f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9f9cace8a2ca440f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-ad3d7f5f58594ab3",
+      "source-604b93baedc54c66",
+      "source-ee5da31f5cdf4547",
+      "source-ef8a9c7a3dbe4d5f",
+      "source-533c9d14b7254fd4",
+      "source-9f9cace8a2ca440f"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19103,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2653,
+    "working_to_delivered_ratio": 0.1389
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Formalize the quantification of topological constraints as generalized kinetic coefficients in Ginzburg-Landau models.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 20,
+        "id": "commit-rev-nb-landau",
+        "reason": "Current evidence base, particularly regarding spin-valley and layer polarization, is sufficient for a meaningful notebook revision once synthesized against kinetic coefficient theory.",
+        "task": "Synthesize existing topological constraint evidence for notebook update"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0"
+        ],
+        "revision": 6,
+        "summary": "Comparative analysis confirms that topological invariants in Moiré superlattices and silicene induce specific spin-valley and layer polarizations, acting as kinetic constraints that standard Landau theory does not account for.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-19T05:09:36.975765+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 386,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 39269,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-19T05:09:44.105106+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 386,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 386,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 39269,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 39269,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -14938,6 +15256,47 @@
   "source": "runtime:continuity",
   "version": 19,
   "time": "2026-09-19T05:08:06.891394+00:00"
+}
+```
+
+### `source-533c9d14b7254fd4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e23070865\\\", \\\"title\\\": [\\\"Entropy 2021 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23070865\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 7, 6]]}}, {\\\"DOI\\\": \\\"10.3390/e18010037\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2015\\\"], \\\"abstract\\\": \\\"<jats:p>The editors of Entropy would like to express their sincere gratitude to the following reviewers for assessing manuscripts in 2015. [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e18010037\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 1, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fb44564a7043ad45a91464026b977f64a25592cdb191582f2099d2c9ea31462e\"}",
+  "id": "source-533c9d14b7254fd4",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-19T05:09:35.656767+00:00"
+}
+```
+
+### `source-9f9cace8a2ca440f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"98e74ed8bd697900da3a574c6035494f27df9e56818d3d8094fc41ada7633b2f\"}",
+  "id": "source-9f9cace8a2ca440f",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 19,
+  "time": "2026-09-19T05:09:36.603931+00:00"
+}
+```
+
+### `r-6e7cda1de4a6492b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":19,\"inherited_commitments\":[\"commit-rev-nb-landau\"],\"invocation\":\"w-6e7cda1de4a6492b\",\"previous_head\":\"5810fa8cc6861fb20413294d4f182d0fcf2b647ea863fc925fa88f3c12ced57c\",\"process_id\":2328,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-6e7cda1de4a6492b",
+  "source": "runtime:continuity",
+  "version": 19,
+  "time": "2026-09-19T05:09:36.871883+00:00"
 }
 ```
 
