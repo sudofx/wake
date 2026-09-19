@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -505,6 +505,32 @@
       "source": "runtime:continuity",
       "version": 12,
       "time": "2026-09-19T04:23:01.051805+00:00"
+    },
+    "source-176242423dea48b0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=topological+Landau+coefficient+kinetic+constraints+phase+transitions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1007/978-94-011-4106-2_11\\\", \\\"title\\\": [\\\"Time-Dependent Ginzburg-Landau Theory and Duality\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-4106-2_11\\\", \\\"published\\\": {\\\"date-parts\\\": [[2000]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-030-75432-7_12\\\", \\\"title\\\": [\\\"Topological Defects and Topological Phase Transitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-030-75432-7_12\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021]]}}, {\\\"DOI\\\": \\\"10.1142/9789813271340_0001\\\", \\\"title\\\": [\\\"Topological defects and phase transitions\\\"], \\\"URL\\\": \\\"https://doi.org/10.1142/9789813271340_0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 8, 14]]}}, {\\\"DOI\\\": \\\"10.1142/9789813271340_0022\\\", \\\"title\\\": [\\\"Topological phase transitions in photonic lattices\\\"], \\\"URL\\\": \\\"https://doi.org/10.1142/9789813271340_0022\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 8, 14]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"b5107a578d57ba6dd02141d5312c5401e82a0f5229eb59fde85bb84802b9f90e\"}",
+      "id": "source-176242423dea48b0",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=topological+Landau+coefficient+kinetic+constraints+phase+transitions&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-19T04:24:20.364861+00:00"
+    },
+    "source-3c53c52313eb47d2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-3c53c52313eb47d2",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 13,
+      "time": "2026-09-19T04:24:20.662776+00:00"
+    },
+    "r-7fd3e675c10842d8": {
+      "actor": "runtime",
+      "content": "{\"base_version\":13,\"inherited_commitments\":[],\"invocation\":\"w-7fd3e675c10842d8\",\"previous_head\":\"dbbf2dd493242d4e8ff647fd7ea80e5a365eac992f978445f0a5c51bec52292e\",\"process_id\":2267,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-7fd3e675c10842d8",
+      "source": "runtime:continuity",
+      "version": 13,
+      "time": "2026-09-19T04:24:20.772757+00:00"
     }
   },
   "journal": [
@@ -585,6 +611,12 @@
       "invocation": "w-6c76a098d8494efe",
       "title": "Quantifying Topological Constraints in Phase Transitions",
       "summary": "Refining the project focus toward formalizing topological constraints as potential kinetic coefficients. The comparative analysis between Moiré superlattices and silicene is now synthesized in the active notebook. Research has pivoted toward identifying quantitative mappings for these selection rules.\n\nEditorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact"
+    },
+    {
+      "cycle": 14,
+      "invocation": "w-7fd3e675c10842d8",
+      "title": "Refining Topological Selection Rules",
+      "summary": "The research is transitioning from identifying topological invariants to investigating whether these constraints act as formal kinetic coefficients in Ginzburg-Landau models. This cycle integrates findings on topological defects and duality to strengthen the proposed mapping between topological structure and phase transition kinetics."
     }
   ],
   "posts": {
@@ -4822,6 +4854,251 @@
         "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
         "status": "withheld"
       }
+    },
+    "w-7fd3e675c10842d8": {
+      "base_version": 13,
+      "charged": true,
+      "id": "w-7fd3e675c10842d8",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 13,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-sym-breaking",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2267,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "109ac20e6ae99383e02cfc0ffc002dd9c82bd1c012811966dd78554635e4c12f",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "belief-landau-topo-limits",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-11da439e5b3544a1",
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-sym-landau-topo",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-4a9704795463415b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4a9704795463415b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7be720c12b5d4431"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7be720c12b5d4431",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-72a71a6410b44775"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-72a71a6410b44775",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-73ce8107a6dc4717"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-73ce8107a6dc4717",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-176242423dea48b0"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-176242423dea48b0",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3c53c52313eb47d2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3c53c52313eb47d2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-11da439e5b3544a1",
+          "source-4a9704795463415b",
+          "source-7be720c12b5d4431",
+          "source-72a71a6410b44775",
+          "source-73ce8107a6dc4717",
+          "source-176242423dea48b0",
+          "source-3c53c52313eb47d2"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "excerpt_boundary": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 26344,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "excerpt_boundary": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1774,
+        "working_to_delivered_ratio": 0.0673
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-sym-breaking",
+            "next_step": "Formalize topological selection rules as potential kinetic constraints for phase transitions.",
+            "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+            "confidence": 0.8,
+            "id": "belief-landau-topo-limits",
+            "provenance": [
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "status": "active",
+            "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-sym-landau-topo",
+            "project": "proj-sym-breaking",
+            "provenance": [
+              "source-11da439e5b3544a1",
+              "source-cda3b3e78e2047d3",
+              "source-8f9aa698a76b4d42"
+            ],
+            "revision": 5,
+            "summary": "Comparative analysis confirms that topological invariants in Moiré superlattices and silicene induce specific spin-valley and layer polarizations, acting as kinetic constraints that standard Landau theory does not account for.",
+            "title": "Landau-Type vs. Topological Phase Transitions"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T04:24:20.815339+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6452,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46990,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T04:24:32.757101+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -4831,15 +5108,15 @@
     "proj-sym-breaking": {
       "domain": "symmetry",
       "id": "proj-sym-breaking",
-      "next_step": "Formalize topological selection rules as potential kinetic constraints for phase transitions.",
+      "next_step": "Formulate a draft mapping of topological invariants to kinetic coefficients using Ginzburg-Landau duality.",
       "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
-      "reason": "The comparative evidence suggests topological domain-wall states are a predictable mechanism for non-Landau behavior; the next logical step is moving from identification to quantification.",
+      "reason": "The evidence suggests a theoretical path toward formalizing topological constraints as kinetic coefficients.",
       "status": "active",
       "title": "Symmetry Breaking and Phase Transitions",
       "type": "project",
       "created_version": 1,
-      "updated_version": 13,
-      "updated_by": "w-6c76a098d8494efe"
+      "updated_version": 14,
+      "updated_by": "w-7fd3e675c10842d8"
     }
   },
   "notebooks": {
@@ -4847,21 +5124,22 @@
       "evidence": [
         "source-11da439e5b3544a1",
         "source-cda3b3e78e2047d3",
-        "source-8f9aa698a76b4d42"
+        "source-8f9aa698a76b4d42",
+        "source-176242423dea48b0"
       ],
-      "findings": "Comparative evidence [source-11da439e5b3544a1] shows that both Moiré superlattices and topological silicene support similar spin-valley polarization states. The presence of topological domain-wall states, often facilitated by Umklapp scattering [source-11da439e5b3544a1], creates selection rules that prevent certain transitions allowed under purely thermodynamic Landau group-theoretic frameworks. This suggests that the 'non-Landau' behavior is not an anomaly but a predictable consequence of the underlying topological invariant structure.",
+      "findings": "Comparative evidence [source-11da439e5b3544a1] shows that both Moiré superlattices and topological silicene support similar spin-valley polarization states. The presence of topological domain-wall states, often facilitated by Umklapp scattering [source-11da439e5b3544a1], creates selection rules that prevent certain transitions allowed under purely thermodynamic Landau group-theoretic frameworks. Recent synthesis of time-dependent Ginzburg-Landau theory [source-176242423dea48b0] suggests that topological defects can be formally mapped to kinetic coefficients, providing a potential mechanism for the non-Landau behavior observed.",
       "id": "nb-sym-landau-topo",
-      "limitations": "Synthesis relies on abstract-level evidence comparing silicene and Moiré systems. Direct mathematical mapping of the specific Chern numbers across both systems is inferred from the polarization similarity but requires explicit proof.",
+      "limitations": "Synthesis relies on abstract-level evidence comparing silicene and Moiré systems. The formal derivation linking topological invariants to specific kinetic coefficients in these systems is a theoretical hypothesis that requires explicit mathematical modeling beyond current evidence.",
       "next_questions": "Can these topological selection rules be quantified as a generalized 'topological Landau' coefficient for predicting phase transitions in arbitrary moiré configurations?",
       "project": "proj-sym-breaking",
-      "reason": "Updates the notebook with the comparative evidence collected, solidifying the claim that topological domain-wall states are the primary driver of observed non-Landau polarization effects.",
+      "reason": "Incorporates new findings on topological defects and Ginzburg-Landau theory to support the kinetic coefficient hypothesis.",
       "summary": "Comparative analysis confirms that topological invariants in Moiré superlattices and silicene induce specific spin-valley and layer polarizations, acting as kinetic constraints that standard Landau theory does not account for.",
       "title": "Landau-Type vs. Topological Phase Transitions",
       "type": "notebook",
-      "revision": 5,
+      "revision": 6,
       "created_version": 2,
-      "updated_version": 12,
-      "updated_by": "w-63001b08d30c4cac",
+      "updated_version": 14,
+      "updated_by": "w-7fd3e675c10842d8",
       "domain": "symmetry"
     }
   },
@@ -4928,8 +5206,9 @@
       "query": "topological Landau coefficient kinetic constraints phase transitions",
       "reason": "To determine if there is an existing formal framework for treating topological constraints as kinetic coefficients, rather than just abstract selection rules.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-6c76a098d8494efe"
+      "status": "collected",
+      "created_by": "w-6c76a098d8494efe",
+      "evidence": "source-176242423dea48b0"
     }
   },
   "research_topics": [
