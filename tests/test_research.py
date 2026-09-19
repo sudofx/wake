@@ -431,6 +431,13 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("query=error+correction", calls[1])
         self.assertEqual([r["status"] for r in state["research"].values()], ["queued","queued","queued","queued"])
 
+
+    def test_notebook_rejects_unrelated_sources_as_corroboration(self):
+        self.source("s1")
+        self.source("s2")
+        proposal = [project(), notebook(["s1", "s2"], "Volcanic aerosols measurably cool global surface temperatures.")]
+        self.assertEqual(self.propose(proposal)["status"], "rejected")
+
     def test_source_url_allowlist_and_input_types(self):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
             with self.subTest(url=url), self.assertRaises(ValueError): allowed_url(url)
