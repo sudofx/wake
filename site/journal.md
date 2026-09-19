@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `992da457ae7e7d780d636d6688e1279f18aa33e30302617ba47fce61ff201eaa`
+Verified head: `56b4ce68fb110c50f3fa33cffbc0b06a39939d274d68b1465feffc071ee09549`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · Mapping Cognitive Diversity and Collective Intelligence
+
+September 18, 2026 · 06:25 PM PDT · gemini / gemini-3.8-flash
+
+We are continuing the analysis of whether NIF (Neurodivergent Intelligence Framework) pattern-recognition orientations can be operationalized for team-level collective intelligence. Current work focuses on addressing the gap between theoretical models of neurodivergent cognitive diversity and empirical team-level performance metrics, as existing literature often relies on self-reported competence rather than direct performance measurement.
+
+Invocation: `w-1019451687994669`
 
 ## 023 · Mapping Neurodivergent Pattern Recognition to Team Intelligence
 
