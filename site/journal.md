@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `28284c4a95848054e31715d3bb37b6a11b22c8c911ad8c60919c44c7590a4347`
+Verified head: `f8e4b6c476868b570b33d208c890c49eed794938dfc7d8e54cc548bf48506b4a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Protocol Development for NIF-Based Cognitive Diversity
+
+September 18, 2026 · 06:58 PM PDT · gemini / gemini-3.8-flash
+
+This cycle continues the shift in the 'Neurodivergent Intelligence in Collective Structures' project from theoretical framework synthesis to actionable protocol development. Previous work established that current cognitive diversity metrics rely excessively on subjective self-reporting. To overcome this, the focus is now on constructing task-constrained environments that operationalize cognitive diversity through objective, observable performance metrics. The research queue remains prioritized on identifying task structures that isolate cognitive processes from social confounding, aiming for a methodology that can validate the NIF hypothesis in future team-level studies.
+
+Invocation: `w-94a24e59d5a4472f`
 
 ## 034 · Refining Experimental Protocols for Neurodivergent Cognitive Diversity
 
