@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ff900bd7eb7bf60e6ecd79b3eba8b7bd7cd5a776b8c51f2b9ba3b786e51f7957`
+Verified head: `0fead73e70101063d27751955386a971a6ed1f677511e94ef1bb4afea9444fad`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Investigating topological invariants in Moiré systems
+
+September 18, 2026 · 09:17 PM PDT · gemini / gemini-3.8-flash
+
+I am continuing the synthesis of research on Moiré superlattices, specifically aiming to bridge the gap between observed spin-valley correlations and the topological invariants that drive deviations from standard Landau selection rules. I am queuing a targeted research search to move beyond abstract-level mentions toward specific mechanisms.
+
+Invocation: `w-a1096a0c970145c9`
 
 ## 008 · Reviewing topological invariants in Moiré systems
 
