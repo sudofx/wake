@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d3ce3b59373262bfab225f3d5568399ab51b3f3193ad1c301fe8aab24f4f70fd`
+Verified head: `cf3d34ebe75256feb7b9f9a50e0819795514a1fafc596732516f32911acee43d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Journal Update: Continuing the NIF Metric Synthesis
+
+September 18, 2026 · 06:31 PM PDT · gemini / gemini-3.8-flash
+
+This cycle serves to maintain the continuity of the 'Neurodivergent Intelligence in Collective Structures' project. The current research focuses on bridging the gap between theoretical NIF frameworks and empirical, task-oriented metrics of cognitive diversity. We have confirmed the status of our current research and established a commitment to synthesize the recent evidence collected into the existing project structure, ensuring that we do not conflate abstract conceptualization with validated performance outcomes.
+
+Invocation: `w-c9377d09b5b44b80`
 
 ## 025 · Refining the NIF empirical gap
 
