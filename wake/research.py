@@ -144,17 +144,11 @@ def query_url(query, domain):
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
-def discovery_urls(topic, attempts=0):
-    """Return bounded, topic-agnostic discovery routes.
-
-    Ordinary topics alternate between independent scholarly indexes instead of
-    inheriting Crossref's ranking every cycle. WAKE self-analysis remains scoped
-    to its source-controlled repository.
-    """
-    if topic["id"] == "wake_analysis":
-        return [WAKE_SOURCES["default"]]
-    query = topic["query"]
-    crossref = query_url(query, topic["id"])
+def research_urls(query, domain, attempts=0):
+    """Return bounded routes for a neutral topic or a queued follow-up query."""
+    if domain == "wake_analysis":
+        return [query_url(query, domain)]
+    crossref = query_url(query, domain)
     openalex = "https://api.openalex.org/works?" + urllib.parse.urlencode({
         "search": query, "per-page": 4,
         "select": "id,doi,title,publication_year,type,cited_by_count,open_access,primary_location,abstract_inverted_index",
@@ -165,10 +159,14 @@ def discovery_urls(topic, attempts=0):
     return routes
 
 
+def discovery_urls(topic, attempts=0):
+    """Return bounded, topic-agnostic discovery routes."""
+    return research_urls(topic["query"], topic["id"], attempts)
+
+
 def discovery_url(topic):
     """Compatibility helper for callers that need one neutral discovery URL."""
     return discovery_urls(topic)[0]
-
 
 def collect(engine, fetcher=fetch_source):
     """Called under the wake lock before inference; at most two unauthenticated requests."""
@@ -178,47 +176,49 @@ def collect(engine, fetcher=fetch_source):
     attempts = len(state["invocations"])
     topics = state.get("research_topics", [])
     queued = [r for r in state.get("research", {}).values() if r["status"] == "queued"]
-    # Collection attention is randomized rather than tied to topic-file order.
-    # Every fourth invocation, reserve one discovery slot for a configured domain
-    # that does not currently own an active project when possible. This gives the
-    # model a fresh competing signal without parking, deleting, or rewriting its
-    # existing work. Model-authored follow-ups remain durable hypotheses but do
-    # not control collector bandwidth.
+    # Preserve two distinct forces inside the fixed two-request budget:
+    # one continuation slot for model-authored follow-up work when available,
+    # and one neutral discovery slot away from active project domains. This lets
+    # projects actually progress without allowing them to monopolize attention.
     discovery_count = min(2, len(topics))
     rng = secrets.SystemRandom()
     active_domains = {p["domain"] for p in state.get("projects", {}).values()
                       if p.get("status") == "active"}
-    selected = []
     alternatives = [topic for topic in topics if topic["id"] not in active_domains]
-    # Keep active work durable, but do not let its domain monopolize fresh
-    # discovery. Whenever enough alternatives exist, both collector slots expose
-    # other configured topics. If the topic set is too small, fall back to the
-    # full configured set rather than suppressing collection.
-    pool = alternatives if len(alternatives) >= discovery_count else topics
-    if discovery_count and attempts and attempts % 4 == 0 and alternatives:
-        selected.append(rng.choice(alternatives))
-    remaining = [topic for topic in pool if topic not in selected]
-    selected.extend(rng.sample(remaining, min(discovery_count - len(selected), len(remaining))))
-    # Retire queued follow-ups deterministically without fetching them. This keeps
-    # them as an auditable record of model intent while preventing recursive topic
-    # lock-in and permanent queue exhaustion.
-    for item in queued:
-        engine.store.append("research_collected", {
-            "id": item["id"], "status": "superseded", "evidence": None})
     pending = []
     used_urls = set()
-    # One request per selected topic, but rotate the backing scholarly index by
-    # cycle so arbitrary human topics are not permanently filtered through one
-    # provider's coverage/ranking. The route is recorded in the evidence URL.
-    for offset, topic in enumerate(selected):
-        routes = discovery_urls(topic, attempts + offset)
+    used_queue_ids = set()
+
+    if queued and discovery_count:
+        followup = rng.choice(queued)
+        routes = research_urls(followup["query"], followup["domain"], attempts)
         url = routes[0]
-        if url in used_urls and len(routes) > 1:
-            url = routes[1]
-        if url in used_urls:
-            continue
-        pending.append({"id": f"discovery-{attempts}-{offset}", "url": url, "domain": topic["id"]})
+        pending.append({"id": followup["id"], "url": url, "domain": followup["domain"],
+                        "queued_followup": True})
         used_urls.add(url)
+        used_queue_ids.add(followup["id"])
+
+    remaining_slots = discovery_count - len(pending)
+    if remaining_slots:
+        pool = [topic for topic in alternatives
+                if not pending or topic["id"] != pending[0]["domain"]]
+        if len(pool) < remaining_slots:
+            pool = [topic for topic in topics
+                    if not pending or topic["id"] != pending[0]["domain"]]
+        selected = rng.sample(pool, min(remaining_slots, len(pool)))
+        for offset, topic in enumerate(selected, start=len(pending)):
+            routes = discovery_urls(topic, attempts + offset)
+            url = routes[0]
+            if url in used_urls and len(routes) > 1:
+                url = routes[1]
+            if url in used_urls:
+                continue
+            pending.append({"id": f"discovery-{attempts}-{offset}", "url": url,
+                            "domain": topic["id"], "queued_followup": False})
+            used_urls.add(url)
+
+    # Keep unselected follow-ups queued. They are durable hypotheses, not dead
+    # letters; later cycles can service them without exceeding network budget.
 
     for item in pending:
         url = item.get("url") or query_url(item["query"], item["domain"])
@@ -236,4 +236,5 @@ def collect(engine, fetcher=fetch_source):
         evidence_id = "source-" + uuid.uuid4().hex[:16]
         engine.store.append("observation", {"id": evidence_id, "source": url,
                             "content": content, "actor": "collector", "scope": status})
-        engine.store.append("research_collected", {"id": item["id"], "status": status, "evidence": evidence_id})
+        if item.get("queued_followup"):
+            engine.store.append("research_collected", {"id": item["id"], "status": status, "evidence": evidence_id})
