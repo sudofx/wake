@@ -26,8 +26,6 @@ from .governance import Rejected, require, text
 from .providers import Fixture, Gemini, SCHEMA
 from .report import atomic_write, export
 from .store import IntegrityError
-
-
 # ---------------------------------------------------------------------------
 # STEP: parser
 #
@@ -35,8 +33,6 @@ from .store import IntegrityError
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -88,8 +84,6 @@ def parser():
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8000)
     return p
-
-
 # ---------------------------------------------------------------------------
 # STEP: execute
 #
@@ -97,8 +91,6 @@ def parser():
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -196,8 +188,6 @@ def execute(args):
                 return engine.finish(args.id, Path(args.file).read_text(), {"identity": "human-attested"})
     finally:
         engine.store.close()
-
-
 # ---------------------------------------------------------------------------
 # STEP: main
 #
@@ -205,8 +195,6 @@ def execute(args):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
