@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 52  
+**Version:** 53  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `cc624277a20aa419d70ad4776602158968c1e5b9db40ad7f7b4999e1a6ebad2d`
+**Verified head:** `05c81931f62e4a383e6e37bd270c52fc6a5f2f4cc991557b161f8394e5e66cde`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -21571,6 +21571,349 @@
 }
 ```
 
+### `w-ec4649bbaa0f4286`
+
+```json
+{
+  "base_version": 52,
+  "charged": true,
+  "id": "w-ec4649bbaa0f4286",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 52,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-neuro-music-001",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Rhythmic Processing"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2274,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "c9cc4b35f81707ad6a5957c369e5d99f6d994ea8afbfe65a409be66709fbc35c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-4faa6dab22544724"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4faa6dab22544724",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ddbe867417b3473e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ddbe867417b3473e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-aa4e85c0e0be4686"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-aa4e85c0e0be4686",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3cc93a46ef6c47ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3cc93a46ef6c47ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-dbb526bc48b44e9d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dbb526bc48b44e9d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-315cce3bf88d42ad"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-315cce3bf88d42ad",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-4faa6dab22544724",
+      "source-ddbe867417b3473e",
+      "source-aa4e85c0e0be4686",
+      "source-3cc93a46ef6c47ff",
+      "source-dbb526bc48b44e9d",
+      "source-315cce3bf88d42ad"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 28285,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4808,
+    "working_to_delivered_ratio": 0.17
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-music-001",
+        "next_step": "Search literature on auditory processing and rhythm in neurodivergent populations.",
+        "question": "How do differences in neurodivergent auditory processing affect rhythmic synchronization and anticipation in music?",
+        "title": "Neurodivergent Rhythmic Processing"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "revision": 2,
+        "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      },
+      {
+        "id": "nb-comedy-subversion-001",
+        "project": "proj-comedy-002",
+        "provenance": [
+          "source-2e7ffce3899a4cf7",
+          "source-f4413c46ac5e4aae"
+        ],
+        "revision": 1,
+        "summary": "Current computational models for humor classification struggle to quantify structural subversion or 'misrule' because they rely heavily on pattern matching or lexical features rather than semantic incongruity detection.",
+        "title": "Computational Analysis of Structural Humor and Subversion"
+      },
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      },
+      {
+        "id": "nb-music-entropy-002",
+        "project": "proj-entropy-003",
+        "provenance": [
+          "source-54becf7641d14fb0",
+          "source-b889a58a4d2c4e35"
+        ],
+        "revision": 1,
+        "summary": "Information theory offers a quantifiable metric for modeling musical anticipation; predictive coding frameworks suggest listeners minimize surprise, with entropy acting as a proxy for prediction cost in non-isochronous structures.",
+        "title": "Predictive Coding and Entropy in Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-comedy-neuro-002",
+        "project": "proj-comedy-neuro-001",
+        "provenance": [
+          "source-923539e168b64f3d",
+          "source-2a221185e56c4378"
+        ],
+        "revision": 1,
+        "summary": "The structural 'misrule' framework in comedy, which inverts social norms to expose their contingency, offers a theoretical lens for interpreting neurodivergent social signaling.",
+        "title": "Misrule and Neurodivergence as Social Subversion"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T19:34:30.136950+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4237,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 53183,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T19:34:41.472587+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -24525,6 +24868,47 @@
 }
 ```
 
+### `source-dbb526bc48b44e9d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence+rhythmic+auditory+processing+syncopation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1098/rspb.2025.1857/v2/review1\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Brief Personalised Rhythmic Auditory Stimulation Facilitates Cognitive and Neural Processing in Ageing\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2025.1857/v2/review1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 8, 3]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2025.1857/v1/review1\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Brief Personalised Rhythmic Auditory Stimulation Facilitates Cognitive and Neural Processing in Ageing\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2025.1857/v1/review1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 28]]}}, {\\\"DOI\\\": \\\"10.1098/rspb.2025.1857/v1/review2\\\", \\\"title\\\": [\\\"Review for \\\\\\\"Brief Personalised Rhythmic Auditory Stimulation Facilitates Cognitive and Neural Processing in Ageing\\\\\\\"\\\"], \\\"URL\\\": \\\"https://doi.org/10.1098/rspb.2025.1857/v1/review2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4, 20]]}}, {\\\"DOI\\\": \\\"10.22541/au.173641320.01345181/v1\\\", \\\"title\\\": [\\\"Active Inference in Music Perception: Motor Engagement to Syncopation Modulates Rhythmic Prediction Error\\\"], \\\"abstract\\\": \\\"<jats:p>In active inference, the sensory surprisal (a log-probability of sensory\\\\ndata) of the prediction error between prediction and sensory input is\\\\nmodulated by action. The urge to move (groove) induced by syncopation,\\\\nwhich provides metric prediction errors, can be considered a case of\\\\nactive inference in music perception. The present study investigated\\\\nwhether rhythmic prediction error is modulated by improving the\\\\nprecision of rhythm perception through tapping in sync with the rhythm.\\\\nThirty-five participants listened to a rhythmic sequence while tapping\\\\ntwo beats (tapping condition) or holding a pillow (no-tapping\\\\ncondition), and electroencephalography (EEG) was recorded. In both\\\\nconditions, the timing of tone onset was rarely earlier (deviant: 20%)\\\\nthan the standard (80%). The timing deviant elicited mismatch\\\\nnegativity (MMN) in both the tapping and no-tapping conditions,\\\\nreflecting a prediction error in timing. Moreover, the MMN response,\\\\nweighted by precision, was larger in the tapping condition than in the\\\\nno-tapping condition. Neural entrainment was measured by calculating\\\\nintertrial phase coherence (ITPC), which reflects oscillatory activity\\\\nsynchronized to stimulus frequency, and ITPC differed between the two\\\\nconditions at beat-related frequencies. These results suggest that\\\\ntapping enhanced meter and beat information, and reduced the sensory\\\\nsurprisal of syncopation, resulting in a larger precision-weighted\\\\nprediction error. These effects were not due to physiological arousal\\\\ndifferences between conditions, as assessed by EEG power and heart rate\\\\nvariability. This study provides evidence for the modulation of sensory\\\\nprediction error by bodily engagement within the active inference\\\\nframework.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.22541/au.173641320.01345181/v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"11508f8e54ba5d7605d7986108b3c2a80b5f6984068ef19b99bf72799f041f93\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-dbb526bc48b44e9d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence+rhythmic+auditory+processing+syncopation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 52,
+  "time": "2026-09-19T19:34:28.835811+00:00"
+}
+```
+
+### `source-315cce3bf88d42ad`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4295008953\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"title\\\": \\\"Neurodivergence‐informed therapy\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 208, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/dmcn.15384\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S158041768\\\", \\\"display_name\\\": \\\"Developmental Medicine & Child Neurology\\\", \\\"issn_l\\\": \\\"0012-1622\\\", \\\"issn\\\": [\\\"0012-1622\\\", \\\"1469-8749\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Developmental Medicine &amp; Child Neurology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The neurodiversity movement is a social movement that emerged among autistic self-advocates. It has since spread and has been joined by many with diagnoses of attention-deficit/hyperactivity disorder, dyslexia, and developmental coordination disorder among others. By reconceptualizing neurodiversity as part of biodiversity, neurodiversity proponents emphasize the need to develop an 'ecological' society that supports the conservation of neurological minorities through the construction of ecological niches-that is, making space for all. This is an alternative to the drive to eliminate diversity through attempts to 'treat' or 'cure' neurodivergence. So far, neurodiversity theory has not been formally adapted for psychotherapeutic frameworks, and it is not the role of the therapist to make systemic changes to societal organization. Still, there is room for fruitfully drawing on a neurodiversity perspective for therapists working with neurodivergent people in clinical settings. Here, we draw on the example of autism and synthesize three key themes to propose the concept of neurodivergence-informed therapy. First, the reconceptualization of dysfunction as relational rather than individual. Second, the importance of neurodivergence acceptance and pride, and disability community and culture to emancipate neurodivergent people from neuro-normativity. Third, the need for therapists to cultivate a relational epistemic humility regarding different experiences of neurodivergence and disablement.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3198526359\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"title\\\": \\\"From neurodiversity to neurodivergence: the role of epistemic and cognitive marginalization\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 115, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s11229-021-03356-5\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S255146\\\", \\\"display_name\\\": \\\"Synthese\\\", \\\"issn_l\\\": \\\"0039-7857\\\", \\\"issn\\\": [\\\"0039-7857\\\", \\\"1573-0964\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Synthese\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W4210394959\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"title\\\": \\\"Joint Hypermobility Links Neurodivergence to Dysautonomia and Pain\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 97, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyt.2021.786916\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S92766711\\\", \\\"display_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"issn_l\\\": \\\"1664-0640\\\", \\\"issn\\\": [\\\"1664-0640\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"OBJECTIVES: Autism, attention deficit hyperactivity disorder (ADHD), and tic disorder (Tourette syndrome; TS) are neurodevelopmental conditions that frequently co-occur and impact psychological, social, and emotional processes. Increased likelihood of chronic physical symptoms, including fatigue and pain, are also recognized. The expression of joint hypermobility, reflecting a constitutional variant in connective tissue, predicts susceptibility to psychological symptoms alongside recognized physical symptoms. Here, we tested for increased prevalence of joint hypermobility, autonomic dysfunction, and musculoskeletal symptoms in 109 adults with neurodevelopmental condition diagnoses. METHODS: = 57). Age specific cut-offs for GJH were possible to determine in the neurodivergent and comparison group only. RESULTS: The neurodivergent group manifested elevated prevalence of hypermobility (51%) compared to the general population rate of 20% and a comparison population (17.5%). Using a more stringent age specific cut-off, in the neurodivergent group this prevalence was 28.4%, more than double than the comparison group (12.5%). Odds ratio for presence of hypermobility in neurodivergent group, compared to the general population was 4.51 (95% CI 2.17-9.37), with greater odds in females than males. Using age specific cut-off, the odds ratio for GJH in neurodivergent group, compared to the comparison group, was 2.84 (95% CI 1.16-6.94). Neurodivergent participants reported significantly more symptoms of orthostatic intolerance and musculoskeletal skeletal pain than the comparison group. The number of hypermobile joints was found to mediate the relationship between neurodivergence and symptoms of both dysautonomia and pain. CONCLUSIONS: In neurodivergent adults, there is a strong link between the expression of joint hypermobility, dysautonomia, and pain, more so than in the comparison group. Moreover, joint hypermobility mediates the link between neurodivergence and symptoms of dysautonomia and pain. Increased awareness and understanding of this association may enhance the management of core symptoms and allied difficulties in neurodivergent people, including co-occurring physical symptoms, and guide service delivery in the future.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4284713669\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"title\\\": \\\"Social Virtual Reality: Neurodivergence and Inclusivity in the Metaverse\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 107, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/soc12040102\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210173133\\\", \\\"display_name\\\": \\\"Societies\\\", \\\"issn_l\\\": \\\"2075-4698\\\", \\\"issn\\\": [\\\"2075-4698\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Societies\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Whereas traditional teaching environments encourage lively and engaged interaction and reward extrovert qualities, introverts, and others with symptoms that make social engagement difficult, such as autism spectrum disorder (ASD), are often disadvantaged. This population is often more engaged in quieter, low-key learning environments and often does not speak up and answer questions in traditional lecture-style classes. These individuals are often passed over in school and later in their careers for not speaking up and are assumed to not be as competent as their gregarious and outgoing colleagues. With the rise of the metaverse and democratization of virtual reality (VR) technology, post-secondary education is especially poised to capitalize on the immersive learning environments social VR provides and prepare students for the future of work, where virtual collaboration will be key. This study seeks to reconsider the role of VR and the metaverse for introverts and those with ASD. The metaverse has the potential to continue the social and \", \"excerpt_truncated\": true, \"source_sha256\": \"688b122b7ea17e2a2b869f8c63a1f3d084e0adb850c42cd0ac6dcdaab99a514b\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-315cce3bf88d42ad",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 52,
+  "time": "2026-09-19T19:34:29.503009+00:00"
+}
+```
+
+### `r-ec4649bbaa0f4286`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":52,\"inherited_commitments\":[],\"invocation\":\"w-ec4649bbaa0f4286\",\"previous_head\":\"06fccaeb3dccb1b209ee4da937f0415fda3784d1e8ca2296961dd28edb375b09\",\"process_id\":2274,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ec4649bbaa0f4286",
+  "source": "runtime:continuity",
+  "version": 52,
+  "time": "2026-09-19T19:34:29.938740+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -25099,6 +25483,17 @@
 }
 ```
 
+### 053 · Expanding Investigation into Neurodivergent Rhythmic Processing
+
+```json
+{
+  "cycle": 53,
+  "invocation": "w-ec4649bbaa0f4286",
+  "title": "Expanding Investigation into Neurodivergent Rhythmic Processing",
+  "summary": "This cycle focuses on expanding the evidence base for project proj-neuro-music-001. While initial evidence regarding rhythmic auditory stimulation in aging populations has been collected, additional scholarly material is required to specifically address neurodivergent rhythmic processing and syncopation to satisfy the requirements for a foundational research notebook."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -25622,8 +26017,24 @@
   "query": "neurodivergence rhythmic auditory processing syncopation",
   "reason": "To investigate the intersection of rhythmic perception and neurodivergence.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-1b386bff254f455b",
+  "evidence": "source-dbb526bc48b44e9d"
+}
+```
+
+### `res-neuro-music-002`
+
+```json
+{
+  "domain": "music",
+  "id": "res-neuro-music-002",
+  "project": "proj-neuro-music-001",
+  "query": "neurodivergence rhythmic processing auditory syncopation studies",
+  "reason": "Establishing a robust, evidence-backed notebook requires two distinct sources; this search aims to secure the necessary academic literature regarding rhythmic perception differences in neurodivergent populations.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-1b386bff254f455b"
+  "created_by": "w-ec4649bbaa0f4286"
 }
 ```
 
