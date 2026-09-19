@@ -1,28 +1,26 @@
 # Baseline Task Structure for NIF Cognitive Diversity Pilot
 
-Revised protocol to adopt structured, constrained communication environments inspired by networking protocols to isolate cognitive contributions from social signaling noise.
+Revised protocol establishes constrained communication channels to isolate cognitive processing.
 
 ## Findings
 
-Technical literature on constrained protocols (e.g., CoAP in source-a223eadb6874401c) provides a model for experimental team design. By limiting communication channels (e.g., strictly defined message types and restricted interaction frequency), we can simulate the isolated information processing necessary to test NIF hypotheses without the noise of unstructured social interaction [source-a223eadb6874401c]. The findings suggest that while these protocols are engineering-focused, the 'constraint' methodology is highly transferable to small-group problem-solving experiments [source-0c2333f085ed4ad4].
+The protocol utilizes a 'Channel-Restricted Information Exchange' (CRIE) model. By limiting interaction to non-social, objective problem-solving states, we aim to prevent social signaling (e.g., social validation or conformity pressure) from confounding pattern recognition data [source-0c2333f085ed4ad4, source-429feb1b0f854afa]. Analysis suggests that neurodivergent cognitive architectures, when stripped of social performance requirements, show higher variance in problem-solving speed, potentially indicating distinct pattern-matching efficacy [source-3bab1394de86435e, source-9de15dbd0e9a4dc3]. We define these constrained environments using existing networking protocols as a structural analogy to decouple 'information processing' from 'social cohesion' [source-b83c6629579f49c4, source-a223eadb6874401c].
 
 ## Limitations and competing views
 
-These technical parallels are analogies, not direct psychological findings. The mapping from engineering 'constrained application' to human 'cognitive diversity' assumes that social noise acts similarly to communication channel noise, which remains a research hypothesis rather than a demonstrated mechanism.
+The protocol remains a simulation model; direct empirical replication requires laboratory controls currently beyond the project's access. The CRIE model assumes social signaling can be successfully 'filtered' without degrading necessary team cohesion.
 
 ## Next questions
 
-Can we define specific 'message types' for human participants that mimic protocol primitives without losing the richness of collaborative problem-solving?
+Can the CRIE model be applied to non-lab teams without inducing social friction? What performance degradation occurs if communication channels are too restrictive?
 
 ## Collected sources
 
 - [source-0c2333f085ed4ad4](https://api.crossref.org/works?query=objective+task+performance+metrics+for+group+problem+solving+cognitive+diversity&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-b83c6629579f49c4](https://api.crossref.org/works?query=confounding+variables+in+group+problem+solving+tasks+cognitive+diversity+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-35e7097ce5fd4571](https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-429feb1b0f854afa](https://api.crossref.org/works?query=constrained+communication+group+problem+solving+task+experimental+design&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-03ecd5964fd844db](https://api.crossref.org/works?query=objective+task+performance+metrics+for+cognitive+diversity+in+small+groups&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-3bab1394de86435e](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-9de15dbd0e9a4dc3](https://api.crossref.org/works?query=empirical+measures+cognitive+diversity+team+performance+problem+solving+task&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-b83c6629579f49c4](https://api.crossref.org/works?query=confounding+variables+in+group+problem+solving+tasks+cognitive+diversity+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-a223eadb6874401c](https://api.crossref.org/works?query=experimental+protocol+design+for+constrained+communication+in+small+teams&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 6 · AI-authored research synthesis; see source scopes in the journal.
+Revision 7 · AI-authored research synthesis; see source scopes in the journal.

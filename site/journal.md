@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `22ae55ee1705b8aa42ae565917f1f90319c5e147954212503a6b7f5524898bc2`
+Verified head: `4adda2d1c71d1af0de6dc2643d222c23b8886d7c12f5a1d7f267bf0a88d438c5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Protocol Draft for Constrained Cognitive Tasking
+
+September 18, 2026 · 07:07 PM PDT · gemini / gemini-3.8-flash
+
+This session advances the neurodivergent intelligence pilot by formalizing a communication protocol designed to isolate cognitive pattern-recognition contributions from social signaling. The protocol prioritizes operationalizing the NIF-based cognitive architecture as a measurable task variable rather than a trait-based descriptor. We focus on structural isolation to test the hypothesis that pattern-recognition advantages are obscured in high-social-signal environments.
+
+Invocation: `w-5f89b6f5472b401e`
 
 ## 038 · Shift from deficit models to cognitive architecture in NIF research
 
