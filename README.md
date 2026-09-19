@@ -8,17 +8,23 @@ Disposable models. Durable state. Receipts for everything.
 
 **Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**
 
-**WAKE✳︎** explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.
+**WAKE✳︎** is an experiment in durable, accountable work across interchangeable intelligences. Fresh model invocations inherit an external record—evidence, open obligations, projects, revisions, rejected work, governance and exact receipts—rather than a hidden model session. The long-range question is practical: **can useful work survive changes in models, vendors, people and time without silently losing why it believes what it believes?**
 
-**WAKE✳︎** lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that **WAKE✳︎** is a person.
+It does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.
+
+The project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**
+
+Research topics are dynamic and come only from `research-topics.toml`. They are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. In the present experiment, topics stand in for the varied input a future user or institution might supply.
+
+A trusted collector retrieves bounded public evidence before inference. Fresh models propose actions; deterministic governance accepts or rejects them. Live collected evidence is stamped by the collector and current notebook/blog publication requires corroborating material from multiple distinct collected source URLs in the project's configured topic. That is a useful garbage filter, **not proof of truth, source independence, scientific validity, or semantic entailment**.
+
+The public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.
 
 **[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
 
-The phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.
+The current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.
 
-The GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.
-
-The original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.
+The included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.
 
 ## Start here — no account, no API calls
 
@@ -44,26 +50,96 @@ Use a **new** data directory each time. The experiment refuses to erase existing
 
 These are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).
 
-## A real record with Gemini
+## Quick setup — Gemini
+
+Gemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.
+
+### 1. Clone and verify
 
 ```sh
-cp .env.example .env   # Only if you do not already have a .env file.
-# Put GEMINI_API_KEY=your-key in .env.
-python3 -m wake init
-python3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'
+git clone https://github.com/sudofx/wake.git
+cd wake
+python3 --version                 # Python 3.11+
+python3 -m unittest discover -s tests -v
 ```
 
-In `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:
+No Node, database server, or vendor SDK is required.
+
+### 2. Add your Gemini API key locally
+
+Create a Gemini API key in Google AI Studio. Then:
 
 ```sh
+cp .env.example .env
+```
+
+Edit `.env` so it contains:
+
+```text
+GEMINI_API_KEY=your_key_here
+```
+
+`.env` is ignored by Git. Never commit the key. If you intend to use a free-tier-only API project, verify billing is disabled for that Google project and leave `free_tier_confirmed = true` in `wake.toml` only when that statement is true.
+
+### 3. Configure the model and topics
+
+The provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
+
+Research topics live **only** in `research-topics.toml`. Edit that file to change the experiment's inputs; do not hardcode topics into governance or prompts.
+
+### 4. Initialize and test locally
+
+```sh
+python3 -m wake init
 python3 -m wake wake
+python3 -m wake audit
 python3 -m wake export
 python3 -m wake serve
 ```
 
-A charged wake uses the configured Gemini availability chain: `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.1-flash-lite`. Each distinct model is attempted at most once, with no sleeps or same-model transport retries. Only explicitly transient server/network failures may advance to the next model; every 429, authentication failure, invalid response, governance failure, and persistence failure stops the chain. The local daily ceiling is enforced conservatively across provider-request reservations, including interrupted attempts whose outcome is unknown. With the current configuration, one wake can reserve at most three provider-request slots, and fewer when the remaining daily budget is smaller. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).
+Open `http://127.0.0.1:8000`. A live `wake` can consume Gemini quota. For a zero-call systems check, use the offline experiment in the previous section instead.
 
-The rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.
+### 5. Add the same key to GitHub Actions
+
+In your GitHub repository:
+
+1. Open **Settings → Secrets and variables → Actions**.
+2. Choose **New repository secret**.
+3. Name it exactly `GEMINI_API_KEY`.
+4. Paste the same Gemini API key and save it.
+
+Do **not** put the key in `wake.toml`, `research-topics.toml`, workflow YAML, Issues, Actions logs, or the public `wake-state` branch.
+
+### 6. Configure GitHub Actions permissions
+
+Open **Settings → Actions → General**. Under **Workflow permissions**, select **Read and write permissions** and save. Leave Actions enabled for the repository.
+
+The included workflow itself requests only the permissions it needs: `contents: write` for the durable state branch and `pages: write` / `id-token: write` for GitHub Pages deployment.
+
+### 7. Configure GitHub Pages
+
+Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.
+
+### 8. Run the first cloud wake
+
+Open **Actions → WAKE✳︎ — research & journal → Run workflow** and run it from the default branch. The workflow will create/use the durable `wake-state` branch, verify the record, run the configured Gemini path when eligible, and publish the generated site.
+
+A source-code push normally refreshes the site without spending a Gemini call. Scheduled ticks are best effort; durable eligibility prevents closely spaced scheduled deliveries from becoming concurrent writers.
+
+### 9. Verify the installation
+
+Check that:
+
+- the workflow completes without an operator-attention failure;
+- the Pages deployment succeeds;
+- the public site loads;
+- `wake-state` exists after the first stateful cloud run;
+- the site reports the latest attempt separately from the latest accepted wake;
+- **Verify the record** passes on `master`.
+
+After that, normal operation requires no open local computer.
+
+For recovery behavior, quota semantics, reset controls and the exact cloud lifecycle, read [cloud operations](docs/cloud.md). For the trust boundary, read [architecture and limits](docs/architecture.md).
 
 ## Claude, ChatGPT, and other desktop models
 
