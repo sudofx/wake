@@ -142,49 +142,72 @@
     const count=status=>completed.filter(i=>i.status===status).length;
     const acceptedCount=count('accepted'), rejectedCount=count('rejected'), deferredCount=count('deferred'), failedCount=count('failed'), recoveredCount=count('recovered');
     const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):0;
-    const obligations=Object.values(s.commitments||{});
-    const fulfilled=obligations.filter(c=>c.status==='fulfilled');
+    const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
     const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):0;
-    const evidenceCount=Object.keys(s.evidence||{}).length;
-    const projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
+    const evidenceCount=Object.keys(s.evidence||{}).length, projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const attempts=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time)).slice(-100);
-    const timeline=attempts.map((i,index)=>{
-      const status=i.status||'unknown', label=status.toUpperCase();
-      return `<a class="wake-cell ${esc(status)}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc(label)} · ${esc(i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(label)}"></a>`;
-    }).join('');
-    const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]];
-    const maxStatus=Math.max(1,...statuses.map(x=>x[1]));
+    const timeline=attempts.map((i,index)=>`<a class="wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc((i.status||'unknown').toUpperCase())} · ${esc(i.successful_model||i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(i.status||'unknown')}"></a>`).join('');
+    const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]], maxStatus=Math.max(1,...statuses.map(x=>x[1]));
     const outcomeBars=statuses.map(([name,value])=>`<div class="metric-bar-row"><span>${esc(name)}</span><div><i class="metric-bar ${esc(name)}" style="width:${Math.max(value?3:0,100*value/maxStatus)}%"></i></div><strong>${value}</strong></div>`).join('');
-    const models={};
-    completed.forEach(i=>{
-      const key=i.successful_model||i.model||i.provider||'unknown';
-      models[key]??={attempts:0,accepted:0,requests:0};
-      models[key].attempts++; models[key].accepted+=i.status==='accepted'?1:0; models[key].requests+=i.provider_requests_sent||0;
-    });
+    const models={}; completed.forEach(i=>{const key=i.successful_model||i.model||i.provider||'unknown';models[key]??={attempts:0,accepted:0,requests:0};models[key].attempts++;models[key].accepted+=i.status==='accepted'?1:0;models[key].requests+=i.provider_requests_sent||0;});
     const modelRows=Object.entries(models).sort((a,b)=>b[1].attempts-a[1].attempts).map(([name,m])=>`<div class="model-metric-row"><strong>${esc(name)}</strong><span>${m.attempts} wakes</span><span>${m.accepted} accepted</span><span>${m.requests} HTTP requests</span></div>`).join('');
-    const rejectionReasons=data.events.filter(e=>e.kind==='rejected').map(e=>String(e.payload.reason||'Unspecified rejection'));
-    const reasonCounts={};
+    const rejectionReasons=data.events.filter(e=>e.kind==='rejected').map(e=>String(e.payload.reason||'Unspecified rejection')), reasonCounts={};
     rejectionReasons.forEach(reason=>{const key=reason.split(':')[0].slice(0,90);reasonCounts[key]=(reasonCounts[key]||0)+1;});
-    const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
+    const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
+
+    const actionEvents=accepted.map(e=>({cycle:e.payload.proposal?.base_version+1||0,actions:e.payload.proposal?.actions||[]}));
+    const actionCounts={}; actionEvents.forEach(row=>row.actions.forEach(a=>actionCounts[a.type]=(actionCounts[a.type]||0)+1));
+    const actionTotal=Object.values(actionCounts).reduce((a,b)=>a+b,0);
+    const actionPie=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]).map(([name,n])=>`<div class="pie-key"><i style="--slice:${n/actionTotal*360}deg"></i><span>${esc(name)}</span><strong>${n}</strong></div>`).join('');
+    let angle=0; const pieStops=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]).map(([name,n],idx)=>{const from=angle;angle+=actionTotal?n/actionTotal*360:0;return `var(--chart-${idx%6}) ${from}deg ${angle}deg`;}).join(',');
+
+    const topicStats=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,{label:t.label,projects:0,research:0,evidence:0,notebooks:0,accepted:0}]));
+    const ensureTopic=id=>{if(!id)return null;if(!topicStats[id])topicStats[id]={label:topicLabel(id),projects:0,research:0,evidence:0,notebooks:0,accepted:0};return topicStats[id];};
+    projects.forEach(p=>{const t=ensureTopic(p.domain);if(t)t.projects++;});
+    Object.values(s.research||{}).forEach(r=>{const t=ensureTopic(r.domain);if(t)t.research++;});
+    Object.values(s.evidence||{}).forEach(e=>{let domain=e.topic_domain;try{if(!domain&&typeof e.content==='string')domain=JSON.parse(e.content).topic_domain;}catch{}const t=ensureTopic(domain);if(t)t.evidence++;});
+    notebooks.forEach(n=>{const domain=s.projects?.[n.project]?.domain||n.domain;const t=ensureTopic(domain);if(t)t.notebooks++;});
+    actionEvents.forEach(row=>{const ids=new Set();row.actions.forEach(a=>{const domain=a.domain||s.projects?.[a.project]?.domain;if(domain)ids.add(domain);});ids.forEach(id=>{const t=ensureTopic(id);if(t)t.accepted++;});});
+    const topicRows=Object.entries(topicStats).map(([id,t])=>({id,...t,activity:t.projects+t.research+t.evidence+t.notebooks+t.accepted})).sort((a,b)=>b.activity-a.activity||a.label.localeCompare(b.label));
+    const maxTopic=Math.max(1,...topicRows.map(t=>t.activity));
+    const topicChart=topicRows.map(t=>`<div class="topic-metric-row"><a href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a><div class="topic-stack" title="${t.projects} projects · ${t.research} research · ${t.evidence} evidence · ${t.notebooks} notebooks · ${t.accepted} accepted wakes"><i class="topic-projects" style="width:${100*t.projects/maxTopic}%"></i><i class="topic-research" style="width:${100*t.research/maxTopic}%"></i><i class="topic-evidence" style="width:${100*t.evidence/maxTopic}%"></i><i class="topic-notebooks" style="width:${100*t.notebooks/maxTopic}%"></i><i class="topic-wakes" style="width:${100*t.accepted/maxTopic}%"></i></div><strong>${t.activity}</strong></div>`).join('');
+
+    const windows=[]; for(let i=0;i<completed.length;i+=10){const group=completed.slice(i,i+10),a=group.filter(x=>x.status==='accepted').length,r=group.filter(x=>x.status==='rejected').length,d=group.filter(x=>x.status==='deferred').length;windows.push({label:`${i+1}–${i+group.length}`,a,r,d,total:group.length});}
+    const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');
+
+    const beliefs=Object.values(s.beliefs||{}), activeBeliefs=beliefs.filter(b=>b.status==='active'), retractedBeliefs=beliefs.filter(b=>b.status==='retracted');
+    const revisedBeliefs=actionEvents.flatMap(x=>x.actions).filter(a=>a.type==='belief').length;
+    const overdue=obligations.filter(c=>c.status==='open'&&s.version>=c.due_cycle).length;
+    const fallbackWakes=completed.filter(i=>(i.provider_attempts||[]).length>1).length;
+    const knownAttempts=completed.flatMap(i=>i.provider_attempts||[]).filter(a=>a.result!=='unknown');
+    const latency=knownAttempts.map(a=>a.elapsed_ms).filter(Number.isFinite).sort((a,b)=>a-b), medianLatency=latency.length?Math.round(latency[Math.floor(latency.length/2)]):null;
     const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;
+
+    const hypotheses=[];
+    if(completed.length>=20){const recent=completed.slice(-20),prior=completed.slice(-40,-20);if(prior.length>=10){const rr=recent.filter(i=>i.status==='accepted').length/recent.length,pr=prior.filter(i=>i.status==='accepted').length/prior.length;if(Math.abs(rr-pr)>=.1)hypotheses.push({title:'Outcome regime may be shifting',text:`Acceptance moved from ${Math.round(pr*100)}% in the prior window to ${Math.round(rr*100)}% in the latest 20 wakes. This is an observed association, not a causal explanation.`});}}
+    if(topicRows.length>=2&&topicRows[0].activity>Math.max(2,topicRows.at(-1).activity*2))hypotheses.push({title:'Research attention is uneven',text:`${topicRows[0].label} currently has ${topicRows[0].activity} recorded activity units versus ${topicRows.at(-1).activity} for ${topicRows.at(-1).label}. The record supports an attention-skew hypothesis; it does not establish topic value.`});
+    if(fallbackWakes)hypotheses.push({title:'Provider fallback is part of observed continuity',text:`${fallbackWakes} completed wakes required more than one model attempt. Compare their outcomes with single-attempt wakes before attributing any quality effect to fallback.`});
+    if(rejectedCount)hypotheses.push({title:'Rejection is measurable governance work',text:`${rejectedCount} completed wakes were rejected while durable state advanced ${s.version} cycles. Rejections are observable resistance in the process, not automatically failure or success.`});
+    if(!hypotheses.length)hypotheses.push({title:'Not enough separation yet',text:'The current record does not show a strong simple pattern worth elevating. Keep collecting data rather than manufacturing a story.'});
+    const hypothesisHtml=hypotheses.map(h=>`<article class="hypothesis-card"><p class="eyebrow">DATA-DERIVED HYPOTHESIS</p><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></article>`).join('');
+
     $('metrics-dashboard').innerHTML=`
-      <section class="dashboard-kpis">
-        ${card(s.version,'Durable cycles','Accepted state advances')}
-        ${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}
-        ${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}
-        ${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}
-      </section>
+      <section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}</section>
       <section class="dashboard-section"><div class="dashboard-heading"><div><p class="eyebrow">LAST ${attempts.length} COMPLETED WAKES</p><h2>The pulse of the experiment.</h2></div><p>One cell per wake. Color is outcome—not quality. Tap any cell for its receipt.</p></div><div class="wake-timeline" role="group" aria-label="Recent wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div><div class="timeline-legend">${statuses.map(([name])=>`<span><i class="${name}"></i>${name}</span>`).join('')}</div></section>
+      <section class="dashboard-section"><div class="dashboard-heading"><div><p class="eyebrow">OUTCOME TREND / 10-WAKE WINDOWS</p><h2>Are the conditions changing?</h2></div><p>Each column is a consecutive ten-wake window. Height is share of outcomes.</p></div><div class="trend-chart">${trend||'<span class="empty">No completed wakes yet.</span>'}</div></section>
       <section class="dashboard-grid">
+        <article class="dashboard-panel"><p class="eyebrow">TOPIC LANDSCAPE</p><h2>Where is the work accumulating?</h2><p class="small">Composite activity is a descriptive count of projects, research records, evidence, notebooks, and accepted wakes touching each configured topic. It is not a quality score.</p><div class="topic-metrics">${topicChart||'<p class="empty">No topic activity yet.</p>'}</div><div class="topic-legend"><span>projects</span><span>research</span><span>evidence</span><span>notebooks</span><span>wakes</span></div></article>
+        <article class="dashboard-panel"><p class="eyebrow">ACCEPTED ACTION MIX</p><h2>What kind of work survives governance?</h2><div class="pie-layout"><div class="css-pie" style="background:conic-gradient(${pieStops||'var(--line) 0deg 360deg'})" role="img" aria-label="Accepted action type composition"></div><div class="pie-keys">${actionPie||'<p class="empty">No accepted actions yet.</p>'}</div></div></article>
         <article class="dashboard-panel"><p class="eyebrow">CORRECTABILITY</p><h2>What governance stopped.</h2><div class="metric-bars">${outcomeBars}</div><h3>Most common rejection families</h3><div class="reason-list">${reasons}</div><a class="text-link" href="#history/filter:rejected">Inspect rejected work →</a></article>
-        <article class="dashboard-panel"><p class="eyebrow">CONTINUITY</p><h2>Does work cross fresh sessions?</h2><div class="dashboard-stat"><strong>${inheritedFulfilled.length}</strong><span>obligations fulfilled by a later invocation</span></div><div class="dashboard-stat"><strong>${obligations.filter(c=>c.status==='open').length}</strong><span>open obligations still carried forward</span></div><div class="dashboard-stat"><strong>${recoveredCount}</strong><span>recovered calls with durable state retained</span></div></article>
+        <article class="dashboard-panel"><p class="eyebrow">CONTINUITY</p><h2>Does work cross fresh sessions?</h2><div class="dashboard-stat"><strong>${inheritedFulfilled.length}</strong><span>obligations fulfilled by a later invocation</span></div><div class="dashboard-stat"><strong>${obligations.filter(c=>c.status==='open').length}</strong><span>open obligations still carried forward</span></div><div class="dashboard-stat"><strong>${recoveredCount}</strong><span>recovered calls with durable state retained</span></div><div class="dashboard-stat"><strong>${overdue}</strong><span>open obligations at or past due cycle</span></div></article>
         <article class="dashboard-panel"><p class="eyebrow">RESEARCH YIELD</p><h2>What survives as usable work?</h2><div class="dashboard-stat"><strong>${evidenceCount}</strong><span>evidence records</span></div><div class="dashboard-stat"><strong>${projects.length}</strong><span>research projects</span></div><div class="dashboard-stat"><strong>${notebooks.length}</strong><span>notebooks</span></div><div class="dashboard-stat"><strong>${Object.keys(s.posts||{}).length}</strong><span>published posts</span></div></article>
-        <article class="dashboard-panel"><p class="eyebrow">PROVIDER PRESSURE</p><h2>What it costs to get a wake.</h2><div class="dashboard-stat"><strong>${providerRequests}</strong><span>recorded HTTP requests</span></div><div class="dashboard-stat"><strong>${deferredCount}</strong><span>deferred wakes</span></div><div class="dashboard-stat"><strong>${failedCount}</strong><span>failed wakes</span></div><div class="model-metrics">${modelRows||'<p class="empty">No provider data yet.</p>'}</div></article>
+        <article class="dashboard-panel"><p class="eyebrow">PROVIDER PRESSURE</p><h2>What it costs to get a wake.</h2><div class="dashboard-stat"><strong>${providerRequests}</strong><span>recorded HTTP requests</span></div><div class="dashboard-stat"><strong>${fallbackWakes}</strong><span>wakes using provider fallback</span></div><div class="dashboard-stat"><strong>${deferredCount}</strong><span>deferred wakes</span></div><div class="model-metrics">${modelRows||'<p class="empty">No provider data yet.</p>'}</div></article>
       </section>
-      <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative; these metrics never write back to the record.</p>`;
+      <section class="hypothesis-section"><div class="dashboard-heading"><div><p class="eyebrow">OBSERVATION → HYPOTHESIS</p><h2>Patterns worth testing next.</h2></div><p>Generated only from recorded counts and comparisons. These are prompts for investigation, not conclusions.</p></div><div class="hypothesis-grid">${hypothesisHtml}</div></section>
+      <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Composite counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
   }
   function lab() {
     const exp=data.experiment;
