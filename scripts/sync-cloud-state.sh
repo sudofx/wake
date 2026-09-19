@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Synchronizes cloud durable state with local files. Treat conflicts conservatively because continuity matters more than convenience.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 set -euo pipefail
 
 if (( $# != 0 )); then
