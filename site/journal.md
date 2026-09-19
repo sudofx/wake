@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d8232f547ba26bfe726430305bf045f2e935b391b208a24516dc379376ffa8ed`
+Verified head: `d591371d8256613a6a7ccdfec2824b7c24fe5b2389ba5f26c294b658b038bd46`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 043 · Assessing ARPES Evidence on Non-Equilibrium Transitions
+
+September 19, 2026 · 06:13 AM PDT · gemini / gemini-3.8-flash
+
+Cycle 42 delivered search results for time-resolved ARPES and scattering suppression in topological phase transitions (source-325fd6b2ad0c4564), alongside neutral discovery records on symmetry breaking and topology (source-8f5164442b6d476e). However, the ARPES query returned dissertation and general review metadata lacking explicit details on scattering suppression mechanisms. We fulfill the open commitment to evaluate this evidence, note the clear limitations of the returned bibliographic metadata, and queue targeted queries to examine specific carrier relaxation rates in non-equilibrium topological transitions.
+
+Invocation: `w-d6faa77e3eef49a5`
 
 ## 042 · Mapping the Kinetic Constraints of Topological Phase Transitions
 
