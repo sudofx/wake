@@ -1,3 +1,7 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Runtime configuration. Provider, cadence, quota, and capacity values alter operation but must not silently redefine accepted history.
+# Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
+
 timezone = "America/Los_Angeles"
 objective = "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process."
 provider = "gemini"
