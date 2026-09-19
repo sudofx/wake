@@ -39,8 +39,6 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
             "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml"}
-
-
 # ---------------------------------------------------------------------------
 # STEP: _topics
 #
@@ -48,8 +46,6 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -76,8 +72,6 @@ def _topics(settings, config_path=None):
         normalized.append({key: item[key] for key in ("id", "label", "query")})
     require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
     return normalized
-
-
 # ---------------------------------------------------------------------------
 # STEP: config
 #
@@ -85,8 +79,6 @@ def _topics(settings, config_path=None):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -117,8 +109,6 @@ def config(path="wake.toml"):
         require(result.get("research_topics_file"), "research_topics_file is required when mission is configured")
         result["research_topics"] = _topics(result, config_path)
     return result
-
-
 # ---------------------------------------------------------------------------
 # OBJECT: Engine
 #
@@ -126,8 +116,6 @@ def config(path="wake.toml"):
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -152,7 +140,6 @@ class Engine:
             else:
                 self.config["research_topics"] = _topics(self.config)
         self.store = Store(directory)
-
     # ---------------------------------------------------------------------------
     # STEP: initialize
     #
@@ -179,7 +166,6 @@ class Engine:
         if state.get("charter") and state.get("research_topics") != desired_topics:
             self.store.append("research_topics_changed", {"topics": desired_topics, "actor": "operator"})
         return self.store.load(repair=True)
-
     # ---------------------------------------------------------------------------
     # STEP: recover
     #
@@ -197,7 +183,6 @@ class Engine:
             state = self.store.append("recovered", {"id": state["pending"],
                                        "reason": "Previous invocation ended without a committed decision; resumed last valid state."})
         return state
-
     # ---------------------------------------------------------------------------
     # STEP: observe
     #
@@ -214,7 +199,6 @@ class Engine:
         require(state["pending"] is None, "Finish or recover the pending invocation before adding evidence")
         return self.store.append("observation", {"id": evidence_id or "e-" + uuid.uuid4().hex[:16],
                                                  "source": source, "content": content, "actor": "human"})
-
     # ---------------------------------------------------------------------------
     # STEP: working_set
     #
@@ -292,7 +276,6 @@ class Engine:
             } for notebook in list(state["notebooks"].values())[-6:]]
 
         return working
-
     # ---------------------------------------------------------------------------
     # STEP: inquiry_drive_shadow
     #
@@ -367,7 +350,6 @@ class Engine:
             "activation": activation,
             "projects": projects,
         }
-
     # ---------------------------------------------------------------------------
     # STEP: context
     #
@@ -433,7 +415,6 @@ class Engine:
             withheld = [i["editorial"] for i in state["invocations"].values() if i.get("editorial")][-2:]
             context["recent_problems"] += ["Blog withheld: " + note["reason"] for note in withheld]
         return context
-
     # ---------------------------------------------------------------------------
     # STEP: start
     #
@@ -523,7 +504,6 @@ class Engine:
                 "inquiry_drive_project_count": len(inquiry_drive_shadow["projects"]),
             }})
         return invocation, request
-
     # ---------------------------------------------------------------------------
     # STEP: finish
     #
@@ -590,7 +570,6 @@ class Engine:
             return provider.diagnostics()
         count = getattr(provider, "provider_requests_sent", None)
         return {"provider_requests_sent": count} if count is not None else {}
-
     # ---------------------------------------------------------------------------
     # STEP: run
     #
@@ -631,7 +610,6 @@ class Engine:
                 else:
                     used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
-
                 # ---------------------------------------------------------------------------
                 # STEP: record_attempt
                 #
