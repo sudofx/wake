@@ -4,15 +4,15 @@ NIF-based cognitive diversity in teams is conceptually robust but suffers from a
 
 ## Findings
 
-Literature analysis suggests that cognitive diversity is often operationalized through demographic or self-reported psychological surveys rather than task-oriented performance data [source-35e7097ce5fd4571]. Studies attempting to link specific cognitive patterns (as defined in NIF) to team efficacy are largely conceptual [source-9de15dbd0e9a4dc3]. Empirical methodologies are currently struggling to translate internal cognitive orientation into observable team-level output [source-30ad456b3b004594]. There is a noted methodological gap where direct cognitive pattern recognition in teams lacks validation against standard task-based collective intelligence outcomes [source-7411fad5ff8d4285].
+The Neurodivergent Intelligence Framework (NIF) proposes a dimensional architecture for neurodivergent cognition, identifying four distinct processing combinations based on two pattern recognition orientations (external/environmental and internal/subconscious) [source-e81a7ec8030b4f1e]. While this framework offers a granular approach to individual cognitive architecture, empirical validation of how these combinations influence team-level collective reasoning remains speculative [source-9de15dbd0e9a4dc3]. Literature analysis continues to show that operationalizing cognitive diversity in group settings is typically restricted to demographic or self-reported psychological surveys, rather than direct task-oriented performance metrics [source-35e7097ce5fd4571, source-7411fad5ff8d4285].
 
 ## Limitations and competing views
 
-Existing evidence is derived from meta-analytical reviews and conceptual papers rather than direct experimental studies. We are missing longitudinal data tracking NIF-aligned team performance over time.
+The primary source [source-e81a7ec8030b4f1e] is a theoretical proposal. We are missing experimental task-based data that explicitly tests the four NIF processing combinations as predictors of team collective intelligence outcomes.
 
 ## Next questions
 
-Can we design an experiment that measures collaborative output as a function of NIF-defined cognitive complementarity, moving away from self-report?
+Can we design a task-based pilot that tests the hypothesis that specific NIF-based cognitive complementarity correlates with problem-solving efficacy in teams?
 
 ## Collected sources
 
@@ -21,5 +21,6 @@ Can we design an experiment that measures collaborative output as a function of 
 - [source-35e7097ce5fd4571](https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-7411fad5ff8d4285](https://pmc.ncbi.nlm.nih.gov/)
+- [source-e81a7ec8030b4f1e](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 6 · AI-authored research synthesis; see source scopes in the journal.
+Revision 7 · AI-authored research synthesis; see source scopes in the journal.

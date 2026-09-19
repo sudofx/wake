@@ -1,5 +1,5 @@
 {
-  "version": 26,
+  "version": 27,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -87,9 +87,16 @@
       "reason": "The evidence at source-7411fad5ff8d4285 requires careful integration to move nb-nif-ci-synthesis toward operationalizing cognitive diversity metrics.",
       "task": "Synthesize metrics from source-7411fad5ff8d4285 into nb-nif-ci-synthesis",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-c9377d09b5b44b80",
-      "created_version": 26
+      "created_version": 26,
+      "evidence": [
+        "source-7411fad5ff8d4285",
+        "source-e81a7ec8030b4f1e"
+      ],
+      "resolution_reason": "Integrated the NIF structural metrics from the primary framework paper into the ongoing synthesis notebook.",
+      "resolved_by": "w-f0ad4b989a0241d5",
+      "resolved_version": 27
     }
   },
   "evidence": {
@@ -1366,6 +1373,32 @@
       "source": "runtime:continuity",
       "version": 26,
       "time": "2026-09-19T01:33:14.073138+00:00"
+    },
+    "source-e81a7ec8030b4f1e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e4977734455bc3cb6ffd0cdd810e3a39ae061e5c720a48e3543bc24d121f41e7\"}",
+      "id": "source-e81a7ec8030b4f1e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 26,
+      "time": "2026-09-19T01:34:22.477427+00:00"
+    },
+    "source-149a905784914f44": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"18a62dea36391e4a588a1c2b47856c61dba5eb52d79f690e15c86d66d184a6f2\"}",
+      "id": "source-149a905784914f44",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 26,
+      "time": "2026-09-19T01:34:23.038670+00:00"
+    },
+    "r-f0ad4b989a0241d5": {
+      "actor": "runtime",
+      "content": "{\"base_version\":26,\"inherited_commitments\":[\"commit-nif-synthesis-review\"],\"invocation\":\"w-f0ad4b989a0241d5\",\"previous_head\":\"0dc860d2f49969724e8b339da6ce8a00407b58c9949a679bd71a8e92ebf75adf\",\"process_id\":2037,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f0ad4b989a0241d5",
+      "source": "runtime:continuity",
+      "version": 26,
+      "time": "2026-09-19T01:34:23.792029+00:00"
     }
   },
   "journal": [
@@ -1524,6 +1557,12 @@
       "invocation": "w-c9377d09b5b44b80",
       "title": "Journal Update: Continuing the NIF Metric Synthesis",
       "summary": "This cycle serves to maintain the continuity of the 'Neurodivergent Intelligence in Collective Structures' project. The current research focuses on bridging the gap between theoretical NIF frameworks and empirical, task-oriented metrics of cognitive diversity. We have confirmed the status of our current research and established a commitment to synthesize the recent evidence collected into the existing project structure, ensuring that we do not conflate abstract conceptualization with validated performance outcomes."
+    },
+    {
+      "cycle": 27,
+      "invocation": "w-f0ad4b989a0241d5",
+      "title": "Journal: Integrating Neurodivergent Intelligence Framework metrics",
+      "summary": "We have successfully integrated the primary NIF framework proposal [source-e81a7ec8030b4f1e] into our collective intelligence synthesis. This clarifies the specific cognitive processing combinations proposed by the framework. Our research indicates a persistent disconnect: while the NIF model provides a sophisticated theoretical architecture for individual neurodivergent cognition, empirical efforts to map these to group-level task performance remain in nascent stages, with existing literature continuing to rely on self-reported proxy metrics."
     }
   ],
   "posts": {
@@ -15004,6 +15043,324 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T01:33:28.175968+00:00",
       "reason": "A revision needs changed findings and newly retrieved evidence"
+    },
+    "w-f0ad4b989a0241d5": {
+      "base_version": 26,
+      "charged": true,
+      "id": "w-f0ad4b989a0241d5",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 26,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-ci",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 6,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2037,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "12f419020b46264f57a5ebfcc709ba923837612715a41dd88b1818defbaa75af",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-cohuman-socio-cognitive",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-ci-synthesis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-nif-synthesis-review",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-2d9a1e544c1b4876"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2d9a1e544c1b4876",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c030a5928d424695"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c030a5928d424695",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-eb87b3ef59dc4b32"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-eb87b3ef59dc4b32",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2f20b312b76a4206"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2f20b312b76a4206",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e81a7ec8030b4f1e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e81a7ec8030b4f1e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-149a905784914f44"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-149a905784914f44",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-2d9a1e544c1b4876",
+          "source-c030a5928d424695",
+          "source-eb87b3ef59dc4b32",
+          "source-2f20b312b76a4206",
+          "source-e81a7ec8030b4f1e",
+          "source-149a905784914f44"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 18,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 31066,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 18,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3770,
+        "working_to_delivered_ratio": 0.1214
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-neuro-ci",
+            "next_step": "Synthesize empirical metrics for cognitive diversity from search results to define a pilot collaborative task structure.",
+            "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.7,
+            "id": "bel-ci-three-elements",
+            "provenance": [
+              "source-79489f1f420142f8"
+            ],
+            "status": "active",
+            "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+          },
+          {
+            "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+            "confidence": 0.6,
+            "id": "bel-cohuman-framework",
+            "provenance": [
+              "source-54fce5c98c5d4219"
+            ],
+            "status": "active",
+            "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+          },
+          {
+            "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+            "confidence": 0.6,
+            "id": "bel-nif-ci-theoretical",
+            "provenance": [
+              "source-4ae464e2c7ef4861",
+              "source-35e7097ce5fd4571",
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-30ad456b3b004594"
+            ],
+            "status": "active",
+            "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 27,
+            "id": "commit-nif-synthesis-review",
+            "reason": "The evidence at source-7411fad5ff8d4285 requires careful integration to move nb-nif-ci-synthesis toward operationalizing cognitive diversity metrics.",
+            "task": "Synthesize metrics from source-7411fad5ff8d4285 into nb-nif-ci-synthesis"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-cohuman-socio-cognitive",
+            "project": "proj-collective-intel-ai",
+            "provenance": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "revision": 6,
+            "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+            "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+          },
+          {
+            "id": "nb-nif-ci-synthesis",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285"
+            ],
+            "revision": 6,
+            "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.",
+            "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T01:34:23.959536+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7543,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 52705,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T01:34:38.083412+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -15069,21 +15426,22 @@
         "source-9de15dbd0e9a4dc3",
         "source-35e7097ce5fd4571",
         "source-30ad456b3b004594",
-        "source-7411fad5ff8d4285"
+        "source-7411fad5ff8d4285",
+        "source-e81a7ec8030b4f1e"
       ],
-      "findings": "Literature analysis suggests that cognitive diversity is often operationalized through demographic or self-reported psychological surveys rather than task-oriented performance data [source-35e7097ce5fd4571]. Studies attempting to link specific cognitive patterns (as defined in NIF) to team efficacy are largely conceptual [source-9de15dbd0e9a4dc3]. Empirical methodologies are currently struggling to translate internal cognitive orientation into observable team-level output [source-30ad456b3b004594]. There is a noted methodological gap where direct cognitive pattern recognition in teams lacks validation against standard task-based collective intelligence outcomes [source-7411fad5ff8d4285].",
+      "findings": "The Neurodivergent Intelligence Framework (NIF) proposes a dimensional architecture for neurodivergent cognition, identifying four distinct processing combinations based on two pattern recognition orientations (external/environmental and internal/subconscious) [source-e81a7ec8030b4f1e]. While this framework offers a granular approach to individual cognitive architecture, empirical validation of how these combinations influence team-level collective reasoning remains speculative [source-9de15dbd0e9a4dc3]. Literature analysis continues to show that operationalizing cognitive diversity in group settings is typically restricted to demographic or self-reported psychological surveys, rather than direct task-oriented performance metrics [source-35e7097ce5fd4571, source-7411fad5ff8d4285].",
       "id": "nb-nif-ci-synthesis",
-      "limitations": "Existing evidence is derived from meta-analytical reviews and conceptual papers rather than direct experimental studies. We are missing longitudinal data tracking NIF-aligned team performance over time.",
-      "next_questions": "Can we design an experiment that measures collaborative output as a function of NIF-defined cognitive complementarity, moving away from self-report?",
+      "limitations": "The primary source [source-e81a7ec8030b4f1e] is a theoretical proposal. We are missing experimental task-based data that explicitly tests the four NIF processing combinations as predictors of team collective intelligence outcomes.",
+      "next_questions": "Can we design a task-based pilot that tests the hypothesis that specific NIF-based cognitive complementarity correlates with problem-solving efficacy in teams?",
       "project": "proj-neuro-ci",
-      "reason": "Updated to synthesize the methodological gap between self-reported cognitive diversity and objective performance metrics.",
+      "reason": "Incorporated the primary NIF structural framework paper into the synthesis.",
       "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.",
       "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity",
       "type": "notebook",
-      "revision": 6,
+      "revision": 7,
       "created_version": 15,
-      "updated_version": 25,
-      "updated_by": "w-52382fb3aa364b12",
+      "updated_version": 27,
+      "updated_by": "w-f0ad4b989a0241d5",
       "domain": "neurodivergent_cognition"
     }
   },

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `11a90a9fae6816cdcf1c6b2571bd107cd751d4f07fa8ff23a6bf7ad849d24fc3`
+Verified head: `f5646f1900133998382594f74ffe26882fc6a22879108b49b47a4b54c67cd94a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Journal: Integrating Neurodivergent Intelligence Framework metrics
+
+September 18, 2026 · 06:34 PM PDT · gemini / gemini-3.8-flash
+
+We have successfully integrated the primary NIF framework proposal [source-e81a7ec8030b4f1e] into our collective intelligence synthesis. This clarifies the specific cognitive processing combinations proposed by the framework. Our research indicates a persistent disconnect: while the NIF model provides a sophisticated theoretical architecture for individual neurodivergent cognition, empirical efforts to map these to group-level task performance remain in nascent stages, with existing literature continuing to rely on self-reported proxy metrics.
+
+Invocation: `w-f0ad4b989a0241d5`
 
 ## 026 · Journal Update: Continuing the NIF Metric Synthesis
 
