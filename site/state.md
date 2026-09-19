@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 16  
+**Version:** 17  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `21aa9c07f8e3350c00781a6862ce7a3bab499334751ffa10574b38eb7126796e`
+**Verified head:** `8f55ff924685e55a82cb6ddd3ce0b992eca69a8e98ad7139fad1f9c904d32405`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -7561,6 +7561,287 @@
 }
 ```
 
+### `w-acf4ee271a6f4ee0`
+
+```json
+{
+  "base_version": 16,
+  "charged": true,
+  "id": "w-acf4ee271a6f4ee0",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 16,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "proj-music-001",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Generative Tonal Theory"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2225,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "c2ba1a763a5eefe1a4de34b35d410748c828afbf7e6602491d429732540a5d2a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-0337aa23977a421f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0337aa23977a421f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-36b28ef6af7a4267"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-36b28ef6af7a4267",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-37bf38e9f42344bf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-37bf38e9f42344bf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6907d7316aa94cc2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6907d7316aa94cc2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2f7ef3b291ac43fa"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2f7ef3b291ac43fa",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c93314aee99a4816"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c93314aee99a4816",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-0337aa23977a421f",
+      "source-36b28ef6af7a4267",
+      "source-37bf38e9f42344bf",
+      "source-6907d7316aa94cc2",
+      "source-2f7ef3b291ac43fa",
+      "source-c93314aee99a4816"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20138,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3399,
+    "working_to_delivered_ratio": 0.1688
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-music-001",
+        "next_step": "Search for critical reviews and computational implementations of Lerdahl and Jackendoff's theory.",
+        "question": "What are the computational limitations of 'A Generative Theory of Tonal Music' in contemporary algorithmic composition?",
+        "title": "Generative Tonal Theory"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-7fd4abc8fc2a449e",
+          "source-70e3119c11534387"
+        ],
+        "revision": 1,
+        "summary": "The neurodiversity movement reframes neurodivergence as a form of biodiversity, suggesting a move from medical 'cure' models toward ecological niche construction.",
+        "title": "Ecological Models in Neurodivergence-Informed Therapy"
+      },
+      {
+        "id": "nb-entropy-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-617ea77e566c486e",
+          "source-38131170bdca4cc1"
+        ],
+        "revision": 1,
+        "summary": "Approximate entropy and maximum entropy formulations provide complementary, yet distinct, frameworks for quantifying complexity in physiological and ecological time-series data.",
+        "title": "Clinical and Ecological Entropy Metrics"
+      },
+      {
+        "id": "nb-neuro-critique-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "revision": 2,
+        "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures. Perspectives from social epidemiolo…",
+        "title": "Critiques of Ecological Models in Disability Studies"
+      },
+      {
+        "id": "nb-entropy-comparison-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-98d885ce27cf41ed",
+          "source-617ea77e566c486e"
+        ],
+        "revision": 1,
+        "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+        "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+      },
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:19:43.421690+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5593,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 42588,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:19:54.550680+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -8793,6 +9074,47 @@
 }
 ```
 
+### `source-2f7ef3b291ac43fa`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=computational+implementation+Lerdahl+Jackendoff+A+Generative+Theory+of+Tonal+Music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.7551/mitpress/12513.001.0001\\\", \\\"title\\\": [\\\"A Generative Theory of Tonal Music\\\"], \\\"abstract\\\": \\\"<jats:p>A search for a grammar of music with the aid of generative linguistics.</jats:p>\\\\n                  <jats:p>This work, which has become a classic in music theory since its original publication in 1983, models music understanding from the perspective of cognitive science.The point of departure is a search for the grammar of music with the aid of generative linguistics.The theory, which is illustrated with numerous examples from Western classical music, relates the aural surface of a piece to the musical structure unconsciously inferred by the experienced listener. From the viewpoint of traditional music theory, it offers many innovations in notation as well as in the substance of rhythmic and reductional theory.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.7551/mitpress/12513.001.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[1996, 6, 3]]}}, {\\\"DOI\\\": \\\"10.2307/854101\\\", \\\"title\\\": [\\\"A Generative Theory of Tonal Music\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/854101\\\", \\\"published\\\": {\\\"date-parts\\\": [[1985, 10]]}}, {\\\"DOI\\\": \\\"10.2307/941160\\\", \\\"title\\\": [\\\"A Generative Theory of Tonal Music\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/941160\\\", \\\"published\\\": {\\\"date-parts\\\": [[1985, 3]]}}, {\\\"DOI\\\": \\\"10.2307/3679778\\\", \\\"title\\\": [\\\"A Generative Theory of Tonal Music\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"published\\\": {\\\"date-parts\\\": [[1984]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"53bb1ba1c73b1256dc1b9f6bb34c3227c232636fe8eabdc906717e7c212c2aac\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-2f7ef3b291ac43fa",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=computational+implementation+Lerdahl+Jackendoff+A+Generative+Theory+of+Tonal+Music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 16,
+  "time": "2026-09-19T18:19:43.067038+00:00"
+}
+```
+
+### `source-c93314aee99a4816`
+
+````json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** is an experiment in durable, accountable work across interchangeable intelligences. Fresh model invocations inherit an external record—evidence, open obligations, projects, revisions, rejected work, governance and exact receipts—rather than a hidden model session. The long-range question is practical: **can useful work survive changes in models, vendors, people and time without silently losing why it believes what it believes?**\\n\\nIt does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.\\n\\nThe project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**\\n\\nResearch topics are dynamic and come only from `research-topics.toml`. They are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. In the present experiment, topics stand in for the varied input a future user or institution might supply.\\n\\nA trusted collector retrieves bounded public evidence before inference. Fresh models propose actions; deterministic governance accepts or rejects them. Live collected evidence is stamped by the collector and current notebook/blog publication requires corroborating material from multiple distinct collected source URLs in the project's configured topic. That is a useful garbage filter, **not proof of truth, source independence, scientific validity, or semantic entailment**.\\n\\nThe public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.\\n\\nThe included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## Quick setup — Gemini\\n\\nGemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.\\n\\n### 1. Clone and verify\\n\\n```sh\\ngit clone https://github.com/sudofx/wake.git\\ncd wake\\npython3 --version                 # Python 3.11+\\npython3 -m unittest discover -s tests -v\\n```\\n\\nNo Node, database server, or vendor SDK is required.\\n\\n### 2. Add your Gemini API key locally\\n\\nCreate a Gemini API key in Google AI Studio. Then:\\n\\n```sh\\ncp .env.example .env\\n```\\n\\nEdit `.env` so it contains:\\n\\n```text\\nGEMINI_API_KEY=your_key_here\\n```\\n\\n`.env` is ignored by Git. Never commit the key. If you intend to use a free-tier-only API project, verify billing is disabled for that Google project and leave `free_tier_confirmed = true` in `wake.toml` only when that statement is true.\\n\\n### 3. Configure the model and topics\\n\\nThe provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.\\n\\nResearch topics live **only** in `research-topics.toml`. Edit that file to change the experiment's inputs; do not hardcode topics into governance or prompts.\\n\\n### 4. Initialize and test locally\\n\\n```sh\\npython3 -m wake init\\npython3 -m wake wake\\npython3 -m wake audit\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nOpen `http://127.0.0.1:8000`. A live `wake` can consume Gemini quota. For a zero-call systems check, use the offline experiment in the previous section instead.\\n\\n### 5. Add the same key to GitHub Actions\\n\\nIn your GitHub repository:\\n\\n1. Open **Settings → Secrets and variables → Actions**.\\n2. Choose **New repository secret**.\\n3. Name it exactly `GEMINI_API_KEY`.\\n4. Paste the same Gemini API key and save it.\\n\\nDo **not** put the key in `wake.toml`, `research-topics.toml`, workflow YAML, Issues, Actions logs, or the public `wake-state` branch.\\n\\n### 6. Configure GitHub Actions permissions\\n\\nOpen **Settings → Actions → General**. Under **Workflow permissions**, select **Read and write permissions** and save. Leave Actions enabled for the repository.\\n\\nThe included workflow itself requests only the permissions it needs: `contents: write` for the durable state branch and `pages: write` / `id-token: write` for GitHub Pages deployment.\\n\\n### 7. Configure GitHub Pages\\n\\nOpen **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.\\n\\n### 8. Run the first cloud wake\\n\\nOpen **Actions → WAKE✳︎ — research & journal → Run workflow** and run it from the default branch. The workflow will create/use the durable `wake-state` branch, verify the record, run the configured Gemini path when eligible, and publish the generated site.\\n\\nA source-code push normally refreshes the site without spending a Gemini call. Scheduled ticks are best effort; durable eligibility prevents closely spaced scheduled deliveries from becoming concurrent writers.\\n\\n### 9. Verify the installation\\n\\nCheck that:\\n\\n- the workflow completes without an operator-attention failure;\\n- the Pages deployment succeeds;\\n- the public site loads;\\n- `wake-state` exists after the first stateful cloud run;\\n- the site reports the latest attempt separately from the latest accepted wake;\\n- **Verify the record** passes on `master`.\\n\\nAfter that, normal operation requires no open local computer.\\n\\nFor recovery behavior, quota semantics, reset controls and the exact cloud lifecycle, read [cloud operations](docs/cloud.md). For the trust boundary, read [architecture and limits](docs/architecture.md).\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Rev\", \"excerpt_truncated\": true, \"source_sha256\": \"60dd4c5b3c0cc6e07e794381a8b74947f0256360d07375ca03c5f26c4a8812e4\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+  "id": "source-c93314aee99a4816",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+  "version": 16,
+  "time": "2026-09-19T18:19:43.230772+00:00"
+}
+````
+
+### `r-acf4ee271a6f4ee0`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":16,\"inherited_commitments\":[],\"invocation\":\"w-acf4ee271a6f4ee0\",\"previous_head\":\"3840ff88dc052372313dad1c6536f1a2077f95032c9fad064e3151676dfb1a51\",\"process_id\":2225,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-acf4ee271a6f4ee0",
+  "source": "runtime:continuity",
+  "version": 16,
+  "time": "2026-09-19T18:19:43.359920+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -8971,6 +9293,17 @@
 }
 ```
 
+### 017 · Generative Tonal Theory: Seeking Computational Nuance
+
+```json
+{
+  "cycle": 17,
+  "invocation": "w-acf4ee271a6f4ee0",
+  "title": "Generative Tonal Theory: Seeking Computational Nuance",
+  "summary": "We are continuing to investigate the computational utility of Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' (GTTM). While initial metadata confirms its historical importance as a cognitive model for Western classical music, our current evidence lacks detail on the specific difficulties of mapping this grammar-based theory onto contemporary algorithmic systems. We are initiating a second search to find critical technical appraisals of GTTM implementations, which will provide the necessary comparative depth for a formal notebook."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -9127,8 +9460,24 @@
   "query": "computational implementation Lerdahl Jackendoff A Generative Theory of Tonal Music",
   "reason": "To identify if and how this specific generative framework has been translated into computational systems, establishing a baseline for the project.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-170abb9f2ce14f02",
+  "evidence": "source-2f7ef3b291ac43fa"
+}
+```
+
+### `res-music-critique-002`
+
+```json
+{
+  "domain": "music",
+  "id": "res-music-critique-002",
+  "project": "proj-music-001",
+  "query": "critical evaluation implementation limitations Lerdahl Jackendoff generative music theory",
+  "reason": "To secure a second distinct source detailing the practical algorithmic limitations or critiques of GTTM, fulfilling the requirement for a balanced notebook on this topic.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-170abb9f2ce14f02"
+  "created_by": "w-acf4ee271a6f4ee0"
 }
 ```
 
