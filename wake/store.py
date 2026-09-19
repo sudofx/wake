@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# STORE — the continuity layer. SQLite is a transactional projection of a hash-linked event history. The event chain is the explanation of how state came to exist; the snapshot is only a cache. Replay therefore remains the authority.
 #
-# Owns durable state and the append-only event chain. Continuity belongs in the record rather than inside any model session; hashes and replay make accepted history inspectable and reconstructable.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """SQLite transactions + hash-linked events. The projection is disposable too."""
 
@@ -23,22 +27,142 @@ from .governance import Rejected, require, transition
 ZERO = "0" * 64
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: canonical
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: digest
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def digest(value):
     return hashlib.sha256(canonical(value).encode()).hexdigest()
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: now
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def now():
     return datetime.now(timezone.utc).isoformat(timespec="microseconds")
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: empty
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def empty():
     return {"version": 0, "objective": "", "focus": "continuity", "beliefs": {},
             "commitments": {}, "evidence": {}, "journal": [], "posts": {},
             "invocations": {}, "pending": None}
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: reduce_event
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def reduce_event(state, event, historical=False):
@@ -129,11 +253,67 @@ def reduce_event(state, event, historical=False):
     return state
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: IntegrityError
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class IntegrityError(RuntimeError):
     pass
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: Store
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class Store:
+    # ---------------------------------------------------------------------------
+    # STEP: __init__
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+    # ---------------------------------------------------------------------------
     def __init__(self, directory):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
@@ -148,10 +328,34 @@ class Store:
                 head TEXT NOT NULL, state TEXT NOT NULL);
         """)
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: close
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def close(self):
         self.db.close()
 
     @contextmanager
+    # ---------------------------------------------------------------------------
+    # STEP: lock
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Callers may rely on this contract.
+    # ---------------------------------------------------------------------------
     def lock(self):
         with (self.directory / "writer.lock").open("a") as lock:
             try:
@@ -163,10 +367,42 @@ class Store:
             finally:
                 fcntl.flock(lock, fcntl.LOCK_UN)
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: events
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def events(self):
         return [{"seq": row[0], "time": row[1], "kind": row[2], "payload": json.loads(row[3]),
                  "prev_hash": row[4], "hash": row[5]}
                 for row in self.db.execute("SELECT * FROM events ORDER BY seq")]
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: replay
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def replay(self):
         state, head = empty(), ZERO
@@ -184,6 +420,22 @@ class Store:
             raise IntegrityError(f"Invalid history: {exc}") from exc
         return state, head
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: load
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def load(self, repair=False):
         # Always replay governance; never trust the cache as an authority.
         state, head = self.replay()
@@ -195,6 +447,22 @@ class Store:
                 self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, canonical(state)))
         return state
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: reset
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def reset(self):
         """Irreversibly clear durable history and rebuild the empty projection."""
         with self.db:
@@ -204,6 +472,22 @@ class Store:
         self.db.execute("VACUUM")
         (self.directory / "experiment.json").unlink(missing_ok=True)
         return self.load(repair=True)
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: append
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def append(self, kind, payload, crash=False):
         state, head = self.replay()
@@ -218,6 +502,22 @@ class Store:
                 os._exit(86)  # Deliberate experiment: process dies before transaction commit.
             self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (event["hash"], canonical(state)))
         return state
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: backup
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def backup(self, destination):
         path = Path(destination)
