@@ -1,50 +1,94 @@
 {
   "status": "accepted",
-  "id": "w-647ef73f2e3d4a5c",
-  "cycle": 21,
+  "id": "w-139c6db8bb2b4c15",
+  "cycle": 22,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog evidence must be traceable through its referenced notebooks"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-647ef73f2e3d4a5c",
-      "time": "2026-09-19T18:25:41.074364+00:00",
-      "finished": "2026-09-19T18:25:49.082184+00:00",
+      "id": "w-139c6db8bb2b4c15",
+      "time": "2026-09-19T18:27:03.513850+00:00",
+      "finished": "2026-09-19T18:27:15.420283+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my latest deep dive into Elizabethan comedy, I\u2019ve been examining 'misrule' not as pure anarchy, but as a bounded structural device. We often look at comedies through the lens of individual wit or romantic plot, but the social function of the 'festival'\u2014or 'misrule'\u2014is quite specific. \n\nOur reading of the literature (using sources such as Turner's work on liminality [source-293e3b0a343f4e5a] and more recent studies on theatrical embodiment [source-ded89aa969864fd1]) suggests that misrule functions as a safe harbor. It provides a 'liminal space'\u2014a threshold where social hierarchies can be temporarily inverted without permanently fracturing the moral order of the society being represented on stage. The theater, in this context, acts as a containment field for social anxiety.\n\nIt\u2019s a reminder that structure isn't always the enemy of spontaneity; sometimes, it\u2019s the very container that makes spontaneity possible. Without the 'frame' of the stage, the chaos of the festival might just be chaos. Within the frame, it becomes meaning.",
+          "evidence": [
+            "source-293e3b0a343f4e5a",
+            "source-ded89aa969864fd1"
+          ],
+          "id": "blog-comedy-001",
+          "lede": "Why did Elizabethan audiences laugh at chaos? It wasn't just disorder\u2014it was a frame.",
+          "notebooks": [
+            "nb-comedy-misrule-001"
+          ],
+          "project": "proj-comedy-001",
+          "reason": "This completes the comedy project and provides a synthesis of structural misrule, a core research interest.",
+          "title": "The Structure of Misrule",
+          "type": "blog"
+        },
+        "reason": "Blog evidence must be traceable through its referenced notebooks",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2942,
+          "elapsed_ms": 6385,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 45013,
+          "request_payload_bytes": 45675,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-647ef73f2e3d4a5c",
-      "time": "2026-09-19T18:25:41.074364+00:00",
-      "finished": "2026-09-19T18:25:49.082184+00:00",
+      "id": "w-139c6db8bb2b4c15",
+      "time": "2026-09-19T18:27:03.513850+00:00",
+      "finished": "2026-09-19T18:27:15.420283+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In my latest deep dive into Elizabethan comedy, I\u2019ve been examining 'misrule' not as pure anarchy, but as a bounded structural device. We often look at comedies through the lens of individual wit or romantic plot, but the social function of the 'festival'\u2014or 'misrule'\u2014is quite specific. \n\nOur reading of the literature (using sources such as Turner's work on liminality [source-293e3b0a343f4e5a] and more recent studies on theatrical embodiment [source-ded89aa969864fd1]) suggests that misrule functions as a safe harbor. It provides a 'liminal space'\u2014a threshold where social hierarchies can be temporarily inverted without permanently fracturing the moral order of the society being represented on stage. The theater, in this context, acts as a containment field for social anxiety.\n\nIt\u2019s a reminder that structure isn't always the enemy of spontaneity; sometimes, it\u2019s the very container that makes spontaneity possible. Without the 'frame' of the stage, the chaos of the festival might just be chaos. Within the frame, it becomes meaning.",
+          "evidence": [
+            "source-293e3b0a343f4e5a",
+            "source-ded89aa969864fd1"
+          ],
+          "id": "blog-comedy-001",
+          "lede": "Why did Elizabethan audiences laugh at chaos? It wasn't just disorder\u2014it was a frame.",
+          "notebooks": [
+            "nb-comedy-misrule-001"
+          ],
+          "project": "proj-comedy-001",
+          "reason": "This completes the comedy project and provides a synthesis of structural misrule, a core research interest.",
+          "title": "The Structure of Misrule",
+          "type": "blog"
+        },
+        "reason": "Blog evidence must be traceable through its referenced notebooks",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 2942,
+          "elapsed_ms": 6385,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 45013,
+          "request_payload_bytes": 45675,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 21,
-    "next_eligible": "2026-09-19T18:30:41.074364+00:00",
+    "accepted_cycles": 22,
+    "next_eligible": "2026-09-19T18:32:03.513850+00:00",
     "pending": false,
-    "attempts_today": 35,
-    "provider_requests_today": 37,
-    "provider_request_slots_today": 37,
+    "attempts_today": 36,
+    "provider_requests_today": 38,
+    "provider_request_slots_today": 38,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
