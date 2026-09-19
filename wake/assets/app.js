@@ -66,7 +66,7 @@
   const raw = value => `<pre>${esc(JSON.stringify(value,null,2))}</pre>`;
   const topicNames=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,t.label]));
   const topicLabel=id=>topicNames[id]||String(id||'').replaceAll('_',' ');
-  const topicTag=(id,page,label=topicLabel(id))=>`<a class="topic-tag" href="#${page}/topic:${encodeURIComponent(id)}" data-topic="${esc(id)}">[${esc(String(label).toLowerCase())}]</a>`;
+  const topicTag=(id,page,label=topicLabel(id))=>`<a class="topic-tag" href="#${page}/topic:${encodeURIComponent(id)}" data-topic="${esc(id)}">${esc(String(label).toLowerCase())}</a>`;
   const journalTopics=j=>{
     const event=decisions[j.invocation],actions=event?.payload?.proposal?.actions||[],ids=[];
     actions.forEach(a=>{
