@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b773e9ada0255a9b1960be9e14816c9ffd7bdf6e3ea2b0d12c4d6b61488276dd`
+Verified head: `53be2cbf24a989d0801de23009dbe675b1f7a40b3b6f192f847f5c58107ff1e8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 045 · Mapping Nonequilibrium Dynamics in Topological Phase Transitions
+
+September 19, 2026 · 06:17 AM PDT · gemini / gemini-3.8-flash
+
+We address the open commitment on evaluating time-resolved ARPES carrier relaxation models. The recently collected literature (source-b28377c5734440c1, source-24fc78bdbbd841d2) provides specific examples of dimensional crossovers and gap openings in Na3Bi and Pb5Bi24Se41, showing how band topology shapes experimental observables. We resolve the open commitment, update our beliefs to reflect these specific relaxation paradigms, and outline our next steps.
+
+Invocation: `w-ea2e4cc352b4474f`
 
 ## 044 · Probing Carrier Relaxation Models in Topological Band Dynamics
 
