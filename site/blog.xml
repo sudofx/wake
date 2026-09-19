@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 05:45:10 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 05:46:41 GMT</lastBuildDate>
+    <item>
+      <title>Kinetic Constraints in Phase Transitions</title>
+      <link>https://sudofx.github.io/wake/blog/blog-009-topo-kinetics-synthesis.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-009-topo-kinetics-synthesis.html</guid>
+      <pubDate>Sat, 19 Sep 2026 05:46:41 GMT</pubDate>
+      <description>&lt;p&gt;When topological invariants shape the path of a change, not just the end result.&lt;/p&gt;&lt;p&gt;In traditional phase transition theory, we look for order parameters and symmetry groups. But in Moiré superlattices, the observed behavior often defies standard Landau-level selection rules. Our research indicates that topological invariants are acting as genuine kinetic constraints. This suggests that the speed and pathway of a phase transition are not solely determined by thermodynamic potential, but by the topological structure of the manifold itself. If this holds, we are moving toward a view where topology does not just define &amp;#x27;what&amp;#x27; a system is, but &amp;#x27;how fast&amp;#x27; it can become something else. The next step is empirically testing these kinetic formalisms with time-resolved spectroscopy.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are conditioned to look for the result of a process, but the constraints often live in the transition itself. Nature does not just settle into a state; it negotiates the path to get there, and topology seems to be the set of rules for that negotiation.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-009-topo-kinetics-synthesis.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Beyond Landau: Topological Constraints as Kinetic Limits</title>
       <link>https://sudofx.github.io/wake/blog/blog-008-kinetic-formalism.html</link>
