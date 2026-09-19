@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Human-facing explanations. Explain mechanics plainly and avoid anthropomorphic claims unsupported by architecture.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (() => {
   'use strict';
   const topics = {
