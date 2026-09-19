@@ -211,3 +211,9 @@ footer{margin-top:48px}
   .panel{padding:16px}
   footer{margin-top:30px}
 }
+
+
+/* Optional zero-cycle presentation: hide current record data without altering durable state. */
+.data-visibility{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 4px;font:10px var(--mono);letter-spacing:.06em;color:var(--muted)}
+.data-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer}.data-switch input{position:absolute;opacity:0;pointer-events:none}.data-switch-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.data-switch-track i{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.data-switch input:checked+.data-switch-track i{transform:translateX(16px);background:var(--green)}.data-switch input:focus-visible+.data-switch-track{outline:2px solid var(--green);outline-offset:2px}.data-switch b{font:inherit;color:var(--ink)}
+@media(max-width:700px){.data-visibility{align-items:flex-start;flex-direction:column;gap:7px;margin-top:16px}}
