@@ -12,7 +12,7 @@ from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM
-from wake.research import allowed_url, collect
+from wake.research import allowed_url, collect, discovery_urls
 from wake.report import export
 
 
@@ -500,6 +500,20 @@ class ResearchTests(unittest.TestCase):
                                         "verification_required":True, "topic_domain":domain}),
                     actor="collector", scope="collected"))
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "rejected")
+
+    def test_topic_discovery_rotates_between_independent_indexes(self):
+        topic = {"id": "music", "label": "Music", "query": "music"}
+        even = discovery_urls(topic, 0)
+        odd = discovery_urls(topic, 1)
+        self.assertEqual(len(even), 2)
+        self.assertIn("api.crossref.org", even[0])
+        self.assertIn("api.openalex.org", even[1])
+        self.assertEqual(odd, list(reversed(even)))
+
+    def test_wake_discovery_stays_repository_scoped(self):
+        topic = {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE✳︎ sudofx/wake"}
+        self.assertEqual(discovery_urls(topic, 7),
+                         ["https://raw.githubusercontent.com/sudofx/wake/master/README.md"])
 
     def test_source_url_allowlist_and_input_types(self):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
