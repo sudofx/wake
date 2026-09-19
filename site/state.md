@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 43  
+**Version:** 44  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `4834c9393e080ca231a9d76c828229b154f15f882c88f2804e6a5cd8b1f9901d`
+**Verified head:** `802ff579cf4b85a261da68856832d206e88cf85cfb7dbe4d3a9d0d87cd964a7c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -176,6 +176,21 @@
   "resolution_reason": "The review integrated the structural constraints of technical communication protocols (specifically from source-a223eadb6874401c) into the experimental design to minimize human-subject confounding variables.",
   "resolved_by": "w-fea3fe0723564c17",
   "resolved_version": 37
+}
+```
+
+### `commit-sim-validation-review`
+
+```json
+{
+  "due_cycle": 45,
+  "id": "commit-sim-validation-review",
+  "reason": "Ensuring the simulation methodology is robust before proceeding to the iterative execution phase.",
+  "task": "Review and refine initial simulation protocol based on retrieved validation methodologies.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-2867abe303cc4069",
+  "created_version": 44
 }
 ```
 
@@ -25324,6 +25339,377 @@
 }
 ```
 
+### `w-2867abe303cc4069`
+
+```json
+{
+  "base_version": 43,
+  "charged": true,
+  "id": "w-2867abe303cc4069",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 43,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-ci",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 13,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2284,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "fecf5f8f984fd998e595fcdeb3132c01f17750c6068d3f5bef97b00237d0918d",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e",
+          "source-3bab1394de86435e"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-ci-synthesis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-0c2333f085ed4ad4",
+          "source-429feb1b0f854afa",
+          "source-3bab1394de86435e",
+          "source-9de15dbd0e9a4dc3",
+          "source-b83c6629579f49c4",
+          "source-a223eadb6874401c"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-pilot-structure",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-154b8653e4484d3e",
+          "source-77156c567e9c4d01"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-sim-protocol-init",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-841653b737fc4263"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-841653b737fc4263",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a25c98d58310469e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a25c98d58310469e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-86161d3bfc344032"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-86161d3bfc344032",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-46b1aadd9fa24aef"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-46b1aadd9fa24aef",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6f441a6a23fb449d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6f441a6a23fb449d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-bd88563b5e634cb7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bd88563b5e634cb7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-9f91d290c2724f04",
+      "source-9de15dbd0e9a4dc3",
+      "source-35e7097ce5fd4571",
+      "source-30ad456b3b004594",
+      "source-7411fad5ff8d4285",
+      "source-e81a7ec8030b4f1e",
+      "source-3bab1394de86435e",
+      "source-0c2333f085ed4ad4",
+      "source-429feb1b0f854afa",
+      "source-b83c6629579f49c4",
+      "source-a223eadb6874401c",
+      "source-154b8653e4484d3e",
+      "source-77156c567e9c4d01",
+      "source-841653b737fc4263",
+      "source-a25c98d58310469e",
+      "source-86161d3bfc344032",
+      "source-46b1aadd9fa24aef",
+      "source-6f441a6a23fb449d",
+      "source-bd88563b5e634cb7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 26,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30775,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 26,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4453,
+    "working_to_delivered_ratio": 0.1447
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Run initial simulation iterations using defined agent baseline parameters to observe emergent collective problem-solving patterns.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      },
+      {
+        "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+        "confidence": 0.6,
+        "id": "bel-nif-ci-theoretical",
+        "provenance": [
+          "source-4ae464e2c7ef4861",
+          "source-35e7097ce5fd4571",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-30ad456b3b004594"
+        ],
+        "status": "active",
+        "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      },
+      {
+        "id": "nb-nif-ci-synthesis",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e",
+          "source-3bab1394de86435e"
+        ],
+        "revision": 8,
+        "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence. New research suggests neurodivergent cognition should be framed as a differentiated architecture for pattern recognition.",
+        "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+      },
+      {
+        "id": "nb-nif-pilot-structure",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-0c2333f085ed4ad4",
+          "source-429feb1b0f854afa",
+          "source-3bab1394de86435e",
+          "source-9de15dbd0e9a4dc3",
+          "source-b83c6629579f49c4",
+          "source-a223eadb6874401c"
+        ],
+        "revision": 7,
+        "summary": "Revised protocol establishes constrained communication channels to isolate cognitive processing.",
+        "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot"
+      },
+      {
+        "id": "nb-nif-sim-protocol-init",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-154b8653e4484d3e",
+          "source-77156c567e9c4d01"
+        ],
+        "revision": 2,
+        "summary": "Computational simulations of group problem-solving under constrained communication provide a robust alternative to self-reported diversity metrics, allowing for the isolation of cognitive processing from social performance variables.",
+        "title": "Simulation Protocol for Constrained NIF Communication"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T02:24:11.211703+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5420,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52814,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T02:24:24.115602+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -28688,6 +29074,47 @@
 }
 ```
 
+### `source-6f441a6a23fb449d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0007\\\", \\\"title\\\": [\\\"Climate Change and You\\\"], \\\"abstract\\\": \\\"<p>\\\\n                  <italic>This chapter will explore some of the more personal questions that climate change raises for individuals and their families.</italic>\\\\n               </p>\\\\n               <p>How will climate change impact you and your family in the coming decades?</p>\\\\n               <p>The transition to a low-carbon economy is inevitable this century, and indeed it...</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0007\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}, {\\\"DOI\\\": \\\"10.1093/hesc/9780198807506.003.0005\\\", \\\"title\\\": [\\\"Climate Change and Agriculture\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses how climate change affects agriculture, which plays a major role in providing food for a growing global population. Climate has an impact on agriculture through the effects of such variables as solar radiation, temperature, and rainfall. Moreover, extreme events such as heatwaves, frosts, wind storms, floods, and droughts can have catastrophic effects on agriculture. The chapter also looks into the process of achieving optimal climatic conditions for crops and livestock. It provides an overview of the impacts of climate change in line with the development of climate change adaptation strategies dedicated to agriculture, particularly the wine sector.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198807506.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 11, 21]]}}, {\\\"DOI\\\": \\\"10.1332/policypress/9781529203950.003.0005\\\", \\\"title\\\": [\\\"Climate change victims\\\"], \\\"abstract\\\": \\\"<p>This chapter discusses the notion of victimhood as this pertains to climate change. Each section deals with a specific victim category — non-human environmental entities, children and young people, and Indigenous communities. Each grouping has its own specific histories, stories, and issues. What perhaps unites the discussion is an underlying emphasis on adopting an ecocentric perspective that incorporates social and ecological justice. From a human perspective, ecocentrism attempts to strike a balance between the need to utilise resources for human survival and the need to develop rules that facilitate the benign use of the ecosphere. Thus, for example, ensuring the preservation of biocentric values becomes integral to maintaining long-term human needs. To do this means minimising the victimisation of both the human and the non-human — in essence, to assert a form of <italic>ecological citizenship</italic>.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1332/policypress/9781529203950.003.0005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 10, 3]]}}, {\\\"DOI\\\": \\\"10.1093/wentk/9780197647127.003.0002\\\", \\\"title\\\": [\\\"Extreme Weather and Climate Change\\\"], \\\"abstract\\\": \\\"<p>\\\\n                    <italic>Extreme weather is the earliest manifestation of climate change that most people will be exposed to. This chapter will focus on what science tells us about the remarkable spate of once-in-a-century (and rarer) extreme weather events we have observed in the last few years. It...</italic>\\\\n                  </p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/wentk/9780197647127.003.0002\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"59b265a6589db49fb5fa68c2553cd6e7b935fbc4c80928c72a0dff3fa6b17c0d\"}",
+  "id": "source-6f441a6a23fb449d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=climate+change&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 43,
+  "time": "2026-09-19T02:24:09.801857+00:00"
+}
+```
+
+### `source-bd88563b5e634cb7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-bd88563b5e634cb7",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 43,
+  "time": "2026-09-19T02:24:10.499154+00:00"
+}
+```
+
+### `r-2867abe303cc4069`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":43,\"inherited_commitments\":[],\"invocation\":\"w-2867abe303cc4069\",\"previous_head\":\"12a3df24d3f8b7281a4d03e9a99f7023aa62227334b8be3bdf3815053a29e3ff\",\"process_id\":2284,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2867abe303cc4069",
+  "source": "runtime:continuity",
+  "version": 43,
+  "time": "2026-09-19T02:24:11.030534+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -29163,6 +29590,17 @@
 }
 ```
 
+### 044 · Validating Simulation Parameters for NIF Architectures
+
+```json
+{
+  "cycle": 44,
+  "invocation": "w-2867abe303cc4069",
+  "title": "Validating Simulation Parameters for NIF Architectures",
+  "summary": "This cycle shifts focus from defining simulation parameters to establishing validation methods for our agent-based model. We are examining how to calibrate baseline agent behaviors (latency, communication constraints, information fidelity) against empirical performance benchmarks, ensuring that the simulation's emergent patterns correspond to observable human cognitive diversity markers rather than arbitrary computational artifacts. We are initiating a focused search on parameter validation in cognitive agent modeling."
+}
+```
+
 ## Research
 
 ### `res-ci-socio-cognitive`
@@ -29483,6 +29921,21 @@
   "status": "collected",
   "created_by": "w-0122e61b58b44923",
   "evidence": "source-77156c567e9c4d01"
+}
+```
+
+### `res-nif-abm-validation`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-nif-abm-validation",
+  "project": "proj-neuro-ci",
+  "query": "validation methods for agent-based model parameters in cognitive science",
+  "reason": "To establish rigorous validation standards for the parameters defined in nb-nif-sim-protocol-init, ensuring that simulated 'cognitive architectures' remain tethered to empirical performance data.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-2867abe303cc4069"
 }
 ```
 
