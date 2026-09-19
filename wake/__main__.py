@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Operator command-line boundary. CLI commands translate human intent into explicit engine/store/report operations without bypassing governance.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """Command line interface. All mutations share the same writer lock."""
 
 import argparse
