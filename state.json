@@ -1449,6 +1449,32 @@
       "source": "runtime:continuity",
       "version": 34,
       "time": "2026-09-19T18:53:04.775177+00:00"
+    },
+    "source-ce2f8bb8fa954cca": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comparison+of+approximate+entropy+and+sample+entropy+robustness+to+non-stationarity+in+physiological+signals&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1109/is3c.2018.00060\\\", \\\"title\\\": [\\\"Analysis and Comparison of Permutation Entropy, Approximate Entropy and Sample Entropy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/is3c.2018.00060\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 12]]}}, {\\\"DOI\\\": \\\"10.7717/peerj-cs.1852/table-8\\\", \\\"title\\\": [\\\"Algorithm 2: Calculate the approximate and sample entropy.\\\"], \\\"URL\\\": \\\"https://doi.org/10.7717/peerj-cs.1852/table-8\\\"}, {\\\"DOI\\\": \\\"10.3390/e23121620\\\", \\\"title\\\": [\\\"Multiscale Entropy Analysis of Short Signals: The Robustness of Fuzzy Entropy-Based Variants Compared to Full-Length Long Signals\\\"], \\\"abstract\\\": \\\"<jats:p>Multiscale entropy (MSE) analysis is a fundamental approach to access the complexity of a time series by estimating its information creation over a range of temporal scales. However, MSE may not be accurate or valid for short time series. This is why previous studies applied different kinds of algorithm derivations to short-term time series. However, no study has systematically analyzed and compared their reliabilities. This study compares the MSE algorithm variations adapted to short time series on both human and rat heart rate variability (HRV) time series using long-term MSE as reference. The most used variations of MSE are studied: composite MSE (CMSE), refined composite MSE (RCMSE), modified MSE (MMSE), and their fuzzy versions. We also analyze the errors in MSE estimations for a range of incorporated fuzzy exponents. The results show that fuzzy MSE versions—as a function of time series length—present minimal errors compared to the non-fuzzy algorithms. The traditional multiscale entropy algorithm with fuzzy counting (MFE) has similar accuracy to alternative algorithms with better computing performance. For the best accuracy, the findings suggest different fuzzy exponents according to the time series length.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23121620\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 12, 1]]}}, {\\\"DOI\\\": \\\"10.3390/e19060257\\\", \\\"title\\\": [\\\"Time-Shift Multiscale Entropy Analysis of Physiological Signals\\\"], \\\"abstract\\\": \\\"<jats:p>Measures of predictability in physiological signals using entropy measures have been widely applied in many areas of research. Multiscale entropy expresses different levels of either approximate entropy or sample entropy by means of multiple factors for generating multiple time series, enabling the capture of more useful information than using a scalar value produced by the two entropy methods. This paper presents the use of different time shifts on various intervals of time series to discover different entropy patterns of the time series. Examples and experimental results using white noise, 1/ f noise, photoplethysmography, and electromyography signals suggest the validity and better performance of the proposed time-shift multiscale entropy analysis of physiological signals than the multiscale entropy.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e19060257\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 6, 5]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"be505692fb4aecf027490499e486cef689e1377000be6df10ef7e03161e5ea70\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+      "id": "source-ce2f8bb8fa954cca",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comparison+of+approximate+entropy+and+sample+entropy+robustness+to+non-stationarity+in+physiological+signals&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 35,
+      "time": "2026-09-19T18:55:44.827673+00:00"
+    },
+    "source-f307eb1f79d24f4f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2023723978\\\", \\\"doi\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"title\\\": \\\"A Generative Theory of Tonal Music\\\", \\\"publication_year\\\": 1984, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3790, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.2307/3679778\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S165362224\\\", \\\"display_name\\\": \\\"Computer Music Journal\\\", \\\"issn_l\\\": \\\"0148-9267\\\", \\\"issn\\\": [\\\"0148-9267\\\", \\\"1531-5169\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310315718\\\", \\\"host_organization_name\\\": \\\"The MIT Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315718\\\", \\\"https://openalex.org/P4310316440\\\"], \\\"host_organization_lineage_names\\\": [\\\"The MIT Press\\\", \\\"Massachusetts Institute of Technology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Computer Music Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This book explores the relationships between language, music, and the brain by pursuing four key themes and the crosstalk among them: song and dance as a bridge between music and language; multiple levels of structure from brain to behavior to culture; the semantics of internal and external worlds and the role of emotion; and the evolution and development of language. The book offers specially commissioned expositions of current research accessible both to experts across disciplines and to non-experts. These chapters provide the background for reports by groups of specialists that chart current controversies and future directions of research on each theme. The book looks beyond mere auditory experience, probing the embodiment that links speech to gesture and music to dance. The study of the brains of monkeys and songbirds illuminates hypotheses on the evolution of brain mechanisms that support music and language, while the study of infants calibrates the developmental timetable of their capacities. The result is a unique book that will interest any reader seeking to learn more about language or music and will appeal especially to readers intrigued by the relationships of language and music with each other and with the brain. ContributorsFrancisco Aboitiz, Michael A. Arbib, Annabel J. Cohen, Ian Cross, Peter Ford Dominey, W. Tecumseh Fitch, Leonardo Fogassi, Jonathan Fritz, Thomas Fritz, Peter Hagoort, John Halle, Henkjan Honing, Atsushi Iriki, Petr Janata, Erich Jarvis, Stefan Koelsch, Gina Kuperberg, D. Robert Ladd, Fred Lerdahl, Stephen C. Levinson, Jerome Lewis, Katja Liebal, Jonatas Manzolli, Bjorn Merker, Lawrence M. Parsons, Aniruddh D. Patel, Isabelle Peretz, David Poeppel, Josef P. Rauschecker, Nikki Rickard, Klaus Scherer, Gottfried Schlaug, Uwe Seifert, Mark Steedman, Dietrich Stout, Francesca Stregapede, Sharon Thompson-Schill, Laurel Trainor, Sandra E. Trehub, Paul Verschure\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2191779130\\\", \\\"doi\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"title\\\": \\\"librosa: Audio and Music Signal Analysis in Python\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"conference-paper\\\", \\\"cited_by_count\\\": 3071, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.25080/majora-7b98e3ed-003\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"pdf_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4220651651\\\", \\\"display_name\\\": \\\"Proceedings of the Python in Science Conferences\\\", \\\"issn_l\\\": \\\"2575-9752\\\", \\\"issn\\\": [\\\"2575-9752\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of the Python in Science Conference\\\", \\\"raw_type\\\": \\\"proceedings-article\\\"}, \\\"abstract\\\": \\\"This document describes version 0.4.0 of librosa: a Python package for audio and music signal processing.At a high level, librosa provides implementations of a variety of common functions used throughout the field of music information retrieval.In this document, a brief overview of the library's functionality is provided, along with explanations of the design goals, software development practices, and notational conventions.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2006090347\\\", \\\"doi\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"title\\\": \\\"The New Grove dictionary of music and musicians\\\", \\\"publication_year\\\": 2001, \\\"type\\\": \\\"book-review\\\", \\\"cited_by_count\\\": 2597, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.5860/choice.38-5906\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2764375719\\\", \\\"display_name\\\": \\\"Choice Reviews Online\\\", \\\"issn_l\\\": \\\"0009-4978\\\", \\\"issn\\\": [\\\"0009-4978\\\", \\\"1523-8253\\\", \\\"1943-5975\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310316146\\\", \\\"host_organization_name\\\": \\\"Association of College and Research Libraries\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316146\\\", \\\"https://openalex.org/P4310315903\\\"], \\\"host_organization_lineage_names\\\": [\\\"Association of College and Research Libraries\\\", \\\"American Library Association\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Choice Reviews Online\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This work contains almost 30,000 articles containing over 25 million words on musicians, composers, musicologists, instruments, places, genres, terms, performance practice, concepts, acoustics and more. All the articles are written by experts in their subject. There are over 500 biographies of composers, performers and writers on music and over 1,500 articles on styles, terms, and genres. It also includes: over 500 articles on ancient music and church music over 700 articles on regions, countries and cities over 2,000 articles on instruments and their makers and performance practice over 650 articles on printing and publishing over 1,200 articles on world music over 1,000 articles on popular music, light music and jazz over 250 articles on concepts 85 articles on acoustics 126 articles on sources and a one volume index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1500952994\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Image-Music-Text\\\", \\\"publication_year\\\": 1977, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 2874, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"mag:1500952994\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"http://ci.nii.ac.jp/ncid/BA10872380\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210197683\\\", \\\"display_name\\\": \\\"Medical Entomology and Zoology\\\", \\\"issn_l\\\": \\\"0424-7086\\\", \\\"issn\\\": [\\\"0424-7086\\\", \\\"2185-5609\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310319750\\\", \\\"host_organization_name\\\": \\\"Japan Society of Medical Entomology and Zoology\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319750\\\"], \\\"host_organization_lineage_names\\\": [\\\"Japan Society of Medical Entomology and Zoology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": null, \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": null}, \\\"abstract\\\": null}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6f71b394dadf9d9f19087bf15369752e5c105860b6d13b37590dc7153d4fc879\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+      "id": "source-f307eb1f79d24f4f",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 35,
+      "time": "2026-09-19T18:55:45.576169+00:00"
+    },
+    "r-96973ae66b4c4bb1": {
+      "actor": "runtime",
+      "content": "{\"base_version\":35,\"inherited_commitments\":[],\"invocation\":\"w-96973ae66b4c4bb1\",\"previous_head\":\"cd50f030c8573400bc179bf97f4fa3e62266d74b1bcdc4b40ef2da2c074eb9a6\",\"process_id\":2241,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-96973ae66b4c4bb1",
+      "source": "runtime:continuity",
+      "version": 35,
+      "time": "2026-09-19T18:55:45.862852+00:00"
     }
   },
   "journal": [
@@ -15551,6 +15577,329 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T18:53:15.082507+00:00",
       "reason": ""
+    },
+    "w-96973ae66b4c4bb1": {
+      "base_version": 35,
+      "charged": true,
+      "id": "w-96973ae66b4c4bb1",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 35,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-entropy-002",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Robustness of Entropy Measures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2241,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "d80a2351ffcc1a88f68934b50c82b2e651318bbcddeb320e1ab84f826552ac75",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-309eb40a75f04c16",
+              "r-4beca963bc554def"
+            ],
+            "reason": "A working abstraction is clipped and may hide a material distinction.",
+            "record": {
+              "id": "state_continuity_confirmed",
+              "kind": "belief"
+            },
+            "trigger": "excerpt_boundary"
+          },
+          {
+            "evidence": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-critique-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-00e439dfcf224621"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-00e439dfcf224621",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-54517397803b41ce"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-54517397803b41ce",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6738e71252634f1f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6738e71252634f1f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7c6b0de7f2cc4091"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7c6b0de7f2cc4091",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ce2f8bb8fa954cca"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ce2f8bb8fa954cca",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f307eb1f79d24f4f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f307eb1f79d24f4f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def",
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-00e439dfcf224621",
+          "source-54517397803b41ce",
+          "source-6738e71252634f1f",
+          "source-7c6b0de7f2cc4091",
+          "source-ce2f8bb8fa954cca",
+          "source-f307eb1f79d24f4f"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 11,
+          "trigger_counts": {
+            "excerpt_boundary": 1,
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 25853,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 11,
+        "retrieval_trigger_counts": {
+          "excerpt_boundary": 1,
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 4798,
+        "working_to_delivered_ratio": 0.1856
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-entropy-002",
+            "next_step": "Identify literature comparing entropy metrics against signal non-stationarity.",
+            "question": "Are approximate entropy measures robust to non-stationarity in physiological time-series signals?",
+            "title": "Robustness of Entropy Measures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+            "confidence": 1.0,
+            "id": "wake_system_design",
+            "provenance": [
+              "source-6cea09af14e345ae"
+            ],
+            "status": "active",
+            "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+          },
+          {
+            "claim": "The WAKE✳ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+            "confidence": 1.0,
+            "id": "provenance_durability",
+            "provenance": [
+              "source-309eb40a75f04c16"
+            ],
+            "status": "active",
+            "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+          },
+          {
+            "claim": "The WAKE✳ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+            "confidence": 1.0,
+            "id": "state_continuity_confirmed",
+            "provenance": [
+              "source-309eb40a75f04c16",
+              "r-4beca963bc554def"
+            ],
+            "status": "active",
+            "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-neuro-synthesis-001",
+            "project": "proj-neuro-001",
+            "provenance": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08",
+              "source-7fd4abc8fc2a449e"
+            ],
+            "revision": 1,
+            "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+            "title": "Material Constraints in Ecological Niche Models"
+          },
+          {
+            "id": "nb-music-gttm-001",
+            "project": "proj-music-001",
+            "provenance": [
+              "source-2f7ef3b291ac43fa",
+              "source-3f37ecb391684dbb"
+            ],
+            "revision": 1,
+            "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+            "title": "Computational Implementation of Generative Theory of Tonal Music"
+          },
+          {
+            "id": "nb-comedy-misrule-001",
+            "project": "proj-comedy-001",
+            "provenance": [
+              "source-293e3b0a343f4e5a",
+              "source-14fe1954198a4bcd"
+            ],
+            "revision": 1,
+            "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+            "title": "Structural Functions of Misrule in Comedy"
+          },
+          {
+            "id": "nb-wake-provenance-001",
+            "project": "proj-wake-001",
+            "provenance": [
+              "source-309eb40a75f04c16",
+              "source-3cfe7c6dab8e4300"
+            ],
+            "revision": 1,
+            "summary": "WAKE✳'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+            "title": "Provenance and State Durability in Stateless Systems"
+          },
+          {
+            "id": "nb-music-rhythm-001",
+            "project": "proj-music-002",
+            "provenance": [
+              "source-87c3d90dc04e47bc",
+              "source-99990296184a4a11"
+            ],
+            "revision": 1,
+            "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+            "title": "Predictive Coding and Non-Isochronous Rhythm"
+          },
+          {
+            "id": "nb-entropy-robustness-001",
+            "project": "proj-entropy-002",
+            "provenance": [
+              "source-027255f93b88491c",
+              "source-a0bdd5b1abbf4bfc"
+            ],
+            "revision": 1,
+            "summary": "Approximate entropy (ApEn) metrics, while useful for quantifying signal complexity, exhibit significant sensitivity to non-stationary components in physiological time-series, necessitating careful interpretation of findings.",
+            "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-19T18:55:46.031252+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2996,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 50028,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T18:55:55.695445+00:00",
+      "reason": "Evidence reference does not exist"
     }
   },
   "pending": null,
@@ -16060,8 +16409,9 @@
       "query": "comparison of approximate entropy and sample entropy robustness to non-stationarity in physiological signals",
       "reason": "This research step is required to move beyond foundational definitions of entropy and address the specific challenge of non-stationarity in physiological time-series data.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-f0adb44f02d743cd"
+      "status": "collected",
+      "created_by": "w-f0adb44f02d743cd",
+      "evidence": "source-ce2f8bb8fa954cca"
     }
   },
   "research_topics": [
