@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# ENGINE — the orchestration layer. A wake is one disposable shift: reconstruct durable state, select bounded context, reserve/record the invocation, call a provider, then ask governance whether the proposal may become history. The engine coordinates these steps but never substitutes its own judgment for governance.
 #
-# Orchestrates one wake: reconstruct state, assemble bounded context, call a disposable provider, submit its proposal to governance, and record the outcome. This module coordinates work; it does not grant authority.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """One fresh process, one bounded proposal, one atomic decision."""
 
@@ -37,6 +41,30 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml"}
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: _topics
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+
+
+# ---------------------------------------------------------------------------
+
+
 def _topics(settings, config_path=None):
     topics = settings.get("research_topics") if config_path is None else None
     filename = settings.get("research_topics_file")
@@ -60,6 +88,30 @@ def _topics(settings, config_path=None):
         normalized.append({key: item[key] for key in ("id", "label", "query")})
     require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
     return normalized
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: config
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
 
 
 def config(path="wake.toml"):
@@ -91,7 +143,39 @@ def config(path="wake.toml"):
     return result
 
 
+# ---------------------------------------------------------------------------
+
+
+# OBJECT: Engine
+
+
+#
+
+
+# This object groups state/behavior exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 class Engine:
+    # ---------------------------------------------------------------------------
+    # STEP: __init__
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+    # ---------------------------------------------------------------------------
     def __init__(self, directory="data", settings=None):
         self.config = settings or config()
         if self.config.get("mission"):
@@ -104,6 +188,22 @@ class Engine:
             else:
                 self.config["research_topics"] = _topics(self.config)
         self.store = Store(directory)
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: initialize
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def initialize(self):
         state, _ = self.store.replay()
@@ -123,6 +223,22 @@ class Engine:
             self.store.append("research_topics_changed", {"topics": desired_topics, "actor": "operator"})
         return self.store.load(repair=True)
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: recover
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def recover(self, explicit=False):
         state = self.store.load(repair=True)
         if state["pending"]:
@@ -132,6 +248,22 @@ class Engine:
                                        "reason": "Previous invocation ended without a committed decision; resumed last valid state."})
         return state
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: observe
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def observe(self, content, source, evidence_id=None):
         text(content, "Observation", 8000)
         text(source, "Source", 1000)
@@ -140,6 +272,22 @@ class Engine:
         return self.store.append("observation", {"id": evidence_id or "e-" + uuid.uuid4().hex[:16],
                                                  "source": source, "content": content, "actor": "human"})
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: working_set
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def working_set(self, state):
         """Build a deliberately lossy, traceable shadow of the durable state.
 
@@ -147,6 +295,14 @@ class Engine:
         what a purpose-conditioned working representation would look like without
         changing live-model behavior before a controlled comparison exists.
         """
+        # ---------------------------------------------------------------------------
+        # STEP: excerpt
+        #
+        # This step exists as an explicit seam so its behavior can be
+        # inspected, tested, and replaced without giving a model hidden authority.
+        # Inputs should already belong to the layer named above; outputs remain data
+        # until the next boundary validates or records them. Callers may rely on this contract.
+        # ---------------------------------------------------------------------------
         def excerpt(value, limit):
             value = str(value)
             return value if len(value) <= limit else value[:limit - 1] + "…"
@@ -200,6 +356,22 @@ class Engine:
             } for notebook in list(state["notebooks"].values())[-6:]]
 
         return working
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: inquiry_drive_shadow
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def inquiry_drive_shadow(self, state):
         """Score durable research work without granting it any decision authority.
@@ -267,6 +439,22 @@ class Engine:
             "projects": projects,
         }
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: context
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
@@ -323,6 +511,22 @@ class Engine:
             withheld = [i["editorial"] for i in state["invocations"].values() if i.get("editorial")][-2:]
             context["recent_problems"] += ["Blog withheld: " + note["reason"] for note in withheld]
         return context
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: start
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def start(self, provider, model, charged=False):
         state = self.store.load()
@@ -405,6 +609,22 @@ class Engine:
             }})
         return invocation, request
 
+    # ---------------------------------------------------------------------------
+
+    # STEP: finish
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
+
     def finish(self, invocation, raw, metadata=None, crash=False):
         state = self.store.load()
         require(state["pending"] == invocation, "Response does not match the pending invocation")
@@ -449,11 +669,35 @@ class Engine:
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {})}
 
     @staticmethod
+    # ---------------------------------------------------------------------------
+    # STEP: _request_count
+    #
+    # This step exists as an explicit seam so its behavior can be
+    # inspected, tested, and replaced without giving a model hidden authority.
+    # Inputs should already belong to the layer named above; outputs remain data
+    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
+    # ---------------------------------------------------------------------------
     def _request_count(provider):
         if hasattr(provider, "provider_attempts"):
             return provider.diagnostics()
         count = getattr(provider, "provider_requests_sent", None)
         return {"provider_requests_sent": count} if count is not None else {}
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: run
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def run(self, provider, crash_at=None, checkpoint=None, collector=None):
         with self.store.lock():
@@ -486,6 +730,22 @@ class Engine:
                 else:
                     used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
+
+                # ---------------------------------------------------------------------------
+
+                # STEP: record_attempt
+
+                #
+
+                # This step exists as an explicit seam so its behavior can be
+
+                # inspected, tested, and replaced without giving a model hidden authority.
+
+                # Inputs should already belong to the layer named above; outputs remain data
+
+                # until the next boundary validates or records them. Callers may rely on this contract.
+
+                # ---------------------------------------------------------------------------
 
                 def record_attempt(phase, attempt):
                     self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
