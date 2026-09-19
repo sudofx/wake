@@ -1,9 +1,13 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# CLI — the human/operator boundary. Commands turn explicit operator intent into engine/store/report operations. Human-only powers such as focus changes, cancellation and destructive reset stay visibly different from model proposals.
 #
-# Operator command-line boundary. CLI commands translate human intent into explicit engine/store/report operations without bypassing governance.
-#
-# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
-# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# The architecture is intentionally explicit.  A future human or AI maintainer
+# should be able to follow authority from input, through validation, to durable
+# record without relying on folklore.  Comments explain why boundaries exist,
+# what failure means, and which tempting shortcuts would weaken accountability.
+# =============================================================================
 
 """Command line interface. All mutations share the same writer lock."""
 
@@ -22,6 +26,30 @@ from .governance import Rejected, require, text
 from .providers import Fixture, Gemini, SCHEMA
 from .report import atomic_write, export
 from .store import IntegrityError
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: parser
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def parser():
@@ -72,6 +100,30 @@ def parser():
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8000)
     return p
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: execute
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def execute(args):
@@ -168,6 +220,30 @@ def execute(args):
                 return engine.finish(args.id, Path(args.file).read_text(), {"identity": "human-attested"})
     finally:
         engine.store.close()
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: main
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def main():
