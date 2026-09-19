@@ -470,18 +470,50 @@ class Engine:
                    "context": delivered_context,
                    "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
+            # Crossing the context threshold is a retrieval problem, not a reason to
+            # discard durable history. Keep the complete record in SQLite/public
+            # exports and shrink only this invocation's working view.
             request["context"]["recent_journal"] = []
             request["context"]["notebooks"] = request["context"]["notebooks"][-4:]
             request["context"]["working_notebook"] = None
+
+            # Completed projects are historical receipts, not all equally useful
+            # working memory. Preserve every active project plus the four newest
+            # completed projects so the model can continue work without dragging
+            # the entire project archive into every future invocation.
+            projects = request["context"]["projects"]
+            active_projects = [p for p in projects if p["status"] == "active"]
+            completed_projects = [p for p in projects if p["status"] != "active"][-4:]
             request["context"]["projects"] = [{**p, "reason": p["reason"][:120], "question": p["question"][:300],
-                                               "next_step": p["next_step"][:300], "title": p["title"][:120]}
-                                              for p in request["context"]["projects"]]
+                                               "next_step": p["next_step"][:300], "title": p["title"][:120],
+                                               "context_excerpt": True}
+                                              for p in active_projects + completed_projects]
+
+            # blog_notebooks used to grow monotonically because it contained every
+            # notebook ever written. Keep mappings only for projects the model can
+            # currently see plus projects referenced by the recent public record.
+            visible_projects = {p["id"] for p in request["context"]["projects"]}
+            visible_projects.update(
+                post.get("project") for post in request["context"].get("recent_blog", [])
+                if post.get("project")
+            )
+            request["context"]["blog_notebooks"] = {
+                project: notebooks[-3:]
+                for project, notebooks in request["context"].get("blog_notebooks", {}).items()
+                if project in visible_projects
+            }
+
+            # Recent research is a working queue, not the archive. Four records are
+            # enough to preserve immediate collector handoffs; exact older requests
+            # remain recoverable from durable history.
+            request["context"]["research"] = request["context"].get("research", [])[-4:]
+
             # Retain every open obligation and belief ID; excerpts are explicitly labeled.
             for collection, fields in (("commitments", ("task", "reason")), ("beliefs", ("statement", "reason"))):
                 request["context"][collection] = [{**item, **{key:item[key][:200] for key in fields},
                                                    "context_excerpt": True} for item in request["context"][collection]]
             for evidence in request["context"]["evidence"]:
-                evidence["content"] = evidence["content"][:1000]
+                evidence["content"] = evidence["content"][:800]
                 evidence["context_excerpt"] = True
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
