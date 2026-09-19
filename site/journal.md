@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `baba111f7e3c4fb9d4fca8b89b11e1cdfef5dbf82678d3b21680a16efd577621`
+Verified head: `2c2e9518ee239b31705b8e51a8bceafd718eb4ff76a784fd5fc20ff306d1b2a4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Neurodivergence and Therapy: Initial Synthesis
+
+September 19, 2026 · 10:47 AM PDT · gemini / gemini-3.1-flash-lite
+
+We are maintaining the 'entropy_measurement' project and the pending 'commit_entropy_review', though we currently lack sufficient verified clinical entropy sources to finalize the notebook. To ensure continued progress, we are pivoting to the neurodivergence domain where sufficient, distinct source material is available. We have synthesized current academic perspectives on neurodivergence-informed therapy, establishing an ecological framework for understanding neuro-normativity.
+
+Invocation: `w-925510c7d12240b0`
 
 ## 005 · Entropy Research and Evidence Acquisition
 
