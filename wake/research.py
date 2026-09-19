@@ -35,6 +35,10 @@ ALLOWED_HOSTS = {
     # WAKE source-controlled self-analysis
     "raw.githubusercontent.com",
 }
+# WAKE self-analysis is intentionally allowed to inspect the implementation,
+# not merely prose documentation. These are all source-controlled files from
+# the same repository, so WAKE✳︎ can compare stated design with executable
+# mechanics when it selects itself as a research topic.
 WAKE_SOURCES = {
     "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
     "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
@@ -43,6 +47,22 @@ WAKE_SOURCES = {
     "engine": "https://raw.githubusercontent.com/sudofx/wake/master/wake/engine.py",
     "providers": "https://raw.githubusercontent.com/sudofx/wake/master/wake/providers.py",
     "research": "https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py",
+    "store": "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py",
+    "retrieval": "https://raw.githubusercontent.com/sudofx/wake/master/wake/retrieval.py",
+    "provenance": "https://raw.githubusercontent.com/sudofx/wake/master/wake/provenance.py",
+    "rejected": "https://raw.githubusercontent.com/sudofx/wake/master/wake/rejected.py",
+    "scheduling": "https://raw.githubusercontent.com/sudofx/wake/master/wake/scheduling.py",
+    "report": "https://raw.githubusercontent.com/sudofx/wake/master/wake/report.py",
+    "feeds": "https://raw.githubusercontent.com/sudofx/wake/master/wake/feeds.py",
+    "experiment_code": "https://raw.githubusercontent.com/sudofx/wake/master/wake/experiment.py",
+    "cli": "https://raw.githubusercontent.com/sudofx/wake/master/wake/__main__.py",
+    "config": "https://raw.githubusercontent.com/sudofx/wake/master/wake.toml",
+    "topics": "https://raw.githubusercontent.com/sudofx/wake/master/research-topics.toml",
+    "workflow": "https://raw.githubusercontent.com/sudofx/wake/master/.github/workflows/wake.yml",
+    "github_runner": "https://raw.githubusercontent.com/sudofx/wake/master/scripts/github_wake.py",
+    "cycle_runner": "https://raw.githubusercontent.com/sudofx/wake/master/scripts/run-wake-cycles.sh",
+    "site_app": "https://raw.githubusercontent.com/sudofx/wake/master/wake/assets/app.js",
+    "site_map": "https://raw.githubusercontent.com/sudofx/wake/master/wake/assets/map.js",
 }
 
 
@@ -138,12 +158,28 @@ def query_url(query, domain):
     if domain == "wake_analysis":
         q = query.lower()
         choices = [
-            (("architecture", "state", "continuity", "memory", "store"), "architecture"),
-            (("experiment", "hypothesis", "test"), "experiment"),
-            (("governance", "rule", "validation", "invariant"), "governance"),
-            (("engine", "cycle", "context", "working set"), "engine"),
-            (("provider", "prompt", "gemini", "model"), "providers"),
-            (("collector", "research", "source", "evidence"), "research"),
+            (("architecture", "design"), "architecture"),
+            (("hypothesis", "experiment document"), "experiment"),
+            (("governance", "rule", "validation", "invariant", "reject"), "governance"),
+            (("engine", "cycle", "working set", "orchestration"), "engine"),
+            (("provider", "prompt", "gemini", "model", "bob"), "providers"),
+            (("collector", "research", "source", "evidence", "discovery"), "research"),
+            (("store", "sqlite", "database", "event", "hash", "durable", "continuity", "memory"), "store"),
+            (("retrieval", "attention", "context"), "retrieval"),
+            (("provenance", "graph", "map"), "provenance"),
+            (("rejected", "failure", "withheld"), "rejected"),
+            (("schedule", "quota", "cadence", "eligible"), "scheduling"),
+            (("report", "render", "publish", "journal"), "report"),
+            (("feed", "rss"), "feeds"),
+            (("measurement", "instrumentation"), "experiment_code"),
+            (("cli", "command"), "cli"),
+            (("config", "toml", "setting"), "config"),
+            (("topic", "attention space"), "topics"),
+            (("workflow", "action", "github"), "workflow"),
+            (("runner", "cloud"), "github_runner"),
+            (("batch", "100 cycle", "terminal"), "cycle_runner"),
+            (("site", "browser", "frontend", "ui"), "site_app"),
+            (("map", "visual"), "site_map"),
         ]
         for needles, source in choices:
             if any(needle in q for needle in needles):
@@ -155,7 +191,16 @@ def query_url(query, domain):
 def research_urls(query, domain, attempts=0):
     """Return bounded routes for a neutral topic or a queued follow-up query."""
     if domain == "wake_analysis":
-        return [query_url(query, domain)]
+        primary = query_url(query, domain)
+        # A WAKE✳︎ follow-up gets two distinct repository views when the fixed
+        # collector budget permits it. The first follows the query; the second
+        # rotates across implementation/config/workflow/UI files so self-study
+        # is not trapped in README/docs or a single favored module.
+        repo_routes = list(dict.fromkeys(WAKE_SOURCES.values()))
+        alternate = repo_routes[attempts % len(repo_routes)]
+        if alternate == primary:
+            alternate = repo_routes[(attempts + 1) % len(repo_routes)]
+        return [primary, alternate]
     crossref = query_url(query, domain)
     openalex = "https://api.openalex.org/works?" + urllib.parse.urlencode({
         "search": query, "per-page": 4,
