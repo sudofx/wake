@@ -664,19 +664,12 @@ class Gemini:
     transient_http_codes = frozenset({500, 502, 503, 504})
 
     # ---------------------------------------------------------------------------
-
     # STEP: __init__
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
     # ---------------------------------------------------------------------------
 
     def __init__(self, config, model=None):
@@ -702,19 +695,12 @@ class Gemini:
         require(bool(os.environ.get("GEMINI_API_KEY")), "GEMINI_API_KEY is missing")
 
     # ---------------------------------------------------------------------------
-
     # STEP: propose
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def propose(self, request):
@@ -811,19 +797,12 @@ class Gemini:
         raise error
 
     # ---------------------------------------------------------------------------
-
     # STEP: diagnostics
-
     #
-
     # This step exists as an explicit seam so its behavior can be
-
     # inspected, tested, and replaced without giving a model hidden authority.
-
     # Inputs should already belong to the layer named above; outputs remain data
-
     # until the next boundary validates or records them. Callers may rely on this contract.
-
     # ---------------------------------------------------------------------------
 
     def diagnostics(self):
