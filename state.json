@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -2082,6 +2082,32 @@
       "source": "runtime:continuity",
       "version": 39,
       "time": "2026-09-19T02:12:07.715507+00:00"
+    },
+    "source-154b8653e4484d3e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=computational+simulation+of+group+problem-solving+protocol+constrained+communication&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1002/9781119527183.ch1\\\", \\\"title\\\": [\\\"Problem Solving, Simulation, and Computational Red Teaming\\\"], \\\"URL\\\": \\\"https://doi.org/10.1002/9781119527183.ch1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 10, 18]]}}, {\\\"DOI\\\": \\\"10.1109/iccps.2015.7454227\\\", \\\"title\\\": [\\\"BGP protocol anti-routing shake performance analysis and simulation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1109/iccps.2015.7454227\\\", \\\"published\\\": {\\\"date-parts\\\": [[2015, 10]]}}, {\\\"DOI\\\": \\\"10.2466/pr0.1963.13.1.219\\\", \\\"title\\\": [\\\"Effect of Problem Variation on Group Problem-Solving Efficiency under Constrained Communication\\\"], \\\"abstract\\\": \\\"<jats:p>Two experiments were conducted, using the common target game with three-man groups. Members could not communicate with each other and received feedback only on group, not individual performance. In Exp. I, the 18 groups that moved from one version of the problem to the next after only a single trial (moving target) achieved a solution system significantly more quickly than did the 19 groups that worked on each verson of the problem until they solved it before moving to a new version (fixed target). Exp. II, using a random arrangement of targets rather than the systematic arrangement of Exp. 1, replicated the results, on 7 and 9 groups, respectively. It is concluded that factors responsible for the superiority of moving target presentation are: (1) encouragement of a set to shift, (2) avoidance of a handicapping “response-hypothesis” orientation, and (3) emphasis on developing a system rather than solving a particular problem.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.2466/pr0.1963.13.1.219\\\", \\\"published\\\": {\\\"date-parts\\\": [[1963, 8]]}}, {\\\"DOI\\\": \\\"10.17487/rfc7390\\\", \\\"title\\\": [\\\"Group Communication for the Constrained Application Protocol (CoAP)\\\"], \\\"URL\\\": \\\"https://doi.org/10.17487/rfc7390\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 10]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"58bfc851ff872febf03f5673165e26e96a6c6d9495fba552fe8fab1c8e185321\"}",
+      "id": "source-154b8653e4484d3e",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=computational+simulation+of+group+problem-solving+protocol+constrained+communication&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 40,
+      "time": "2026-09-19T02:13:36.403736+00:00"
+    },
+    "source-d118620a52164aa7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/README.md\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# **WAKE✳︎**\\n\\n<p align=\\\"center\\\"><img src=\\\"assets/covers/cover-variant-001.png\\\" alt=\\\"**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover\\\" width=\\\"100%\\\"/>\\n\\n**Bob is following *the big questions.***\\n\\nDisposable models. Durable state. Receipts for everything.\\n\\n**Working Abstractions Keep Evidence.** A philosophical echo remains in the name too: **Why Any Knowledge Exists?**\\n\\n**WAKE✳︎** explores whether useful, increasingly coherent behavior can emerge from disposable model invocations that inherit external state, work from compressed context, revise that state, and retain exact receipts for later retrieval. It does **not** assume a persistent self, consciousness, qualia, or personhood.\\n\\n**WAKE✳︎** lives on GitHub and is eligible to wake about once an hour. Its configured topics are **cellular automata, symmetry, error correction, ant colonies, compression, entropy, and WAKE✳︎**. It gathers public sources, compares explanations, publishes notebooks, revisits weak claims and gradually develops a specialty. You check its website; you do not need to assign daily work. Bob is the human-facing translation layer: a public correspondent that compresses complicated work into ordinary language when there is something worth discussing. Bob is a persona for communication, not the mechanism or a claim that **WAKE✳︎** is a person.\\n\\n**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**\\n\\nThe phone interface shows selected Blog notes, current projects, new work since your last visit, notebooks with citations and limitations, emerging interests and every decision in the underlying journal. Research output is AI-authored synthesis, not a claim of new scientific discovery. Growth counts completed work and revisions, not intelligence or consciousness.\\n\\nThe GitHub workflow persists its memory and call budget on `wake-state` before contacting Gemini, then publishes the updated interface through GitHub Pages. No running Mac is needed. **[Cloud setup, operation and limits](docs/cloud.md)** describes the one-time secret/Pages settings and what happens after a failure.\\n\\nThe original continuity experiment remains underneath: each fresh invocation receives durable state, proposes bounded changes and passes mechanical governance. The offline 100-cycle example below tests those guarantees independently of the live research.\\n\\n## Start here — no account, no API calls\\n\\nRequires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, database server, or build tools to install. Run commands from the project directory.\\n\\n```sh\\n# Read the included, fully executed 100-cycle experiment.\\npython3 -m wake serve --directory examples/journal\\n# Open http://127.0.0.1:8000\\n```\\n\\nThe [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.\\n\\nTo reproduce the experiment from scratch:\\n\\n```sh\\npython3 -m wake --data data/rehearsal experiment --cycles 100 --output site\\npython3 -m wake audit --events site/events.jsonl --head site/head.txt\\npython3 -m wake serve\\n```\\n\\nUse a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.\\n\\nThese are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).\\n\\n## A real record with Gemini\\n\\n```sh\\ncp .env.example .env   # Only if you do not already have a .env file.\\n# Put GEMINI_API_KEY=your-key in .env.\\npython3 -m wake init\\npython3 -m wake observe --source human:research-plan --text 'Evaluate whether each fresh invocation inherits open obligations without a reminder.'\\n```\\n\\nIn `wake.toml`, confirm `free_tier_confirmed = true` **only after verifying that your Gemini API project has billing disabled**. This repository selects `gemini-3.8-flash`; the model is configurable. Then:\\n\\n```sh\\npython3 -m wake wake\\npython3 -m wake export\\npython3 -m wake serve\\n```\\n\\nA charged wake uses the configured Gemini availability chain: `gemini-3.8-flash` → `gemini-3.5-flash` → `gemini-3.1-flash-lite`. Each distinct model is attempted at most once, with no sleeps or same-model transport retries. Only explicitly transient server/network failures may advance to the next model; every 429, authentication failure, invalid response, governance failure, and persistence failure stops the chain. The local daily ceiling is enforced conservatively across provider-request reservations, including interrupted attempts whose outcome is unknown. With the current configuration, one wake can reserve at most three provider-request slots, and fewer when the remaining daily budget is smaller. A provider's actual free quota can be lower, and the program cannot inspect your billing settings. See [Google's rate-limit documentation](https://ai.google.dev/gemini-api/docs/rate-limits) and [API pricing](https://ai.google.dev/gemini-api/docs/pricing).\\n\\nThe rebuild preserves an existing `.env`; it is never included in the ZIP or report. No live calls are necessary to run the tests or demo.\\n\\n## Claude, ChatGPT, and other desktop models\\n\\nUse free desktop sessions manually without assuming they include free API access:\\n\\n```sh\\npython3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json\\n# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.\\n# Save the response alone as reply.json, then use the ID printed by prepare:\\npython3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json\\npython3 -m wake export\\n```\\n\\nThe exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.\\n\\n## Inquiry-drive experiment\\n\\nEvery chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,\\nnovelty, coherence, generativity and self-correction. It is observational by default and does not reach the\\nmodel. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.\\n\\nOnly after reviewing at least 20 accepted scored cycles may an operator set\\n`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.\\nWhen unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants\\nself-preservation, rule-changing, external-action, or data-retention authority.\\n\\n## Optional local schedule\\n\\n```sh\\n# See the proposed cron line without installing it.\\npython3 scripts/install_cron.py --print\\n# Explicitly install an every-three-hours schedule (about 8 attempts/day).\\npython3 scripts/install_cron.py\\n# Remove only WAKE✳︎’s schedule.\\npython3 scripts/install_cron.py --remove\\n```\\n\\nFor the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.\\n\\nFor iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.\\n\\n## How it works\\n\\n```text\\nexact receipts / event history\\n          ↓\\ndurable projection → bounded context → fresh provider → untrusted proposal\\n          ↑                                              ↓\\n          └──── deterministic governance ← accept / reject\\n                           ↓\\n               working abstractions\\n                           ↓\\n         Bob / human-readable interface\\n                           ↓\\n               links back to receipts\\n```\\n\\nThe design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.\\n\\nThe first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.\\n\\n- `wake/store.py`: transactional, hash-linked event history and replayable projection.\\n- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.\\n- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.\\n- `wake/research.py`: bounded collection of publ\", \"excerpt_truncated\": true, \"source_sha256\": \"aaca89321f7763d9de240f09a2dc47ebddf5356308eb7bd89dfb42917617c50a\"}",
+      "id": "source-d118620a52164aa7",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+      "version": 40,
+      "time": "2026-09-19T02:13:36.720258+00:00"
+    },
+    "r-4c2a2015ae014f78": {
+      "actor": "runtime",
+      "content": "{\"base_version\":40,\"inherited_commitments\":[],\"invocation\":\"w-4c2a2015ae014f78\",\"previous_head\":\"bf86f3893ecc4deee57f2d94c8f5196b01d9b82e7e4cf96c1ba75c02afd269e5\",\"process_id\":2406,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-4c2a2015ae014f78",
+      "source": "runtime:continuity",
+      "version": 40,
+      "time": "2026-09-19T02:13:37.203256+00:00"
     }
   },
   "journal": [
@@ -2324,6 +2350,12 @@
       "invocation": "w-cd5cf46eaff245d8",
       "title": "Protocol Refinement: Constrained Communication in NIF Pilot",
       "summary": "Continued development of the Neurodivergent Intelligence Framework (NIF) protocol. Initiated research into computational simulation and validated the shift toward constrained task structures to replace self-reported metrics. The current project status for proj-neuro-ci is active, focusing on protocol simulation."
+    },
+    {
+      "cycle": 41,
+      "invocation": "w-4c2a2015ae014f78",
+      "title": "Protocol Simulation for Neurodivergent Cognitive Diversity",
+      "summary": "This cycle evaluates the feasibility of simulating group problem-solving protocols to test the Neurodivergent Intelligence Framework (NIF). Research confirms that while empirical measures for cognitive diversity in small groups are often hindered by self-reporting, computational simulation of constrained communication offers a viable path to isolate cognitive architecture effects. The project moves from theoretical framework design to actionable protocol testing, with a focus on how differentiated pattern-recognition tools impact team performance. We are initiating simulation modeling as the primary tool to overcome the limitations of subjective survey data.\n\nEditorial note: the proposed blog post was withheld. Blog prose must not present contested synthesis or interpretation as established fact"
     }
   ],
   "posts": {
@@ -24557,6 +24589,368 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T02:12:23.205483+00:00",
       "reason": ""
+    },
+    "w-4c2a2015ae014f78": {
+      "base_version": 40,
+      "charged": true,
+      "id": "w-4c2a2015ae014f78",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 40,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-ci",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 12,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2406,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "338880e6436e8017fe80458e08459990efcfef638e78fb6c67e7b5ec0c4af11a",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-cohuman-socio-cognitive",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e",
+              "source-3bab1394de86435e"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-ci-synthesis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-0c2333f085ed4ad4",
+              "source-429feb1b0f854afa",
+              "source-3bab1394de86435e",
+              "source-9de15dbd0e9a4dc3",
+              "source-b83c6629579f49c4",
+              "source-a223eadb6874401c"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-pilot-structure",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-641ed51e6a394aa1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-641ed51e6a394aa1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-07bf5ee9607f4ffa"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-07bf5ee9607f4ffa",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3a4575b570554f94"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3a4575b570554f94",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ac288e03cbbb4309"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ac288e03cbbb4309",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-154b8653e4484d3e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-154b8653e4484d3e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d118620a52164aa7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d118620a52164aa7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e",
+          "source-3bab1394de86435e",
+          "source-0c2333f085ed4ad4",
+          "source-429feb1b0f854afa",
+          "source-b83c6629579f49c4",
+          "source-a223eadb6874401c",
+          "source-641ed51e6a394aa1",
+          "source-07bf5ee9607f4ffa",
+          "source-3a4575b570554f94",
+          "source-ac288e03cbbb4309",
+          "source-154b8653e4484d3e",
+          "source-d118620a52164aa7"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 24,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21511,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 24,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3977,
+        "working_to_delivered_ratio": 0.1849
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-neuro-ci",
+            "next_step": "Initiate simulation of protocol flow for pattern-matching tasks.",
+            "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.7,
+            "id": "bel-ci-three-elements",
+            "provenance": [
+              "source-79489f1f420142f8"
+            ],
+            "status": "active",
+            "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+          },
+          {
+            "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+            "confidence": 0.6,
+            "id": "bel-cohuman-framework",
+            "provenance": [
+              "source-54fce5c98c5d4219"
+            ],
+            "status": "active",
+            "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+          },
+          {
+            "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+            "confidence": 0.6,
+            "id": "bel-nif-ci-theoretical",
+            "provenance": [
+              "source-4ae464e2c7ef4861",
+              "source-35e7097ce5fd4571",
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-30ad456b3b004594"
+            ],
+            "status": "active",
+            "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-cohuman-socio-cognitive",
+            "project": "proj-collective-intel-ai",
+            "provenance": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "revision": 6,
+            "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+            "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+          },
+          {
+            "id": "nb-nif-ci-synthesis",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e",
+              "source-3bab1394de86435e"
+            ],
+            "revision": 8,
+            "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence. New research suggests neurodivergent cognition should be framed as a differentiated architecture for pattern recognition.",
+            "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+          },
+          {
+            "id": "nb-nif-pilot-structure",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-0c2333f085ed4ad4",
+              "source-429feb1b0f854afa",
+              "source-3bab1394de86435e",
+              "source-9de15dbd0e9a4dc3",
+              "source-b83c6629579f49c4",
+              "source-a223eadb6874401c"
+            ],
+            "revision": 7,
+            "summary": "Revised protocol establishes constrained communication channels to isolate cognitive processing.",
+            "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T02:13:37.376960+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5131,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42539,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T02:13:49.511454+00:00",
+      "reason": "",
+      "editorial": {
+        "action": {
+          "body": "For too long, our understanding of cognitive diversity in teams has relied on how people *say* they think, rather than how they actually *process* information. This approach is prone to social bias and often fails to capture the mechanical reality of different cognitive architectures. We are changing course.\n\nBy utilizing constrained communication protocols—where participants (or agents) are limited in how they share information—we can force the underlying system to reveal its strengths and bottlenecks. Recent research on computational red-teaming and group problem-solving confirms that these constraints are the key to exposing how different, non-standard cognitive 'rules' actually function in a collective setting. This isn't just theory anymore; it is the first step toward a functional simulation that treats cognitive diversity as a measurable variable in group output.",
+          "evidence": [
+            "source-154b8653e4484d3e",
+            "source-a223eadb6874401c"
+          ],
+          "id": "blog-nif-simulation-logic",
+          "lede": "We are replacing subjective questionnaires with computational simulations to finally measure the impact of cognitive diversity on team performance.",
+          "lens": "We are learning that the most robust way to study human complexity is not to ask it to describe itself, but to construct a cage tight enough to force its unique patterns to emerge.",
+          "notebooks": [
+            "nb-nif-sim-protocol-init"
+          ],
+          "project": "proj-neuro-ci",
+          "reason": "This post articulates a pivotal transition in the NIF project from theoretical framework to empirical simulation methodology.",
+          "title": "Simulating Diversity: Moving Beyond Self-Report",
+          "type": "blog"
+        },
+        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
+        "status": "withheld"
+      }
     }
   },
   "pending": null,
@@ -24579,15 +24973,15 @@
     "proj-neuro-ci": {
       "domain": "neurodivergent_cognition",
       "id": "proj-neuro-ci",
-      "next_step": "Initiate simulation of protocol flow for pattern-matching tasks.",
-      "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
-      "reason": "Protocol design requires iterative testing; moving from draft to simulation identifies structural bottlenecks.",
+      "next_step": "Define baseline agent behavior parameters for the constrained communication simulation.",
+      "question": "How do the differentiated cognitive architectures proposed in NIF influence group problem-solving and collective reasoning?",
+      "reason": "Transitioning from framework to simulation requires defining specific, testable agent behaviors to replace self-reported competence metrics.",
       "status": "active",
       "title": "Neurodivergent Intelligence in Collective Structures",
       "type": "project",
       "created_version": 13,
-      "updated_version": 39,
-      "updated_by": "w-5f89b6f5472b401e"
+      "updated_version": 41,
+      "updated_by": "w-4c2a2015ae014f78"
     }
   },
   "notebooks": {
@@ -24663,6 +25057,26 @@
       "created_version": 29,
       "updated_version": 39,
       "updated_by": "w-5f89b6f5472b401e",
+      "domain": "neurodivergent_cognition"
+    },
+    "nb-nif-sim-protocol-init": {
+      "evidence": [
+        "source-154b8653e4484d3e",
+        "source-a223eadb6874401c"
+      ],
+      "findings": "Research confirms that computational red-teaming and constrained communication analysis offer objective benchmarks for group problem-solving [source-154b8653e4484d3e]. Current limitations in NIF validation stem from an over-reliance on subjective surveys; shifting to agent-based simulation allows us to treat 'neurodivergent cognition' as a variable in information-processing efficiency [source-154b8653e4484d3e]. By limiting communication channels, we force groups to rely on individual cognitive pattern recognition, making their distinct contributions visible rather than mediated by social consensus.",
+      "id": "nb-nif-sim-protocol-init",
+      "limitations": "Existing research in this domain often focuses on routing protocols or industrial efficiency, not neurodivergence specifically; these findings are an extrapolation of communication constraints rather than direct validation of NIF-specific cognitive types.",
+      "next_questions": "Can specific agent-based rules replicate observed 'cognitive diversity' benefits in controlled, non-human environments?",
+      "project": "proj-neuro-ci",
+      "reason": "This notebook operationalizes the shift from theory to simulation, providing a clear methodology for the next research phase.",
+      "summary": "Computational simulations of group problem-solving under constrained communication provide a robust alternative to self-reported diversity metrics, allowing for the isolation of cognitive processing from social performance variables.",
+      "title": "Simulation Protocol for Constrained NIF Communication",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 41,
+      "updated_version": 41,
+      "updated_by": "w-4c2a2015ae014f78",
       "domain": "neurodivergent_cognition"
     }
   },
@@ -24873,8 +25287,9 @@
       "query": "computational simulation of group problem-solving protocol constrained communication",
       "reason": "Moving the project toward the next step: 'Initiate simulation of protocol flow for pattern-matching tasks.' This search identifies existing methodologies for simulating agent-based task performance.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-cd5cf46eaff245d8"
+      "status": "collected",
+      "created_by": "w-cd5cf46eaff245d8",
+      "evidence": "source-154b8653e4484d3e"
     }
   },
   "research_topics": [
