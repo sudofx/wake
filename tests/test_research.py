@@ -427,14 +427,34 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock(): collect(self.engine, fetcher=fetch)
         state=self.engine.store.load()
         self.assertEqual(len(calls), 2)
-        self.assertIn("query=collective+intelligence", calls[0])
-        self.assertIn("query=climate+change", calls[1])
+        configured = {topic["id"] for topic in state["research_topics"]}
+        collected_domains = {
+            json.loads(e["content"]).get("topic_domain")
+            for e in state["evidence"].values()
+            if e.get("scope") == "collected" and e.get("actor") == "collector"
+        }
+        self.assertTrue(collected_domains <= configured)
+        self.assertEqual(len(collected_domains), 1)  # first fetch failed; second succeeded
         self.assertEqual([r["status"] for r in state["research"].values()], ["superseded","superseded","superseded","superseded"])
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
         self.assertEqual(payload["topic_domain"], "climate_change")
 
+
+    def test_attention_nudge_avoids_active_project_domain_every_fourth_invocation(self):
+        self.propose([project()])
+        # Four completed invocations trigger the attention nudge on collection.
+        for _ in range(3):
+            self.propose([])
+        calls = []
+        with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
+             patch("wake.research.secrets.SystemRandom.sample", side_effect=lambda seq, n: list(seq)[:n]):
+            with self.engine.store.lock():
+                collect(self.engine, fetcher=lambda url: calls.append(url) or
+                        {"url": url, "scope": "fixture", "excerpt": "A sufficiently long test source excerpt."})
+        self.assertEqual(len(calls), 2)
+        self.assertNotIn("query=symmetry", calls[0])
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
         actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="follow up",
