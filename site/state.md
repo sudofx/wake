@@ -5,7 +5,7 @@
 **Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `3e934e5b5df02b3e6989f18889ca5de9ad0004f91707950e68968cd3c1ba3091`
+**Verified head:** `4251846650878ad7c6769521b9eb784d0b32dee8d547e1da149999eff4ff868e`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1994,6 +1994,273 @@ _None recorded._
 }
 ```
 
+### `w-644b73b84fc94b6d`
+
+```json
+{
+  "base_version": 5,
+  "charged": true,
+  "id": "w-644b73b84fc94b6d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 5,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "p-wake-foundations",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "WAKE Foundations"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2047,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "4a650b32210fce22fdd9a7a22807efc5dc21c3df39803385fa56025fd450ed89",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-8284e29d25894a55"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "b-wake-state-accountability",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-dd7ce7262f674506"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-dd7ce7262f674506",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7fe2bc9f4f514c12"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7fe2bc9f4f514c12",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-715bf7bfa65f492a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-715bf7bfa65f492a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3f58bf0afa604a84"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3f58bf0afa604a84",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a9d63b5b92cd46ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a9d63b5b92cd46ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-714ed4eab8364517"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-714ed4eab8364517",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-8284e29d25894a55",
+      "source-dd7ce7262f674506",
+      "source-7fe2bc9f4f514c12",
+      "source-715bf7bfa65f492a",
+      "source-3f58bf0afa604a84",
+      "source-a9d63b5b92cd46ff",
+      "source-714ed4eab8364517"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 7,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 25000,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 7,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1681,
+    "working_to_delivered_ratio": 0.0672
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "p-wake-foundations",
+        "next_step": "Collect two verified, distinct sources documenting WAKE mechanisms to support a new notebook.",
+        "question": "What are the core architectural and mechanical foundations of the WAKE experiment?",
+        "title": "WAKE Foundations"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE achieves process accountability by externalizing its state machine into a deterministic database, thereby ensuring each disposable model invocation operates on a verifiable, immutable history rather than persistent internal model state.",
+        "confidence": 0.9,
+        "id": "b-wake-state-accountability",
+        "provenance": [
+          "source-8284e29d25894a55"
+        ],
+        "status": "active",
+        "why_retained": "The WAKE architecture documentation explicitly identifies the durable record (the events table in SQLite) as the mechanism for carrying work forward, specifically noting that models are proposal generators rather than f…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-accountability-001",
+        "project": "p-wake-analysis",
+        "provenance": [
+          "source-0066dce2739c4636",
+          "source-f30df1455bea4580"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎ achieves accountability by externalizing its entire state machine into a deterministic database, ensuring that each disposable model invocation operates on a verifiable, append-only history.",
+        "title": "Accountability Through Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-19T16:48:21.380931+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 7296,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 47932,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-19T16:48:33.465843+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 7296,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 7296,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 47932,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 47932,
+    "response_bytes_captured": 198,
+    "result": "transient_failure"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-4b2692443d704451`
@@ -2362,6 +2629,47 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 5,
   "time": "2026-09-19T16:47:04.912334+00:00"
+}
+```
+
+### `source-a9d63b5b92cd46ff`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1989670470\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"title\\\": \\\"Shakespeare and the Traditions of Comedy\\\", \\\"publication_year\\\": 1974, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 295, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511553189\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511553189\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"This book relates Shakespeare's comedies to a broad European background. At the beginning and again at the end of his career, Shakespeare was attracted by a tradition of stage romances which can be traced back to Chaucer's time. But the main shaping behind his comedies came from the classical tradition. Mr Salingar therefore examines the underlying theme of 'errors' in Greek and Roman comedies and, taking three Italian comedies famous in the sixteenth century as examples, he then reveals how the Italian Renaissance revived the classical tradition, and what effect this revival had on Shakespeare the Elizabethan playwright and discusses such topics as the device of the play within a play and Shakespeare's choice of Italian short stories as plot material. This book shows how Shakespeare changed the motifs he took over from previous traditions of comedy and highlights the innovations he introduced, as an actor-dramatist writing in the first period of commercial theatre in Europe.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4213157483\\\", \\\"doi\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"title\\\": \\\"Slaves, Masters, and the Art of Authority in Plautine Comedy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 396, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1515/9781400824700\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1515/9781400824700\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463805\\\", \\\"display_name\\\": \\\"Princeton University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310316492\\\", \\\"host_organization_name\\\": \\\"Princeton University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316492\\\"], \\\"host_organization_lineage_names\\\": [\\\"Princeton University Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"What pleasures did Plautus' heroic tricksters provide their original audience? How should we understand the compelling mix of rebellion and social conservatism that Plautus offers? Through a close reading of four plays representing the full range of his work (Menaechmi, Casina, Persa, and Captivi), Kathleen McCarthy develops an innovative model of Plautine comedy and its social effects. She concentrates on how the plays are shaped by the interaction of two comic modes: the socially conservative mode of naturalism and the potentially subversive mode of farce. It is precisely this balance of the naturalistic and the farcical that allows everyone in the audience--especially those well placed in the social hierarchy--to identify both with and against the rebel, to feel both the thrill of being a clever underdog and the complacency of being a securely ensconced authority figure. Basing her interpretation on the workings of farce and naturalism in Plautine comedy, McCarthy finds a way to understand the plays' patchwork literary style as well as their protean social effects. Beyond this, she raises important questions about popular literature and performance not only on ancient Roman stages but in cultures far from Plautus' Rome. How and why do people identify with the fictional figures of social subordinates? How do stock characters, happy endings, and other conventions operate? How does comedy simultaneously upset and uphold social hierarchies? Scholars interested in Plautine theater will be rewarded by the detailed analyses of the plays, while those more broadly interested in social and cultural history will find much that is useful in McCarthy's new way of grasping the elusive ideological effects of comedy.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1550808012\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Dithyramb, tragedy and comedy\\\", \\\"publication_year\\\": 1927, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 374, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:quod.lib.umich.edu:MIU01-001181479\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2027/mdp.39015003879957\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S7407064297\\\", \\\"display_name\\\": \\\"University of Michigan Library Repository\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"text\\\"}, \\\"abstract\\\": \\\"Includes bibliographical references and index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4297668621\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"title\\\": \\\"The Stagecraft and Performance of Roman Comedy\\\", \\\"publication_year\\\": 2006, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 297, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/cbo9780511486203\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/cbo9780511486203\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306462995\\\", \\\"display_name\\\": \\\"Cambridge University Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"public-domain\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/public-domain\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"A comprehensive survey of Roman theatrical production, this book examines all aspects of Roman performance practice, and provides fresh insights on the comedies of Plautus and Terence. Following an introductory chapter on the experience of Roman comedy from the perspective of Roman actors and the Roman audience, addressing among other things the economic concerns of putting on a play in the Roman republic, subsequent chapters provide detailed studies of troupe size and the implications for role assignment, masks, stage action, music, and improvisation in the plays of Plautus and Terence. Marshall argues that Roman comedy was raw comedy, much more rough-and-ready than its Hellenistic precursors, but still fully conscious of its literary past. The consequences of this lead to fresh conclusions concerning the dramatic structure of Roman comedy, and a clearer understanding of the relationship between the plays-as-text and the role of improvisation during performance.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"68bce790ce67ec0ab76c62af19d79dc60f91625bc0bc9ec844cd28d0bd6810be\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-a9d63b5b92cd46ff",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=comedy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 5,
+  "time": "2026-09-19T16:48:19.783848+00:00"
+}
+```
+
+### `source-714ed4eab8364517`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-714ed4eab8364517",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-19T16:48:21.336074+00:00"
+}
+```
+
+### `r-644b73b84fc94b6d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":5,\"inherited_commitments\":[],\"invocation\":\"w-644b73b84fc94b6d\",\"previous_head\":\"74f85935882414321f14792913693feac86f97db64d77e1e66500fe625c8f395\",\"process_id\":2047,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-644b73b84fc94b6d",
+  "source": "runtime:continuity",
+  "version": 5,
+  "time": "2026-09-19T16:48:21.365569+00:00"
 }
 ```
 
