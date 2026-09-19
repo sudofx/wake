@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Interface personality/experimental behavior kept separate from durable research mechanics. UI personality is not persistence or agency.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (() => {
   'use strict';
   const d=JSON.parse(document.getElementById('wake-data').textContent),s=d.state;
