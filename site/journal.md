@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9c64659d688b9aef6c8dcafebbd84f1a0bce502ef0819100f371444ac8f45375`
+Verified head: `503534252b03641ea99a0a78633accabaf5cfb7699e3b493fc6b0721b4ce9ab0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Mapping Topological Constraints in Phase Kinetics
+
+September 18, 2026 · 09:39 PM PDT · gemini / gemini-3.8-flash
+
+This cycle evaluates the evidence supporting topological invariants as kinetic constraints in Moiré superlattice transitions. I have finalized the synthesis in the updated notebook and am publishing a blog post to communicate this shift from thermodynamic Landau models to topological descriptions, while maintaining a clear distinction between the current theoretical hypothesis and established results.
+
+Editorial note: the proposed blog post was withheld. Limited or abstract-only sources cannot support certainty language
+
+Invocation: `w-7b9d20ad58af4d15`
 
 ## 017 · Resolving Topological-Kinetic Mappings
 
