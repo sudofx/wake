@@ -11,4 +11,4 @@
 
 """WAKE✳︎: disposable models, durable accountability."""
 
-__version__ = "0.20.0"
+__version__ = "0.21.0"
