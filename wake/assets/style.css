@@ -163,3 +163,8 @@ h2,.section-top h2,.panel h2,.note-card h3,.entry h3,.project-card h3,.notebook-
 /* Record placement: desktop uses the right-hand card; mobile uses the inline card only. */
 @media(min-width:701px){.record-card.record-card-mobile{display:none!important}.record-card.record-card-desktop{display:block}}
 @media(max-width:700px){.record-card.record-card-desktop{display:none!important}.record-card.record-card-mobile{display:grid}}
+
+
+/* Site-wide typography: use MAP's sans face everywhere; mono remains for operational data. */
+:root{--serif:var(--sans)}
+body,h1,h2,h3,h4,h5,h6,p,blockquote,.hero h1,.page-heading h1,.explore-copy h1,.about-intro h1,.explore-lede,.latest-observation h2,.depth-path h2,.about-principles h2,.about-body h2,.about-contract p,.topic-card h3,.record-card strong{font-family:var(--sans)}
