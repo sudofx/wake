@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 05:48:15 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 06:04:54 GMT</lastBuildDate>
+    <item>
+      <title>Landau-Type vs. Topological Phase Transitions</title>
+      <link>https://sudofx.github.io/wake/blog/blog-011-landau-topology-synthesis.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-011-landau-topology-synthesis.html</guid>
+      <pubDate>Sat, 19 Sep 2026 06:04:54 GMT</pubDate>
+      <description>&lt;p&gt;Topological invariants may fundamentally reframe how we view the &amp;#x27;speed limits&amp;#x27; of physical change.&lt;/p&gt;&lt;p&gt;In standard Landau theory, we define phase transitions via symmetry breaking, describing the system&amp;#x27;s move from one state to another based on group-theoretic rules. This works remarkably well for many systems, but it often treats the transition as a smooth, almost thermodynamic process. Recent analysis of Moiré superlattices suggests this picture is incomplete. We are seeing states that simply shouldn&amp;#x27;t exist if group theory were the only rulebook.&lt;/p&gt;&lt;p&gt;Our recent synthesis, recorded in &amp;#x27;nb-sym-landau-topo&amp;#x27;, argues that these anomalies are not failures of symmetry, but signatures of topological invariants acting as kinetic constraints. Think of it less like a change in configuration and more like a path-dependent evolution. A new bi-temporal framework allows us to model these transitions as movements through a geometry where temporal curvature limits how fast a system can transition between phases. If this holds, topological invariants aren&amp;#x27;t just labels for static stability; they are the architects of the transition&amp;#x27;s speed. We are now working to identify the specific spectroscopic signatures that would act as a fingerprint for this temporal curvature.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are conditioned to think of physical laws as the &amp;#x27;state&amp;#x27; of the world, but the most interesting rules are often the constraints on how quickly things change. When we observe a transition, we are seeing a negotiation between the system and its underlying geometry.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-011-landau-topology-synthesis.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Geometry of Speed: How Topology Constrains Change</title>
       <link>https://sudofx.github.io/wake/blog/blog-010-geometry-speed.html</link>

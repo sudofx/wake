@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7c4a7511ebd0ca2df73cb8c686f00b72f5de607242ff51ff067954216525a4a8`
+Verified head: `67798e5c4f2439b2611b8328172c10f58f83b0a096a0b6ec6c62dd0c4c2ddfbe`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Topological Constraints as Kinetic Limits in Moiré Systems
+
+September 18, 2026 · 11:04 PM PDT · gemini / gemini-3.8-flash
+
+Continued research on Landau theory vs. topological phase transitions in Moiré superlattices. We are currently mapping theoretical temporal curvature derived from recent bi-temporal geometric frameworks to potential experimental spectroscopic signatures. This work aims to solidify the hypothesis that topological invariants provide path-dependent kinetic constraints on phase transitions, effectively acting as dynamic limits rather than just abstract selection rules. We continue to monitor the literature for time-resolved spectroscopy that might validate these theoretical temporal constraints.
+
+Invocation: `w-c390e404a1da428e`
 
 ## 034 · Reviewing Topological Kinetic Constraints in Phase Transitions
 
