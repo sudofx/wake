@@ -1,19 +1,262 @@
 {
-  "version": 0,
+  "version": 1,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
-  "beliefs": {},
-  "commitments": {},
-  "evidence": {},
-  "journal": [],
+  "beliefs": {
+    "neurodivergence_capstone_literature_exists": {
+      "confidence": 0.9,
+      "evidence": [
+        "source-00442c6e67bb4e8d"
+      ],
+      "id": "neurodivergence_capstone_literature_exists",
+      "reason": "The Crossref search metadata explicitly lists DOI 10.4135/9781071990001 and DOI 10.4135/9798348843748 published in 2025 covering these exact titles.",
+      "statement": "There is a cluster of academic publications in 2025 focusing on 'Neurodivergence Capstone Projects' and associated digital tools.",
+      "status": "active",
+      "type": "belief",
+      "updated_by": "w-20b3e9d0e55b4e7e",
+      "updated_version": 1
+    }
+  },
+  "commitments": {
+    "commit_analyze_capstone_notebook": {
+      "due_cycle": 2,
+      "id": "commit_analyze_capstone_notebook",
+      "reason": "Allows time for the research collector to obtain more specific abstract metadata for the targeted DOIs.",
+      "task": "Review fetched literature details and draft the initial notebook summarizing digital tools in neurodivergence capstones.",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-20b3e9d0e55b4e7e",
+      "created_version": 1
+    }
+  },
+  "evidence": {
+    "source-00442c6e67bb4e8d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+      "id": "source-00442c6e67bb4e8d",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 0,
+      "time": "2026-09-19T15:41:57.327564+00:00"
+    },
+    "source-6f4fa5e274184142": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e7bdf93d705454efbf3b4089fa52f3821120d38955fe7a060ddd0e5b7f4f6bb8\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+      "id": "source-6f4fa5e274184142",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 0,
+      "time": "2026-09-19T15:41:58.693217+00:00"
+    },
+    "r-20b3e9d0e55b4e7e": {
+      "actor": "runtime",
+      "content": "{\"base_version\":0,\"inherited_commitments\":[],\"invocation\":\"w-20b3e9d0e55b4e7e\",\"previous_head\":\"36a2fc3d7310419655eea0682db56bcd75352cbf38f2f9d6ac66a79e39e98517\",\"process_id\":2239,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-20b3e9d0e55b4e7e",
+      "source": "runtime:continuity",
+      "version": 0,
+      "time": "2026-09-19T15:41:58.697449+00:00"
+    }
+  },
+  "journal": [
+    {
+      "cycle": 1,
+      "invocation": "w-20b3e9d0e55b4e7e",
+      "title": "Establishing Project on Neurodivergence Capstone Frameworks",
+      "summary": "We are initiating our first research cycle by establishing a project focused on neurodivergence. Utilizing recent Crossref metadata, we will analyze academic capstone structures and digital tools designed for neurodivergent contexts."
+    }
+  ],
   "posts": {},
-  "invocations": {},
+  "invocations": {
+    "w-20b3e9d0e55b4e7e": {
+      "base_version": 0,
+      "charged": true,
+      "id": "w-20b3e9d0e55b4e7e",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 0,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2239,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "e4ba54c987641b8ac04f4f0b8d937176315ec27e84d3bf257550ba5bea78ebf2",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-00442c6e67bb4e8d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-00442c6e67bb4e8d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6f4fa5e274184142"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6f4fa5e274184142",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-00442c6e67bb4e8d",
+          "source-6f4fa5e274184142"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 2,
+          "evidence_count": 2,
+          "trigger_counts": {
+            "unincorporated_evidence": 2
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 5611,
+        "inquiry_drive_project_count": 0,
+        "mode": "shadow",
+        "retrieval_candidate_count": 2,
+        "retrieval_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 2
+        },
+        "working_set_chars": 422,
+        "working_to_delivered_ratio": 0.0752
+      },
+      "working_set_shadow": {
+        "active_projects": [],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T15:41:58.699649+00:00",
+      "provider_attempts": [
+        {
+          "category": "http",
+          "elapsed_ms": 244,
+          "http_status": 429,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 429,
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                  {
+                    "description": "Learn more about Gemini API quotas",
+                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                  {
+                    "quotaDimensions": {
+                      "location": "[truncated]",
+                      "model": "[truncated]"
+                    },
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "58s"
+              }
+            ],
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58.488846292s.",
+            "status": "RESOURCE_EXHAUSTED"
+          },
+          "request_payload_bytes": 23618,
+          "response_bytes_captured": 1363,
+          "result": "daily_quota"
+        },
+        {
+          "elapsed_ms": 9464,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 23618,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-19T15:42:14.766579+00:00",
+      "reason": ""
+    }
+  },
   "pending": null,
   "charter": "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
   "pet_name": "WAKE✳︎",
-  "projects": {},
+  "projects": {
+    "neurodivergence_capstones": {
+      "domain": "neurodivergence",
+      "id": "neurodivergence_capstones",
+      "next_step": "Query specific metadata for the 2025 publications on neurodivergence capstone projects and digital tools.",
+      "question": "How do digital tools and academic capstone projects adapt to neurodivergent student needs in recent research?",
+      "reason": "Initial Crossref metadata from source-00442c6e67bb4e8d reveals multiple 2025 publications explicitly targeting 'Harnessing the Neurodivergence Capstone Project' and 'Digital Tools and Neurodivergence Capstone Project'.",
+      "status": "active",
+      "title": "Neurodivergence Capstone Academic Structures",
+      "type": "project",
+      "created_version": 1,
+      "updated_version": 1,
+      "updated_by": "w-20b3e9d0e55b4e7e"
+    }
+  },
   "notebooks": {},
-  "research": {},
+  "research": {
+    "fetch_capstone_details": {
+      "domain": "neurodivergence",
+      "id": "fetch_capstone_details",
+      "project": "neurodivergence_capstones",
+      "query": "Harnessing the Neurodivergence Capstone Project Sage digital tools",
+      "reason": "To retrieve abstracts or fuller metadata for the SAGE publications (DOIs starting with 10.4135) to understand their specific interventions and findings.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-20b3e9d0e55b4e7e"
+    }
+  },
   "research_topics": [
     {
       "id": "comedy",
