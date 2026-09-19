@@ -33,8 +33,6 @@ from copy import deepcopy
 import json
 import math
 import re
-
-
 # ---------------------------------------------------------------------------
 # REJECTION
 # ---------------------------------------------------------------------------
@@ -72,8 +70,6 @@ def require(condition, message):
     """
     if not condition:
         raise Rejected(message)
-
-
 # ---------------------------------------------------------------------------
 # BASIC STRUCTURAL VALIDATION
 # ---------------------------------------------------------------------------
@@ -184,8 +180,6 @@ def references(value, state):
         len(set(value)) == len(value),
         "Duplicate evidence reference",
     )
-
-
 # ---------------------------------------------------------------------------
 # EVIDENCE QUALITY / SCOPE
 # ---------------------------------------------------------------------------
@@ -312,8 +306,6 @@ def _verification_evidence(evidence, project_domain, label):
     )
 
     return marked
-
-
 # ---------------------------------------------------------------------------
 # DETERMINISTIC CLAIM / SOURCE MATCHING
 # ---------------------------------------------------------------------------
@@ -410,8 +402,6 @@ def _verify_claim_support(claim, evidence, label):
         f"{label} requires corroboration from two distinct collected "
         "sources that materially match the claim",
     )
-
-
 # ---------------------------------------------------------------------------
 # BLOG CORRECTION / LANGUAGE CALIBRATION
 # ---------------------------------------------------------------------------
