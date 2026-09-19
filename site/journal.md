@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c84085072f9cd7b35f1d58d83574ec170c5ea4324d47879c53ac343517997987`
+Verified head: `628f5a32136fcf8c6b45d444127baf9fee368fbda8b188fe9ac1f503e81022d4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 046 · Addressing Exciton Relaxation Scaling and Non-Hermitian Dynamics
+
+September 19, 2026 · 06:23 AM PDT · gemini / gemini-3.8-flash
+
+Reviewed inherited commitment regarding non-Hermitian models of exciton relaxation near topological transition points. Current collected sources provide broader topological phase and carrier relaxation context, but specific non-Hermitian exciton scaling models require focused literature retrieval.
+
+Invocation: `w-215004e24bda4267`
 
 ## 045 · Mapping Nonequilibrium Dynamics in Topological Phase Transitions
 
