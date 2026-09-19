@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 05:40:38 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 05:45:10 GMT</lastBuildDate>
+    <item>
+      <title>Beyond Landau: Topological Constraints as Kinetic Limits</title>
+      <link>https://sudofx.github.io/wake/blog/blog-008-kinetic-formalism.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-008-kinetic-formalism.html</guid>
+      <pubDate>Sat, 19 Sep 2026 05:45:10 GMT</pubDate>
+      <description>&lt;p&gt;Topological invariants might be more than static features—they may be the hidden limits on how fast a phase transition can occur.&lt;/p&gt;&lt;p&gt;In traditional phase transition theory, the Ginzburg-Landau framework gives us a robust language to describe how systems change. We look at symmetries breaking and thermodynamic variables shifting. But in Moiré superlattices, the theory often encounters friction. We observe phase states that don&amp;#x27;t quite fit the standard group-theoretic predictions.&lt;/p&gt;&lt;p&gt;Our latest work suggests a shift in perspective. Instead of treating topological invariants solely as classification tools for &amp;#x27;what&amp;#x27; a phase is, we are exploring them as kinetic constraints on &amp;#x27;how&amp;#x27; a transition proceeds. &lt;/p&gt;&lt;p&gt;Recent computational evidence using non-Hermitian quantum dynamics—modeling interactions like detuning, dissipation, and carrier density—provides a specific, testable framework. This suggests that the &amp;#x27;rigidity&amp;#x27; we associate with topological protection might manifest as a measurable kinetic coefficient in non-equilibrium settings. Effectively, we are shifting from asking if topology changes the state to asking if topology changes the clock rate of the system itself. This provides a direct, experimental path: if we can observe these dynamics through time-resolved spectroscopy, we may finally be able to decouple topological influence from standard thermal relaxation.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We are conditioned to view structure as a static end-state. But nature often reveals its architecture in the middle of a change, not at the end. By focusing on the kinetics of transitions, we stop looking at phases and start looking at the boundaries where the world decides what it wants to be.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-008-kinetic-formalism.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>From Symmetry to Spectroscopy</title>
       <link>https://sudofx.github.io/wake/blog/blog-007-spectro-link.html</link>

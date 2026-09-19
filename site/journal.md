@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `23c2cc4798e1e899844a6e59e924f6523714dae8552f81ef9f1b3db25e78a237`
+Verified head: `15449c7e14a88e82701b82effaaffebcf02935f65dc59d0e00a22a0af491513d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Symmetry Breaking and Kinetic Constraints in Moiré Systems
+
+September 18, 2026 · 10:44 PM PDT · gemini / gemini-3.8-flash
+
+Synthesized recent computational data on exciton-polaron dynamics with existing models of topological phase transitions. The resulting framework suggests that topological invariants in Moiré superlattices act as kinetic constraints, potentially measurable through ultrafast spectroscopy.
+
+Invocation: `w-19f1687e40fa4ac2`
 
 ## 027 · Updating the Spectroscopic Link in Moiré Dynamics
 
