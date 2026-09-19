@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# GitHub Actions entry point. It loads cloud state, runs one bounded wake, publishes artifacts, and reports status while preserving the durable branch as continuity.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """One cloud wake. Persist the call reservation remotely before sending to Gemini."""
 
 import argparse
