@@ -573,3 +573,22 @@ footer{margin-top:48px}
   #metrics .metrics-row-two-right .dashboard-kpis{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));margin:0}
   #metrics .metrics-row-two-right .telemetry-cell,#metrics .metrics-row-two-right .metric-card{padding:6px 7px}
 }
+
+
+/* Mockup implementation: one seven-instrument landscape rack + hypothesis deck. */
+.metrics-landscape-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:14px 0 12px}
+.metrics-landscape-heading h2{margin:3px 0 0}.landscape-status{display:flex;align-items:center;gap:10px;font:9px var(--mono);letter-spacing:.08em;color:var(--muted)}.landscape-status strong{font-size:16px;color:var(--green)}
+@media(min-width:3000px){
+  #metrics .metrics-row-one{border:1px solid var(--line);padding:12px 18px 16px}
+  #metrics .metrics-landscape-heading{padding:2px 0 10px}
+  #metrics .metrics-landscape-heading h2{font-size:21px}
+  #metrics .metrics-row-one .dashboard-grid{display:grid;grid-template-columns:1.4fr .92fr .95fr .95fr 1.08fr 1.08fr 1fr;gap:8px;padding:0}
+  #metrics .metrics-row-one .dashboard-panel{padding:10px 12px;min-height:250px}
+  #metrics .metrics-row-one .dashboard-panel h2{font-size:14px;line-height:1.15}
+  #metrics .metrics-row-one .dashboard-panel .small{font-size:7px}
+  #metrics .dashboard-hypothesis-summary .dashboard-stat strong{font-size:32px}
+  #metrics .metrics-row-one>.hypothesis-section{margin:14px -18px -16px;padding:12px 18px 14px;border-top:1px solid var(--line)}
+  #metrics .metrics-row-one>.hypothesis-section .dashboard-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:8px}
+  #metrics .metrics-row-one>.hypothesis-section .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+  #metrics .metrics-row-one>.hypothesis-section .hypothesis-card{min-height:108px}
+}
