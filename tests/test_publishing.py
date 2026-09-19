@@ -6,7 +6,6 @@
 # refactors must not weaken merely to make CI green. Assertions should make the
 # protected invariant understandable to both human and AI maintainers.
 # =============================================================================
-
 # WAKE✳︎ MAINTAINER NOTE
 #
 # Executable specification for publishing.
