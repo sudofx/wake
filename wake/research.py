@@ -126,11 +126,13 @@ def collect(engine, fetcher=fetch_source):
         return
     attempts = len(state["invocations"])
     topics = state.get("research_topics", [])
-    pending = [r for r in state.get("research", {}).values() if r["status"] == "queued"][:1]
-    # One neutral discovery accompanies queued work. With no queue, use the two
-    # adjacent topics in the rotation. WAKE✳︎ is treated like every other topic;
-    # its turn supplies the public README as a breadcrumb, not a directive.
-    discovery_count = 1 if pending else min(2, len(topics))
+    queued = [r for r in state.get("research", {}).values() if r["status"] == "queued"]
+    # Topic rotation is authoritative for discovery. A queued model follow-up may
+    # consume one read only when it is outside the current discovery domain, so a
+    # model cannot recursively monopolize both collection slots with one topic.
+    discovery_count = min(2, len(topics))
+    current_domains = {topics[(attempts + offset) % len(topics)]["id"] for offset in range(discovery_count)}
+    pending = [r for r in queued if r.get("domain") not in current_domains][:1]
     used_urls = {item.get("url") or query_url(item["query"], item["domain"]) for item in pending}
     for offset in range(discovery_count):
         topic = topics[(attempts + offset) % len(topics)]
