@@ -1032,6 +1032,18 @@ def transition(state, proposal, invocation, historical=False):
                     action["status"] == "active",
                     "A new project starts active",
                 )
+            else:
+                # A project ID names one durable research question. Allowing a
+                # later invocation to silently replace that question would let
+                # an old notebook satisfy a different project and manufacture
+                # false completion. Evolve next_step/status instead; a genuinely
+                # different question gets a new project ID.
+                require(
+                    action["title"] == old["title"]
+                    and action["question"] == old["question"],
+                    "Existing projects cannot change title or research question; "
+                    "create a new project for a new question",
+                )
 
             # WAKE✳︎ can multitask, but only within a bounded working set.
             #
