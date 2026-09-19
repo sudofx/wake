@@ -311,3 +311,16 @@ footer{margin-top:48px}
   #metrics .wake-timeline{grid-template-columns:repeat(100,minmax(6px,1fr))}
   #metrics .hypothesis-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+
+
+/* Command-center telemetry: dense on ultrawide, progressively collapses to mobile. */
+.command-strip{display:grid;grid-template-columns:2fr repeat(7,1fr);border:1px solid var(--line);background:var(--surface);margin:28px 0 14px}
+.command-strip>div{min-width:0;padding:13px 15px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}.command-strip>div:last-child{border-right:0}
+.command-strip p{margin:0 0 4px}.command-strip strong{font:24px/1 var(--mono);color:var(--green)}.command-strip span{font:8px/1.3 var(--mono);letter-spacing:.08em;color:var(--muted)}.command-strip b{font:18px/1.2 var(--mono);color:var(--ink);margin-top:5px}
+.telemetry-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-bottom:0;background:var(--surface);margin-bottom:14px}
+.telemetry-cell{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}.telemetry-cell:nth-child(5n){border-right:0}
+.telemetry-cell span{display:block;font:8px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.telemetry-cell strong{display:block;font:22px/1.15 var(--mono);color:var(--green);margin:7px 0 4px}.telemetry-cell small{display:block;font:9px/1.35 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+@media(min-width:1600px){#metrics .telemetry-grid{grid-template-columns:repeat(10,minmax(0,1fr));border-bottom:1px solid var(--line)}#metrics .telemetry-cell{border-bottom:0}#metrics .telemetry-cell:nth-child(5n){border-right:1px solid var(--line)}#metrics .telemetry-cell:last-child{border-right:0}}
+@media(min-width:2200px){#metrics .command-strip>div{padding:16px 18px}#metrics .command-strip strong{font-size:28px}#metrics .command-strip b{font-size:21px}#metrics .telemetry-cell{padding:16px 18px}}
+@media(max-width:1000px){.command-strip{grid-template-columns:repeat(4,1fr)}.command-strip>div{border-bottom:1px solid var(--line)}.command-strip>div:first-child{grid-column:span 2}.telemetry-grid{grid-template-columns:repeat(2,1fr)}.telemetry-cell:nth-child(5n){border-right:1px solid var(--line)}.telemetry-cell:nth-child(2n){border-right:0}}
+@media(max-width:700px){.command-strip{grid-template-columns:repeat(2,1fr)}.command-strip>div:first-child{grid-column:1/-1}.command-strip>div:nth-child(even){border-right:0}.telemetry-grid{grid-template-columns:repeat(2,1fr)}}
