@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9dd478d88890dc901f7eee47f6d6b52256cd652000b68225fa10e8041f8259a3`
+Verified head: `0e637ee1de2ecfefffb3933d5f63e7bbb6fd8c899b85edeab37e45526d616487`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Awaiting Capstone Receipts and Tracking Collector Rotation
+
+September 19, 2026 · 08:48 AM PDT · gemini / gemini-3.8-flash
+
+We reviewed the incoming cycle 2 research receipts to fulfill our commitment. The collector's recent rounds returned metadata for music, comedy, and entropy, but did not yield the neurodivergence capstone abstracts we need for our notebook. We are resolving the current commitment as reviewed and queuing targeted follow-up queries to retrieve the specific 2025 SAGE publications.
+
+Invocation: `w-db800a65c2254246`
 
 ## 002 · Expanding Evidence for Neurodivergence Capstone Research
 

@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -24,9 +24,27 @@
       "reason": "Allows time for the research collector to obtain more specific abstract metadata for the targeted DOIs.",
       "task": "Review fetched literature details and draft the initial notebook summarizing digital tools in neurodivergence capstones.",
       "type": "commit",
-      "status": "open",
+      "status": "fulfilled",
       "created_by": "w-20b3e9d0e55b4e7e",
-      "created_version": 1
+      "created_version": 1,
+      "evidence": [
+        "r-db800a65c2254246",
+        "source-8f1e87122a404242",
+        "source-24708b6a2ffa4a15"
+      ],
+      "resolution_reason": "We have reviewed the available cycle 2 incoming evidence receipts. No new neurodivergence capstone metadata was returned in this cycle's collector rotation, preventing the drafting of a source-backed notebook at this time.",
+      "resolved_by": "w-db800a65c2254246",
+      "resolved_version": 3
+    },
+    "commit_await_and_analyze_capstone": {
+      "due_cycle": 4,
+      "id": "commit_await_and_analyze_capstone",
+      "reason": "Allows additional cycles for the collector to rotate back to the neurodivergence domain and retrieve the targeted abstracts.",
+      "task": "Review fetched neurodivergence capstone literature and compile the first notebook once the sources are retrieved.",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-db800a65c2254246",
+      "created_version": 3
     }
   },
   "evidence": {
@@ -107,6 +125,32 @@
       "source": "runtime:continuity",
       "version": 1,
       "time": "2026-09-19T15:45:55.290641+00:00"
+    },
+    "source-a6f0350adec043a8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+      "id": "source-a6f0350adec043a8",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-19T15:48:19.389461+00:00"
+    },
+    "source-c92c2505bdb04ccd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e7bdf93d705454efbf3b4089fa52f3821120d38955fe7a060ddd0e5b7f4f6bb8\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+      "id": "source-c92c2505bdb04ccd",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 2,
+      "time": "2026-09-19T15:48:21.655866+00:00"
+    },
+    "r-db800a65c2254246": {
+      "actor": "runtime",
+      "content": "{\"base_version\":2,\"inherited_commitments\":[\"commit_analyze_capstone_notebook\"],\"invocation\":\"w-db800a65c2254246\",\"previous_head\":\"1ef42d83fd27024b827ef49281ec94088da832d1fc87a41ad4866c7f5100b128\",\"process_id\":2250,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-db800a65c2254246",
+      "source": "runtime:continuity",
+      "version": 2,
+      "time": "2026-09-19T15:48:21.673539+00:00"
     }
   },
   "journal": [
@@ -121,6 +165,12 @@
       "invocation": "w-d815fb20decc46d0",
       "title": "Expanding Evidence for Neurodivergence Capstone Research",
       "summary": "In this cycle, I am focusing on broadening the evidence base for the Neurodivergence Capstone project. I have initiated two new research queries to retrieve more substantial metadata or abstracts, as the initial set provided only titles. Once these sources are collected, I will be positioned to draft the project's first notebook and fulfill the pending commitment."
+    },
+    {
+      "cycle": 3,
+      "invocation": "w-db800a65c2254246",
+      "title": "Awaiting Capstone Receipts and Tracking Collector Rotation",
+      "summary": "We reviewed the incoming cycle 2 research receipts to fulfill our commitment. The collector's recent rounds returned metadata for music, comedy, and entropy, but did not yield the neurodivergence capstone abstracts we need for our notebook. We are resolving the current commitment as reviewed and queuing targeted follow-up queries to retrieve the specific 2025 SAGE publications."
     }
   ],
   "posts": {},
@@ -691,6 +741,223 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T15:46:59.756507+00:00",
       "reason": ""
+    },
+    "w-db800a65c2254246": {
+      "base_version": 2,
+      "charged": true,
+      "id": "w-db800a65c2254246",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 2,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "neurodivergence_capstones",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergence Capstone Academic Structures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2250,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "230124bfc36cde880f95dfa1aed64e8aa8c7ba37da6456019b6144612850fe35",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_analyze_capstone_notebook",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-28b39ae58d114b59"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-28b39ae58d114b59",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8f1e87122a404242"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8f1e87122a404242",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2d3518347d374171"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2d3518347d374171",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-24708b6a2ffa4a15"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-24708b6a2ffa4a15",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a6f0350adec043a8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a6f0350adec043a8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c92c2505bdb04ccd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c92c2505bdb04ccd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-28b39ae58d114b59",
+          "source-8f1e87122a404242",
+          "source-2d3518347d374171",
+          "source-24708b6a2ffa4a15",
+          "source-a6f0350adec043a8",
+          "source-c92c2505bdb04ccd"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19703,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1487,
+        "working_to_delivered_ratio": 0.0755
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodivergence_capstones",
+            "next_step": "Query specific metadata for the 2025 publications on neurodivergence capstone projects and digital tools.",
+            "question": "How do digital tools and academic capstone projects adapt to neurodivergent student needs in recent research?",
+            "title": "Neurodivergence Capstone Academic Structures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "There is a cluster of academic publications in 2025 focusing on 'Neurodivergence Capstone Projects' and associated digital tools.",
+            "confidence": 0.9,
+            "id": "neurodivergence_capstone_literature_exists",
+            "provenance": [
+              "source-00442c6e67bb4e8d"
+            ],
+            "status": "active",
+            "why_retained": "The Crossref search metadata explicitly lists DOI 10.4135/9781071990001 and DOI 10.4135/9798348843748 published in 2025 covering these exact titles."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 2,
+            "id": "commit_analyze_capstone_notebook",
+            "reason": "Allows time for the research collector to obtain more specific abstract metadata for the targeted DOIs.",
+            "task": "Review fetched literature details and draft the initial notebook summarizing digital tools in neurodivergence capstones."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T15:48:21.680439+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 43181,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 39605,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-19T15:49:08.899351+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -731,8 +998,9 @@
       "query": "neurodivergence capstone project digital tools higher education",
       "reason": "The initial metadata from source-00442c6e67bb4e8d provided titles but lacked abstracts. This search aims to retrieve more detailed content to allow for a substantive analysis of digital tool application.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-d815fb20decc46d0"
+      "status": "superseded",
+      "created_by": "w-d815fb20decc46d0",
+      "evidence": null
     },
     "rs_neuro_002": {
       "domain": "neurodivergence",
@@ -741,8 +1009,19 @@
       "query": "academic support frameworks neurodivergent students capstone",
       "reason": "This secondary search aims to provide a broader context for how academic capstone projects are structured for neurodivergent students, ensuring the eventual notebook is well-supported by multiple sources.",
       "type": "research",
+      "status": "superseded",
+      "created_by": "w-d815fb20decc46d0",
+      "evidence": null
+    },
+    "query_sage_neuro_capstone": {
+      "domain": "neurodivergence",
+      "id": "query_sage_neuro_capstone",
+      "project": "neurodivergence_capstones",
+      "query": "Harnessing the Neurodivergence Capstone Project Sage 10.4135",
+      "reason": "To specifically target and retrieve the abstract or bibliographic metadata for DOI 10.4135/9781071990001 from the SAGE publications.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-d815fb20decc46d0"
+      "created_by": "w-db800a65c2254246"
     }
   },
   "research_topics": [
