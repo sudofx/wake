@@ -401,3 +401,71 @@ footer{margin-top:48px}
   #metrics .command-strip>div:first-child{grid-column:span 2}
   #metrics .dashboard-feature .wake-timeline{grid-template-columns:repeat(10,minmax(6px,1fr))}
 }
+
+
+/* 3440 command-center density: instrument rack, not enlarged desktop cards. */
+@media(min-width:3000px){
+  #metrics.view{width:min(96vw,3300px)}
+  #metrics .page-heading{max-width:none;display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:end;padding-bottom:12px}
+  #metrics .page-heading .eyebrow{grid-column:1/-1;margin-bottom:5px}
+  #metrics .page-heading h1{font-size:30px;line-height:1;margin:0;white-space:nowrap}
+  #metrics .page-heading>p:last-child{margin:0;max-width:760px;font-size:11px}
+
+  #metrics .command-strip{grid-template-columns:1.4fr repeat(7,1fr);margin:10px 0 8px}
+  #metrics .command-strip>div:first-child{grid-column:auto}
+  #metrics .command-strip>div{padding:7px 10px;border-bottom:0}
+  #metrics .command-strip strong{font-size:19px}
+  #metrics .command-strip b{font-size:15px;margin-top:2px}
+
+  #metrics .telemetry-grid{grid-template-columns:repeat(10,minmax(0,1fr));margin-bottom:8px}
+  #metrics .telemetry-cell{padding:7px 9px;border-bottom:0}
+  #metrics .telemetry-cell:nth-child(5n){border-right:1px solid var(--line)}
+  #metrics .telemetry-cell:last-child{border-right:0}
+  #metrics .telemetry-cell strong{font-size:17px;margin:3px 0 1px}
+  #metrics .telemetry-cell small{font-size:7px;line-height:1.2}
+
+  #metrics .dashboard-kpis{grid-template-columns:repeat(8,minmax(0,1fr));margin:8px 0;gap:0}
+  #metrics .metric-card{padding:9px 11px;border-bottom:0}
+  #metrics .metric-card strong{font-size:23px;margin-bottom:4px}
+  #metrics .metric-card span{font-size:9px}
+  #metrics .metric-card small{font-size:7px;line-height:1.25;margin-top:3px}
+
+  #metrics .dashboard-feature-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:8px 0}
+  #metrics .dashboard-feature{grid-column:span 3;padding:11px 13px}
+  #metrics .dashboard-section{padding-top:11px;padding-bottom:11px}
+  #metrics .dashboard-heading{margin-bottom:8px}
+  #metrics .dashboard-heading h2,#metrics .dashboard-panel h2{font-size:18px;margin:2px 0}
+  #metrics .dashboard-heading>p{font-size:9px;line-height:1.3;margin:3px 0}
+  #metrics .eyebrow{font-size:8px}
+  #metrics .wake-timeline{grid-template-columns:repeat(25,minmax(4px,1fr));gap:2px}
+  #metrics .wake-cell{aspect-ratio:2/1}
+  #metrics .timeline-legend{margin-top:6px;gap:9px;font-size:7px}
+  #metrics .trend-chart{height:112px;padding-top:4px;gap:3px}
+  #metrics .trend-stack{height:88px;width:min(24px,78%)}
+  #metrics .trend-col span{font-size:6px;margin-top:3px}
+
+  #metrics .dashboard-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:8px 0}
+  #metrics .dashboard-panel{padding:11px 13px;min-height:0}
+  #metrics .dashboard-panel h3{font-size:8px;margin:11px 0 5px}
+  #metrics .dashboard-panel .small{font-size:8px;line-height:1.35}
+  #metrics .dashboard-stat{padding:6px 0;gap:7px}
+  #metrics .dashboard-stat strong{min-width:38px;font-size:17px}
+  #metrics .dashboard-stat span{font-size:9px}
+  #metrics .metric-bar-row{grid-template-columns:54px 1fr 24px;gap:5px;padding:3px 0;font-size:7px}
+  #metrics .metric-bar-row>div{height:5px}
+  #metrics .reason-row{padding:4px 0;font-size:8px;grid-template-columns:22px 1fr}
+  #metrics .reason-row strong{font-size:9px}
+  #metrics .model-metric-row{grid-template-columns:minmax(80px,1.5fr) repeat(3,1fr);gap:5px;padding:4px 0;font-size:7px}
+  #metrics .topic-metric-row{grid-template-columns:minmax(90px,1fr) 2fr 24px;gap:5px;padding:4px 0;font-size:7px}
+  #metrics .topic-stack{height:6px}
+  #metrics .topic-legend{gap:6px;margin-top:5px;font-size:6px}
+  #metrics .pie-layout{grid-template-columns:100px 1fr;gap:10px;margin-top:8px}
+  #metrics .pie-key{grid-template-columns:7px 1fr 20px;gap:5px;padding:3px 0;font-size:7px}
+
+  #metrics .hypothesis-section{padding:10px 0}
+  #metrics .hypothesis-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  #metrics .hypothesis-card{padding:10px 11px}
+  #metrics .hypothesis-card h3{font-size:14px;margin:2px 0 5px}
+  #metrics .hypothesis-card p:last-child{font-size:8px;line-height:1.4}
+  #metrics .dashboard-footnote{padding:8px 0;font-size:7px}
+}
