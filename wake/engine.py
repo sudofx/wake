@@ -87,8 +87,14 @@ class Engine:
     def __init__(self, directory="data", settings=None):
         self.config = settings or config()
         if self.config.get("mission"):
-            require(isinstance(self.config.get("research_topics"), list) and self.config["research_topics"],
-                    "Research topics must be loaded from research-topics.toml/configured research_topics_file")
+            if not self.config.get("research_topics"):
+                filename = self.config.get("research_topics_file")
+                require(filename, "research_topics_file is required when the research charter is enabled")
+                topic_path = Path(filename)
+                require(topic_path.is_file(), f"Research topics file not found: {topic_path}")
+                self.config["research_topics"] = _topics(self.config, Path("wake.toml"))
+            else:
+                self.config["research_topics"] = _topics(self.config)
         self.store = Store(directory)
 
     def initialize(self):
