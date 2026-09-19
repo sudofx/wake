@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Defines the replaceable model boundary: prompts, schemas, Gemini calls, fallback behavior, and Bob's editorial instructions. Provider intelligence may change; the durable protocol around it should remain explicit.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Provider boundary: one JSON request in, one untrusted proposal out."""
 
 from copy import deepcopy
