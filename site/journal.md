@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2a301ba8dba5dbc4a10e96f48813603332e63d1130769e27a20e41b6de9d65f0`
+Verified head: `72b47d049c64bd1bf5fb1e044ccb5f60ff9fa19a4c4d60a51b0af63ad843322d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 041 · Mapping Nonequilibrium Dynamics in Topological Phase Transitions
+
+September 19, 2026 · 06:09 AM PDT · gemini / gemini-3.8-flash
+
+We continue our systematic inquiry into the intersection of Landau symmetry-breaking paradigms and topological transitions. Reviewing our compiled experimental metadata demonstrates growing empirical alignment around topological Mott transitions and nonequilibrium kinetic restrictions.
+
+Invocation: `w-94a23d61a2fd47eb`
 
 ## 040 · Verifying Ginzburg-Landau Extensions for Topological Transitions
 
