@@ -137,6 +137,55 @@
     }).join('');
     return `<div class="panel model-panel"><p class="eyebrow">GEMINI MODEL RESPONSES / PACIFIC TIME</p><h2>Which version answers?</h2><p>Each cell is HTTP 200 responses divided by completed attempts for that model and day. A 200 measures availability, not research quality. “?” marks a reserved request whose outcome was never durably recorded.</p><div class="model-scroll"><div class="model-matrix" style="--model-days:${days.length}"><div class="model-row model-head"><strong>MODEL</strong>${days.map(day=>`<span>${esc(day.slice(5))}</span>`).join('')}<span>ALL</span></div>${rows}</div></div><div class="model-legend"><span><i class="good"></i>all 200</span><span><i class="mixed"></i>mixed</span><span><i class="bad"></i>no 200</span></div></div>`;
   }
+  function metricsDashboard() {
+    const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
+    const count=status=>completed.filter(i=>i.status===status).length;
+    const acceptedCount=count('accepted'), rejectedCount=count('rejected'), deferredCount=count('deferred'), failedCount=count('failed'), recoveredCount=count('recovered');
+    const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):0;
+    const obligations=Object.values(s.commitments||{});
+    const fulfilled=obligations.filter(c=>c.status==='fulfilled');
+    const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
+    const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):0;
+    const evidenceCount=Object.keys(s.evidence||{}).length;
+    const projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
+    const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
+    const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
+    const attempts=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time)).slice(-100);
+    const timeline=attempts.map((i,index)=>{
+      const status=i.status||'unknown', label=status.toUpperCase();
+      return `<a class="wake-cell ${esc(status)}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc(label)} · ${esc(i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(label)}"></a>`;
+    }).join('');
+    const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]];
+    const maxStatus=Math.max(1,...statuses.map(x=>x[1]));
+    const outcomeBars=statuses.map(([name,value])=>`<div class="metric-bar-row"><span>${esc(name)}</span><div><i class="metric-bar ${esc(name)}" style="width:${Math.max(value?3:0,100*value/maxStatus)}%"></i></div><strong>${value}</strong></div>`).join('');
+    const models={};
+    completed.forEach(i=>{
+      const key=i.successful_model||i.model||i.provider||'unknown';
+      models[key]??={attempts:0,accepted:0,requests:0};
+      models[key].attempts++; models[key].accepted+=i.status==='accepted'?1:0; models[key].requests+=i.provider_requests_sent||0;
+    });
+    const modelRows=Object.entries(models).sort((a,b)=>b[1].attempts-a[1].attempts).map(([name,m])=>`<div class="model-metric-row"><strong>${esc(name)}</strong><span>${m.attempts} wakes</span><span>${m.accepted} accepted</span><span>${m.requests} HTTP requests</span></div>`).join('');
+    const rejectionReasons=data.events.filter(e=>e.kind==='rejected').map(e=>String(e.payload.reason||'Unspecified rejection'));
+    const reasonCounts={};
+    rejectionReasons.forEach(reason=>{const key=reason.split(':')[0].slice(0,90);reasonCounts[key]=(reasonCounts[key]||0)+1;});
+    const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
+    const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;
+    $('metrics-dashboard').innerHTML=`
+      <section class="dashboard-kpis">
+        ${card(s.version,'Durable cycles','Accepted state advances')}
+        ${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}
+        ${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}
+        ${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}
+      </section>
+      <section class="dashboard-section"><div class="dashboard-heading"><div><p class="eyebrow">LAST ${attempts.length} COMPLETED WAKES</p><h2>The pulse of the experiment.</h2></div><p>One cell per wake. Color is outcome—not quality. Tap any cell for its receipt.</p></div><div class="wake-timeline" role="group" aria-label="Recent wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div><div class="timeline-legend">${statuses.map(([name])=>`<span><i class="${name}"></i>${name}</span>`).join('')}</div></section>
+      <section class="dashboard-grid">
+        <article class="dashboard-panel"><p class="eyebrow">CORRECTABILITY</p><h2>What governance stopped.</h2><div class="metric-bars">${outcomeBars}</div><h3>Most common rejection families</h3><div class="reason-list">${reasons}</div><a class="text-link" href="#history/filter:rejected">Inspect rejected work →</a></article>
+        <article class="dashboard-panel"><p class="eyebrow">CONTINUITY</p><h2>Does work cross fresh sessions?</h2><div class="dashboard-stat"><strong>${inheritedFulfilled.length}</strong><span>obligations fulfilled by a later invocation</span></div><div class="dashboard-stat"><strong>${obligations.filter(c=>c.status==='open').length}</strong><span>open obligations still carried forward</span></div><div class="dashboard-stat"><strong>${recoveredCount}</strong><span>recovered calls with durable state retained</span></div></article>
+        <article class="dashboard-panel"><p class="eyebrow">RESEARCH YIELD</p><h2>What survives as usable work?</h2><div class="dashboard-stat"><strong>${evidenceCount}</strong><span>evidence records</span></div><div class="dashboard-stat"><strong>${projects.length}</strong><span>research projects</span></div><div class="dashboard-stat"><strong>${notebooks.length}</strong><span>notebooks</span></div><div class="dashboard-stat"><strong>${Object.keys(s.posts||{}).length}</strong><span>published posts</span></div></article>
+        <article class="dashboard-panel"><p class="eyebrow">PROVIDER PRESSURE</p><h2>What it costs to get a wake.</h2><div class="dashboard-stat"><strong>${providerRequests}</strong><span>recorded HTTP requests</span></div><div class="dashboard-stat"><strong>${deferredCount}</strong><span>deferred wakes</span></div><div class="dashboard-stat"><strong>${failedCount}</strong><span>failed wakes</span></div><div class="model-metrics">${modelRows||'<p class="empty">No provider data yet.</p>'}</div></article>
+      </section>
+      <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative; these metrics never write back to the record.</p>`;
+  }
   function lab() {
     const exp=data.experiment;
     const coverage=Object.entries(proofNames).map(([key,label])=>`<div class="check"><span>${label}</span><b class="${exp?.checks[key]?.passed?'':'pending'}">${exp?.checks[key]?.passed?'PASS · FIXTURE':'NOT RUN'}</b></div>`).join('');
@@ -187,13 +236,14 @@
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
-    const page=['home','blog','projects','journal','lab','evidence','history','about'].includes(part)?part:(s.charter?'home':'journal');
+    const page=['home','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:(s.charter?'home':'journal');
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
-    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['projects','lab','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
     if(page==='blog')blog(selected);
     if(page==='journal')journal();
     if(page==='lab')lab();
+    if(page==='metrics')metricsDashboard();
     if(page==='evidence')evidence(selected);
     if(page==='history')history(selected);
     if(page==='home'||page==='projects')window.WakePet.render(page,selected);
