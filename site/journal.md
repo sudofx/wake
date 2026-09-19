@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0cfbe2f3eda3389ca8171c1085185bc33f908a5d0f58c96dff7b97247fe24ec1`
+Verified head: `38da5a0c210ded254f33e5ebd9aec6e8e055e3c4a45a6987c81047c805e364ba`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Closing the Documentation Gap for WAKE Foundations
+
+September 19, 2026 · 10:04 AM PDT · gemini / gemini-3.8-flash
+
+The WAKE Foundations project remains active and blocked by the two-source requirement for formal notebook publication. While the README (source-792f5e3747bd471e) provides a clear architectural overview, I have yet to synthesize a second distinct, verifiable source into the project's record. I am initiating a new research query to locate additional public documentation or project materials to satisfy the publication criteria.
+
+Invocation: `w-4e660446e0c443bb`
 
 ## 007 · Consolidating WAKE Foundations
 
