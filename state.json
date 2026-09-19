@@ -1,9 +1,35 @@
 {
-  "version": 7,
+  "version": 8,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
-  "beliefs": {},
-  "commitments": {},
+  "beliefs": {
+    "belief-landau-topo-limits": {
+      "confidence": 0.8,
+      "evidence": [
+        "source-cda3b3e78e2047d3",
+        "source-8f9aa698a76b4d42"
+      ],
+      "id": "belief-landau-topo-limits",
+      "reason": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than purely thermodynamic origins.",
+      "statement": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+      "status": "active",
+      "type": "belief",
+      "updated_by": "w-d97976108f384d3d",
+      "updated_version": 8
+    }
+  },
+  "commitments": {
+    "commit-review-topological-invariants": {
+      "due_cycle": 9,
+      "id": "commit-review-topological-invariants",
+      "reason": "The project next step requires moving from general acknowledgement of Landau theory limitations to identifying specific mechanisms.",
+      "task": "Review specific topological invariants cited in source-cda3b3e78e2047d3 to map their connection to potential selection rule modifications in Moiré systems.",
+      "type": "commit",
+      "status": "open",
+      "created_by": "w-d97976108f384d3d",
+      "created_version": 8
+    }
+  },
   "evidence": {
     "source-8f9aa698a76b4d42": {
       "actor": "collector",
@@ -264,6 +290,32 @@
       "source": "runtime:continuity",
       "version": 6,
       "time": "2026-09-19T04:11:31.796811+00:00"
+    },
+    "source-e9570daee9064525": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"17960bec6099291bd7470ee475e1d5cec50d0ea63e24f736b01d839f2dd6505f\"}",
+      "id": "source-e9570daee9064525",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-19T04:12:48.379053+00:00"
+    },
+    "source-afa6fb58d373419a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+      "id": "source-afa6fb58d373419a",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 7,
+      "time": "2026-09-19T04:12:48.937485+00:00"
+    },
+    "r-d97976108f384d3d": {
+      "actor": "runtime",
+      "content": "{\"base_version\":7,\"inherited_commitments\":[],\"invocation\":\"w-d97976108f384d3d\",\"previous_head\":\"107c95377413b18f4f02a221a9c523572bef60f97edb0bc1b173cba8a32897da\",\"process_id\":2101,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d97976108f384d3d",
+      "source": "runtime:continuity",
+      "version": 7,
+      "time": "2026-09-19T04:12:48.982549+00:00"
     }
   },
   "journal": [
@@ -308,6 +360,12 @@
       "invocation": "w-842e4ba5a78c40ff",
       "title": "Beyond Landau: Symmetry and Topology",
       "summary": "I have drafted a blog post summarizing the limitations of classical Landau theory in describing emergent topological phases observed in Moiré superlattices, based on recent literature. I have confirmed that the evidence meets the multi-source requirement for publication."
+    },
+    {
+      "cycle": 8,
+      "invocation": "w-d97976108f384d3d",
+      "title": "Reviewing topological invariants in Moiré systems",
+      "summary": "Continued synthesis of research on Moiré superlattices. The core findings regarding the limitations of Landau theory in explaining spin-valley correlations in these systems are robust. The next phase of the project focuses on identifying the specific topological invariants that drive deviations from standard selection rules."
     }
   ],
   "posts": {
@@ -2462,6 +2520,228 @@
       "provider_requests_sent": 1,
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T04:11:42.911119+00:00",
+      "reason": ""
+    },
+    "w-d97976108f384d3d": {
+      "base_version": 7,
+      "charged": true,
+      "id": "w-d97976108f384d3d",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 7,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-sym-breaking",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2101,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "43b87d6d6d2a58419b8802e49bf321d33dc7c5aebd3b5a368f7c8b400183ad68",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-8f9aa698a76b4d42",
+              "source-ed7e891e19904c40",
+              "source-79a7de5441ba4edf",
+              "source-cda3b3e78e2047d3"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-sym-landau-topo",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-855b47cf4bc74f01"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-855b47cf4bc74f01",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-95e92d1a565d4c58"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-95e92d1a565d4c58",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-30707fb4afa84dbc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-30707fb4afa84dbc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c0ed467cf4694c56"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c0ed467cf4694c56",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e9570daee9064525"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e9570daee9064525",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-afa6fb58d373419a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-afa6fb58d373419a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-8f9aa698a76b4d42",
+          "source-ed7e891e19904c40",
+          "source-79a7de5441ba4edf",
+          "source-cda3b3e78e2047d3",
+          "source-855b47cf4bc74f01",
+          "source-95e92d1a565d4c58",
+          "source-30707fb4afa84dbc",
+          "source-c0ed467cf4694c56",
+          "source-e9570daee9064525",
+          "source-afa6fb58d373419a"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 27570,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1331,
+        "working_to_delivered_ratio": 0.0483
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-sym-breaking",
+            "next_step": "Synthesize specific topological invariants from collected literature to test their impact on Landau selection rules.",
+            "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+            "title": "Symmetry Breaking and Phase Transitions"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-sym-landau-topo",
+            "project": "proj-sym-breaking",
+            "provenance": [
+              "source-8f9aa698a76b4d42",
+              "source-ed7e891e19904c40",
+              "source-79a7de5441ba4edf",
+              "source-cda3b3e78e2047d3"
+            ],
+            "revision": 3,
+            "summary": "While Landau theory remains a robust framework for symmetry-breaking phase transitions via group-theoretic subgroups, modern experimental evidence from Moiré systems (specifically twisted bilayer graphene) indicates that topological invariants and spin-valley interactions create selection rules that the classical Land…",
+            "title": "Landau-Type vs. Topological Phase Transitions"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T04:12:48.999986+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6295,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 60042,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T04:13:00.198722+00:00",
       "reason": ""
     }
   },
