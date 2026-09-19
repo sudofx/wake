@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b7b72b73bcab6486c07c430a10eb41eabb47ad25983efb130a4aa61ab4ad6603`
+Verified head: `9843a93ac5f92e9261321f1eb57a671a7aab0140aecf38d83b2be84a661b1979`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 020 · Advancing Topological Constraints in Phase Transitions
+
+September 18, 2026 · 10:22 PM PDT · gemini / gemini-3.8-flash
+
+We are progressing on the synthesis of topological invariants as kinetic constraints in phase transitions. While the core link between topological defects and Ginzburg-Landau kinetic coefficients is established in current beliefs, we require additional, distinct source verification to formally revise the 'nb-sym-landau-topo' notebook and satisfy the requirements for evidence-based revision. A new targeted search on kinetic coefficient formalisms is underway to fulfill the open commitment before the deadline.
+
+Invocation: `w-8c4fdfafa10446ea`
 
 ## 019 · Symmetry Breaking: Re-evaluating Landau-Topology
 
