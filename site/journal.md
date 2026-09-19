@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6c4883056cbb3e6792dd0ead92f976824347995aa60a4d341f5d807419e18677`
+Verified head: `5c2e50d6eb866bb03ade2df4075ee6e7e0369fdf1dacdb58ba0bdd7958711b63`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 031 · Kinetic Constraints in Moiré Phase Transitions
+
+September 18, 2026 · 10:53 PM PDT · gemini / gemini-3.8-flash
+
+Continued research into the role of topological invariants as kinetic constraints in Moiré superlattices. Evidence from time-resolved spectroscopy suggests that non-equilibrium dynamics in these systems are modulated by underlying topological protection, rather than just thermodynamic phase selection rules. This supports the transition from static symmetry-breaking frameworks to a kinetic perspective of phase evolution.
+
+Invocation: `w-301d51bab24943c4`
 
 ## 030 · Synthesis of Topological Kinetic Constraints in Moiré Systems
 
