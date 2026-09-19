@@ -178,3 +178,36 @@ body,h1,h2,h3,h4,h5,h6,p,blockquote,.hero h1,.page-heading h1,.explore-copy h1,.
 /* Editorial contrast: serif is reserved for headings only. */
 :root{--serif:Georgia,'Times New Roman',serif}
 h1,h2,h3,h4,h5,h6,.hero h1,.page-heading h1,.explore-copy h1,.about-intro h1,.latest-observation h2,.depth-path h2,.about-principles h2,.about-body h2,.topic-card h3,.record-card strong{font-family:var(--serif)}
+
+
+/* v0.21 visual hierarchy: reduce chrome, preserve every information surface. */
+:root{--content-measure:1180px}
+main{max-width:var(--content-measure)}
+.masthead{padding-top:20px;padding-bottom:18px}
+.masthead nav{gap:18px}
+.hero{padding-top:48px;padding-bottom:44px}
+.hero h1{max-width:13ch}
+.intro{max-width:62ch}
+.metric-strip{padding:15px 0}
+.metric{padding-left:20px;padding-right:20px}
+.journal-layout{gap:44px;padding-top:42px}
+.section-top{margin-bottom:18px}
+.entry{padding:24px 0}
+.entry h3{margin-top:10px}
+.sidebar-block{padding:21px 0}
+.panel,.project-card,.notebook-card,.blog-card,.record-card{box-shadow:none}
+.panel{padding:21px;margin-bottom:18px}
+.decision{border-left:2px solid var(--line)}
+details>summary{list-style-position:inside}
+footer{margin-top:48px}
+@media(max-width:700px){
+  .masthead{gap:14px}
+  .masthead nav{gap:8px 14px}
+  .hero{padding-top:30px;padding-bottom:26px}
+  .metric-strip{margin-top:4px}
+  .journal-layout{padding-top:28px;gap:22px}
+  .entry{padding:21px 0}
+  .section-top{margin-bottom:14px}
+  .panel{padding:16px}
+  footer{margin-top:30px}
+}
