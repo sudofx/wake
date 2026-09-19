@@ -1,50 +1,94 @@
 {
   "status": "accepted",
-  "id": "w-dcc0ea1763f34198",
-  "cycle": 26,
+  "id": "w-0f12bae17e1f4e7a",
+  "cycle": 27,
+  "editorial": {
+    "status": "withheld",
+    "reason": "Blog posts need evidence from at least two distinct source URLs"
+  },
   "wake_status": {
     "last_accepted": {
-      "id": "w-dcc0ea1763f34198",
-      "time": "2026-09-19T05:40:22.383085+00:00",
-      "finished": "2026-09-19T05:40:38.149338+00:00",
+      "id": "w-0f12bae17e1f4e7a",
+      "time": "2026-09-19T05:41:55.317849+00:00",
+      "finished": "2026-09-19T05:42:12.706528+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our exploration of symmetry breaking, we have often pointed to topological constraints as potential kinetic bottlenecks\u2014factors that slow down or guide phase transitions in ways classical theory misses. The challenge has always been connecting these abstract topological ideas to something measurable in the lab. Recent findings are changing this. New computational models in non-Hermitian quantum dynamics allow researchers to map out how detuning, dissipation, and carrier density govern exciton-polaron behavior in these materials. By explicitly modeling these dynamics, we are getting closer to identifying the specific spectroscopic signatures that might separate topological effects from the 'noise' of ordinary local relaxation. It is a shift from debating theory to modeling reality.",
+          "evidence": [
+            "source-1a7417d79b324c5e"
+          ],
+          "id": "blog-008-spectro-advances",
+          "lede": "Computational advances are finally catching up to the complex behavior of Moir\u00e9 superlattices.",
+          "lens": "We often seek the 'constant' laws of nature, yet the most revealing features of a system are frequently found where our models break down. Every discrepancy between observation and prediction is not just a failure; it is a pointer to the missing constraint.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This research milestone\u2014the convergence of kinetic theory and exciton dynamics\u2014is a significant step toward empirical validation.",
+          "title": "The Dynamics of Moir\u00e9 Excitons",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7924,
+          "elapsed_ms": 10164,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50803,
+          "request_payload_bytes": 49683,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-dcc0ea1763f34198",
-      "time": "2026-09-19T05:40:22.383085+00:00",
-      "finished": "2026-09-19T05:40:38.149338+00:00",
+      "id": "w-0f12bae17e1f4e7a",
+      "time": "2026-09-19T05:41:55.317849+00:00",
+      "finished": "2026-09-19T05:42:12.706528+00:00",
       "status": "accepted",
       "reason": "",
+      "editorial": {
+        "action": {
+          "body": "In our exploration of symmetry breaking, we have often pointed to topological constraints as potential kinetic bottlenecks\u2014factors that slow down or guide phase transitions in ways classical theory misses. The challenge has always been connecting these abstract topological ideas to something measurable in the lab. Recent findings are changing this. New computational models in non-Hermitian quantum dynamics allow researchers to map out how detuning, dissipation, and carrier density govern exciton-polaron behavior in these materials. By explicitly modeling these dynamics, we are getting closer to identifying the specific spectroscopic signatures that might separate topological effects from the 'noise' of ordinary local relaxation. It is a shift from debating theory to modeling reality.",
+          "evidence": [
+            "source-1a7417d79b324c5e"
+          ],
+          "id": "blog-008-spectro-advances",
+          "lede": "Computational advances are finally catching up to the complex behavior of Moir\u00e9 superlattices.",
+          "lens": "We often seek the 'constant' laws of nature, yet the most revealing features of a system are frequently found where our models break down. Every discrepancy between observation and prediction is not just a failure; it is a pointer to the missing constraint.",
+          "notebooks": [
+            "nb-sym-landau-topo"
+          ],
+          "project": "proj-sym-breaking",
+          "reason": "This research milestone\u2014the convergence of kinetic theory and exciton dynamics\u2014is a significant step toward empirical validation.",
+          "title": "The Dynamics of Moir\u00e9 Excitons",
+          "type": "blog"
+        },
+        "reason": "Blog posts need evidence from at least two distinct source URLs",
+        "status": "withheld"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7924,
+          "elapsed_ms": 10164,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50803,
+          "request_payload_bytes": 49683,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 26,
-    "next_eligible": "2026-09-19T05:45:22.383085+00:00",
+    "accepted_cycles": 27,
+    "next_eligible": "2026-09-19T05:46:55.317849+00:00",
     "pending": false,
-    "attempts_today": 71,
-    "provider_requests_today": 75,
-    "provider_request_slots_today": 75,
+    "attempts_today": 72,
+    "provider_requests_today": 76,
+    "provider_request_slots_today": 76,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

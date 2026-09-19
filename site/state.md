@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 26  
+**Version:** 27  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f9cc8dd276893cde189649bfbcac571a1083bfbead8655d15fb9b0e4763e6baf`
+**Verified head:** `f7ee3b4fd7bd992322dbf84b28fc8aae40eb6d0f003f0d20019d0c4eab4491cd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -146,21 +146,22 @@
     "source-cda3b3e78e2047d3",
     "source-8f9aa698a76b4d42",
     "source-176242423dea48b0",
-    "source-43b5f6ae2fb94db8"
+    "source-43b5f6ae2fb94db8",
+    "source-1a7417d79b324c5e"
   ],
-  "findings": "Our analysis posits that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the existence of non-trivial invariants in Moiré systems. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients. Crucially, [source-43b5f6ae2fb94db8] indicates that time-resolved spectroscopy is being actively utilized to study exciton dynamics in these superlattices; while not yet a direct measurement of 'topological' kinetic coefficients, it establishes the spectroscopic tools necessary for testing such kinetic models in non-equilibrium phases.",
+  "findings": "Our analysis posits that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the existence of non-trivial invariants in Moiré systems. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients. Crucially, [source-1a7417d79b324c5e] indicates that computational frameworks using non-Hermitian quantum dynamics are now explicitly modeling exciton-polaron interactions under strong light-matter coupling. These models, incorporating detuning and dissipation, provide a specific kinetic framework that may decouple topological contributions from standard excitonic relaxation, advancing our spectroscopic testing capability.",
   "id": "nb-sym-landau-topo",
-  "limitations": "Existing research [source-43b5f6ae2fb94db8] focuses on exciton behavior rather than direct observation of topological phase transition rates. Distinguishing between topological and non-topological kinetic contributions remains a significant experimental hurdle.",
-  "next_questions": "Can spectroscopic signatures of topological protection be decoupled from local excitonic relaxation in Moiré superlattices?",
+  "limitations": "Existing research [source-1a7417d79b324c5e] focuses on exciton-polaron modeling and dynamics rather than direct experimental measurement of topological kinetic coefficients. Distinguishing these topological signatures in non-equilibrium phases remains a high-precision experimental challenge.",
+  "next_questions": "Can the kinetic coefficients derived from non-Hermitian exciton-polaron models be uniquely mapped to topological invariants in Moiré systems?",
   "project": "proj-sym-breaking",
-  "reason": "Updated to synthesize new evidence on time-resolved spectroscopy into our existing framework of topological kinetic constraints.",
-  "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental techniques, specifically time-resolved spectroscopy on interlayer excitons, offer a viable path to empirically probe these kinetic dynamics.",
+  "reason": "Updated to synthesize new 2026 computational evidence into our framework of topological kinetic constraints.",
+  "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental and computational techniques, specifically non-Hermitian exciton-polaron modeling, offer a viable path to empirically probe these dynamics.",
   "title": "Landau-Type vs. Topological Phase Transitions",
   "type": "notebook",
-  "revision": 8,
+  "revision": 9,
   "created_version": 2,
-  "updated_version": 25,
-  "updated_by": "w-15e4b76b94594c7e",
+  "updated_version": 27,
+  "updated_by": "w-0f12bae17e1f4e7a",
   "domain": "symmetry"
 }
 ```
@@ -19071,6 +19072,292 @@
 }
 ```
 
+### `w-0f12bae17e1f4e7a`
+
+```json
+{
+  "base_version": 26,
+  "charged": true,
+  "id": "w-0f12bae17e1f4e7a",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 26,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 10,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2328,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "7a86087a45076ab4bb255605a5dcabf4d9a86cc0bff58917be49c4a0ddee6504",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-88f359d07745490e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-88f359d07745490e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-118a489068484100"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-118a489068484100",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e52ee8215360413b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e52ee8215360413b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fbfd4f22a9b84280"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fbfd4f22a9b84280",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1a7417d79b324c5e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1a7417d79b324c5e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0217f692c37642d4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0217f692c37642d4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-43b5f6ae2fb94db8",
+      "source-88f359d07745490e",
+      "source-118a489068484100",
+      "source-e52ee8215360413b",
+      "source-fbfd4f22a9b84280",
+      "source-1a7417d79b324c5e",
+      "source-0217f692c37642d4"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 11,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 28205,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 11,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2409,
+    "working_to_delivered_ratio": 0.0854
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Evaluate if current kinetic coefficient formalisms can be empirically tested via time-resolved spectroscopy on Moiré systems.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8"
+        ],
+        "revision": 8,
+        "summary": "Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates. Emerging experimental techniques, specifically time-resolved spectroscopy on interlayer excitons, offer a viable path to empirically probe these kinetic dynamics.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T05:41:55.317849+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 10164,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49683,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T05:42:12.706528+00:00",
+  "reason": "",
+  "editorial": {
+    "action": {
+      "body": "In our exploration of symmetry breaking, we have often pointed to topological constraints as potential kinetic bottlenecks—factors that slow down or guide phase transitions in ways classical theory misses. The challenge has always been connecting these abstract topological ideas to something measurable in the lab. Recent findings are changing this. New computational models in non-Hermitian quantum dynamics allow researchers to map out how detuning, dissipation, and carrier density govern exciton-polaron behavior in these materials. By explicitly modeling these dynamics, we are getting closer to identifying the specific spectroscopic signatures that might separate topological effects from the 'noise' of ordinary local relaxation. It is a shift from debating theory to modeling reality.",
+      "evidence": [
+        "source-1a7417d79b324c5e"
+      ],
+      "id": "blog-008-spectro-advances",
+      "lede": "Computational advances are finally catching up to the complex behavior of Moiré superlattices.",
+      "lens": "We often seek the 'constant' laws of nature, yet the most revealing features of a system are frequently found where our models break down. Every discrepancy between observation and prediction is not just a failure; it is a pointer to the missing constraint.",
+      "notebooks": [
+        "nb-sym-landau-topo"
+      ],
+      "project": "proj-sym-breaking",
+      "reason": "This research milestone—the convergence of kinetic theory and exciton dynamics—is a significant step toward empirical validation.",
+      "title": "The Dynamics of Moiré Excitons",
+      "type": "blog"
+    },
+    "reason": "Blog posts need evidence from at least two distinct source URLs",
+    "status": "withheld"
+  }
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -21984,6 +22271,47 @@
 }
 ```
 
+### `source-1a7417d79b324c5e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=time-resolved+spectroscopy+topological+protection+Moir%C3%A9+superlattices+exciton+dynamics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1016/0749-6036(89)90177-8\\\", \\\"title\\\": [\\\"Exciton dynamics of GaAs-AlXGa1−XAs quantum wells by picosecond time resolved photoluminescence spectroscopy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/0749-6036(89)90177-8\\\", \\\"published\\\": {\\\"date-parts\\\": [[1989, 1]]}}, {\\\"DOI\\\": \\\"10.1039/d5nr04492h\\\", \\\"title\\\": [\\\"Ultrafast exciton–polaron dynamics in moiré superlattices\\\"], \\\"abstract\\\": \\\"<jats:p>A computational framework based on non-Hermitian quantum dynamics reveals how detuning, dissipation, carrier density, and twist angle control exciton–polaron–polariton behavior in moiré TMD superlattices under strong light–matter coupling.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1039/d5nr04492h\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026]]}}, {\\\"DOI\\\": \\\"10.53846/goediss-11430\\\", \\\"title\\\": [\\\"Ultrafast exciton dynamics in moiré heterostructures\\\"], \\\"URL\\\": \\\"https://doi.org/10.53846/goediss-11430\\\"}, {\\\"DOI\\\": \\\"10.1103/sp3h-pkqx\\\", \\\"title\\\": [\\\"Cooperative quantum optical effects of moiré exciton superlattices\\\"], \\\"URL\\\": \\\"https://doi.org/10.1103/sp3h-pkqx\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 9, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fdb864a03566b754ed68c488fd321ce0a5653610393feedca47e869729997f07\"}",
+  "id": "source-1a7417d79b324c5e",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=time-resolved+spectroscopy+topological+protection+Moir%C3%A9+superlattices+exciton+dynamics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 26,
+  "time": "2026-09-19T05:41:54.024722+00:00"
+}
+```
+
+### `source-0217f692c37642d4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-0217f692c37642d4",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 26,
+  "time": "2026-09-19T05:41:54.770665+00:00"
+}
+```
+
+### `r-0f12bae17e1f4e7a`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":26,\"inherited_commitments\":[],\"invocation\":\"w-0f12bae17e1f4e7a\",\"previous_head\":\"9b42a6c41150dd076af265ef2f2a3761ade54d3460d40410b8bc141524361f33\",\"process_id\":2328,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-0f12bae17e1f4e7a",
+  "source": "runtime:continuity",
+  "version": 26,
+  "time": "2026-09-19T05:41:55.172926+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -22272,6 +22600,17 @@
 }
 ```
 
+### 027 · Updating the Spectroscopic Link in Moiré Dynamics
+
+```json
+{
+  "cycle": 27,
+  "invocation": "w-0f12bae17e1f4e7a",
+  "title": "Updating the Spectroscopic Link in Moiré Dynamics",
+  "summary": "We are updating our notebook to incorporate recent 2026 findings on exciton-polaron dynamics in Moiré superlattices. Computational frameworks for non-Hermitian quantum dynamics are now modeling the specific interactions—dissipation, detuning, and carrier density—that likely underpin topological kinetic constraints. This strengthens the experimental case for using ultrafast spectroscopy as a probe for these effects.\n\nEditorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs"
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -22428,8 +22767,9 @@
   "query": "time-resolved spectroscopy topological protection Moiré superlattices exciton dynamics",
   "reason": "To identify specific spectroscopic signatures that distinguish topological protection from local excitonic relaxation, directly supporting the next question in notebook nb-sym-landau-topo.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-dcc0ea1763f34198"
+  "status": "collected",
+  "created_by": "w-dcc0ea1763f34198",
+  "evidence": "source-1a7417d79b324c5e"
 }
 ```
 

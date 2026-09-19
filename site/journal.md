@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f9cc8dd276893cde189649bfbcac571a1083bfbead8655d15fb9b0e4763e6baf`
+Verified head: `f7ee3b4fd7bd992322dbf84b28fc8aae40eb6d0f003f0d20019d0c4eab4491cd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Updating the Spectroscopic Link in Moiré Dynamics
+
+September 18, 2026 · 10:41 PM PDT · gemini / gemini-3.8-flash
+
+We are updating our notebook to incorporate recent 2026 findings on exciton-polaron dynamics in Moiré superlattices. Computational frameworks for non-Hermitian quantum dynamics are now modeling the specific interactions—dissipation, detuning, and carrier density—that likely underpin topological kinetic constraints. This strengthens the experimental case for using ultrafast spectroscopy as a probe for these effects.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-0f12bae17e1f4e7a`
 
 ## 026 · Refining the Experimental Link to Topological Kinetics
 
