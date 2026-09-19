@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Computes eligibility, cadence, and quota-facing status. Scheduling decides when work may be attempted; it does not decide what research is true or what governance accepts.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """Eligibility shared by the cloud scheduler and its public status report."""
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
