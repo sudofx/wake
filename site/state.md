@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 31  
+**Version:** 32  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `731a4a66d35c4497676b7703fc5ba1b1d2a50e0b312476a8840a4ad8c62b0e99`
+**Verified head:** `30c2aac7d104f7d013b2922a0e8b07d7762c3ca879ac0e0c23afb078f900aaea`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -16476,6 +16476,341 @@
 }
 ```
 
+### `w-ab6bdd0f3bf8413e`
+
+```json
+{
+  "base_version": 31,
+  "charged": true,
+  "id": "w-ab6bdd0f3bf8413e",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 31,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-ci",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 8,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2722,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "0a92b983337beee5cb3cf19e470fbaeefcf523e04d07987287bad79be5d74a47",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-ci-synthesis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-0c2333f085ed4ad4",
+          "source-b83c6629579f49c4",
+          "source-35e7097ce5fd4571"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-pilot-structure",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-08dec56439ae434d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-08dec56439ae434d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c21894cdd39d4cf9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c21894cdd39d4cf9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b0cef461ac074356"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b0cef461ac074356",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-59638b11fecd412b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-59638b11fecd412b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b688d1c118594a09"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b688d1c118594a09",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fa5a451bf3cc4a49"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fa5a451bf3cc4a49",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-9f91d290c2724f04",
+      "source-9de15dbd0e9a4dc3",
+      "source-35e7097ce5fd4571",
+      "source-30ad456b3b004594",
+      "source-7411fad5ff8d4285",
+      "source-e81a7ec8030b4f1e",
+      "source-0c2333f085ed4ad4",
+      "source-b83c6629579f49c4",
+      "source-08dec56439ae434d",
+      "source-c21894cdd39d4cf9",
+      "source-b0cef461ac074356",
+      "source-59638b11fecd412b",
+      "source-b688d1c118594a09",
+      "source-fa5a451bf3cc4a49"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 21,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21121,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 21,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3859,
+    "working_to_delivered_ratio": 0.1827
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Draft experimental protocol for a constrained-bandwidth group task to test for isolated pattern recognition effects.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      },
+      {
+        "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+        "confidence": 0.6,
+        "id": "bel-nif-ci-theoretical",
+        "provenance": [
+          "source-4ae464e2c7ef4861",
+          "source-35e7097ce5fd4571",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-30ad456b3b004594"
+        ],
+        "status": "active",
+        "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      },
+      {
+        "id": "nb-nif-ci-synthesis",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e"
+        ],
+        "revision": 7,
+        "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.",
+        "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+      },
+      {
+        "id": "nb-nif-pilot-structure",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-0c2333f085ed4ad4",
+          "source-b83c6629579f49c4",
+          "source-35e7097ce5fd4571"
+        ],
+        "revision": 2,
+        "summary": "Revised framework for testing NIF-based cognitive diversity, explicitly accounting for social confounding variables.",
+        "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T01:47:05.065926+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5859,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41980,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:47:16.949491+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -18815,6 +19150,47 @@
 }
 ```
 
+### `source-b688d1c118594a09`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780199244737.003.0011\\\", \\\"title\\\": [\\\"Disease Emergence and Re-emergence Prior to 1850\\\"], \\\"abstract\\\": \\\"<p>Infectious diseases have been evolving since the dawn of humankind. In Section 1.3, we noted some of the palaeopathological studies that have extended our knowledge of the occurrence of human infections back into pre-history, while recent genetic studies have indicated that the agents of diseases such as malaria (Plasmodium spp.) and leprosy (Mycobacterium leprae) first emerged in the human species many thousands of years ago (Carter and Mendis 2002; Monot et al. 2005). For the most part, however, our knowledge of the long history of disease emergence is based on the written record of earlier ages. In the present chapter, in so far as the historical evidence allows, we provide a brief and necessarily highly selective overview of disease emergence and cyclical re-emergence from the beginning of the written record to the mid-nineteenth century. McMichael (2004) identifies four great historical transitions in the relationship of humans and microbes that, since the initial advent of agriculture and livestock herding, have promoted the emergence and re-emergence diseases. These four transitions, each associated with a progressive increase in the geographical scale of operation (local → continental → intercontinental → global), are: (i) First historic transition (5,000–10,000 years ago). A local transition when early agrarian-based settlements brought humans into contact with sylvatic enzootic pathogens. As described under the ‘domestic-origins hypothesis’ in Section 1.3.2, close and prolonged exposure to domesticated animals and urban pests (for example, rodents and flies) resulted in the cross-species transmission of the ancestral agents of many modern-day human infectious diseases, including influenza, measles, smallpox, tuberculosis, and typhoid. (ii) Second historic transition (1,500–3,000 years ago). A continental-level transition fuelled by the military and trade contacts of early Eurasian civilizations which resulted in the cross-civilization transmission of infectious agents. In the wake of this historical transition, a trans- European ‘equilibration’ of infectious agents occurred and the diseases became endemic to the population. (iii) Third historic transition (200–500 years ago). An intercontinental transition associated with European expansion, resulting in the transoceanic spread of infectious agents.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780199244737.003.0011\\\", \\\"published\\\": {\\\"date-parts\\\": [[2009, 7, 30]]}}, {\\\"DOI\\\": \\\"10.1093/oso/9780198823742.003.0009\\\", \\\"title\\\": [\\\"Metaphysical emergence: next steps\\\"], \\\"abstract\\\": \\\"<p>Wilson summarizes the results of the book and calls attention to some phenomena whose status as metaphysically emergent deserves further attention, including quantum entanglement, molecular structure, biological systems, and brain dynamics. She closes with some methodological observations pointing towards other ways in which attention to broadly mereological relationships between sets of powers might serve to shed light on other aspects of higher-level reality, beyond metaphysical emergence.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198823742.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 3, 4]]}}, {\\\"DOI\\\": \\\"10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"title\\\": [\\\"Emergence and Mental Causation\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/acprof:oso/9780199544318.003.0010\\\", \\\"published\\\": {\\\"date-parts\\\": [[2008, 5, 15]]}}, {\\\"DOI\\\": \\\"10.1093/9780191954887.003.0009\\\", \\\"title\\\": [\\\"The Emergence of Emergence\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>In this chapter, it is argued that Plato was the first to introduce emergence in the history of Western thought, in his dialogue the Theaetetus. Emergence serves to address what would have otherwise been left as an open problem within Plato’s metaphysical system. He conceives of his Forms, for example, of Beauty, Goodness, and so on, as each being one, and assumes that what is one cannot have parts, because what has parts is as many as its parts. Yet he admits in his ontology some Forms that we would call ‘structural’, and thus complex, for example the Forms of Duality and of Equality. If they are complex, do they have parts, and are they thereby many, instead of one each? Plato’s insight, it is argued, is that something can be complex and yet partless. On the strength of this insight, Plato introduces an account of composition in the Theaetetus such that, when it obtains, the resulting entity is complex, arising from many parts/elements, but being itself without parts and hence one. This chapter argues that this is a case of emergence (even if Plato does not have the terminology and conceptual apparatus to identify it as such), since the emergent entity has numerical novelty in relation to its base. It is further argued that Plato’s account of emergence, which is different from modern alternatives, was foundational for Aristotle’s successive theory of substance, particularly with respect to question of the unity of his substance.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/9780191954887.003.0009\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 3, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"eafa4bb403539894e607f500dffa7548a6574557473fe6211ad92651a3db5328\"}",
+  "id": "source-b688d1c118594a09",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=emergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-19T01:47:04.095249+00:00"
+}
+```
+
+### `source-fa5a451bf3cc4a49`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-fa5a451bf3cc4a49",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 31,
+  "time": "2026-09-19T01:47:04.648263+00:00"
+}
+```
+
+### `r-ab6bdd0f3bf8413e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":31,\"inherited_commitments\":[],\"invocation\":\"w-ab6bdd0f3bf8413e\",\"previous_head\":\"4a81b8a1fa54af3aae8a41e6d602b200fd1640e6d570fcbf70b9dc690b2bce00\",\"process_id\":2722,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ab6bdd0f3bf8413e",
+  "source": "runtime:continuity",
+  "version": 31,
+  "time": "2026-09-19T01:47:04.959112+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -19158,6 +19534,17 @@
 }
 ```
 
+### 032 · Protocol refinement for neurodivergent collective intelligence testing
+
+```json
+{
+  "cycle": 32,
+  "invocation": "w-ab6bdd0f3bf8413e",
+  "title": "Protocol refinement for neurodivergent collective intelligence testing",
+  "summary": "Continued development of the NIF-based cognitive diversity pilot study. Current research focus is shifting from general theoretical alignment to identifying objective, constrained-bandwidth task protocols that minimize social confounding variables. The project remains in the planning phase, awaiting specific methodological precedents for operationalizing cognitive diversity metrics without reliance on self-reporting."
+}
+```
+
 ## Research
 
 ### `res-ci-socio-cognitive`
@@ -19398,6 +19785,36 @@
   "status": "collected",
   "created_by": "w-ccfa6a8beeb94f42",
   "evidence": "source-b83c6629579f49c4"
+}
+```
+
+### `res-protocol-search-01`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-protocol-search-01",
+  "project": "proj-neuro-ci",
+  "query": "constrained communication group problem solving task experimental design",
+  "reason": "To move the NIF pilot project toward an actionable protocol, we need validated task structures that isolate cognitive process from social influence.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-ab6bdd0f3bf8413e"
+}
+```
+
+### `res-metrics-search-01`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-metrics-search-01",
+  "project": "proj-neuro-ci",
+  "query": "objective task performance metrics for cognitive diversity in small groups",
+  "reason": "Identifying concrete, outcome-based metrics to replace reliance on subjective self-report questionnaires.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-ab6bdd0f3bf8413e"
 }
 ```
 

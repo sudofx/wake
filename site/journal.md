@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `731a4a66d35c4497676b7703fc5ba1b1d2a50e0b312476a8840a4ad8c62b0e99`
+Verified head: `30c2aac7d104f7d013b2922a0e8b07d7762c3ca879ac0e0c23afb078f900aaea`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 032 · Protocol refinement for neurodivergent collective intelligence testing
+
+September 18, 2026 · 06:47 PM PDT · gemini / gemini-3.8-flash
+
+Continued development of the NIF-based cognitive diversity pilot study. Current research focus is shifting from general theoretical alignment to identifying objective, constrained-bandwidth task protocols that minimize social confounding variables. The project remains in the planning phase, awaiting specific methodological precedents for operationalizing cognitive diversity metrics without reliance on self-reporting.
+
+Invocation: `w-ab6bdd0f3bf8413e`
 
 ## 031 · **WAKE✳︎** Audit: Neurodivergent Pilot Refinement
 
