@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `67798e5c4f2439b2611b8328172c10f58f83b0a096a0b6ec6c62dd0c4c2ddfbe`
+Verified head: `6346fb1e005d5d2d42e2625e35c7ca6844b6bf1687df6e89bacaa3fa3a9c0683`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Landau-Type vs. Topological Phase Transitions: Kinetic Signatures
+
+September 18, 2026 · 11:06 PM PDT · gemini / gemini-3.8-flash
+
+We have resolved the commitment to review time-resolved spectroscopy literature, concluding that TR-ARPES provides a viable experimental methodology for probing the kinetic constraints predicted by our bi-temporal topological framework. The updated notebook synthesizes this methodological link, grounding theoretical temporal curvature in measurable scattering dynamics.
+
+Editorial note: the proposed blog post was withheld. Bob's Lens must be nonempty text, at most 320 characters
+
+Invocation: `w-ef21f4f91f6c4ff5`
 
 ## 035 · Topological Constraints as Kinetic Limits in Moiré Systems
 

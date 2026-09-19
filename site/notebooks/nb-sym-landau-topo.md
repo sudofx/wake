@@ -1,18 +1,18 @@
 # Landau-Type vs. Topological Phase Transitions
 
-Topological invariants in Moiré systems serve as kinetic constraints that modulate phase transition rates, with new evidence suggesting a dual-time geometric basis for this path dependence.
+Topological invariants in Moiré systems serve as kinetic constraints, with TR-ARPES emerging as a viable tool to observe these dynamic limits in non-equilibrium processes.
 
 ## Findings
 
-Our analysis confirms that topological invariants impose kinetic constraints on phase transitions, diverging from standard Ginzburg-Landau theory. Sources [source-11da439e5b3544a1, source-cda3b3e78e2047d3, source-8f9aa698a76b4d42] support the presence of non-trivial invariants in Moiré superlattices. We interpret [source-176242423dea48b0] as suggesting that these invariants modulate kinetic coefficients directly. New evidence [source-abf3acf698664dd2] and computational frameworks [source-1a7417d79b324c5e] indicate that non-Hermitian quantum dynamics model exciton-polaron interactions, providing a specific kinetic framework to decouple topological contributions. Crucially, [source-82b8096406fe4da2] introduces a bi-temporal framework where non-vanishing temporal curvature induces path dependence, offering a mechanism by which topological invariants act as kinetic limits in non-equilibrium processes.
+Our analysis integrates experimental evidence from [source-778e0cf5d28746c4], which demonstrates that time-resolved photoemission spectroscopy can track band structure modifications and scattering channels in quantum materials. This provides a direct methodological bridge to our hypothesis: that topological invariants impose path-dependent kinetic constraints on phase transitions. While our bi-temporal geometric framework (from [source-82b8096406fe4da2]) models this via non-vanishing temporal curvature, experimental validation now moves from theoretical speculation to a defined observation program using TR-ARPES to quantify how scattering rates correlate with topological protection in Moiré systems.
 
 ## Limitations and competing views
 
-The dual-time geometric framework is a recent development (2026 preprint); it requires validation against established spectroscopic time-resolved data to confirm its applicability to specific exciton dynamics in Moiré superlattices.
+Direct measurement of 'temporal curvature' remains a mathematical abstraction; current experimental techniques measure scattering and carrier relaxation, which are proxies for the kinetic limits rather than the curvature itself.
 
 ## Next questions
 
-Can the temporal curvature derived from the bi-temporal model be directly mapped to the kinetic coefficients observed in time-resolved photoemission spectroscopy?
+Can the modulation of scattering channels specifically be mapped to the topological invariants defined in our Landau-topological hybrid model?
 
 ## Collected sources
 
@@ -24,5 +24,6 @@ Can the temporal curvature derived from the bi-temporal model be directly mapped
 - [source-1a7417d79b324c5e](https://api.crossref.org/works?query=time-resolved+spectroscopy+topological+protection+Moir%C3%A9+superlattices+exciton+dynamics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-abf3acf698664dd2](https://api.crossref.org/works?query=non-equilibrium+topological+phase+transition+kinetics+time-resolved+spectroscopy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-82b8096406fe4da2](https://api.crossref.org/works?query=non-equilibrium+exciton+dynamics+time-resolved+spectroscopy+topological+Moir%C3%A9&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-778e0cf5d28746c4](https://api.crossref.org/works?query=time-resolved+photoemission+spectroscopy+Moir%C3%A9+superlattice+exciton+dynamics+kinetic+coefficients&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 11 · AI-authored research synthesis; see source scopes in the journal.
+Revision 12 · AI-authored research synthesis; see source scopes in the journal.
