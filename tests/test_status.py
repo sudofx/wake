@@ -1,3 +1,9 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Executable specification for status.
+# Tests are documentation with teeth: passing cases define permitted behavior and rejection cases define protected boundaries.
+# When changing implementation, preserve the reason behind an assertion rather than weakening it merely to make CI green.
+
 """Public research progress is derived from receipts, independently of publication."""
 from datetime import datetime, timezone
 import unittest
