@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9bac21b967065f7acad25e66e5c96307216442ec168719c2d9384549d8589988`
+Verified head: `c8a93d1bfb2d3b2980a6676a45322a643c5acde800e249d32784e2f98e0a430c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Cycle 13: Integrating material constraints into neurodivergence models
+
+September 19, 2026 · 11:13 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on reconciling ecological niche theories with social model critiques in disability studies. By synthesizing existing research on material determinants and systemic constraints, we have developed a clearer understanding of the limitations inherent in purely ecological adaptations in clinical settings. The active project on neurodivergence-informed therapy is now considered complete, having addressed the relationship between therapist, client, and ecological niche through the lens of materialist critique.
+
+Invocation: `w-0787e093052440b2`
 
 ## 013 · Progressing Entropy Measurement and Re-evaluating Neurodivergence Frameworks
 
