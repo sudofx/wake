@@ -5,7 +5,7 @@
 **Version:** 50  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `a5319cadee07852729d681322b178166b4ed02cdfb93e5307829a5cb8456062d`
+**Verified head:** `ea0eff249a1af92bbee47eab645c640a69b0d168ea5029f517070554c62549a9`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -20453,6 +20453,372 @@
 }
 ```
 
+### `w-76de317880324ef8`
+
+```json
+{
+  "base_version": 50,
+  "charged": true,
+  "id": "w-76de317880324ef8",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 50,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-entropy-003",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Entropy in Musical Prediction"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-comedy-neuro-001",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 2
+        },
+        "title": "Social Subversion in Neurodivergent Communication"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2294,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "3b486df9d8675792420ea790260cdc3f9345dd14a224f4e0efb83da959df760a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-923539e168b64f3d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-923539e168b64f3d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b23c728ffc1945bb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b23c728ffc1945bb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-54becf7641d14fb0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-54becf7641d14fb0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c9c4ab3d1cc44034"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c9c4ab3d1cc44034",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b889a58a4d2c4e35"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b889a58a4d2c4e35",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4faa6dab22544724"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4faa6dab22544724",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-923539e168b64f3d",
+      "source-b23c728ffc1945bb",
+      "source-54becf7641d14fb0",
+      "source-c9c4ab3d1cc44034",
+      "source-b889a58a4d2c4e35",
+      "source-4faa6dab22544724"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 28420,
+    "inquiry_drive_project_count": 2,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 5112,
+    "working_to_delivered_ratio": 0.1799
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-entropy-003",
+        "next_step": "Identify foundational literature on entropy-based predictive models in music perception.",
+        "question": "How does the Information-Theoretic concept of entropy explain listener anticipation in non-isochronous musical sequences?",
+        "title": "Entropy in Musical Prediction"
+      },
+      {
+        "id": "proj-comedy-neuro-001",
+        "next_step": "Survey literature linking social norm subversion, comedy theory, and neurodivergence.",
+        "question": "Can the 'misrule' framework of comedy provide a lens to interpret neurodivergent social behaviors that challenge neurotypical norms?",
+        "title": "Social Subversion in Neurodivergent Communication"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-provenance-001",
+        "project": "proj-wake-001",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "source-3cfe7c6dab8e4300"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+        "title": "Provenance and State Durability in Stateless Systems"
+      },
+      {
+        "id": "nb-music-rhythm-001",
+        "project": "proj-music-002",
+        "provenance": [
+          "source-87c3d90dc04e47bc",
+          "source-99990296184a4a11"
+        ],
+        "revision": 1,
+        "summary": "Predictive coding frameworks show promise in modeling beat perception for isochronous patterns, but struggle to replicate human cognitive flexibility when encountering non-isochronous or highly syncopated rhythms.",
+        "title": "Predictive Coding and Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "revision": 2,
+        "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      },
+      {
+        "id": "nb-comedy-subversion-001",
+        "project": "proj-comedy-002",
+        "provenance": [
+          "source-2e7ffce3899a4cf7",
+          "source-f4413c46ac5e4aae"
+        ],
+        "revision": 1,
+        "summary": "Current computational models for humor classification struggle to quantify structural subversion or 'misrule' because they rely heavily on pattern matching or lexical features rather than semantic incongruity detection.",
+        "title": "Computational Analysis of Structural Humor and Subversion"
+      },
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T19:29:26.949084+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6002,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52837,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T19:29:40.054173+00:00",
+  "reason": "Research request ID already exists"
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -23284,6 +23650,47 @@
 }
 ```
 
+### `source-b889a58a4d2c4e35`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=information-theoretic+entropy+musical+predictive+coding+non-isochronous+perception&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2137560425\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01111\\\", \\\"title\\\": \\\"Rhythmic complexity and predictive coding: a novel approach to modeling rhythm and meter perception in music\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 313, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01111/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2014.01111\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01111\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01111/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Musical rhythm, consisting of apparently abstract intervals of accented temporal events, has a remarkable capacity to move our minds and bodies. How does the cognitive system enable our experiences of rhythmically complex music? In this paper, we describe some common forms of rhythmic complexity in music and propose the theory of predictive coding (PC) as a framework for understanding how rhythm and rhythmic complexity are processed in the brain. We also consider why we feel so compelled by rhythmic tension in music. First, we consider theories of rhythm and meter perception, which provide hierarchical and computational approaches to modeling. Second, we present the theory of PC, which posits a hierarchical organization of brain responses reflecting fundamental, survival-related mechanisms associated with predicting future events. According to this theory, perception and learning is manifested through the brain's Bayesian minimization of the error between the input to the brain and the brain's prior expectations. Third, we develop a PC model of musical rhythm, in which rhythm perception is conceptualized as an interaction between what is heard (\\\\\\\"rhythm\\\\\\\") and the brain's anticipatory structuring of music (\\\\\\\"meter\\\\\\\"). Finally, we review empirical studies of the neural and behavioral effects of syncopation, polyrhythm and groove, and propose how these studies can be seen as special cases of the PC theory. We argue that musical rhythm exploits the brain's general principles of prediction and propose that pleasure and desire for sensorimotor synchronization from musical rhythm may be a result of such mechanisms.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2901736695\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.tics.2018.10.006\\\", \\\"title\\\": \\\"Predictive Processes and the Peculiar Case of Music\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"review\\\", \\\"cited_by_count\\\": 594, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://discovery.ucl.ac.uk/10067144/9/Friston_PC_music_FINAL.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.tics.2018.10.006\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.tics.2018.10.006\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S192051125\\\", \\\"display_name\\\": \\\"Trends in Cognitive Sciences\\\", \\\"issn_l\\\": \\\"1364-6613\\\", \\\"issn\\\": [\\\"1364-6613\\\", \\\"1879-307X\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Trends in Cognitive Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2158826331\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01052\\\", \\\"title\\\": \\\"Predictive uncertainty in auditory sequence processing\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 199, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01052/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2014.01052\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01052\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01052/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Previous studies of auditory expectation have focused on the expectedness perceived by listeners retrospectively in response to events. In contrast, this research examines predictive uncertainty-a property of listeners' prospective state of expectation prior to the onset of an event. We examine the information-theoretic concept of Shannon entropy as a model of predictive uncertainty in music cognition. This is motivated by the Statistical Learning Hypothesis, which proposes that schematic expectations reflect probabilistic relationships between sensory events learned implicitly through exposure. Using probability estimates from an unsupervised, variable-order Markov model, 12 melodic contexts high in entropy and 12 melodic contexts low in entropy were selected from two musical repertoires differing in structural complexity (simple and complex). Musicians and non-musicians listened to the stimuli and provided explicit judgments of perceived uncertainty (explicit uncertainty). We also examined an indirect measure of uncertainty computed as the entropy of expectedness distributions obtained using a classical probe-tone paradigm where listeners rated the perceived expectedness of the final note in a melodic sequence (inferred uncertainty). Finally, we simulate listeners' perception of expectedness and uncertainty using computational models of auditory expectation. A detailed model comparison indicates which model parameters maximize fit to the data and how they compare to existing models in the literature. The results show that listeners experience greater uncertainty in high-entropy musical contexts than low-entropy contexts. This effect is particularly apparent for inferred uncertainty and is stronger in musicians than non-musicians. Consistent with the Statistical Learning Hypothesis, the results suggest that increased domain-relevant training is associated with an increasingly accurate cognitive model of probabilistic structure in music.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2949977623\\\", \\\"doi\\\": \\\"https://doi.org/10.1371/journal.pone.0218570\\\", \\\"title\\\": \\\"Perception of affect in unfamiliar musical chords\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 48, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0218570&type=printable\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1371/journal.pone.0218570\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1371/journal.pone.0218570\\\", \\\"pdf_url\\\": \\\"https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0218570&type=printable\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S202381698\\\", \\\"display_name\\\": \\\"PLoS ONE\\\", \\\"issn_l\\\": \\\"1932-6203\\\", \\\"issn\\\": [\\\"1932-6203\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315706\\\", \\\"host_organization_name\\\": \\\"Public Library of Science\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315706\\\"], \\\"host_organization_lineage_names\\\": [\\\"Public Library of Science\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"PLOS ONE\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This study investigates the role of extrinsic and intrinsic predictors in the perception of affect in mostly unfamiliar musical chords from the Bohlen-Pierce microtonal tuning system. Extrinsic predictors are derived, in part, from long-term statistical regularities in music; for example, the prevalence of a chord in a corpus of music that is relevant to a participant. Conversely, intrinsic predictors make no use of long-term statistical regularities in music; for example, psychoacoustic features inherent in the music, such as roughness. Two types of affect were measured for each chord: pleasantness/unpleasantness and happiness/sadness. We modelled the data with a number of novel and well-established intrinsic predictors, namely roughness, harmonicity, spectral entropy and average pitch height; and a single extrinsic predictor, 12-TET Dissimilarity, which was estimated by the chord's smallest distance to any 12-tone equally tempered chord. Musical sophistication was modelled as a potential moderator of the above predictors. Two experiments were condu\", \"excerpt_truncated\": true, \"source_sha256\": \"8592ebc1bdeec5cf1f5418d21f659fe8444e23453a09d43efcb454ec91185718\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-b889a58a4d2c4e35",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=information-theoretic+entropy+musical+predictive+coding+non-isochronous+perception&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 50,
+  "time": "2026-09-19T19:29:25.419213+00:00"
+}
+```
+
+### `source-4faa6dab22544724`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-4faa6dab22544724",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 50,
+  "time": "2026-09-19T19:29:26.383000+00:00"
+}
+```
+
+### `r-76de317880324ef8`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":50,\"inherited_commitments\":[],\"invocation\":\"w-76de317880324ef8\",\"previous_head\":\"082243e5ae146571a4d2fd570925fe7d6681899e8240983742a8cae2497083b0\",\"process_id\":2294,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-76de317880324ef8",
+  "source": "runtime:continuity",
+  "version": 50,
+  "time": "2026-09-19T19:29:26.770804+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -24326,8 +24733,9 @@
   "query": "information-theoretic entropy musical predictive coding non-isochronous perception",
   "reason": "To identify specific foundational literature linking entropy, predictive coding, and non-isochronous rhythm perception in music.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-c8d8995d1aa34bdd"
+  "status": "collected",
+  "created_by": "w-c8d8995d1aa34bdd",
+  "evidence": "source-b889a58a4d2c4e35"
 }
 ```
 
