@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# PROVENANCE — the relationship layer. The map is built from explicit IDs, citations, projects, invocations and events. It should visualize recorded relationships rather than infer a more compelling story than the record supports.
 #
-# Builds the provenance graph from explicit durable IDs and replayed events. Relationships shown to the reader come from recorded references, not browser-side narrative inference.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """Static provenance derived only from replayed events and explicit durable IDs."""
 
@@ -20,9 +24,49 @@ ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
            "project": "project", "notebook": "notebook", "research": "research", "blog": "blog"}
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: build_map
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def build_map(state, events, head):
     nodes, edges, journals, blogs = {}, {}, [], []
     by_invocation = {j["invocation"]: f"journal:{j['invocation']}" for j in state["journal"]}
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: node
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def node(key, kind, detail, title=None):
         if key not in nodes:
@@ -33,6 +77,22 @@ def build_map(state, events, head):
                           "title": title or detail.get("title") or summary or detail.get("id", key),
                           "detail": deepcopy(detail)}
         return key
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: edge
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def edge(source, target, relation, record):
         if source in nodes and target in nodes:
@@ -66,6 +126,22 @@ def build_map(state, events, head):
         for field in ("supersedes", "superseded_by"):
             if post.get(field):
                 edge(f"blog:{pid}", f"blog:{post[field]}", field.replace("_", " "), f"posts.{pid}.{field}")
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: artifact
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def artifact(kind, identifier, snapshot, cycle, expanded):
         item = snapshot.get(COLLECTIONS[kind], {}).get(identifier)
