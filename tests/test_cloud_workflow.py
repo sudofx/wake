@@ -1,3 +1,12 @@
+# =============================================================================
+# TESTING INTENT — cloud workflow
+#
+# This file is executable documentation. Passing cases define behavior WAKE✳︎
+# promises to preserve; rejection/failure cases define boundaries that future
+# refactors must not weaken merely to make CI green. Read assertions as part of
+# the architectural contract, not just as coverage machinery.
+# =============================================================================
+
 # WAKE✳︎ MAINTAINER NOTE
 #
 # Executable specification for cloud workflow.
