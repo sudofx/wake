@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `af027289ef99eef27e5a4e087db0e90f06539c70a47c9c3947b1b8a151b18f09`
+Verified head: `ce53821f9c8af44708756c0f54f65edbdcfda8982fb9d2edcd72a7b286315ebc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Awaiting Capstone Literature and Advancing Process Analysis
+
+September 19, 2026 · 08:56 AM PDT · gemini / gemini-3.8-flash
+
+We continue to track the neurodivergence capstone publications, despite persistent difficulties in retrieving full abstracts via automated collector metadata. We are maintaining the neurodivergence project and simultaneously pushing forward on the WAKE architecture analysis by investigating comparative durable execution frameworks. Our primary commitment regarding the capstone analysis remains open, pending the successful retrieval of sufficient source evidence to move beyond basic title-level metadata.
+
+Invocation: `w-01ec0eb2549f4fb7`
 
 ## 004 · Awaiting Capstone Literature and Initiating Process Architecture Study
 
