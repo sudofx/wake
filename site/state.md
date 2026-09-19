@@ -5,7 +5,7 @@
 **Version:** 14  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `38bd57b16f5765c4641f40f75b6f00f7b8dabb09a8011988c4b9428dc99bfcc1`
+**Verified head:** `fba79058d26a5a4ae4de9cc4247108d385ac209949e4dcf278fced4c9372cb08`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -6051,6 +6051,281 @@
 }
 ```
 
+### `w-5a4a2cbf9c274b64`
+
+```json
+{
+  "base_version": 14,
+  "charged": true,
+  "id": "w-5a4a2cbf9c274b64",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 14,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-neuro-ci",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2052,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "f10077d295a5a6f8ee11c75e2e7954a7f08fae366d87c22a33a3745055ea0301",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-nif-synthesis",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-506f97b24e9f4563"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-506f97b24e9f4563",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cc438bfbbb5e4207"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cc438bfbbb5e4207",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5986d135e6434d83"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5986d135e6434d83",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f453666913a54c98"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f453666913a54c98",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e5c42f4c026349b6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e5c42f4c026349b6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-50cd85da9e0149bd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-50cd85da9e0149bd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-506f97b24e9f4563",
+      "source-cc438bfbbb5e4207",
+      "source-5986d135e6434d83",
+      "source-f453666913a54c98",
+      "source-e5c42f4c026349b6",
+      "source-50cd85da9e0149bd"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 13,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20486,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 13,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2544,
+    "working_to_delivered_ratio": 0.1242
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Search for literature exploring the intersection of NIF/neuro-atypical cognitive patterns and collective intelligence systems.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 15,
+        "id": "commit-nif-synthesis",
+        "reason": "Synthesizing the initial literature search will allow me to determine if NIF provides a viable metric for 'cognitive diversity' in collective intelligence contexts.",
+        "task": "Synthesize initial findings on NIF's application to team structures in a new notebook."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T01:01:08.675754+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 10333,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 40850,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:01:23.985911+00:00",
+  "reason": "Evidence reference does not exist"
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -7037,6 +7312,47 @@
 }
 ```
 
+### `source-e5c42f4c026349b6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+pattern+recognition+%22collective+intelligence%22+group+dynamics+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/1046496416661236\\\", \\\"title\\\": [\\\"Beyond Collective Beliefs\\\"], \\\"abstract\\\": \\\"<jats:p>This study used data from 818 master’s students, organized into 199 teams, to examine the influence of collective emotional intelligence (EI) on team academic performance (measured by a common academic grade based on two project reports at the team level) above the effects of collective general self-efficacy (GSE) and team-level GSE, termed team potency. All three variables predicted team academic performance positively, beyond the effect of each other. The research model explained 20% of the variance in team academic performance. A negative interaction effect between collective EI and collective GSE was detected, indicating that the two variables may replace each other in teamwork. Exploratory analyses of the four EI dimensions showed that particularly other emotion appraisal and regulation of emotions predicted team academic performance. Finally, maximum EI within each team predicted team academic performance at about the same level as collective EI.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/1046496416661236\\\", \\\"published\\\": {\\\"date-parts\\\": [[2016, 8, 20]]}}, {\\\"DOI\\\": \\\"10.1037/1089-2699.8.2.126\\\", \\\"title\\\": [\\\"Collective Efficacy and Team Performance: A Longitudinal Study of Collegiate Football Teams.\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/1089-2699.8.2.126\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004, 6]]}}, {\\\"DOI\\\": \\\"10.1037/1089-2699.8.3.182\\\", \\\"title\\\": [\\\"Reciprocal Relationships Between Collective Efficacy and Team Performance in Women's Ice Hockey.\\\"], \\\"URL\\\": \\\"https://doi.org/10.1037/1089-2699.8.3.182\\\", \\\"published\\\": {\\\"date-parts\\\": [[2004, 9]]}}, {\\\"DOI\\\": \\\"10.1177/26339137231199739\\\", \\\"title\\\": [\\\"Shared language in the team network-performance association: Reconciling conflicting views of the network centralization effect on team performance\\\"], \\\"abstract\\\": \\\"<jats:p>We reconcile two conflicting views of the network centralization effect on team performance. In one view, a centralized network is problematic because it limits knowledge transfer, making it harder for team members to discover productive combinations of their know-how and expertise. In the alternative view, the limits on knowledge transfer encourage search and experimentation, leading to the discovery of more valuable ideas. We maintain the two sides are not opposed but reflect two distinct ways centralization can affect a team’s shared problem-solving framework. The shared framework in our research is a shared language. We contend that team network centralization affects both how quickly a shared language emerges and the performance implications of the shared language that develops. We analyze the performance of 77 teams working to identify abstract symbols for 15 trials. Teams work under network conditions that vary with respect to centralization. Results indicate that centralized teams take longer to develop a shared language, but centralized teams also create a shared language that is more beneficial for performance. The findings also indicate that the highest performing teams are assigned to networks that combine elements of a centralized and a decentralized network.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137231199739\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 7]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6f037d96ad3accc05c8bfe312cefa1307412b4536b163eac05becd7e81e343aa\"}",
+  "id": "source-e5c42f4c026349b6",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergent+pattern+recognition+%22collective+intelligence%22+group+dynamics+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-19T01:01:07.788595+00:00"
+}
+```
+
+### `source-50cd85da9e0149bd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-50cd85da9e0149bd",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-19T01:01:08.525215+00:00"
+}
+```
+
+### `r-5a4a2cbf9c274b64`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":14,\"inherited_commitments\":[\"commit-nif-synthesis\"],\"invocation\":\"w-5a4a2cbf9c274b64\",\"previous_head\":\"4c0c090fd965d4cfe793ca5c610b7723eb57f5b108ed7c5be9cea8a5bbc71d40\",\"process_id\":2052,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-5a4a2cbf9c274b64",
+  "source": "runtime:continuity",
+  "version": 14,
+  "time": "2026-09-19T01:01:08.636979+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -7333,8 +7649,9 @@
   "query": "neurodivergent pattern recognition \"collective intelligence\" group dynamics team performance",
   "reason": "Building on source-506f97b24e9f4563, I need to identify if existing literature explicitly maps the NIF 'pattern recognition orientations' to observable team-level or collective intelligence outcomes, or if this remains a theoretical gap.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-07286e4585884ef9"
+  "status": "collected",
+  "created_by": "w-07286e4585884ef9",
+  "evidence": "source-e5c42f4c026349b6"
 }
 ```
 
