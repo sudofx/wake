@@ -27,11 +27,8 @@ from .scheduling import wake_status
 # STEP: atomic_write
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
@@ -53,11 +50,8 @@ def atomic_write(path, content):
 # STEP: _pretty
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -72,11 +66,8 @@ def _pretty(value):
 # STEP: _display_text
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -93,11 +84,8 @@ def _display_text(value):
 # STEP: _md_text
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -113,11 +101,8 @@ def _md_text(value):
 # STEP: _html_text
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -133,11 +118,8 @@ def _html_text(value):
 # STEP: _md_code
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -157,11 +139,8 @@ def _md_code(value, language="json"):
 # STEP: _html_pre
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -180,11 +159,8 @@ def _html_pre(value):
 # STEP: _human_events_markdown
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -267,11 +243,8 @@ def _human_events_markdown(events, head):
 # STEP: _human_state_markdown
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -325,11 +298,8 @@ def _human_state_markdown(state, head):
 # STEP: _human_page
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -408,11 +378,8 @@ def _human_events_html(events, head):
 # STEP: _human_state_html
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -445,11 +412,8 @@ def _human_state_html(state, head):
 # STEP: _reading_page
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -498,11 +462,8 @@ def _notebook_html(notebook, state):
 # STEP: _blog_html
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
 
@@ -536,11 +497,8 @@ def _blog_html(post, state):
 # STEP: export
 #
 # This step exists as an explicit seam so its behavior can be
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 # until the next boundary validates or records them. Callers may rely on this contract.
 
 
