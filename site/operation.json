@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-578a8059b6f14c9b",
-  "cycle": 4,
+  "status": "rejected",
+  "id": "w-47220c7baed24449",
+  "reason": "Commitment must be due in a future cycle, within 100 cycles",
   "wake_status": {
     "last_accepted": {
       "id": "w-578a8059b6f14c9b",
@@ -22,29 +22,72 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-578a8059b6f14c9b",
-      "time": "2026-09-19T15:50:21.026555+00:00",
-      "finished": "2026-09-19T15:51:14.620018+00:00",
-      "status": "accepted",
-      "reason": "",
-      "provider_requests_sent": 1,
+      "id": "w-47220c7baed24449",
+      "time": "2026-09-19T15:53:59.547874+00:00",
+      "finished": "2026-09-19T15:54:10.059119+00:00",
+      "status": "rejected",
+      "reason": "Commitment must be due in a future cycle, within 100 cycles",
+      "provider_requests_sent": 2,
       "provider_attempts": [
         {
-          "elapsed_ms": 49976,
-          "http_status": 200,
+          "category": "http",
+          "elapsed_ms": 237,
+          "http_status": 429,
           "model": "gemini-3.5-flash",
-          "request_payload_bytes": 41288,
+          "provider_error": {
+            "code": 429,
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                  {
+                    "description": "Learn more about Gemini API quotas",
+                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                  {
+                    "quotaDimensions": {
+                      "location": "[truncated]",
+                      "model": "[truncated]"
+                    },
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "57s"
+              }
+            ],
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 57.609612527s.",
+            "status": "RESOURCE_EXHAUSTED"
+          },
+          "request_payload_bytes": 42845,
+          "response_bytes_captured": 1363,
+          "result": "daily_quota"
+        },
+        {
+          "elapsed_ms": 3824,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42845,
           "result": "success"
         }
       ],
-      "successful_model": "gemini-3.5-flash"
+      "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 4,
-    "next_eligible": "2026-09-19T15:55:21.026555+00:00",
+    "next_eligible": "2026-09-19T15:58:59.547874+00:00",
     "pending": false,
-    "attempts_today": 5,
-    "provider_requests_today": 8,
-    "provider_request_slots_today": 8,
+    "attempts_today": 6,
+    "provider_requests_today": 10,
+    "provider_request_slots_today": 10,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

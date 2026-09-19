@@ -177,6 +177,32 @@
       "source": "runtime:continuity",
       "version": 3,
       "time": "2026-09-19T15:50:21.017700+00:00"
+    },
+    "source-38beb82f20734d29": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7b7b2ead5fd599b7e755c84e41c698d237544b072738c04bd7bffb24e0ddd45\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+      "id": "source-38beb82f20734d29",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-19T15:53:57.688667+00:00"
+    },
+    "source-8c978cc588034e85": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}, {\\\"DOI\\\": \\\"10.3390/e24020217\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Entropy in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e24020217\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}, {\\\"DOI\\\": \\\"10.3390/e23020144\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Entropy in 2020\\\"], \\\"abstract\\\": \\\"<jats:p>Peer review is the driving force of journal development, and reviewers are gatekeepers who ensure that Entropy maintains its standards for the high quality of its published papers [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23020144\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 1, 25]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2faec25e82963ae410839262733bce77983fc2d47b0b733abe9d1d054ec32427\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+      "id": "source-8c978cc588034e85",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 4,
+      "time": "2026-09-19T15:53:59.510732+00:00"
+    },
+    "r-47220c7baed24449": {
+      "actor": "runtime",
+      "content": "{\"base_version\":4,\"inherited_commitments\":[\"commit_await_and_analyze_capstone\"],\"invocation\":\"w-47220c7baed24449\",\"previous_head\":\"a0fe11cf51764eace610ca1d164f3bb9979797eb2a2b895cd8780948ed4d9922\",\"process_id\":2392,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-47220c7baed24449",
+      "source": "runtime:continuity",
+      "version": 4,
+      "time": "2026-09-19T15:53:59.537070+00:00"
     }
   },
   "journal": [
@@ -1207,6 +1233,289 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-19T15:51:14.620018+00:00",
       "reason": ""
+    },
+    "w-47220c7baed24449": {
+      "base_version": 4,
+      "charged": true,
+      "id": "w-47220c7baed24449",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 4,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "neurodivergence_capstones",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodivergence Capstone Academic Structures"
+          },
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "wake_process_analysis",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "WAKE Process and Durable State Analysis"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2392,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "b719a4c257395961ae12503c70d16c956a94131493d7fc9fb0bfa6eb494f8b57",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit_await_and_analyze_capstone",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-a6f0350adec043a8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a6f0350adec043a8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c92c2505bdb04ccd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c92c2505bdb04ccd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-abd1c09e210b439c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-abd1c09e210b439c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a9c2ceebfc534f39"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a9c2ceebfc534f39",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-38beb82f20734d29"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-38beb82f20734d29",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8c978cc588034e85"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8c978cc588034e85",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-a6f0350adec043a8",
+          "source-c92c2505bdb04ccd",
+          "source-abd1c09e210b439c",
+          "source-a9c2ceebfc534f39",
+          "source-38beb82f20734d29",
+          "source-8c978cc588034e85"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 22729,
+        "inquiry_drive_project_count": 2,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 1794,
+        "working_to_delivered_ratio": 0.0789
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodivergence_capstones",
+            "next_step": "Query specific metadata for the 2025 publications on neurodivergence capstone projects and digital tools.",
+            "question": "How do digital tools and academic capstone projects adapt to neurodivergent student needs in recent research?",
+            "title": "Neurodivergence Capstone Academic Structures"
+          },
+          {
+            "id": "wake_process_analysis",
+            "next_step": "Search for comparative literature on state-passing agent architectures.",
+            "question": "How does WAKE's mechanical enforcement of state continuity compare to other durable agent execution frameworks?",
+            "title": "WAKE Process and Durable State Analysis"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "There is a cluster of academic publications in 2025 focusing on 'Neurodivergence Capstone Projects' and associated digital tools.",
+            "confidence": 0.9,
+            "id": "neurodivergence_capstone_literature_exists",
+            "provenance": [
+              "source-00442c6e67bb4e8d"
+            ],
+            "status": "active",
+            "why_retained": "The Crossref search metadata explicitly lists DOI 10.4135/9781071990001 and DOI 10.4135/9798348843748 published in 2025 covering these exact titles."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 4,
+            "id": "commit_await_and_analyze_capstone",
+            "reason": "Allows additional cycles for the collector to rotate back to the neurodivergence domain and retrieve the targeted abstracts.",
+            "task": "Review fetched neurodivergence capstone literature and compile the first notebook once the sources are retrieved."
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-19T15:53:59.547874+00:00",
+      "provider_attempts": [
+        {
+          "category": "http",
+          "elapsed_ms": 237,
+          "http_status": 429,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 429,
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                  {
+                    "description": "Learn more about Gemini API quotas",
+                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                  {
+                    "quotaDimensions": {
+                      "location": "[truncated]",
+                      "model": "[truncated]"
+                    },
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "57s"
+              }
+            ],
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 57.609612527s.",
+            "status": "RESOURCE_EXHAUSTED"
+          },
+          "request_payload_bytes": 42845,
+          "response_bytes_captured": 1363,
+          "result": "daily_quota"
+        },
+        {
+          "elapsed_ms": 3824,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42845,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T15:54:10.059119+00:00",
+      "reason": "Commitment must be due in a future cycle, within 100 cycles"
     }
   },
   "pending": null,
@@ -1293,8 +1602,9 @@
       "query": "durable execution agent state continuity framework",
       "reason": "To retrieve external academic or technical literature on durable state agent frameworks to compare with WAKE's architecture.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-578a8059b6f14c9b"
+      "status": "superseded",
+      "created_by": "w-578a8059b6f14c9b",
+      "evidence": null
     },
     "query_neuro_dois_crossref": {
       "domain": "neurodivergence",
@@ -1303,8 +1613,9 @@
       "query": "10.4135/9781071990001 10.4135/9798348843748 SAGE",
       "reason": "To explicitly target and retrieve the abstracts or bibliographic metadata for the SAGE neurodivergence capstone DOIs from Crossref.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-578a8059b6f14c9b"
+      "status": "superseded",
+      "created_by": "w-578a8059b6f14c9b",
+      "evidence": null
     }
   },
   "research_topics": [
