@@ -13,8 +13,6 @@
 import html
 import json
 from urllib.parse import quote
-
-
 # ---------------------------------------------------------------------------
 # STEP: explanation
 #
@@ -22,8 +20,6 @@ from urllib.parse import quote
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -49,8 +45,6 @@ def explanation(reason):
         return 'The response did not identify the research version it was asked to continue, so applying it could conflict with the saved record.'
     return ('The response did not satisfy the recorded acceptance rule below. '
             'This page preserves that decision; it does not rerun today’s rules against an older draft.')
-
-
 # ---------------------------------------------------------------------------
 # STEP: _text
 #
@@ -58,8 +52,6 @@ def explanation(reason):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
@@ -67,8 +59,6 @@ def _text(value):
     # Normalize the public wordmark in readable presentation only; raw state is unchanged.
     escaped = html.escape(str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎"))
     return escaped.replace("WAKE✳︎", '<strong class="wake-mark">WAKE✳︎</strong>')
-
-
 # ---------------------------------------------------------------------------
 # STEP: _paragraphs
 #
@@ -76,15 +66,11 @@ def _text(value):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
 def _paragraphs(value):
     return ''.join('<p>' + _text(p).replace('\n', '<br>') + '</p>' for p in str(value).split('\n\n') if p.strip())
-
-
 # ---------------------------------------------------------------------------
 # STEP: rejected_html
 #
@@ -92,8 +78,6 @@ def _paragraphs(value):
 # chain from operator/provider input to durable/public output.  Do not fold it
 # into a neighboring layer if doing so would hide validation, provenance,
 # failure handling, or the distinction between accepted state and a derived view.
-
-
 # ---------------------------------------------------------------------------
 
 
