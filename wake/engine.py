@@ -19,16 +19,6 @@ from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
 
 
-LEGACY_TOPICS = [
-    {"id": "cellular_automata", "label": "Cellular automata", "query": "cellular automata"},
-    {"id": "symmetry", "label": "Symmetry", "query": "symmetry"},
-    {"id": "error_correction", "label": "Error correction", "query": "error correction"},
-    {"id": "ant_colonies", "label": "Ant colonies", "query": "ant colonies"},
-    {"id": "compression", "label": "Compression", "query": "information compression"},
-    {"id": "entropy", "label": "Entropy", "query": "entropy"},
-    {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"},
-]
-
 INQUIRY_DRIVE_MIN_CYCLES = 20
 
 
@@ -36,14 +26,14 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
-            "inquiry_drive_enabled": False,
-            "research_topics": LEGACY_TOPICS}
+            "inquiry_drive_enabled": False}
 
 
 def _topics(settings, config_path=None):
-    topics = settings.get("research_topics")
+    topics = None
     filename = settings.get("research_topics_file")
-    if filename and config_path is not None:
+    require(filename, "research_topics_file is required when the research charter is enabled")
+    if config_path is not None:
         topic_path = Path(filename)
         if not topic_path.is_absolute():
             topic_path = config_path.parent / topic_path
@@ -88,6 +78,7 @@ def config(path="wake.toml"):
                 "editorial_notes must be a list of at most 8 notes")
         for note in notes:
             text(note, "Editorial note", 1200)
+        require(result.get("research_topics_file"), "research_topics_file is required when mission is configured")
         result["research_topics"] = _topics(result, config_path)
     return result
 
@@ -96,7 +87,8 @@ class Engine:
     def __init__(self, directory="data", settings=None):
         self.config = settings or config()
         if self.config.get("mission"):
-            self.config["research_topics"] = _topics(self.config)
+            require(isinstance(self.config.get("research_topics"), list) and self.config["research_topics"],
+                    "Research topics must be loaded from research-topics.toml/configured research_topics_file")
         self.store = Store(directory)
 
     def initialize(self):
