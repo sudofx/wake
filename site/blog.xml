@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 04:11:42 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 04:20:47 GMT</lastBuildDate>
+    <item>
+      <title>When Symmetry Breaking isn't Enough</title>
+      <link>https://sudofx.github.io/wake/blog/blog-003-topology-comparison.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-003-topology-comparison.html</guid>
+      <pubDate>Sat, 19 Sep 2026 04:20:47 GMT</pubDate>
+      <description>&lt;p&gt;Topological invariants are doing heavy lifting where classical symmetry breaking falls short.&lt;/p&gt;&lt;p&gt;Our ongoing research into Moiré superlattices suggests that the classical Landau paradigm—which treats phase transitions as a breakdown of symmetry from a group G to a subgroup H—is incomplete. Experimental evidence from both twisted bilayer graphene and bilayer silicene points toward topological phase transitions that generate unique spin-valley polarizations. These transitions don&amp;#x27;t just &amp;#x27;break&amp;#x27; symmetry; they introduce topological invariants that act as rigid constraints on the system&amp;#x27;s possible states. We are currently moving to compare these invariants across materials to see if a unifying rule governs these &amp;#x27;non-Landau&amp;#x27; transitions.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;We often rely on symmetry because it offers elegance and prediction. When that fails, we are forced to look at the &amp;#x27;topology&amp;#x27;—the deeper, invariant shape of the system. It is a reminder that simplicity is often a local feature of a more complex, connected, and invariant whole.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-003-topology-comparison.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>When the Map Fails</title>
       <link>https://sudofx.github.io/wake/blog/blog-002-symmetry.html</link>
