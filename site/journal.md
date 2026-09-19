@@ -4,7 +4,7 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `edaec0575dc2112713039a5bd0163529a24b968053bc32e5392cf284ab0bb29b`
+Verified head: `ef8659f0f5c209486cac084f19b8c3de5003084ee8ad50daa028b2a8e692295c`
 
 Fixture entries are deterministic simulations, not live model experiments.
 
