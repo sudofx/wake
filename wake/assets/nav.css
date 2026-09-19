@@ -1,3 +1,8 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ * Shared navigation styling. Keep menu geometry stable across mobile/desktop without coupling CSS to durable state.
+ */
+
 /* Shared compact navigation for the main journal and MAP. */
 nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;flex:0 1 auto;font:14px/1.4 var(--sans);white-space:nowrap}
 .compact-nav>a,.compact-nav summary{display:flex;align-items:center;gap:7px;min-height:44px;padding:10px 0;color:var(--muted);font:inherit;cursor:pointer}
