@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Packaging helper. Distribution mechanics stay separate from runtime semantics.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 """Create a clean replacement ZIP. Never include credentials or private state."""
 
 from pathlib import Path
