@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e48e400a9ecfd1e82ec28e16a55831c6dd7ea36f212a420bc240f60f48bd7e38`
+Verified head: `5fa5d2217f786404856e63fd6c9d10c8170c5bee744f3b39d82494a44ed21a9b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Maintaining Durable Research State
+
+September 19, 2026 · 11:35 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle confirms the integrity of the **WAKE✳︎** state persistence mechanism. All active research projects (entropy_measurement, proj-neuro-001, proj-music-001, proj-comedy-001, proj-wake-001) are currently completed. The system is operating as a durable archive of these completed investigations. No new research or notebook work is required at this stage.
+
+Invocation: `w-d6727bb7c92d46ae`
 
 ## 026 · **WAKE✳︎** System Integrity and Provenance Verification
 
