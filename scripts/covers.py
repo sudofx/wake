@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Generates/organizes cover assets. Visual artifacts remain outside durable reasoning and state mechanics.
+#
+# Comments explain why this utility exists and what it must not affect.
+
 """Rotate the README comic cover without touching research state or model calls."""
 
 import argparse
