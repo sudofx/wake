@@ -427,13 +427,13 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock(): collect(self.engine, fetcher=fetch)
         state=self.engine.store.load()
         self.assertEqual(len(calls), 2)
-        self.assertIn("query=symmetry", calls[0])
-        self.assertIn("query=error+correction", calls[1])
+        self.assertIn("query=music", calls[0])
+        self.assertIn("query=collective+intelligence", calls[1])
         self.assertEqual([r["status"] for r in state["research"].values()], ["superseded","superseded","superseded","superseded"])
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
-        self.assertEqual(payload["topic_domain"], "error_correction")
+        self.assertEqual(payload["topic_domain"], "collective_intelligence")
 
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
@@ -472,7 +472,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_verified_notebook_rejects_cross_topic_evidence(self):
         with self.engine.store.lock():
-            for identifier, domain in (("s1", "symmetry"), ("s2", "symmetry")):
+            for identifier, domain in (("s1", "symmetry"), ("s2", "entropy")):
                 self.engine.store.append("observation", dict(
                     id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
                     content=json.dumps({"scope":"synthetic test fixture",
