@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Executable specification for feeds.
+# Tests in WAKE✳︎ are part of the explanation of the system: successful cases show what authority is allowed,
+# while rejection/failure cases show the boundaries that must remain intact during refactors.
+# Prefer assertions that make the invariant obvious to a human or AI maintainer reading this file later.
+
 """Subscription identities, safe full text, and durable publication boundaries."""
 from copy import deepcopy
 from email.utils import parsedate_to_datetime
