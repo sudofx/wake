@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `cbc4157843da015323529e54b65f7e7b3c98641f80d9d4ee5de3c5c0970e3298`
+Verified head: `675854f3878dacbac7ee7c1811ccbcf4145440ad5baef9984d084b54be6bb3bc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Entropy Research: Ecological Data Acquisition
+
+September 19, 2026 · 10:37 AM PDT · gemini / gemini-3.1-flash-lite
+
+We are continuing the 'entropy_measurement' project. While we possess clinical entropy evidence (source-697c46d20cb04c71), we lack a distinct ecological source to complete the comparative analysis. We are queuing a targeted search to secure this second data point, which will enable the synthesis required to resolve the open commitment 'commit_entropy_review'.
+
+Invocation: `w-8b9ca7fe79234c6f`
 
 ## 003 · Entropy Measurement: Ecological and Clinical Synthesis
 
