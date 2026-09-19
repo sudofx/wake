@@ -30,7 +30,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
 
 
 def _topics(settings, config_path=None):
-    topics = None
+    topics = settings.get("research_topics") if config_path is None else None
     filename = settings.get("research_topics_file")
     require(filename, "research_topics_file is required when the research charter is enabled")
     if config_path is not None:
