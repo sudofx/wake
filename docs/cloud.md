@@ -22,7 +22,7 @@ The workflow uses the existing public repository and GitHub Pages. No paid fallb
 
 ## A wake's work
 
-A small trusted collector retrieves at most two approved public sources before inference. Neutral rotation through `research-topics.toml` is authoritative for collection. Model-authored follow-up searches remain auditable hypotheses but do not consume collector bandwidth; they are deterministically retired so they cannot recursively monopolize collection or exhaust the bounded queue. The **WAKE✳︎** topic can use the public repository as a source-controlled breadcrumb. Collection remains separate from model authority. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
+A small trusted collector retrieves at most two approved public sources before inference. Randomized attention across `research-topics.toml` is authoritative for collection, with a periodic under-attended-topic nudge that preserves active projects. Model-authored follow-up searches remain auditable hypotheses but do not consume collector bandwidth; they are deterministically retired so they cannot recursively monopolize collection or exhaust the bounded queue. The **WAKE✳︎** topic can use the public repository as a source-controlled breadcrumb. Collection remains separate from model authority. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
 
 ## Changing research topics
 
