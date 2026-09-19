@@ -1,3 +1,8 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ * Map-specific presentation. These styles affect legibility, never provenance semantics.
+ */
+
 /* Theme tokens intentionally match style.css, the canonical WAKE✳︎ visual source. */
 :root{color-scheme:light;--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#287ca3;--accent:#7658b3;--hot:#c52f9b;--pale:#eef0f8;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
 :root[data-theme=dark]{color-scheme:dark;--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#32384d;--green:#7dcfff;--accent:#c69cff;--hot:#ff5ce1}
