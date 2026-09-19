@@ -42,22 +42,13 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: _topics
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
 
 # inspected, tested, and replaced without giving a model hidden authority.
 
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 
@@ -91,22 +82,13 @@ def _topics(settings, config_path=None):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: config
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
 
 # inspected, tested, and replaced without giving a model hidden authority.
 
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 
 # until the next boundary validates or records them. Callers may rely on this contract.
 
@@ -144,22 +126,13 @@ def config(path="wake.toml"):
 
 
 # ---------------------------------------------------------------------------
-
-
 # OBJECT: Engine
-
-
 #
-
-
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
 
 # inspected, tested, and replaced without giving a model hidden authority.
 
-
 # Inputs should already belong to the layer named above; outputs remain data
-
 
 # until the next boundary validates or records them. Callers may rely on this contract.
 
