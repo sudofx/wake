@@ -22,8 +22,6 @@ COLLECTIONS = {"belief": "beliefs", "commitment": "commitments", "project": "pro
                "notebook": "notebooks", "research": "research", "blog": "posts", "evidence": "evidence"}
 ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
            "project": "project", "notebook": "notebook", "research": "research", "blog": "blog"}
-
-
 # ---------------------------------------------------------------------------
 # STEP: build_map
 #
@@ -31,15 +29,12 @@ ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
 # inspected, tested, and replaced without giving a model hidden authority.
 # Inputs should already belong to the layer named above; outputs remain data
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
 
 
 def build_map(state, events, head):
     nodes, edges, journals, blogs = {}, {}, [], []
     by_invocation = {j["invocation"]: f"journal:{j['invocation']}" for j in state["journal"]}
-
     # ---------------------------------------------------------------------------
     # STEP: node
     #
@@ -58,7 +53,6 @@ def build_map(state, events, head):
                           "title": title or detail.get("title") or summary or detail.get("id", key),
                           "detail": deepcopy(detail)}
         return key
-
     # ---------------------------------------------------------------------------
     # STEP: edge
     #
@@ -100,7 +94,6 @@ def build_map(state, events, head):
         for field in ("supersedes", "superseded_by"):
             if post.get(field):
                 edge(f"blog:{pid}", f"blog:{post[field]}", field.replace("_", " "), f"posts.{pid}.{field}")
-
     # ---------------------------------------------------------------------------
     # STEP: artifact
     #
