@@ -56,6 +56,37 @@ def _limited_sources(evidence):
     return bool(scopes) and all(any(word in scope for word in limited) for scope in scopes)
 
 
+
+def _claim_tokens(value):
+    """Conservative lexical tokens for deterministic evidence/claim overlap."""
+    stop = {"about","after","again","also","among","because","been","before","being","between",
+            "could","does","from","have","into","more","most","other","over","same","such","than",
+            "that","their","there","these","they","this","those","through","under","very","were",
+            "what","when","where","which","while","with","would","source","sources","evidence"}
+    return {w for w in re.findall(r"[a-z0-9]{4,}", str(value).lower()) if w not in stop}
+
+
+def _verify_claim_support(claim, evidence, label):
+    """Require corroborating collected evidence to share material terms with a factual claim.
+
+    This is deliberately deterministic: it is a publication gate, not an oracle for truth.
+    It prevents unrelated sources from satisfying provenance-only checks.
+    """
+    claim_tokens = _claim_tokens(claim)
+    require(len(claim_tokens) >= 2, f"{label} is too vague to verify against evidence")
+    supporting = []
+    for item in evidence:
+        try:
+            payload = json.loads(item.get("content", ""))
+        except (ValueError, TypeError):
+            payload = {}
+        material = " ".join(str(payload.get(k, "")) for k in ("title", "abstract", "excerpt", "scope"))
+        overlap = claim_tokens & _claim_tokens(material)
+        if len(overlap) >= 2:
+            supporting.append(item.get("source"))
+    require(len(set(supporting)) >= 2,
+            f"{label} requires corroboration from two distinct collected sources that materially match the claim")
+
 def _correction_language(action, prior_post):
     """Exclude only a fixed, explicit retraction of exact previously published words.
 
@@ -232,7 +263,7 @@ def transition(state, proposal, invocation, historical=False):
             cited = [result["evidence"][e] for e in action["evidence"]]
             require(all(e.get("actor") == "collector" and e.get("scope") == "collected" for e in cited),
                     "Research notebooks must cite successfully retrieved external sources")
-            require(len({e["source"] for e in cited}) >= 2, "Research notebooks need at least two distinct retrieved source URLs")
+            require(len({e["source"] for e in cited}) >= 2, "Research notebooks need at least two distinct retrieved source URLs")\n            _verify_claim_support(action["findings"], cited, "Notebook findings")
             if result["projects"][action["project"]]["domain"] == "wake_analysis":
                 require(all(e["source"].startswith("https://raw.githubusercontent.com/sudofx/wake/") for e in cited),
                         "WAKE analysis notebooks must cite only source-controlled sudofx/wake files")
