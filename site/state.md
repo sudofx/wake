@@ -5,7 +5,7 @@
 **Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `3f1a35a5bc1215e9ad996165ce1aaaeb0f9a8b05ac5b2693563271c2d7fa7daf`
+**Verified head:** `9aec2419f3ecd18bee1b38db5b843568dcaffe3e4bf89b806c8f2dad7710abec`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -3218,6 +3218,236 @@ _None recorded._
 }
 ```
 
+### `w-1a4ba06b2fa24fb6`
+
+```json
+{
+  "base_version": 5,
+  "charged": true,
+  "id": "w-1a4ba06b2fa24fb6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 5,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "p-wake-foundations",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "WAKE Foundations"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2067,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "7ff892e61bdc8077cc376dddebf28abdbc3340ee84339046c6f1d08b0edca12e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-8284e29d25894a55"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "b-wake-state-accountability",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-0df9f503166f4082"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0df9f503166f4082",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b04e6f19a4f74765"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b04e6f19a4f74765",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-729dc050c1c24657"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-729dc050c1c24657",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c1208ace89e84831"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c1208ace89e84831",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-44d3b63b3ba24f93"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-44d3b63b3ba24f93",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-010488341e39464c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-010488341e39464c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-8284e29d25894a55",
+      "source-0df9f503166f4082",
+      "source-b04e6f19a4f74765",
+      "source-729dc050c1c24657",
+      "source-c1208ace89e84831",
+      "source-44d3b63b3ba24f93",
+      "source-010488341e39464c"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 7,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24978,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 7,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1681,
+    "working_to_delivered_ratio": 0.0673
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "p-wake-foundations",
+        "next_step": "Collect two verified, distinct sources documenting WAKE mechanisms to support a new notebook.",
+        "question": "What are the core architectural and mechanical foundations of the WAKE experiment?",
+        "title": "WAKE Foundations"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE achieves process accountability by externalizing its state machine into a deterministic database, thereby ensuring each disposable model invocation operates on a verifiable, immutable history rather than persistent internal model state.",
+        "confidence": 0.9,
+        "id": "b-wake-state-accountability",
+        "provenance": [
+          "source-8284e29d25894a55"
+        ],
+        "status": "active",
+        "why_retained": "The WAKE architecture documentation explicitly identifies the durable record (the events table in SQLite) as the mechanism for carrying work forward, specifically noting that models are proposal generators rather than f…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-accountability-001",
+        "project": "p-wake-analysis",
+        "provenance": [
+          "source-0066dce2739c4636",
+          "source-f30df1455bea4580"
+        ],
+        "revision": 1,
+        "summary": "WAKE✳︎ achieves accountability by externalizing its entire state machine into a deterministic database, ensuring that each disposable model invocation operates on a verifiable, append-only history.",
+        "title": "Accountability Through Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-19T16:55:51.059716+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 11630,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49088,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T16:56:06.791973+00:00",
+  "reason": "Research notebooks need at least two distinct retrieved source URLs"
+}
+```
+
 ## Evidence
 
 ### `source-4b2692443d704451`
@@ -3791,6 +4021,47 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 5,
   "time": "2026-09-19T16:54:28.356705+00:00"
+}
+```
+
+### `source-44d3b63b3ba24f93`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"67652218c8636be0bfd3ccd4a3b416c680c5314b6011d57c67c67bbf533ad1c7\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-44d3b63b3ba24f93",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 5,
+  "time": "2026-09-19T16:55:50.577018+00:00"
+}
+```
+
+### `source-010488341e39464c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2139416101\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.ecolmodel.2005.03.026\\\", \\\"title\\\": \\\"Maximum entropy modeling of species geographic distributions\\\", \\\"publication_year\\\": 2005, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 18078, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.ecolmodel.2005.03.026\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.ecolmodel.2005.03.026\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S88315673\\\", \\\"display_name\\\": \\\"Ecological Modelling\\\", \\\"issn_l\\\": \\\"0304-3800\\\", \\\"issn\\\": [\\\"0304-3800\\\", \\\"1872-7026\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Ecological Modelling\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W1862394037\\\", \\\"doi\\\": \\\"https://doi.org/10.1152/ajpheart.2000.278.6.h2039\\\", \\\"title\\\": \\\"Physiological time-series analysis using approximate entropy and sample entropy\\\", \\\"publication_year\\\": 2000, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 7942, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1152/ajpheart.2000.278.6.h2039\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1152/ajpheart.2000.278.6.h2039\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S87338489\\\", \\\"display_name\\\": \\\"American Journal of Physiology-Heart and Circulatory Physiology\\\", \\\"issn_l\\\": \\\"0363-6135\\\", \\\"issn\\\": [\\\"0363-6135\\\", \\\"1522-1539\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"jufo-2\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"American Journal of Physiology-Heart and Circulatory Physiology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Entropy, as it relates to dynamical systems, is the rate of information production. Methods for estimation of the entropy of a system represented by a time series are not, however, well suited to analysis of the short and noisy data sets encountered in cardiovascular and other biological studies. Pincus introduced approximate entropy (ApEn), a set of measures of system complexity closely related to entropy, which is easily applied to clinical cardiovascular and other time series. ApEn statistics, however, lead to inconsistent results. We have developed a new and related complexity measure, sample entropy (SampEn), and have compared ApEn and SampEn by using them to analyze sets of random numbers with known probabilistic character. We have also evaluated cross-ApEn and cross-SampEn, which use cardiovascular data sets to measure the similarity of two distinct time series. SampEn agreed with theory much more closely than ApEn over a broad range of conditions. The improved accuracy of SampEn statistics should make them useful in the study of experimental clinical cardiovascular and other biological time series.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2146478425\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/physrevd.7.2333\\\", \\\"title\\\": \\\"Black Holes and Entropy\\\", \\\"publication_year\\\": 1973, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 7532, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/physrevd.7.2333\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/physrevd.7.2333\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210190737\\\", \\\"display_name\\\": \\\"Physical review. D. Particles, fields, gravitation, and cosmology/Physical review. D. Particles and fields\\\", \\\"issn_l\\\": \\\"0556-2821\\\", \\\"issn\\\": [\\\"0556-2821\\\", \\\"1089-4918\\\", \\\"1538-4500\\\", \\\"1550-2368\\\", \\\"1550-7998\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Physical Review D\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"There are a number of similarities between black-hole physics and thermodynamics. Most striking is the similarity in the behaviors of black-hole area and of entropy: Both quantities tend to increase irreversibly. In this paper we make this similarity the basis of a thermodynamic approach to black-hole physics. After a brief review of the elements of the theory of information, we discuss black-hole physics from the point of view of information theory. We show that it is natural to introduce the concept of black-hole entropy as the measure of information about a black-hole interior which is inaccessible to an exterior observer. Considerations of simplicity and consistency, and dimensional arguments indicate that the black-hole entropy is equal to the ratio of the black-hole area to the square of the Planck length times a dimensionless constant of order unity. A different approach making use of the specific properties of Kerr black holes and of concepts from information theory leads to the same conclusion, and suggests a definite value for the constant. The physical content of the concept of black-hole entropy derives from the following generalized version of the second law: When common entropy goes down a black hole, the common entropy in the black-hole exterior plus the black-hole entropy never decreases. The validity of this version of the second law is supported by an argument from information theory as well as by several examples.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2058085399\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/adem.200300567\\\", \\\"title\\\": \\\"Nanostructured High‐Entropy Alloys with Multiple Principal Elements: Novel Alloy Design Concepts and Outcomes\\\", \\\"publication_year\\\": 2004, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 15264, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1002/adem.200300567\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1002/adem.200300567\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S156255550\\\", \\\"display_name\\\": \\\"Advanced Engineering Materials\\\", \\\"issn_l\\\": \\\"1438-1656\\\", \\\"issn\\\": [\\\"1438-1656\\\", \\\"1527-2648\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Advanced Engineering Materials\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"A new approach for the design of alloys is presented in this study. These “high‐entropy alloys” with multi‐principal elements were synthesized using well‐developed processing technologies. Preliminary results demonstrate examples of the alloys with simple crystal structures, nanostructures, and promising mechanical properties. This approach may be opening a new era in materials science and engineering.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"30ecdee807c3c6eb55359639fa68ab8769946fb3d98d07d487ab7089e3d6fd1b\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-010488341e39464c",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 5,
+  "time": "2026-09-19T16:55:50.990366+00:00"
+}
+```
+
+### `r-1a4ba06b2fa24fb6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":5,\"inherited_commitments\":[],\"invocation\":\"w-1a4ba06b2fa24fb6\",\"previous_head\":\"516b91f750a38bf876258d4168e630d34dbf20338eb5586c30a1e9189ac9c5e3\",\"process_id\":2067,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1a4ba06b2fa24fb6",
+  "source": "runtime:continuity",
+  "version": 5,
+  "time": "2026-09-19T16:55:51.034887+00:00"
 }
 ```
 
