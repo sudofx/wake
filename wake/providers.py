@@ -60,8 +60,9 @@ Additional exact action shapes:
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"cellular_automata","reason":"What this search will resolve"}
-At most four pending searches. The collector executes queued searches and rotates neutral discovery
-across the configured topics. Follow useful evidence where it leads rather than forcing a connection.
+At most four model-proposed follow-up searches may be recorded as hypotheses. The trusted collector's
+neutral rotation across configured topics is authoritative; model-proposed searches do not control network
+collection. Follow useful evidence where it leads rather than forcing a connection.
 Optionally add a url field to read a specific HTTPS HTML/abstract page instead of searching.
 Approved hosts: arxiv.org, export.arxiv.org, plato.stanford.edu, pmc.ncbi.nlm.nih.gov,
 www.ncbi.nlm.nih.gov, quantum-journal.org, journals.aps.org, nature.com, www.nature.com, raw.githubusercontent.com.
