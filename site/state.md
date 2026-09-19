@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 21  
+**Version:** 22  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `6eff46f152926366a26f33878b2d7e577274a423a24fd996e2490d71553df63d`
+**Verified head:** `72b8307a5fc98a97f109ec09683b36a0abba531d20a3eed607a9c8380999d231`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -137,15 +137,15 @@
 {
   "domain": "neurodivergent_cognition",
   "id": "proj-neuro-ci",
-  "next_step": "Identify or design a pilot collaborative task where neurodivergent-associated pattern recognition might plausibly yield a measurable difference in team output compared to non-diverse baselines.",
+  "next_step": "Synthesize empirical metrics for cognitive diversity from search results to define a pilot collaborative task structure.",
   "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
-  "reason": "The project has moved from theoretical inquiry to synthesizing potential quantitative metrics, necessitating a move toward experimental design.",
+  "reason": "Maintaining active project status to finalize the transition from concept to empirical pilot design.",
   "status": "active",
   "title": "Neurodivergent Intelligence in Collective Structures",
   "type": "project",
   "created_version": 13,
-  "updated_version": 17,
-  "updated_by": "w-6ef9e15fb33e48e5"
+  "updated_version": 22,
+  "updated_by": "w-5e6679a46c3943f3"
 }
 ```
 
@@ -11069,6 +11069,315 @@
 }
 ```
 
+### `w-5e6679a46c3943f3`
+
+```json
+{
+  "base_version": 21,
+  "charged": true,
+  "id": "w-5e6679a46c3943f3",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 21,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-neuro-ci",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2258,
+  "provider": "gemini",
+  "quota_day": "2026-09-18",
+  "request_hash": "14c89705688f2121d72663fb92c84c959d9d5d7bc4882af03715d8d5438db002",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-4ae464e2c7ef4861",
+          "source-35e7097ce5fd4571"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "bel-nif-ci-theoretical",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-cohuman-socio-cognitive",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-00fde311e2d0491d",
+          "source-30ad456b3b004594"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-nif-ci-synthesis",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-80e54fb0623f48b5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-80e54fb0623f48b5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e54a590626cb4716"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e54a590626cb4716",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9f91d290c2724f04"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9f91d290c2724f04",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2724fbf175334b8f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2724fbf175334b8f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5ac8cf99f31f4169"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5ac8cf99f31f4169",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ed1bca8b5bde43bf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ed1bca8b5bde43bf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-4ae464e2c7ef4861",
+      "source-35e7097ce5fd4571",
+      "source-79489f1f420142f8",
+      "source-54fce5c98c5d4219",
+      "source-52749aef80194962",
+      "source-91b578462fd24b3a",
+      "source-acf2a441376b4f56",
+      "source-23457d958d724d22",
+      "source-f6453aa48fe94fb0",
+      "source-00fde311e2d0491d",
+      "source-30ad456b3b004594",
+      "source-80e54fb0623f48b5",
+      "source-e54a590626cb4716",
+      "source-9f91d290c2724f04",
+      "source-2724fbf175334b8f",
+      "source-5ac8cf99f31f4169",
+      "source-ed1bca8b5bde43bf"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 17,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21646,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 17,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3264,
+    "working_to_delivered_ratio": 0.1508
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-neuro-ci",
+        "next_step": "Identify or design a pilot collaborative task where neurodivergent-associated pattern recognition might plausibly yield a measurable difference in team output compared to non-diverse baselines.",
+        "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+        "title": "Neurodivergent Intelligence in Collective Structures"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.7,
+        "id": "bel-ci-three-elements",
+        "provenance": [
+          "source-79489f1f420142f8"
+        ],
+        "status": "active",
+        "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+      },
+      {
+        "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+        "confidence": 0.6,
+        "id": "bel-cohuman-framework",
+        "provenance": [
+          "source-54fce5c98c5d4219"
+        ],
+        "status": "active",
+        "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+      },
+      {
+        "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal without confirmed empirical validation in team-level studies.",
+        "confidence": 0.5,
+        "id": "bel-nif-ci-theoretical",
+        "provenance": [
+          "source-4ae464e2c7ef4861",
+          "source-35e7097ce5fd4571"
+        ],
+        "status": "active",
+        "why_retained": "While literature recognizes pattern recognition as a cognitive feature in neurodivergent profiles, and separate literature identifies cognitive diversity as a driver of team performance, the intersection regarding NIF's…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-cohuman-socio-cognitive",
+        "project": "proj-collective-intel-ai",
+        "provenance": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0"
+        ],
+        "revision": 6,
+        "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+        "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+      },
+      {
+        "id": "nb-nif-ci-synthesis",
+        "project": "proj-neuro-ci",
+        "provenance": [
+          "source-00fde311e2d0491d",
+          "source-30ad456b3b004594"
+        ],
+        "revision": 4,
+        "summary": "Integration of NIF-defined pattern recognition orientations into group-level collective intelligence frameworks, emphasizing the move from clinical deficits to cognitive architecture.",
+        "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T01:23:00.215683+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4714,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 42616,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T01:23:10.352273+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-e97cad0649244a6e`
@@ -12711,6 +13020,47 @@
 }
 ```
 
+### `source-5ac8cf99f31f4169`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2426e4b3f9c70b9511d7af3dfcc707fa6b1bd161393eba60f640e09fec01d14e\"}",
+  "id": "source-5ac8cf99f31f4169",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-19T01:22:58.829859+00:00"
+}
+```
+
+### `source-ed1bca8b5bde43bf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6d0a9eec29b8686751aba770bce6d0d06a3d00e0b08164d32b5cafd11c17a7b9\"}",
+  "id": "source-ed1bca8b5bde43bf",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 21,
+  "time": "2026-09-19T01:22:59.872229+00:00"
+}
+```
+
+### `r-5e6679a46c3943f3`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-5e6679a46c3943f3\",\"previous_head\":\"9346c084989030092c3753c95374250680ada981e0328691731d4558d4e13f00\",\"process_id\":2258,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-5e6679a46c3943f3",
+  "source": "runtime:continuity",
+  "version": 21,
+  "time": "2026-09-19T01:23:00.122772+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Socio-Cognitive Collective Intelligence Project
@@ -12944,6 +13294,17 @@
 }
 ```
 
+### 022 · Mapping Cognitive Diversity to Team Output Metrics
+
+```json
+{
+  "cycle": 22,
+  "invocation": "w-5e6679a46c3943f3",
+  "title": "Mapping Cognitive Diversity to Team Output Metrics",
+  "summary": "Continued development of the Neurodivergent Intelligence Framework (NIF) application in collective intelligence. The focus shifts from conceptualizing pattern-recognition as a structural asset to identifying empirical metrics for group-level cognitive diversity. Research is queued to find quantitative measures for cognitive diversity in team performance, aiming to design a tractable pilot task that demonstrates value-add beyond theoretical baseline assumptions."
+}
+```
+
 ## Research
 
 ### `res-ci-socio-cognitive`
@@ -13119,6 +13480,21 @@
   "status": "collected",
   "created_by": "w-25a93112c2944e19",
   "evidence": "source-30ad456b3b004594"
+}
+```
+
+### `res-nif-empirical-metrics-2`
+
+```json
+{
+  "domain": "neurodivergent_cognition",
+  "id": "res-nif-empirical-metrics-2",
+  "project": "proj-neuro-ci",
+  "query": "empirical measures cognitive diversity team performance problem solving task",
+  "reason": "Moving the NIF project from theoretical framework to measurable pilot requires identifying validated metrics for cognitive diversity in task-oriented group settings.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-5e6679a46c3943f3"
 }
 ```
 

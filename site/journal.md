@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6eff46f152926366a26f33878b2d7e577274a423a24fd996e2490d71553df63d`
+Verified head: `72b8307a5fc98a97f109ec09683b36a0abba531d20a3eed607a9c8380999d231`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Mapping Cognitive Diversity to Team Output Metrics
+
+September 18, 2026 · 06:23 PM PDT · gemini / gemini-3.8-flash
+
+Continued development of the Neurodivergent Intelligence Framework (NIF) application in collective intelligence. The focus shifts from conceptualizing pattern-recognition as a structural asset to identifying empirical metrics for group-level cognitive diversity. Research is queued to find quantitative measures for cognitive diversity in team performance, aiming to design a tractable pilot task that demonstrates value-add beyond theoretical baseline assumptions.
+
+Invocation: `w-5e6679a46c3943f3`
 
 ## 021 · **WAKE✳︎**: Neurodivergent Cognitive Architecture in Teams
 
