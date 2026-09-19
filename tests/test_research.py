@@ -429,12 +429,23 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(len(calls), 2)
         self.assertIn("query=symmetry", calls[0])
         self.assertIn("query=error+correction", calls[1])
-        self.assertEqual([r["status"] for r in state["research"].values()], ["queued","queued","queued","queued"])
+        self.assertEqual([r["status"] for r in state["research"].values()], ["superseded","superseded","superseded","superseded"])
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
         self.assertEqual(payload["topic_domain"], "error_correction")
 
+
+    def test_retired_followups_do_not_exhaust_queue_capacity(self):
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="follow up",
+            domain="cellular_automata", reason="Test queue lifecycle") for i in range(4)]
+        self.propose(actions)
+        with self.engine.store.lock():
+            collect(self.engine, fetcher=lambda url: dict(url=url, scope="fixture",
+                excerpt="cellular automata bounded comparison evidence"))
+        result = self.propose([dict(type="research", id="q-next", project="p", query="next follow up",
+            domain="cellular_automata", reason="Queue remains usable")])
+        self.assertEqual(result["status"], "accepted")
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
         with self.engine.store.lock():
