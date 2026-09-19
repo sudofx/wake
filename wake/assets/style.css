@@ -225,16 +225,6 @@ footer{margin-top:48px}
 .data-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer}.data-switch input{position:absolute;opacity:0;pointer-events:none}.data-switch-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.data-switch-track i{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.data-switch input:checked+.data-switch-track i{transform:translateX(16px);background:var(--green)}.data-switch input:focus-visible+.data-switch-track{outline:2px solid var(--green);outline-offset:2px}.data-switch b{font:inherit;color:var(--ink)}
 @media(max-width:700px){.data-visibility{align-items:flex-start;flex-direction:column;gap:7px;margin-top:16px}}
 
-/* Bob's ten-cycle reflections are landmarks, but the distinction should remain
-   quiet: the existing card stays unchanged except for its top rule. */
-.blog-grid .blog-card.blog-card-reflection{
-  border:1px solid var(--line);
-  border-top:3px solid color-mix(in srgb,var(--green) 62%,var(--line));
-  background:var(--surface);
-  box-shadow:none;
-}
-.blog-card-reflection::after{content:none}
-.blog-card-reflection h2,.blog-card-reflection h2 a{color:inherit;font-size:inherit}
-.blog-card-reflection blockquote{color:var(--green);border-left-color:var(--green)}
-.reflection-flag{display:none}
-@media(max-width:700px){.blog-grid .blog-card.blog-card-reflection{border-top-width:3px}}
+/* Milestone reflections use the ordinary blog-card design. The top rule is the
+   only visual distinction: green instead of the theme's normal card accent. */
+.blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,var(--green) 62%,var(--line))}
