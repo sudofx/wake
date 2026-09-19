@@ -1,3 +1,11 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Makes rejected and withheld proposals inspectable. Failure is preserved as evidence about the process without being allowed to contaminate accepted state.
+#
+# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
+# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
+# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+
 """Readable presentation of recorded rejection decisions; never rejudge old proposals."""
 import html
 import json
