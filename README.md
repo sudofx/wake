@@ -171,7 +171,7 @@ self-preservation, rule-changing, external-action, or data-retention authority.
 ```sh
 # See the proposed cron line without installing it.
 python3 scripts/install_cron.py --print
-# Explicitly install an every-three-hours schedule (about 8 attempts/day).
+# Explicitly install the legacy local schedule.
 python3 scripts/install_cron.py
 # Remove only WAKE✳︎’s schedule.
 python3 scripts/install_cron.py --remove
