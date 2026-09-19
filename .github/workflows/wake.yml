@@ -1,3 +1,7 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Cloud execution pipeline for one wake. Permissions, branch checkout, and state publication are part of continuity; automation must not bypass the record.
+# Keep operational/configuration intent explicit for future human and AI maintainers.
+
 name: WAKE✳︎ — research & journal
 
 on:
