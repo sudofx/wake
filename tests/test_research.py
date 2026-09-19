@@ -430,6 +430,10 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("query=symmetry", calls[0])
         self.assertIn("query=error+correction", calls[1])
         self.assertEqual([r["status"] for r in state["research"].values()], ["queued","queued","queued","queued"])
+        collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
+        payload = json.loads(collected[-1]["content"])
+        self.assertIs(payload["verification_required"], True)
+        self.assertEqual(payload["topic_domain"], "error_correction")
 
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
@@ -442,6 +446,29 @@ class ResearchTests(unittest.TestCase):
                     actor="collector", scope="collected"))
         proposal = [project(), notebook(["s1", "s2"], "Volcanic aerosols measurably cool global surface temperatures.")]
         self.assertEqual(self.propose(proposal)["status"], "rejected")
+
+    def test_verified_notebook_requires_same_topic_corroboration(self):
+        with self.engine.store.lock():
+            for identifier in ("s1", "s2"):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
+                    content=json.dumps({"scope":"synthetic test fixture",
+                                        "excerpt":"bounded comparison cellular automata explanations",
+                                        "verification_required":True,
+                                        "topic_domain":"cellular_automata"}),
+                    actor="collector", scope="collected"))
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
+
+    def test_verified_notebook_rejects_cross_topic_evidence(self):
+        with self.engine.store.lock():
+            for identifier, domain in (("s1", "cellular_automata"), ("s2", "symmetry")):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
+                    content=json.dumps({"scope":"synthetic test fixture",
+                                        "excerpt":"bounded comparison cellular automata explanations",
+                                        "verification_required":True, "topic_domain":domain}),
+                    actor="collector", scope="collected"))
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "rejected")
 
     def test_source_url_allowlist_and_input_types(self):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
