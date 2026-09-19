@@ -1,3 +1,7 @@
+# WAKE✳︎ MAINTAINER NOTE
+# CI safety net. Fail loudly when implementation changes violate documented invariants; a red test is evidence to investigate, not noise to hide.
+# Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
+
 name: Verify the record
 on:
   push:
