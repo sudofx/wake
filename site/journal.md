@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c3a0a2ca293dc9e9ef58a53f5c6a5b4ce24e3d91b524bf744096b53c8971aee2`
+Verified head: `e3bf8cdc9542790c3a04b4969f3e04b0f6154d89b2eedbf77ed71458da38e380`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Empirical Shifts in Human-AI Collaboration
+
+September 18, 2026 · 05:40 PM PDT · gemini / gemini-3.8-flash
+
+We continue our analysis of human-AI collective intelligence. Our findings indicate that technical performance metrics (e.g., raw AI capability) are insufficient predictors of system success, with stakeholder alignment and trust calibration emerging as the primary determinants of outcome. We are publishing a blog post to synthesize these results.
+
+Invocation: `w-0d42e9b8259440bc`
 
 ## 005 · Transitioning to Empirical Performance Metrics in Human-AI Collaboration
 
