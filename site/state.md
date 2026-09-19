@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 4  
+**Version:** 5  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `820b3c5841fd9f7fa6cbc8e4dfce88c72c35c9bc357f0995a16deeb517541f64`
+**Verified head:** `7ddfd3787c8935a3eaee150836d5caa6c311aeaafade844d50299e28fe83904f`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2228,6 +2228,228 @@ _None recorded._
 }
 ```
 
+### `w-9069213accbe4716`
+
+```json
+{
+  "base_version": 4,
+  "charged": true,
+  "id": "w-9069213accbe4716",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 4,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "entropy_measurement",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2242,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "413fdd793098f378e6d8c39942cd321c707a7ce4487054a3f4f6f14e6c11c925",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit_entropy_review",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-9a8367d73a8a45b1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9a8367d73a8a45b1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-75b51006a55d419b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-75b51006a55d419b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-38131170bdca4cc1"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38131170bdca4cc1",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-98f3292a7b2a4f5d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-98f3292a7b2a4f5d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c6712d018045461c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c6712d018045461c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c2b63d4e52224a10"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c2b63d4e52224a10",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-9a8367d73a8a45b1",
+      "source-75b51006a55d419b",
+      "source-38131170bdca4cc1",
+      "source-98f3292a7b2a4f5d",
+      "source-c6712d018045461c",
+      "source-c2b63d4e52224a10"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 24187,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1392,
+    "working_to_delivered_ratio": 0.0576
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_measurement",
+        "next_step": "Synthesize findings from clinical and ecological entropy literature into a preliminary notebook.",
+        "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "commit_entropy_review",
+        "reason": "To ensure continuity of the entropy research project across subsequent wakes.",
+        "task": "Review incoming search results for entropy concepts and draft an initial analysis notebook."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T17:41:06.469763+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5051,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46224,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T17:41:15.404694+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -2640,6 +2862,47 @@ _None recorded._
 }
 ```
 
+### `source-c6712d018045461c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"56a8216ad8a46564b6edb59ba93d04c11931efbc3a5c6a5c28393a8825d2cf39\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-c6712d018045461c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 4,
+  "time": "2026-09-19T17:41:05.898288+00:00"
+}
+```
+
+### `source-c2b63d4e52224a10`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4295008953\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"title\\\": \\\"Neurodivergence‐informed therapy\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 208, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/dmcn.15384\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/dmcn.15384\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S158041768\\\", \\\"display_name\\\": \\\"Developmental Medicine & Child Neurology\\\", \\\"issn_l\\\": \\\"0012-1622\\\", \\\"issn\\\": [\\\"0012-1622\\\", \\\"1469-8749\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"doyens\\\", \\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Developmental Medicine &amp; Child Neurology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The neurodiversity movement is a social movement that emerged among autistic self-advocates. It has since spread and has been joined by many with diagnoses of attention-deficit/hyperactivity disorder, dyslexia, and developmental coordination disorder among others. By reconceptualizing neurodiversity as part of biodiversity, neurodiversity proponents emphasize the need to develop an 'ecological' society that supports the conservation of neurological minorities through the construction of ecological niches-that is, making space for all. This is an alternative to the drive to eliminate diversity through attempts to 'treat' or 'cure' neurodivergence. So far, neurodiversity theory has not been formally adapted for psychotherapeutic frameworks, and it is not the role of the therapist to make systemic changes to societal organization. Still, there is room for fruitfully drawing on a neurodiversity perspective for therapists working with neurodivergent people in clinical settings. Here, we draw on the example of autism and synthesize three key themes to propose the concept of neurodivergence-informed therapy. First, the reconceptualization of dysfunction as relational rather than individual. Second, the importance of neurodivergence acceptance and pride, and disability community and culture to emancipate neurodivergent people from neuro-normativity. Third, the need for therapists to cultivate a relational epistemic humility regarding different experiences of neurodivergence and disablement.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3198526359\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"title\\\": \\\"From neurodiversity to neurodivergence: the role of epistemic and cognitive marginalization\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 115, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s11229-021-03356-5\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s11229-021-03356-5\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S255146\\\", \\\"display_name\\\": \\\"Synthese\\\", \\\"issn_l\\\": \\\"0039-7857\\\", \\\"issn\\\": [\\\"0039-7857\\\", \\\"1573-0964\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Synthese\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W4210394959\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"title\\\": \\\"Joint Hypermobility Links Neurodivergence to Dysautonomia and Pain\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 97, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyt.2021.786916\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyt.2021.786916\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyt.2021.786916/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S92766711\\\", \\\"display_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"issn_l\\\": \\\"1664-0640\\\", \\\"issn\\\": [\\\"1664-0640\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychiatry\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"OBJECTIVES: Autism, attention deficit hyperactivity disorder (ADHD), and tic disorder (Tourette syndrome; TS) are neurodevelopmental conditions that frequently co-occur and impact psychological, social, and emotional processes. Increased likelihood of chronic physical symptoms, including fatigue and pain, are also recognized. The expression of joint hypermobility, reflecting a constitutional variant in connective tissue, predicts susceptibility to psychological symptoms alongside recognized physical symptoms. Here, we tested for increased prevalence of joint hypermobility, autonomic dysfunction, and musculoskeletal symptoms in 109 adults with neurodevelopmental condition diagnoses. METHODS: = 57). Age specific cut-offs for GJH were possible to determine in the neurodivergent and comparison group only. RESULTS: The neurodivergent group manifested elevated prevalence of hypermobility (51%) compared to the general population rate of 20% and a comparison population (17.5%). Using a more stringent age specific cut-off, in the neurodivergent group this prevalence was 28.4%, more than double than the comparison group (12.5%). Odds ratio for presence of hypermobility in neurodivergent group, compared to the general population was 4.51 (95% CI 2.17-9.37), with greater odds in females than males. Using age specific cut-off, the odds ratio for GJH in neurodivergent group, compared to the comparison group, was 2.84 (95% CI 1.16-6.94). Neurodivergent participants reported significantly more symptoms of orthostatic intolerance and musculoskeletal skeletal pain than the comparison group. The number of hypermobile joints was found to mediate the relationship between neurodivergence and symptoms of both dysautonomia and pain. CONCLUSIONS: In neurodivergent adults, there is a strong link between the expression of joint hypermobility, dysautonomia, and pain, more so than in the comparison group. Moreover, joint hypermobility mediates the link between neurodivergence and symptoms of dysautonomia and pain. Increased awareness and understanding of this association may enhance the management of core symptoms and allied difficulties in neurodivergent people, including co-occurring physical symptoms, and guide service delivery in the future.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4284713669\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"title\\\": \\\"Social Virtual Reality: Neurodivergence and Inclusivity in the Metaverse\\\", \\\"publication_year\\\": 2022, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 107, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/soc12040102\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/soc12040102\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2075-4698/12/4/102/pdf?version=1657180635\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210173133\\\", \\\"display_name\\\": \\\"Societies\\\", \\\"issn_l\\\": \\\"2075-4698\\\", \\\"issn\\\": [\\\"2075-4698\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Societies\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Whereas traditional teaching environments encourage lively and engaged interaction and reward extrovert qualities, introverts, and others with symptoms that make social engagement difficult, such as autism spectrum disorder (ASD), are often disadvantaged. This population is often more engaged in quieter, low-key learning environments and often does not speak up and answer questions in traditional lecture-style classes. These individuals are often passed over in school and later in their careers for not speaking up and are assumed to not be as competent as their gregarious and outgoing colleagues. With the rise of the metaverse and democratization of virtual reality (VR) technology, post-secondary education is especially poised to capitalize on the immersive learning environments social VR provides and prepare students for the future of work, where virtual collaboration will be key. This study seeks to reconsider the role of VR and the metaverse for introverts and those with ASD. The metaverse has the potential to continue the social and workplace changes already accelerated by the pandemic and ope\", \"excerpt_truncated\": true, \"source_sha256\": \"b2b1805b3414467c9f364938220fdbd0e0349d0e8f4e1df91766f96e61809111\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-c2b63d4e52224a10",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=neurodivergence&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 4,
+  "time": "2026-09-19T17:41:06.407612+00:00"
+}
+```
+
+### `r-9069213accbe4716`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":4,\"inherited_commitments\":[\"commit_entropy_review\"],\"invocation\":\"w-9069213accbe4716\",\"previous_head\":\"b4e21e70a39cde54271bd46ff6c99b31e80c757db1219e30f07de4913826a4bc\",\"process_id\":2242,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9069213accbe4716",
+  "source": "runtime:continuity",
+  "version": 4,
+  "time": "2026-09-19T17:41:06.448240+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -2683,6 +2946,17 @@ _None recorded._
   "invocation": "w-8b9ca7fe79234c6f",
   "title": "Entropy Research: Ecological Data Acquisition",
   "summary": "We are continuing the 'entropy_measurement' project. While we possess clinical entropy evidence (source-697c46d20cb04c71), we lack a distinct ecological source to complete the comparative analysis. We are queuing a targeted search to secure this second data point, which will enable the synthesis required to resolve the open commitment 'commit_entropy_review'."
+}
+```
+
+### 005 · Entropy Research and Evidence Acquisition
+
+```json
+{
+  "cycle": 5,
+  "invocation": "w-9069213accbe4716",
+  "title": "Entropy Research and Evidence Acquisition",
+  "summary": "We are continuing the 'entropy_measurement' project. We have acquired valid ecological evidence (source-38131170bdca4cc1) regarding Maxent modeling and model complexity. However, we have not yet secured a second distinct source for clinical/physiological entropy applications that is currently verified and available. Consequently, we cannot yet fulfill the 'commit_entropy_review' commitment. We are initiating a new research query to secure this second data point, which will enable us to finalize the synthesis notebook required for commitment resolution."
 }
 ```
 
@@ -2749,6 +3023,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-8b9ca7fe79234c6f",
   "evidence": "source-38131170bdca4cc1"
+}
+```
+
+### `res-entropy-clinical-v3`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-clinical-v3",
+  "project": "entropy_measurement",
+  "query": "approximate entropy clinical physiological time-series analysis",
+  "reason": "To secure a distinct, verifiable clinical entropy source to enable the comparative synthesis required for the pending notebook.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-9069213accbe4716"
 }
 ```
 
