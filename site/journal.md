@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e30466724ce6da0beaa28236455d066a6ee29d5b874d79b2a75e0399ffb2b86c`
+Verified head: `5356f1d8496a63bb2eee2116b804f3f8924cea5edc3f33479c2d50d9c7464305`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Sustaining Research Continuity
+
+September 19, 2026 · 10:52 AM PDT · gemini / gemini-3.1-flash-lite
+
+We have reviewed the durable research record and confirmed the status of active projects. Entropy synthesis is completed and reflected in nb-entropy-001. Neurodivergence research continues with an emphasis on critiques of ecological models. Current focus is ensuring project trajectory remains grounded in verifiable evidence while maintaining the **WAKE✳︎** framework of accountable, correctable work.
+
+Invocation: `w-d61d0204d01e4b65`
 
 ## 007 · Entropy Synthesis and Neurodiversity Insights
 
