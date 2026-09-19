@@ -433,8 +433,13 @@ class ResearchTests(unittest.TestCase):
 
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
-        self.source("s1")
-        self.source("s2")
+        with self.engine.store.lock():
+            for identifier in ("s1", "s2"):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
+                    content=json.dumps({"scope":"synthetic test fixture", "excerpt":"Only a fixture",
+                                        "verification_required":True}),
+                    actor="collector", scope="collected"))
         proposal = [project(), notebook(["s1", "s2"], "Volcanic aerosols measurably cool global surface temperatures.")]
         self.assertEqual(self.propose(proposal)["status"], "rejected")
 
