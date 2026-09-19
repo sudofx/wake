@@ -1,3 +1,11 @@
+# =============================================================================
+# TESTING INTENT — system
+#
+# Executable documentation: passing cases preserve promised behavior; rejection
+# cases preserve protected boundaries. Never weaken an invariant merely to make
+# CI green; understand why the test exists before changing it.
+# =============================================================================
+
 # WAKE✳︎ MAINTAINER NOTE
 #
 # Executable specification for system.
