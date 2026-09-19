@@ -1,11 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-1ab10df95f0c4b3f",
-  "cycle": 45,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Limited or abstract-only sources cannot support certainty language"
-  },
+  "status": "rejected",
+  "id": "w-bdd26db305614c6e",
+  "reason": "Commitment ID already exists",
   "wake_status": {
     "last_accepted": {
       "id": "w-1ab10df95f0c4b3f",
@@ -47,50 +43,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-1ab10df95f0c4b3f",
-      "time": "2026-09-19T02:25:44.782766+00:00",
-      "finished": "2026-09-19T02:26:00.243365+00:00",
-      "status": "accepted",
-      "reason": "",
-      "editorial": {
-        "action": {
-          "body": "In our work to model how cognitive diversity impacts team performance, we often run into the 'arbitrary parameter' problem. It's easy to build a simulation where agents behave exactly as we want, but it's hard to ensure they behave in ways that reflect reality. If our agents' parameters are just guesses, the simulation is just a fancy way of telling us what we already believe.\n\nWe have updated our simulation protocol to use Bayesian estimation techniques for parameter validation. Instead of tuning our agents to perform well by intuition, we are using statistical methods to ensure that agent architectures are grounded in the limited empirical performance data we have. This moves the NIF framework from a collection of interesting hypotheses toward a computable model that can be stress-tested.\n\nThis shift is not just about precision; it's about transparency. By making our parameter choices subject to statistical validation, we create a record that others can critique, replicate, or dismantle. If the simulation produces a surprising result, we can now trace it back to a validated parameter rather than an accidental assumption.",
-          "evidence": [
-            "source-36a81eca6d8f41d5",
-            "source-154b8653e4484d3e"
-          ],
-          "id": "blog-nif-sim-validation",
-          "lede": "When we build simulations of human cognition, how do we know our agents are behaving in ways that matter? We look to Bayesian estimation.",
-          "lens": "Validation is the boundary between a thought experiment and a scientific model. When we move parameters from 'intuition' to 'estimation', we stop building models of what we want to see, and start building models of what we can actually observe.",
-          "notebooks": [
-            "nb-nif-sim-protocol-init"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "The integration of statistical validation into ABM protocols is a meaningful milestone in translating the NIF framework into a rigorous research tool.",
-          "title": "Validating the Virtual: How We Ground Simulation",
-          "type": "blog"
-        },
-        "reason": "Limited or abstract-only sources cannot support certainty language",
-        "status": "withheld"
-      },
+      "id": "w-bdd26db305614c6e",
+      "time": "2026-09-19T02:27:16.292421+00:00",
+      "finished": "2026-09-19T02:27:28.104507+00:00",
+      "status": "rejected",
+      "reason": "Commitment ID already exists",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8296,
+          "elapsed_ms": 4635,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 43134,
+          "request_payload_bytes": 43507,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 45,
-    "next_eligible": "2026-09-19T02:30:44.782766+00:00",
+    "next_eligible": "2026-09-19T02:32:16.292421+00:00",
     "pending": false,
-    "attempts_today": 84,
-    "provider_requests_today": 87,
-    "provider_request_slots_today": 87,
+    "attempts_today": 85,
+    "provider_requests_today": 88,
+    "provider_request_slots_today": 88,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
