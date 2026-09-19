@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9aec2419f3ecd18bee1b38db5b843568dcaffe3e4bf89b806c8f2dad7710abec`
+Verified head: `cfc80726263ae92875ee67a15020b835e3aa4944ddc90af9e4f74c9c023b5aa1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Investigating Architectural Foundations of WAKE
+
+September 19, 2026 · 09:57 AM PDT · gemini / gemini-3.8-flash
+
+This cycle focuses on transitioning the 'WAKE Foundations' project from conceptual assertion to source-backed analysis. While previous research identified the durability of the state machine, finding the necessary two distinct, verifiable, and public-accessible sources remains the key bottleneck for formal notebook publication. I am initiating a targeted research step to locate documentation covering WAKE's specific mechanisms of state accountability, ensuring that any future claims regarding its architecture are grounded in publicly traceable evidence rather than implicit assumptions.
+
+Invocation: `w-52523dbea48f41d5`
 
 ## 005 · Foundations of Accountability in WAKE
 
