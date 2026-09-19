@@ -1650,6 +1650,32 @@
       "source": "runtime:continuity",
       "version": 32,
       "time": "2026-09-19T01:48:23.022008+00:00"
+    },
+    "source-03ecd5964fd844db": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=objective+task+performance+metrics+for+cognitive+diversity+in+small+groups&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.7717/peerj-cs.1501/table-3\\\", \\\"title\\\": [\\\"Table 3: Performance of seven groups of single-objective multi-task benchmarking problems.\\\"], \\\"URL\\\": \\\"https://doi.org/10.7717/peerj-cs.1501/table-3\\\"}, {\\\"DOI\\\": \\\"10.1101/2021.04.25.441300\\\", \\\"title\\\": [\\\"Task-independent metrics of computational hardness predict human cognitive performance\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                <jats:p>The survival of human organisms depends on our ability to solve complex tasks in the face of limited cognitive resources. However, little is known about the factors that drive the complexity of those tasks. Here, building on insights from computational complexity theory, we quantify the computational hardness of cognitive tasks using a set of task-independent metrics related to the computational resource requirements of individual instances of a task. We then examine the relation between those metrics and human behavior and find that they predict both time spent on a task as well as accuracy in three canonical cognitive tasks. Our findings demonstrate that performance in cognitive tasks can be predicted based on generic metrics of their inherent computational hardness.</jats:p>\\\\n                <jats:sec>\\\\n                  <jats:title>Teaser</jats:title>\\\\n                  <jats:p>The ability of humans to solve cognitive tasks is affected by generic mathematical properties of problems related to their computational complexity.</jats:p>\\\\n                </jats:sec>\\\", \\\"URL\\\": \\\"https://doi.org/10.1101/2021.04.25.441300\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 4, 26]]}}, {\\\"DOI\\\": \\\"10.21203/rs.3.rs-8695531/v1\\\", \\\"title\\\": [\\\"A Many-Objective Optimization Algorithm Integrating Convergence and Diversity Metrics\\\"], \\\"abstract\\\": \\\"<title>Abstract</title>\\\\n                <p>Currently, many critical fields in science, society, and engineering involve Many-objective Optimization Problems (MaOPs) composed of numerous decision variables. A key challenge with such problems is the difficulty in simultaneously maintaining good diversity and convergence during the search process. To address this challenge, this paper proposes a dual-indicator-based multi-objective optimization framework (TDC-MOEA), which transforms the multi-objective space into a bi-objective space based on convergence and diversity metrics. Firstly, the population is clustered into multiple sub-populations according to reference points, shifting the focus of subsequent operations from individuals to sub-populations, and the convergence and diversity metrics for each sub-population are calculated. Secondly, to further enhance convergence and diversity, a selection process is applied to each sub-population, aiming to improve both the local convergence within sub-populations and the overall diversity. This algorithmic framework incorporates polynomial crossover and binomial mutation as core evolutionary operators, ultimately constructing the TDC-MOEA algorithm. Experimental results demonstrate that the TDC-MOEA algorithm can obtain Pareto solutions with good convergence and a wide distribution, while also acquiring multiple Pareto solution sets for the original multi-objective optimization problem. Comparative results against seven state-of-the-art MaOP algorithms on 39 test instances show that the TDC-MOEA algorithm possesses strong competitiveness and superior overall performance. In a practical application, the algorithm effectively optimized five objectives—power output, ecological function, thermal efficiency, power density, and efficient power—for a simple endoreversible closed Brayton cycle, achieving favorable results.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.21203/rs.3.rs-8695531/v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 2, 17]]}}, {\\\"DOI\\\": \\\"10.1007/978-94-011-0103-5_22\\\", \\\"title\\\": [\\\"Cognitive Task Performance Using a Spatial Decision Support System for Groups\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-94-011-0103-5_22\\\", \\\"published\\\": {\\\"date-parts\\\": [[1995]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"51e8a2486e1eeda031038350dfdeb1232cf196b4a100cc32afe833287e016381\"}",
+      "id": "source-03ecd5964fd844db",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=objective+task+performance+metrics+for+cognitive+diversity+in+small+groups&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 33,
+      "time": "2026-09-19T01:49:48.413245+00:00"
+    },
+    "source-01162d6cf9644a67": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31235/osf.io/hx72k_v1\\\", \\\"title\\\": [\\\"Neurodivergent Intelligence Framework: A Dimensional Framework for Understanding Cognition in Neurodivergent Profiles and Psychiatric Risk\\\"], \\\"abstract\\\": \\\"<p>Emerging evidence in neurodevelopmental research increasingly indicates that individuals diagnosed with Autism Spectrum Disorder (ASD) and Attention-Deficit/Hyperactivity Disorder (ADHD) may demonstrate amplified pattern recognition capabilities as a core cognitive feature. Historically, these capacities have been framed as deficits within prevailing diagnostic and clinical traditions rather than as expressions of differentiated cognitive architecture. However, the field has yet to develop a framework that accounts for the distinct types of capabilities across these profiles or the developmental conditions that shape their expression. The present paper introduces the Neurodivergent Intelligence Framework (NIF), proposing that individuals within these diagnostic categories exhibit two broad pattern recognition orientations: one externally oriented, functioning primarily through real-time environmental input, and the other internally oriented, operating through subconscious and reflective processing. Within each orientation, the domain toward which pattern recognition is directed produces distinct processing combinations, yielding four total combinations with different functional strengths, neurochemical dependencies, and vulnerability profiles. These differences are proposed to produce differential responses to early developmental environments, with long-term risk emerging when those environments fail to meet the cognitive demands of the individual’s specific architecture. Beginning in early developmental windows, exposure to social dynamics, parenting styles, and institutional contexts may shape neuroplasticity in ways that either support or suppress these cognitive profiles, with suppression potentially producing neurochemical consequences across dopamine, serotonin, oxytocin, and cortisol systems. When this suppression becomes chronic across critical developmental periods, the framework proposes that resulting cognitive and neurochemical strain may increase risk for impulsivity-driven coping responses and psychiatric comorbidity. In cases where these suppressive patterns coincide with trauma exposure and prolonged environmental misalignment, the framework further proposes elevated risk for conditions including schizophrenia, OCD, and bipolar disorder. The NIF also identifies elevated substance use disorder risk as a downstream consequence of chronic architectural misidentification and unmet neurochemical demands.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.31235/osf.io/hx72k_v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 6, 4]]}}, {\\\"DOI\\\": \\\"10.1080/07370008.2025.2463652\\\", \\\"title\\\": [\\\"Time Literacy: Academic Support for Neurodivergent Students in Higher Education\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/07370008.2025.2463652\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 2, 22]]}}, {\\\"DOI\\\": \\\"10.20944/preprints202505.1925.v1\\\", \\\"title\\\": [\\\"Quantum-Like Models for Bridging Neurodivergent and Neurotypical Cognition: Insights from Ambiguous Images Like the Mature-Young Ladies\\\"], \\\"abstract\\\": \\\"<jats:p>This paper derives a quantum-like mathematical modeling brain's concept generation, providing a framework to define and differentiate neurodivergent and neurotypical cognitive processes. The model reveals thermodynamic aspects of quantum-like collapse processes, linking them to heat emission in cognitive activities. By examining the cognitive mechanisms of neurodivergent and neurotypical observers, this study offers insights into their distinct approaches to concept recognition and interpretation.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202505.1925.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 26]]}}, {\\\"DOI\\\": \\\"10.2139/ssrn.5318429\\\", \\\"title\\\": [\\\"Doctoral Thesis: The Neurodivergent Spark -A Causal Link Between Autistic Cognition and the Paradigm-Shifting Innovation in Human History\\\"], \\\"URL\\\": \\\"https://doi.org/10.2139/ssrn.5318429\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6a6047cecab4a527f7bf50ef34421d8a001fea661b26c9fdb27262bf96996d5b\"}",
+      "id": "source-01162d6cf9644a67",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 33,
+      "time": "2026-09-19T01:49:48.967920+00:00"
+    },
+    "r-21453507a3d34e82": {
+      "actor": "runtime",
+      "content": "{\"base_version\":33,\"inherited_commitments\":[],\"invocation\":\"w-21453507a3d34e82\",\"previous_head\":\"5f0d531c664f655113a1f715712ad7c1615aa7f09a32cdf34fca6d886e5645f7\",\"process_id\":2230,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-21453507a3d34e82",
+      "source": "runtime:continuity",
+      "version": 33,
+      "time": "2026-09-19T01:49:49.335741+00:00"
     }
   },
   "journal": [
@@ -18580,6 +18606,339 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T01:48:42.464649+00:00",
       "reason": ""
+    },
+    "w-21453507a3d34e82": {
+      "base_version": 33,
+      "charged": true,
+      "id": "w-21453507a3d34e82",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 33,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "proj-neuro-ci",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 10,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2230,
+      "provider": "gemini",
+      "quota_day": "2026-09-18",
+      "request_hash": "7f0d916fb9e7e1743f8ce9ed9e33ff32beddf07b43af58f24d3255e4171c52da",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-cohuman-socio-cognitive",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-ci-synthesis",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-0c2333f085ed4ad4",
+              "source-b83c6629579f49c4",
+              "source-35e7097ce5fd4571",
+              "source-429feb1b0f854afa"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-nif-pilot-structure",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-59638b11fecd412b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-59638b11fecd412b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b688d1c118594a09"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b688d1c118594a09",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fa5a451bf3cc4a49"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fa5a451bf3cc4a49",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-85a08dd64a2b488f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-85a08dd64a2b488f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-03ecd5964fd844db"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-03ecd5964fd844db",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-01162d6cf9644a67"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-01162d6cf9644a67",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-79489f1f420142f8",
+          "source-54fce5c98c5d4219",
+          "source-52749aef80194962",
+          "source-91b578462fd24b3a",
+          "source-acf2a441376b4f56",
+          "source-23457d958d724d22",
+          "source-f6453aa48fe94fb0",
+          "source-9f91d290c2724f04",
+          "source-9de15dbd0e9a4dc3",
+          "source-35e7097ce5fd4571",
+          "source-30ad456b3b004594",
+          "source-7411fad5ff8d4285",
+          "source-e81a7ec8030b4f1e",
+          "source-0c2333f085ed4ad4",
+          "source-b83c6629579f49c4",
+          "source-429feb1b0f854afa",
+          "source-59638b11fecd412b",
+          "source-b688d1c118594a09",
+          "source-fa5a451bf3cc4a49",
+          "source-85a08dd64a2b488f",
+          "source-03ecd5964fd844db",
+          "source-01162d6cf9644a67"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 22,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 21472,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 22,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3876,
+        "working_to_delivered_ratio": 0.1805
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-neuro-ci",
+            "next_step": "Define specific task parameters for a constrained communication pilot that engage NIF-based pattern recognition.",
+            "question": "How do the differentiated cognitive architectures proposed in NIF (Neurodivergent Intelligence Framework) influence group problem-solving and collective reasoning?",
+            "title": "Neurodivergent Intelligence in Collective Structures"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Emerging frameworks partition AI's contribution to collective intelligence into collective memory, collective attention, and collective reasoning.",
+            "confidence": 0.7,
+            "id": "bel-ci-three-elements",
+            "provenance": [
+              "source-79489f1f420142f8"
+            ],
+            "status": "active",
+            "why_retained": "The editorial metadata for 'AI for collective intelligence' explicitly outlines these three socio-cognitive dimensions as areas where AI can enhance group capabilities."
+          },
+          {
+            "claim": "The COHUMAIN framework offers a socio-cognitive architecture for studying collective human-machine intelligence as an integrated system rather than passive tool use.",
+            "confidence": 0.6,
+            "id": "bel-cohuman-framework",
+            "provenance": [
+              "source-54fce5c98c5d4219"
+            ],
+            "status": "active",
+            "why_retained": "The abstract for COHUMAIN explicitly defines it as the study of the capability of an integrated human and machine system to achieve goals, emphasizing an active collaborative structure."
+          },
+          {
+            "claim": "The hypothesis that NIF-defined pattern recognition orientations influence collective reasoning remains a theoretical proposal, as empirical validation in team-level studies is hindered by reliance on self-reported competence rather than direct performance measurement.",
+            "confidence": 0.6,
+            "id": "bel-nif-ci-theoretical",
+            "provenance": [
+              "source-4ae464e2c7ef4861",
+              "source-35e7097ce5fd4571",
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-30ad456b3b004594"
+            ],
+            "status": "active",
+            "why_retained": "New research confirms that existing metrics for 'cognitive diversity' are primarily self-reported. This supports the classification of NIF applications as theoretical rather than empirically validated performance models."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-cohuman-socio-cognitive",
+            "project": "proj-collective-intel-ai",
+            "provenance": [
+              "source-79489f1f420142f8",
+              "source-54fce5c98c5d4219",
+              "source-52749aef80194962",
+              "source-91b578462fd24b3a",
+              "source-acf2a441376b4f56",
+              "source-23457d958d724d22",
+              "source-f6453aa48fe94fb0"
+            ],
+            "revision": 6,
+            "summary": "Updated comparative analysis of performance metrics across industrial and creative human-AI collaborations.",
+            "title": "Socio-Cognitive Dimensions of AI in Human-Machine Teams"
+          },
+          {
+            "id": "nb-nif-ci-synthesis",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-9f91d290c2724f04",
+              "source-9de15dbd0e9a4dc3",
+              "source-35e7097ce5fd4571",
+              "source-30ad456b3b004594",
+              "source-7411fad5ff8d4285",
+              "source-e81a7ec8030b4f1e"
+            ],
+            "revision": 7,
+            "summary": "NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.",
+            "title": "Preliminary Synthesis: NIF and Group Cognitive Diversity"
+          },
+          {
+            "id": "nb-nif-pilot-structure",
+            "project": "proj-neuro-ci",
+            "provenance": [
+              "source-0c2333f085ed4ad4",
+              "source-b83c6629579f49c4",
+              "source-35e7097ce5fd4571",
+              "source-429feb1b0f854afa"
+            ],
+            "revision": 3,
+            "summary": "Refining the pilot structure by shifting to constrained communication paradigms to minimize social confounding.",
+            "title": "Baseline Task Structure for NIF Cognitive Diversity Pilot"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-19T01:49:49.461751+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 9475,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 42434,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T01:50:04.832458+00:00",
+      "reason": "Only open commitments can be resolved"
     }
   },
   "pending": null,
@@ -18871,8 +19230,9 @@
       "query": "objective task performance metrics for cognitive diversity in small groups",
       "reason": "Identifying concrete, outcome-based metrics to replace reliance on subjective self-report questionnaires.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-ab6bdd0f3bf8413e"
+      "status": "collected",
+      "created_by": "w-ab6bdd0f3bf8413e",
+      "evidence": "source-03ecd5964fd844db"
     }
   },
   "research_topics": [
