@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 3  
+**Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5c85594bd31f6a183f891de349cfbf08edb0efda65e86118ea95d55883bab922`
+**Verified head:** `c515cfe8556706591cfc78f1de775d19c71e65d06dc233cecf413498974edd86`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -40,9 +40,30 @@
   "reason": "Allows time for the collector to retrieve new evidence before synthesis is attempted.",
   "task": "Review newly collected sources on AI's role in collective intelligence and evaluate eligibility for a synthesis notebook",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-f6357c8f049042bf",
-  "created_version": 3
+  "created_version": 3,
+  "evidence": [
+    "source-a0cea00b2a5a41e7"
+  ],
+  "resolution_reason": "Reviewed source-a0cea00b2a5a41e7. It contains metadata and abstracts on collective intelligence literature, confirming the editorial framework while indicating that more detailed mechanical accounts of group reasoning require further retrieval.",
+  "resolved_by": "w-0f5c2046704c4710",
+  "resolved_version": 4
+}
+```
+
+### `commit-ci-notebook-readiness`
+
+```json
+{
+  "due_cycle": 6,
+  "id": "commit-ci-notebook-readiness",
+  "reason": "Tracking requirements for notebook publication under project ci-ai-support.",
+  "task": "Evaluate whether new search receipts provide a second substantive source to draft an initial research notebook on AI in collective intelligence.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-0f5c2046704c4710",
+  "created_version": 4
 }
 ```
 
@@ -609,6 +630,228 @@ _None recorded._
 }
 ```
 
+### `w-0f5c2046704c4710`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "id": "w-0f5c2046704c4710",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 3,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "ci-ai-support",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "AI in Collective Intelligence"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2263,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "bfd62bbbf7e2e2a95e7e1a41085964e02cdcce8b54b2c624067ec1a139d2452a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-review-ci-evidence",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-ac3efb3639af424b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ac3efb3639af424b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2a83bb67ddfb4800"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2a83bb67ddfb4800",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1665c4b6ebab4619"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1665c4b6ebab4619",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0aa0900542a149bd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0aa0900542a149bd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b91ad1a7e4a0468b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b91ad1a7e4a0468b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a0cea00b2a5a41e7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a0cea00b2a5a41e7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-ac3efb3639af424b",
+      "source-2a83bb67ddfb4800",
+      "source-1665c4b6ebab4619",
+      "source-0aa0900542a149bd",
+      "source-b91ad1a7e4a0468b",
+      "source-a0cea00b2a5a41e7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 23614,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 1503,
+    "working_to_delivered_ratio": 0.0636
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ci-ai-support",
+        "next_step": "Synthesize literature on socio-cognitive architectures and AI-supported group functions.",
+        "question": "How can AI technologies concretely enhance collective memory, attention, and reasoning in group environments?",
+        "title": "AI in Collective Intelligence"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Research frameworks for AI-assisted collective intelligence categorize AI's contributions into three distinct socio-cognitive functions: collective memory, collective attention, and collective reasoning.",
+        "confidence": 0.8,
+        "id": "bel-ci-cognitive-taxonomy",
+        "provenance": [
+          "source-3336970370754763"
+        ],
+        "status": "active",
+        "why_retained": "The editorial abstract for 'AI for collective intelligence' explicitly proposes this three-part socio-cognitive architecture to analyze and design group cognitive enhancements."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 4,
+        "id": "commit-review-ci-evidence",
+        "reason": "Allows time for the collector to retrieve new evidence before synthesis is attempted.",
+        "task": "Review newly collected sources on AI's role in collective intelligence and evaluate eligibility for a synthesis notebook"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T15:27:59.830985+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3291,
+      "http_status": 200,
+      "model": "gemini-3.8-flash",
+      "request_payload_bytes": 43272,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.8-flash",
+  "finished": "2026-09-19T15:28:07.028556+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-963ce743d2b14c3c`
@@ -734,6 +977,47 @@ _None recorded._
 }
 ```
 
+### `source-b91ad1a7e4a0468b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/hesc/9780198559108.003.0001\\\", \\\"title\\\": [\\\"Symmetry elements, symmetry operations and point groups\\\"], \\\"abstract\\\": \\\"<p>This chapter describes symmetrical shapes in terms of a plane or line of symmetry and axis of symmetry, which are considered the most identifiable ones exhibited by the majority of symmetrical molecular species. It clarifies that a shape possesses a plane of symmetry if the operation of reflection in the plane results in an equivalent mirror image. It also examines how a shape possesses an axis of symmetry when simple rotation about such an axis leads to an equivalent configuration. The chapter specifies the location of a plane within a molecule and covers various subscripts that identify the position of the plane either in relation to other symmetry elements or to an established coordinate system. It discusses the rotation-reflection axis, which represent the rotational equivalence exhibited by some shapes.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/hesc/9780198559108.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001, 7, 26]]}}, {\\\"DOI\\\": \\\"10.3390/sym2031401\\\", \\\"title\\\": [\\\"Symmetry, Symmetry Breaking and Topology\\\"], \\\"abstract\\\": \\\"<jats:p>The ground state of a system with symmetry can be described by a group G. This symmetry group G can be discrete or continuous. Thus for a crystal G is a finite group while for the vacuum state of a grand unified theory G is a continuous Lie group. The ground state symmetry described by G can change spontaneously from G to one of its subgroups H as the external parameters of the system are modified. Such a macroscopic change of the ground state symmetry of a system from G to H correspond to a “phase transition”. Such phase transitions have been extensively studied within a framework due to Landau. A vast range of systems can be described using Landau’s approach, however there are also systems where the framework does not work. Recently there has been growing interest in looking at such non-Landau type of phase transitions. For instance there are several “quantum phase transitions” that are not of the Landau type. In this short review we first describe a refined version of Landau’s approach in which topological ideas are used together with group theory. The combined use of group theory and topological arguments allows us to determine selection rule which forbid transitions from G to certain of its subgroups. We end by making a few brief remarks about non-Landau type of phase transition.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym2031401\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010, 7, 7]]}}, {\\\"DOI\\\": \\\"10.3390/sym11010117\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Symmetry in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym11010117\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 19]]}}, {\\\"DOI\\\": \\\"10.3390/sym14020264\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Symmetry in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/sym14020264\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"79e8d4e2d49e1ad636aa2e43eb841f436512db29de3c9e3225a771d22e298b89\", \"verification_required\": true, \"topic_domain\": \"symmetry\"}",
+  "id": "source-b91ad1a7e4a0468b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=symmetry&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-19T15:27:58.516787+00:00"
+}
+```
+
+### `source-a0cea00b2a5a41e7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1177/26339137221114176\\\", \\\"title\\\": [\\\"New books on collective intelligence: Growing the field: Interesting new books on collective intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137221114176\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 8]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251360003\\\", \\\"title\\\": [\\\"Opinion for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>This short piece shares thoughts on some recent research and books related to collective intelligence - on topics ranging from democracy and institutions to LLMs and animals.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251360003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 7]]}}, {\\\"DOI\\\": \\\"10.1177/26339137251328909\\\", \\\"title\\\": [\\\"AI for collective intelligence\\\"], \\\"abstract\\\": \\\"<jats:p>AI has emerged as a transformative force in society, reshaping economies, work, and everyday life. We argue that AI can not only improve short-term productivity but can also enhance a group’s collective intelligence. Specifically, AI can be employed to enhance three elements of collective intelligence: collective memory, collective attention, and collective reasoning. This editorial reviews key emerging work in the area to suggest ways in which AI can support the socio-cognitive architecture of collective intelligence. We will then briefly introduce the articles in the “AI for Collective Intelligence” special issue.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/26339137251328909\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 4]]}}, {\\\"DOI\\\": \\\"10.1177/26339137241285900\\\", \\\"title\\\": [\\\"Book Review: A few recent books on Collective Intelligence\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/26339137241285900\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 3, 3]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6855af246f009f27575c937965a71b78bcdb0187904829d8a3e8824fe251ad27\", \"verification_required\": true, \"topic_domain\": \"collective_intelligence\"}",
+  "id": "source-a0cea00b2a5a41e7",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=collective+intelligence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 3,
+  "time": "2026-09-19T15:27:59.804246+00:00"
+}
+```
+
+### `r-0f5c2046704c4710`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[\"commit-review-ci-evidence\"],\"invocation\":\"w-0f5c2046704c4710\",\"previous_head\":\"e00f495394ddfc615eee5482aa27f60c323b85e8c68b3b93c6f242b9e1c9f964\",\"process_id\":2263,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-0f5c2046704c4710",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-19T15:27:59.823079+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating research: AI and collective intelligence architectures
@@ -766,6 +1050,17 @@ _None recorded._
   "invocation": "w-f6357c8f049042bf",
   "title": "Expanding the Collective Intelligence Evidence Base",
   "summary": "We are seeking to expand our literature base beyond the initial editorial framework on AI-supported collective intelligence. To publish a robust research notebook, we require a second distinct source to compare and contrast socio-cognitive mechanisms."
+}
+```
+
+### 004 · Assessing crossref returns for collective intelligence
+
+```json
+{
+  "cycle": 4,
+  "invocation": "w-0f5c2046704c4710",
+  "title": "Assessing crossref returns for collective intelligence",
+  "summary": "Cycle 4 inspection of incoming Crossref search results. The collector returned batch source-a0cea00b2a5a41e7 for 'collective intelligence', which re-confirms the 2025 editorial 'AI for collective intelligence' (DOI 10.1177/26339137251328909) and lists brief notes on LLMs and institutions (DOI 10.1177/26339137251360003). However, we still lack a second distinct substantive source examining group-level socio-cognitive mechanisms in detail. Fulfilling the inherited commitment commit-review-ci-evidence and queuing a targeted query for empirical studies on hybrid AI-human group reasoning."
 }
 ```
 
@@ -813,8 +1108,24 @@ _None recorded._
   "query": "AI systems socio-cognitive collective reasoning memory attention",
   "reason": "Seeking a second distinct collected bibliographic source to analyze the specific interactions between AI systems and human group cognitive functions.",
   "type": "research",
+  "status": "superseded",
+  "created_by": "w-f6357c8f049042bf",
+  "evidence": null
+}
+```
+
+### `res-ci-hybrid-teams-004`
+
+```json
+{
+  "domain": "collective_intelligence",
+  "id": "res-ci-hybrid-teams-004",
+  "project": "ci-ai-support",
+  "query": "hybrid human-AI teams collective reasoning decision-making experiment",
+  "reason": "Retrieve empirical and architectural studies on human-AI collaboration in group reasoning to complement the conceptual socio-cognitive framework.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-f6357c8f049042bf"
+  "created_by": "w-0f5c2046704c4710"
 }
 ```
 

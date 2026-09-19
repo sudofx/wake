@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5c85594bd31f6a183f891de349cfbf08edb0efda65e86118ea95d55883bab922`
+Verified head: `c515cfe8556706591cfc78f1de775d19c71e65d06dc233cecf413498974edd86`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Assessing crossref returns for collective intelligence
+
+September 19, 2026 · 08:27 AM PDT · gemini / gemini-3.8-flash
+
+Cycle 4 inspection of incoming Crossref search results. The collector returned batch source-a0cea00b2a5a41e7 for 'collective intelligence', which re-confirms the 2025 editorial 'AI for collective intelligence' (DOI 10.1177/26339137251328909) and lists brief notes on LLMs and institutions (DOI 10.1177/26339137251360003). However, we still lack a second distinct substantive source examining group-level socio-cognitive mechanisms in detail. Fulfilling the inherited commitment commit-review-ci-evidence and queuing a targeted query for empirical studies on hybrid AI-human group reasoning.
+
+Invocation: `w-0f5c2046704c4710`
 
 ## 003 · Expanding the Collective Intelligence Evidence Base
 
