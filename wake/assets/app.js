@@ -83,11 +83,11 @@
     audit_reconstruction:'Independent audit reconstruction', longitudinal:'100+ fresh invocation cycles'
   };
   $('metrics').innerHTML = [
-    [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`],
-    [inherited,'Obligations inherited','Across fresh invocations'],
-    [rejected,'Proposals rejected','Read the drafts and recorded reasons'],
-    [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained']
-  ].map(([value,label,note])=>`<div class="metric"><strong>${value}</strong><span>${label}<small>${note}</small></span></div>`).join('');
+    [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
+    [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
+    [rejected,'Proposals rejected','Read the drafts and recorded reasons','#history/filter:rejected'],
+    [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained','#history/filter:recovered']
+  ].map(([value,label,note,href])=>`<a class="metric" href="${href}"><strong>${value}</strong><span>${label}<small>${note}</small></span></a>`).join('');
   const providerSelect = $('provider-filter');
   [...new Set(invocations.map(i=>i.provider))].sort().forEach(provider => {
     const option = document.createElement('option'); option.value=provider; option.textContent=provider; providerSelect.append(option);
@@ -175,9 +175,14 @@
     $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span><p>${esc(e.content)}</p><details><summary>Raw observation</summary>${raw(e)}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
   }
   function history(selected='') {
-    const query=$('history-search').value.toLowerCase(), kind=$('event-filter').value;
-    const events=[...data.events].reverse().filter(e=>(!selected||e.payload.id===selected)&&(kind==='all'||e.kind===kind)&&JSON.stringify(e).toLowerCase().includes(query));
-    $('history-content').innerHTML=(selected?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(e.kind)}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
+    const query=$('history-search').value.toLowerCase(), filter=selected.startsWith('filter:')?selected.slice(7):'', kind=filter==='rejected'?'rejected':$('event-filter').value;
+    if(filter==='rejected')$('event-filter').value='rejected';
+    const inheritedIds=new Set(Object.values(s.commitments).filter(x=>x.status==='fulfilled'&&x.created_by!==x.resolved_by).flatMap(x=>[x.created_by,x.resolved_by]).filter(Boolean));
+    const recoveredIds=new Set(invocations.filter(i=>i.status==='recovered').map(i=>i.id));
+    const matchesFilter=e=>!filter||(filter==='rejected'?e.kind==='rejected':filter==='recovered'?recoveredIds.has(e.payload.id):filter==='inherited'?inheritedIds.has(e.payload.id):true);
+    const exact=selected&&!filter?selected:'';
+    const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||e.kind===kind)&&JSON.stringify(e).toLowerCase().includes(query));
+    $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(e.kind)}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
   }
   function route() {
