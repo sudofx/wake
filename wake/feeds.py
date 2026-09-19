@@ -1,9 +1,13 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# FEEDS — a deterministic publication view. RSS is derived from accepted journal/blog records. Dates, attribution, correction links and status come from durable records rather than publication-time guesses.
 #
-# Builds deterministic RSS views from accepted records. Timestamps and model attribution must come from durable invocation data, never export time or UI guesses.
-#
-# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
-# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# The architecture is intentionally explicit.  A future human or AI maintainer
+# should be able to follow authority from input, through validation, to durable
+# record without relying on folklore.  Comments explain why boundaries exist,
+# what failure means, and which tempting shortcuts would weaken accountability.
+# =============================================================================
 
 """RSS 2.0 subscriptions derived from durable published records."""
 
@@ -20,19 +24,115 @@ ATOM = "http://www.w3.org/2005/Atom"
 ET.register_namespace("atom", ATOM)
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: clean
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
+
+
 def clean(value):
     text = str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]", "", text)
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: paragraphs
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def paragraphs(text):
     return "".join(f"<p>{html.escape(clean(part))}</p>" for part in str(text).split("\n\n") if part.strip())
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: published
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
+
+
 def published(invocation):
     # Use the durable acceptance time, never the current export time.
     value = invocation.get("finished") or invocation["time"]
     return datetime.fromisoformat(value).astimezone(timezone.utc)
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: build_feeds
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def build_feeds(state):
@@ -43,6 +143,22 @@ def build_feeds(state):
     ):
         root = ET.Element("rss", version="2.0")
         channel = ET.SubElement(root, "channel")
+
+        # ---------------------------------------------------------------------------
+
+        # STEP: add
+
+        #
+
+        # Keep this function explicit because it marks a testable boundary in the
+
+        # chain from operator/provider input to durable/public output.  Do not fold it
+
+        # into a neighboring layer if doing so would hide validation, provenance,
+
+        # failure handling, or the distinction between accepted state and a derived view.
+
+        # ---------------------------------------------------------------------------
 
         def add(parent, tag, text, **attributes):
             element = ET.SubElement(parent, tag, attributes)
