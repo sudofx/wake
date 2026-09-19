@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Main browser controller. It turns exported state into navigation/readable views and must not invent facts absent from the published record.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (() => {
   'use strict';
   const data = JSON.parse(document.getElementById('wake-data').textContent);
