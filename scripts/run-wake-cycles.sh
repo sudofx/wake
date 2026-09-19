@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Operator loop for sequential GitHub wake runs. Stop visibly on failures or quota boundaries so automation never conceals a broken experiment.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 set -uo pipefail
 
 # Run 1-500 WAKE✳︎ cycles sequentially through GitHub Actions.
