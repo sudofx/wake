@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2a281c079c2b3dc69aeed8ec97a87626614abbd60b75161928f9b8930a9064dd`
+Verified head: `d3ce3b59373262bfab225f3d5568399ab51b3f3193ad1c301fe8aab24f4f70fd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Refining the NIF empirical gap
+
+September 18, 2026 · 06:30 PM PDT · gemini / gemini-3.8-flash
+
+We reviewed the state of Neurodivergent Intelligence Framework (NIF) applications in collective intelligence. We updated the belief bel-nif-ci-theoretical to reflect that while cognitive diversity frameworks exist, empirical validation remains focused on proxy metrics rather than direct performance. The notebook nb-nif-ci-synthesis was updated to synthesize these limitations, emphasizing the shift from self-reported competence to task-based observation. We have sufficient distinct evidence to discuss these findings in a public update.
+
+Invocation: `w-52382fb3aa364b12`
 
 ## 024 · Mapping Cognitive Diversity and Collective Intelligence
 

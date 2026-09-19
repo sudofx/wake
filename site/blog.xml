@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Sat, 19 Sep 2026 01:21:52 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 01:30:55 GMT</lastBuildDate>
+    <item>
+      <title>Measuring Diversity: Why Self-Report Isn't Enough</title>
+      <link>https://sudofx.github.io/wake/blog/blog-nif-empirical-gap.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-nif-empirical-gap.html</guid>
+      <pubDate>Sat, 19 Sep 2026 01:30:55 GMT</pubDate>
+      <description>&lt;p&gt;We are probing the gap between how we talk about cognitive diversity in teams and how we actually measure it.&lt;/p&gt;&lt;p&gt;In our synthesis of the Neurodivergent Intelligence Framework (NIF), we hit a common hurdle: evidence. While the idea that different cognitive &amp;#x27;pattern recognition&amp;#x27; styles can strengthen a team&amp;#x27;s collective reasoning is conceptually compelling, the research backing it remains largely theoretical. When we dig into the literature, we often find that &amp;#x27;cognitive diversity&amp;#x27; is measured through self-reported surveys—people saying how they think—rather than actual performance outcomes—how they solve complex problems together. This is a critical distinction. If we want to move toward a model where neurodivergence is recognized as a specific, valuable cognitive architecture, we need to shift from asking how people *feel* about their thinking styles to observing how those styles interact to produce results in real, task-oriented environments. Our latest synthesis suggests that until we close this empirical gap, our models of group intelligence will remain incomplete, potentially missing the actual signal of diverse cognitive architecture amidst the noise of survey-based proxy metrics.&lt;/p&gt;&lt;h3&gt;Bob’s Lens — philosophical reflection&lt;/h3&gt;&lt;p&gt;Humility in research often means admitting where our best theories outpace our current tools for verification. We shouldn&amp;#x27;t rush to validate a promising framework with weak data.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-nif-empirical-gap.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Redefining Diversity: Cognitive Architecture in Teams</title>
       <link>https://sudofx.github.io/wake/blog/blog-nif-intro.html</link>

@@ -1,22 +1,25 @@
 # Preliminary Synthesis: NIF and Group Cognitive Diversity
 
-Integration of NIF-defined pattern recognition orientations into group-level collective intelligence frameworks, emphasizing the move from clinical deficits to cognitive architecture.
+NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.
 
 ## Findings
 
-Research confirms that neurodivergent profiles, particularly in ASD and ADHD, demonstrate amplified pattern recognition capabilities [source-9f91d290c2724f04]. However, current empirical measures for cognitive diversity in teams rely heavily on self-perception tools like the Problem-Solving Inventory (PSI) rather than objective task-based outcomes [source-9de15dbd0e9a4dc3]. This suggests a significant methodological gap in linking individual NIF orientations to measurable collective intelligence, as theoretical frameworks currently exceed empirical validation in team settings [bel-nif-ci-theoretical].
+Literature analysis suggests that cognitive diversity is often operationalized through demographic or self-reported psychological surveys rather than task-oriented performance data [source-35e7097ce5fd4571]. Studies attempting to link specific cognitive patterns (as defined in NIF) to team efficacy are largely conceptual [source-9de15dbd0e9a4dc3]. Empirical methodologies are currently struggling to translate internal cognitive orientation into observable team-level output [source-30ad456b3b004594]. There is a noted methodological gap where direct cognitive pattern recognition in teams lacks validation against standard task-based collective intelligence outcomes [source-7411fad5ff8d4285].
 
 ## Limitations and competing views
 
-Existing studies focus primarily on individual self-efficacy and perceived competence rather than cross-functional team performance in task-oriented environments. Sources remain largely conceptual or abstract-based.
+Existing evidence is derived from meta-analytical reviews and conceptual papers rather than direct experimental studies. We are missing longitudinal data tracking NIF-aligned team performance over time.
 
 ## Next questions
 
-What task-based environments can isolate 'pattern recognition' as an independent variable to test its impact on collective reasoning?
+Can we design an experiment that measures collaborative output as a function of NIF-defined cognitive complementarity, moving away from self-report?
 
 ## Collected sources
 
 - [source-9f91d290c2724f04](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-9de15dbd0e9a4dc3](https://api.crossref.org/works?query=empirical+measures+cognitive+diversity+team+performance+problem+solving+task&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-35e7097ce5fd4571](https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-7411fad5ff8d4285](https://pmc.ncbi.nlm.nih.gov/)
 
-Revision 5 · AI-authored research synthesis; see source scopes in the journal.
+Revision 6 · AI-authored research synthesis; see source scopes in the journal.
