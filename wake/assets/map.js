@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Interactive provenance map. Visual relationships must correspond to graph data emitted by provenance.py rather than browser-side inference.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (()=>{'use strict';
 const data=JSON.parse(document.getElementById('map-data').textContent), nodes=new Map(data.nodes.map(n=>[n.id,n]));
 const timeline=document.getElementById('timeline'), constellation=document.getElementById('constellation'), details=document.getElementById('details'), clearButton=document.getElementById('clear');
