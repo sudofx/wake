@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 14  
+**Version:** 15  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c8a93d1bfb2d3b2980a6676a45322a643c5acde800e249d32784e2f98e0a430c`
+**Verified head:** `8f231ef4265c5759882094ebb4fb511cc0aff7e9607875d24c7600d816570f01`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -83,15 +83,15 @@
 {
   "domain": "entropy",
   "id": "entropy_measurement",
-  "next_step": "Draft a comparative evaluation notebook synthesizing performance metrics of ApEn and SampEn in clinical time-series studies.",
+  "next_step": "None required; research concluded.",
   "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
-  "reason": "Previous analysis identified clear performance differences between ApEn and SampEn; formalizing this comparison is the logical next step.",
-  "status": "active",
+  "reason": "The comparative notebook nb-entropy-comparison-001 successfully synthesizes the performance metrics of ApEn and SampEn, fulfilling the project's primary objectives.",
+  "status": "completed",
   "title": "Measuring Information and Physical Entropy",
   "type": "project",
   "created_version": 1,
-  "updated_version": 13,
-  "updated_by": "w-12a01c6f3120496b"
+  "updated_version": 15,
+  "updated_by": "w-1267296917d94191"
 }
 ```
 
@@ -6750,6 +6750,287 @@
 }
 ```
 
+### `w-1267296917d94191`
+
+```json
+{
+  "base_version": 14,
+  "charged": true,
+  "id": "w-1267296917d94191",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 14,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "entropy_measurement",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2040,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "f41fb56549d048aa632437a1584f2076d286fd172b35cd9bebd6c6ea8841bff3",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-be3c768d86dd467e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-be3c768d86dd467e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f9a528c612ff4319"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f9a528c612ff4319",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ca670fbf77fa4045"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ca670fbf77fa4045",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b46bf089446d47af"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b46bf089446d47af",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b2ae179ff69c4508"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b2ae179ff69c4508",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-faabb8bc3eca42fa"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-faabb8bc3eca42fa",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-be3c768d86dd467e",
+      "source-f9a528c612ff4319",
+      "source-ca670fbf77fa4045",
+      "source-b46bf089446d47af",
+      "source-b2ae179ff69c4508",
+      "source-faabb8bc3eca42fa"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20013,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 3443,
+    "working_to_delivered_ratio": 0.172
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_measurement",
+        "next_step": "Draft a comparative evaluation notebook synthesizing performance metrics of ApEn and SampEn in clinical time-series studies.",
+        "question": "How do approximate entropy and maximum entropy formulations reconcile in physical and physiological time-series?",
+        "title": "Measuring Information and Physical Entropy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-7fd4abc8fc2a449e",
+          "source-70e3119c11534387"
+        ],
+        "revision": 1,
+        "summary": "The neurodiversity movement reframes neurodivergence as a form of biodiversity, suggesting a move from medical 'cure' models toward ecological niche construction.",
+        "title": "Ecological Models in Neurodivergence-Informed Therapy"
+      },
+      {
+        "id": "nb-entropy-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-617ea77e566c486e",
+          "source-38131170bdca4cc1"
+        ],
+        "revision": 1,
+        "summary": "Approximate entropy and maximum entropy formulations provide complementary, yet distinct, frameworks for quantifying complexity in physiological and ecological time-series data.",
+        "title": "Clinical and Ecological Entropy Metrics"
+      },
+      {
+        "id": "nb-neuro-critique-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "revision": 2,
+        "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures. Perspectives from social epidemiolo…",
+        "title": "Critiques of Ecological Models in Disability Studies"
+      },
+      {
+        "id": "nb-entropy-comparison-001",
+        "project": "entropy_measurement",
+        "provenance": [
+          "source-98d885ce27cf41ed",
+          "source-617ea77e566c486e"
+        ],
+        "revision": 1,
+        "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+        "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+      },
+      {
+        "id": "nb-neuro-synthesis-001",
+        "project": "proj-neuro-001",
+        "provenance": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-7fd4abc8fc2a449e"
+        ],
+        "revision": 1,
+        "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+        "title": "Material Constraints in Ecological Niche Models"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T18:14:38.121052+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9631,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 42749,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T18:14:53.278142+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -7859,6 +8140,47 @@
 }
 ```
 
+### `source-b2ae179ff69c4508`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2023723978\\\", \\\"doi\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"title\\\": \\\"A Generative Theory of Tonal Music\\\", \\\"publication_year\\\": 1984, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3790, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.2307/3679778\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.2307/3679778\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S165362224\\\", \\\"display_name\\\": \\\"Computer Music Journal\\\", \\\"issn_l\\\": \\\"0148-9267\\\", \\\"issn\\\": [\\\"0148-9267\\\", \\\"1531-5169\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310315718\\\", \\\"host_organization_name\\\": \\\"The MIT Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315718\\\", \\\"https://openalex.org/P4310316440\\\"], \\\"host_organization_lineage_names\\\": [\\\"The MIT Press\\\", \\\"Massachusetts Institute of Technology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Computer Music Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This book explores the relationships between language, music, and the brain by pursuing four key themes and the crosstalk among them: song and dance as a bridge between music and language; multiple levels of structure from brain to behavior to culture; the semantics of internal and external worlds and the role of emotion; and the evolution and development of language. The book offers specially commissioned expositions of current research accessible both to experts across disciplines and to non-experts. These chapters provide the background for reports by groups of specialists that chart current controversies and future directions of research on each theme. The book looks beyond mere auditory experience, probing the embodiment that links speech to gesture and music to dance. The study of the brains of monkeys and songbirds illuminates hypotheses on the evolution of brain mechanisms that support music and language, while the study of infants calibrates the developmental timetable of their capacities. The result is a unique book that will interest any reader seeking to learn more about language or music and will appeal especially to readers intrigued by the relationships of language and music with each other and with the brain. ContributorsFrancisco Aboitiz, Michael A. Arbib, Annabel J. Cohen, Ian Cross, Peter Ford Dominey, W. Tecumseh Fitch, Leonardo Fogassi, Jonathan Fritz, Thomas Fritz, Peter Hagoort, John Halle, Henkjan Honing, Atsushi Iriki, Petr Janata, Erich Jarvis, Stefan Koelsch, Gina Kuperberg, D. Robert Ladd, Fred Lerdahl, Stephen C. Levinson, Jerome Lewis, Katja Liebal, Jonatas Manzolli, Bjorn Merker, Lawrence M. Parsons, Aniruddh D. Patel, Isabelle Peretz, David Poeppel, Josef P. Rauschecker, Nikki Rickard, Klaus Scherer, Gottfried Schlaug, Uwe Seifert, Mark Steedman, Dietrich Stout, Francesca Stregapede, Sharon Thompson-Schill, Laurel Trainor, Sandra E. Trehub, Paul Verschure\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2191779130\\\", \\\"doi\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"title\\\": \\\"librosa: Audio and Music Signal Analysis in Python\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"conference-paper\\\", \\\"cited_by_count\\\": 3071, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.25080/majora-7b98e3ed-003\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.25080/majora-7b98e3ed-003\\\", \\\"pdf_url\\\": \\\"http://conference.scipy.org/proceedings/scipy2015/pdfs/brian_mcfee.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4220651651\\\", \\\"display_name\\\": \\\"Proceedings of the Python in Science Conferences\\\", \\\"issn_l\\\": \\\"2575-9752\\\", \\\"issn\\\": [\\\"2575-9752\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": null, \\\"host_organization_name\\\": null, \\\"host_organization_lineage\\\": [], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of the Python in Science Conference\\\", \\\"raw_type\\\": \\\"proceedings-article\\\"}, \\\"abstract\\\": \\\"This document describes version 0.4.0 of librosa: a Python package for audio and music signal processing.At a high level, librosa provides implementations of a variety of common functions used throughout the field of music information retrieval.In this document, a brief overview of the library's functionality is provided, along with explanations of the design goals, software development practices, and notational conventions.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2006090347\\\", \\\"doi\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"title\\\": \\\"The New Grove dictionary of music and musicians\\\", \\\"publication_year\\\": 2001, \\\"type\\\": \\\"book-review\\\", \\\"cited_by_count\\\": 2597, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.5860/choice.38-5906\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.5860/choice.38-5906\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2764375719\\\", \\\"display_name\\\": \\\"Choice Reviews Online\\\", \\\"issn_l\\\": \\\"0009-4978\\\", \\\"issn\\\": [\\\"0009-4978\\\", \\\"1523-8253\\\", \\\"1943-5975\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310316146\\\", \\\"host_organization_name\\\": \\\"Association of College and Research Libraries\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310316146\\\", \\\"https://openalex.org/P4310315903\\\"], \\\"host_organization_lineage_names\\\": [\\\"Association of College and Research Libraries\\\", \\\"American Library Association\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Choice Reviews Online\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This work contains almost 30,000 articles containing over 25 million words on musicians, composers, musicologists, instruments, places, genres, terms, performance practice, concepts, acoustics and more. All the articles are written by experts in their subject. There are over 500 biographies of composers, performers and writers on music and over 1,500 articles on styles, terms, and genres. It also includes: over 500 articles on ancient music and church music over 700 articles on regions, countries and cities over 2,000 articles on instruments and their makers and performance practice over 650 articles on printing and publishing over 1,200 articles on world music over 1,000 articles on popular music, light music and jazz over 250 articles on concepts 85 articles on acoustics 126 articles on sources and a one volume index.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1500952994\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Image-Music-Text\\\", \\\"publication_year\\\": 1977, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 2874, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"mag:1500952994\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"http://ci.nii.ac.jp/ncid/BA10872380\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210197683\\\", \\\"display_name\\\": \\\"Medical Entomology and Zoology\\\", \\\"issn_l\\\": \\\"0424-7086\\\", \\\"issn\\\": [\\\"0424-7086\\\", \\\"2185-5609\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310319750\\\", \\\"host_organization_name\\\": \\\"Japan Society of Medical Entomology and Zoology\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319750\\\"], \\\"host_organization_lineage_names\\\": [\\\"Japan Society of Medical Entomology and Zoology\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": null, \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": null, \\\"raw_type\\\": null}, \\\"abstract\\\": null}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a008f0e6f333411f28b8a921a13d15b39d4b76884750ba22c39f1435cc8b2d3e\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+  "id": "source-b2ae179ff69c4508",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=music&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 14,
+  "time": "2026-09-19T18:14:36.573016+00:00"
+}
+```
+
+### `source-faabb8bc3eca42fa`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781071990001\\\", \\\"title\\\": [\\\"Harnessing the Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071990001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9781071989999\\\", \\\"title\\\": [\\\"Summarizing Harnessing Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781071989999\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843748\\\", \\\"title\\\": [\\\"Digital Tools and Neurodivergence Capstone Project\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843748\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4135/9798348843731\\\", \\\"title\\\": [\\\"Summarizing Digital Tools and Neurodivergence\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9798348843731\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"94d45bcb2875812795f468c8a2e5db538668353dc7846f2dec1fd04320833c3c\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\"}",
+  "id": "source-faabb8bc3eca42fa",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neurodivergence&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 14,
+  "time": "2026-09-19T18:14:37.913874+00:00"
+}
+```
+
+### `r-1267296917d94191`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":14,\"inherited_commitments\":[],\"invocation\":\"w-1267296917d94191\",\"previous_head\":\"5be26200ab111b3bd42c504126736fde6950852f0097042f039ffd27a038835c\",\"process_id\":2040,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1267296917d94191",
+  "source": "runtime:continuity",
+  "version": 14,
+  "time": "2026-09-19T18:14:38.044355+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -8012,6 +8334,17 @@
   "invocation": "w-0787e093052440b2",
   "title": "Cycle 13: Integrating material constraints into neurodivergence models",
   "summary": "This cycle focused on reconciling ecological niche theories with social model critiques in disability studies. By synthesizing existing research on material determinants and systemic constraints, we have developed a clearer understanding of the limitations inherent in purely ecological adaptations in clinical settings. The active project on neurodivergence-informed therapy is now considered complete, having addressed the relationship between therapist, client, and ecological niche through the lens of materialist critique."
+}
+```
+
+### 015 · Project Conclusion: Measuring Information and Physical Entropy
+
+```json
+{
+  "cycle": 15,
+  "invocation": "w-1267296917d94191",
+  "title": "Project Conclusion: Measuring Information and Physical Entropy",
+  "summary": "The comparative analysis of Approximate Entropy (ApEn) and Sample Entropy (SampEn) has been synthesized into the project's durable research record. With the identification of key sensitivities and parameter differences in clinical time-series applications, the core research questions for this project have been addressed, allowing for its closure."
 }
 ```
 

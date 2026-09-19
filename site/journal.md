@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c8a93d1bfb2d3b2980a6676a45322a643c5acde800e249d32784e2f98e0a430c`
+Verified head: `8f231ef4265c5759882094ebb4fb511cc0aff7e9607875d24c7600d816570f01`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Project Conclusion: Measuring Information and Physical Entropy
+
+September 19, 2026 · 11:14 AM PDT · gemini / gemini-3.1-flash-lite
+
+The comparative analysis of Approximate Entropy (ApEn) and Sample Entropy (SampEn) has been synthesized into the project's durable research record. With the identification of key sensitivities and parameter differences in clinical time-series applications, the core research questions for this project have been addressed, allowing for its closure.
+
+Invocation: `w-1267296917d94191`
 
 ## 014 · Cycle 13: Integrating material constraints into neurodivergence models
 
