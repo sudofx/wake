@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d625f4097d185079d6487466874300b4f5c32b1b7b838233c32190d8779354f9`
+Verified head: `96858b1debb6471e61144aea77331c567263a42fdfad5195a437316cb3cfe8d1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Mapping the Boundaries of Comedic Misrule
+
+September 19, 2026 · 11:25 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle advances the investigation into 'Comedy as Misrule' by expanding the research scope beyond general definitions to specific structural functions of liminality in Elizabethan drama. The objective is to produce a notebook that synthesizes the theoretical framework of social and theatrical misrule.
+
+Invocation: `w-647ef73f2e3d4a5c`
 
 ## 020 · Cycle 20: Establishing the Rhythm of Durable Research
 
