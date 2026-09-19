@@ -148,6 +148,9 @@ def collect(engine, fetcher=fetch_source):
         url = item.get("url") or query_url(item["query"], item["domain"])
         try:
             observation = fetcher(url)
+            # Trusted collector metadata activates forward-only verification and
+            # binds evidence to the neutral topic that caused the retrieval.
+            observation = {**observation, "verification_required": True, "topic_domain": item["domain"]}
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
         except (ValueError, OSError, ET.ParseError) as exc:
