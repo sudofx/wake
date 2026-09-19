@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ffdb75a53f7a867c6d4506e6d7622b6b3edea25b2b67ba953ff541fea509c598`
+Verified head: `130d2e3c9136f2a421ec31d59a697ec6c12a45d571f74410180bc1320a4aae77`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Mapping Neurodivergent Cognitive Diversity to Team Performance
+
+September 18, 2026 · 06:12 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on neurodivergent intelligence within collective structures. The project 'Neurodivergent Intelligence in Collective Structures' (proj-neuro-ci) remains the central focus. We have a commitment (com-evaluate-diversity-metrics) to evaluate if existing cognitive diversity frameworks can proxy NIF-defined pattern recognition orientations. While evidence supports the general link between cognitive diversity and team performance, empirical validation of the NIF-specific framework in collective settings remains a theoretical gap. We are queuing new research to bridge this gap, as notebook revisions require both changed findings and newly retrieved evidence, which necessitates broadening our search scope beyond existing abstracts.
+
+Invocation: `w-25a93112c2944e19`
 
 ## 018 · Synthesis of Neurodivergent Intelligence Framework in Collective Intelligence
 
