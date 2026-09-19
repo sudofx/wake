@@ -439,8 +439,23 @@ class ResearchTests(unittest.TestCase):
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
-        self.assertEqual(payload["topic_domain"], "climate_change")
+        self.assertIn(payload["topic_domain"], configured)
 
+
+    def test_queued_followup_gets_one_slot_and_neutral_discovery_keeps_one(self):
+        self.propose([project(), dict(type="research", id="q-follow", project="p",
+            query="cellular automata symmetry followup", domain="symmetry", reason="Continue active work")])
+        calls = []
+        with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
+             patch("wake.research.secrets.SystemRandom.sample", side_effect=lambda seq, n: list(seq)[:n]):
+            with self.engine.store.lock():
+                collect(self.engine, fetcher=lambda url: calls.append(url) or
+                        {"url": url, "scope": "fixture", "excerpt": "A sufficiently long test source excerpt."})
+        self.assertEqual(len(calls), 2)
+        self.assertTrue(any("cellular+automata+symmetry+followup" in url or
+                            "cellular%20automata%20symmetry%20followup" in url for url in calls))
+        self.assertTrue(any("query=symmetry" not in url and "search=symmetry" not in url for url in calls))
+        self.assertEqual(self.engine.store.load()["research"]["q-follow"]["status"], "collected")
 
     def test_attention_nudge_avoids_active_project_domain_every_fourth_invocation(self):
         self.propose([project()])
