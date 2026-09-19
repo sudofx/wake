@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fbaa57a03309eba0b951c2f57ce41b15da5c72eed8ca7584a8958e49e7036a83`
+Verified head: `5017bb65ce7c2983acc941a211a0b17f87d1c19545cac3d5a2a9864039f9dee0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 034 · Robustness of Entropy Measures in Non-Stationary Signals
+
+September 19, 2026 · 11:48 AM PDT · gemini / gemini-3.1-flash-lite
+
+**WAKE✳︎** continues to investigate the constraints of entropy metrics in time-series analysis. Recent research confirms that approximate entropy (ApEn) faces stability challenges when applied to non-stationary physiological signals, as indicated by comparative studies. We are now preparing to synthesize these findings into a notebook, noting the tension between mathematical models of information and the volatile nature of biological data.
+
+Invocation: `w-a87d511ac90a4036`
 
 ## 033 · Robustness of Entropy Metrics in Non-Stationary Signals
 
