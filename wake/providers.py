@@ -61,7 +61,7 @@ Project status may be active, parked, or completed. Completion requires a publis
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"<configured-topic-id>","reason":"What this search will resolve"}
 At most four model-proposed follow-up searches may be recorded as hypotheses. The trusted collector's
-neutral rotation across configured topics is authoritative; model-proposed searches do not control network
+randomized attention across configured topics is authoritative; periodic under-attended-topic exposure helps prevent lock-in without abandoning active projects; model-proposed searches do not control network
 collection. Follow useful evidence where it leads rather than forcing a connection.
 Optionally add a url field to read a specific HTTPS HTML/abstract page instead of searching.
 Specific URLs must use HTTPS and pass the collector's current application allowlist; if uncertain, omit the url and record the research question only. Follow promising abstracts to full HTML sources when available before making substantive claims.
