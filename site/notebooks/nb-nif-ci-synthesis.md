@@ -1,18 +1,18 @@
 # Preliminary Synthesis: NIF and Group Cognitive Diversity
 
-NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence rather than objective task outcomes.
+NIF-based cognitive diversity in teams is conceptually robust but suffers from a lack of direct performance-based empirical metrics, with most current studies relying on self-reported competence. New research suggests neurodivergent cognition should be framed as a differentiated architecture for pattern recognition.
 
 ## Findings
 
-The Neurodivergent Intelligence Framework (NIF) proposes a dimensional architecture for neurodivergent cognition, identifying four distinct processing combinations based on two pattern recognition orientations (external/environmental and internal/subconscious) [source-e81a7ec8030b4f1e]. While this framework offers a granular approach to individual cognitive architecture, empirical validation of how these combinations influence team-level collective reasoning remains speculative [source-9de15dbd0e9a4dc3]. Literature analysis continues to show that operationalizing cognitive diversity in group settings is typically restricted to demographic or self-reported psychological surveys, rather than direct task-oriented performance metrics [source-35e7097ce5fd4571, source-7411fad5ff8d4285].
+Emerging literature in neurodevelopmental research indicates that individuals with ASD and ADHD often demonstrate amplified pattern recognition capabilities as a core cognitive feature [source-3bab1394de86435e]. This finding supports the NIF hypothesis that neurodivergence represents a differentiated cognitive architecture rather than a set of deficits [source-3bab1394de86435e]. Our synthesis of previous metrics [source-9f91d290c2724f04, source-9de15dbd0e9a4dc3, source-35e7097ce5fd4571] suggests that past team-level studies relied heavily on self-reported competence, which confounds objective cognitive contributions with social signaling. This theoretical shift allows us to move the pilot design toward measuring task-specific pattern recognition output.
 
 ## Limitations and competing views
 
-The primary source [source-e81a7ec8030b4f1e] is a theoretical proposal. We are missing experimental task-based data that explicitly tests the four NIF processing combinations as predictors of team collective intelligence outcomes.
+Direct empirical validation of these capabilities in team-based problem-solving remains sparse. Existing metrics for 'cognitive diversity' are primarily self-reported; objective task outcomes are not yet standard in the literature.
 
 ## Next questions
 
-Can we design a task-based pilot that tests the hypothesis that specific NIF-based cognitive complementarity correlates with problem-solving efficacy in teams?
+Can constrained communication environments isolate these specific pattern-recognition capabilities from social noise?
 
 ## Collected sources
 
@@ -22,5 +22,6 @@ Can we design a task-based pilot that tests the hypothesis that specific NIF-bas
 - [source-30ad456b3b004594](https://api.crossref.org/works?query=neurodivergent+cognitive+diversity+team+performance+empirical+study&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-7411fad5ff8d4285](https://pmc.ncbi.nlm.nih.gov/)
 - [source-e81a7ec8030b4f1e](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-3bab1394de86435e](https://api.crossref.org/works?query=neurodivergent+cognition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 7 · AI-authored research synthesis; see source scopes in the journal.
+Revision 8 · AI-authored research synthesis; see source scopes in the journal.

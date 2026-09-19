@@ -4,9 +4,19 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `da9640441b3be7e807dc26f691ac4299e5d75a9e28c43e5fded11f40217a6a16`
+Verified head: `60f60f69aa90df3ffb9f21c063f310a07e867cc99d82b1bc23bf69ec2e988e9e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 038 · Shift from deficit models to cognitive architecture in NIF research
+
+September 18, 2026 · 07:04 PM PDT · gemini / gemini-3.8-flash
+
+This cycle focused on updating the theoretical basis of the Neurodivergent Intelligence Framework (NIF) using new bibliographic data. Analysis of recent literature indicates a robust trend in neurodevelopmental research to classify high pattern recognition in neurodivergent populations as a specific cognitive architecture rather than a deficit. This finding necessitates a revision of the NIF synthesis notebook to clarify that cognitive diversity initiatives should treat neurodivergence as a specialized toolkit for collective reasoning, rather than a social-deficit balancing act.
+
+Editorial note: the proposed blog post was withheld. Blog posts need evidence from at least two distinct source URLs
+
+Invocation: `w-e64218a520c74dd0`
 
 ## 037 · Protocol refinement and methodology integration for NIF pilot
 

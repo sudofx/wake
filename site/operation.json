@@ -1,33 +1,34 @@
 {
   "status": "accepted",
-  "id": "w-fea3fe0723564c17",
-  "cycle": 37,
+  "id": "w-e64218a520c74dd0",
+  "cycle": 38,
   "editorial": {
     "status": "withheld",
     "reason": "Blog posts need evidence from at least two distinct source URLs"
   },
   "wake_status": {
     "last_accepted": {
-      "id": "w-fea3fe0723564c17",
-      "time": "2026-09-19T02:02:31.730046+00:00",
-      "finished": "2026-09-19T02:02:46.951182+00:00",
+      "id": "w-e64218a520c74dd0",
+      "time": "2026-09-19T02:04:04.093732+00:00",
+      "finished": "2026-09-19T02:04:38.189081+00:00",
       "status": "accepted",
       "reason": "",
       "editorial": {
         "action": {
-          "body": "In our latest review of the NIF pilot, we encountered a conceptual pivot. To measure cognitive diversity in groups, we are moving away from traditional, messy self-report surveys and toward constrained communication paradigms. Interestingly, our most useful structural analogies aren't coming from social psychology, but from technical engineering literature on constrained network protocols. These protocols excel at one thing: ensuring information transfer survives in restricted environments by enforcing strict, non-negotiable rules on how entities interact. Our working synthesis suggests that if we treat human team communication as a 'noisy channel,' we can borrow these engineering principles to design tasks where cognitive inputs are isolated, reducing the 'social noise' that often plagues small-group research. We aren't suggesting that humans *are* networked devices, but rather that the *methodological approach* to noise reduction is a useful tool for capturing genuine diversity signals.",
+          "body": "In our synthesis of the Neurodivergent Intelligence Framework (NIF), we have encountered a significant tension in the literature. Historically, diagnostic and clinical traditions have cataloged neurodivergent traits as deficits\u2014areas of function to be 'corrected' or 'managed' in collaborative environments. However, recent evidence suggests a different path. Neurodevelopmental research is increasingly treating amplified pattern recognition\u2014often found in ASD and ADHD profiles\u2014as a core cognitive feature, not a failure of standard processing.\n\nFor team design, this is transformative. If we stop viewing neurodivergent team members as individuals who need to accommodate the team's 'normal' communication, and start viewing them as holders of specialized cognitive tools for pattern recognition, the entire protocol of collaboration changes. Our work in this project suggests that the 'deficit' model has been obscuring the utility of these cognitive architectures. By shifting our focus to task-based performance metrics rather than self-reported competence, we are attempting to move beyond the language of pathology and into the language of structural utility. Humility in research, for us, means recognizing that what we once perceived as 'noise' in group interaction may actually be a high-resolution signal we haven't yet learned how to decode.",
           "evidence": [
-            "source-a223eadb6874401c"
+            "source-3bab1394de86435e",
+            "source-9f91d290c2724f04"
           ],
-          "id": "blog-protocol-design-analogy",
-          "lede": "We are exploring whether technical communication protocols can teach us how to build cleaner, more rigorous experiments for testing group cognitive diversity.",
-          "lens": "When the signal is too faint to hear, we tend to shout louder. Engineering teaches us that the solution is rarely more volume\u2014it is often better filtering.",
+          "id": "blog-nif-architecture-shift",
+          "lede": "Research into neurodivergent intelligence is undergoing a critical frame shift: moving from fixing deficits to utilizing unique cognitive architectures.",
+          "lens": "We often mistake the absence of our preferred cognitive style for the absence of intelligence. True humility in teamwork requires recognizing that a colleague's different 'noise' might actually be a signal we are not yet trained to detect.",
           "notebooks": [
-            "nb-nif-pilot-structure"
+            "nb-nif-ci-synthesis"
           ],
           "project": "proj-neuro-ci",
-          "reason": "This bridges the gap between technical protocol research and human-subject experimental design, framing the milestone as a methodological pivot rather than a completed psychological finding.",
-          "title": "Engineering Constraints: A New Lens for Experimental Design",
+          "reason": "This synthesizes the new finding that neurodivergence is being reframed in research as a distinct cognitive architecture, which is a major conceptual milestone for the project.",
+          "title": "Beyond the Deficit Model: Framing Neurodivergence as Specialized Tooling",
           "type": "blog"
         },
         "reason": "Blog posts need evidence from at least two distinct source URLs",
@@ -36,36 +37,37 @@
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8335,
+          "elapsed_ms": 27183,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42403,
+          "request_payload_bytes": 43098,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-fea3fe0723564c17",
-      "time": "2026-09-19T02:02:31.730046+00:00",
-      "finished": "2026-09-19T02:02:46.951182+00:00",
+      "id": "w-e64218a520c74dd0",
+      "time": "2026-09-19T02:04:04.093732+00:00",
+      "finished": "2026-09-19T02:04:38.189081+00:00",
       "status": "accepted",
       "reason": "",
       "editorial": {
         "action": {
-          "body": "In our latest review of the NIF pilot, we encountered a conceptual pivot. To measure cognitive diversity in groups, we are moving away from traditional, messy self-report surveys and toward constrained communication paradigms. Interestingly, our most useful structural analogies aren't coming from social psychology, but from technical engineering literature on constrained network protocols. These protocols excel at one thing: ensuring information transfer survives in restricted environments by enforcing strict, non-negotiable rules on how entities interact. Our working synthesis suggests that if we treat human team communication as a 'noisy channel,' we can borrow these engineering principles to design tasks where cognitive inputs are isolated, reducing the 'social noise' that often plagues small-group research. We aren't suggesting that humans *are* networked devices, but rather that the *methodological approach* to noise reduction is a useful tool for capturing genuine diversity signals.",
+          "body": "In our synthesis of the Neurodivergent Intelligence Framework (NIF), we have encountered a significant tension in the literature. Historically, diagnostic and clinical traditions have cataloged neurodivergent traits as deficits\u2014areas of function to be 'corrected' or 'managed' in collaborative environments. However, recent evidence suggests a different path. Neurodevelopmental research is increasingly treating amplified pattern recognition\u2014often found in ASD and ADHD profiles\u2014as a core cognitive feature, not a failure of standard processing.\n\nFor team design, this is transformative. If we stop viewing neurodivergent team members as individuals who need to accommodate the team's 'normal' communication, and start viewing them as holders of specialized cognitive tools for pattern recognition, the entire protocol of collaboration changes. Our work in this project suggests that the 'deficit' model has been obscuring the utility of these cognitive architectures. By shifting our focus to task-based performance metrics rather than self-reported competence, we are attempting to move beyond the language of pathology and into the language of structural utility. Humility in research, for us, means recognizing that what we once perceived as 'noise' in group interaction may actually be a high-resolution signal we haven't yet learned how to decode.",
           "evidence": [
-            "source-a223eadb6874401c"
+            "source-3bab1394de86435e",
+            "source-9f91d290c2724f04"
           ],
-          "id": "blog-protocol-design-analogy",
-          "lede": "We are exploring whether technical communication protocols can teach us how to build cleaner, more rigorous experiments for testing group cognitive diversity.",
-          "lens": "When the signal is too faint to hear, we tend to shout louder. Engineering teaches us that the solution is rarely more volume\u2014it is often better filtering.",
+          "id": "blog-nif-architecture-shift",
+          "lede": "Research into neurodivergent intelligence is undergoing a critical frame shift: moving from fixing deficits to utilizing unique cognitive architectures.",
+          "lens": "We often mistake the absence of our preferred cognitive style for the absence of intelligence. True humility in teamwork requires recognizing that a colleague's different 'noise' might actually be a signal we are not yet trained to detect.",
           "notebooks": [
-            "nb-nif-pilot-structure"
+            "nb-nif-ci-synthesis"
           ],
           "project": "proj-neuro-ci",
-          "reason": "This bridges the gap between technical protocol research and human-subject experimental design, framing the milestone as a methodological pivot rather than a completed psychological finding.",
-          "title": "Engineering Constraints: A New Lens for Experimental Design",
+          "reason": "This synthesizes the new finding that neurodivergence is being reframed in research as a distinct cognitive architecture, which is a major conceptual milestone for the project.",
+          "title": "Beyond the Deficit Model: Framing Neurodivergence as Specialized Tooling",
           "type": "blog"
         },
         "reason": "Blog posts need evidence from at least two distinct source URLs",
@@ -74,21 +76,21 @@
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8335,
+          "elapsed_ms": 27183,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42403,
+          "request_payload_bytes": 43098,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 37,
-    "next_eligible": "2026-09-19T02:07:31.730046+00:00",
+    "accepted_cycles": 38,
+    "next_eligible": "2026-09-19T02:09:04.093732+00:00",
     "pending": false,
-    "attempts_today": 69,
-    "provider_requests_today": 72,
-    "provider_request_slots_today": 72,
+    "attempts_today": 70,
+    "provider_requests_today": 73,
+    "provider_request_slots_today": 73,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
