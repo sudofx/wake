@@ -1,36 +1,18 @@
 {
-  "status": "rejected",
-  "id": "w-bf78de47e1814117",
-  "reason": "Evidence reference does not exist",
+  "status": "accepted",
+  "id": "w-fe94907606694476",
+  "cycle": 31,
   "wake_status": {
     "last_accepted": {
-      "id": "w-ccfa6a8beeb94f42",
-      "time": "2026-09-19T01:41:18.979274+00:00",
-      "finished": "2026-09-19T01:41:32.078560+00:00",
+      "id": "w-fe94907606694476",
+      "time": "2026-09-19T01:45:48.521444+00:00",
+      "finished": "2026-09-19T01:46:03.053652+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6851,
-          "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 41868,
-          "result": "success"
-        }
-      ],
-      "successful_model": "gemini-3.1-flash-lite"
-    },
-    "latest_attempt": {
-      "id": "w-bf78de47e1814117",
-      "time": "2026-09-19T01:44:32.329563+00:00",
-      "finished": "2026-09-19T01:44:45.452294+00:00",
-      "status": "rejected",
-      "reason": "Evidence reference does not exist",
-      "provider_requests_sent": 1,
-      "provider_attempts": [
-        {
-          "elapsed_ms": 7240,
+          "elapsed_ms": 8636,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 43358,
@@ -39,12 +21,30 @@
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 30,
-    "next_eligible": "2026-09-19T01:49:32.329563+00:00",
+    "latest_attempt": {
+      "id": "w-fe94907606694476",
+      "time": "2026-09-19T01:45:48.521444+00:00",
+      "finished": "2026-09-19T01:46:03.053652+00:00",
+      "status": "accepted",
+      "reason": "",
+      "provider_requests_sent": 1,
+      "provider_attempts": [
+        {
+          "elapsed_ms": 8636,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 43358,
+          "result": "success"
+        }
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
+    },
+    "accepted_cycles": 31,
+    "next_eligible": "2026-09-19T01:50:48.521444+00:00",
     "pending": false,
-    "attempts_today": 56,
-    "provider_requests_today": 59,
-    "provider_request_slots_today": 59,
+    "attempts_today": 57,
+    "provider_requests_today": 60,
+    "provider_request_slots_today": 60,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

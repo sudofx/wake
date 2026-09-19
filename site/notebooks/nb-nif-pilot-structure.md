@@ -1,23 +1,23 @@
 # Baseline Task Structure for NIF Cognitive Diversity Pilot
 
-A proposed framework for testing NIF-based cognitive diversity using controlled, task-oriented group performance rather than subjective self-reporting.
+Revised framework for testing NIF-based cognitive diversity, explicitly accounting for social confounding variables.
 
 ## Findings
 
-To test the NIF hypothesis that distinct pattern-recognition orientations improve group outcomes, the pilot structure must move away from the Problem-Solving Inventory (PSI) approach, which measures perceived ability rather than actual performance [source-0c2333f085ed4ad4]. We synthesize a baseline consisting of divergent and convergent problem-solving tasks. The divergent phase (ideation) requires generating non-redundant solutions, while the convergent phase (selection) requires identifying the most efficient solution within a constrained environment [source-35e7097ce5fd4571]. Success is measured by objective task performance (e.g., solution speed, error rate, novelty score) rather than reported competence [source-9de15dbd0e9a4dc3].
+Group problem-solving performance in small teams is heavily mediated by non-cognitive factors, including communication bandwidth, team hierarchy, and social loafing [source-0c2333f085ed4ad4]. When evaluating NIF-based cognitive diversity (e.g., pattern recognition orientations), these variables act as confounding influences that can mimic or obscure performance advantages. Studies on group discussion suggest that generic problem-solving tasks lack the resolution to isolate specific neuro-cognitive contributions from standard team dynamic effects [source-b83c6629579f49c4]. The pilot design must therefore incorporate controls for group size, communication structure, and social engagement metrics to isolate the NIF effect.
 
 ## Limitations and competing views
 
-This proposal remains a theoretical design. The mapping between specific 'pattern recognition orientations' and measurable task outputs has not been experimentally validated in this context. There is a risk that even objective metrics may be confounded by individual skill levels rather than cognitive style synergy.
+Existing research on 'cognitive diversity' in teams focuses primarily on demographic or self-reported metrics, not specific cognitive pattern recognition orientations. Current evidence relies on general group performance literature which may not generalize to NIF-specific hypotheses.
 
 ## Next questions
 
-Can these specific tasks reliably isolate 'cognitive diversity' from general intelligence (g-factor)? How does varying team composition impact performance in this specific experimental setting?
+Can we construct a control task where social communication bandwidth is constrained, thereby increasing the reliance on individual pattern recognition rather than group consensus processes?
 
 ## Collected sources
 
 - [source-0c2333f085ed4ad4](https://api.crossref.org/works?query=objective+task+performance+metrics+for+group+problem+solving+cognitive+diversity&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-b83c6629579f49c4](https://api.crossref.org/works?query=confounding+variables+in+group+problem+solving+tasks+cognitive+diversity+metrics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-35e7097ce5fd4571](https://api.crossref.org/works?query=quantitative+measures+of+cognitive+diversity+in+collaborative+team+performance&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
-- [source-9de15dbd0e9a4dc3](https://api.crossref.org/works?query=empirical+measures+cognitive+diversity+team+performance+problem+solving+task&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

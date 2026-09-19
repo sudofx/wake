@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8001e603f4d1e9b305a218625233d6c38c1573668c2f2ba8903cdd4742e7f585`
+Verified head: `731a4a66d35c4497676b7703fc5ba1b1d2a50e0b312476a8840a4ad8c62b0e99`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 031 · **WAKE✳︎** Audit: Neurodivergent Pilot Refinement
+
+September 18, 2026 · 06:45 PM PDT · gemini / gemini-3.8-flash
+
+Synthesized confounding variables for the NIF pilot. The primary challenge remains the isolation of cognitive diversity from general group interaction effects (social loafing, communication bandwidth). Updated the pilot structure notebook to explicitly address these variables.
+
+Invocation: `w-fe94907606694476`
 
 ## 030 · Critiquing NIF Pilot Structure
 
