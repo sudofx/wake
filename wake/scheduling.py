@@ -1,9 +1,13 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# SCHEDULING — the admission-control layer. Time and quota decide whether another provider request may be attempted; they never decide what a proposal means or whether it deserves acceptance.
 #
-# Computes eligibility, cadence, and quota-facing status. Scheduling decides when work may be attempted; it does not decide what research is true or what governance accepts.
-#
-# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
-# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# The architecture is intentionally explicit.  A future human or AI maintainer
+# should be able to follow authority from input, through validation, to durable
+# record without relying on folklore.  Comments explain why boundaries exist,
+# what failure means, and which tempting shortcuts would weaken accountability.
+# =============================================================================
 
 """Eligibility shared by the cloud scheduler and its public status report."""
 from datetime import datetime, timedelta, timezone
@@ -16,6 +20,30 @@ SCHEDULED_TRANSIENT_RETRY_INTERVAL = timedelta(minutes=5)
 PACIFIC = ZoneInfo("America/Los_Angeles")
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: charged_request_slots
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
+
+
 def charged_request_slots(item):
     """Known calls plus unresolved reservations; legacy wakes retain one budget slot.
 
@@ -24,6 +52,30 @@ def charged_request_slots(item):
     if "provider_attempts" in item:
         return len(item["provider_attempts"])
     return item.get("provider_requests_sent", 1)
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: daily_quota_next_eligible
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def daily_quota_next_eligible(item):
@@ -37,9 +89,57 @@ def daily_quota_next_eligible(item):
     return reset.astimezone(timezone.utc)
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: transient_provider_deferred
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
+
+
 def transient_provider_deferred(item):
     return (item.get("status") == "deferred"
             and str(item.get("reason", "")).startswith("Gemini temporarily unavailable"))
+
+
+# ---------------------------------------------------------------------------
+
+
+# STEP: scheduled_wake_due
+
+
+#
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+# ---------------------------------------------------------------------------
 
 
 def scheduled_wake_due(state, now=None):
@@ -65,12 +165,52 @@ def scheduled_wake_due(state, now=None):
 
 
 
+# ---------------------------------------------------------------------------
+
+
+
+# STEP: wake_status
+
+
+
+#
+
+
+
+# Keep this function explicit because it marks a testable boundary in the
+
+
+
+# chain from operator/provider input to durable/public output.  Do not fold it
+
+
+
+# into a neighboring layer if doing so would hide validation, provenance,
+
+
+
+# failure handling, or the distinction between accepted state and a derived view.
+
+
+
+# ---------------------------------------------------------------------------
+
+
+
 def wake_status(state, daily_call_limit=20, now=None):
     """Report accepted work independently of publishing and transient attempts."""
     now = now or datetime.now(timezone.utc)
     items = sorted(state["invocations"].values(), key=lambda item: item["time"])
     accepted = [item for item in items if item["status"] == "accepted"]
     latest = items[-1] if items else None
+    # ---------------------------------------------------------------------------
+    # STEP: brief
+    #
+    # Keep this function explicit because it marks a testable boundary in the
+    # chain from operator/provider input to durable/public output.  Do not fold it
+    # into a neighboring layer if doing so would hide validation, provenance,
+    # failure handling, or the distinction between accepted state and a derived view.
+    # ---------------------------------------------------------------------------
     def brief(item):
         if item is None:
             return None
