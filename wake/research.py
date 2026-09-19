@@ -71,28 +71,13 @@ WAKE_SOURCES = {
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: allowed_url
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def allowed_url(url):
     if not isinstance(url, str) or len(url) > 2000:
@@ -106,28 +91,13 @@ def allowed_url(url):
 
 
 # ---------------------------------------------------------------------------
-
-
 # OBJECT: Redirects
-
-
 #
-
-
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 class Redirects(urllib.request.HTTPRedirectHandler):
     # ---------------------------------------------------------------------------
@@ -144,28 +114,13 @@ class Redirects(urllib.request.HTTPRedirectHandler):
 
 
 # ---------------------------------------------------------------------------
-
-
 # OBJECT: PlainText
-
-
 #
-
-
 # This object groups state/behavior exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 class PlainText(HTMLParser):
     # ---------------------------------------------------------------------------
@@ -222,28 +177,13 @@ class PlainText(HTMLParser):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: fetch_source
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def fetch_source(url):
     allowed_url(url)
@@ -298,28 +238,13 @@ def fetch_source(url):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: query_url
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def query_url(query, domain):
     if domain == "wake_analysis":
@@ -356,28 +281,13 @@ def query_url(query, domain):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: research_urls
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def research_urls(query, domain, attempts=0):
     """Return bounded routes for a neutral topic or a queued follow-up query."""
@@ -404,28 +314,13 @@ def research_urls(query, domain, attempts=0):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: discovery_urls
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def discovery_urls(topic, attempts=0):
     """Return bounded, topic-agnostic discovery routes."""
@@ -433,28 +328,13 @@ def discovery_urls(topic, attempts=0):
 
 
 # ---------------------------------------------------------------------------
-
-
 # STEP: discovery_url
-
-
 #
-
-
 # This step exists as an explicit seam so its behavior can be
-
-
 # inspected, tested, and replaced without giving a model hidden authority.
-
-
 # Inputs should already belong to the layer named above; outputs remain data
-
-
 # until the next boundary validates or records them. Callers may rely on this contract.
-
-
 # ---------------------------------------------------------------------------
-
 
 def discovery_url(topic):
     """Compatibility helper for callers that need one neutral discovery URL."""
