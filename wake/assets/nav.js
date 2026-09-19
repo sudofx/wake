@@ -1,3 +1,11 @@
+/*
+ * WAKE✳︎ MAINTAINER NOTE
+ *
+ * Shared navigation behavior isolated from research/state logic so interaction fixes cannot alter experiment semantics.
+ *
+ * Comments should preserve the boundary between presentation and the canonical durable record.
+ */
+
 (() => {
   const nav = document.querySelector('.compact-nav');
   if (!nav) return;
