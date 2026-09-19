@@ -54,8 +54,9 @@ def reduce_event(state, event, historical=False):
         require(isinstance(p.get("topics"), list) and p["topics"], "Research topics cannot be empty")
         state["research_topics"] = p["topics"]
     elif kind == "research_collected":
+        require(p.get("status") in ("collected", "failed", "superseded"), "Invalid research collection status")
         if p["id"] in state.get("research", {}):
-            state["research"][p["id"]].update(status=p["status"], evidence=p["evidence"])
+            state["research"][p["id"]].update(status=p["status"], evidence=p.get("evidence"))
     elif kind == "observation":
         require(p["id"] not in state["evidence"], "Duplicate evidence ID")
         state["evidence"][p["id"]] = {**p, "version": state["version"], "time": event["time"]}
