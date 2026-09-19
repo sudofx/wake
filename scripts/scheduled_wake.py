@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Thin scheduled-run entry point. Cadence is infrastructure, not model memory or authority.
+#
+# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+
 """Cron entry point: one call, refresh the journal, retain a consistent backup."""
 
 from datetime import datetime
