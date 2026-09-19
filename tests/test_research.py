@@ -544,10 +544,23 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("api.openalex.org", even[1])
         self.assertEqual(odd, list(reversed(even)))
 
-    def test_wake_discovery_stays_repository_scoped(self):
+    def test_wake_discovery_stays_repository_scoped_and_can_discover_unlisted_files(self):
         topic = {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE✳︎ sudofx/wake"}
-        self.assertEqual(discovery_urls(topic, 7),
-                         ["https://raw.githubusercontent.com/sudofx/wake/master/README.md"])
+        routes = discovery_urls(topic, 7)
+        self.assertEqual(len(routes), 2)
+        self.assertTrue(all(
+            url.startswith("https://raw.githubusercontent.com/sudofx/wake/")
+            or url.startswith("https://api.github.com/repos/sudofx/wake/")
+            for url in routes
+        ))
+        self.assertIn(
+            "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
+            list(WAKE_SOURCES.values()),
+        )
+        self.assertEqual(
+            allowed_url("https://raw.githubusercontent.com/sudofx/wake/master/tests/unlisted_future_test.py"),
+            "https://raw.githubusercontent.com/sudofx/wake/master/tests/unlisted_future_test.py",
+        )
 
     def test_source_url_allowlist_and_input_types(self):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
