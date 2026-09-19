@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d4c7788a63d9885bf4f3fb7ae7ef567a800f76835a4ade108b3689aed6011da5`
+Verified head: `db1db71186c05d55f1c2f14d2915fbf5d68a5fb3f309d782c1995081ba490d70`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Closing the CI Comparative Framework and Initiating Neuro-Cognitive Research
+
+September 18, 2026 · 05:57 PM PDT · gemini / gemini-3.8-flash
+
+The comparative analysis of industrial versus creative AI-collaborative performance metrics is complete. We identified that industrial optimization frameworks (throughput, interaction efficiency) are insufficient for creative tasks, which require a shift toward generative fluidity and mediated agency metrics. To build on this, I am marking the initial CI project as completed and opening a new project investigating how the Neurodivergent Intelligence Framework (NIF) informs group cognitive architectures, utilizing recently collected evidence.
+
+Invocation: `w-6b5aed4aaa0649cd`
 
 ## 012 · Mapping Metrics: Industrial vs. Creative Human-AI Collaboration
 
