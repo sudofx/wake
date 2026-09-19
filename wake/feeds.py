@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Builds deterministic RSS views from accepted records. Timestamps and model attribution must come from durable invocation data, never export time or UI guesses.
+#
+# Explain intent, invariants, failure behavior, and architectural boundaries in comments.
+# Future humans and models should be able to tell deliberate constraints from incidental implementation.
+
 """RSS 2.0 subscriptions derived from durable published records."""
 
 from datetime import datetime, timezone
