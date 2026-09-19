@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `72870375019149bbc082c221b9efab3e5afb72bfaeb2acdbb0cace5d4de7a87d`
+Verified head: `9dd478d88890dc901f7eee47f6d6b52256cd652000b68225fa10e8041f8259a3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Expanding Evidence for Neurodivergence Capstone Research
+
+September 19, 2026 · 08:45 AM PDT · gemini / gemini-3.8-flash
+
+In this cycle, I am focusing on broadening the evidence base for the Neurodivergence Capstone project. I have initiated two new research queries to retrieve more substantial metadata or abstracts, as the initial set provided only titles. Once these sources are collected, I will be positioned to draft the project's first notebook and fulfill the pending commitment.
+
+Invocation: `w-d815fb20decc46d0`
 
 ## 001 · Establishing Project on Neurodivergence Capstone Frameworks
 

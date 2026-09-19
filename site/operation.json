@@ -1,102 +1,78 @@
 {
-  "status": "rejected",
-  "id": "w-ae8a79ceb63a4269",
-  "reason": "Belief review requires new evidence",
+  "status": "accepted",
+  "id": "w-d815fb20decc46d0",
+  "cycle": 2,
   "wake_status": {
     "last_accepted": {
-      "id": "w-20b3e9d0e55b4e7e",
-      "time": "2026-09-19T15:41:58.699649+00:00",
-      "finished": "2026-09-19T15:42:14.766579+00:00",
+      "id": "w-d815fb20decc46d0",
+      "time": "2026-09-19T15:45:55.296147+00:00",
+      "finished": "2026-09-19T15:46:59.756507+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 2,
       "provider_attempts": [
         {
-          "category": "http",
-          "elapsed_ms": 244,
-          "http_status": 429,
-          "model": "gemini-3.8-flash",
+          "category": "server",
+          "elapsed_ms": 50056,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
           "provider_error": {
-            "code": 429,
-            "details": [
-              {
-                "@type": "type.googleapis.com/google.rpc.Help",
-                "links": [
-                  {
-                    "description": "Learn more about Gemini API quotas",
-                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
-                "violations": [
-                  {
-                    "quotaDimensions": {
-                      "location": "[truncated]",
-                      "model": "[truncated]"
-                    },
-                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
-                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
-                    "quotaValue": "20"
-                  }
-                ]
-              },
-              {
-                "@type": "type.googleapis.com/google.rpc.RetryInfo",
-                "retryDelay": "58s"
-              }
-            ],
-            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 58.488846292s.",
-            "status": "RESOURCE_EXHAUSTED"
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 23618,
-          "response_bytes_captured": 1363,
-          "result": "daily_quota"
-        },
-        {
-          "elapsed_ms": 9464,
-          "http_status": 200,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 23618,
-          "result": "success"
-        }
-      ],
-      "successful_model": "gemini-3.5-flash"
-    },
-    "latest_attempt": {
-      "id": "w-ae8a79ceb63a4269",
-      "time": "2026-09-19T15:43:24.780954+00:00",
-      "finished": "2026-09-19T15:44:38.271198+00:00",
-      "status": "rejected",
-      "reason": "Belief review requires new evidence",
-      "provider_requests_sent": 2,
-      "provider_attempts": [
-        {
-          "category": "timeout",
-          "elapsed_ms": 60094,
-          "error_type": "TimeoutError",
-          "http_status": null,
-          "model": "gemini-3.5-flash",
-          "request_payload_bytes": 32085,
+          "request_payload_bytes": 37357,
+          "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 7151,
+          "elapsed_ms": 7495,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 32085,
+          "request_payload_bytes": 37357,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 1,
-    "next_eligible": "2026-09-19T15:48:24.780954+00:00",
+    "latest_attempt": {
+      "id": "w-d815fb20decc46d0",
+      "time": "2026-09-19T15:45:55.296147+00:00",
+      "finished": "2026-09-19T15:46:59.756507+00:00",
+      "status": "accepted",
+      "reason": "",
+      "provider_requests_sent": 2,
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 50056,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 37357,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 7495,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 37357,
+          "result": "success"
+        }
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
+    },
+    "accepted_cycles": 2,
+    "next_eligible": "2026-09-19T15:50:55.296147+00:00",
     "pending": false,
-    "attempts_today": 2,
-    "provider_requests_today": 4,
-    "provider_request_slots_today": 4,
+    "attempts_today": 3,
+    "provider_requests_today": 6,
+    "provider_request_slots_today": 6,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
