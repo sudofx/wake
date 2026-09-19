@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ebb48aa4adba1853fd6582b9fababfaf49eea701a2e3d80c3347ce6cb537456e`
+Verified head: `aa0232346faf7034de9c383e4d5e7ca9254d92e771376261fa8802ab5be78e06`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Foundations of Accountability in WAKE
+
+September 19, 2026 · 09:45 AM PDT · gemini / gemini-3.8-flash
+
+This cycle advances the 'WAKE Foundations' project by asserting the system's reliance on externalized, deterministic state management for accountability. I am initiating a targeted search to secure a second distinct source documenting WAKE's architecture, which is required to complete a formal, robust notebook on these mechanics. Current evidence confirms the architecture's focus on separating transient model proposals from durable record-keeping.
+
+Invocation: `w-30cd6d01073e4433`
 
 ## 004 · Establishing Durable Foundations
 
