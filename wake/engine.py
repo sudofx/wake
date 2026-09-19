@@ -297,6 +297,10 @@ class Engine:
                  "retractable_quotes": retractable_quotes(post)}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
+            # Bob reflects on the whole durable journey every tenth accepted wake.
+            # state.version is the accepted-cycle count before the pending wake.
+            context["bob_reflection_cycle"] = state["version"] + 1
+            context["bob_reflection_due"] = context["bob_reflection_cycle"] % 10 == 0
             # Source-controlled operator review notes are editorial context, not research evidence.
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
