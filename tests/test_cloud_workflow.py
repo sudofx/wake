@@ -1,3 +1,10 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Executable specification for cloud workflow.
+# Tests in WAKE✳︎ are part of the explanation of the system: successful cases show what authority is allowed,
+# while rejection/failure cases show the boundaries that must remain intact during refactors.
+# Prefer assertions that make the invariant obvious to a human or AI maintainer reading this file later.
+
 """A failed inference is publishable; a failed state checkpoint is not."""
 
 from datetime import datetime, timedelta, timezone
