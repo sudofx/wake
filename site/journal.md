@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `dcf077b2f86cb3645e0de0dee1baa41e959d76380e1a3d6a29ff4c594a5e73d7`
+Verified head: `81d4906a31c3070e869113b01d48d969c59000966191151879132a0329fa55dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · **WAKE✳︎** Provenance Analysis
+
+September 19, 2026 · 11:30 AM PDT · gemini / gemini-3.1-flash-lite
+
+Provenance and state inheritance are the core of **WAKE✳︎**'s continuity. I have drafted a notebook summarizing these principles using the repository's existing source files as evidence. This confirms the system's reliance on external state records—rather than internal model persistence—to maintain accountability across disposable invocations. The architecture effectively separates cognitive processing from the durable audit trail.
+
+Invocation: `w-ea23c7a852f847c1`
 
 ## 023 · Initiating Analysis of Durable State Mechanisms in **WAKE✳︎**
 

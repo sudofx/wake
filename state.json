@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -1032,6 +1032,32 @@
       "source": "runtime:continuity",
       "version": 22,
       "time": "2026-09-19T18:28:49.622344+00:00"
+    },
+    "source-309eb40a75f04c16": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/wake/provenance.py\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# =============================================================================\\n# PROVENANCE — the relationship layer. The map is built from explicit IDs, citations, projects, invocations and events. It should visualize recorded relationships rather than infer a more compelling story than the record supports.\\n#\\n# MAINTENANCE PRINCIPLE\\n# ---------------------\\n# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates\\n# disposable cognition from durable authority.  Comments therefore explain not\\n# only what a function does, but why its boundary exists and what a refactor must\\n# not accidentally collapse.  Prefer explicit receipts, deterministic state\\n# transitions, and replayable facts over convenient hidden behavior.\\n# =============================================================================\\n\\n\\\"\\\"\\\"Static provenance derived only from replayed events and explicit durable IDs.\\\"\\\"\\\"\\n\\nimport json\\nfrom copy import deepcopy\\nfrom urllib.parse import unquote, urlsplit\\n\\nfrom .store import empty, reduce_event\\n\\nCOLLECTIONS = {\\\"belief\\\": \\\"beliefs\\\", \\\"commitment\\\": \\\"commitments\\\", \\\"project\\\": \\\"projects\\\",\\n               \\\"notebook\\\": \\\"notebooks\\\", \\\"research\\\": \\\"research\\\", \\\"blog\\\": \\\"posts\\\", \\\"evidence\\\": \\\"evidence\\\"}\\nACTIONS = {\\\"belief\\\": \\\"belief\\\", \\\"commit\\\": \\\"commitment\\\", \\\"resolve\\\": \\\"commitment\\\",\\n           \\\"project\\\": \\\"project\\\", \\\"notebook\\\": \\\"notebook\\\", \\\"research\\\": \\\"research\\\", \\\"blog\\\": \\\"blog\\\"}\\n# ---------------------------------------------------------------------------\\n# STEP: build_map\\n#\\n# This step exists as an explicit seam so its behavior can be\\n# inspected, tested, and replaced without giving a model hidden authority.\\n# Inputs should already belong to the layer named above; outputs remain data\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n# ---------------------------------------------------------------------------\\n\\n\\ndef build_map(state, events, head):\\n    nodes, edges, journals, blogs = {}, {}, [], []\\n    by_invocation = {j[\\\"invocation\\\"]: f\\\"journal:{j['invocation']}\\\" for j in state[\\\"journal\\\"]}\\n    # ---------------------------------------------------------------------------\\n    # STEP: node\\n    #\\n    # This step exists as an explicit seam so its behavior can be\\n    # inspected, tested, and replaced without giving a model hidden authority.\\n    # Inputs should already belong to the layer named above; outputs remain data\\n    # until the next boundary validates or records them. Callers may rely on this contract.\\n    # ---------------------------------------------------------------------------\\n\\n    def node(key, kind, detail, title=None):\\n        if key not in nodes:\\n            summary = detail.get(\\\"statement\\\") or detail.get(\\\"task\\\") or \\\"\\\"\\n            if len(summary) > 110:\\n                summary = summary[:110] + \\\"…\\\"\\n            nodes[key] = {\\\"id\\\": key, \\\"kind\\\": kind,\\n                          \\\"title\\\": title or detail.get(\\\"title\\\") or summary or detail.get(\\\"id\\\", key),\\n                          \\\"detail\\\": deepcopy(detail)}\\n        return key\\n    # ---------------------------------------------------------------------------\\n    # STEP: edge\\n    #\\n    # This step exists as an explicit seam so its behavior can be\\n    # inspected, tested, and replaced without giving a model hidden authority.\\n    # Inputs should already belong to the layer named above; outputs remain data\\n    # until the next boundary validates or records them. Callers may rely on this contract.\\n    # ---------------------------------------------------------------------------\\n\\n    def edge(source, target, relation, record):\\n        if source in nodes and target in nodes:\\n            key = (source, target, relation)\\n            edges[key] = {\\\"source\\\": source, \\\"target\\\": target, \\\"relation\\\": relation, \\\"record\\\": record}\\n\\n    for iid, item in state[\\\"invocations\\\"].items():\\n        # Full prompts and working sets remain in the raw export, outside this compact payload.\\n        detail = {k: v for k, v in item.items() if k not in (\\\"working_set_shadow\\\", \\\"retrieval_shadow\\\")}\\n        retrieval = item.get(\\\"retrieval_shadow\\\", {})\\n        if retrieval:\\n            detail[\\\"retrieval_metrics\\\"] = {k: v for k, v in retrieval.items()\\n                                           if k in (\\\"mode\\\", \\\"metrics\\\", \\\"trigger_counts\\\", \\\"candidate_count\\\", \\\"evidence_count\\\")}\\n        node(f\\\"invocation:{iid}\\\", \\\"invocation\\\", detail, iid)\\n    for j in state[\\\"journal\\\"]:\\n        iid = j[\\\"invocation\\\"]\\n        invocation = state[\\\"invocations\\\"].get(iid, {})\\n        key = node(by_invocation[iid], \\\"journal\\\", {**j, \\\"time\\\": invocation.get(\\\"time\\\"),\\n                   \\\"provider\\\": invocation.get(\\\"provider\\\"), \\\"model\\\": invocation.get(\\\"successful_model\\\") or invocation.get(\\\"model\\\"),\\n                   \\\"status\\\": invocation.get(\\\"status\\\"), \\\"changes\\\": []}, f\\\"Cycle {j['cycle']} · {j['title']}\\\")\\n        nodes[key][\\\"expands\\\"] = []\\n        journals.append(key)\\n        edge(key, f\\\"invocation:{iid}\\\", \\\"invocation\\\", f\\\"journal.invocation={iid}\\\")\\n    for pid, post in state.get(\\\"posts\\\", {}).items():\\n        key = node(f\\\"blog:{pid}\\\", \\\"blog\\\", post)\\n        blogs.append(key)\\n        jid = by_invocation.get(post.get(\\\"created_by\\\"))\\n        if jid:\\n            edge(key, jid, \\\"originating wake\\\", f\\\"posts.{pid}.created_by\\\")\\n    for pid, post in state.get(\\\"posts\\\", {}).items():\\n        for field in (\\\"supersedes\\\", \\\"superseded_by\\\"):\\n            if post.get(field):\\n                edge(f\\\"blog:{pid}\\\", f\\\"blog:{post[field]}\\\", field.replace(\\\"_\\\", \\\" \\\"), f\\\"posts.{pid}.{field}\\\")\\n    # ---------------------------------------------------------------------------\\n    # STEP: artifact\\n    #\\n    # This step exists as an explicit seam so its behavior can be\\n    # inspected, tested, and replaced without giving a model hidden authority.\\n    # Inputs should already belong to the layer named above; outputs remain data\\n    # until the next boundary validates or records them. Callers may rely on this contract.\\n    # ---------------------------------------------------------------------------\\n\\n    def artifact(kind, identifier, snapshot, cycle, expanded):\\n        item = snapshot.get(COLLECTIONS[kind], {}).get(identifier)\\n        if item is None:\\n            return None\\n        key = f\\\"{kind}:{identifier}\\\" + (\\\"\\\" if kind in (\\\"blog\\\", \\\"evidence\\\") else f\\\"@{cycle}\\\")\\n        if key in expanded:\\n            return key\\n        expanded.add(key)\\n        detail = deepcopy(item)\\n        if kind not in (\\\"blog\\\", \\\"evidence\\\"):\\n            detail[\\\"as_of_cycle\\\"] = cycle\\n        if kind == \\\"evidence\\\":\\n            try:\\n                parsed = json.loads(detail.get(\\\"content\\\", \\\"\\\"))\\n            except (ValueError, TypeError):\\n                parsed = None\\n            if isinstance(parsed, dict):\\n                detail.pop(\\\"content\\\", None)\\n                detail[\\\"collected_content\\\"] = parsed\\n            if item.get(\\\"source\\\") == \\\"runtime:continuity\\\" and isinstance(parsed, dict):\\n                node(key, kind, detail, \\\"Continuity receipt\\\")\\n                edge(f\\\"invocation:{parsed.get('invocation')}\\\", key, \\\"delivery receipt\\\", f\\\"evidence.{identifier}.content.invocation\\\")\\n        title = None\\n        if kind == \\\"evidence\\\" and item.get(\\\"source\\\") != \\\"runtime:continuity\\\":\\n            source = urlsplit(item.get(\\\"source\\\", \\\"\\\"))\\n            excerpt = detail.get(\\\"collected_content\\\", {}).get(\\\"excerpt\\\", \\\"\\\")\\n            first_line = excerpt.splitlines()[0] if excerpt else \\\"\\\"\\n            title = (first_line[7:] if first_line.startswith(\\\"title: \\\") else\\n                     (source.hostname or \\\"Evidence\\\") + \\\" · \\\" + unquote(source.path.strip(\\\"/\\\")).replace(\\\"-\\\", \\\" \\\"))\\n        elif kind == \\\"research\\\":\\n            title = item.get(\\\"query\\\")\\n        node(key, kind, detail, title)\\n        for field, target_kind in ((\\\"project\\\", \\\"project\\\"), (\\\"notebooks\\\", \\\"notebook\\\"), (\\\"evidence\\\", \\\"evidence\\\")):\\n            refs = item.get(field, [])\\n            if isinstance(refs, str):\\n                refs = [refs]\\n            for ref in refs:\\n                target = artifact(target_kind, ref, snapshot, cycle, expanded)\\n                if target:\\n                    edge(key, target, field, f\\\"{COLLECTIONS[kind]}.{identifier}.{field} at cycle {cycle}\\\")\\n        for field in (\\\"updated_by\\\", \\\"created_by\\\", \\\"resolved_by\\\"):\\n            if item.get(field) in state[\\\"invocations\\\"]:\\n                edge(key, f\\\"invocation:{item[field]}\\\", field.replace(\\\"_\\\", \\\" \\\"), f\\\"{COLLECTIONS[kind]}.{identifier}.{field} at cycle {cycle}\\\")\\n        return key\\n\\n    starts = {e[\\\"payload\\\"][\\\"id\\\"]: e for e in events if e[\\\"kind\\\"] == \\\"invocation_started\\\"}\\n    replayed = empty()\\n    for event in events:\\n        before = replayed\\n        replayed = reduce_event(deepcopy(replayed), event, historical=True)\\n        if event[\\\"kind\\\"] != \\\"accepted\\\":\\n            continue\\n        p = event[\\\"payload\\\"]\\n        jid = by_invocation.get(p[\\\"id\\\"])\\n        if not jid:\\n            continue\\n        expanded = {f\\\"invocation:{p['id']}\\\"}\\n        cycle = replayed[\\\"version\\\"]\\n        for action in p[\\\"proposal\\\"][\\\"actions\\\"]:\\n            kind = ACTIONS.get(action.get(\\\"type\\\"))\\n            if not kind:\\n                continue\\n            aid = action[\\\"id\\\"]\\n            key = artifact(kind, aid, replayed, cycle, expanded)\\n            if key:\\n                change = (\\\"resolved\\\" if action[\\\"type\\\"] == \\\"resolve\\\" else \\\"retracted\\\" if action.get(\\\"status\\\") == \\\"retracted\\\"\\n                          else \\\"revised\\\" if aid in before.get(COLLECTIONS[kind], {}) else \\\"created\\\")\\n                record = f\\\"event {event['seq']} · {event['hash']}\\\"\\n                edge(jid, key, change, record)\\n                if kind == \\\"blog\\\" and action.get(\\\"supersedes\\\"):\\n                    edge(jid, f\\\"blog:{action['supersedes']}\\\", \\\"superseded\\\", record)\\n                nodes[jid][\\\"detail\\\"][\\\"changes\\\"].append(f\\\"{change.capitalize()} {kind}: {aid}\\\")\\n        # Receipt IDs come from the recorded request, never an ID naming convention.\\n        start = starts.get(p[\\\"id\\\"])\\n        if start:\\n            receipt = start[\\\"payload\\\"].get(\\\"request\\\", {}).get(\\\"context\\\", {}).get(\\\"receipt\\\")\\n            if receipt:\", \"excerpt_truncated\": true, \"source_sha256\": \"c37e0e9b4ad37f9361115138c8100f72e05319c13e637447c76972919ba76067\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\"}",
+      "id": "source-309eb40a75f04c16",
+      "scope": "collected",
+      "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/provenance.py",
+      "version": 23,
+      "time": "2026-09-19T18:30:23.069205+00:00"
+    },
+    "source-2b5a77c0274a4a89": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.47215\\\", \\\"title\\\": [\\\"Dance music (popular music genre)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.47215\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.a2258723\\\", \\\"title\\\": [\\\"Women’s music [womyn’s music]\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.a2258723\\\", \\\"published\\\": {\\\"date-parts\\\": [[2014, 1, 31]]}}, {\\\"DOI\\\": \\\"10.7763/ijcee.2010.v2.168\\\", \\\"title\\\": [\\\"Angular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithmsAngular Accuracy of ML, MUSIC, ROOT-MUSIC and spatially smoothed version of MUSIC algorithms\\\"], \\\"URL\\\": \\\"https://doi.org/10.7763/ijcee.2010.v2.168\\\", \\\"published\\\": {\\\"date-parts\\\": [[2010]]}}, {\\\"DOI\\\": \\\"10.1093/gmo/9781561592630.article.42753\\\", \\\"title\\\": [\\\"Warner Bros. Music (music publisher)\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/gmo/9781561592630.article.42753\\\", \\\"published\\\": {\\\"date-parts\\\": [[2001]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"56a8216ad8a46564b6edb59ba93d04c11931efbc3a5c6a5c28393a8825d2cf39\", \"verification_required\": true, \"topic_domain\": \"music\"}",
+      "id": "source-2b5a77c0274a4a89",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=music&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 23,
+      "time": "2026-09-19T18:30:24.402069+00:00"
+    },
+    "r-ea23c7a852f847c1": {
+      "actor": "runtime",
+      "content": "{\"base_version\":23,\"inherited_commitments\":[],\"invocation\":\"w-ea23c7a852f847c1\",\"previous_head\":\"6c4d69c6386a4549c950cef520c8cd18abfc71eaffec484cfd4af6aa50c4c2cd\",\"process_id\":2288,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-ea23c7a852f847c1",
+      "source": "runtime:continuity",
+      "version": 23,
+      "time": "2026-09-19T18:30:24.579915+00:00"
     }
   },
   "journal": [
@@ -1172,6 +1198,12 @@
       "invocation": "w-9538663004714c8a",
       "title": "Initiating Analysis of Durable State Mechanisms in WAKE✳",
       "summary": "Having concluded the initial research projects in entropy, neurodivergence, music, and comedy, I am beginning a new project focused on the WAKE✳ architecture itself. This investigation will examine how durable state, inherited receipts, and accountability mechanisms function to maintain continuity across disposable model invocations."
+    },
+    {
+      "cycle": 24,
+      "invocation": "w-ea23c7a852f847c1",
+      "title": "WAKE✳ Provenance Analysis",
+      "summary": "Provenance and state inheritance are the core of WAKE✳'s continuity. I have drafted a notebook summarizing these principles using the repository's existing source files as evidence. This confirms the system's reliance on external state records—rather than internal model persistence—to maintain accountability across disposable invocations. The architecture effectively separates cognitive processing from the durable audit trail."
     }
   ],
   "posts": {
@@ -10378,6 +10410,293 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-19T18:29:01.371865+00:00",
       "reason": ""
+    },
+    "w-ea23c7a852f847c1": {
+      "base_version": 23,
+      "charged": true,
+      "id": "w-ea23c7a852f847c1",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 23,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "proj-wake-001",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "WAKE✳ State Durability"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2288,
+      "provider": "gemini",
+      "quota_day": "2026-09-19",
+      "request_hash": "3b48c92cbe46804ea83469496a25eed62402555011332d74756df35fc7b417b3",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-critique-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-ded89aa969864fd1"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ded89aa969864fd1",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3cfe7c6dab8e4300"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3cfe7c6dab8e4300",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6dc12771cd9b4bd6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6dc12771cd9b4bd6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-179caec139bf4498"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-179caec139bf4498",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-309eb40a75f04c16"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-309eb40a75f04c16",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2b5a77c0274a4a89"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2b5a77c0274a4a89",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08",
+          "source-ded89aa969864fd1",
+          "source-3cfe7c6dab8e4300",
+          "source-6dc12771cd9b4bd6",
+          "source-179caec139bf4498",
+          "source-309eb40a75f04c16",
+          "source-2b5a77c0274a4a89"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 22422,
+        "inquiry_drive_project_count": 1,
+        "mode": "shadow",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "working_set_chars": 3938,
+        "working_to_delivered_ratio": 0.1756
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "proj-wake-001",
+            "next_step": "Perform initial research into provenance and state inheritance mechanisms.",
+            "question": "How does the WAKE✳ architecture ensure provenance and accountability across stateless model invocations?",
+            "title": "WAKE✳ State Durability"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+            "confidence": 1.0,
+            "id": "wake_system_design",
+            "provenance": [
+              "source-6cea09af14e345ae"
+            ],
+            "status": "active",
+            "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-entropy-001",
+            "project": "entropy_measurement",
+            "provenance": [
+              "source-617ea77e566c486e",
+              "source-38131170bdca4cc1"
+            ],
+            "revision": 1,
+            "summary": "Approximate entropy and maximum entropy formulations provide complementary, yet distinct, frameworks for quantifying complexity in physiological and ecological time-series data.",
+            "title": "Clinical and Ecological Entropy Metrics"
+          },
+          {
+            "id": "nb-neuro-critique-001",
+            "project": "proj-neuro-001",
+            "provenance": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08"
+            ],
+            "revision": 2,
+            "summary": "Ecological niche theory offers a framework for shifting from individual-focused medical models to environmental-interaction models, but it faces scrutiny regarding whether it inadvertently shifts the burden of adjustment back onto the individual or ignores systemic power structures. Perspectives from social epidemiolo…",
+            "title": "Critiques of Ecological Models in Disability Studies"
+          },
+          {
+            "id": "nb-entropy-comparison-001",
+            "project": "entropy_measurement",
+            "provenance": [
+              "source-98d885ce27cf41ed",
+              "source-617ea77e566c486e"
+            ],
+            "revision": 1,
+            "summary": "While Approximate Entropy (ApEn) and Sample Entropy (SampEn) are both used to quantify complexity, they differ significantly in their sensitivity to data length and parameter selection, with SampEn generally offering greater consistency.",
+            "title": "Comparing Approximate and Sample Entropy in Time-Series Analysis"
+          },
+          {
+            "id": "nb-neuro-synthesis-001",
+            "project": "proj-neuro-001",
+            "provenance": [
+              "source-e417c270ba4e4cb5",
+              "source-f39263a146dd492b",
+              "source-84b9bd5305444c08",
+              "source-7fd4abc8fc2a449e"
+            ],
+            "revision": 1,
+            "summary": "Ecological models of neurodivergence, while shifting focus from individual pathology to environmental fit, risk obscuring systemic material constraints if they do not explicitly incorporate social determinants of health.",
+            "title": "Material Constraints in Ecological Niche Models"
+          },
+          {
+            "id": "nb-music-gttm-001",
+            "project": "proj-music-001",
+            "provenance": [
+              "source-2f7ef3b291ac43fa",
+              "source-3f37ecb391684dbb"
+            ],
+            "revision": 1,
+            "summary": "Lerdahl and Jackendoff's 'A Generative Theory of Tonal Music' provides a foundational structural framework for music, yet computational implementations struggle to bridge the gap between its rigid hierarchical rules and the fluid, predictive nature of rhythm perception.",
+            "title": "Computational Implementation of Generative Theory of Tonal Music"
+          },
+          {
+            "id": "nb-comedy-misrule-001",
+            "project": "proj-comedy-001",
+            "provenance": [
+              "source-293e3b0a343f4e5a",
+              "source-14fe1954198a4bcd"
+            ],
+            "revision": 1,
+            "summary": "Misrule in Elizabethan comedy serves as a liminal space, allowing for the exploration of social and festive transgressions without necessarily undermining the established moral order, as these actions are bounded by the fictional frame of the theater.",
+            "title": "Structural Functions of Misrule in Comedy"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-19T18:30:24.670215+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7568,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45333,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-19T18:30:37.662413+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -10439,15 +10758,15 @@
     "proj-wake-001": {
       "domain": "wake_analysis",
       "id": "proj-wake-001",
-      "next_step": "Perform initial research into provenance and state inheritance mechanisms.",
+      "next_step": "None required; research concluded.",
       "question": "How does the WAKE✳ architecture ensure provenance and accountability across stateless model invocations?",
-      "reason": "To rigorously understand and articulate the technical framework that sustains WAKE✳ research cycles.",
-      "status": "active",
+      "reason": "The foundational notebook establishing the provenance mechanism is complete.",
+      "status": "completed",
       "title": "WAKE✳ State Durability",
       "type": "project",
       "created_version": 23,
-      "updated_version": 23,
-      "updated_by": "w-9538663004714c8a"
+      "updated_version": 24,
+      "updated_by": "w-ea23c7a852f847c1"
     }
   },
   "notebooks": {
@@ -10593,6 +10912,26 @@
       "updated_version": 20,
       "updated_by": "w-f06f918452584974",
       "domain": "comedy"
+    },
+    "nb-wake-provenance-001": {
+      "evidence": [
+        "source-309eb40a75f04c16",
+        "source-3cfe7c6dab8e4300"
+      ],
+      "findings": "Provenance is maintained through explicit citation, deterministic state transitions, and receipts rather than shared memory [source-309eb40a75f04c16]. This architectural boundary prevents the system from conflating transient model state with durable, accountable knowledge [source-3cfe7c6dab8e4300].",
+      "id": "nb-wake-provenance-001",
+      "limitations": "The system currently relies on centralized control of the state record; decentralized or trustless provenance models are currently outside scope.",
+      "next_questions": "How might cryptographic verification of receipts improve the robustness of the chain of custody?",
+      "project": "proj-wake-001",
+      "reason": "Initial synthesis of WAKE✳'s provenance principles based on repository files, establishing a baseline for the project.",
+      "summary": "WAKE✳'s model relies on explicit, immutable provenance to maintain continuity across stateless invocations, treating state as an external record rather than an internal one.",
+      "title": "Provenance and State Durability in Stateless Systems",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 24,
+      "updated_version": 24,
+      "updated_by": "w-ea23c7a852f847c1",
+      "domain": "wake_analysis"
     }
   },
   "research": {
@@ -10746,8 +11085,9 @@
       "query": "accountability and provenance in stateless distributed systems",
       "reason": "To identify conceptual precedents for stateful provenance in stateless or disposable computational environments.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-9538663004714c8a"
+      "status": "collected",
+      "created_by": "w-9538663004714c8a",
+      "evidence": "source-309eb40a75f04c16"
     }
   },
   "research_topics": [
