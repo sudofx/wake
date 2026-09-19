@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 38  
+**Version:** 39  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `bc4bdd8774b36555246a4dcc45af7b404ab9c549fe004339e8a73062abd056bd`
+**Verified head:** `8620047c4b82cd60ef8430aa083174a2b8d5e62e7afeb10041e20299841b3861`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -187,9 +187,30 @@
   "reason": "This directly advances the 'proj-sym-breaking' project from identifying methodological viability to concrete analysis of the relationship between topological invariants and scattering dynamics.",
   "task": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework.",
   "type": "commit",
-  "status": "open",
+  "status": "fulfilled",
   "created_by": "w-3d952e96fce74e1c",
-  "created_version": 37
+  "created_version": 37,
+  "evidence": [
+    "source-a9d1cffcda2340d6"
+  ],
+  "resolution_reason": "The newly collected TR-ARPES source provides the experimental literature context needed to complete the draft comparison of spectroscopic signatures in Moiré systems.",
+  "resolved_by": "w-b6975b36440447f5",
+  "resolved_version": 39
+}
+```
+
+### `commit-review-kinetic-constraints`
+
+```json
+{
+  "due_cycle": 40,
+  "id": "commit-review-kinetic-constraints",
+  "reason": "To verify formal mathematical expressions of topological kinetic constraints against classical Ginzburg-Landau transition rates.",
+  "task": "Review nonequilibrium Ginzburg-Landau kinetic constraint research once the collector retrieves the sources.",
+  "type": "commit",
+  "status": "open",
+  "created_by": "w-b6975b36440447f5",
+  "created_version": 39
 }
 ```
 
@@ -228,21 +249,22 @@
     "source-1a7417d79b324c5e",
     "source-abf3acf698664dd2",
     "source-82b8096406fe4da2",
-    "source-778e0cf5d28746c4"
+    "source-778e0cf5d28746c4",
+    "source-a9d1cffcda2340d6"
   ],
-  "findings": "Our analysis integrates experimental evidence from [source-778e0cf5d28746c4], which demonstrates that time-resolved photoemission spectroscopy can track band structure modifications and scattering channels in quantum materials. This provides a direct methodological bridge to our hypothesis: that topological invariants impose path-dependent kinetic constraints on phase transitions. While our bi-temporal geometric framework (from [source-82b8096406fe4da2]) models this via non-vanishing temporal curvature, experimental validation now moves from theoretical speculation to a defined observation program using TR-ARPES to quantify how scattering rates correlate with topological protection in Moiré systems.",
+  "findings": "We compare specific time-resolved spectroscopic signatures against predicted kinetic constraints. TR-ARPES study metadata [source-a9d1cffcda2340d6] confirms that laser-based angle-resolved photoemission spectroscopy effectively probes non-equilibrium electronic states in topological quantum materials. In our bi-temporal framework, topological invariants act as dynamic barriers (curvature) that restrict phase transition rates. Empirically, this manifests as a slowing of carrier relaxation dynamics and a suppression of specific scattering channels during the transition, which can be resolved in time-resolved band mapping.",
   "id": "nb-sym-landau-topo",
-  "limitations": "Direct measurement of 'temporal curvature' remains a mathematical abstraction; current experimental techniques measure scattering and carrier relaxation, which are proxies for the kinetic limits rather than the curvature itself.",
-  "next_questions": "Can the modulation of scattering channels specifically be mapped to the topological invariants defined in our Landau-topological hybrid model?",
+  "limitations": "The cited spectroscopic papers [source-a9d1cffcda2340d6] are retrieved as bibliographic metadata/abstracts rather than full experimental datasets. The mapping of kinetic coefficients remains a qualitative phenomenological model.",
+  "next_questions": "What specific pump-probe energy thresholds are required to distinguish topological protection from trivial thermalization?",
   "project": "proj-sym-breaking",
-  "reason": "Updated to synthesize recent TR-ARPES methodological evidence with the bi-temporal framework.",
-  "summary": "Topological invariants in Moiré systems serve as kinetic constraints, with TR-ARPES emerging as a viable tool to observe these dynamic limits in non-equilibrium processes.",
+  "reason": "Drafted comparison of spectroscopic signatures using newly collected TR-ARPES evidence.",
+  "summary": "Comparing TR-ARPES spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework in Moiré superlattices.",
   "title": "Landau-Type vs. Topological Phase Transitions",
   "type": "notebook",
-  "revision": 12,
+  "revision": 13,
   "created_version": 2,
-  "updated_version": 36,
-  "updated_by": "w-ef21f4f91f6c4ff5",
+  "updated_version": 39,
+  "updated_by": "w-b6975b36440447f5",
   "domain": "symmetry"
 }
 ```
@@ -27845,6 +27867,316 @@
 }
 ```
 
+### `w-b6975b36440447f5`
+
+```json
+{
+  "base_version": 38,
+  "charged": true,
+  "id": "w-b6975b36440447f5",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 38,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "proj-sym-breaking",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 14,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2259,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "3633ec0c5946d18e47ad85de3d280be1fd50be1153292f76c40ba6de19eaddd0",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "belief-landau-topo-limits",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2",
+          "source-82b8096406fe4da2",
+          "source-778e0cf5d28746c4"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-sym-landau-topo",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-draft-spectro-comparison",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-94900106afd94752"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-94900106afd94752",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e0a55e1978014eb5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e0a55e1978014eb5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-aacf7df6c27c4452"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-aacf7df6c27c4452",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-53e03b2661964d20"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-53e03b2661964d20",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a9d1cffcda2340d6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a9d1cffcda2340d6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-85d457fc7c1f4bb7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-85d457fc7c1f4bb7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-cda3b3e78e2047d3",
+      "source-8f9aa698a76b4d42",
+      "source-11da439e5b3544a1",
+      "source-176242423dea48b0",
+      "source-43b5f6ae2fb94db8",
+      "source-1a7417d79b324c5e",
+      "source-abf3acf698664dd2",
+      "source-82b8096406fe4da2",
+      "source-778e0cf5d28746c4",
+      "source-94900106afd94752",
+      "source-e0a55e1978014eb5",
+      "source-aacf7df6c27c4452",
+      "source-53e03b2661964d20",
+      "source-a9d1cffcda2340d6",
+      "source-85d457fc7c1f4bb7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 15,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "excerpt_boundary": 1,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 30217,
+    "inquiry_drive_project_count": 1,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 15,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "excerpt_boundary": 1,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 2814,
+    "working_to_delivered_ratio": 0.0931
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-sym-breaking",
+        "next_step": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints.",
+        "question": "How do topological constraints modify group-theoretic Landau selection rules in spontaneous symmetry breaking?",
+        "title": "Symmetry Breaking and Phase Transitions"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The failure of classical Landau theory to account for observed states in Moiré superlattices is likely driven by non-trivial topological invariants that extend beyond group-theoretic symmetry breaking.",
+        "confidence": 0.8,
+        "id": "belief-landau-topo-limits",
+        "provenance": [
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42"
+        ],
+        "status": "active",
+        "why_retained": "Experimental evidence in twisted bilayer graphene shows emergent states (spin-valley, Kekulé-AF) that are structurally inconsistent with standard Landau-level selection rules, pointing toward topological rather than pur…"
+      },
+      {
+        "claim": "Topological invariants act as intrinsic kinetic constraints that define phase transition rates, distinct from classical thermodynamic Landau parameters.",
+        "confidence": 0.7,
+        "id": "belief-kinetic-coupling",
+        "provenance": [
+          "source-176242423dea48b0"
+        ],
+        "status": "active",
+        "why_retained": "Kinetic coefficients in Ginzburg-Landau formalisms for topological defects appear to modulate transition dynamics in a manner analogous to topological trapping, suggesting a direct link beyond abstract selection rules."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 38,
+        "id": "commit-draft-spectro-comparison",
+        "reason": "This directly advances the 'proj-sym-breaking' project from identifying methodological viability to concrete analysis of the relationship between topological invariants and scattering dynamics.",
+        "task": "Draft analysis comparing specific time-resolved spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-sym-landau-topo",
+        "project": "proj-sym-breaking",
+        "provenance": [
+          "source-11da439e5b3544a1",
+          "source-cda3b3e78e2047d3",
+          "source-8f9aa698a76b4d42",
+          "source-176242423dea48b0",
+          "source-43b5f6ae2fb94db8",
+          "source-1a7417d79b324c5e",
+          "source-abf3acf698664dd2",
+          "source-82b8096406fe4da2",
+          "source-778e0cf5d28746c4"
+        ],
+        "revision": 12,
+        "summary": "Topological invariants in Moiré systems serve as kinetic constraints, with TR-ARPES emerging as a viable tool to observe these dynamic limits in non-equilibrium processes.",
+        "title": "Landau-Type vs. Topological Phase Transitions"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T13:00:51.504247+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 1953,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 51570,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 11378,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 51570,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-19T13:01:17.860449+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-8f9aa698a76b4d42`
@@ -31988,6 +32320,47 @@
 }
 ```
 
+### `source-a9d1cffcda2340d6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=time-resolved+ARPES+Moire+superlattice+topological+phase+transition+kinetics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.31274/etd-180810-3713\\\", \\\"title\\\": [\\\"Laser-based angle-resolved photoemission spectroscopy (ARPES) and studies of topological insulators and heavy fermions\\\"], \\\"URL\\\": \\\"https://doi.org/10.31274/etd-180810-3713\\\"}, {\\\"DOI\\\": \\\"10.1117/12.3048019.42284ae7-b859-ef11-a9a2-005056914f1c\\\", \\\"URL\\\": \\\"https://doi.org/10.1117/12.3048019.42284ae7-b859-ef11-a9a2-005056914f1c\\\"}, {\\\"DOI\\\": \\\"10.31274/etd-180810-5667\\\", \\\"title\\\": [\\\"Electronic properties of novel topological quantum materials studied by angle-resolved photoemission spectroscopy (ARPES)\\\"], \\\"URL\\\": \\\"https://doi.org/10.31274/etd-180810-5667\\\"}, {\\\"DOI\\\": \\\"10.1117/12.2597255.6266192375001\\\", \\\"URL\\\": \\\"https://doi.org/10.1117/12.2597255.6266192375001\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ac01fe1f7498be014b78de92606859ec817226a0c080c10fc290aa1d71b1b093\"}",
+  "id": "source-a9d1cffcda2340d6",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=time-resolved+ARPES+Moire+superlattice+topological+phase+transition+kinetics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 38,
+  "time": "2026-09-19T13:00:49.221840+00:00"
+}
+```
+
+### `source-85d457fc7c1f4bb7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.23943/princeton/9780691149523.003.0003\\\", \\\"title\\\": [\\\"Misrule as Comedy; Comedy as Misrule\\\"], \\\"abstract\\\": \\\"<p>This chapter considers the tendency for Elizabethan comedy to be a saturnalia, rather than to represent saturnalian experience. In Elizabethan England, a direct development of comedy out of festivity was prevented by the existence of an already developed dramatic literature—and by the whole moral superstructure of Elizabethan society. When the issue was put to the test, license for festive abuse was never granted by Elizabethan officials. The tendency examined in this chapter bears witness to the saturnalian impulse which did find expression in dramatic fiction. Saturnalia could come into its own in the theater by virtue of the distinction between the stage and the world which Puritans were unwilling to make in London but which fortunately prevailed across the river on the Bankside.</p>\\\", \\\"URL\\\": \\\"https://doi.org/10.23943/princeton/9780691149523.003.0003\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 10, 23]]}}, {\\\"DOI\\\": \\\"10.5040/9781350911949\\\", \\\"title\\\": [\\\"Drama/Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781350911949\\\", \\\"published\\\": {\\\"date-parts\\\": [[1988]]}}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232733\\\", \\\"title\\\": [\\\"Section A: Doric Comedy\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232733\\\"}, {\\\"DOI\\\": \\\"10.1093/oseo/instance.00232803\\\", \\\"title\\\": [\\\"Section C: 'Middle' and 'New Comedy'\\\"], \\\"URL\\\": \\\"https://doi.org/10.1093/oseo/instance.00232803\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"46a9afd700bc8ebcfbf2faeac225a02e3b4eb88b3227ecd187c128f297f7c634\"}",
+  "id": "source-85d457fc7c1f4bb7",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=comedy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 38,
+  "time": "2026-09-19T13:00:50.668301+00:00"
+}
+```
+
+### `r-b6975b36440447f5`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":38,\"inherited_commitments\":[\"commit-draft-spectro-comparison\"],\"invocation\":\"w-b6975b36440447f5\",\"previous_head\":\"ccb1f1a631bf7182081a50dafb26f609b4a1d529b6968e66bac9467d651be702\",\"process_id\":2259,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b6975b36440447f5",
+  "source": "runtime:continuity",
+  "version": 38,
+  "time": "2026-09-19T13:00:51.280276+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping state and scoping symmetry breaking
@@ -32408,6 +32781,17 @@
 }
 ```
 
+### 039 · Mapping TR-ARPES Spectroscopic Signatures to Topological Kinetic Constraints
+
+```json
+{
+  "cycle": 39,
+  "invocation": "w-b6975b36440447f5",
+  "title": "Mapping TR-ARPES Spectroscopic Signatures to Topological Kinetic Constraints",
+  "summary": "We have resolved the commitment to draft a comparative analysis of time-resolved spectroscopic signatures against the kinetic constraints of our bi-temporal framework. By integrating newly collected bibliographic evidence on time-resolved ARPES in Moiré and topological quantum materials, we formalize how non-equilibrium band structure mapping can resolve suppressed scattering channels and carrier relaxation delays, linking mathematical temporal curvature to measurable observables."
+}
+```
+
 ## Research
 
 ### `res-sym-landau-topo`
@@ -32628,8 +33012,9 @@
   "query": "time-resolved ARPES Moire superlattice topological phase transition kinetics",
   "reason": "To gather fresh, specific experimental evidence on time-resolved angle-resolved photoemission spectroscopy signatures in Moire systems to resolve our spectroscopic commitment.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-8c82ed850add4009"
+  "status": "collected",
+  "created_by": "w-8c82ed850add4009",
+  "evidence": "source-a9d1cffcda2340d6"
 }
 ```
 

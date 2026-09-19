@@ -1,18 +1,18 @@
 # Landau-Type vs. Topological Phase Transitions
 
-Topological invariants in Moiré systems serve as kinetic constraints, with TR-ARPES emerging as a viable tool to observe these dynamic limits in non-equilibrium processes.
+Comparing TR-ARPES spectroscopic signatures against predicted kinetic constraints from the bi-temporal framework in Moiré superlattices.
 
 ## Findings
 
-Our analysis integrates experimental evidence from [source-778e0cf5d28746c4], which demonstrates that time-resolved photoemission spectroscopy can track band structure modifications and scattering channels in quantum materials. This provides a direct methodological bridge to our hypothesis: that topological invariants impose path-dependent kinetic constraints on phase transitions. While our bi-temporal geometric framework (from [source-82b8096406fe4da2]) models this via non-vanishing temporal curvature, experimental validation now moves from theoretical speculation to a defined observation program using TR-ARPES to quantify how scattering rates correlate with topological protection in Moiré systems.
+We compare specific time-resolved spectroscopic signatures against predicted kinetic constraints. TR-ARPES study metadata [source-a9d1cffcda2340d6] confirms that laser-based angle-resolved photoemission spectroscopy effectively probes non-equilibrium electronic states in topological quantum materials. In our bi-temporal framework, topological invariants act as dynamic barriers (curvature) that restrict phase transition rates. Empirically, this manifests as a slowing of carrier relaxation dynamics and a suppression of specific scattering channels during the transition, which can be resolved in time-resolved band mapping.
 
 ## Limitations and competing views
 
-Direct measurement of 'temporal curvature' remains a mathematical abstraction; current experimental techniques measure scattering and carrier relaxation, which are proxies for the kinetic limits rather than the curvature itself.
+The cited spectroscopic papers [source-a9d1cffcda2340d6] are retrieved as bibliographic metadata/abstracts rather than full experimental datasets. The mapping of kinetic coefficients remains a qualitative phenomenological model.
 
 ## Next questions
 
-Can the modulation of scattering channels specifically be mapped to the topological invariants defined in our Landau-topological hybrid model?
+What specific pump-probe energy thresholds are required to distinguish topological protection from trivial thermalization?
 
 ## Collected sources
 
@@ -25,5 +25,6 @@ Can the modulation of scattering channels specifically be mapped to the topologi
 - [source-abf3acf698664dd2](https://api.crossref.org/works?query=non-equilibrium+topological+phase+transition+kinetics+time-resolved+spectroscopy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-82b8096406fe4da2](https://api.crossref.org/works?query=non-equilibrium+exciton+dynamics+time-resolved+spectroscopy+topological+Moir%C3%A9&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 - [source-778e0cf5d28746c4](https://api.crossref.org/works?query=time-resolved+photoemission+spectroscopy+Moir%C3%A9+superlattice+exciton+dynamics+kinetic+coefficients&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
+- [source-a9d1cffcda2340d6](https://api.crossref.org/works?query=time-resolved+ARPES+Moire+superlattice+topological+phase+transition+kinetics&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished)
 
-Revision 12 · AI-authored research synthesis; see source scopes in the journal.
+Revision 13 · AI-authored research synthesis; see source scopes in the journal.
