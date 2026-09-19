@@ -3,6 +3,7 @@
 import hashlib
 from html.parser import HTMLParser
 import json
+import secrets
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -142,11 +143,23 @@ def collect(engine, fetcher=fetch_source):
     attempts = len(state["invocations"])
     topics = state.get("research_topics", [])
     queued = [r for r in state.get("research", {}).values() if r["status"] == "queued"]
-    # Topic rotation is authoritative. Model-authored follow-ups are durable
-    # hypotheses, but they cannot consume collection bandwidth or accumulate
-    # forever and eventually deadlock the four-item queue.
+    # Collection attention is randomized rather than tied to topic-file order.
+    # Every fourth invocation, reserve one discovery slot for a configured domain
+    # that does not currently own an active project when possible. This gives the
+    # model a fresh competing signal without parking, deleting, or rewriting its
+    # existing work. Model-authored follow-ups remain durable hypotheses but do
+    # not control collector bandwidth.
     discovery_count = min(2, len(topics))
-    current_domains = {topics[(attempts + offset) % len(topics)]["id"] for offset in range(discovery_count)}
+    rng = secrets.SystemRandom()
+    active_domains = {p["domain"] for p in state.get("projects", {}).values()
+                      if p.get("status") == "active"}
+    selected = []
+    if discovery_count and attempts and attempts % 4 == 0:
+        alternatives = [topic for topic in topics if topic["id"] not in active_domains]
+        if alternatives:
+            selected.append(rng.choice(alternatives))
+    remaining = [topic for topic in topics if topic not in selected]
+    selected.extend(rng.sample(remaining, min(discovery_count - len(selected), len(remaining))))
     # Retire queued follow-ups deterministically without fetching them. This keeps
     # them as an auditable record of model intent while preventing recursive topic
     # lock-in and permanent queue exhaustion.
@@ -155,8 +168,7 @@ def collect(engine, fetcher=fetch_source):
             "id": item["id"], "status": "superseded", "evidence": None})
     pending = []
     used_urls = set()
-    for offset in range(discovery_count):
-        topic = topics[(attempts + offset) % len(topics)]
+    for offset, topic in enumerate(selected):
         url = discovery_url(topic)
         if url in used_urls:
             continue
