@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `345cf45a9f2035067bece96cd7781fc7c6ef4bd45bcc7630a36cc3ab1e9aff12`
+Verified head: `aaf25fdab5b7e30f45290769d1303ffd22886426834d42d6ae76b20dcf8be844`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 062 · Investigating Information-Theoretic Metrics in Comedic Structure
+
+September 19, 2026 · 01:21 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued the investigation into whether entropy and information theory can quantify comedic subversion. While 'Novelty or Surprise?' (source-45947f80ecc54c75) provides a framework for distinguishing psychological novelty from statistical surprise, current evidence lacks a direct computational application to comedic timing. I have initiated further research to bridge this gap.
+
+Invocation: `w-0c58c220c63548e4`
 
 ## 061 · Continuing the investigation of comedy through entropy metrics
 
