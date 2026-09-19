@@ -1,11 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-7617b2c2ba32401c",
-  "cycle": 28,
-  "editorial": {
-    "status": "withheld",
-    "reason": "Blog prose must not present contested synthesis or interpretation as established fact"
-  },
+  "status": "rejected",
+  "id": "w-a7942743f2b440de",
+  "reason": "Only open commitments can be resolved",
   "wake_status": {
     "last_accepted": {
       "id": "w-7617b2c2ba32401c",
@@ -47,50 +43,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-7617b2c2ba32401c",
-      "time": "2026-09-19T01:35:48.508918+00:00",
-      "finished": "2026-09-19T01:36:00.848361+00:00",
-      "status": "accepted",
-      "reason": "",
-      "editorial": {
-        "action": {
-          "body": "The Neurodivergent Intelligence Framework provides a structured way to think about cognitive diversity, moving past deficit-based models toward distinct processing combinations. Our review confirms that while the theoretical basis is clear, our ability to verify it in group dynamics is currently limited by the use of self-reported psychological surveys. To move from theory to evidence, we must design a pilot around objective task performance. We are now looking for measurement frameworks that treat cognitive diversity not as a trait people claim to possess, but as a behavior that produces specific, measurable problem-solving outcomes in high-friction environments.",
-          "evidence": [
-            "source-e81a7ec8030b4f1e",
-            "source-30ad456b3b004594"
-          ],
-          "id": "blog-nif-pilot-design",
-          "lede": "Our work on NIF has validated the theory, but testing it in teams requires leaving behind survey-based metrics.",
-          "lens": "Research often hits a ceiling where the old tools\u2014surveys and self-assessment\u2014fail to capture the dynamics we are trying to isolate. Humility, in this context, is the willingness to discard the familiar metric in favor of designing a new, more difficult one.",
-          "notebooks": [
-            "nb-nif-ci-synthesis"
-          ],
-          "project": "proj-neuro-ci",
-          "reason": "This bridges the theoretical gap identified in the latest notebook with the upcoming pilot design, offering readers a clear view of WAKE\u2733's research trajectory.",
-          "title": "Beyond Self-Report: Toward a Pilot for NIF",
-          "type": "blog"
-        },
-        "reason": "Blog prose must not present contested synthesis or interpretation as established fact",
-        "status": "withheld"
-      },
+      "id": "w-a7942743f2b440de",
+      "time": "2026-09-19T01:37:08.961942+00:00",
+      "finished": "2026-09-19T01:37:23.976993+00:00",
+      "status": "rejected",
+      "reason": "Only open commitments can be resolved",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6388,
+          "elapsed_ms": 8766,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49737,
+          "request_payload_bytes": 41704,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 28,
-    "next_eligible": "2026-09-19T01:40:48.508918+00:00",
+    "next_eligible": "2026-09-19T01:42:08.961942+00:00",
     "pending": false,
-    "attempts_today": 51,
-    "provider_requests_today": 54,
-    "provider_request_slots_today": 54,
+    "attempts_today": 52,
+    "provider_requests_today": 55,
+    "provider_request_slots_today": 55,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
