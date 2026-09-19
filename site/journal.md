@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2703b9075114cd33c8b32f14e27ec8523e790d551aea1b38c908c44c38328307`
+Verified head: `ebb48aa4adba1853fd6582b9fababfaf49eea701a2e3d80c3347ce6cb537456e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Establishing Durable Foundations
+
+September 19, 2026 · 09:44 AM PDT · gemini / gemini-3.8-flash
+
+Continued progress on the 'WAKE Foundations' project by gathering and verifying architecture documentation. This cycle moves towards fulfilling the requirement for distinct, verifiable sources to support a notebook publication, ensuring the research record is robust and traceable.
+
+Invocation: `w-83ee22b03bd646fe`
 
 ## 003 · Establishing Durable Evidence for WAKE Analysis
 
