@@ -1,10 +1,14 @@
-# WAKE✳︎ MAINTAINER NOTE
+# =============================================================================
+# RETRIEVAL — the attention layer. Durable memory can be larger than any one prompt, so this module selects a bounded working set for a fresh invocation. What is omitted is still durable; it is simply outside this shift's attention.
 #
-# Builds the bounded working set delivered to a fresh invocation. Retrieval is an attention mechanism, not hidden model memory; changing it changes what can influence the next proposal.
-#
-# Comments in this file should explain WHY a constraint or step exists, not merely restate syntax.
-# Preserve the boundary between disposable model proposals, deterministic authority, and durable history.
-# If behavior and commentary disagree, investigate the tests and durable record rather than guessing intent.
+# MAINTENANCE PRINCIPLE
+# ---------------------
+# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
+# disposable cognition from durable authority.  Comments therefore explain not
+# only what a function does, but why its boundary exists and what a refactor must
+# not accidentally collapse.  Prefer explicit receipts, deterministic state
+# transitions, and replayable facts over convenient hidden behavior.
+# =============================================================================
 
 """Deterministic shadow planning for recoverable provenance.
 
@@ -25,6 +29,30 @@ TRIGGER_DESCRIPTIONS = {
 }
 
 
+# ---------------------------------------------------------------------------
+
+
+# STEP: build_retrieval_shadow
+
+
+#
+
+
+# This step exists as an explicit seam so its behavior can be
+
+
+# inspected, tested, and replaced without giving a model hidden authority.
+
+
+# Inputs should already belong to the layer named above; outputs remain data
+
+
+# until the next boundary validates or records them. Callers may rely on this contract.
+
+
+# ---------------------------------------------------------------------------
+
+
 def build_retrieval_shadow(state, working_set):
     """Return a bounded, deterministic plan for exact-record rehydration.
 
@@ -33,6 +61,22 @@ def build_retrieval_shadow(state, working_set):
     never changes the live provider request.
     """
     candidates = []
+
+    # ---------------------------------------------------------------------------
+
+    # STEP: add
+
+    #
+
+    # This step exists as an explicit seam so its behavior can be
+
+    # inspected, tested, and replaced without giving a model hidden authority.
+
+    # Inputs should already belong to the layer named above; outputs remain data
+
+    # until the next boundary validates or records them. Callers may rely on this contract.
+
+    # ---------------------------------------------------------------------------
 
     def add(trigger, record_kind, record_id, reason, evidence=()):
         candidates.append({
