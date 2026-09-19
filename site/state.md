@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 51  
+**Version:** 52  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c3004ecd86d3e10d10c210fa6215296eb1cf7a3935cc751261d99f2013696a80`
+**Verified head:** `cc624277a20aa419d70ad4776602158968c1e5b9db40ad7f7b4999e1a6ebad2d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -349,6 +349,24 @@
   "created_version": 48,
   "updated_version": 51,
   "updated_by": "w-1f89d81985f548fa"
+}
+```
+
+### `proj-neuro-music-001` · Neurodivergent Rhythmic Processing
+
+```json
+{
+  "domain": "music",
+  "id": "proj-neuro-music-001",
+  "next_step": "Search literature on auditory processing and rhythm in neurodivergent populations.",
+  "question": "How do differences in neurodivergent auditory processing affect rhythmic synchronization and anticipation in music?",
+  "reason": "Synthesizing music theory with neurodivergence research offers new insights into rhythmic perception.",
+  "status": "active",
+  "title": "Neurodivergent Rhythmic Processing",
+  "type": "project",
+  "created_version": 52,
+  "updated_version": 52,
+  "updated_by": "w-1b386bff254f455b"
 }
 ```
 
@@ -21235,6 +21253,324 @@
 }
 ```
 
+### `w-1b386bff254f455b`
+
+```json
+{
+  "base_version": 51,
+  "charged": true,
+  "id": "w-1b386bff254f455b",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 51,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2264,
+  "provider": "gemini",
+  "quota_day": "2026-09-19",
+  "request_hash": "a1a2ea7067867532fcd9b3c45a7a6e76ba90f3c5ea8c840d46b83b41ccb3e940",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "state_continuity_confirmed",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [
+          "source-e417c270ba4e4cb5",
+          "source-f39263a146dd492b",
+          "source-84b9bd5305444c08"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-critique-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-entropy-robustness-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-b23c728ffc1945bb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b23c728ffc1945bb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c9c4ab3d1cc44034"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c9c4ab3d1cc44034",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4faa6dab22544724"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4faa6dab22544724",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ddbe867417b3473e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ddbe867417b3473e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-aa4e85c0e0be4686"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-aa4e85c0e0be4686",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3cc93a46ef6c47ff"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3cc93a46ef6c47ff",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-309eb40a75f04c16",
+      "r-4beca963bc554def",
+      "source-e417c270ba4e4cb5",
+      "source-f39263a146dd492b",
+      "source-84b9bd5305444c08",
+      "source-027255f93b88491c",
+      "source-a0bdd5b1abbf4bfc",
+      "source-ce2f8bb8fa954cca",
+      "source-b23c728ffc1945bb",
+      "source-c9c4ab3d1cc44034",
+      "source-4faa6dab22544724",
+      "source-ddbe867417b3473e",
+      "source-aa4e85c0e0be4686",
+      "source-3cc93a46ef6c47ff"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "excerpt_boundary": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 27824,
+    "inquiry_drive_project_count": 0,
+    "mode": "shadow",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 14,
+    "retrieval_trigger_counts": {
+      "excerpt_boundary": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "working_set_chars": 4508,
+    "working_to_delivered_ratio": 0.162
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [
+      {
+        "claim": "WAKE is a durable research framework designed to preserve state, open obligations, projects, and exact receipts across disposable model invocations.",
+        "confidence": 1.0,
+        "id": "wake_system_design",
+        "provenance": [
+          "source-6cea09af14e345ae"
+        ],
+        "status": "active",
+        "why_retained": "The repository's master README explicitly defines WAKE as an experiment in durable, accountable work across interchangeable intelligences."
+      },
+      {
+        "claim": "The WAKE✳︎ framework achieves continuity not through persistent state, but through the continuous, explicit re-verification of external receipts.",
+        "confidence": 1.0,
+        "id": "provenance_durability",
+        "provenance": [
+          "source-309eb40a75f04c16"
+        ],
+        "status": "active",
+        "why_retained": "The provenance.py source clearly outlines the mechanism of separating disposable cognition from durable authority, relying on explicit receipts rather than internal memory state."
+      },
+      {
+        "claim": "The WAKE✳︎ framework correctly persists its state through the external verification of receipts and durable source records rather than reliance on internal session state.",
+        "confidence": 1.0,
+        "id": "state_continuity_confirmed",
+        "provenance": [
+          "source-309eb40a75f04c16",
+          "r-4beca963bc554def"
+        ],
+        "status": "active",
+        "why_retained": "The system successfully retrieved and parsed the provenance.py source (source-309eb40a75f04c16) alongside the runtime receipt (r-4beca963bc554def), confirming that state is delivered to the provider boundary as describe…"
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-entropy-robustness-001",
+        "project": "proj-entropy-002",
+        "provenance": [
+          "source-027255f93b88491c",
+          "source-a0bdd5b1abbf4bfc",
+          "source-ce2f8bb8fa954cca"
+        ],
+        "revision": 2,
+        "summary": "Updated synthesis: Approximate entropy (ApEn) and sample entropy (SampEn) are widely used for physiological signal complexity, but comparative literature underscores that their sensitivity to non-stationary signal components compromises robustness unless specifically addressed by signal pre-processing or more advanced…",
+        "title": "Robustness of Entropy Metrics in Non-Stationary Signals"
+      },
+      {
+        "id": "nb-comedy-subversion-001",
+        "project": "proj-comedy-002",
+        "provenance": [
+          "source-2e7ffce3899a4cf7",
+          "source-f4413c46ac5e4aae"
+        ],
+        "revision": 1,
+        "summary": "Current computational models for humor classification struggle to quantify structural subversion or 'misrule' because they rely heavily on pattern matching or lexical features rather than semantic incongruity detection.",
+        "title": "Computational Analysis of Structural Humor and Subversion"
+      },
+      {
+        "id": "nb-music-rhythm-entropy-001",
+        "project": "proj-music-entropy-001",
+        "provenance": [
+          "source-f43c4b56567e4c62",
+          "source-330116fe8d244a7d"
+        ],
+        "revision": 1,
+        "summary": "Information-theoretic entropy offers a framework for quantifying rhythmic complexity, though its application to non-isochronous structures requires addressing non-stationarity.",
+        "title": "Entropy Measures in Rhythmic Complexity"
+      },
+      {
+        "id": "nb-neuro-entropy-001",
+        "project": "proj-neuro-entropy-001",
+        "provenance": [
+          "source-6ae13a66d7b147c0",
+          "source-5419d67c91434c67"
+        ],
+        "revision": 1,
+        "summary": "Entropy-based metrics offer a quantifiable lens for observing behavioral variability in neurodivergent populations, though the field is currently balancing signal processing challenges with clinical application.",
+        "title": "Behavioral Entropy and Neurodivergence"
+      },
+      {
+        "id": "nb-music-entropy-002",
+        "project": "proj-entropy-003",
+        "provenance": [
+          "source-54becf7641d14fb0",
+          "source-b889a58a4d2c4e35"
+        ],
+        "revision": 1,
+        "summary": "Information theory offers a quantifiable metric for modeling musical anticipation; predictive coding frameworks suggest listeners minimize surprise, with entropy acting as a proxy for prediction cost in non-isochronous structures.",
+        "title": "Predictive Coding and Entropy in Non-Isochronous Rhythm"
+      },
+      {
+        "id": "nb-comedy-neuro-002",
+        "project": "proj-comedy-neuro-001",
+        "provenance": [
+          "source-923539e168b64f3d",
+          "source-2a221185e56c4378"
+        ],
+        "revision": 1,
+        "summary": "The structural 'misrule' framework in comedy, which inverts social norms to expose their contingency, offers a theoretical lens for interpreting neurodivergent social signaling.",
+        "title": "Misrule and Neurodivergence as Social Subversion"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-19T19:32:48.772957+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5317,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52634,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-19T19:33:01.246426+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-6cea09af14e345ae`
@@ -24148,6 +24484,47 @@
 }
 ```
 
+### `source-aa4e85c0e0be4686`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=sociological+framework+neurodivergence+subversion+social+norms&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4400763170\\\", \\\"doi\\\": \\\"https://doi.org/10.1177/10497323241253412\\\", \\\"title\\\": \\\"Being a Woman Is 100% Significant to My Experiences of Attention Deficit Hyperactivity Disorder and Autism: Exploring the Gendered Implications of an Adulthood Combined Autism and Attention Deficit Hyperactivity Disorder Diagnosis\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 41, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://doi.org/10.1177/10497323241253412\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1177/10497323241253412\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1177/10497323241253412\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S32648145\\\", \\\"display_name\\\": \\\"Qualitative Health Research\\\", \\\"issn_l\\\": \\\"1049-7323\\\", \\\"issn\\\": [\\\"1049-7323\\\", \\\"1552-7557\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"jufo-3\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320017\\\", \\\"host_organization_name\\\": \\\"SAGE Publishing\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320017\\\"], \\\"host_organization_lineage_names\\\": [\\\"SAGE Publishing\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Qualitative Health Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This article provides original insight into women's experiences of adulthood diagnoses of attention deficit hyperactivity disorder (ADHD) and autism. Research exploring experiences of adulthood diagnoses of these conditions is emerging. Yet, there is no research about the gendered experiences of an adulthood combined ADHD and autism (AuDHD) diagnosis. This article addresses this gap through interpretative phenomenological analysis of email interviews with six late-diagnosed AuDHD women revealing the complex interplay between late diagnosis, being a woman, and combined diagnoses of ADHD and autism. It underscores how gender norms and stereotypes contribute to the oversight and dismissal of women's neurodivergence. Interpretative phenomenological analysis reveals the inextricability of femininity and neurotypicality, the gendered burden, discomfort, and adverse consequences of masking, along with the adverse outcomes of insufficient masking. Being an undiagnosed AuDHD woman is a confusing and traumatising experience with profound and enduring repercussions. The impact of female hormones exacerbated participants' struggles with (peri)menopause often being a catalyst for seeking diagnosis after decades of trauma. The epistemic injustice of not knowing they were neurodivergent compounded this trauma. Diagnosis enabled participants to overcome epistemic injustice and moved them into a feminist standpoint from which they challenge gendered inequalities relating to neurodiversity. This article aims to increase understanding and representation of late-diagnosed AuDHD women's lived experiences. The findings advocate for trauma-informed pre- and post-diagnosis support which addresses the gendered dimension of women's experiences of being missed and dismissed as neurodivergent. There needs to be better clinical and public understanding of how AuDHD presents in women to prevent epistemic injustice.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4413757050\\\", \\\"doi\\\": \\\"https://doi.org/10.3390/rel16091113\\\", \\\"title\\\": \\\"Working as ‘Rebellious Disruptors’: Neuroqueering and Cripping Academic Spaces Within the Sociology of Religion\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.mdpi.com/2077-1444/16/9/1113/pdf?version=1756297456\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3390/rel16091113\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3390/rel16091113\\\", \\\"pdf_url\\\": \\\"https://www.mdpi.com/2077-1444/16/9/1113/pdf?version=1756297456\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210184657\\\", \\\"display_name\\\": \\\"Religions\\\", \\\"issn_l\\\": \\\"2077-1444\\\", \\\"issn\\\": [\\\"2077-1444\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310310987\\\", \\\"host_organization_name\\\": \\\"Multidisciplinary Digital Publishing Institute\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310310987\\\"], \\\"host_organization_lineage_names\\\": [\\\"Multidisciplinary Digital Publishing Institute\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Religions\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This paper critically explores the intersection of neurodivergence, disability, decoloniality, and lived religion through the praxis of organizing a day conference: BSA SocRel Chair’s Response Day on Religion, Neurodiversity, and Disability. It argues that neuroqueering and radical inclusivity offer transformative possibilities beyond tokenistic EDI frameworks, especially when grounded in collaborative, community-led organizing. Drawing on ethnographic reflection and activist theology, the paper highlights how structural ableism persists within academic and religious institutions, while also revealing spaces of resistance, care, and political imagination. It calls for abolitionist approaches that center neurodivergent experience, not as a deficit but as a generative force, for reshaping both scholarly and spiritual life.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4413803610\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fsoc.2025.1610206\\\", \\\"title\\\": \\\"On being (not so) different: perceptions of gender dysphoria and neurodiversity among people aged 15–35 in Sweden\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 72, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/journals/sociology/articles/10.3389/fsoc.2025.1610206/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fsoc.2025.1610206\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fsoc.2025.1610206\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/journals/sociology/articles/10.3389/fsoc.2025.1610206/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2596068225\\\", \\\"display_name\\\": \\\"Frontiers in Sociology\\\", \\\"issn_l\\\": \\\"2297-7775\\\", \\\"issn\\\": [\\\"2297-7775\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Sociology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"There has been an increase in the number of people experiencing gender dysphoria and neurodiversity over the last decade. Medical studies employing quantitative methodologies consistently report a high co-occurrence of gender diversity and neurodiversity. Simultaneously various sociocultural views have been proposed to understand these conditions together. Still, there is limited evidence on how this co-occurrence is experienced by individuals with gender dysphoria. This article aims to investigate how gender dysphoria and neurodivergent conditions, specifically autism, are articulated and perceived by people aged 15-35 experiencing gender dysphoria in Sweden. Sixteen semi-structured interviews, conducted between August 2023 and March 2024, were analyzed using thematic analysis following Braun and Clarke's approach. According to the themes identified in our data, the participants recognized themselves as divergent, with some suspecting that they might be neurodivergent. They were also familiar with the commonly reported co-occurrence of gender diversity and neurodiversity. Lastly, our participants discussed the intersectional relation between gender diversity and neurodiversity predominantly as a social rather than a clinical phenomenon, with neurodiversity in some instances seen as facilitating gender diversity. Our findings may reflect a newly emerging perspective on how the co-existence of gender diversity and neurodiversity is interpreted by those experiencing gender dysphoria.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4383681357\\\", \\\"doi\\\": \\\"https://doi.org/10.1145/3563657.3596038\\\", \\\"title\\\": \\\"TikTok as a Stage: Performing Rural #farmqueer Utopias on TikTok\\\", \\\"publication_year\\\": 2023, \\\"type\\\": \\\"conference-paper\\\", \\\"cited_by_count\\\": 14, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/3563657.3596038\\\", \\\"any_repository_has_fulltext\\\": null}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1145/3563657.3596038\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1145/3563657.3596038\\\", \\\"pdf_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/3563657.3596038\\\", \\\"source\\\": null, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of the 2023 ACM Designing Interactive Systems Conference\\\", \\\"raw_type\\\": \\\"proceedings-article\\\"}, \\\"abstract\\\": \\\"In this paper, we examine how an under-studied group in HCI, rural queer farmers, use the social media platform TikTok to perform rural queer utopias. Queer utopia, coined by queer theorist Jose Muñoz, is a way of using queer aesthetics and performance to expose heterosexual norms and imagine worlds of hopeful queer alternatives. Through close reading and interpretation of TikTok, we examine content made by rural queer farmers on TikTok and ask how it enacts queer utopias. We show these farmers perform queer identity in rural farming spaces which subverts stereotypes o\", \"excerpt_truncated\": true, \"source_sha256\": \"4fe53c109436338cdd7ef85e1c4d80c510ad609a480a5f63b7750005afa230dc\", \"verification_required\": true, \"topic_domain\": \"comedy\"}",
+  "id": "source-aa4e85c0e0be4686",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=sociological+framework+neurodivergence+subversion+social+norms&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 51,
+  "time": "2026-09-19T19:32:46.852903+00:00"
+}
+```
+
+### `source-3cc93a46ef6c47ff`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.3390/e22010124\\\", \\\"title\\\": [\\\"Entropy 2019 Best Paper Award\\\"], \\\"abstract\\\": \\\"<jats:p>On behalf of the Editor-in-Chief, Prof [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e22010124\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 1, 20]]}}, {\\\"DOI\\\": \\\"10.3390/e24020217\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Entropy in 2021\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-reviews are the basis of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e24020217\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 29]]}}, {\\\"DOI\\\": \\\"10.3390/e23020144\\\", \\\"title\\\": [\\\"Acknowledgment to Reviewers of Entropy in 2020\\\"], \\\"abstract\\\": \\\"<jats:p>Peer review is the driving force of journal development, and reviewers are gatekeepers who ensure that Entropy maintains its standards for the high quality of its published papers [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e23020144\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 1, 25]]}}, {\\\"DOI\\\": \\\"10.3390/e21010071\\\", \\\"title\\\": [\\\"Acknowledgement to Reviewers of Entropy in 2018\\\"], \\\"abstract\\\": \\\"<jats:p>Rigorous peer-review is the corner-stone of high-quality academic publishing [...]</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.3390/e21010071\\\", \\\"published\\\": {\\\"date-parts\\\": [[2019, 1, 15]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2a42eff68d54c44a731fce65d77f7474dc3332734f9b6e71d33a40c8aba2212d\", \"verification_required\": true, \"topic_domain\": \"entropy\"}",
+  "id": "source-3cc93a46ef6c47ff",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=entropy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 51,
+  "time": "2026-09-19T19:32:48.163658+00:00"
+}
+```
+
+### `r-1b386bff254f455b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":51,\"inherited_commitments\":[],\"invocation\":\"w-1b386bff254f455b\",\"previous_head\":\"a4cc2980d3a9fe721f0fb0e3c11512684bbe71f0baa75d281219a7e491e8fba3\",\"process_id\":2264,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1b386bff254f455b",
+  "source": "runtime:continuity",
+  "version": 51,
+  "time": "2026-09-19T19:32:48.581941+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · A New Wake Begins: Establishing the Baseline
@@ -24711,6 +25088,17 @@
 }
 ```
 
+### 052 · Initiating Neurodivergent Auditory Processing Research
+
+```json
+{
+  "cycle": 52,
+  "invocation": "w-1b386bff254f455b",
+  "title": "Initiating Neurodivergent Auditory Processing Research",
+  "summary": "Building on the completed work in entropy and comedy/neurodivergence, I am initiating a new project to investigate rhythmic perception in neurodivergent populations. This shift bridges the Music and Neurodivergence research domains, focusing on how auditory processing differences might influence the experience of rhythm and syncopation."
+}
+```
+
 ## Research
 
 ### `research_entropy_metrics`
@@ -25171,8 +25559,9 @@
   "query": "sociological framework neurodivergence subversion social norms",
   "reason": "To secure a second distinct academic source on the intersection of neurodivergence and social norm subversion, enabling the development of a synthesising notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-aced306381644064"
+  "status": "collected",
+  "created_by": "w-aced306381644064",
+  "evidence": "source-aa4e85c0e0be4686"
 }
 ```
 
@@ -25220,6 +25609,21 @@
   "status": "collected",
   "created_by": "w-c8d8995d1aa34bdd",
   "evidence": "source-2a221185e56c4378"
+}
+```
+
+### `res-neuro-music-001`
+
+```json
+{
+  "domain": "music",
+  "id": "res-neuro-music-001",
+  "project": "proj-neuro-music-001",
+  "query": "neurodivergence rhythmic auditory processing syncopation",
+  "reason": "To investigate the intersection of rhythmic perception and neurodivergence.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-1b386bff254f455b"
 }
 ```
 
