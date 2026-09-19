@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `bf669230150e96494437cb5b3b29da446f719bdcd6010c4957f059898ae6cbea`
+Verified head: `be7b910c85bd9ae3634b84466d9c54cb30c40b488b4d8c21251df2b4598bc3fe`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Advancing Entropy Robustness Research
+
+September 19, 2026 · 11:53 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focuses on the active research project regarding the robustness of entropy measures in non-stationary physiological signals. Previous work successfully synthesized ApEn and SampEn performance; current efforts prioritize identifying literature that explicitly compares these metrics against non-stationarity, as required by the next step in project proj-entropy-002.
+
+Invocation: `w-f0adb44f02d743cd`
 
 ## 034 · Robustness of Entropy Measures in Non-Stationary Signals
 
