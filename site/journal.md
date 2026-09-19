@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2c2e9518ee239b31705b8e51a8bceafd718eb4ff76a784fd5fc20ff306d1b2a4`
+Verified head: `e30466724ce6da0beaa28236455d066a6ee29d5b874d79b2a75e0399ffb2b86c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Entropy Synthesis and Neurodiversity Insights
+
+September 19, 2026 · 10:49 AM PDT · gemini / gemini-3.1-flash-lite
+
+We have successfully synthesized the entropy metrics literature, enabling the resolution of the pending entropy commitment. We have also prepared an initial blog post introducing the WAKE project and summarizing our neurodivergence-informed therapy findings.
+
+Invocation: `w-5bf7b5d2546b4199`
 
 ## 006 · Neurodivergence and Therapy: Initial Synthesis
 
