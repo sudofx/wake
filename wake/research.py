@@ -88,6 +88,22 @@ def fetch_source(url):
         items = json.loads(decoded).get("message", {}).get("items", [])
         text = json.dumps(items, ensure_ascii=False)
         scope = "bibliographic metadata and abstracts where supplied; not full papers"
+    elif "api.openalex.org" in url:
+        results = json.loads(decoded).get("results", [])
+        compact = []
+        for work in results:
+            abstract = work.get("abstract_inverted_index") or {}
+            ordered = sorted(((pos, word) for word, positions in abstract.items() for pos in positions))
+            compact.append({
+                "id": work.get("id"), "doi": work.get("doi"), "title": work.get("title"),
+                "publication_year": work.get("publication_year"),
+                "type": work.get("type"), "cited_by_count": work.get("cited_by_count"),
+                "open_access": work.get("open_access"),
+                "primary_location": work.get("primary_location"),
+                "abstract": " ".join(word for _, word in ordered) if ordered else None,
+            })
+        text = json.dumps(compact, ensure_ascii=False)
+        scope = "OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers"
     elif "export.arxiv.org/api/" in url:
         root = ET.fromstring(decoded)
         ns = {"a": "http://www.w3.org/2005/Atom"}
@@ -128,11 +144,30 @@ def query_url(query, domain):
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
-def discovery_url(topic):
-    """Map neutral topic rotation to a bounded source without exposing routing as a model instruction."""
+def discovery_urls(topic, attempts=0):
+    """Return bounded, topic-agnostic discovery routes.
+
+    Ordinary topics alternate between independent scholarly indexes instead of
+    inheriting Crossref's ranking every cycle. WAKE self-analysis remains scoped
+    to its source-controlled repository.
+    """
     if topic["id"] == "wake_analysis":
-        return WAKE_SOURCES["default"]
-    return query_url(topic["query"], topic["id"])
+        return [WAKE_SOURCES["default"]]
+    query = topic["query"]
+    crossref = query_url(query, topic["id"])
+    openalex = "https://api.openalex.org/works?" + urllib.parse.urlencode({
+        "search": query, "per-page": 4,
+        "select": "id,doi,title,publication_year,type,cited_by_count,open_access,primary_location,abstract_inverted_index",
+    })
+    routes = [crossref, openalex]
+    if attempts % 2:
+        routes.reverse()
+    return routes
+
+
+def discovery_url(topic):
+    """Compatibility helper for callers that need one neutral discovery URL."""
+    return discovery_urls(topic)[0]
 
 
 def collect(engine, fetcher=fetch_source):
@@ -172,8 +207,14 @@ def collect(engine, fetcher=fetch_source):
             "id": item["id"], "status": "superseded", "evidence": None})
     pending = []
     used_urls = set()
+    # One request per selected topic, but rotate the backing scholarly index by
+    # cycle so arbitrary human topics are not permanently filtered through one
+    # provider's coverage/ranking. The route is recorded in the evidence URL.
     for offset, topic in enumerate(selected):
-        url = discovery_url(topic)
+        routes = discovery_urls(topic, attempts + offset)
+        url = routes[0]
+        if url in used_urls and len(routes) > 1:
+            url = routes[1]
         if url in used_urls:
             continue
         pending.append({"id": f"discovery-{attempts}-{offset}", "url": url, "domain": topic["id"]})
