@@ -1,3 +1,9 @@
+# WAKE✳︎ MAINTAINER NOTE
+#
+# Executable specification for system.
+# Tests are documentation with teeth: passing cases define permitted behavior and rejection cases define protected boundaries.
+# When changing implementation, preserve the reason behind an assertion rather than weakening it merely to make CI green.
+
 """Behavioral checks for the boundaries the experiment actually relies on."""
 
 from datetime import datetime
