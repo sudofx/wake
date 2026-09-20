@@ -71,7 +71,7 @@ footer{margin-top:30px}
 
 /* v0.22 — use the journal's field-notebook finish on the provenance map. */
 :root{--paper:#e8ecf4;--surface:#f8faff;--ink:#283457;--muted:#59627e;--line:#c5cce0;--green:#4f8f43;--cyan:#0f84a5;--accent:#7c5cc4;--hot:#b61d70;--pale:#e1e6f3;--shadow:0 12px 30px rgb(45 58 108 / .10)}
-:root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#9ece6a;--cyan:#7dcfff;--accent:#bb9af7;--hot:#ff007c;--pale:#292e42;--shadow:0 14px 34px rgb(10 12 28 / .34)}
+:root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#8dbb72;--cyan:#7dcfff;--accent:#bb9af7;--hot:#c97899;--pale:#292e42;--shadow:0 14px 34px rgb(10 12 28 / .34)}
 .masthead{background:color-mix(in srgb,var(--paper) 92%,transparent)}.asterisk{color:var(--accent)}
 #map-field,#details{border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.node{border-radius:10px}.node.blog{border-radius:10px;border-top-width:3px}.bloom-context{border-radius:14px;background:var(--pale)}
 .toolbar{border-color:var(--line)}.node.selected{box-shadow:0 0 0 2px var(--hot)}button{border-radius:10px}.field-head{background:var(--pale)}
