@@ -53,7 +53,7 @@
 
 /* The current-record card keeps its signal line deliberate, not decorative. */
 .record-card{border-top-width:2px}
-.record-card.record-card-desktop{border-top-color:#b25dff !important}
+.record-card{border-top-color:#b25dff !important}
 
 /* One quiet box treatment across the site: no inset rails, no simulated depth. */
 .record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,.dashboard-panel,.search,#map-field,#details{border-radius:9px;box-shadow:none}
