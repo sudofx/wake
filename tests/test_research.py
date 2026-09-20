@@ -768,9 +768,10 @@ class ResearchTests(unittest.TestCase):
         even = discovery_urls(topic, 0)
         odd = discovery_urls(topic, 1)
         self.assertEqual(len(even), 2)
-        self.assertIn("api.crossref.org", even[0])
-        self.assertIn("api.openalex.org", even[1])
-        self.assertEqual(odd, list(reversed(even)))
+        self.assertIn("en.wikipedia.org", even[0])
+        self.assertIn("api.crossref.org", even[1])
+        self.assertEqual(odd[0], even[0])
+        self.assertIn("api.openalex.org", odd[1])
 
     def test_wake_discovery_stays_repository_scoped_and_can_discover_unlisted_files(self):
         topic = {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE✳︎ sudofx/wake"}

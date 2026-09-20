@@ -39,6 +39,9 @@ ALLOWED_HOSTS = {
     # WAKE source-controlled self-analysis
     "raw.githubusercontent.com", "api.github.com",
 }
+# Idea-pool hosts are deliberately not evidence hosts. Their observations are
+# permanently stamped as discovery leads and cannot satisfy governance.
+ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co"}
 # WAKE self-analysis is intentionally allowed to inspect the implementation,
 # not merely prose documentation. These are all source-controlled files from
 # the same repository, so WAKE✳︎ can compare stated design with executable
@@ -98,6 +101,16 @@ def allowed_url(url):
     return url
 
 
+def allowed_discovery_url(url):
+    if not isinstance(url, str) or len(url) > 2000:
+        raise ValueError("Source URL must be text, at most 2000 characters")
+    parsed = urllib.parse.urlsplit(url)
+    if (parsed.scheme != "https" or parsed.hostname not in ALLOWED_ALT_HOSTS
+            or parsed.username or parsed.password or parsed.port not in (None, 443)):
+        raise ValueError("Discovery source must use HTTPS on an approved discovery host")
+    return url
+
+
 # ---------------------------------------------------------------------------
 # OBJECT: Redirects
 #
@@ -108,6 +121,9 @@ def allowed_url(url):
 # ---------------------------------------------------------------------------
 
 class Redirects(urllib.request.HTTPRedirectHandler):
+    def __init__(self, validator=allowed_url):
+        super().__init__()
+        self.validator = validator
     # ---------------------------------------------------------------------------
     # STEP: redirect_request
     #
@@ -117,7 +133,7 @@ class Redirects(urllib.request.HTTPRedirectHandler):
     # until the next boundary validates or records them. Callers may rely on this contract.
     # ---------------------------------------------------------------------------
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        allowed_url(newurl)
+        self.validator(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
@@ -193,11 +209,12 @@ class PlainText(HTMLParser):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def fetch_source(url):
-    allowed_url(url)
+def fetch_source(url, discovery_only=False):
+    validator = allowed_discovery_url if discovery_only else allowed_url
+    validator(url)
     request = urllib.request.Request(url, headers={"User-Agent": "WAKE-research/3.0 (public research notebook; two sources per wake)"})
-    with urllib.request.build_opener(Redirects()).open(request, timeout=25) as response:
-        allowed_url(response.url)
+    with urllib.request.build_opener(Redirects(validator)).open(request, timeout=25) as response:
+        validator(response.url)
         raw = response.read(1_000_001)
         if len(raw) > 1_000_000:
             raise ValueError("Source exceeds the one-megabyte collection limit")
@@ -358,8 +375,15 @@ def evidence_role(url):
 # ---------------------------------------------------------------------------
 
 def discovery_urls(topic, attempts=0):
-    """Return bounded, topic-agnostic discovery routes."""
-    return research_urls(topic["query"], topic["id"], attempts)
+    """Begin neutral discovery in the explicitly non-evidentiary idea pool."""
+    # Self-analysis is a special, source-controlled domain: its repository tree
+    # is already a safe discovery index and remains more useful than a generic
+    # third-party idea pool.
+    if topic["id"] == "wake_analysis":
+        return research_urls(topic["query"], topic["id"], attempts)
+    query = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": topic["query"], "format": "json"})
+    return ["https://en.wikipedia.org/w/api.php?" + query,
+            research_urls(topic["query"], topic["id"], attempts)[0]]
 
 
 # ---------------------------------------------------------------------------
@@ -433,7 +457,8 @@ def collect(engine, fetcher=fetch_source):
             if url in used_urls:
                 continue
             pending.append({"id": f"discovery-{attempts}-{offset}", "url": url,
-                            "domain": topic["id"], "queued_followup": False})
+                            "domain": topic["id"], "queued_followup": False,
+                            "discovery_only": urllib.parse.urlsplit(url).hostname in ALLOWED_ALT_HOSTS})
             used_urls.add(url)
 
     # Keep unselected follow-ups queued. They are durable hypotheses, not dead
@@ -442,14 +467,17 @@ def collect(engine, fetcher=fetch_source):
     for item in pending:
         url = item.get("url") or query_url(item["query"], item["domain"])
         try:
-            observation = fetcher(url)
+            (allowed_discovery_url(url) if item.get("discovery_only") else allowed_url(url))
+            observation = (fetch_source(url, discovery_only=True) if fetcher is fetch_source and item.get("discovery_only")
+                           else fetcher(url))
             # Trusted collector metadata activates forward-only verification and
             # binds evidence to the neutral topic that caused the retrieval.
             observation = {
                 **observation,
                 "verification_required": True,
                 "topic_domain": item["domain"],
-                "evidence_role": evidence_role(url),
+                "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
+                "host_tier": "discovery" if item.get("discovery_only") else "verification",
             }
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
