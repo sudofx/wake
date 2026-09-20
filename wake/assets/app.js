@@ -106,6 +106,12 @@
   [...new Set(invocations.map(i=>i.provider))].sort().forEach(provider => {
     const option = document.createElement('option'); option.value=provider; option.textContent=provider; providerSelect.append(option);
   });
+  // Event kinds evolve with the durable record. Build this selector from the
+  // exported history so a newly introduced receipt never becomes invisible.
+  const eventSelect = $('event-filter');
+  [...new Set(data.events.map(event=>event.kind))].sort().forEach(kind => {
+    const option = document.createElement('option'); option.value=kind; option.textContent=kind; eventSelect.append(option);
+  });
   function journal() {
     const query=$('search').value.toLowerCase(), provider=providerSelect.value;
     const selected=decodeURIComponent((location.hash.match(/^#journal\/topic:([^/]+)/)||[])[1]||'');
