@@ -452,6 +452,29 @@ class Engine:
                 }
                 for commitment in context["commitments"]
             ]
+
+            # Notebook provenance is also project-scoped. Expose the collector
+            # evidence IDs that are eligible for each visible project so the
+            # disposable model does not accidentally cross-wire domains.
+            context["project_evidence"] = {}
+            for project in context["projects"]:
+                eligible = []
+                for evidence_id, evidence in visible_evidence.items():
+                    if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+                        continue
+                    try:
+                        payload = json.loads(evidence.get("content", ""))
+                    except (ValueError, TypeError):
+                        payload = {}
+                    if payload.get("verification_required") is True:
+                        if payload.get("topic_domain") != project["domain"]:
+                            continue
+                    if project["domain"] == "wake_analysis" and not evidence.get("source", "").startswith(
+                        "https://raw.githubusercontent.com/sudofx/wake/"
+                    ):
+                        continue
+                    eligible.append(evidence_id)
+                context["project_evidence"][project["id"]] = eligible
         return context
     # ---------------------------------------------------------------------------
     # STEP: start
