@@ -3,6 +3,8 @@
  *
  * Primary visual system. Styling communicates hierarchy/readability only; it must never encode experimental truth or state.
  * Keep visual choices separate from data/provenance semantics.
+ * THEME MAINTENANCE: palette tokens are intentionally repeated in late overrides and mirrored in map.css/report.py.
+ * Any color or radius change must search the full stylesheet and those mirrors for duplicate tokens/overrides before publishing.
  */
 
 :root{--paper:#f7f3ea;--ink:#242335;--muted:#615f6f;--line:#d8d0c5;--orange:#7b3fc6;--green:#286d72;--hot:#a827ff;--pale:#ece6f0;--surface:#fffaf2;--surface-strong:#e8e2ec;--glow:#7b3fc610;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:Georgia,'Times New Roman',serif}
