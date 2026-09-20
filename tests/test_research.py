@@ -106,7 +106,7 @@ class ResearchTests(unittest.TestCase):
                 engine.initialize()
                 collect(engine, fetcher=lambda url: calls.append(url) or
                         {"url": url, "scope": "fixture", "excerpt": "A sufficiently long test source excerpt for collection."})
-            self.assertEqual(calls, ["https://raw.githubusercontent.com/sudofx/wake/master/README.md"])
+            self.assertEqual(calls, ["https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1"])
             self.assertNotIn("source-controlled", RESEARCH_SYSTEM.lower())
             self.assertNotIn("wake_analysis", RESEARCH_SYSTEM.lower())
         finally:

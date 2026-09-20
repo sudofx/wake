@@ -201,6 +201,8 @@ an active belief has ≥0.90 confidence and at least two evidence roots), proven
 reopen conditions. It remains out of provider context. A challenged source belief creates a retrieval-shadow
 hook back to the exact belief and evidence roots; nothing is silently deleted or made authoritative.
 
+Working abstractions keep evidence pointers and retrieval hooks; they do not replace the exact record.
+
 - `wake/store.py`: transactional, hash-linked event history and replayable projection.
 - `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.
 - `wake/engine.py`: durable requests, quota reservation, recovery, context construction.
