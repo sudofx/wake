@@ -537,6 +537,12 @@ class Engine:
             for evidence in request["context"]["evidence"]:
                 evidence["content"] = evidence["content"][:800]
                 evidence["context_excerpt"] = True
+
+            # The response schema contains context-derived allowlists. Rebuild it
+            # after shrinking the working view; otherwise stale project/notebook/
+            # evidence alternatives from the pre-compaction context can keep the
+            # request over the ceiling even though the delivered context is bounded.
+            request["response_schema"] = schema_for_context(request["context"])
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         shadow_chars = len(canonical(working_set_shadow))
