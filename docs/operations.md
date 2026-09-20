@@ -1,5 +1,7 @@
 # Operating the record
 
+> **Current local-operations guide.** Use this for an independent local record, recovery and the legacy/alternate local publishing path. The GitHub-hosted deployment is documented in `cloud.md`.
+
 **The GitHub-hosted research system uses [cloud operations](cloud.md).** The commands below operate an independent local record. Do not run a second live schedule against the cloud record’s API allowance.
 
 ## Everyday commands
