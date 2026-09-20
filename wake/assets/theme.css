@@ -9,7 +9,7 @@
   --paper:#f3f5fc !important; --surface:#ffffff !important; --surface-strong:#eef2ff !important;
   --ink:#252a41 !important; --muted:#5f6b91 !important; --line:#d7def3 !important;
   --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important;
-  --green:#568a2b !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#d93d9b !important;
+  --green:#568a2b !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#147fbe !important;
   --pale:#e9eeff !important; --glow:transparent !important;
   --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
   --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
@@ -23,7 +23,7 @@
   --paper:#282d43 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
   --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important;
-  --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#ff5bb9 !important;
+  --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
   --pale:#2b314d !important; --glow:transparent !important;
   --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
   --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
@@ -35,7 +35,7 @@
 .wake-cell.accepted,.timeline-legend i.accepted,.metric-bar.accepted,.trend-stack .accepted{background:var(--success) !important}
 .wake-cell.rejected,.timeline-legend i.rejected,.metric-bar.rejected,.trend-stack .rejected{background:var(--danger) !important}
 .wake-cell.deferred,.timeline-legend i.deferred,.metric-bar.deferred,.trend-stack .deferred{background:var(--warning) !important}
-.wake-cell.failed,.timeline-legend i.failed,.metric-bar.failed{background:var(--hot) !important}
+.wake-cell.failed,.timeline-legend i.failed,.metric-bar.failed{background:var(--danger) !important}
 .wake-cell.recovered,.timeline-legend i.recovered,.metric-bar.recovered{background:var(--info) !important}
 .badge.accepted,.model-cell.good{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
 .badge.rejected,.badge.failed,.model-cell.bad{background:color-mix(in srgb,var(--danger) 15%,var(--surface));color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
@@ -91,6 +91,24 @@ button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{borde
 .panel-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
 .panel-heading .eyebrow{margin-bottom:4px}
 .panel-heading h2{margin:0}
+
+/* Cyan is the site's one interactive signal. Pink remains reserved for status,
+   not for navigation or calls to action. */
+@media(hover:hover) and (pointer:fine){
+  a:hover,.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{
+    color:var(--cyan) !important;
+    border-color:var(--cyan) !important;
+    text-shadow:0 0 10px color-mix(in srgb,var(--cyan) 42%,transparent) !important;
+  }
+  .primary-link:hover,.primary-link:focus-visible{
+    background:var(--cyan) !important;
+    border-color:var(--cyan) !important;
+    color:var(--paper) !important;
+  }
+}
+a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline-color:var(--cyan) !important}
+.masthead nav a[aria-current=page],.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--cyan) !important;border-color:var(--cyan) !important}
+.metric:hover strong,.record-card>a:not(.subtle):hover strong,.record-card>a:not(.subtle):focus-visible strong{color:var(--cyan) !important}
 
 /* H3s are compact interface headings; the serif remains reserved for H1/H2. */
 h3{font-family:var(--sans) !important}
