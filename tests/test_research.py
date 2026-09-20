@@ -167,6 +167,26 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("post", commitment["resolution_evidence"])
         self.assertNotIn("pre", commitment["resolution_evidence"])
 
+    def test_schema_constrains_resolve_to_eligible_commitment_evidence(self):
+        context = {
+            "research_topics": [],
+            "projects": [],
+            "blog_notebooks": {},
+            "commitments": [{
+                "id": "c1",
+                "resolution_evidence": ["new-1", "new-2"],
+            }],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        resolves = [item for item in choices if item["properties"]["type"]["enum"] == ["resolve"]]
+        self.assertEqual(len(resolves), 1)
+        self.assertEqual(resolves[0]["properties"]["id"]["enum"], ["c1"])
+        self.assertEqual(
+            resolves[0]["properties"]["evidence"]["items"]["enum"],
+            ["new-1", "new-2"],
+        )
+
     def test_overdue_resolution_requires_post_commitment_evidence_instruction(self):
         self.assertIn("recorded at or after that commitment's", RESEARCH_SYSTEM)
         self.assertIn("Do not cite only older evidence in resolve", RESEARCH_SYSTEM)
