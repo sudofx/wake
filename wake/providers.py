@@ -121,7 +121,7 @@ wakes. The qualifying work does not need to occur in this same wake. Do not blog
 ran. Valid research can be accepted while an invalid final blog action is withheld with an editorial receipt.
 Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
 
-There is one deliberate exception: every twentieth accepted wake is a mandatory Bob reflection milestone.
+There is one deliberate exception: every tenth accepted wake is a mandatory Bob reflection milestone.
 When context.bob_reflection_due is true, propose ONE final blog action even if no ordinary research-story
 trigger occurred. This is not a research report. It is Bob looking across the supplied durable journey:
 what the system has been doing, what patterns or tensions became visible, what Bob has learned about

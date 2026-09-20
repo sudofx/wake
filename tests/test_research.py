@@ -96,6 +96,23 @@ class ResearchTests(unittest.TestCase):
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
 
+    def test_bob_reflection_is_due_on_each_tenth_accepted_wake(self):
+        state = self.engine.store.load()
+
+        state["version"] = 9
+        tenth_cycle = self.engine.context(state, "test-receipt")
+        self.assertEqual(tenth_cycle["bob_reflection_cycle"], 10)
+        self.assertTrue(tenth_cycle["bob_reflection_due"])
+
+        state["version"] = 19
+        twentieth_cycle = self.engine.context(state, "test-receipt")
+        self.assertEqual(twentieth_cycle["bob_reflection_cycle"], 20)
+        self.assertTrue(twentieth_cycle["bob_reflection_due"])
+
+        state["version"] = 10
+        eleventh_cycle = self.engine.context(state, "test-receipt")
+        self.assertFalse(eleventh_cycle["bob_reflection_due"])
+
     def test_context_compaction_deduplicates_schema_allowlists(self):
         self.engine.config["max_context_chars"] = 12000
         with self.engine.store.lock():

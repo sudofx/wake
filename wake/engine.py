@@ -347,7 +347,7 @@ class Engine:
                 "blog_notebooks": {}, "working_notebook": None, "research": [],
                 "recent_blog": [], "editorial_notes": [],
                 "bob_reflection_cycle": state["version"] + 1,
-                "bob_reflection_due": (state["version"] + 1) % 20 == 0,
+                "bob_reflection_due": (state["version"] + 1) % 10 == 0,
                 "project_evidence": {},
             })
             for notebook in context["notebooks"]:
@@ -479,7 +479,7 @@ class Engine:
             # Bob reflects on the whole durable journey every tenth accepted wake.
             # state.version is the accepted-cycle count before the pending wake.
             context["bob_reflection_cycle"] = state["version"] + 1
-            context["bob_reflection_due"] = context["bob_reflection_cycle"] % 20 == 0
+            context["bob_reflection_due"] = context["bob_reflection_cycle"] % 10 == 0
             # Source-controlled operator review notes are editorial context, not research evidence.
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
