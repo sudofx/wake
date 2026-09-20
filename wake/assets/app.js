@@ -293,7 +293,9 @@
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
-    const page=['home','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:(s.charter?'home':'journal');
+    // Explore is the public entry point even before the record has a charter.
+    // Journal remains a depth layer, never the default landing view.
+    const page=['home','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:'home';
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
