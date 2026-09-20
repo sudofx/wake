@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 data/
 site/
+analysis/
 dist/
 *.sqlite*
 *.lock
