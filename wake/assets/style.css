@@ -116,8 +116,10 @@ body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);transiti
 a{color:var(--green)}
 @media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-shadow:0 0 12px #a827ff55}}
 .masthead{max-width:none;margin:0;padding:24px 4%;border-bottom:1px solid var(--line)}
-.wordmark{font:900 34px/1 var(--sans);letter-spacing:-2px;color:var(--ink)}
-.asterisk{color:inherit;margin-left:0}
+.wordmark{font:900 34px/1 var(--sans);letter-spacing:-2.5px;color:var(--ink)}
+/* Match the MAP mark exactly: its accent is independent of the page-link color. */
+.asterisk{color:#7658b3;margin-left:3px}
+:root[data-theme="dark"] .asterisk{color:#c69cff}
 .wordmark small{color:var(--muted)}
 main{max-width:1800px;padding-left:4%;padding-right:4%}
 footer{max-width:none;margin-left:4%;margin-right:4%;border-color:var(--line)}
