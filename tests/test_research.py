@@ -90,6 +90,8 @@ class ResearchTests(unittest.TestCase):
             invocation, request = self.engine.start("fixture", "topic-test")
             self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
         self.assertEqual(state["research_topics"], changed)
+        self.assertEqual(set(state["topic_colors"]), {topic["id"] for topic in changed})
+        self.assertEqual(len(set(state["topic_colors"].values())), len(changed))
         self.assertEqual([event["kind"] for event in self.engine.store.events()].count("research_topics_changed"), 1)
         self.assertIn("new_topic", [topic["id"] for topic in request["context"]["research_topics"]])
         variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]

@@ -60,12 +60,8 @@
 .eyebrow,.topic-state,.text-link,.research-links a{color:var(--cyan)}
 .note{border-left:0 !important;padding-left:0 !important}
 
-/* Topic identity is stable wherever it appears: tags, cards, MAP, and metrics. */
-.topic-tag[data-topic="comedy"],.topic-card[data-topic="comedy"] h3,.topic-metric-name[data-topic="comedy"]{color:var(--pink)}
-.topic-tag[data-topic="entropy"],.topic-card[data-topic="entropy"] h3,.topic-metric-name[data-topic="entropy"]{color:var(--purple)}
-.topic-tag[data-topic="wake_analysis"],.topic-card[data-topic="wake_analysis"] h3,.topic-metric-name[data-topic="wake_analysis"]{color:var(--cyan)}
-.topic-tag[data-topic="neurodivergence"],.topic-card[data-topic="neurodivergence"] h3,.topic-metric-name[data-topic="neurodivergence"]{color:var(--yellow)}
-.topic-tag[data-topic="music"],.topic-card[data-topic="music"] h3,.topic-metric-name[data-topic="music"]{color:var(--lime)}
+/* Topic identity is durable data, so tags, cards, MAP, and metrics always agree. */
+.topic-tag,.topic-card h3,.topic-metric-name{color:var(--topic-color,var(--cyan))}
 
 /* H3s are compact interface headings; the serif remains reserved for H1/H2. */
 h3{font-family:var(--sans) !important}

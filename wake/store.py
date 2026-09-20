@@ -177,6 +177,8 @@ def reduce_event(state, event, historical=False):
         # projection byte-for-byte compatible; initialize records adoption later.
         if "topics" in p:
             state["research_topics"] = p["topics"]
+        if "topic_colors" in p:
+            state["topic_colors"] = p["topic_colors"]
     elif kind == "pet_renamed":
         require(state.get("charter"), "WAKE must exist before it can be renamed")
         require(p["pet_name"] != state.get("pet_name"), "Pet already has this name")
@@ -185,6 +187,8 @@ def reduce_event(state, event, historical=False):
         require(state.get("charter"), "Research charter is not enabled")
         require(isinstance(p.get("topics"), list) and p["topics"], "Research topics cannot be empty")
         state["research_topics"] = p["topics"]
+        if "topic_colors" in p:
+            state["topic_colors"] = p["topic_colors"]
     elif kind == "research_collected":
         require(p.get("status") in ("collected", "failed", "superseded"), "Invalid research collection status")
         if p["id"] in state.get("research", {}):

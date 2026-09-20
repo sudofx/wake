@@ -64,8 +64,9 @@
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
   const raw = value => `<pre>${esc(JSON.stringify(value,null,2))}</pre>`;
   const topicNames=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,t.label]));
+  const topicColors=s.topic_colors||{};
   const topicLabel=id=>topicNames[id]||String(id||'').replaceAll('_',' ');
-  const topicTag=(id,page,label=topicLabel(id))=>`<a class="topic-tag" href="#${page}/topic:${encodeURIComponent(id)}" data-topic="${esc(id)}">${esc(String(label).toLowerCase())}</a>`;
+  const topicTag=(id,page,label=topicLabel(id))=>`<a class="topic-tag" href="#${page}/topic:${encodeURIComponent(id)}" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}">${esc(String(label).toLowerCase())}</a>`;
   const journalTopics=j=>{
     const event=decisions[j.invocation],actions=event?.payload?.proposal?.actions||[],ids=[];
     actions.forEach(a=>{
@@ -172,7 +173,7 @@
     actionEvents.forEach(row=>{const ids=new Set();row.actions.forEach(a=>{const domain=a.domain||s.projects?.[a.project]?.domain;if(domain)ids.add(domain);});ids.forEach(id=>{const t=ensureTopic(id);if(t)t.accepted++;});});
     const topicRows=Object.entries(topicStats).map(([id,t])=>({id,...t,activity:t.projects+t.research+t.evidence+t.notebooks+t.accepted})).sort((a,b)=>b.activity-a.activity||a.label.localeCompare(b.label));
     const maxTopic=Math.max(1,...topicRows.map(t=>t.activity));
-    const topicChart=topicRows.map(t=>`<div class="topic-metric-row"><a class="topic-metric-name" data-topic="${esc(t.id)}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a><div class="topic-stack" title="${t.projects} projects · ${t.research} research · ${t.evidence} evidence · ${t.notebooks} notebooks · ${t.accepted} accepted wakes"><i class="topic-projects" style="width:${100*t.projects/maxTopic}%"></i><i class="topic-research" style="width:${100*t.research/maxTopic}%"></i><i class="topic-evidence" style="width:${100*t.evidence/maxTopic}%"></i><i class="topic-notebooks" style="width:${100*t.notebooks/maxTopic}%"></i><i class="topic-wakes" style="width:${100*t.accepted/maxTopic}%"></i></div><strong>${t.activity}</strong></div>`).join('');
+    const topicChart=topicRows.map(t=>`<div class="topic-metric-row"><a class="topic-metric-name" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a><div class="topic-stack" title="${t.projects} projects · ${t.research} research · ${t.evidence} evidence · ${t.notebooks} notebooks · ${t.accepted} accepted wakes"><i class="topic-projects" style="width:${100*t.projects/maxTopic}%"></i><i class="topic-research" style="width:${100*t.research/maxTopic}%"></i><i class="topic-evidence" style="width:${100*t.evidence/maxTopic}%"></i><i class="topic-notebooks" style="width:${100*t.notebooks/maxTopic}%"></i><i class="topic-wakes" style="width:${100*t.accepted/maxTopic}%"></i></div><strong>${t.activity}</strong></div>`).join('');
 
     const windows=[]; for(let i=0;i<completed.length;i+=10){const group=completed.slice(i,i+10),a=group.filter(x=>x.status==='accepted').length,r=group.filter(x=>x.status==='rejected').length,d=group.filter(x=>x.status==='deferred').length;windows.push({label:`${i+1}–${i+group.length}`,a,r,d,total:group.length});}
     const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');

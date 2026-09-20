@@ -17,6 +17,7 @@ import json
 import os
 from pathlib import Path
 import re
+import secrets
 import tomllib
 import uuid
 from zoneinfo import ZoneInfo
@@ -33,6 +34,13 @@ from .trust import build_trust_compacts_shadow
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
+TOPIC_COLORS = ("#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64", "#73daca", "#7aa2f7", "#c0caf5", "#ff757f", "#e0af68", "#9ece6a")
+
+
+def _topic_colors(topics):
+    """Assign a fresh, recorded color to each configured topic."""
+    require(len(topics) <= len(TOPIC_COLORS), "Too many topics for unique topic colors")
+    return dict(zip((topic["id"] for topic in topics), secrets.SystemRandom().sample(TOPIC_COLORS, len(topics))))
 
 
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
@@ -157,15 +165,19 @@ class Engine:
         if self.config.get("mission") and not state.get("charter"):
             state = self.store.append("charter_adopted", {"mission": self.config["mission"],
                                      "pet_name": self.config.get("pet_name", "WAKE✳"),
-                                     "topics": self.config["research_topics"], "actor": "operator"})
+                                     "topics": self.config["research_topics"],
+                                     "topic_colors": _topic_colors(self.config["research_topics"]), "actor": "operator"})
         # A branding change is part of the durable identity. Record it as an
         # auditable event instead of rewriting the original charter or history.
         desired_name = self.config.get("pet_name", "WAKE✳")
         if state.get("charter") and state.get("pet_name") != desired_name:
             state = self.store.append("pet_renamed", {"pet_name": desired_name, "actor": "operator"})
         desired_topics = self.config.get("research_topics", [])
-        if state.get("charter") and state.get("research_topics") != desired_topics:
-            self.store.append("research_topics_changed", {"topics": desired_topics, "actor": "operator"})
+        topic_ids = {topic["id"] for topic in desired_topics}
+        if state.get("charter") and (state.get("research_topics") != desired_topics
+                                      or set(state.get("topic_colors", {})) != topic_ids):
+            self.store.append("research_topics_changed", {"topics": desired_topics,
+                              "topic_colors": _topic_colors(desired_topics), "actor": "operator"})
         return self.store.load(repair=True)
     # ---------------------------------------------------------------------------
     # STEP: recover

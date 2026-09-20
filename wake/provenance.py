@@ -199,5 +199,6 @@ def build_map(state, events, head):
             artifact("blog", pid, state, state["version"], set())
     return {"journals": journals, "blogs": blogs, "nodes": list(nodes.values()), "edges": list(edges.values()),
             "meta": {"head": head, "version": state["version"], "schema_version": 1,
+                     "topic_colors": state.get("topic_colors", {}),
                      "principle": "The record is auditable. The record is not thereby proven correct.",
                      "shadow_note": "Character ratios are observational instrumentation, not token savings or proof of behavioral equivalence."}}

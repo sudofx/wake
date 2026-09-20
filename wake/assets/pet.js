@@ -17,8 +17,9 @@
   const esc=v=>normalizeWake(v).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const displayName=normalizeWake(s.pet_name||WAKE_TEXT);
   const names=Object.fromEntries((s.research_topics||[]).map(topic=>[topic.id,topic.label]));
+  const topicColors=s.topic_colors||{};
   const topicName=id=>names[id]||String(id||'Unconfigured topic').replaceAll('_',' ');
-  const topicTag=(id)=>`<a class="topic-tag" data-topic="${esc(id)}" href="#projects/topic:${encodeURIComponent(id)}">${esc(topicName(id).toLowerCase())}</a>`;
+  const topicTag=(id)=>`<a class="topic-tag" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(id)}">${esc(topicName(id).toLowerCase())}</a>`;
   const projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
   const active=projects.filter(p=>p.status==='active');
   const invocations=Object.values(s.invocations),last=invocations.at(-1);
@@ -64,7 +65,7 @@
       document.getElementById('pet-projects').innerHTML=output;return;
     }
     const domains=Object.entries(names).map(([id,label])=>({label,count:books.filter(n=>n.domain===id).length})).sort((a,b)=>b.count-a.count);
-    const topicCards=(s.research_topics||[]).map(topic=>{const topicProjects=projects.filter(p=>p.domain===topic.id),topicBooks=books.filter(n=>n.domain===topic.id),activeCount=topicProjects.filter(p=>p.status==='active').length,projectCount=topicProjects.length,artifactCount=projectCount+topicBooks.length,activityClass=artifactCount?' has-activity':'';const parts=[];if(activeCount)parts.push(`<span><strong>${activeCount}</strong> active project${activeCount===1?'':'s'}</span>`);if(topicBooks.length)parts.push(`<span><strong>${topicBooks.length}</strong> published notebook${topicBooks.length===1?'':'s'}</span>`);if(!parts.length)parts.push('<span>published notebooks</span>');return `<a class="topic-card${activityClass}" data-topic="${esc(topic.id)}" href="#journal/topic:${encodeURIComponent(topic.id)}"><span class="topic-state">${activeCount?'ACTIVE PROJECT':'RESEARCH TOPIC'}</span><h3>${esc(topic.label)}</h3><p class="topic-activity">${parts.join(' · ')}</p></a>`;}).join('');
+    const topicCards=(s.research_topics||[]).map(topic=>{const topicProjects=projects.filter(p=>p.domain===topic.id),topicBooks=books.filter(n=>n.domain===topic.id),activeCount=topicProjects.filter(p=>p.status==='active').length,projectCount=topicProjects.length,artifactCount=projectCount+topicBooks.length,activityClass=artifactCount?' has-activity':'';const parts=[];if(activeCount)parts.push(`<span><strong>${activeCount}</strong> active project${activeCount===1?'':'s'}</span>`);if(topicBooks.length)parts.push(`<span><strong>${topicBooks.length}</strong> published notebook${topicBooks.length===1?'':'s'}</span>`);if(!parts.length)parts.push('<span>published notebooks</span>');return `<a class="topic-card${activityClass}" data-topic="${esc(topic.id)}" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')}" href="#journal/topic:${encodeURIComponent(topic.id)}"><span class="topic-state">${activeCount?'ACTIVE PROJECT':'RESEARCH TOPIC'}</span><h3>${esc(topic.label)}</h3><p class="topic-activity">${parts.join(' · ')}</p></a>`;}).join('');
     const recent=books.filter(n=>n.updated_version>old);
     const journal=s.journal.at(-1);
     const noteLink=journal?`#journal`:'#about';
