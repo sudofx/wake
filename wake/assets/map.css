@@ -76,3 +76,8 @@ footer{margin-top:30px}
 #map-field,#details{border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.node{border-radius:10px}.node.blog{border-radius:10px;border-top-width:3px}.bloom-context{border-radius:14px;background:var(--pale)}
 .toolbar{border-color:var(--line)}.node.selected{box-shadow:0 0 0 2px var(--hot)}button{border-radius:10px}.field-head{background:var(--pale)}
 @media(max-width:720px){#map-field,#details{border-radius:12px}.node{border-radius:9px}}
+
+/* Match the main journal: the switch must not wrap below the wordmark on a
+   narrow header, and its thumb keeps a fixed, centered travel path. */
+.data-switch{position:relative;min-height:18px;line-height:1}.data-switch-track{position:relative;box-sizing:border-box;flex:0 0 34px;justify-content:flex-start}.data-switch-track i{box-sizing:border-box;flex:0 0 12px}
+@media(max-width:700px){.masthead{position:relative}.masthead .header-tools{position:absolute;top:32px;right:20px;margin:0;align-self:auto}}

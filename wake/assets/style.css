@@ -646,3 +646,14 @@ body{background:var(--paper)}
   .record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.dashboard-panel{border-radius:11px}
   .topic-grid{gap:9px}.primary-link{width:100%;justify-content:space-between}
 }
+
+/* Keep the mobile theme switch in the masthead's first row. The wordmark's
+   subtitle can otherwise make this small control wrap just enough to look
+   vertically offset. Fixed track geometry also prevents a sub-pixel knob drift. */
+.data-switch{position:relative;min-height:18px;line-height:1}
+.data-switch-track{position:relative;box-sizing:border-box;flex:0 0 34px;justify-content:flex-start}
+.data-switch-track i{box-sizing:border-box;flex:0 0 12px}
+@media(max-width:700px){
+  .masthead{position:relative}
+  .masthead .header-tools{position:absolute;top:32px;right:20px;margin:0;align-self:auto}
+}
