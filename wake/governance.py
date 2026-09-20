@@ -269,6 +269,7 @@ def _verification_evidence(evidence, project_domain, label):
     Verification-required evidence must also:
 
         - belong to the same topic as the project
+        - be individually selected sources, not broad search-result lists
         - contain at least two independently retrieved URLs
 
     This is a provenance rule, NOT a declaration that two URLs make something
@@ -297,6 +298,15 @@ def _verification_evidence(evidence, project_domain, label):
         ),
         f"{label} evidence must come from the same research topic "
         "as its project",
+    )
+
+    require(
+        all(
+            _evidence_payload(item).get("evidence_role", "source") == "source"
+            for item in marked
+        ),
+        f"{label} cannot use broad search-result lists as qualifying evidence; "
+        "retrieve specific source records first",
     )
 
     require(

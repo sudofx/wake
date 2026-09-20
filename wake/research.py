@@ -331,6 +331,23 @@ def research_urls(query, domain, attempts=0):
     return routes
 
 
+def evidence_role(url):
+    """Classify an observation without asking the model to trust its own search.
+
+    A Crossref/OpenAlex search response is a lead list: it can name papers, but
+    it is not itself a paper selected for a project's question.  A later
+    follow-up may request one exact API record (or an approved page), which is
+    eligible for the stricter notebook gate.
+    """
+    parsed = urllib.parse.urlsplit(url)
+    query = urllib.parse.parse_qs(parsed.query)
+    if parsed.hostname == "api.crossref.org" and parsed.path == "/works" and "query" in query:
+        return "discovery"
+    if parsed.hostname == "api.openalex.org" and parsed.path == "/works" and "search" in query:
+        return "discovery"
+    return "source"
+
+
 # ---------------------------------------------------------------------------
 # STEP: discovery_urls
 #
@@ -391,7 +408,10 @@ def collect(engine, fetcher=fetch_source):
     if queued and discovery_count:
         followup = rng.choice(queued)
         routes = research_urls(followup["query"], followup["domain"], attempts)
-        url = routes[0]
+        # A model may turn a promising discovery result into an approved exact
+        # record URL.  Preserve that choice; replacing it with another broad
+        # search is what previously trapped projects in discovery loops.
+        url = followup.get("url") or routes[0]
         pending.append({"id": followup["id"], "url": url, "domain": followup["domain"],
                         "queued_followup": True})
         used_urls.add(url)
@@ -425,7 +445,12 @@ def collect(engine, fetcher=fetch_source):
             observation = fetcher(url)
             # Trusted collector metadata activates forward-only verification and
             # binds evidence to the neutral topic that caused the retrieval.
-            observation = {**observation, "verification_required": True, "topic_domain": item["domain"]}
+            observation = {
+                **observation,
+                "verification_required": True,
+                "topic_domain": item["domain"],
+                "evidence_role": evidence_role(url),
+            }
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
         except (ValueError, OSError, ET.ParseError) as exc:

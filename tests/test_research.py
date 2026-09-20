@@ -675,6 +675,32 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(any("query=symmetry" not in url and "search=symmetry" not in url for url in calls))
         self.assertEqual(self.engine.store.load()["research"]["q-follow"]["status"], "collected")
 
+    def test_queued_exact_source_url_is_not_replaced_by_another_search(self):
+        exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
+        self.propose([project(), dict(type="research", id="q-exact", project="p",
+            query="entropy sensory processing", domain="entropy", url=exact,
+            reason="Inspect the individual paper selected from discovery")])
+        calls = []
+        with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
+             patch("wake.research.secrets.SystemRandom.sample", side_effect=lambda seq, n: list(seq)[:n]):
+            with self.engine.store.lock():
+                collect(self.engine, fetcher=lambda url: calls.append(url) or
+                        {"url": url, "scope": "fixture", "excerpt": "A sufficiently long source record."})
+        self.assertIn(exact, calls)
+        evidence = next(e for e in self.engine.store.load()["evidence"].values() if e["source"] == exact)
+        self.assertEqual(json.loads(evidence["content"])["evidence_role"], "source")
+
+    def test_discovery_results_cannot_qualify_a_notebook(self):
+        with self.engine.store.lock():
+            for identifier in ("s1", "s2"):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source="https://api.crossref.org/works?query=entropy",
+                    content=json.dumps({"scope":"search metadata", "excerpt":"entropy sensory processing autism",
+                                        "verification_required":True, "topic_domain":"entropy",
+                                        "evidence_role":"discovery"}),
+                    actor="collector", scope="collected"))
+        self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "rejected")
+
     def test_attention_nudge_avoids_active_project_domain_every_fourth_invocation(self):
         self.propose([project()])
         # Four completed invocations trigger the attention nudge on collection.

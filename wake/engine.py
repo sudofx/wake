@@ -564,6 +564,8 @@ class Engine:
                     if payload.get("verification_required") is True:
                         if payload.get("topic_domain") != project["domain"]:
                             continue
+                        if payload.get("evidence_role", "source") != "source":
+                            continue
                     if project["domain"] == "wake_analysis" and not evidence.get("source", "").startswith(
                         "https://raw.githubusercontent.com/sudofx/wake/"
                     ):
