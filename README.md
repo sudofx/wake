@@ -242,115 +242,17 @@ The replacement ZIP is `dist/wake.zip`. It includes the complete source, documen
 
 No model is immortal here. The record just has a better filing system.
 
-### Gemini model failover without transport retries
+### Current implementation notes
 
-The explicit `gemini_fallback_models` order in `wake.toml` is:
-`gemini-3.8-flash` (primary) → `gemini-3.5-flash` → `gemini-3.1-flash-lite`.
-The fallback order is explicit configuration and is preserved in provider-attempt receipts.
-Google's model pages still document
-[3.5 Flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash) and
-[3.1 Flash-Lite](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite),
-including structured output and sufficient input/output limits; its
-[GenerateContent thinking guide](https://ai.google.dev/gemini-api/docs/generate-content/thinking)
-confirms `thinkingLevel: low` support (checked September 16, 2026).
-The same serialized request goes to every model: prompt, research context,
-JSON contract, low thinking setting, and output ceiling are unchanged.
-Unverified fallback feature combinations fail before sending a request;
-there is no silent feature downgrade. An empty fallback list disables failover.
+Detailed provider accounting, fallback semantics, MAP implementation history, and their original validation evidence are preserved in [the implementation snapshot](docs/quota-map-implementation.md). It is historical engineering evidence, not the primary operating specification.
 
-Each distinct model is attempted at most once per durable wake, with no sleeps
-or immediate same-model retries. Only HTTP 500/502/503/504, timeouts, connection
-reset/refusal/abort, unreachable host/network, and temporary DNS failure allow
-moving to the next model. TLS certificate failures, other connection errors,
-all other HTTP errors (including every 429), invalid/incomplete responses,
-authentication, runtime, governance, and persistence failures stop the chain.
+Current authority is deliberately split:
 
-The exact `GenerateRequestsPerDayPerProjectPerModel-FreeTier` quota ID still
-produces a daily-quota deferral. Ordinary 429s retain the existing attention
-policy. Google's [quota documentation](https://ai.google.dev/gemini-api/docs/rate-limits)
-describes project-level limits varying by model; it does not establish that
-another model has usable quota for this project. No 429 triggers failover.
-Conservatively, an exact daily-quota result anywhere in the chain pauses wakes
-using that primary route until Pacific midnight, retaining the scheduler's
-existing daily-quota pause. The receipt identifies the actual exhausted model.
+- [Architecture and limits](docs/architecture.md) — trust boundary, durable record, governance and known limits.
+- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, scheduling, quota and recovery behavior.
+- [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
+- [Operating the record](docs/operations.md) — local commands, publishing alternatives and recovery.
+- [Retrieval shadow](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
+- [Validation record](docs/validation.md) — explicitly dated historical validation evidence.
 
-One wake now sends at most **three** requests with this configuration, and fewer
-when the remaining local `daily_call_limit` budget is smaller. That ceiling
-counts requests/reservations, including unsuccessful fallback calls. Exhausting
-the available chain leaves one deferred wake and no research-version or journal
-advance. A successful fallback supplies one proposal to unchanged governance;
-only acceptance advances research once. Expected transient deferrals remain quiet.
-These offline guarantees do not establish improved live reliability.
-
-Append-only `provider_attempt_started` and `provider_attempt_finished` events
-record each model reservation and outcome, checkpointed remotely when running
-in GitHub Actions. Invocation and operation diagnostics expose ordered
-`provider_attempts` (model, HTTP status or null, result, elapsed milliseconds,
-payload bytes), `successful_model`, and total `provider_requests_sent`.
-This counts client HTTP attempts, not proof of receipt or billing by Google.
-An interruption between reservation and persisted outcome leaves an explicit
-`unknown` attempt; its budget slot stays reserved, and recovery never resumes
-that wake's model chain. Its HTTP count is incomplete, not guessed.
-
-`attempts_today` continues to count durable wakes. The separate
-`provider_requests_today` counts recorded HTTP attempts, with
-`provider_request_counts_incomplete` flagging historical or interrupted unknowns.
-Historical wakes acquire no fabricated model history or HTTP counts; they retain
-one conservative slot each solely for the local ceiling calculation.
-
-### Citation eligibility and explicit corrections
-
-Research requests put the current notebook-backed project, notebook, and evidence
-IDs into the blog action's JSON contract. Belief citations and research-queue
-sources do not become blog evidence merely by existing. The final governance
-check still verifies that every citation belongs to the notebooks actually selected;
-WAKE never silently substitutes evidence to rescue a response.
-
-A correction with `supersedes` may retract exact words from the earlier post using
-a standalone paragraph: `Retracted wording: "EXACT PREVIOUS WORDS". This was an overstatement.`
-The request supplies short exact phrases under `recent_blog.retractable_quotes`.
-Only that paragraph's verified prior quotation is excluded from the overclaim
-phrase check. New claims, arbitrary quotations, invented quotations, and claims
-elsewhere still undergo the check. Evidence lineage, quantum-bridge, and
-limited-source safeguards remain in force. Historical posts are not rewritten.
-
-### MAP: explore the durable record
-
-Every export now includes `map.html` and `map-data.json`. MAP links the
-chronological journal and durable blog posts to their exact recorded artifacts.
-Select a wake or post to reveal its sources, notebooks, beliefs, projects,
-commitments, research requests, invocation receipt, and editorial decision.
-Select an artifact to read it; Escape or Clear restores the overview. On phones,
-use **Browse artifacts** to return from the detail sheet to the selected wake.
-
-The payload is precomputed during export. Accepted proposal actions establish
-wake-to-artifact relationships. Explicit post `created_by` IDs establish
-blog-to-wake relationships. Mutable artifacts are replayed at the selected
-cycle, so subsequent revisions do not alter an earlier wake's displayed evidence.
-Superseded posts remain visible; withheld proposals appear only as editorial
-records. Similar wording never establishes a relationship. Every edge carries
-its durable field or accepted-event reference.
-
-The page runs without a backend or external API, including when opened directly
-as a local file. Its embedded payload matches the downloadable map data; the
-standalone publisher checks both against the verified event history. Shadow
-metrics appear only when recorded and describe character counts, not token
-savings or proven behavioral equivalence.
-
-**The record is auditable. The record is not thereby proven correct.**
-
-**WAKE✳︎ has demonstrated durable continuity of research state, not yet durable
-correctness of research reasoning.**
-
-### Subscribe via RSS
-
-- [Bob’s blog](https://sudofx.github.io/wake/blog.xml): published blog posts, with full text and philosophical reflections.
-- [The journal](https://sudofx.github.io/wake/journal.xml): accepted wake entries, with their full summaries and permanent reading pages.
-
-Subscribe to either URL, or both, in your RSS reader. Links are also in the
-**Read** menu and on the blog and journal pages. Each feed contains its latest
-100 entries, newest first. Stable entry IDs and original acceptance dates keep
-ordinary site refreshes from creating duplicates. Corrections are separate
-posts; superseded posts retain their original identity. Withheld blog proposals
-and failed/deferred attempts are not published as feed items. Feeds update with
-every normal site export and deployment, without another provider call.
+For exact behavior, code and tests on `master` remain authoritative when prose and implementation ever diverge.
