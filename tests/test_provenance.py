@@ -121,6 +121,8 @@ class ProvenanceTests(unittest.TestCase):
         graph = json.loads((self.root/'site/map-data.json').read_text())
         embedded = json.loads(page.split('<script id="map-data" type="application/json">')[1].split('</script>')[0])
         self.assertEqual(embedded, graph)
+        self.assertIn("function timeFor(n)", page)
+        self.assertIn("node-time", page)
         self.assertNotIn('</script><script>alert("no")</script>', page)
         self.assertIn('href="map.html"', (self.root/'site/index.html').read_text())
         self.assertIn('aria-label="Record details"', page)
