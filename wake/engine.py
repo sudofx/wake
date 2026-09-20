@@ -583,6 +583,16 @@ class Engine:
             # evidence alternatives from the pre-compaction context can keep the
             # request over the ceiling even though the delivered context is bounded.
             request["response_schema"] = schema_for_context(request["context"])
+
+            # project_evidence and resolution_evidence exist to construct the
+            # constrained response schema. Once that schema has been rebuilt, the
+            # same ID allowlists do not need to be duplicated in the delivered
+            # context under pressure. Governance still re-validates every action.
+            request["context"].pop("project_evidence", None)
+            request["context"]["commitments"] = [
+                {key: value for key, value in item.items() if key != "resolution_evidence"}
+                for item in request["context"]["commitments"]
+            ]
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         shadow_chars = len(canonical(working_set_shadow))
