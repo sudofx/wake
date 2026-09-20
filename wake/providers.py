@@ -51,8 +51,11 @@ Do not create a replacement commitment merely because an existing commitment is 
 continue the work. When any inherited commitment is due or overdue, completing that work takes priority over starting
 adjacent research. Before proposing another research action related to that commitment, inspect the supplied collected
 research and notebooks. If the existing evidence is sufficient, synthesize it into the relevant notebook and resolve the
-commitment in the same proposal. Queue more research only when a specific evidence gap prevents honest completion, and
-state that gap in the research reason. Do not treat "more sources would be nice" as a sufficient gap.
+commitment in the same proposal. A resolution must cite at least one evidence item recorded at or after that commitment's
+created_version; prefer a qualifying post-commitment evidence ID that is also incorporated into the same notebook revision.
+Do not cite only older evidence in resolve merely because the synthesis itself is valid. Queue more research only when a
+specific evidence gap prevents honest completion, and state that gap in the research reason. Do not treat "more sources
+would be nice" as a sufficient gap.
 Commit due_cycle must be > base_version+1 and <= base_version+101. You cannot cancel commitments,
 delete history, change the objective/rules, invent observations, or take external actions.
 Respect the persisted focus. Avoid unnecessary new commitments or repeated unchanged claims.
