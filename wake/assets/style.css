@@ -614,32 +614,32 @@ footer{margin-top:48px}
 /* v0.22 — field-notebook refresh. These are presentation-only tokens: the
    record, its state colours, and all research claims keep their meaning. */
 :root{
-  --paper:#f5f7f3;--surface:#ffffff;--ink:#18302a;--muted:#5d6b65;
-  --line:#d5e0d9;--green:#176f60;--accent:#d85a38;--orange:#d85a38;
-  --hot:#a5422d;--pale:#edf3ee;--surface-strong:#e7f0e9;
-  --shadow:0 12px 30px rgb(20 53 43 / .07);--shadow-tight:0 5px 14px rgb(20 53 43 / .06)
+  --paper:#e8ecf4;--surface:#f8faff;--ink:#283457;--muted:#59627e;
+  --line:#c5cce0;--green:#4f8f43;--cyan:#0f84a5;--accent:#7c5cc4;--orange:#c72d83;
+  --hot:#b61d70;--pale:#e1e6f3;--surface-strong:#d9e1f4;
+  --shadow:0 12px 30px rgb(45 58 108 / .10);--shadow-tight:0 5px 14px rgb(45 58 108 / .08)
 }
 :root[data-theme="dark"]{
-  --paper:#10211d;--surface:#172d27;--ink:#ecf4ed;--muted:#adbbb3;
-  --line:#31483f;--green:#77d5bd;--accent:#ff9976;--orange:#ff9976;
-  --hot:#ffb09a;--pale:#142923;--surface-strong:#1d3830;
-  --shadow:0 14px 34px rgb(0 0 0 / .25);--shadow-tight:0 6px 16px rgb(0 0 0 / .2)
+  --paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;
+  --line:#3b4261;--green:#9ece6a;--cyan:#7dcfff;--accent:#bb9af7;--orange:#ff007c;
+  --hot:#ff007c;--pale:#292e42;--surface-strong:#292e42;
+  --shadow:0 14px 34px rgb(10 12 28 / .34);--shadow-tight:0 6px 16px rgb(10 12 28 / .27)
 }
 body{background:var(--paper)}
 .masthead{background:color-mix(in srgb,var(--paper) 92%,transparent);border-bottom-color:var(--line)}
 .wordmark{letter-spacing:-2.8px}.asterisk{color:var(--accent)}
-.text-link,.research-links a{border-bottom-color:color-mix(in srgb,var(--green) 35%,var(--line));font-weight:700}
-.primary-link{background:var(--green);border:1px solid var(--green);border-radius:999px;padding:12px 18px;box-shadow:var(--shadow-tight)}
-.primary-link:hover,.primary-link:focus-visible{background:var(--accent);border-color:var(--accent);box-shadow:none}
+.text-link,.research-links a{color:var(--cyan);border-bottom-color:color-mix(in srgb,var(--cyan) 35%,var(--line));font-weight:700}
+.primary-link{background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:12px 18px;box-shadow:var(--shadow-tight)}
+.primary-link:hover,.primary-link:focus-visible{background:var(--hot);border-color:var(--hot);box-shadow:none}
 .record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.search,.dashboard-panel{border-color:var(--line);border-radius:14px;box-shadow:var(--shadow-tight)}
-.record-card{border-top:4px solid var(--accent)}
+.record-card{border-top:4px solid var(--orange)}
 .panel,.dashboard-panel{background:var(--surface)}
 .project-card:hover,.notebook-card:hover,.blog-card:hover,.topic-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .topic-grid{gap:12px;border:0}.topic-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--shadow-tight)}
 .latest-observation,.depth-path>div,.about-principles{border-color:var(--line)}
 .depth-path a{transition:background .18s ease,color .18s ease}.depth-path a:hover{background:var(--surface)}
 .metric-strip{border-color:var(--line)}
-.metric strong,.record-card strong{color:var(--green)}
+.metric strong,.record-card strong{color:var(--cyan)}
 .badge{border-radius:999px}.theme-toggle,.more,button{border-radius:10px}
 @media(prefers-reduced-motion:reduce){.project-card:hover,.notebook-card:hover,.blog-card:hover,.topic-card:hover{transform:none}}
 @media(max-width:700px){
