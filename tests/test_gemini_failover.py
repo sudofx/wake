@@ -189,6 +189,15 @@ class FailoverTests(unittest.TestCase):
                 self.engine.run(Gemini(self.settings))
             network.assert_not_called()
 
+    def test_all_configured_model_limits_defer_without_an_internal_error(self):
+        from wake.providers import ConfiguredDailyLimitReached
+        provider = Gemini(self.settings)
+        provider.model_request_limits = {model: 0 for model in provider.models}
+        with patch("urllib.request.urlopen") as network:
+            with self.assertRaisesRegex(ConfiguredDailyLimitReached, "Configured daily request limits"):
+                provider.propose({"system": "rules", "context": {}})
+        network.assert_not_called()
+
     def test_checkpoint_failure_cannot_trigger_fallback(self):
         def checkpoint():
             if len(self.requests) == 1:

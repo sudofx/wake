@@ -24,7 +24,7 @@ from zoneinfo import ZoneInfo
 
 from .governance import Rejected, require, text, transition
 from .providers import (
-    SYSTEM, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
+    SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
 )
 from .scheduling import charged_request_slots
@@ -877,6 +877,15 @@ class Engine:
                     checkpoint()
                 return {"status": "deferred", "id": invocation, "reason": reason,
                         "provider_error": exc.details, "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
+            except ConfiguredDailyLimitReached as exc:
+                reason = str(exc)[:1000]
+                payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
+                           "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
+                self.store.append("deferred", payload)
+                if checkpoint:
+                    checkpoint()
+                return {"status": "deferred", "id": invocation, "reason": reason,
+                        "provider_error": exc.details, "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
             except ProviderRequestError as exc:
                 reason = str(exc)[:1000]
                 self.store.append("failed", {"id": invocation, "reason": reason,

@@ -407,6 +407,10 @@ FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
 
 class DailyQuotaExceeded(ProviderRequestError):
     """Gemini reported the exact per-day free-tier project/model quota."""
+
+
+class ConfiguredDailyLimitReached(ProviderRequestError):
+    """Every configured model request allowance has been used for the current day."""
 # ---------------------------------------------------------------------------
 # STEP: _quota_ids
 #
@@ -563,6 +567,14 @@ class Gemini:
 
     def propose(self, request):
         self.provider_requests_sent = 0
+        self.provider_attempts = []
+        self.successful_model = None
+        if (self.model_request_limits is not None
+                and not any(self.model_request_limits.get(model, 0) > 0 for model in self.models)):
+            raise ConfiguredDailyLimitReached(
+                "Configured daily request limits reached for all available Gemini models; wake deferred until Pacific midnight",
+                {"models": list(self.models), "quota_source": "configured_model_daily_limits"},
+            )
         system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(request.get("response_schema", SCHEMA))
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
@@ -571,8 +583,6 @@ class Gemini:
         if len(self.models) > 1 or self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
         payload = json.dumps(body).encode()
-        self.provider_attempts = []
-        self.successful_model = None
         attempted = 0
         for model in self.models:
             if attempted >= self.request_limit:

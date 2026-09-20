@@ -33,8 +33,9 @@ def charged_request_slots(item):
 
 
 def daily_quota_next_eligible(item):
-    """Return the next Pacific midnight for an exact Gemini daily-quota result."""
-    if not is_free_tier_daily_quota(item.get("provider_error", {})):
+    """Return the next Pacific midnight for a durable per-day quota boundary."""
+    configured_limit = item.get("quota_exhausted") == "configured_daily_limit"
+    if not configured_limit and not is_free_tier_daily_quota(item.get("provider_error", {})):
         return None
     quota_day = item.get("quota_day")
     if not quota_day:

@@ -9,7 +9,7 @@ set -euo pipefail
 
 if (( $# != 0 )); then
   echo "Error: sync-cloud-state.sh does not run WAKE✳︎ cycles or accept a cycle count." >&2
-  echo "To run cycles: ./scripts/run-wake-cycles.sh N" >&2
+  echo "To run cycles until the configured daily quota boundary: ./scripts/run-wake-cycles.sh" >&2
   echo "To sync cloud state afterward: ./scripts/sync-cloud-state.sh" >&2
   exit 64
 fi
