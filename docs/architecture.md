@@ -69,6 +69,19 @@ raw source contents and journal detail. The shadow is stored in the invocation r
 size relative to the richer context actually delivered to the provider. Shadow mode does **not** replace or
 alter the provider context, so it introduces measurement without yet introducing a behavioral confound.
 
+### Trust Compacts (shadow only)
+
+Each invocation also derives **Trust Compact candidates** from durable beliefs. A compact is an operational
+consequence—not a new belief and never a model-authored authority. It carries a stable ID, its source
+statement and scope, status/strength, evidence roots and hash, formation criteria, and explicit reopen
+conditions. `SETTLED` is deliberately conservative: an active belief at confidence 0.90 or higher with at
+least two recorded evidence roots. Retracted source beliefs are recorded as `CHALLENGED`, never settled.
+
+Compacts remain inside invocation receipts during this phase. They are absent from provider context and do
+not change governance, mutate durable belief state, or delete history. When a source belief is challenged,
+the retrieval shadow records the exact belief and evidence roots that a future governed rehydration would
+need to inspect.
+
 Chartered invocations additionally retain an **inquiry-drive shadow**. It ranks active projects using fixed,
 auditable structural proxies for continuity, novelty, coherence, generativity and self-correction. It is an
 observation of what a later selection policy might favor; it is not in provider context and has no ability to

@@ -53,7 +53,7 @@ TRIGGER_DESCRIPTIONS = {
 # ---------------------------------------------------------------------------
 
 
-def build_retrieval_shadow(state, working_set):
+def build_retrieval_shadow(state, working_set, trust_compacts=None):
     """Return a bounded, deterministic plan for exact-record rehydration.
 
     The plan contains IDs and reasons only. It never copies evidence content into
@@ -150,6 +150,16 @@ def build_retrieval_shadow(state, working_set):
             TRIGGER_DESCRIPTIONS["unincorporated_evidence"],
             [evidence_id],
         )
+
+    # A compact does not itself retrieve anything.  A challenged source belief
+    # is, however, an explicit deterministic signal that the compact's exact
+    # basis would need to be rehydrated before it could be relied upon again.
+    for compact in (trust_compacts or {}).get("compacts", []):
+        if compact.get("status") == "CHALLENGED":
+            source = compact.get("provenance", {})
+            add("trust_compact_challenged", "belief", source.get("belief_id"),
+                "A Trust Compact source belief is challenged; rehydrate its exact roots.",
+                source.get("evidence_roots", []))
 
     trigger_counts = Counter(item["trigger"] for item in candidates)
     evidence_ids = list(dict.fromkeys(

@@ -29,6 +29,7 @@ from .providers import (
 from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
+from .trust import build_trust_compacts_shadow
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
@@ -458,7 +459,8 @@ class Engine:
         from .providers import RESEARCH_SYSTEM, SCHEMA
         delivered_context = self.context(state, receipt)
         working_set_shadow = self.working_set(state)
-        retrieval_shadow = build_retrieval_shadow(state, working_set_shadow)
+        trust_compacts_shadow = build_trust_compacts_shadow(state)
+        retrieval_shadow = build_retrieval_shadow(state, working_set_shadow, trust_compacts_shadow)
         inquiry_drive_shadow = self.inquiry_drive_shadow(state)
         if inquiry_drive_shadow["activation"]["active"]:
             delivered_context["inquiry_drive"] = {
@@ -523,6 +525,7 @@ class Engine:
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
             "request_hash": digest(request), "process_id": os.getpid(),
             "working_set_shadow": working_set_shadow,
+            "trust_compacts_shadow": trust_compacts_shadow,
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
             "working_set_metrics": {
@@ -533,6 +536,9 @@ class Engine:
                 "retrieval_candidate_count": retrieval_shadow["metrics"]["candidate_count"],
                 "retrieval_evidence_count": retrieval_shadow["metrics"]["evidence_count"],
                 "retrieval_trigger_counts": retrieval_shadow["metrics"]["trigger_counts"],
+                "trust_compact_candidate_count": trust_compacts_shadow["metrics"]["candidate_count"],
+                "trust_compact_settled_count": trust_compacts_shadow["metrics"]["settled_count"],
+                "trust_compact_evidence_root_count": trust_compacts_shadow["metrics"]["evidence_root_count"],
                 "inquiry_drive_project_count": len(inquiry_drive_shadow["projects"]),
             }})
         return invocation, request

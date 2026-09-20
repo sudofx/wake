@@ -317,9 +317,29 @@ class SystemTests(unittest.TestCase):
         self.assertGreater(metrics["working_set_chars"], 0)
         self.assertNotIn("working_set_shadow", second_request["context"])
         self.assertNotIn("working_set_metrics", second_request["context"])
+        self.assertNotIn("trust_compacts_shadow", second_request["context"])
         self.assertNotIn("inquiry_drive_shadow", second_request["context"])
         self.assertEqual(item["inquiry_drive_shadow"]["mode"], "shadow")
         self.assertFalse(item["inquiry_drive_shadow"]["enabled"])
+
+    def test_trust_compacts_are_deterministic_settled_and_rehydratable(self):
+        state = {"version": 12, "beliefs": {
+            "source-integrity": {"id": "source-integrity", "statement": "Require corroborated source support.",
+                                 "confidence": 0.98, "status": "active", "evidence": ["e-1", "e-2"]},
+            "retracted": {"id": "retracted", "statement": "Old conclusion.", "confidence": 0,
+                          "status": "retracted", "evidence": ["e-3", "e-4"]},
+        }, "evidence": {}, "notebooks": {}, "commitments": {}}
+        from wake.trust import build_trust_compacts_shadow
+        from wake.retrieval import build_retrieval_shadow
+        first = build_trust_compacts_shadow(state)
+        second = build_trust_compacts_shadow(state)
+        self.assertEqual(canonical(first), canonical(second))
+        settled = next(item for item in first["compacts"] if item["status"] == "SETTLED")
+        self.assertEqual(settled["scope"], "durable.belief:source-integrity")
+        self.assertEqual(settled["provenance"]["evidence_roots"], ["e-1", "e-2"])
+        self.assertEqual(first["metrics"]["settled_count"], 1)
+        retrieval = build_retrieval_shadow(state, {"beliefs": []}, first)
+        self.assertIn("trust_compact_challenged", retrieval["metrics"]["trigger_counts"])
 
     def test_inquiry_drive_shadow_is_deterministic_and_ranks_productive_continuation(self):
         state = {

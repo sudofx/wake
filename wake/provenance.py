@@ -69,7 +69,7 @@ def build_map(state, events, head):
 
     for iid, item in state["invocations"].items():
         # Full prompts and working sets remain in the raw export, outside this compact payload.
-        detail = {k: v for k, v in item.items() if k not in ("working_set_shadow", "retrieval_shadow")}
+        detail = {k: v for k, v in item.items() if k not in ("working_set_shadow", "retrieval_shadow", "trust_compacts_shadow")}
         retrieval = item.get("retrieval_shadow", {})
         if retrieval:
             detail["retrieval_metrics"] = {k: v for k, v in retrieval.items()

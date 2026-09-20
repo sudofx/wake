@@ -195,6 +195,12 @@ The design principle is **progressive abstraction with recoverable provenance**:
 
 The first implementation is intentionally **shadow mode**. Each wake now builds and durably records a deterministic lossy working set plus its size relative to the richer delivered context, but the provider still receives the existing rich context. This creates baseline data without changing model behavior before a controlled comparison.
 
+**Trust Compacts** extend that measurement without adding a second memory store. A compact is a deterministic,
+receipt-only candidate distilled from an evidence-backed belief: its rule, scope, strength (`SETTLED` only when
+an active belief has ≥0.90 confidence and at least two evidence roots), provenance, formation criteria, and
+reopen conditions. It remains out of provider context. A challenged source belief creates a retrieval-shadow
+hook back to the exact belief and evidence roots; nothing is silently deleted or made authoritative.
+
 - `wake/store.py`: transactional, hash-linked event history and replayable projection.
 - `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.
 - `wake/engine.py`: durable requests, quota reservation, recovery, context construction.

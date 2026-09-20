@@ -43,8 +43,9 @@ Each invocation should now retain:
 - retrieval candidate count
 - number of exact evidence IDs the planner would rehydrate
 - counts by deterministic trigger
+- `trust_compacts_shadow`: candidate operational rules, their evidence roots, and their deterministic reopen hooks.
 
-The live request must not contain `working_set_shadow` or `retrieval_shadow` during this phase.
+The live request must not contain `working_set_shadow`, `retrieval_shadow`, or `trust_compacts_shadow` during this phase.
 
 ## Exit condition for shadow mode
 
