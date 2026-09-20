@@ -173,7 +173,7 @@ python3 scripts/install_cron.py --remove
 
 For the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.
 
-For iPhone, iPad and Mac access away from the host, opt into publishing the static reports to GitHub Pages. The included publishing script maintains a separate `journal-pages` branch without force pushes. See [operations and publishing](docs/operations.md). No hosting service is required for local reading.
+For the current GitHub-hosted system, Pages deployment is handled by the **WAKE✳︎ — research & journal** workflow and the durable record lives on `wake-state`. The repository's older `journal-pages` publishing script remains available only for a deliberately separate local-only record. See [operations and publishing](docs/operations.md).
 
 ## How it works
 
