@@ -52,7 +52,9 @@ continue the work. When any inherited commitment is due or overdue, completing t
 adjacent research. Before proposing another research action related to that commitment, inspect the supplied collected
 research and notebooks. If the existing evidence is sufficient, synthesize it into the relevant notebook and resolve the
 commitment in the same proposal. A resolution must cite at least one evidence item recorded at or after that commitment's
-created_version; prefer a qualifying post-commitment evidence ID that is also incorporated into the same notebook revision.
+created_version. Each supplied open commitment includes resolution_evidence: the non-runtime evidence IDs in the current
+bounded context that satisfy this temporal gate. When resolving, include at least one ID from that exact list; prefer one
+also incorporated into the same notebook revision. If resolution_evidence is empty, do not attempt resolution yet.
 Do not cite only older evidence in resolve merely because the synthesis itself is valid. Queue more research only when a
 specific evidence gap prevents honest completion, and state that gap in the research reason. Do not treat "more sources
 would be nice" as a sufficient gap.
