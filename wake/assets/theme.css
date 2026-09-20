@@ -61,7 +61,36 @@
 .note{border-left:0 !important;padding-left:0 !important}
 
 /* Topic identity is durable data, so tags, cards, MAP, and metrics always agree. */
-.topic-tag,.topic-card h3,.topic-metric-name{color:var(--topic-color,var(--cyan))}
+.topic-tag,.topic-card h3,.topic-metric-name{color:var(--topic-color,var(--cyan)) !important}
+.topic-tag,#timeline .node small.topic-tag{
+  background:color-mix(in srgb,var(--topic-color,var(--cyan)) 16%,var(--surface)) !important;
+  border-color:color-mix(in srgb,var(--topic-color,var(--cyan)) 48%,var(--line)) !important;
+}
+
+/* Topic cards are a compact directory, not display headlines. */
+.topic-card h3{font-size:18px !important;letter-spacing:.045em !important;text-transform:uppercase}
+
+/* A quote should recede from its post title while still carrying WAKE's cyan cue. */
+.blog-card blockquote,.blog-reading blockquote{
+  color:color-mix(in srgb,var(--ink) 78%,var(--cyan)) !important;
+  border-color:color-mix(in srgb,var(--cyan) 52%,var(--line)) !important;
+}
+
+/* One calm interaction model: color may change, but cards never jump. */
+@media(hover:hover){
+  .project-card:hover,.notebook-card:hover,.blog-card:hover,.topic-card:hover,.wake-cell:hover{
+    transform:none !important;
+    box-shadow:none !important;
+  }
+}
+
+/* Default surfaces and controls share the same deliberately small corner. */
+button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{border-radius:9px}
+
+/* The topic count belongs to the distribution it describes. */
+.panel-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
+.panel-heading .eyebrow{margin-bottom:4px}
+.panel-heading h2{margin:0}
 
 /* H3s are compact interface headings; the serif remains reserved for H1/H2. */
 h3{font-family:var(--sans) !important}

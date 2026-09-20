@@ -34,7 +34,12 @@ from .trust import build_trust_compacts_shadow
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
-TOPIC_COLORS = ("#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64", "#73daca", "#7aa2f7", "#c0caf5", "#ff757f", "#e0af68", "#9ece6a")
+TOPIC_COLORS = (
+    "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
+    "#73daca", "#7aa2f7", "#c0caf5", "#ff757f", "#e0af68", "#9ece6a",
+    "#f7768e", "#9d7cd8", "#2ac3de", "#d8c25d", "#5fcf8d", "#c099ff",
+    "#f68c65", "#54d4bc", "#8aa8ff", "#f2a2ca", "#b7d36b", "#f0bd75",
+)
 
 
 def _topic_colors(topics):
