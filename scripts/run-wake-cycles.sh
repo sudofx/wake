@@ -104,6 +104,24 @@ for ((i = 1; i <= count; i++)); do
   fi
 
   if [[ "$conclusion" != "success" ]]; then
+    # A context-ceiling pause is a deliberate no-call guard. The workflow is
+    # red so GitHub preserves the need for review, but this local batch must
+    # not report a transport/runtime failure or keep dispatching identical
+    # no-op runs. Stop cleanly and leave the recorded reason visible.
+    pause_reason="$(
+      gh api "repos/$REPO/contents/site/operation.json?ref=wake-state" \
+        --jq '.content' 2>/dev/null \
+        | tr -d '\n' \
+        | base64 --decode 2>/dev/null \
+        | jq -r 'select(.status == "paused") | .reason' 2>/dev/null \
+        || true
+    )"
+    if [[ "$pause_reason" == "Context ceiling reached; human review required, no model call made" ]]; then
+      echo
+      echo "WAKE✳︎ stopped cleanly at requested cycle $i/$count: $pause_reason"
+      echo "No model call or durable state change occurred. Adjust context capacity before resuming."
+      exit 0
+    fi
     echo >&2
     echo "WAKE✳︎ stopped at requested cycle $i/$count because run $run_id ended with: $conclusion" >&2
     echo "Completed cycles before stop: $((i - 1))/$count" >&2
