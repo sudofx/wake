@@ -1,5 +1,7 @@
 # Retrieval shadow: making forgetting observable
 
+> **Active experimental design note.** This describes current shadow-mode work on progressive abstraction, forgetting and deterministic retrieval planning. It does not claim that retrieval is fully activated.
+
 **WAKE✳︎** already records a deliberately lossy working-set shadow beside each invocation. The next experimental step is to record the inverse operation too: **what exact durable records would need to come back if the abstraction became too expensive to trust?**
 
 This is still shadow mode. The provider continues to receive the existing rich context. Retrieval planning is measured, not activated.
