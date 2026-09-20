@@ -117,6 +117,34 @@ class ResearchTests(unittest.TestCase):
             self.engine.config["max_context_chars"],
         )
 
+    def test_context_exposes_project_scoped_notebook_evidence(self):
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p-wake", "title": "WAKE", "question": "Q", "domain": "wake_analysis",
+                "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
+            })
+            self.engine.store.append("project_adopted", {
+                "id": "p-neuro", "title": "Neuro", "question": "Q", "domain": "neurodivergence",
+                "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
+            })
+            self.engine.store.append("observation", {
+                "id": "wake-src", "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis"}),
+                "actor": "collector", "scope": "collected"
+            })
+            self.engine.store.append("observation", {
+                "id": "neuro-src", "source": "https://example.org/neuro",
+                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence"}),
+                "actor": "collector", "scope": "collected"
+            })
+            invocation, request = self.engine.start("fixture", "project-evidence-test")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        self.assertIn("wake-src", request["context"]["project_evidence"]["p-wake"])
+        self.assertNotIn("neuro-src", request["context"]["project_evidence"]["p-wake"])
+        self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
+        self.assertNotIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
+
     def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", {
