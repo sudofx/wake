@@ -137,6 +137,28 @@ class ResearchTests(unittest.TestCase):
             self.engine.config["max_context_chars"],
         )
 
+    def test_context_overflow_uses_auditable_bounded_working_set(self):
+        # The normal rich request may grow without rewriting any durable state.
+        # Its final overflow is the one controlled condition that switches the
+        # provider view to the deterministic working representation.
+        original_context = self.engine.context
+        def oversized_context(state, receipt):
+            return {**original_context(state, receipt), "noise": "X" * 60000}
+        with patch.object(self.engine, "context", side_effect=oversized_context):
+            with self.engine.store.lock():
+                invocation, request = self.engine.start("fixture", "bounded-context-test")
+                item = self.engine.store.load()["invocations"][invocation]
+                self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        self.assertEqual(request["context"]["context_mode"], "bounded")
+        self.assertNotIn("noise", request["context"])
+        self.assertEqual(item["context_delivery"]["mode"], "bounded")
+        self.assertGreater(item["context_delivery"]["rich_context_chars"], 48000)
+        self.assertGreater(item["context_delivery"]["delivered_context_chars"], 0)
+        self.assertTrue(item["context_delivery"]["omitted_categories"])
+        self.assertEqual(item["inquiry_drive_shadow"]["mode"], "shadow")
+        self.assertNotIn("trust_compacts_shadow", request["context"])
+
     def test_context_exposes_project_scoped_notebook_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {

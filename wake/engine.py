@@ -277,6 +277,84 @@ class Engine:
             } for notebook in list(state["notebooks"].values())[-6:]]
 
         return working
+
+    def bounded_context(self, state, receipt, working_set, rich_context_chars):
+        """Make the deterministic working set the provider view under pressure.
+
+        This is deliberately a one-way delivery adaptation: the full projection,
+        event chain, and the shadow annotations remain exact in the durable record.
+        The provider receives only bounded excerpts plus IDs that let governance and
+        a later retrieval pass identify the authoritative material.
+        """
+        def excerpt(value, limit):
+            value = str(value)
+            return value if len(value) <= limit else value[:limit - 1] + "…"
+
+        evidence_ids = list(dict.fromkeys(
+            evidence_id for belief in working_set["beliefs"]
+            for evidence_id in belief["provenance"]
+        ))
+        evidence = [{
+            "id": item["id"], "source": item.get("source", ""),
+            "actor": item.get("actor", ""), "version": item.get("version"),
+            "scope": item.get("scope"), "content_omitted": True,
+        } for evidence_id in evidence_ids if (item := state["evidence"].get(evidence_id))]
+        context = {
+            "version": state["version"], "objective": state["objective"],
+            "focus": state["focus"], "receipt": receipt,
+            "context_mode": "bounded",
+            "bounded_context": {
+                "principle": working_set["principle"],
+                "rich_context_chars": rich_context_chars,
+                "omitted_categories": [
+                    "full durable evidence content", "recent journal bodies",
+                    "completed-project archive", "full notebook bodies",
+                    "research and blog history outside the bounded working set",
+                ],
+                "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+                "retrieval_triggers": working_set["retrieval_triggers"],
+            },
+            "beliefs": [{
+                "id": item["id"], "statement": item["claim"],
+                "confidence": item["confidence"], "status": item["status"],
+                "reason": item["why_retained"], "evidence": item["provenance"],
+                "context_excerpt": True,
+            } for item in working_set["beliefs"]],
+            "commitments": [{
+                "id": item["id"], "task": item["task"], "due_cycle": item["due_cycle"],
+                "reason": item["reason"], "status": "open",
+                "created_version": state["commitments"][item["id"]].get("created_version"),
+                "resolution_evidence": [], "context_excerpt": True,
+            } for item in working_set["open_commitments"]],
+            "evidence": evidence,
+            "evidence_scope": "Metadata for evidence roots retained by the bounded working set; exact content remains in durable history.",
+            "recent_journal": [],
+        }
+        if state.get("charter"):
+            active = working_set.get("active_projects", [])
+            context.update({
+                "mission": state["charter"], "pet_name": state["pet_name"],
+                "research_topics": state.get("research_topics") or self.config.get("research_topics", []),
+                "projects": [{
+                    **{key: value for key, value in state["projects"][item["id"]].items()
+                       if key not in ("title", "question", "next_step", "reason")},
+                    "title": item["title"], "question": item["question"],
+                    "next_step": item["next_step"],
+                    "reason": excerpt(state["projects"][item["id"]].get("reason", ""), 220),
+                    "context_excerpt": True,
+                } for item in active],
+                "notebooks": working_set.get("recent_notebooks", []),
+                "blog_notebooks": {}, "working_notebook": None, "research": [],
+                "recent_blog": [], "editorial_notes": [],
+                "bob_reflection_cycle": state["version"] + 1,
+                "bob_reflection_due": (state["version"] + 1) % 20 == 0,
+                "project_evidence": {},
+            })
+            for notebook in context["notebooks"]:
+                context["blog_notebooks"].setdefault(notebook["project"], []).append({
+                    key: notebook[key] for key in ("id", "title", "revision", "evidence")
+                })
+        return context
     # ---------------------------------------------------------------------------
     # STEP: inquiry_drive_shadow
     #
@@ -531,6 +609,8 @@ class Engine:
         request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
                    "context": delivered_context,
                    "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
+        rich_context_chars = len(canonical(request))
+        context_mode = "rich"
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
             # Crossing the context threshold is a retrieval problem, not a reason to
             # discard durable history. Keep the complete record in SQLite/public
@@ -593,6 +673,16 @@ class Engine:
                 {key: value for key, value in item.items() if key != "resolution_evidence"}
                 for item in request["context"]["commitments"]
             ]
+        if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
+            # The earlier compaction preserves the established rich delivery when
+            # possible. Only its final overflow activates this controlled
+            # experimental condition; all other operator-attention failures stay
+            # ordinary rejections.
+            request["context"] = self.bounded_context(
+                state, receipt, working_set_shadow, rich_context_chars
+            )
+            request["response_schema"] = schema_for_context(request["context"])
+            context_mode = "bounded"
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         shadow_chars = len(canonical(working_set_shadow))
@@ -604,8 +694,17 @@ class Engine:
             "trust_compacts_shadow": trust_compacts_shadow,
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
+            "context_delivery": {
+                "mode": context_mode,
+                "rich_context_chars": rich_context_chars,
+                "delivered_request_chars": len(canonical(request)),
+                "delivered_context_chars": delivered_chars,
+                "working_set_chars": shadow_chars,
+                "omitted_categories": request["context"].get("bounded_context", {}).get("omitted_categories", []),
+                "provenance_policy": request["context"].get("bounded_context", {}).get("provenance_policy"),
+            },
             "working_set_metrics": {
-                "mode": "shadow",
+                "mode": context_mode,
                 "working_set_chars": shadow_chars,
                 "delivered_context_chars": delivered_chars,
                 "working_to_delivered_ratio": round(shadow_chars / max(delivered_chars, 1), 4),
