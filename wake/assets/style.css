@@ -596,18 +596,17 @@ footer{margin-top:48px}
 /* Shared disclosure pattern for readable record panels. */
 .record-panel{display:block}
 .record-panel>summary{list-style:none;cursor:pointer;position:relative}
+.record-panel>summary::marker{content:''}
 .record-panel>summary::-webkit-details-marker{display:none}
-.record-panel>summary::after{content:'+';position:absolute;right:0;top:50%;transform:translateY(-50%);font:14px var(--mono);color:var(--muted)}
-.record-panel[open]>summary::after{content:'−'}
-.record-panel>summary h2,.record-panel>summary h3{margin-right:28px}
-.record-panel-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.record-panel-meta time{margin-left:auto;color:var(--muted);font:10px var(--mono);letter-spacing:.04em;white-space:nowrap}
+.record-panel>summary h2::after,.record-panel>summary h3::after{content:'▸';display:inline-block;margin-left:.4em;color:var(--muted);font:14px/1 var(--mono);vertical-align:.12em}
+.record-panel[open]>summary h2::after,.record-panel[open]>summary h3::after{content:'▾'}
+.record-panel-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.record-panel-meta time{margin-left:8px;color:var(--muted);font:10px var(--mono);letter-spacing:.04em;white-space:nowrap}
 .record-panel-body{padding-top:4px}
 .record-panel:not([open])>summary{padding-bottom:0}
 .record-panel:not([open]) .record-panel-body{display:none}
 .record-panel>summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}
 @media(max-width:700px){
   .record-panel-meta{gap:6px}
-  .record-panel-meta time{font-size:9px}
-  .record-panel>summary::after{right:2px}
+  .record-panel-meta time{margin-left:4px;font-size:9px}
 }
