@@ -117,6 +117,28 @@ class ResearchTests(unittest.TestCase):
             self.engine.config["max_context_chars"],
         )
 
+    def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
+        with self.engine.store.lock():
+            self.engine.store.append("observation", {
+                "id": "pre", "source": "fixture:pre", "content": "old", "actor": "human"
+            })
+            invocation, request = self.engine.start("fixture", "commit-seed")
+            proposal = json.loads(Fixture().propose(request)[0])
+            proposal["actions"] = [{
+                "type": "commit", "id": "c", "task": "Review new evidence",
+                "due_cycle": request["context"]["version"] + 2, "reason": "Test temporal gate"
+            }]
+            self.engine.finish(invocation, json.dumps(proposal))
+            self.engine.store.append("observation", {
+                "id": "post", "source": "fixture:post", "content": "new", "actor": "human"
+            })
+            second, second_request = self.engine.start("fixture", "commit-check")
+            self.engine.store.append("recovered", {"id": second, "reason": "Test cleanup"})
+
+        commitment = next(item for item in second_request["context"]["commitments"] if item["id"] == "c")
+        self.assertIn("post", commitment["resolution_evidence"])
+        self.assertNotIn("pre", commitment["resolution_evidence"])
+
     def test_overdue_resolution_requires_post_commitment_evidence_instruction(self):
         self.assertIn("recorded at or after that commitment's", RESEARCH_SYSTEM)
         self.assertIn("Do not cite only older evidence in resolve", RESEARCH_SYSTEM)
