@@ -26,17 +26,12 @@ from .scheduling import wake_status
 
 def _shared_theme_switch(page):
     """Normalize theme controls on generated standalone pages."""
-    switch = ('<label class="theme-switch"><input id="theme-toggle" type="checkbox" role="switch" '
-              'aria-label="Use dark theme"><span class="theme-switch-track" aria-hidden="true"><i></i></span>'
+    switch = ('<label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" '
+              'aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span>'
               '<b>LIGHT / DARK</b></label>')
-    css = (
-        '.theme-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font:10px var(--mono);letter-spacing:.06em;color:var(--muted);white-space:nowrap}.theme-switch input{position:absolute;opacity:0;pointer-events:none}.theme-switch-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.theme-switch-track i{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.theme-switch input:checked+.theme-switch-track i{transform:translateX(16px);background:var(--green)}.theme-switch input:focus-visible+.theme-switch-track{outline:2px solid var(--green);outline-offset:2px}.theme-switch b{font:inherit;color:var(--ink)}'
-        ':root{--paper:#e8ecf4;--surface:#f8faff;--ink:#283457;--muted:#59627e;--line:#c5cce0;--green:#4f8f43;--accent:#7c5cc4;--hot:#b61d70;--pale:#e1e6f3}:root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#292e42}header{border-color:var(--line)}details{border-radius:6px;box-shadow:0 4px 12px rgb(45 58 108 / .07)}.theme-switch-track{border-color:var(--line)}'
-    )
     script = ("<script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()})})()</script>")
-    page = page.replace('--serif:var(--sans)', "--serif:Georgia,'Times New Roman',serif")
     page = re.sub(r'<button id="theme-toggle"[^>]*>.*?</button>', switch, page, count=1)
-    return page.replace('</style>', css + '</style>', 1).replace('</body>', script + '</body>', 1)
+    return page.replace('</body>', script + '</body>', 1)
 
 
 def _with_shared_theme_switch(render):
@@ -337,6 +332,7 @@ def _human_page(title, subtitle, body, head, raw_href, markdown_href):
 <link rel=\"icon\" href=\"{favicon}\"><title>{html.escape(title)} · WAKE✳︎</title>
 <script>try{{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}}catch{{}}</script>
 <style>
+@import url("theme.css");
 :root{{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#287ca3;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}}
 :root[data-theme=dark]{{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}}
 *{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}}a{{color:inherit;text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}}}button,summary{{font:inherit;color:inherit}}button{{cursor:pointer}}main{{max-width:1120px;margin:auto;padding:32px 28px 90px}}header{{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font-size:30px;font-weight:900;letter-spacing:-1.7px}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}}.eyebrow{{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}}h1{{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}}h2{{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}}h3{{font-size:14px;margin:24px 0 10px}}nav{{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}}.meta{{color:var(--muted);font:12px/1.6 var(--mono)}}details{{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}}summary{{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}}.inside{{border-top:1px solid var(--line);padding:14px 0 18px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}}code{{font-family:var(--mono);overflow-wrap:anywhere}}.tag,.event-kind{{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}}.tag{{color:var(--accent)}}.event-kind{{text-transform:uppercase;letter-spacing:.06em}}.event-kind.accepted{{background:#dcebdd;color:#35623d;border-color:#bad2bd}}.event-kind.rejected,.event-kind.failed{{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}}.event-kind.invocation_started{{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}}.event-kind.observation,.event-kind.research_collected{{background:#ede3cf;color:#7e6030;border-color:#dfcda7}}.event-kind.recovered{{background:#e5e2ed;color:#635178;border-color:#cec4d9}}.event-kind.deferred{{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}}.event-links{{font-size:.9rem;color:var(--muted)}}hr{{border:0;border-top:1px solid var(--line);margin:28px 0}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}.topline{{align-items:flex-start}}nav{{gap:14px;font-size:12px}}.meta,summary{{font-size:12px}}}}
@@ -452,6 +448,7 @@ def _reading_page(title, eyebrow, body, source_href, back_href="../index.html"):
 <meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f5fb\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#24283b\"><link rel=\"icon\" href=\"{favicon}\"><title>{html.escape(title)} · WAKE✳︎</title>
 <script>try{{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}}catch{{}}</script>
 <style>
+@import url("../theme.css");
 :root{{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#287ca3;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}}
 :root[data-theme=dark]{{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:17px/1.72 var(--sans);font-variant-emoji:text}}main{{max-width:840px;margin:auto;padding:34px 22px 90px}}header{{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:34px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font:900 29px/1 var(--sans);letter-spacing:-1.7px;color:inherit;text-decoration:none}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em;cursor:pointer}}h1{{font:400 clamp(2.4rem,7vw,4.8rem)/1.02 var(--serif);letter-spacing:-.035em;margin:.18em 0 .3em}}h2{{font:400 1.8rem/1.2 var(--serif);margin-top:2.2em}}h3{{font:700 14px var(--sans);margin-top:2em}}a{{color:var(--green);text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}}}nav{{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;font:10px var(--mono)}}.eyebrow,.meta{{font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}}.eyebrow{{color:var(--green);margin-top:24px}}.lede{{font-size:1.25rem;line-height:1.55}}.note{{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:28px 0}}.sources{{font-family:var(--sans);font-size:.95rem}}code{{font-family:var(--mono)}}hr{{border:0;border-top:1px solid var(--line);margin:34px 0}}small{{color:var(--muted)}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}}}
@@ -544,12 +541,12 @@ def export(store, destination="site", experiment=None, operation=None):
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
         template = (assets / "index.html").read_text()
-        # Source templates retain stylesheet links for direct local previews; the
-        # published artifact carries the same styles inline for a self-contained page.
-        template = template.replace('<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css">', "")
+        # Publish source styles alongside every HTML view: Pages and exports share
+        # the same theme file rather than receiving copied inline palettes.
+        for name in ("style.css", "nav.css", "map.css", "theme.css"):
+            atomic_write(target / name, (assets / name).read_text())
         embedded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
-        page = template.replace("/* WAKE_STYLE */", (assets / "style.css").read_text())
-        page = page.replace("/* NAV_STYLE */", (assets / "nav.css").read_text())
+        page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
         page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
@@ -631,9 +628,7 @@ def export(store, destination="site", experiment=None, operation=None):
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
         map_page = (assets / "map.html").read_text()
-        map_page = map_page.replace('<link rel="stylesheet" href="map.css"><link rel="stylesheet" href="nav.css">', "")
-        map_page = map_page.replace("/* MAP_STYLE */", (assets / "map.css").read_text())
-        map_page = map_page.replace("/* NAV_STYLE */", (assets / "nav.css").read_text())
+        map_page = map_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
         map_page = map_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         map_page = map_page.replace("/* MAP_SCRIPT */", (assets / "map.js").read_text())
         map_page = map_page.replace("MAP_DATA", graph_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))

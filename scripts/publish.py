@@ -33,7 +33,8 @@ def publish(directory):
     if not all((source / name).is_file() for name in names):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
-    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "blog.xml", "journal.xml"):
+    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "blog.xml", "journal.xml",
+                 "style.css", "nav.css", "map.css", "theme.css"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():

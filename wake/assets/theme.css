@@ -1,0 +1,20 @@
+/*
+ * WAKE✳︎ THEME — the sole source of truth for shared colour and type tokens.
+ * Every published HTML view loads this after its page-layout stylesheet.
+ */
+:root{
+  color-scheme:light;
+  --paper:#f4f5fb !important; --surface:#ffffff !important; --surface-strong:#ffffff !important;
+  --ink:#24283b !important; --muted:#626b8a !important; --line:#d9ddeb !important;
+  --green:#287ca3 !important; --accent:#7658b3 !important; --orange:#7658b3 !important; --hot:#c52f9b !important;
+  --pale:#eef0f8 !important; --glow:transparent !important;
+  --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
+  --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#24283b !important; --surface:#1f2335 !important; --surface-strong:#1f2335 !important;
+  --ink:#c0caf5 !important; --muted:#a9b1d6 !important; --line:#32384d !important;
+  --green:#7dcfff !important; --accent:#bb9af7 !important; --orange:#bb9af7 !important; --hot:#7aa2f7 !important;
+  --pale:#1f2335 !important; --glow:transparent !important;
+}
