@@ -117,6 +117,10 @@ a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{
 .compact-nav .nav-dropdown a[aria-current=page]{border-bottom:2px solid var(--cyan) !important}
 :root[data-theme="dark"] body{background:#1b2036 !important}
 
+/* The MAP detail inspector is an independent reading pane.  Keep its rounded
+   shell, but let long selected records scroll inside it. */
+#details{overflow-x:hidden !important;overflow-y:auto !important;overscroll-behavior:contain;scrollbar-gutter:stable}
+
 /* H3s are compact interface headings; the serif remains reserved for H1/H2. */
 h3{font-family:var(--sans) !important}
 
