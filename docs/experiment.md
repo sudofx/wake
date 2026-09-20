@@ -1,5 +1,7 @@
 # Experiment protocol
 
+> **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
+
 The working hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The broader engineering aim is infrastructure for durable, accountable work that can survive changes in models, vendors, people and time.
 
 This project is deliberately exploratory before it is explanatory. Early runs generate an observational history; repeated patterns can motivate narrower, falsifiable experiments later. A pattern in the record and a proposed mechanism for that pattern are different claims and should be reported separately. Rejected work, failed calls, corrections and negative results are part of the dataset rather than noise to be cleaned away.
