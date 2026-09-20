@@ -21,6 +21,13 @@
   }
   setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
   themeToggle.addEventListener('change',()=>setTheme(themeToggle.checked?'dark':'light',true));
+  try {
+    const systemTheme=matchMedia('(prefers-color-scheme:dark)');
+    systemTheme.addEventListener('change',event=>{
+      if(localStorage.getItem('wake-theme')) return;
+      setTheme(event.matches?'dark':'light');
+    });
+  } catch {}
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');

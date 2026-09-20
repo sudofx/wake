@@ -28,8 +28,8 @@ def _shared_theme_switch(page):
     """Normalize theme controls on generated standalone pages."""
     switch = ('<label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" '
               'aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span>'
-              '<b>LIGHT / DARK</b></label>')
-    script = ("<script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()})})()</script>")
+              '<b class="theme-icon" aria-hidden="true">◐</b></label>')
+    script = ("<script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()});try{const media=matchMedia('(prefers-color-scheme:dark)');media.addEventListener('change',event=>{if(localStorage.getItem('wake-theme'))return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;sync()})}catch{{}}})()</script>")
     page = re.sub(r'<button id="theme-toggle"[^>]*>.*?</button>', switch, page, count=1)
     return page.replace('</body>', script + '</body>', 1)
 
