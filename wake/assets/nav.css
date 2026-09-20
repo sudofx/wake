@@ -28,7 +28,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 }
 
 /* v0.22 — compact controls match the refreshed field-notebook surfaces. */
-.compact-nav .nav-dropdown{border-radius:12px;box-shadow:0 12px 30px rgb(45 58 108 / .16);padding:7px}
-.compact-nav .nav-dropdown a{border-radius:8px}
+.compact-nav .nav-dropdown{border-radius:8px;box-shadow:0 10px 24px rgb(45 58 108 / .14);padding:7px}
+.compact-nav .nav-dropdown a{border-radius:4px}
 .compact-nav>a,.compact-nav summary{color:var(--muted)}
 .compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--green)}
