@@ -20,7 +20,7 @@
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#1f2335 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
+  --paper:#282d43 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
   --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important;
   --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#ff5bb9 !important;
