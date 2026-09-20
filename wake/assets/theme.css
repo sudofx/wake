@@ -8,12 +8,13 @@
   color-scheme:light;
   --paper:#f3f5fc !important; --surface:#ffffff !important; --surface-strong:#eef2ff !important;
   --ink:#252a41 !important; --muted:#5f6b91 !important; --line:#d7def3 !important;
-  --green:#168bbf !important; --cyan:#168bbf !important; --accent:#7557c8 !important; --orange:#d3438d !important; --hot:#be2f9b !important;
+  --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important;
+  --green:#568a2b !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#d93d9b !important;
   --pale:#e9eeff !important; --glow:transparent !important;
-  --chart-0:#168bbf !important; --chart-1:#8a63e7 !important; --chart-2:#4e83e7 !important;
-  --chart-3:#28a99a !important; --chart-4:#ed7a54 !important; --chart-5:#7a84aa !important;
-  --success:#299b70 !important; --danger:#d95161 !important; --warning:#e59b3d !important; --info:#4e83e7 !important;
-  --topic-name:#5b8a18 !important;
+  --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
+  --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
+  --success:#568a2b !important; --danger:#d93d9b !important; --warning:#b98500 !important; --info:#147fbe !important;
+  --topic-name:#568a2b !important;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
   --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
 }
@@ -21,12 +22,13 @@
   color-scheme:dark;
   --paper:#1f2335 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
-  --green:#74d4ff !important; --cyan:#74d4ff !important; --accent:#bb9af7 !important; --orange:#ff79c6 !important; --hot:#7aa2f7 !important;
+  --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important;
+  --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#ff5bb9 !important;
   --pale:#2b314d !important; --glow:transparent !important;
-  --chart-0:#74d4ff !important; --chart-1:#bb9af7 !important; --chart-2:#7aa2f7 !important;
-  --chart-3:#73daca !important; --chart-4:#ff9e64 !important; --chart-5:#a9b1d6 !important;
-  --success:#73daca !important; --danger:#ff757f !important; --warning:#e0af68 !important; --info:#7aa2f7 !important;
-  --topic-name:#c8f36a !important;
+  --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
+  --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
+  --success:#93ff74 !important; --danger:#ff5bb9 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
+  --topic-name:#93ff74 !important;
 }
 
 /* Shared signal language: journal, MAP, and dashboard use the same semantics. */
@@ -47,11 +49,16 @@
 #timeline .node small.status-tag.deferred{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
 #timeline .node small.status-tag.provider_attempt_started,#timeline .node small.status-tag.provider_attempt_finished,#timeline .node small.status-tag.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
 #timeline .node small.status-tag.observation,#timeline .node small.status-tag.research_collected,#timeline .node small.status-tag.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
-.dashboard-panel,.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,#map-field,#details{box-shadow:0 8px 22px rgb(18 24 48 / .08)}
-:root[data-theme="dark"] .dashboard-panel,:root[data-theme="dark"] .record-card,:root[data-theme="dark"] .project-card,:root[data-theme="dark"] .notebook-card,:root[data-theme="dark"] .blog-card,:root[data-theme="dark"] .panel,:root[data-theme="dark"] .note-card,:root[data-theme="dark"] .about-contract,:root[data-theme="dark"] .topic-card,:root[data-theme="dark"] #map-field,:root[data-theme="dark"] #details{box-shadow:0 10px 28px rgb(9 12 26 / .28)}
+.dashboard-panel,.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,#map-field,#details{box-shadow:none}
 
 /* The current-record card keeps its signal line deliberate, not decorative. */
-.record-card{border-top-width:2px;border-radius:6px}
+.record-card{border-top-width:2px}
+
+/* One quiet box treatment across the site: no inset rails, no simulated depth. */
+.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,.dashboard-panel,.search,#map-field,#details{border-radius:9px;box-shadow:none}
+.about-contract,.research-note,.decision{border-left:1px solid var(--line)}
+.eyebrow,.topic-state,.text-link,.research-links a{color:var(--cyan)}
+.note{border-left:0 !important;padding-left:0 !important}
 
 /* Topic names get one distinct, lime research signal; metadata stays neutral. */
 .topic-card h3{color:var(--topic-name)}
