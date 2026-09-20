@@ -13,6 +13,7 @@
   --chart-0:#168bbf !important; --chart-1:#8a63e7 !important; --chart-2:#4e83e7 !important;
   --chart-3:#28a99a !important; --chart-4:#ed7a54 !important; --chart-5:#7a84aa !important;
   --success:#299b70 !important; --danger:#d95161 !important; --warning:#e59b3d !important; --info:#4e83e7 !important;
+  --topic-name:#5b8a18 !important;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
   --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
 }
@@ -25,6 +26,7 @@
   --chart-0:#74d4ff !important; --chart-1:#bb9af7 !important; --chart-2:#7aa2f7 !important;
   --chart-3:#73daca !important; --chart-4:#ff9e64 !important; --chart-5:#a9b1d6 !important;
   --success:#73daca !important; --danger:#ff757f !important; --warning:#e0af68 !important; --info:#7aa2f7 !important;
+  --topic-name:#c8f36a !important;
 }
 
 /* Shared signal language: journal, MAP, and dashboard use the same semantics. */
@@ -50,3 +52,6 @@
 
 /* The current-record card keeps its signal line deliberate, not decorative. */
 .record-card{border-top-width:2px;border-radius:6px}
+
+/* Topic names get one distinct, lime research signal; metadata stays neutral. */
+.topic-card h3{color:var(--topic-name)}
