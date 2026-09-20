@@ -31,6 +31,7 @@ from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest
 from .trust import build_trust_compacts_shadow
+from .squirrel import assessment as squirrel_assessment, plan as squirrel_plan
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
@@ -348,6 +349,8 @@ class Engine:
             "recent_journal": [],
         }
         if state.get("charter"):
+            context["squirrel"] = squirrel_plan(state)
+        if state.get("charter"):
             active = working_set.get("active_projects", [])
             context.update({
                 "mission": state["charter"], "pet_name": state["pet_name"],
@@ -469,6 +472,7 @@ class Engine:
                 "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
         if state.get("charter"):
             context["mission"] = state["charter"]
+            context["squirrel"] = squirrel_plan(state)
             context["pet_name"] = state["pet_name"]
             context["research_topics"] = state.get("research_topics") or self.config.get("research_topics", [])
             projects = list(state["projects"].values())
@@ -713,6 +717,7 @@ class Engine:
             "trust_compacts_shadow": trust_compacts_shadow,
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
+            "squirrel": delivered_context.get("squirrel", {"active": False}),
             "context_delivery": {
                 "mode": context_mode,
                 "rich_context_chars": rich_context_chars,
@@ -769,12 +774,15 @@ class Engine:
                     "\n\nEditorial note: the proposed blog post was withheld. " + str(exc)[:180])
                 proposal = accepted_proposal
                 result = transition(state, proposal, invocation)
-        except (ValueError, TypeError, KeyError) as exc:
+        except (ValueError, TypeError, KeyError, Rejected) as exc:
             reason = str(exc)[:1000]
             self.store.append("rejected", {"id": invocation, "reason": reason,
                                           "raw_response": str(raw)[:64000], "metadata": metadata or {},
                                           **({"provider_requests_sent": metadata["provider_requests_sent"]}
                                              if metadata and "provider_requests_sent" in metadata else {})})
+            if state.get("charter"):
+                self.store.append("squirrel_assessed", squirrel_assessment(
+                    self.store.load(), invocation, "rejected"))
             return {"status": "rejected", "id": invocation, "reason": reason}
         fields = ["version", "beliefs", "commitments", "journal"]
         if state.get("charter"):
@@ -785,6 +793,9 @@ class Engine:
                                        **({"provider_requests_sent": metadata["provider_requests_sent"]}
                                           if metadata and "provider_requests_sent" in metadata else {}), "result_hash": result_hash, "hash_fields": fields,
                                        **({"editorial": editorial} if editorial else {})}, crash=crash)
+        if state.get("charter"):
+            self.store.append("squirrel_assessed", squirrel_assessment(
+                state, invocation, "accepted", proposal))
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {})}
 

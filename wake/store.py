@@ -138,7 +138,7 @@ def now():
 def empty():
     return {"version": 0, "objective": "", "focus": "continuity", "beliefs": {},
             "commitments": {}, "evidence": {}, "journal": [], "posts": {},
-            "invocations": {}, "pending": None}
+            "invocations": {}, "pending": None, "squirrel": {"counters": {}, "deferred": {}}}
 
 
 # ---------------------------------------------------------------------------
@@ -198,6 +198,13 @@ def reduce_event(state, event, historical=False):
         state["evidence"][p["id"]] = {**p, "version": state["version"], "time": event["time"]}
     elif kind == "focus_changed":
         state["focus"] = p["focus"]
+    elif kind == "squirrel_assessed":
+        require(state.get("charter"), "Squirrel requires the research charter")
+        require(p["invocation"] in state["invocations"], "Unknown Squirrel invocation")
+        require(state["invocations"][p["invocation"]].get("status") == p["terminal"],
+                "Squirrel receipt must follow its terminal invocation")
+        state["squirrel"] = {"counters": p["counters"], "deferred": p["deferred"],
+                             "last_receipt": {k: v for k, v in p.items() if k not in ("counters", "deferred")}}
     elif kind == "commitment_cancelled":
         item = state["commitments"].get(p["id"])
         require(item is not None and item["status"] == "open", "Only open commitments can be cancelled")
