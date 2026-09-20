@@ -12,14 +12,21 @@
   const s = data.state;
   const $ = id => document.getElementById(id);
   const themeToggle = $('theme-toggle');
+  const themeIcon = document.querySelector('.theme-icon');
+  function savedTheme() { try { return localStorage.getItem('wake-theme'); } catch { return null; } }
   function setTheme(theme, remember=false) {
     const dark=theme==='dark';
     if(dark) document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;
+    const manual=remember||Boolean(savedTheme());
+    document.documentElement.dataset.themeMode=manual?'manual':'system';
     themeToggle.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');
     themeToggle.checked=dark;
     if(remember)try{localStorage.setItem('wake-theme',dark?'dark':'light')}catch{}
+    if(themeIcon) themeIcon.textContent=manual?(dark?'◑':'☼'):'◐';
+    themeToggle.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${dark?'dark':'light'} theme`:`Following system ${dark?'dark':'light'} theme`);
   }
-  setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
+  const storedTheme=savedTheme();
+  setTheme(storedTheme==='dark'||(!storedTheme&&document.documentElement.dataset.theme==='dark')?'dark':'light');
   themeToggle.addEventListener('change',()=>setTheme(themeToggle.checked?'dark':'light',true));
   try {
     const systemTheme=matchMedia('(prefers-color-scheme:dark)');

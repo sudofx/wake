@@ -87,7 +87,8 @@
 
 /* Default surfaces and controls share the same deliberately small corner. */
 button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{border-radius:9px}
-.theme-switch{gap:7px}.theme-icon{display:inline-flex;align-items:center;height:18px;font:18px/18px var(--sans);color:var(--cyan);letter-spacing:0}
+.theme-switch{gap:7px}.data-switch .theme-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;font:18px/18px var(--sans);color:var(--cyan);letter-spacing:0}
+.data-switch input:checked~.data-switch-track i{transform:translateX(16px);background:var(--cyan)}
 
 /* The topic count belongs to the distribution it describes. */
 .panel-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
