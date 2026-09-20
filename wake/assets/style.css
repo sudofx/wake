@@ -621,8 +621,8 @@ footer{margin-top:48px}
 }
 :root[data-theme="dark"]{
   --paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;
-  --line:#3b4261;--green:#8dbb72;--cyan:#7dcfff;--accent:#bb9af7;--orange:#c97899;
-  --hot:#c97899;--pale:#292e42;--surface-strong:#292e42;
+  --line:#3b4261;--green:#649f25;--cyan:#7dcfff;--accent:#bb9af7;--orange:#b03772;
+  --hot:#b03772;--pale:#292e42;--surface-strong:#292e42;
   --shadow:0 14px 34px rgb(10 12 28 / .34);--shadow-tight:0 6px 16px rgb(10 12 28 / .27)
 }
 body{background:var(--paper)}
