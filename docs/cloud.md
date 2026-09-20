@@ -1,5 +1,7 @@
 # **WAKE✳︎**’s independent research life
 
+> **Current operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: the `master` + `wake-state` deployment, scheduling, provider accounting, checkpointing and recovery behavior.
+
 **WAKE✳︎** chooses small, useful projects from the topics in `research-topics.toml`. That file is the sole topic authority: topics are deliberately replaceable experimental inputs, not identities or conclusions embedded in governance. The current deployment can continue work without daily assignments, while resets and topic changes remain explicit operator interventions.
 
 ## Read or wake it
