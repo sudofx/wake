@@ -117,6 +117,10 @@ class ResearchTests(unittest.TestCase):
             self.engine.config["max_context_chars"],
         )
 
+    def test_overdue_resolution_requires_post_commitment_evidence_instruction(self):
+        self.assertIn("recorded at or after that commitment's", RESEARCH_SYSTEM)
+        self.assertIn("Do not cite only older evidence in resolve", RESEARCH_SYSTEM)
+
     def test_overdue_commitments_prioritize_synthesis_before_more_research(self):
         self.assertIn("completing that work takes priority over starting", RESEARCH_SYSTEM)
         self.assertIn("synthesize it into the relevant notebook and resolve", RESEARCH_SYSTEM)
