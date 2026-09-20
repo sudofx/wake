@@ -96,6 +96,26 @@ class ResearchTests(unittest.TestCase):
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
 
+    def test_context_compaction_deduplicates_schema_allowlists(self):
+        self.engine.config["max_context_chars"] = 12000
+        with self.engine.store.lock():
+            self.engine.initialize()
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "P", "question": "Q", "domain": "entropy",
+                "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
+            })
+            for i in range(6):
+                self.engine.store.append("observation", {
+                    "id": f"s{i}", "source": f"https://example.org/{i}",
+                    "content": json.dumps({"verification_required": True, "topic_domain": "entropy", "excerpt": "x" * 2000}),
+                    "actor": "collector", "scope": "collected"
+                })
+            invocation, request = self.engine.start("fixture", "compact-allowlists")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        self.assertNotIn("project_evidence", request["context"])
+        self.assertTrue(all("resolution_evidence" not in c for c in request["context"]["commitments"]))
+
     def test_context_compaction_rebuilds_schema_from_compacted_context(self):
         calls = []
 
