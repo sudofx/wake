@@ -117,6 +117,11 @@ class ResearchTests(unittest.TestCase):
             self.engine.config["max_context_chars"],
         )
 
+    def test_overdue_commitments_prioritize_synthesis_before_more_research(self):
+        self.assertIn("completing that work takes priority over starting", RESEARCH_SYSTEM)
+        self.assertIn("synthesize it into the relevant notebook and resolve", RESEARCH_SYSTEM)
+        self.assertIn("Do not treat \"more sources would be nice\" as a sufficient gap.", RESEARCH_SYSTEM)
+
     def test_wake_topic_is_a_rotating_breadcrumb_not_a_system_instruction(self):
         settings = {**DEFAULTS, "mission": "Follow useful questions.",
                     "research_topics": [{"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"}]}
