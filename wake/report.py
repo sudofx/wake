@@ -541,6 +541,9 @@ def export(store, destination="site", experiment=None, operation=None):
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
         template = (assets / "index.html").read_text()
+        # Source templates retain stylesheet links for direct local previews; the
+        # published artifact carries the same styles inline for a self-contained page.
+        template = template.replace('<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css">', "")
         embedded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
         page = template.replace("/* WAKE_STYLE */", (assets / "style.css").read_text())
         page = page.replace("/* NAV_STYLE */", (assets / "nav.css").read_text())
@@ -624,7 +627,9 @@ def export(store, destination="site", experiment=None, operation=None):
         from .provenance import build_map
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
-        map_page = (assets / "map.html").read_text().replace("/* MAP_STYLE */", (assets / "map.css").read_text())
+        map_page = (assets / "map.html").read_text()
+        map_page = map_page.replace('<link rel="stylesheet" href="map.css"><link rel="stylesheet" href="nav.css">', "")
+        map_page = map_page.replace("/* MAP_STYLE */", (assets / "map.css").read_text())
         map_page = map_page.replace("/* NAV_STYLE */", (assets / "nav.css").read_text())
         map_page = map_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         map_page = map_page.replace("/* MAP_SCRIPT */", (assets / "map.js").read_text())
