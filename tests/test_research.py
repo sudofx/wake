@@ -96,6 +96,27 @@ class ResearchTests(unittest.TestCase):
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
 
+    def test_context_compaction_rebuilds_schema_from_compacted_context(self):
+        calls = []
+
+        def schema(context):
+            calls.append(context)
+            if len(calls) == 1:
+                return {"type": "object", "padding": "x" * self.engine.config["max_context_chars"]}
+            return {"type": "object", "marker": "rebuilt"}
+
+        with patch("wake.engine.schema_for_context", side_effect=schema):
+            with self.engine.store.lock():
+                invocation, request = self.engine.start("fixture", "schema-compaction-test")
+                self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(request["response_schema"], {"type": "object", "marker": "rebuilt"})
+        self.assertLessEqual(
+            len(json.dumps(request, sort_keys=True, separators=(",", ":"))),
+            self.engine.config["max_context_chars"],
+        )
+
     def test_wake_topic_is_a_rotating_breadcrumb_not_a_system_instruction(self):
         settings = {**DEFAULTS, "mission": "Follow useful questions.",
                     "research_topics": [{"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"}]}
