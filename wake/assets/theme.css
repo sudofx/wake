@@ -20,7 +20,7 @@
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --paper:#282d43 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
+  --paper:#1b2036 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
   --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important;
   --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
@@ -69,7 +69,7 @@
 }
 
 /* Topic cards are a compact directory, not display headlines. */
-.topic-card h3{font-size:18px !important;letter-spacing:.045em !important;text-transform:uppercase}
+.topic-card h3{font-size:12px !important;letter-spacing:.075em !important;text-transform:uppercase}
 
 /* A quote should recede from its post title while still carrying WAKE's cyan cue. */
 .blog-card blockquote,.blog-reading blockquote{
@@ -110,6 +110,11 @@ button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{borde
 a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline-color:var(--cyan) !important}
 .masthead nav a[aria-current=page],.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--cyan) !important;border-color:var(--cyan) !important}
 .metric:hover strong,.record-card>a:not(.subtle):hover strong,.record-card>a:not(.subtle):focus-visible strong{color:var(--cyan) !important}
+
+/* Dropdown selection uses one straight underline, never rounded end caps. */
+.compact-nav .nav-dropdown a{border-radius:0 !important}
+.compact-nav .nav-dropdown a[aria-current=page]{border-bottom:2px solid var(--cyan) !important}
+:root[data-theme="dark"] body{background:#1b2036 !important}
 
 /* H3s are compact interface headings; the serif remains reserved for H1/H2. */
 h3{font-family:var(--sans) !important}
