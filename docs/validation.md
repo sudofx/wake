@@ -1,5 +1,7 @@
 # Validation record
 
+> **ARCHIVAL — dated validation snapshot.** Preserve this as evidence of what was tested on the date below. It is not a rolling certification of current `master`.
+
 This file preserves a dated validation snapshot from September 11, 2026. It is historical evidence, **not a description of the current test count, current UI, current workflow status, or current live research record**. Current behavior is defined by `master`, its tests, and the latest GitHub Actions results.
 
 | Check | Result |
