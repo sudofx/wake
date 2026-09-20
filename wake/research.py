@@ -420,7 +420,11 @@ def collect(engine, fetcher=fetch_source):
     # one continuation slot for model-authored follow-up work when available,
     # and one neutral discovery slot away from active project domains. This lets
     # projects actually progress without allowing them to monopolize attention.
-    discovery_count = min(2, len(topics))
+    # Observation mode is a bounded, explicitly configured wider sample. It
+    # changes collection volume only; every collected item still receives the
+    # same topic and evidence-role provenance stamp.
+    budget = engine.config["research_collection_budget"] if engine.config.get("observation_mode") else 2
+    discovery_count = min(budget, len(topics))
     rng = secrets.SystemRandom()
     active_domains = {p["domain"] for p in state.get("projects", {}).values()
                       if p.get("status") == "active"}

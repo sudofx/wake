@@ -131,6 +131,10 @@ def rejected_html(state, events):
         calls = str(count) + ' provider request' + ('' if count == 1 else 's') if count is not None else 'Provider request count not recorded'
         attempts = invocation.get('provider_attempts', [])
         diagnostics = ''
+        observation = payload.get('observation_receipt')
+        observation_note = ('<p class="meta"><strong>Observation mode:</strong> this draft was retained for review; '
+                            'the recorded rule above is what would have flagged it.</p>'
+                            if isinstance(observation, dict) and observation.get('would_have_been_flagged') else '')
         if attempts:
             diagnostics = '<h3>Model attempts</h3><ul>' + ''.join(
                 '<li>' + _text(a.get('model', 'Unknown model')) + ' · ' + _text(a.get('http_status') or 'No HTTP status')
@@ -144,6 +148,7 @@ def rejected_html(state, events):
             + '<p><strong>' + consequence + '</strong></p><h3>Why it stopped</h3><p>' + _text(explanation(reason)) + '</p>'
             + '<p><strong>Exact recorded reason:</strong> ' + _text(reason or 'No reason recorded') + '</p>'
             + '<p class="meta">This is the recorded first failing check, not an exhaustive review of every claim.</p>'
+            + observation_note
             + '<details><summary>Read the unaccepted draft</summary><div class="inside">' + draft + '</div></details>'
             + diagnostics + '<details><summary>Exact saved response</summary><pre>' + _text(raw if raw is not None else 'No raw response was saved.') + '</pre></details>'
             + '<p><a href="index.html#history/' + quote(str(ident), safe='') + '">Full invocation and decision →</a></p></article><hr>')

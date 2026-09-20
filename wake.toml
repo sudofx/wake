@@ -24,4 +24,8 @@ mission = "Independently choose small, useful research projects from the configu
 editorial_notes = []
 # Leave observational until 20 accepted scored charter cycles have been reviewed.
 inquiry_drive_enabled = false
+# Overnight observation profile: collect a wider, still bounded sample and
+# expose rejected proposals as explicit counterfactual receipts for review.
+observation_mode = true
+research_collection_budget = 6
 repository = "sudofx/wake"
