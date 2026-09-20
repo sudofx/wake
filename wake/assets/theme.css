@@ -42,6 +42,7 @@
 .badge.deferred,.model-cell.mixed{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
 .badge.provider_attempt_started,.badge.provider_attempt_finished,.badge.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
 .badge.observation,.badge.research_collected,.badge.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
+.badge.squirrel_assessed{background:color-mix(in srgb,var(--green) 16%,var(--surface));color:var(--green);border-color:color-mix(in srgb,var(--green) 46%,var(--line))}
 .topic-tag,#timeline .node small.topic-tag{background:color-mix(in srgb,var(--green) 12%,var(--surface));color:var(--green);border-color:color-mix(in srgb,var(--green) 36%,var(--line))}
 .model-cell{color:var(--ink)}.model-cell small{color:var(--muted)}
 #timeline .node small.status-tag.accepted{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
