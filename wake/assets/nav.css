@@ -26,3 +26,9 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .masthead nav.compact-nav,nav.compact-nav{overflow:visible;padding-bottom:0}
   .compact-nav .nav-dropdown{top:100%;margin-top:5px}
 }
+
+/* v0.22 — compact controls match the refreshed field-notebook surfaces. */
+.compact-nav .nav-dropdown{border-radius:12px;box-shadow:0 12px 30px rgb(20 53 43 / .12);padding:7px}
+.compact-nav .nav-dropdown a{border-radius:8px}
+.compact-nav>a,.compact-nav summary{color:var(--muted)}
+.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--green)}
