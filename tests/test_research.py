@@ -188,6 +188,29 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(wake["properties"]["evidence"]["items"]["enum"], ["wake-source"])
         self.assertEqual(other["properties"]["evidence"]["items"]["enum"], ["external-source", "wake-source"])
 
+    def test_wake_source_context_is_distinct_and_bounded(self):
+        action = project(); action["domain"] = "wake_analysis"
+        self.assertEqual(self.propose([action])["status"], "accepted")
+        urls = [
+            "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
+            "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
+            "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py",
+            "https://raw.githubusercontent.com/sudofx/wake/master/wake/provenance.py",
+            "https://raw.githubusercontent.com/sudofx/wake/master/wake/engine.py",
+        ]
+        for index, url in enumerate(urls):
+            self.source(f"wake-{index}", url)
+        with self.engine.store.lock():
+            invocation, request = self.engine.start("fixture", "source-budget")
+            self.engine.store.append("failed", {"id": invocation, "reason": "Test cleanup"})
+        sources = [item for item in request["context"]["evidence"]
+                   if item.get("actor") == "collector"
+                   and item["source"].startswith("https://raw.githubusercontent.com/sudofx/wake/")]
+        self.assertEqual(len(sources), 4)
+        self.assertEqual(len({item["source"] for item in sources}), 4)
+        self.assertLessEqual(len(json.dumps(request, sort_keys=True, separators=(",", ":"))),
+                             self.engine.config["max_context_chars"])
+
     def test_two_fetches_of_same_url_are_not_two_sources(self):
         self.propose([project()])
         self.source("s1", "https://plato.stanford.edu/entries/consciousness/")

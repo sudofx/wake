@@ -406,12 +406,27 @@ class Engine:
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
             # Research excerpts are bounded. Full snapshots remain available in the lab.
-            recent_sources = [v for v in state["evidence"].values() if v.get("actor") == "collector"][-6:]
-            wake_sources = [v for v in state["evidence"].values()
-                            if v.get("actor") == "collector"
-                            and v.get("source", "").startswith(
-                                "https://raw.githubusercontent.com/sudofx/wake/")][-12:]
-            sources = list({item["id"]: item for item in recent_sources + wake_sources}.values())
+            collector_sources = [v for v in state["evidence"].values()
+                                 if v.get("actor") == "collector"]
+            # Keep the ordinary research feed small, then reserve a compact,
+            # distinct-URL budget for WAKE self-analysis.  The latter must have
+            # at least two usable repository files, but carrying every repeated
+            # README/source snapshot makes the response schema itself exceed the
+            # context ceiling before a model can correct its citation choice.
+            recent_sources = [v for v in collector_sources
+                              if not v.get("source", "").startswith(
+                                  "https://raw.githubusercontent.com/sudofx/wake/")][-2:]
+            wake_sources, seen_wake_urls = [], set()
+            for item in reversed(collector_sources):
+                source = item.get("source", "")
+                if (not source.startswith("https://raw.githubusercontent.com/sudofx/wake/")
+                        or source in seen_wake_urls):
+                    continue
+                wake_sources.append(item)
+                seen_wake_urls.add(source)
+                if len(wake_sources) == 4:
+                    break
+            sources = recent_sources + list(reversed(wake_sources))
             context["evidence"] = [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000}
                                    for e in context["evidence"] if e.get("actor") != "collector"][-3:]
             context["evidence"] += [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000} for e in sources]
