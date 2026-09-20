@@ -2,7 +2,7 @@
 # WAKE✳︎ operator loop: continue sequentially until a durable quota boundary.
 set -uo pipefail
 
-# Usage: scripts/run-wake-cycles.sh
+# Usage: scripts/run-wake-cycles.sh [N]
 readonly REPO="sudofx/wake"
 readonly WORKFLOW="wake.yml"
 readonly POLL_SECONDS=5
@@ -14,12 +14,19 @@ readonly RUN_COMPLETION_TIMEOUT_SECONDS=2700
 readonly RECEIPT_TIMEOUT_SECONDS=600
 
 usage() {
-  echo "Usage: $0" >&2
-  echo "Runs sequential WAKE✳︎ cycles until all configured Gemini daily quotas are exhausted." >&2
+  echo "Usage: $0 [N]" >&2
+  echo "Without N, runs until all configured Gemini daily quotas are exhausted." >&2
+  echo "With N, runs exactly N sequential wakes unless a quota or failure stops it first." >&2
   exit 64
 }
 
-[[ $# -eq 0 ]] || usage
+[[ $# -le 1 ]] || usage
+max_wakes=0
+if [[ $# -eq 1 ]]; then
+  [[ "$1" =~ ^[0-9]+$ ]] || usage
+  max_wakes=$((10#$1))
+  (( max_wakes >= 1 )) || usage
+fi
 command -v gh >/dev/null 2>&1 || { echo "Error: GitHub CLI (gh) is not installed or not on PATH." >&2; exit 69; }
 gh auth status >/dev/null 2>&1 || { echo "Error: gh is not authenticated. Run: gh auth login" >&2; exit 77; }
 
@@ -28,7 +35,11 @@ read_operation() {
     | tr -d '\n' | base64 --decode 2>/dev/null || true
 }
 
-echo "WAKE✳︎: running sequentially until all available Gemini daily quotas are exhausted."
+if (( max_wakes > 0 )); then
+  echo "WAKE✳︎: running $max_wakes sequential wake(s), unless a quota or failure stops earlier."
+else
+  echo "WAKE✳︎: running sequentially until all available Gemini daily quotas are exhausted."
+fi
 echo "A no-progress timeout stops the runner visibly instead of leaving it stuck indefinitely."
 
 i=0
@@ -38,6 +49,12 @@ deferred=0
 waiting=0
 
 while true; do
+  if (( max_wakes > 0 && i >= max_wakes )); then
+    echo
+    echo "WAKE✳︎: completed $max_wakes requested wake(s)."
+    echo "Accepted: $accepted; rejected: $rejected; deferred: $deferred; waiting: $waiting."
+    exit 0
+  fi
   i=$((i + 1))
   echo
   echo "[wake $i] Dispatching WAKE✳︎ cycle..."
