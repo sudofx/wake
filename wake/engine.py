@@ -435,6 +435,23 @@ class Engine:
             context["recent_problems"] = [e["payload"].get("reason", "") for e in outcomes]
             withheld = [i["editorial"] for i in state["invocations"].values() if i.get("editorial")][-2:]
             context["recent_problems"] += ["Blog withheld: " + note["reason"] for note in withheld]
+
+            # Make the temporal resolution gate explicit instead of forcing the
+            # disposable model to reconstruct it from hidden evidence metadata.
+            # These are only IDs already present in the bounded delivered context;
+            # governance remains authoritative and re-validates every citation.
+            visible_evidence = {item["id"]: item for item in context["evidence"]}
+            context["commitments"] = [
+                {
+                    **commitment,
+                    "resolution_evidence": [
+                        evidence_id for evidence_id, evidence in visible_evidence.items()
+                        if evidence.get("actor") != "runtime"
+                        and evidence.get("version", -1) >= commitment["created_version"]
+                    ],
+                }
+                for commitment in context["commitments"]
+            ]
         return context
     # ---------------------------------------------------------------------------
     # STEP: start
