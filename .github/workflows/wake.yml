@@ -41,7 +41,9 @@ permissions:
 
 jobs:
   wake:
-    if: github.ref_name == github.event.repository.default_branch
+    # Set the repository variable WAKE_SCHEDULE_PAUSED=true to hold cron wakes
+    # while preserving push refreshes and explicit workflow_dispatch batches.
+    if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
