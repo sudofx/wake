@@ -47,3 +47,6 @@
 #timeline .node small.status-tag.observation,#timeline .node small.status-tag.research_collected,#timeline .node small.status-tag.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
 .dashboard-panel,.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,#map-field,#details{box-shadow:0 8px 22px rgb(18 24 48 / .08)}
 :root[data-theme="dark"] .dashboard-panel,:root[data-theme="dark"] .record-card,:root[data-theme="dark"] .project-card,:root[data-theme="dark"] .notebook-card,:root[data-theme="dark"] .blog-card,:root[data-theme="dark"] .panel,:root[data-theme="dark"] .note-card,:root[data-theme="dark"] .about-contract,:root[data-theme="dark"] .topic-card,:root[data-theme="dark"] #map-field,:root[data-theme="dark"] #details{box-shadow:0 10px 28px rgb(9 12 26 / .28)}
+
+/* The current-record card keeps its signal line deliberate, not decorative. */
+.record-card{border-top-width:2px;border-radius:6px}
