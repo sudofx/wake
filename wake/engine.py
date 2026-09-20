@@ -406,7 +406,12 @@ class Engine:
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
             # Research excerpts are bounded. Full snapshots remain available in the lab.
-            sources = [v for v in state["evidence"].values() if v.get("actor") == "collector"][-6:]
+            recent_sources = [v for v in state["evidence"].values() if v.get("actor") == "collector"][-6:]
+            wake_sources = [v for v in state["evidence"].values()
+                            if v.get("actor") == "collector"
+                            and v.get("source", "").startswith(
+                                "https://raw.githubusercontent.com/sudofx/wake/")][-12:]
+            sources = list({item["id"]: item for item in recent_sources + wake_sources}.values())
             context["evidence"] = [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000}
                                    for e in context["evidence"] if e.get("actor") != "collector"][-3:]
             context["evidence"] += [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000} for e in sources]

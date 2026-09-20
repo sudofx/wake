@@ -255,6 +255,29 @@ def schema_for_context(context):
         for kind in ("project", "research"):
             action = next(a for a in choices if a["properties"]["type"]["enum"] == [kind])
             action["properties"]["domain"]["enum"] = domains
+    # Existing projects receive project-specific notebook alternatives. This is
+    # a preflight constraint, not a substitute for governance: a WAKE-analysis
+    # notebook can only select source-controlled repository evidence that is
+    # actually present in this invocation's context. New projects may still be
+    # proposed, but need a later wake to write a notebook after collection.
+    notebook = next(a for a in choices if a["properties"]["type"]["enum"] == ["notebook"])
+    projects = context.get("projects", [])
+    collector_evidence = {item["id"]: item for item in context.get("evidence", [])
+                          if item.get("actor") == "collector"}
+    if projects and collector_evidence:
+        choices.remove(notebook)
+        for project in projects:
+            allowed = sorted(collector_evidence)
+            if project.get("domain") == "wake_analysis":
+                allowed = sorted(eid for eid, item in collector_evidence.items()
+                                 if item.get("source", "").startswith(
+                                     "https://raw.githubusercontent.com/sudofx/wake/"))
+            if not allowed:
+                continue
+            constrained = deepcopy(notebook)
+            constrained["properties"]["project"] = {"type": "string", "enum": [project["id"]]}
+            constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
+            choices.append(constrained)
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
     reflection_due = bool(context.get("bob_reflection_due"))

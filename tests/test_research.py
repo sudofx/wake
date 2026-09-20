@@ -25,7 +25,7 @@ from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
-from wake.providers import Fixture, RESEARCH_SYSTEM
+from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import WAKE_SOURCES, allowed_url, collect, discovery_urls
 from wake.report import export
 
@@ -169,6 +169,24 @@ class ResearchTests(unittest.TestCase):
         finally:
             self.engine = original
             other.store.close()
+
+    def test_wake_analysis_notebook_schema_excludes_external_evidence(self):
+        context = {
+            "projects": [{"id": "wake", "domain": "wake_analysis"},
+                         {"id": "other", "domain": "entropy"}],
+            "evidence": [
+                {"id": "wake-source", "actor": "collector",
+                 "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py"},
+                {"id": "external-source", "actor": "collector",
+                 "source": "https://api.crossref.org/works?query=wake"},
+            ],
+        }
+        alternatives = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        notebooks = [item for item in alternatives if item["properties"]["type"]["enum"] == ["notebook"]]
+        wake = next(item for item in notebooks if item["properties"]["project"]["enum"] == ["wake"])
+        other = next(item for item in notebooks if item["properties"]["project"]["enum"] == ["other"])
+        self.assertEqual(wake["properties"]["evidence"]["items"]["enum"], ["wake-source"])
+        self.assertEqual(other["properties"]["evidence"]["items"]["enum"], ["external-source", "wake-source"])
 
     def test_two_fetches_of_same_url_are_not_two_sources(self):
         self.propose([project()])
