@@ -268,6 +268,23 @@ def schema_for_context(context):
         for kind in ("project", "research"):
             action = next(a for a in choices if a["properties"]["type"]["enum"] == [kind])
             action["properties"]["domain"]["enum"] = domains
+
+    # Commitment resolution receives commitment-specific, governance-eligible
+    # evidence alternatives. This prevents the provider from selecting only
+    # pre-commitment evidence even when newer qualifying evidence is visible.
+    resolve = next(a for a in choices if a["properties"]["type"]["enum"] == ["resolve"])
+    commitments = context.get("commitments", [])
+    if commitments:
+        choices.remove(resolve)
+        for commitment in commitments:
+            allowed = sorted(commitment.get("resolution_evidence", []))
+            if not allowed:
+                continue
+            constrained = deepcopy(resolve)
+            constrained["properties"]["id"] = {"type": "string", "enum": [commitment["id"]]}
+            constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
+            choices.append(constrained)
+
     # Existing projects receive project-specific notebook alternatives. This is
     # a preflight constraint, not a substitute for governance: a WAKE-analysis
     # notebook can only select source-controlled repository evidence that is
@@ -279,12 +296,9 @@ def schema_for_context(context):
                           if item.get("actor") == "collector"}
     if projects and collector_evidence:
         choices.remove(notebook)
+        project_evidence = context.get("project_evidence", {})
         for project in projects:
-            allowed = sorted(collector_evidence)
-            if project.get("domain") == "wake_analysis":
-                allowed = sorted(eid for eid, item in collector_evidence.items()
-                                 if item.get("source", "").startswith(
-                                     "https://raw.githubusercontent.com/sudofx/wake/"))
+            allowed = sorted(project_evidence.get(project["id"], collector_evidence))
             if not allowed:
                 continue
             constrained = deepcopy(notebook)
