@@ -15,13 +15,12 @@
   function setTheme(theme, remember=false) {
     const dark=theme==='dark';
     if(dark) document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;
-    themeToggle.setAttribute('aria-pressed',String(dark));
     themeToggle.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');
-    themeToggle.innerHTML='<span aria-hidden="true">◐</span> '+(dark?'LIGHT':'DARK');
+    themeToggle.checked=dark;
     if(remember)try{localStorage.setItem('wake-theme',dark?'dark':'light')}catch{}
   }
   setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
-  themeToggle.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
+  themeToggle.addEventListener('change',()=>setTheme(themeToggle.checked?'dark':'light',true));
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');

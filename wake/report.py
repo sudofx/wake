@@ -16,11 +16,30 @@ from datetime import datetime
 import html
 import json
 import os
+import re
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .store import canonical, now
 from .scheduling import wake_status
+
+
+def _shared_theme_switch(page):
+    """Normalize theme controls on generated standalone pages."""
+    switch = ('<label class="theme-switch"><input id="theme-toggle" type="checkbox" role="switch" '
+              'aria-label="Use dark theme"><span class="theme-switch-track" aria-hidden="true"><i></i></span>'
+              '<b>LIGHT / DARK</b></label>')
+    css = ('.theme-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font:10px var(--mono);letter-spacing:.06em;color:var(--muted);white-space:nowrap}.theme-switch input{position:absolute;opacity:0;pointer-events:none}.theme-switch-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.theme-switch-track i{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.theme-switch input:checked+.theme-switch-track i{transform:translateX(16px);background:var(--green)}.theme-switch input:focus-visible+.theme-switch-track{outline:2px solid var(--green);outline-offset:2px}.theme-switch b{font:inherit;color:var(--ink)}')
+    script = ("<script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()})})()</script>")
+    page = page.replace('--serif:var(--sans)', "--serif:Georgia,'Times New Roman',serif")
+    page = re.sub(r'<button id="theme-toggle"[^>]*>.*?</button>', switch, page, count=1)
+    return page.replace('</style>', css + '</style>', 1).replace('</body>', script + '</body>', 1)
+
+
+def _with_shared_theme_switch(render):
+    def wrapped(*args, **kwargs):
+        return _shared_theme_switch(render(*args, **kwargs))
+    return wrapped
 
 
 # ---------------------------------------------------------------------------
@@ -306,6 +325,7 @@ def _human_state_markdown(state, head):
 # ---------------------------------------------------------------------------
 
 
+@_with_shared_theme_switch
 def _human_page(title, subtitle, body, head, raw_href, markdown_href):
     favicon = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23f7f3ea%27/%3E%3Cpath d=%27M32 9v46M9 32h46M15.7 15.7l32.6 32.6M48.3 15.7L15.7 48.3%27 stroke=%27%23286d72%27 stroke-width=%276%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
     return f"""<!doctype html>
@@ -420,6 +440,7 @@ def _human_state_html(state, head):
 # ---------------------------------------------------------------------------
 
 
+@_with_shared_theme_switch
 def _reading_page(title, eyebrow, body, source_href, back_href="../index.html"):
     """Standalone browser reading page; Markdown remains a secondary flat artifact."""
     favicon = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23f7f3ea%27/%3E%3Cpath d=%27M32 9v46M9 32h46M15.7 15.7l32.6 32.6M48.3 15.7L15.7 48.3%27 stroke=%27%23286d72%27 stroke-width=%276%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
