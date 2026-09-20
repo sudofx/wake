@@ -52,7 +52,9 @@ footer{margin-top:30px}
 /* Compact inline topic chips beside Journal/Blog labels. */
 #timeline .node .kind{display:flex;align-items:center;gap:8px}
 #timeline .node .kind small.topic-tag{display:inline-flex;align-items:center;min-height:0;height:auto;font:7px var(--mono);letter-spacing:.7px;padding:2px 5px;margin:0;line-height:1.15;vertical-align:middle;box-sizing:border-box}
-@media(max-width:720px){#timeline .node .kind{gap:7px}#timeline .node .kind small.topic-tag{font-size:7px}}
+.node .kind .node-time{display:inline-block;margin:0 0 0 auto;color:var(--muted);font:8px var(--mono);letter-spacing:.03em;white-space:nowrap;text-transform:none}
+#constellation .node.project .kind{display:flex;align-items:center;gap:8px}
+@media(max-width:720px){#timeline .node .kind{gap:7px}#timeline .node .kind small.topic-tag{font-size:7px}.node .kind .node-time{font-size:7px}}
 
 /* Shared event-status palette: match the main and standalone history pages. */
 #timeline .node small.status-tag.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}
