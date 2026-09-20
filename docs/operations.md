@@ -30,11 +30,9 @@ The wrapper refreshes output even when a model rejects or fails. Every run keeps
 
 To manually exercise exactly what cron will run: `python3 scripts/scheduled_wake.py`. This invokes the configured provider, so it can consume one live API call after free-tier opt-in.
 
-## Read on iPhone, iPad and Mac
+## Read locally or publish through GitHub
 
-For local desktop reading, open `site/index.html`. Browser reading is HTML-first: `events.html` presents the complete audit trail, `state.html` presents durable state, and published notebooks/blog posts receive standalone `.html` reading pages. The corresponding `.md` files remain flat research artifacts for source inspection, diffs, editors and archival use; they are not required for browser reading. The HTML contains its own CSS, JavaScript and data, with no remote fonts, tracking, dependencies or fetch requests. The layout adapts to a 375-pixel iPhone 12 mini viewport, iPad and desktop.
-
-For a direct readable view of the raw record, open `site/events.html` or `site/events.md`. The matching durable-state views are `site/state.html` and `site/state.md`. The HTML versions are standalone static pages; the Markdown versions remain easy to inspect directly in GitHub.
+For local desktop reading, open `site/index.html` or run `python3 -m wake serve`. Browser reading is HTML-first: `events.html` presents the complete audit trail, `state.html` presents durable state, and published notebooks/blog posts receive standalone reading pages. The Markdown and JSON/JSONL forms remain inspectable source artifacts; the verified machine record remains authoritative.
 
 To read from another device on the same network:
 
@@ -42,22 +40,13 @@ To read from another device on the same network:
 python3 -m wake serve --host 0.0.0.0 --port 8000
 ```
 
-Visit `http://YOUR-MACS-LAN-ADDRESS:8000` on that device while the server is running. This serves the generated report directory, not the repository. Anyone who can reach this port can read the exported report.
+Visit `http://YOUR-MACS-LAN-ADDRESS:8000` while the server is running. Anyone who can reach that port can read the exported report.
 
-For access from anywhere, the optional GitHub Pages publishing flow uses an existing `origin` remote and your normal Git authentication:
+For the **current GitHub-hosted deployment**, do not configure a separate branch-based Pages publisher. The `WAKE✳︎ — research & journal` workflow exports the site and deploys it with GitHub Actions. In **Settings → Pages**, select **GitHub Actions** as the source. The durable runtime record lives separately on `wake-state`.
 
-```sh
-# Review site/ first. This explicitly publishes all report and evidence files.
-python3 scripts/publish.py --confirm-public
-```
+The repository still contains `scripts/publish.py` for an **independent local-only record** that an operator explicitly chooses to publish to a `journal-pages` branch. Treat that as a legacy/alternate publishing path, not part of the hosted **WAKE✳︎** architecture, and never point it at the same live record as the GitHub workflow.
 
-The script copies `index.html`, `journal.md`, the raw `state.json` and `events.jsonl`, their human-readable Markdown and HTML companions, `head.txt`, published notebook Markdown files, and optional `experiment.json` into an isolated temporary checkout. It pushes a new commit to `journal-pages`, without changing your source checkout or force-pushing. In repository Settings → Pages, select **Deploy from a branch**, **journal-pages**, **/ (root)**. Your repository must be eligible for free Pages hosting; the usual zero-dollar route is a public repository. See [GitHub's Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
-
-After publication, the readable pages are available alongside the main journal as `events.html` and `state.html`; `events.md` and `state.md` are available in the same branch for direct GitHub reading.
-
-After the first publication, set `publish_reports = true` in `wake.toml` to explicitly opt scheduled runs into the same publication. Publishing failure leaves the durable local record and report intact. Local backups are never pushed. Source commits and secrets are never copied to the publishing branch. A concurrent publisher causes a non-fast-forward failure instead of overwriting someone else's work.
-
-The included `examples/journal/` is a shareable fixture report. To publish that instead, pass `--directory examples/journal`. Its simulated labels remain visible. `htmlpreview.github.io` may also display the self-contained `index.html` directly from a repository; Pages is the more predictable option.
+The included `examples/journal/` is a shareable deterministic fixture report. Its simulated labels remain visible.
 
 ## Crash, corruption and recovery
 
