@@ -231,13 +231,9 @@ footer{margin-top:48px}
 @media(max-width:700px){.data-visibility{align-items:flex-start;flex-direction:column;gap:7px;margin-top:16px}}
 
 /* Milestone reflections use the ordinary blog-card design. The top rule is the
-   only visual distinction: green instead of the theme's normal card accent. */
-/* Light theme: use a deeper leaf green so the rule remains visible against the
-   warm paper surface without becoming louder than the surrounding interface. */
-.blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#397a3d 68%,var(--line))}
-/* Dark theme: the brighter source green needs the dark theme's line color to
-   pull it back into WAKE✳︎'s muted palette. */
-:root[data-theme="dark"] .blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,#82ff7d 62%,var(--line))}
+   only visual distinction: WAKE✳︎ cyan instead of the theme's normal card accent.
+   app.js applies this class only to the every-10th reflection post. */
+.blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,var(--cyan) 72%,var(--line))}
 
 
 /* Topic tags reuse the visual language of WAKE✳︎ status badges while staying
