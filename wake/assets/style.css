@@ -474,23 +474,28 @@ footer{margin-top:48px}
 
 /* Metrics composition: analytical rack first, pulse + telemetry console second. */
 .metrics-row-one{display:block}
-.metrics-row-two{display:grid;grid-template-columns:1fr;gap:16px;margin-top:12px}
+.metrics-row-two{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:12px}
 .metrics-row-two-left,.metrics-row-two-right{min-width:0}
 .metrics-row-two-left{display:grid;grid-template-columns:1fr;gap:8px}
 .metrics-row-two .dashboard-feature{grid-column:auto}
 .metrics-row-two-right .command-strip,.metrics-row-two-right .telemetry-grid,.metrics-row-two-right .dashboard-kpis{margin-top:0}
 @media(min-width:1200px){
-  #metrics .metrics-row-two{grid-template-columns:1fr 1fr;align-items:start}
+  #metrics .metrics-row-two{grid-template-columns:minmax(0,2fr) minmax(320px,1fr);align-items:start}
   #metrics .metrics-row-two-left{grid-template-columns:1fr}
   #metrics .metrics-row-two-right .command-strip{grid-template-columns:repeat(4,minmax(0,1fr))}
   #metrics .metrics-row-two-right .command-strip>div:first-child{grid-column:span 2}
   #metrics .metrics-row-two-right .telemetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   #metrics .metrics-row-two-right .dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Window labels are data, not a reason for the chart to widen its grid track. */
+#metrics .trend-chart{min-width:0;overflow-x:auto}
+#metrics .trend-col{min-width:0}
+#metrics .trend-col span{max-width:100%;overflow:hidden;text-overflow:ellipsis}
 @media(min-width:3000px){
   #metrics .metrics-row-one .dashboard-grid{grid-template-columns:repeat(6,minmax(0,1fr));padding-top:0}
   #metrics .metrics-row-one .hypothesis-section{padding-top:8px}
-  #metrics .metrics-row-two{grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  #metrics .metrics-row-two{grid-template-columns:minmax(0,2fr) minmax(360px,1fr);gap:8px;margin-top:8px}
   #metrics .metrics-row-two-left{gap:8px}
   #metrics .metrics-row-two-left .dashboard-feature{padding:10px 12px}
   #metrics .metrics-row-two-right{display:grid;grid-template-columns:1fr 1fr;align-content:start;border:1px solid var(--line)}
