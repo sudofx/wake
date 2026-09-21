@@ -32,3 +32,28 @@ query = "neurodivergence"
 id = "music"
 label = "Music"
 query = "music"
+
+[[topics]]
+id = "psychology"
+label = "Psychology"
+query = "psychology"
+
+[[topics]]
+id = "quantum_mechanics"
+label = "Quantum mechanics"
+query = "quantum mechanics"
+
+[[topics]]
+id = "philosophy"
+label = "Philosophy"
+query = "philosophy"
+
+[[topics]]
+id = "religion"
+label = "Religion"
+query = "religion"
+
+[[topics]]
+id = "prime_numbers"
+label = "Prime numbers"
+query = "prime numbers mathematics"

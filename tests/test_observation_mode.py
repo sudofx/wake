@@ -22,11 +22,15 @@ class ObservationModeTests(unittest.TestCase):
         self.engine.store.close()
         self.temp.cleanup()
 
-    def test_mode_collects_each_configured_topic_within_its_budget(self):
+    def test_mode_collects_a_distinct_bounded_topic_sample(self):
         with self.engine.store.lock():
             collect(self.engine, fetcher=lambda url: {"url": url, "scope": "fixture", "excerpt": "A sufficiently long collected observation for overnight review."})
         collected = [e for e in self.engine.store.load()["evidence"].values() if e.get("actor") == "collector"]
-        self.assertEqual(len(collected), len(self.engine.config["research_topics"]))
+        self.assertEqual(len(collected), min(
+            self.engine.config["research_collection_budget"],
+            len(self.engine.config["research_topics"])))
+        domains = {json.loads(item["content"])["topic_domain"] for item in collected}
+        self.assertEqual(len(domains), len(collected))
 
     def test_rejection_is_public_counterfactual_not_accepted_state(self):
         with self.engine.store.lock():
