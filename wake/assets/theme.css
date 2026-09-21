@@ -13,7 +13,7 @@
   --pale:#e9eeff !important; --glow:transparent !important;
   --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
   --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
-  --success:#568a2b !important; --danger:#d93d9b !important; --warning:#b98500 !important; --info:#147fbe !important;
+  --success:#568a2b !important; --danger:#d93d9b !important; --failure:#3d455d !important; --warning:#b98500 !important; --info:#147fbe !important;
   --topic-name:#568a2b !important;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
   --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
@@ -27,7 +27,7 @@
   --pale:#2b314d !important; --glow:transparent !important;
   --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
   --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
-  --success:#93ff74 !important; --danger:#ff5bb9 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
+  --success:#93ff74 !important; --danger:#ff5bb9 !important; --failure:#0f1424 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
   --topic-name:#93ff74 !important;
 }
 
@@ -35,10 +35,11 @@
 .wake-cell.accepted,.timeline-legend i.accepted,.metric-bar.accepted,.trend-stack .accepted{background:var(--success) !important}
 .wake-cell.rejected,.timeline-legend i.rejected,.metric-bar.rejected,.trend-stack .rejected{background:var(--danger) !important}
 .wake-cell.deferred,.timeline-legend i.deferred,.metric-bar.deferred,.trend-stack .deferred{background:var(--warning) !important}
-.wake-cell.failed,.timeline-legend i.failed,.metric-bar.failed{background:var(--danger) !important}
+.wake-cell.failed,.timeline-legend i.failed,.metric-bar.failed{background:var(--failure) !important}
 .wake-cell.recovered,.timeline-legend i.recovered,.metric-bar.recovered{background:var(--info) !important}
 .badge.accepted,.model-cell.good{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
 .badge.rejected,.badge.failed,.model-cell.bad{background:color-mix(in srgb,var(--danger) 15%,var(--surface));color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+.badge.failed{background:color-mix(in srgb,var(--failure) 72%,var(--surface));color:var(--ink);border-color:color-mix(in srgb,var(--failure) 72%,var(--line))}
 .badge.deferred,.model-cell.mixed{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
 .badge.provider_attempt_started,.badge.provider_attempt_finished,.badge.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
 .badge.observation,.badge.research_collected,.badge.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
@@ -47,6 +48,7 @@
 .model-cell{color:var(--ink)}.model-cell small{color:var(--muted)}
 #timeline .node small.status-tag.accepted{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
 #timeline .node small.status-tag.rejected,#timeline .node small.status-tag.failed{background:color-mix(in srgb,var(--danger) 15%,var(--surface));color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+#timeline .node small.status-tag.failed{background:color-mix(in srgb,var(--failure) 72%,var(--surface));color:var(--ink);border-color:color-mix(in srgb,var(--failure) 72%,var(--line))}
 #timeline .node small.status-tag.deferred{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
 #timeline .node small.status-tag.provider_attempt_started,#timeline .node small.status-tag.provider_attempt_finished,#timeline .node small.status-tag.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
 #timeline .node small.status-tag.observation,#timeline .node small.status-tag.research_collected,#timeline .node small.status-tag.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
