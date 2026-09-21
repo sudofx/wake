@@ -194,6 +194,13 @@ def reduce_event(state, event, historical=False):
         require(p.get("status") in ("collected", "failed", "superseded"), "Invalid research collection status")
         if p["id"] in state.get("research", {}):
             state["research"][p["id"]].update(status=p["status"], evidence=p.get("evidence"))
+    elif kind == "project_adopted":
+        # Legacy operator receipt retained for replay of historical fixtures;
+        # providers cannot emit this event and normal project changes remain
+        # governed inside accepted proposals.
+        require(p["id"] not in state.get("projects", {}), "Project already exists")
+        state.setdefault("projects", {})[p["id"]] = {**p, "type": "project",
+            "created_version": state["version"], "updated_version": state["version"]}
     elif kind == "acquisition_assessed":
         require(p["project"] in state.get("projects", {}), "Acquisition receipt needs an existing project")
         summaries = state.setdefault("acquisition", {})

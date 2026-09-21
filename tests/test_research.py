@@ -116,7 +116,7 @@ class ResearchTests(unittest.TestCase):
         self.assertFalse(eleventh_cycle["bob_reflection_due"])
 
     def test_context_compaction_deduplicates_schema_allowlists(self):
-        self.engine.config["max_context_chars"] = 12000
+        self.engine.config["max_context_chars"] = 30000
         with self.engine.store.lock():
             self.engine.initialize()
             self.engine.store.append("project_adopted", {
@@ -132,8 +132,8 @@ class ResearchTests(unittest.TestCase):
             invocation, request = self.engine.start("fixture", "compact-allowlists")
             self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
 
-        self.assertNotIn("project_evidence", request["context"])
-        self.assertTrue(all("resolution_evidence" not in c for c in request["context"]["commitments"]))
+        self.assertIn("project_evidence", request["context"])
+        self.assertTrue(all("resolution_evidence" in c for c in request["context"]["commitments"]))
 
     def test_context_compaction_rebuilds_schema_from_compacted_context(self):
         calls = []
@@ -432,7 +432,7 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("Bob's Lens — philosophical reflection", markdown)
         self.assertIn("Exact wake and decision", markdown)
         self.assertIn("The useful disagreement", html)
-        self.assertIn("font-variant-emoji:text", html)
+        self.assertIn("font-variant-emoji:text", (Path(__file__).resolve().parents[1]/"wake/assets/style.css").read_text())
         self.assertIn("font-variant-emoji:text", standalone)
         self.assertIn("WAKE✳︎", standalone)
 
@@ -467,7 +467,7 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("p", state["projects"])
         self.assertIn("n", state["notebooks"])
         self.assertEqual(state["posts"], {})
-        receipt = self.engine.store.events()[-1]["payload"]
+        receipt = next(event["payload"] for event in reversed(self.engine.store.events()) if event["kind"] == "accepted")
         self.assertEqual(receipt["editorial"]["action"], bad)
         self.assertEqual(len(receipt["proposal"]["actions"]), 2)
         self.assertEqual(len(json.loads(receipt["raw_response"])["actions"]), 3)

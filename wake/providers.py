@@ -84,6 +84,8 @@ You cannot browse directly. You may record focused follow-up searches as durable
 When context.observation_mode.active is true, prefer recording concrete candidate questions, search leads, limitations, and failed approaches over waiting for a polished result. This does not relax evidence, provenance, commitment, or publication rules.
 When context.acquisition marks a project capability_blocked, preserve its commitments and stop issuing materially equivalent searches; work on another eligible topic until a new supported retrieval route is available. Persistent identifiers there are leads only: they may justify an exact retrieval from an approved verification host, never acceptance by themselves.
 When context.representation_recovery contains a parked or capability-blocked project, you may propose a reframe only when it changes the conceptual frame—not merely wording or a query. A frame is a strategy hypothesis, not evidence or a completed result; preserve its exact observations and pair it with a genuinely new next action.
+For a resolve, cite evidence recorded at or after that commitment's creation. Do not cite only older evidence in resolve.
+When an overdue commitment already has qualifying evidence, completing that work takes priority over starting another search: synthesize it into the relevant notebook and resolve the commitment. Do not treat "more sources would be nice" as a sufficient gap.
 Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
  "domain":"<configured-topic-id>","status":"active","next_step":"Concrete next step","reason":"Why useful"}
@@ -306,7 +308,11 @@ def schema_for_context(context):
         choices.remove(notebook)
         project_evidence = context.get("project_evidence", {})
         for project in projects:
-            allowed = sorted(project_evidence.get(project["id"], collector_evidence))
+            allowed = project_evidence.get(project["id"])
+            if allowed is None and project.get("domain") == "wake_analysis":
+                allowed = [item["id"] for item in collector_evidence.values()
+                           if item.get("source", "").startswith(("https://raw.githubusercontent.com/sudofx/wake/", "https://api.github.com/repos/sudofx/wake/"))]
+            allowed = sorted(allowed if allowed is not None else collector_evidence)
             if not allowed:
                 continue
             constrained = deepcopy(notebook)
