@@ -72,5 +72,14 @@ class AcquisitionTests(unittest.TestCase):
             result = self.engine.finish(invocation, json.dumps(proposal))
         self.assertEqual(result["status"], "rejected")
 
+    def test_bounded_context_retains_capability_recovery(self):
+        with self.engine.store.lock():
+            for route in ("crossref:discovery", "openalex:discovery", "crossref:discovery", "openalex:discovery"):
+                self.engine.store.append("acquisition_assessed", self.receipt(route, "no_progress"))
+        state = self.engine.store.load()
+        context = self.engine.bounded_context(state, {}, self.engine.working_set(state), 99999)
+        self.assertEqual(context["representation_recovery"][0]["project"], "p")
+        self.assertTrue(context["representation_recovery"][0]["capability"]["capability_blocked"])
+
 
 if __name__ == "__main__": unittest.main()

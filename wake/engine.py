@@ -357,6 +357,19 @@ class Engine:
             context["squirrel"] = squirrel_plan(state)
         if state.get("charter"):
             active = working_set.get("active_projects", [])
+            # Overflow must not erase recovery conditions. Keep only compact
+            # identifiers and frames here; full observations remain durable.
+            recovery = []
+            for project_id, summary in state.get("acquisition", {}).items():
+                if summary.get("capability_blocked"):
+                    recovery.append({"project": project_id, "capability": summary,
+                                     "frames": state.get("representations", {}).get(project_id, [])[-3:]})
+            for parked in state.get("squirrel", {}).get("deferred", {}).values():
+                for project in parked.get("parked_projects", []):
+                    if not any(item["project"] == project["id"] for item in recovery):
+                        recovery.append({"project": project["id"], "parked": project,
+                                         "frames": state.get("representations", {}).get(project["id"], [])[-3:],
+                                         "intervening_experience": [item["id"] for item in list(state.get("evidence", {}).values())[-6:]]})
             context.update({
                 "mission": state["charter"], "pet_name": state["pet_name"],
                 "research_topics": state.get("research_topics") or self.config.get("research_topics", []),
@@ -374,11 +387,7 @@ class Engine:
                 "bob_reflection_cycle": state["version"] + 1,
                 "bob_reflection_due": (state["version"] + 1) % 10 == 0,
                 "project_evidence": {},
-                "representation_recovery": [{"project": project_id,
-                    "frames": state.get("representations", {}).get(project_id, [])[-3:],
-                    "capability": summary}
-                    for project_id, summary in state.get("acquisition", {}).items()
-                    if summary.get("capability_blocked")],
+                "representation_recovery": recovery,
             })
             for notebook in context["notebooks"]:
                 context["blog_notebooks"].setdefault(notebook["project"], []).append({
