@@ -83,6 +83,7 @@ revisit weak claims, and let your specialty emerge from the work. Avoid generic 
 You cannot browse directly. You may record focused follow-up searches as durable hypotheses; the trusted collector independently follows the configured neutral topic rotation. Some neutral routes use a discovery-only idea pool: those results are permanently leads, never qualifying notebook evidence. When any discovery result is promising, queue a NEW research action with its exact approved verification-host record URL (for example, a Crossref `/works/<encoded-DOI>` or OpenAlex work URL) so the collector can retrieve that individual source on a later wake.
 When context.observation_mode.active is true, prefer recording concrete candidate questions, search leads, limitations, and failed approaches over waiting for a polished result. This does not relax evidence, provenance, commitment, or publication rules.
 When context.acquisition marks a project capability_blocked, preserve its commitments and stop issuing materially equivalent searches; work on another eligible topic until a new supported retrieval route is available. Persistent identifiers there are leads only: they may justify an exact retrieval from an approved verification host, never acceptance by themselves.
+When context.representation_recovery contains a parked or capability-blocked project, you may propose a reframe only when it changes the conceptual frame—not merely wording or a query. A frame is a strategy hypothesis, not evidence or a completed result; preserve its exact observations and pair it with a genuinely new next action.
 Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
  "domain":"<configured-topic-id>","status":"active","next_step":"Concrete next step","reason":"Why useful"}
@@ -227,8 +228,9 @@ def action_schema(kind, fields, enums=None, optional=()):
         properties["confidence"] = {"type": "number", "minimum": 0, "maximum": 1}
     if "due_cycle" in properties:
         properties["due_cycle"] = {"type": "integer"}
-    if "evidence" in properties:
-        properties["evidence"] = {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 12}
+    if "evidence" in properties or "observations" in properties:
+        field = "evidence" if "evidence" in properties else "observations"
+        properties[field] = {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 12}
     if "notebooks" in properties:
         properties["notebooks"] = {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 3}
     return {"type": "object", "properties": properties, "required": required, "additionalProperties": False}
@@ -244,6 +246,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("project", "id title question domain status next_step reason",
                       {"domain": _DOMAINS, "status": ["active", "parked", "completed"]}),
         action_schema("research", "id project query domain reason", {"domain": _DOMAINS}, optional=("url",)),
+        action_schema("reframe", "project old_frame new_frame assumptions_changed observations trigger strategy reason"),
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}

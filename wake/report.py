@@ -287,6 +287,7 @@ def _human_state_markdown(state, head):
         ("Commitments", state.get("commitments", {})),
         ("Projects", state.get("projects", {})),
         ("Acquisition capability", state.get("acquisition", {})),
+        ("Problem representations", state.get("representations", {})),
         ("Squirrel attention receipts", state.get("squirrel", {})),
         ("Notebooks", state.get("notebooks", {})),
         ("Invocations", state.get("invocations", {})),

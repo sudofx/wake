@@ -374,6 +374,11 @@ class Engine:
                 "bob_reflection_cycle": state["version"] + 1,
                 "bob_reflection_due": (state["version"] + 1) % 10 == 0,
                 "project_evidence": {},
+                "representation_recovery": [{"project": project_id,
+                    "frames": state.get("representations", {}).get(project_id, [])[-3:],
+                    "capability": summary}
+                    for project_id, summary in state.get("acquisition", {}).items()
+                    if summary.get("capability_blocked")],
             })
             for notebook in context["notebooks"]:
                 context["blog_notebooks"].setdefault(notebook["project"], []).append({
@@ -475,10 +480,37 @@ class Engine:
                 "acquisition": state.get("acquisition", {}),
                 "evidence": [v for k, v in state["evidence"].items() if k in wanted],
                 "recent_journal": state["journal"][-3:],
-                "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
+            "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
         if state.get("charter"):
             context["mission"] = state["charter"]
             context["acquisition"] = state.get("acquisition", {})
+            # Bounded, receipt-derived recovery view.  The provider can inspect
+            # a stuck problem and intervening durable work without treating
+            # either as evidence or inventing a connection between them.
+            recovery = []
+            for project_id, summary in state.get("acquisition", {}).items():
+                if not summary.get("capability_blocked"):
+                    continue
+                project = state.get("projects", {}).get(project_id, {})
+                recovery.append({"project": project_id, "question": project.get("question", ""),
+                                 "blocker": summary.get("last_receipt", {}),
+                                 "frames": state.get("representations", {}).get(project_id, [])[-3:],
+                                 "open_commitments": [c["id"] for c in state.get("commitments", {}).values()
+                                                      if c.get("status") == "open"],
+                                 "intervening_experience": [e["id"] for e in list(state.get("evidence", {}).values())[-8:]
+                                                            if e.get("actor") == "collector"]})
+            context["representation_recovery"] = recovery
+            for topic, parked in state.get("squirrel", {}).get("deferred", {}).items():
+                for item in parked.get("parked_projects", []):
+                    if any(entry["project"] == item["id"] for entry in recovery):
+                        continue
+                    recovery.append({"project": item["id"], "question": item.get("question", ""),
+                                     "blocker": {"kind": "squirrel_deferral", "reason": parked.get("reason")},
+                                     "frames": state.get("representations", {}).get(item["id"], [])[-3:],
+                                     "open_commitments": [c["id"] for c in state.get("commitments", {}).values()
+                                                          if c.get("status") == "open"],
+                                     "intervening_experience": [e["id"] for e in list(state.get("evidence", {}).values())[-8:]
+                                                                if e.get("actor") == "collector"]})
             context["observation_mode"] = {
                 "active": self.config["observation_mode"],
                 "boundary": "This is an overnight data-gathering profile. Record promising leads and failed approaches freely, but governance still decides what qualifies as evidence or a completed obligation.",

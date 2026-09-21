@@ -715,6 +715,10 @@ def transition(state, proposal, invocation, historical=False):
         "commitments": deepcopy(state["commitments"]),
         "journal": list(state["journal"]),
         "posts": deepcopy(state.get("posts", {})),
+        # Frames are hypotheses about how to pursue a stuck problem, never
+        # findings.  Keeping them separate prevents reframing from laundering
+        # an interpretation into evidence or silently changing a project.
+        "representations": deepcopy(state.get("representations", {})),
     }
 
     # Research collections exist only when the research charter is active.
@@ -1193,6 +1197,32 @@ def transition(state, proposal, invocation, historical=False):
                 "status": "queued",
                 "created_by": invocation,
             }
+
+        # ===================================================================
+        # RE-REPRESENTATION
+        # ===================================================================
+
+        elif kind == "reframe":
+            require(bool(state.get("charter")), "Research charter is not enabled")
+            keys(action, "type project old_frame new_frame assumptions_changed observations trigger strategy reason",
+                 "Re-representation")
+            require(action["project"] in result["projects"], "Re-representation needs an existing project")
+            for field in ("old_frame", "new_frame", "assumptions_changed", "trigger", "strategy", "reason"):
+                text(action[field], field, 1000)
+            references(action["observations"], result)
+            require(action["old_frame"].casefold().strip() != action["new_frame"].casefold().strip(),
+                    "A re-representation must materially change the frame")
+            project = result["projects"][action["project"]]
+            capability = state.get("acquisition", {}).get(action["project"], {})
+            deferred = state.get("squirrel", {}).get("deferred", {}).get(project["domain"])
+            require(capability.get("capability_blocked") or deferred,
+                    "Re-representation requires a recorded capability block or Squirrel deferral")
+            frames = result["representations"].setdefault(action["project"], [])
+            require(len(frames) < 3, "Repeated unsuccessful reframes are bounded; preserve and revisit later")
+            require(all(frame["new_frame"].casefold().strip() != action["new_frame"].casefold().strip()
+                        for frame in frames), "A paraphrased frame is not a new representation")
+            frames.append({**action, "status": "hypothesis", "created_by": invocation,
+                           "created_version": state["version"] + 1})
 
         # ===================================================================
         # NOTEBOOK

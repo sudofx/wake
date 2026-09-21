@@ -139,7 +139,7 @@ def empty():
     return {"version": 0, "objective": "", "focus": "continuity", "beliefs": {},
             "commitments": {}, "evidence": {}, "journal": [], "posts": {},
             "invocations": {}, "pending": None, "squirrel": {"counters": {}, "deferred": {}},
-            "acquisition": {}}
+            "acquisition": {}, "representations": {}}
 
 
 # ---------------------------------------------------------------------------

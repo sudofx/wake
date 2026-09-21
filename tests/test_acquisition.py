@@ -43,5 +43,34 @@ class AcquisitionTests(unittest.TestCase):
         self.assertIn("doi:10.1000/example.1", ids)
         self.assertIn("openalex:W12345", ids)
 
+    def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
+        with self.engine.store.lock():
+            self.engine.store.append("observation", {"id": "literal", "source": "https://example.org/literal",
+                "content": "literal observation", "actor": "collector", "scope": "collected"})
+            for route in ("crossref:discovery", "openalex:discovery", "crossref:discovery", "openalex:discovery"):
+                self.engine.store.append("acquisition_assessed", self.receipt(route, "no_progress"))
+            invocation, request = self.engine.start("fixture", "reframe")
+            result = self.engine.finish(invocation, json.dumps({"base_version": request["context"]["version"],
+                "title": "New strategy", "summary": "Keep the same unresolved question.", "actions": [{
+                    "type": "reframe", "project": "p", "old_frame": "Find a broad overview.",
+                    "new_frame": "Retrieve the exact DOI record.", "assumptions_changed": "Metadata may identify a retrievable source.",
+                    "observations": ["literal"], "trigger": "Two discovery routes made no progress.",
+                    "strategy": "Request one exact approved record.", "reason": "Try a different acquisition representation."}]}))
+        frame = self.engine.store.load()["representations"]["p"][0]
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(frame["status"], "hypothesis")
+        self.assertEqual(frame["observations"], ["literal"])
+
+    def test_paraphrased_frame_is_not_a_new_representation(self):
+        with self.engine.store.lock():
+            for route in ("crossref:discovery", "openalex:discovery", "crossref:discovery", "openalex:discovery"):
+                self.engine.store.append("acquisition_assessed", self.receipt(route, "no_progress"))
+            invocation, request = self.engine.start("fixture", "reframe")
+            proposal = {"base_version": request["context"]["version"], "title": "No change", "summary": "Test.", "actions": [{
+                "type": "reframe", "project": "p", "old_frame": "same words", "new_frame": "same words",
+                "assumptions_changed": "none", "observations": [], "trigger": "blocked", "strategy": "same", "reason": "Test."}]}
+            result = self.engine.finish(invocation, json.dumps(proposal))
+        self.assertEqual(result["status"], "rejected")
+
 
 if __name__ == "__main__": unittest.main()

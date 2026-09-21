@@ -52,6 +52,7 @@ def plan(state):
         "active": True,
         "selected_topic": selected,
         "deferred_topics": sorted(deferred),
+        "parked": {topic: deferred[topic].get("parked_projects", []) for topic in sorted(deferred)},
         "hard_rejection_threshold": HARD_REJECTION_THRESHOLD,
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
         "reason": ("alternate configured topic selected during Squirrel cooldown"
@@ -97,11 +98,17 @@ def assessment(state, invocation, terminal, proposal=None):
     elif selected and hard_rejection:
         counters[selected] = counters.get(selected, 0) + 1
         if counters[selected] >= HARD_REJECTION_THRESHOLD and selected not in deferred:
+            projects = [project for project in state.get("projects", {}).values()
+                        if project.get("domain") == selected and project.get("status") == "active"]
             deferred[selected] = {
                 "deferred_by": invocation,
                 "reason": "five consecutive hard rejections without durable progress",
                 "other_topic_attempts": 0,
                 "eligible_after_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
+                # This is a compact preservation receipt, not a project edit:
+                # Squirrel leaves unresolved work intact while attention moves.
+                "parked_projects": [{"id": p["id"], "question": p["question"],
+                                     "next_step": p["next_step"]} for p in projects],
             }
 
     return {

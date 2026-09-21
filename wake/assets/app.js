@@ -218,6 +218,11 @@
     const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
     const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
     const topicActive=topicRows.filter(t=>t.activity>0).length;
+    // Recovery telemetry is derived from durable receipts and frame records;
+    // it describes interventions without treating them as research success.
+    const frames=Object.values(s.representations||{}).flat();
+    const capabilityBlocks=Object.values(s.acquisition||{}).filter(x=>x.capability_blocked).length;
+    const parkedTopics=Object.keys(s.squirrel?.deferred||{}).length;
     const telemetry=[
       ['Record span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake'],
       ['Wake velocity',wakesPerHour.toFixed(2)+'/h',completed.length+' completed'],
@@ -228,6 +233,9 @@
       ['Evidence / accepted',evidencePerAccepted.toFixed(2),evidenceCount+' evidence records'],
       ['Topic coverage',topicActive+'/'+topicRows.length,'topics with recorded activity'],
       ['Open obligations',openObligations,String(overdue)+' overdue'],
+      ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused'],
+      ['Problem frames',frames.length,'strategy hypotheses; not findings'],
+      ['Squirrel parking',parkedTopics,'topics preserved while attention moves'],
       ['Known attempts',knownAttempts.length,providerSuccesses+' success-labelled']
     ];
     const telemetryHtml=telemetry.map(([label,value,note])=>`<article class="telemetry-cell"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join('');
