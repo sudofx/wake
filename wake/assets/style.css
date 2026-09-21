@@ -603,17 +603,21 @@ footer{margin-top:48px}
 .record-panel>summary::-webkit-details-marker{display:none}
 .record-panel>summary h2::after,.record-panel>summary h3::after{content:'▸';display:inline-block;margin-left:.4em;color:var(--muted);font:14px/1 var(--mono);vertical-align:.12em}
 .record-panel[open]>summary h2::after,.record-panel[open]>summary h3::after{content:'▾'}
-.record-panel-meta{display:grid;grid-template-columns:minmax(0,1fr) max-content max-content;align-items:center;gap:10px;margin-bottom:8px}
+.record-panel-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .record-panel-meta .eyebrow{min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.record-panel-meta .topic-tag{margin-left:0;white-space:nowrap}
+.record-panel-meta .topic-tag{flex:0 0 auto;width:fit-content;margin-left:0;white-space:nowrap}
 .record-panel-meta time{margin-left:0;color:var(--muted);font:10px var(--mono);letter-spacing:.04em;white-space:nowrap}
+.blog-card .record-panel-meta{flex-wrap:nowrap}.blog-card .record-panel-meta time{order:1}.blog-card .record-panel-meta .topic-tag{order:2;margin-left:auto}
+.journal-meta{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);gap:10px}.journal-meta .journal-topics{display:flex;justify-content:flex-end;gap:7px;min-width:0}.journal-meta .journal-topics .topic-tag{justify-self:end}
 .record-panel-body{padding-top:4px}
 .record-panel:not([open])>summary{padding-bottom:0}
 .record-panel:not([open]) .record-panel-body{display:none}
 .record-panel>summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}
 @media(max-width:700px){
-  .record-panel-meta{display:flex;gap:6px;flex-wrap:wrap}
+  .record-panel-meta,.blog-card .record-panel-meta{display:flex;gap:6px;flex-wrap:wrap}
   .record-panel-meta .eyebrow{overflow:visible;white-space:normal}
+  .blog-card .record-panel-meta .topic-tag{margin-left:0}
+  .journal-meta{display:flex}.journal-meta .journal-topics{justify-content:flex-start;flex-wrap:wrap;flex-basis:100%}
   .record-panel-meta time{margin-left:4px;font-size:9px}
 }
 
