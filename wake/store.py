@@ -138,7 +138,8 @@ def now():
 def empty():
     return {"version": 0, "objective": "", "focus": "continuity", "beliefs": {},
             "commitments": {}, "evidence": {}, "journal": [], "posts": {},
-            "invocations": {}, "pending": None, "squirrel": {"counters": {}, "deferred": {}}}
+            "invocations": {}, "pending": None, "squirrel": {"counters": {}, "deferred": {}},
+            "acquisition": {}}
 
 
 # ---------------------------------------------------------------------------
@@ -193,6 +194,19 @@ def reduce_event(state, event, historical=False):
         require(p.get("status") in ("collected", "failed", "superseded"), "Invalid research collection status")
         if p["id"] in state.get("research", {}):
             state["research"][p["id"]].update(status=p["status"], evidence=p.get("evidence"))
+    elif kind == "acquisition_assessed":
+        require(p["project"] in state.get("projects", {}), "Acquisition receipt needs an existing project")
+        summaries = state.setdefault("acquisition", {})
+        prior = summaries.get(p["project"], {"no_progress": 0, "routes": []})
+        routes = list(dict.fromkeys((prior.get("routes", []) + [p["route"]])))[-4:]
+        no_progress = 0 if p["outcome"] == "progress" else prior.get("no_progress", 0) + 1
+        blocked = no_progress >= 4 and len(routes) >= 2
+        summaries[p["project"]] = {"project": p["project"], "domain": p["domain"],
+            "no_progress": no_progress, "routes": routes,
+            "capability_blocked": blocked,
+            "retry_after_version": state["version"] + 12 if blocked else None,
+            "persistent_identifiers": list(dict.fromkeys(prior.get("persistent_identifiers", []) + p.get("persistent_identifiers", [])))[-12:],
+            "last_receipt": {k: v for k, v in p.items() if k not in ("project", "domain")}}
     elif kind == "observation":
         require(p["id"] not in state["evidence"], "Duplicate evidence ID")
         state["evidence"][p["id"]] = {**p, "version": state["version"], "time": event["time"]}

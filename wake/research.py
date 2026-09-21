@@ -15,6 +15,7 @@
 import hashlib
 from html.parser import HTMLParser
 import json
+import re
 import secrets
 import urllib.error
 import urllib.parse
@@ -42,6 +43,17 @@ ALLOWED_HOSTS = {
 # Idea-pool hosts are deliberately not evidence hosts. Their observations are
 # permanently stamped as discovery leads and cannot satisfy governance.
 ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co"}
+
+
+def persistent_identifiers(observation):
+    """Extract conservative persistent IDs from collector output, not model prose."""
+    text = json.dumps(observation, ensure_ascii=False) if isinstance(observation, dict) else str(observation)
+    values = []
+    values += ["doi:" + item.rstrip(".,;:)]}").lower()
+               for item in re.findall(r"10\.\d{4,9}/[-._;()/:a-zA-Z0-9]+", text)]
+    values += ["openalex:" + item.rsplit("/", 1)[-1] for item in re.findall(r"https?://openalex\.org/[Ww]\d+", text)]
+    values += ["arxiv:" + item for item in re.findall(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", text)]
+    return list(dict.fromkeys(values))[:12]
 # WAKE self-analysis is intentionally allowed to inspect the implementation,
 # not merely prose documentation. These are all source-controlled files from
 # the same repository, so WAKE✳︎ can compare stated design with executable
@@ -415,7 +427,13 @@ def collect(engine, fetcher=fetch_source):
         return
     attempts = len(state["invocations"])
     topics = state.get("research_topics", [])
-    queued = [r for r in state.get("research", {}).values() if r["status"] == "queued"]
+    def awaiting_capability_retry(request):
+        summary = state.get("acquisition", {}).get(request["project"], {})
+        return (summary.get("capability_blocked")
+                and state["version"] < summary.get("retry_after_version", state["version"] + 1))
+
+    queued = [r for r in state.get("research", {}).values()
+              if r["status"] == "queued" and not awaiting_capability_retry(r)]
     # Preserve two distinct forces inside the fixed two-request budget:
     # one continuation slot for model-authored follow-up work when available,
     # and one neutral discovery slot away from active project domains. This lets
@@ -482,6 +500,7 @@ def collect(engine, fetcher=fetch_source):
                 "topic_domain": item["domain"],
                 "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
                 "host_tier": "discovery" if item.get("discovery_only") else "verification",
+                "persistent_identifiers": persistent_identifiers(observation),
             }
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
@@ -494,3 +513,13 @@ def collect(engine, fetcher=fetch_source):
                             "content": content, "actor": "collector", "scope": status})
         if item.get("queued_followup"):
             engine.store.append("research_collected", {"id": item["id"], "status": status, "evidence": evidence_id})
+            payload = json.loads(content)
+            role = payload.get("evidence_role", "discovery")
+            outcome = "progress" if status == "collected" and role == "source" else (
+                "route_failure" if status == "failed" else "no_progress")
+            engine.store.append("acquisition_assessed", {"project": followup["project"],
+                "domain": item["domain"], "research_id": item["id"],
+                "route": urllib.parse.urlsplit(url).hostname + ":" + role,
+                "stage": "substantive_source" if role == "source" else "discovery",
+                "outcome": outcome, "evidence": evidence_id,
+                "persistent_identifiers": payload.get("persistent_identifiers", [])})

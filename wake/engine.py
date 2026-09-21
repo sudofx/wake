@@ -472,11 +472,13 @@ class Engine:
         context = {"version": state["version"], "objective": state["objective"], "focus": state["focus"],
                 "receipt": receipt, "beliefs": list(state["beliefs"].values()),
                 "commitments": [c for c in state["commitments"].values() if c["status"] == "open"],
+                "acquisition": state.get("acquisition", {}),
                 "evidence": [v for k, v in state["evidence"].items() if k in wanted],
                 "recent_journal": state["journal"][-3:],
                 "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
         if state.get("charter"):
             context["mission"] = state["charter"]
+            context["acquisition"] = state.get("acquisition", {})
             context["observation_mode"] = {
                 "active": self.config["observation_mode"],
                 "boundary": "This is an overnight data-gathering profile. Record promising leads and failed approaches freely, but governance still decides what qualifies as evidence or a completed obligation.",
