@@ -542,7 +542,7 @@ def export(store, destination="site", experiment=None, operation=None):
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
-        template = (assets / "index.html").read_text()
+        template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "theme.css"):
@@ -629,7 +629,7 @@ def export(store, destination="site", experiment=None, operation=None):
         from .provenance import build_map
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
-        map_page = (assets / "map.html").read_text()
+        map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         map_page = map_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
         map_page = map_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         map_page = map_page.replace("/* MAP_SCRIPT */", (assets / "map.js").read_text())
