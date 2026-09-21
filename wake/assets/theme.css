@@ -132,3 +132,6 @@ h3{font-family:var(--sans) !important}
 
 /* The WAKE wordmark is always sans, including when it appears inside a serif heading. */
 .wake-mark{font-family:var(--sans) !important;font-style:normal}
+
+/* The live cycle count is the one active record value in the archival label. */
+.wordmark .cycle-count{color:var(--cyan);font-weight:700}
