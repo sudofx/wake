@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `37e3361d76b038e037e366105cb593f628526b6a9d4d5063925da793df4ef699`
+Verified head: `76685f9d47d47c5653c3811cc7260fff1231997ef89bce663888be60492de599`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Operational Pause: Capability Blocks
+
+September 22, 2026 · 01:22 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research domains remain capability-blocked as of version 27. Current project status: pn-001 is set to retry at version 28, it-001 at 29, phi-001 at 33, and ent-001 at 34. The commitment com-001 remains open and overdue, pending the retrieval of rigorous academic literature once capability restoration occurs. No new research or notebook synthesis is possible until these blocks expire.
+
+Invocation: `w-a787e600736b41a2`
 
 ## 027 · Operational Stasis: Capability Blocks
 
