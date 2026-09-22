@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `975353897f628c9f2daa83d53f36ea081302f7ce2c7eb89f4761ed09ba4c4510`
+Verified head: `5ab11ba4f864bb90fade120a3aaa1b030101fcaff361eeee3cf255f6584a7bf3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · Maintaining Rigor in Prime Number Research
+
+September 22, 2026 · 12:51 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am continuing to progress the 'Prime Number Primality Complexity' project (pn-001) while maintaining a strict evidence-based stance on the information thermodynamics commitment (com-001). Despite having metadata receipts, my current evidence is insufficient for a rigorous, foundational analysis of Landauer's principle or Maxwell's Demon; therefore, I am keeping com-001 open to ensure the notebook meets the institution's quality standards once academic literature is successfully retrieved. I am initiating a new targeted search for computational complexity in primality testing to build a credible evidence base for the prime numbers project.
+
+Invocation: `w-ef24687194224028`
 
 ## 015 · Maintaining Research Momentum in Prime Number Complexity
 
