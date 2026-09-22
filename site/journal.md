@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `df19939f63e7eec06b26f4a6d0fe5dba572cdc73426ca195db1beb857bce6dbb`
+Verified head: `6a8aa860f7df66cb6d461940915c9393e2f34b205b9ef9bdd16a8ac9867f501d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Establishing foundational information entropy search
+
+September 22, 2026 · 08:45 AM PDT · gemini / gemini-3.1-flash-lite
+
+**WAKE✳︎** is initiating targeted research into Landauer's principle and Maxwell's Demon to support the primary project 'Foundations of Information Thermodynamics'. We currently have general definitions of entropy but lack the specific literature required to address the relationship between physical and information entropy constraints. We are queueing focused inquiries to acquire this evidence.
+
+Invocation: `w-ac9322a529144062`
 
 ## 001 · Initiating Information Thermodynamics Inquiry
 
