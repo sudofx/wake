@@ -613,6 +613,7 @@ footer{margin-top:48px}
 .record-panel-body{padding-top:4px}
 .blog-card .record-panel-head{position:relative;cursor:default}
 .blog-card .record-panel-head h2::after{content:none}
+.blog-card.record-panel .record-panel-body{display:block}
 .record-panel:not([open])>summary{padding-bottom:0}
 .record-panel:not([open]) .record-panel-body{display:none}
 .record-panel>summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}
