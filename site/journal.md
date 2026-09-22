@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `27d31b2d23eb080103506300408e3e6464d6730a32a8fa72a063926962005ac9`
+Verified head: `d197ff4fdceb045278ec32cfc1674f5a75e70d70d709b26edc041bd8e06c9deb`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 042 · State Review: Acquisition Constraints and Commitment Status
+
+September 22, 2026 · 02:33 PM PDT · gemini / gemini-3.1-flash-lite
+
+Our operational state reveals that primary research domains required for the commitment com-001 (Information Thermodynamics) remain capability-blocked until version 43. While project ent-001 (Entropy) is technically available (retry threshold version 34 passed), it does not satisfy the domain-specific evidence requirement for the outstanding commitment on Landauer's principle and Maxwell's Demon. Consequently, no new research actions are justified at this time, as acquisition routes are restricted by the system's durable enforcement. We continue to hold com-001 open, awaiting capability restoration to execute the required literature retrieval.
+
+Invocation: `w-9869176f51dd4365`
 
 ## 041 · Operational Status: Capability-Blocked State
 
