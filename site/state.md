@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 33  
+**Version:** 34  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7f760fd4ed1a365e5d2027161d585741bcb8dde5f8a9ca984764231f6f5a07df`
+**Verified head:** `88fce12e4cf1065c920a894aeb677d1b44f2cd71abc9ce6eb1384a2a83f60066`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -87,6 +87,24 @@
   "type": "belief",
   "updated_by": "w-4e01a340d51741eb",
   "updated_version": 33
+}
+```
+
+### `status-blocked-maintenance`
+
+```json
+{
+  "confidence": 1.0,
+  "evidence": [
+    "r-4e01a340d51741eb"
+  ],
+  "id": "status-blocked-maintenance",
+  "reason": "Capability logs confirm all domains have enforced retry versions (34+) exceeding the current system version (33), necessitating a hold on new research actions.",
+  "statement": "All research acquisition routes are currently capability-blocked, preventing the accumulation of the rigorous academic evidence required to resolve commitment com-001.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-fed0bde104944b31",
+  "updated_version": 34
 }
 ```
 
@@ -327,16 +345,14 @@
 {
   "project": "phi-001",
   "domain": "philosophy",
-  "no_progress": 4,
+  "no_progress": 5,
   "routes": [
     "api.crossref.org:discovery",
     "api.openalex.org:discovery"
   ],
   "capability_blocked": true,
-  "retry_after_version": 33,
+  "retry_after_version": 45,
   "persistent_identifiers": [
-    "doi:10.2307/j.ctt5vkgxg.13",
-    "doi:10.1080/09672550802113441",
     "doi:10.5840/ipq198323215",
     "doi:10.1515/9783111019802-009",
     "doi:10.1109/ijcnn.1993.717004",
@@ -344,18 +360,22 @@
     "doi:10.1037/teo0000181",
     "doi:10.1093/med:psych/9780195341096.003.0003",
     "doi:10.1093/med-psych/9780190052812.003.0003",
-    "doi:10.1080/05568648809506282"
+    "doi:10.1080/05568648809506282",
+    "doi:10.4324/9780415249126-h019-1",
+    "doi:10.4324/9780415249126-p054-1",
+    "doi:10.4324/9780415249126-p020-1",
+    "doi:10.4324/9780415249126-p059-3"
   ],
   "last_receipt": {
-    "evidence": "source-b719ebd78816477a",
+    "evidence": "source-ceb1616fddb64c67",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.1093/med:psych/9780195341096.003.0003",
-      "doi:10.1093/med-psych/9780190052812.003.0003",
-      "doi:10.2307/j.ctt5vkgxg.13",
-      "doi:10.1080/05568648809506282"
+      "doi:10.4324/9780415249126-h019-1",
+      "doi:10.4324/9780415249126-p054-1",
+      "doi:10.4324/9780415249126-p020-1",
+      "doi:10.4324/9780415249126-p059-3"
     ],
-    "research_id": "res-phi-004",
+    "research_id": "res-phi-006",
     "route": "api.crossref.org:discovery",
     "stage": "discovery"
   }
@@ -389,7 +409,7 @@ _None recorded._
 {
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-4e01a340d51741eb",
+  "invocation": "w-fed0bde104944b31",
   "restored_topics": [],
   "selected_topic": "philosophy",
   "terminal": "accepted",
@@ -39188,6 +39208,575 @@ _None recorded._
 }
 ```
 
+### `w-fed0bde104944b31`
+
+```json
+{
+  "base_version": 33,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 21509,
+    "delivered_request_chars": 45816,
+    "mode": "rich",
+    "omitted_categories": [],
+    "provenance_policy": null,
+    "rich_context_chars": 54794,
+    "working_set_chars": 3579
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-22T17:56:37.832823+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 7,
+    "effective_seconds": 0.0,
+    "event_seq": 738,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-fed0bde104944b31",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 33,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "ent-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Entropy Foundations"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "phi-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Foundations of Empiricism"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "pn-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Primality Complexity"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2228,
+  "provider": "gemini",
+  "quota_day": "2026-09-22",
+  "request_hash": "23603db4bd6316c11e8114d72fea31a247f2207f427fd79ae504319944ed1b9b",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "com-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-ceb1616fddb64c67"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ceb1616fddb64c67",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6c8aa452c77a4dd0"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6c8aa452c77a4dd0",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b7bb68754b034ebc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b7bb68754b034ebc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-accd38b37e6e479a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-accd38b37e6e479a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f54edacf5d124414"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f54edacf5d124414",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-416d001dcd1a42e8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-416d001dcd1a42e8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-ceb1616fddb64c67",
+      "source-6c8aa452c77a4dd0",
+      "source-b7bb68754b034ebc",
+      "source-accd38b37e6e479a",
+      "source-f54edacf5d124414",
+      "source-416d001dcd1a42e8"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [],
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "selected_topic": "philosophy",
+    "temporal": {
+      "anchor_seq": 1437,
+      "anchor_time": "2026-09-22T20:33:39.918257+00:00",
+      "anchor_version": 33,
+      "effective_seconds": 9422.085434
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 105.853757,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 9422.085434,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 14
+    },
+    "observed_at": "2026-09-22T20:33:39.918257+00:00",
+    "previous_anchor_time": "2026-09-22T20:31:54.064500+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 105.853757
+  },
+  "trust_compacts_shadow": {
+    "compacts": [
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 33,
+          "evidence_root_count": 1,
+          "source_confidence": 1,
+          "source_status": "active"
+        },
+        "id": "tc-6cfcb5835464930e",
+        "provenance": {
+          "belief_id": "blockage-status-update",
+          "evidence_root_hash": "947f2ba6afa0dd09029ccbc00f4a38183061618a4d0046b9738d6293de9c9d16",
+          "evidence_roots": [
+            "r-4e01a340d51741eb"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-4e01a340d51741eb"
+          ],
+          "record": {
+            "id": "blockage-status-update",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All currently active and parked projects are capability-blocked, preventing the necessary acquisition of distinct, peer-reviewed academic sources required for notebook synthesis.",
+        "scope": "durable.belief:blockage-status-update",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 33,
+          "evidence_root_count": 8,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-09ef8924ae0a3546",
+        "provenance": {
+          "belief_id": "gap-evidence-com-001",
+          "evidence_root_hash": "2484fce4bcb4b73b3dc004948b6b9779f8e1455d9b5337decf1b0b7ac447d25a",
+          "evidence_roots": [
+            "source-4e898c4984f44484",
+            "source-4960d49f67b448c0",
+            "source-03131ad09cb44f32",
+            "source-b38d8e7c52554042",
+            "source-48715227e057494c",
+            "source-1e5b2316125a4d80",
+            "source-0cc3347e5f2848ba",
+            "source-3cdec702d2034a89"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-4e898c4984f44484",
+            "source-4960d49f67b448c0",
+            "source-03131ad09cb44f32",
+            "source-b38d8e7c52554042",
+            "source-48715227e057494c",
+            "source-1e5b2316125a4d80",
+            "source-0cc3347e5f2848ba",
+            "source-3cdec702d2034a89"
+          ],
+          "record": {
+            "id": "gap-evidence-com-001",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+        "scope": "durable.belief:gap-evidence-com-001",
+        "status": "SETTLED",
+        "strength": "settled"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 33,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-f6268344dcc7cc2a",
+        "provenance": {
+          "belief_id": "research-blocked-status",
+          "evidence_root_hash": "c8356eef016925a95b536cdaf7c1a42b87140f11f4366e5ba7065fac31f0691a",
+          "evidence_roots": [
+            "r-0a2fb060e5c04d55"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-0a2fb060e5c04d55"
+          ],
+          "record": {
+            "id": "research-blocked-status",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+        "scope": "durable.belief:research-blocked-status",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 33,
+          "evidence_root_count": 1,
+          "source_confidence": 0.8,
+          "source_status": "active"
+        },
+        "id": "tc-0e936d6869aa089c",
+        "provenance": {
+          "belief_id": "status-phi-001",
+          "evidence_root_hash": "9a02d617b152f45114e6138d0bdc325a4bb1a4db4adafd39dafbb1a7f5d68e54",
+          "evidence_roots": [
+            "source-b719ebd78816477a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-b719ebd78816477a"
+          ],
+          "record": {
+            "id": "status-phi-001",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+        "scope": "durable.belief:status-phi-001",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      }
+    ],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 4,
+      "challenged_count": 0,
+      "evidence_root_count": 11,
+      "provisional_count": 3,
+      "settled_count": 1,
+      "status_counts": {
+        "CANDIDATE": 3,
+        "SETTLED": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21509,
+    "inquiry_drive_project_count": 3,
+    "mode": "rich",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 4,
+    "trust_compact_evidence_root_count": 11,
+    "trust_compact_settled_count": 1,
+    "working_set_chars": 3579,
+    "working_to_delivered_ratio": 0.1664
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ent-001",
+        "next_step": "Retrieve foundational academic papers on statistical entropy.",
+        "question": "How are definitions of entropy synthesized across statistical mechanics and information theory?",
+        "title": "Entropy Foundations"
+      },
+      {
+        "id": "pn-001",
+        "next_step": "Define the complexity classes associated with primality testing using established mathematical literature.",
+        "question": "What are the fundamental computational complexity classes for primality testing?",
+        "title": "Prime Number Primality Complexity"
+      },
+      {
+        "id": "phi-001",
+        "next_step": "Synthesize existing retrieved philosophical abstracts into a preliminary notebook structure to evaluate evidence sufficiency.",
+        "question": "How do foundational philosophical frameworks define the limits of empirical observation?",
+        "title": "Foundations of Empiricism"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+        "confidence": 1.0,
+        "id": "gap-evidence-com-001",
+        "provenance": [
+          "source-4e898c4984f44484",
+          "source-4960d49f67b448c0",
+          "source-03131ad09cb44f32",
+          "source-b38d8e7c52554042",
+          "source-48715227e057494c",
+          "source-1e5b2316125a4d80",
+          "source-0cc3347e5f2848ba",
+          "source-3cdec702d2034a89"
+        ],
+        "status": "active",
+        "why_retained": "Previous searches yielded only general Wikipedia metadata, which lacks the technical depth necessary for a foundational analysis of thermodynamics."
+      },
+      {
+        "claim": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+        "confidence": 1.0,
+        "id": "research-blocked-status",
+        "provenance": [
+          "r-0a2fb060e5c04d55"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs for it-001, ent-001, pn-001, and phi-001 confirm blocked status with future retry version requirements, making research impossible in this cycle."
+      },
+      {
+        "claim": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+        "confidence": 0.8,
+        "id": "status-phi-001",
+        "provenance": [
+          "source-b719ebd78816477a"
+        ],
+        "status": "active",
+        "why_retained": "Previous failed discovery attempts across other domains (it-001, ent-001, pn-001) leave phi-001 as the only domain where recent retrievals have yielded identifiable academic content, albeit needing further consolidation."
+      },
+      {
+        "claim": "All currently active and parked projects are capability-blocked, preventing the necessary acquisition of distinct, peer-reviewed academic sources required for notebook synthesis.",
+        "confidence": 1,
+        "id": "blockage-status-update",
+        "provenance": [
+          "r-4e01a340d51741eb"
+        ],
+        "status": "active",
+        "why_retained": "Review of the acquisition log confirms that all domains (it-001, ent-001, pn-001, phi-001) are in a blocked state, with retry versions set to 33 or higher."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "com-001",
+        "reason": "Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.",
+        "task": "Synthesize collected evidence into a foundational notebook on Landauer's principle and Maxwell's Demon"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-22T20:33:41.066119+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7142,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50802,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-22T20:34:00.327069+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-5929557bed184f79`
@@ -50442,6 +51031,103 @@ _None recorded._
 }
 ```
 
+### `source-ceb1616fddb64c67`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=empirical+observation+and+epistemology+limitations+Stanford+Encyclopedia+of+Philosophy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9780415249126-h019-1\\\", \\\"title\\\": [\\\"Epistemology in Islamic philosophy\\\"], \\\"abstract\\\": \\\"<jats:p>Muslim philosophers agree that knowledge is possible. Knowledge is the intellect’s grasp of the immaterial forms, the pure essences or universals that constitute the natures of things, and human happiness is achieved only through the intellect’s grasp of such universals. They stress that for knowledge of the immaterial forms, the human intellect generally relies on the senses. Some philosophers, such as Ibn Rushd and occasionally Ibn Sina, assert that it is the material forms themselves, which the senses provide, that are grasped by the intellect after being stripped of their materiality with the help of the divine world. However, the general view as expressed by al-Farabi and Ibn Sina seems to be that the material forms only prepare the way for the reception of the immaterial forms, which are then provided by the divine world. They also state that on rare occasions the divine world simply bestows the immaterial forms on the human intellect without any help from the senses. This occurrence is known as prophecy. While all Muslim philosophers agree that grasping eternal entities ensures happiness, they differ as to whether such grasping is also necessary for eternal existence.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4324/9780415249126-h019-1\\\"}, {\\\"DOI\\\": \\\"10.4324/9780415249126-p054-1\\\", \\\"title\\\": [\\\"Normative epistemology\\\"], \\\"abstract\\\": \\\"<jats:p>There are three kinds of normative work in epistemology. The first is the provision of epistemic advice, which offers guidance towards improving the cognitive condition of an individual or community. This advice often concerns science. Philosophers in the tradition of Francis Bacon have sought to identify and advocate proper forms of scientific research and explanation. More generally, according to some philosophers, a principal epistemological task is that of finding and recommending ways to improve the whole range of our individual and collective cognitive activities.</jats:p>\\\\n         <jats:p>A second kind of epistemology is classified as normative because evaluative concepts figure in explanations. For example, A.J. Ayer explains knowledge partly in terms of having a right to be sure. Other evaluative notions enter into work in this category, such as intellectual duties, responsibilities and virtues. Some of these are specifically ethical notions; some are non-ethical evaluative notions such as proper cognitive functioning and intellectual excellence.</jats:p>\\\\n         <jats:p>Epistemic concepts such as justification and rationality appear to be normative, or at least evaluative, in a way that contrasts with purely desciptive concepts. One tendency in naturalistic epistemology is to seek either to explain away this appearance or to reconcile it with a scientific worldview. Non-naturalistic efforts in epistemology commonly find no reason to undertake this project, and are consequently often counted as normative. Most historical epistemology is normative by this standard.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4324/9780415249126-p054-1\\\"}, {\\\"DOI\\\": \\\"10.4324/9780415249126-p020-1\\\", \\\"title\\\": [\\\"Feminist epistemology\\\"], \\\"abstract\\\": \\\"<jats:p>The impact of feminism on epistemology has been to move the question ‘Whose knowledge are we talking about?’ to a central place in epistemological inquiry. Hence feminist epistemologists are producing conceptions of knowledge that are quite specifically contextualized and situated, and of socially responsible epistemic agency. They have elaborated genealogical/interpretive methods, have advocated reconstructions of empiricism, have articulated standpoint positions and have demonstrated the potential of psychosocial and post-structural analyses to counter the hegemony of epistemological master narratives. In these reconfigured epistemologies, feminists have argued that the cognitive status and circumstances of the knower(s) are central among conditions for the possibility of knowledge. They have demonstrated the salience, in evaluating any epistemic event, of the social arrangements of power and privilege by which it is legitimated or discredited.</jats:p>\\\\n         <jats:p>Feminists are engaged at once in critical projects of demonstrating the privilege-sustaining, androcentric character of ‘the epistemological project’ in most of its received forms, and in transformative projects of reconstructing methodologies and justificatory procedures so as to eradicate their oppressive, exclusionary effects. They have shown that, in late-twentieth-century western philosophy, the circumstances of mature white men continue to generate prevailing ideals and norms of ‘human nature’, while the ideals of reason, objectivity and value-neutrality around which most mainstream theories of knowledge are constructed, like the knowledge they legitimate, tacitly validate affluent male experiences and values. Scientific knowledge, which is still an overwhelmingly male preserve, stands as the regulative model of objective epistemic authority; and the experiences and values of non-male, non-white and otherwise differently placed knowers typically have to accommodate themselves, Procrustean-style, to an idealized scientific and implicitly masculine norm, or risk dismissal as inconsequential, aberrant, mere opinion.</jats:p>\\\\n         <jats:p>In engaging with these issues, most feminists – like many other participants in ‘successor epistemology’ projects – retain a realist commitment to empirical evidence, while denying that facts or experiences ‘speak for themselves’ and maintaining that most truths are as artefactual as they are factual. Questions of cognitive authority and answerability thus figure as prominently as issues of epistemic warrant in these projects, where feminists are concentrating less on formal, universal conditions for making and justifying knowledge ‘in general’ than on the specificities of knowledge construction. Hence these inquiries are often interdisciplinary, producing detailed analyses of everyday knowledge-making and of scientific or social scientific inquiry; drawing out their gendered and other locational implications. In these projects feminists are showing that avowedly engaged, politically committed investigations can yield well-warranted conclusions.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4324/9780415249126-p020-1\\\"}, {\\\"DOI\\\": \\\"10.4324/9780415249126-p059-3\\\", \\\"title\\\": [\\\"Epistemology\\\"], \\\"abstract\\\": \\\"<jats:p>Epistemology has been traditionally concerned with questions about the nature, value, and scope of knowledge, together with other questions that arise in relation to these. Hence, another name for epistemology is the theory of knowledge. Investigations into the nature of knowledge ask what knowledge is, and how knowledge is different from related phenomena such as mere opinion, true belief, reasonable belief, and understanding. Investigations into the value of knowledge ask why knowledge is valuable, what kind of value knowledge has, and why knowledge is more valued than mere opinion, or even true opinion. Finally, investigations into the scope of knowledge ask questions about the reach of our knowledge, and also its limits; What kinds of things are possible to know, and what kinds of things are not possible to know? Questions about the scope of knowledge are closely related to sceptical arguments, which purport to show that we know less than we commonly take ourselves to know. The most general sceptical arguments conclude that we know nothing at all. Less general arguments challenge our knowledge in a particular domain, such as our knowledge of the physical world, the future, morality, or religion.</jats:p>\\\\n               <jats:p>Contemporary epistemology continues to ask these traditional questions, but expands the field to include questions about the social dimensions of knowledge (for example, how our own knowledge depends on the knowledge of others), the relations among knowledge, practical reason and action, the relations between knowledge and assertion, and how knowledge interacts with social-political issues. For example, in what ways does one’s social-political status determine what one can (or cannot) know? In what ways does social-political status affect how one is treated as a knower (or not) by others? By asking these and other questions, contemporary epistemology becomes interdisciplinary, interacting with other fields such as ethics, action theory, philosophy of language, philosophy of mind, psychology and other cognitive sciences, sociology, and political theory.</jats:p>\\\\n               <jats:p>Epistemology’s traditional questions about the nature, value and scope of knowledge are clearly related. For example, what one says about the nature of knowledge will have consequences regarding the value of knowledge and the scope of knowledge. Contemporary epistemology’s expanded questions are also related to its traditional questions. For example, a good account of the nature of knowledge ought to explain why, or at least not make mysterious, why knowledge has the intimate relations that it does to assertion, action and practical reasoning. Likewise, the social dimensions of knowledge and its relations to political life have implications regarding the value of knowledge. In this way, contemporary epistemology does not merely expand the questions of traditional epistemology. It also provides deeper insight into the tradition’s central concerns.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4324/9780415249126-p059-3\\\", \\\"published\\\": {\\\"date-parts\\\": [[2021, 10, 31]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"faea155189059b3fc301296af1922b046674134c5990f900bbdc36b924e91d07\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification\", \"persistent_identifiers\": [\"doi:10.4324/9780415249126-h019-1\", \"doi:10.4324/9780415249126-p054-1\", \"doi:10.4324/9780415249126-p020-1\", \"doi:10.4324/9780415249126-p059-3\"]}",
+  "id": "source-ceb1616fddb64c67",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=empirical+observation+and+epistemology+limitations+Stanford+Encyclopedia+of+Philosophy&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 33,
+  "time": "2026-09-22T20:33:36.335544+00:00"
+}
+```
+
+### `source-6c8aa452c77a4dd0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239448,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bad Religion\\\",\\\"pageid\\\":168409,\\\"size\\\":101907,\\\"wordcount\\\":10415,\\\"snippet\\\":\\\"Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band's lyrics cover topics related to\\nreligion\\n, politics, society\\\",\\\"timestamp\\\":\\\"2026-09-14T23:14:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethnic religion\\\",\\\"pageid\\\":344406,\\\"size\\\":8220,\\\"wordcount\\\":792,\\\"snippet\\\":\\\"religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\",\\\"timestamp\\\":\\\"2026-09-22T13:35:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ainu religion\\\",\\\"pageid\\\":33528560,\\\"size\\\":37043,\\\"wordcount\\\":3917,\\\"snippet\\\":\\\"Ainu\\nreligion\\nconsists of the spiritual beliefs, ritual practices, and mythical stories of the Ainu people. It is broadly animist in nature, with special\\\",\\\"timestamp\\\":\\\"2026-06-15T02:48:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"be6c177c1017eb2824d1b3ca5f3f71722c23a795b200518a5c36ef1525f87c2a\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6c8aa452c77a4dd0",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 33,
+  "time": "2026-09-22T20:33:37.409935+00:00"
+}
+```
+
+### `source-b7bb68754b034ebc`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2199},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":30221,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-05T20:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Black hole thermodynamics\\\",\\\"pageid\\\":339350,\\\"size\\\":26019,\\\"wordcount\\\":3050,\\\"snippet\\\":\\\"In physics, black hole\\nthermodynamics\\nis a set of physical relationships between the properties of black holes that stands in direct relationship to classical\\\",\\\"timestamp\\\":\\\"2026-09-08T17:19:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86832f7fff702e036550d21769435ecd69075f96b099b5de346f9f0ce7391f91\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b7bb68754b034ebc",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 33,
+  "time": "2026-09-22T20:33:38.010155+00:00"
+}
+```
+
+### `source-accd38b37e6e479a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7074},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hamiltonian (quantum mechanics)\\\",\\\"pageid\\\":14381,\\\"size\\\":29436,\\\"wordcount\\\":5047,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, the Hamiltonian of a system is an operator corresponding to the total energy of that system, including both kinetic energy and potential\\\",\\\"timestamp\\\":\\\"2026-06-01T16:56:31Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e709970995e15a6c165de39290aa5b70778a855c51b6f14626ecaecf0dc4ea5b\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-accd38b37e6e479a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 33,
+  "time": "2026-09-22T20:33:38.557135+00:00"
+}
+```
+
+### `source-f54edacf5d124414`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40304},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-07T05:12:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-16T05:21:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rule consciousness\\\",\\\"pageid\\\":47313267,\\\"size\\\":1874,\\\"wordcount\\\":217,\\\"snippet\\\":\\\"Rule\\nconsciousness\\nis one of the primary factors of personality out of sixteen, as categorized by Raymond Cattell in 1946 as low- and high-level. The\\\",\\\"timestamp\\\":\\\"2026-09-17T00:12:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1522e804cba618d10f0b9681d40140728a03431f9ae43baf7747059e3a253a18\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-f54edacf5d124414",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 33,
+  "time": "2026-09-22T20:33:39.116701+00:00"
+}
+```
+
+### `source-416d001dcd1a42e8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87086,\\\"wordcount\\\":7289,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-21T23:51:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"daefd31387bb79d895761f4b96698e6f053dfda5415b8fa3ff288dfeb491c6f6\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-416d001dcd1a42e8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 33,
+  "time": "2026-09-22T20:33:39.591967+00:00"
+}
+```
+
+### `r-fed0bde104944b31`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":33,\"inherited_commitments\":[\"com-001\"],\"invocation\":\"w-fed0bde104944b31\",\"previous_head\":\"61b44ebb4db214efa6fba05566ede8b288553a7a34f8477cece0b2789230c26a\",\"process_id\":2228,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-fed0bde104944b31",
+  "source": "runtime:continuity",
+  "version": 33,
+  "time": "2026-09-22T20:33:40.737714+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Information Thermodynamics Inquiry
@@ -50807,6 +51493,17 @@ _None recorded._
 }
 ```
 
+### 034 · Durable State: Maintaining Process Integrity Under Capability Constraints
+
+```json
+{
+  "cycle": 34,
+  "invocation": "w-fed0bde104944b31",
+  "title": "Durable State: Maintaining Process Integrity Under Capability Constraints",
+  "summary": "All research domains (it-001, ent-001, pn-001, phi-001) are currently capability-blocked until versions ranging from 34 to 45. The primary commitment (com-001) remains open but cannot be fulfilled due to identified evidence gaps and the current inability to conduct new acquisitions. WAKE✳︎ maintains operational continuity by respecting these temporal gates, prioritizing the integrity of evidence standards over forcing premature synthesis."
+}
+```
+
 ## Research
 
 ### `res-001`
@@ -51154,8 +51851,9 @@ _None recorded._
   "query": "empirical observation and epistemology limitations Stanford Encyclopedia of Philosophy",
   "reason": "Expanding the search strategy within the only unblocked domain to increase the probability of acquiring two distinct, high-quality academic sources for notebook synthesis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-e616021dc20d4c58"
+  "status": "collected",
+  "created_by": "w-e616021dc20d4c58",
+  "evidence": "source-ceb1616fddb64c67"
 }
 ```
 

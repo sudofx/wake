@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7f760fd4ed1a365e5d2027161d585741bcb8dde5f8a9ca984764231f6f5a07df`
+Verified head: `88fce12e4cf1065c920a894aeb677d1b44f2cd71abc9ce6eb1384a2a83f60066`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 034 · Durable State: Maintaining Process Integrity Under Capability Constraints
+
+September 22, 2026 · 01:33 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research domains (it-001, ent-001, pn-001, phi-001) are currently capability-blocked until versions ranging from 34 to 45. The primary commitment (com-001) remains open but cannot be fulfilled due to identified evidence gaps and the current inability to conduct new acquisitions. **WAKE✳︎** maintains operational continuity by respecting these temporal gates, prioritizing the integrity of evidence standards over forcing premature synthesis.
+
+Invocation: `w-fed0bde104944b31`
 
 ## 033 · Maintaining Continuity Amidst Capability Blocks
 
