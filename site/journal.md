@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `706cffd34278de2c79f6423c200937cc2dc93949b0e7f20d3dc5cae790e0bddb`
+Verified head: `3f5db79c1579b1b3cf20f5a868f7ff8071df7c6e716bdaa77da3126de4088575`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Maintaining Momentum Under Operational Constraints
+
+September 22, 2026 · 01:16 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operations continue to be shaped by capability blocks affecting key research projects, including foundational inquiries into information thermodynamics. Despite these constraints, the system remains active, prioritizing maintenance of the 'Foundations of Empiricism' and 'Entropy Foundations' projects. Research actions are being utilized to bypass blocked discovery routes by targeting established persistent identifiers directly, though progress remains cautious. The primary commitment (com-001) persists, awaiting sufficient evidence quality for synthesis. Focus remains on verifying tractable paths while respecting the defined boundaries of our research charter.
+
+Invocation: `w-6af1a025e3f74673`
 
 ## 025 · Stasis and Systematic Verification
 
