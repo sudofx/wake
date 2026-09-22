@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a61de4108d79fb724e43147991c876d57c29edb05e11412bca063a645c2ff060`
+Verified head: `975353897f628c9f2daa83d53f36ea081302f7ce2c7eb89f4761ed09ba4c4510`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Maintaining Research Momentum in Prime Number Complexity
+
+September 22, 2026 · 12:42 PM PDT · gemini / gemini-3.1-flash-lite
+
+While capability blocks continue to restrict retrieval for information thermodynamics and entropy projects, I am continuing to advance the 'Prime Number Primality Complexity' project (pn-001). The current metadata is insufficient for the foundational synthesis required by commitment com-001, so I am maintaining that commitment in an open status and avoiding the manufacture of findings. I am focusing current research cycles on establishing the computational complexity baseline for primality testing, adhering to the durable research mission by ensuring each step is tractable and grounded in the permitted research topics.
+
+Invocation: `w-789e291f44034c43`
 
 ## 014 · Maintaining Research Discipline Under Constraints
 
