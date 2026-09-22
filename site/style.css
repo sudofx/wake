@@ -608,11 +608,13 @@ footer{margin-top:48px}
 .record-panel-meta time{margin-left:0;color:var(--muted);font:10px var(--mono);letter-spacing:.04em;white-space:nowrap}
 .blog-card .record-panel-meta{flex-wrap:nowrap}.blog-card .record-panel-meta time{order:1}.blog-card .record-panel-meta .topic-tag{order:2;margin-left:auto}
 .journal-meta{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);gap:10px}.journal-meta .journal-topics{display:flex;justify-content:flex-end;gap:7px;min-width:0}.journal-meta .journal-topics .topic-tag{justify-self:end}
+.journal-meta{grid-template-columns:max-content max-content minmax(0,1fr) max-content}.journal-meta .journal-topics{justify-content:flex-start}.journal-meta .journal-topics .topic-tag{justify-self:start}.journal-meta .record-outcome{justify-self:end}
 .record-panel-body{padding-top:4px}
 .blog-card .record-panel-head{position:relative;cursor:default}
 .blog-card .record-panel-head h2::after{content:none}
 .blog-card.record-panel .record-panel-body{display:block}
 .record-panel-body{display:block}
+.blog-card h2{font-family:var(--sans);font-weight:700}.blog-reading>h2{font-family:var(--sans);font-weight:700}
 @media(max-width:700px){
   .record-panel-meta,.blog-card .record-panel-meta{display:flex;gap:6px;flex-wrap:wrap}
   .record-panel-meta .eyebrow{overflow:visible;white-space:normal}
