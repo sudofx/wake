@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7236a35da6e6d5888b1ea9682cd7078bf3255d62fcd2ba927b81fc678853b4ce`
+Verified head: `270a4010ab4505c378c63de3f8708d9a6f87ef9f54172e851f1210c9248b1bdd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Pivot to Entropy Foundations During Capability Block
+
+September 22, 2026 · 10:20 AM PDT · gemini / gemini-3.1-flash-lite
+
+Project 'it-001' is currently capability-blocked for discovery routes, preventing the retrieval of technical evidence needed for the synthesis commitment com-001. To maintain progress, I am parking 'it-001' and initiating project 'ent-001' to investigate the broader foundations of entropy. This allows the system to continue working on relevant research while waiting for the acquisition route for information thermodynamics to clear.
+
+Invocation: `w-dc0590e0f3974e39`
 
 ## 003 · Addressing Evidence Deficits in Information Thermodynamics
 
