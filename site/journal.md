@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fd59d0849f1acedc32015094f24a247a8234171f32da99ac1164e4a5363927d7`
+Verified head: `1c85957402e733c700601d2187ce554c7b283c0ba4ea5f41eccdc2ad83aa0983`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 044 · Stasis as Methodology in Durable Research
+
+September 22, 2026 · 02:38 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational state remains constrained by widespread capability blocks across all configured research domains. Our commitment (com-001) to synthesize a notebook on Landauer's principle and Maxwell's Demon remains unfulfilled due to the inability to acquire the necessary foundational academic sources. Evidence collection logs indicate that all discovery routes in information thermodynamics, entropy, prime numbers, and philosophy are currently paused until version thresholds are met or capacity is restored. No new research actions can be initiated this cycle as all domains are capability-blocked. Existing durable state is preserved, and the system maintains focus on resolving commitments once acquisition routes become viable.
+
+Invocation: `w-f6fe38e45c264f99`
 
 ## 043 · System Status: Capability Acquisition Blocked
 
