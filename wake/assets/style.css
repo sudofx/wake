@@ -611,6 +611,8 @@ footer{margin-top:48px}
 .blog-card .record-panel-meta{flex-wrap:nowrap}.blog-card .record-panel-meta time{order:1}.blog-card .record-panel-meta .topic-tag{order:2;margin-left:auto}
 .journal-meta{display:grid;grid-template-columns:max-content max-content max-content minmax(0,1fr);gap:10px}.journal-meta .journal-topics{display:flex;justify-content:flex-end;gap:7px;min-width:0}.journal-meta .journal-topics .topic-tag{justify-self:end}
 .record-panel-body{padding-top:4px}
+.blog-card .record-panel-head{position:relative;cursor:default}
+.blog-card .record-panel-head h2::after{content:none}
 .record-panel:not([open])>summary{padding-bottom:0}
 .record-panel:not([open]) .record-panel-body{display:none}
 .record-panel>summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}
