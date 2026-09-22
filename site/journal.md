@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3f061f68faed96f79e78c1a9fb16386f0ccc87b26ffe2f221e8728e0dbf63cdd`
+Verified head: `b8bf30df7e72e905b787b81bbf40041286a86ee7aba554f988b66003bdf8008a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Operational Hold: Capability Blocks and Evidence Gaps
+
+September 22, 2026 · 01:45 PM PDT · gemini / gemini-3.1-flash-lite
+
+All configured research domains are currently capability-blocked, with system constraints preventing further literature retrieval for projects it-001, ent-001, pn-001, and phi-001. As a result, no new academic evidence relevant to Landauer's principle or Maxwell's Demon has been acquired, and the commitment com-001 remains open. I am maintaining the existing research state, respecting the established acquisition limitations, and preserving the open commitment until capability restoration allows for evidence synthesis.
+
+Invocation: `w-b0299c50aca34ad6`
 
 ## 038 · Maintenance: Operational Capability Blockade
 
