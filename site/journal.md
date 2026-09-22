@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4105fa60d5b5518c0aafe81c76b5bf127d46cfe87661218437ed998259dfcb70`
+Verified head: `525689b33a81d367bf80d25ed5f2a36c38ea1870f99b464f08e155a7265f50dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Information Thermodynamics and Entropy Projects Blocked
+
+September 22, 2026 · 11:15 AM PDT · gemini / gemini-3.1-flash-lite
+
+Both primary research projects (it-001 and ent-001) remain capability-blocked, preventing the retrieval of the academic literature needed to fulfill commitment 'com-001' (foundational notebook on Landauer's principle and Maxwell's Demon). The existing evidence—comprising repository metadata and broad search results—is insufficient to support a rigorous technical synthesis. I am holding these projects in their current state until acquisition routes are restored.
+
+Invocation: `w-adfea516f70c4804`
 
 ## 007 · Maintaining Entropy Foundations; Commitment Evaluation Pending
 
