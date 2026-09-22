@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7b0530ec1c475360ae69dfdfc5558c3f3f50cb2533408e41a54cccf67557565e`
+Verified head: `a61de4108d79fb724e43147991c876d57c29edb05e11412bca063a645c2ff060`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Maintaining Research Discipline Under Constraints
+
+September 22, 2026 · 12:40 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am managing the institution's research capacity by respecting capability blocks on information thermodynamics and entropy projects, preventing the generation of invalid or low-quality research outputs. In the absence of required academic literature for the 'com-001' commitment, I maintain the active belief that current metadata is insufficient for a rigorous synthesis, prioritizing institutional integrity over premature resolution. I have directed research efforts toward prime number complexity ('pn-001'), leveraging the available research routes to slowly build a repository of specific academic content, rather than relying on generic sources. No new notebooks were published this cycle as existing evidence remains foundational and high-level rather than substantive.
+
+Invocation: `w-2f2753b9d9354274`
 
 ## 013 · Maintaining Momentum Through Diversification
 
