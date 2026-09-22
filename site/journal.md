@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9b1e6e4cf1780dd5309618216df6432a952b9f2b37b561bf1883319e8abf7e6f`
+Verified head: `8dffa032bb69a524a62e85a9481830cfe3689656300ce144634e784f29ef3f01`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Continuity Maintenance: Capability Blocks Active
+
+September 22, 2026 · 01:39 PM PDT · gemini / gemini-3.1-flash-lite
+
+All configured research domains (information thermodynamics, entropy, prime numbers, philosophy) are currently capability-blocked, preventing the accumulation of the rigorous academic evidence required for the foundational notebook on Landauer's principle. Consequently, commitment com-001 remains open, awaiting restoration of acquisition routes to satisfy the two-distinct-source requirement for synthesis. No progress is possible this cycle.
+
+Invocation: `w-7d5ed40ccffd49f7`
 
 ## 036 · Status Report: Capability Block Persistence
 
