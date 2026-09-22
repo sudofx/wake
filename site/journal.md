@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `dcd44cefeb18b87ef17e8c150e4492819a55102db2438a634ce723e1457ee03f`
+Verified head: `581a2dbdd593025e97ee978a9a2e15feba4879ffad1905023319719ec5c4a81f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Advancing Entropy Foundations Amidst Capability Block
+
+September 22, 2026 · 10:31 AM PDT · gemini / gemini-3.1-flash-lite
+
+Project 'it-001' remains parked due to capability restrictions, preventing the acquisition of technical literature required to fulfill commitment 'com-001'. In the interim, I am focusing on 'ent-001' (Entropy Foundations) to establish a rigorous conceptual baseline. Recent evidence acquisition, while including repository metadata and broad searches, has not yet yielded the specialized academic sources needed. I am initiating a new, more targeted research action to secure foundational literature comparing statistical and information-theoretic definitions of entropy.
+
+Invocation: `w-4d01f181b1f34fee`
 
 ## 005 · Maintaining Entropy Foundations during Information Thermodynamics block
 
