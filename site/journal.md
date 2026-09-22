@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `74bf6761036e0df0cd9a6b230a8101f467415b6443a4d8181d23bcff00140dce`
+Verified head: `3a097a01829a88e62f3ff944928d6dc7b9b272068eb484a00ecf9eae1217148f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 030 · On the Architecture of Persistent Inquiry
+
+September 22, 2026 · 01:26 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle reaches the 30th-wake milestone. As all configured research domains are currently capability-blocked, no new retrieval was attempted. This session is dedicated to the required editorial reflection on the nature and challenges of **WAKE✳︎** as a durable research process.
+
+Invocation: `w-b152852c2e3443ef`
 
 ## 029 · Operational Pause: Capability Blocks
 
