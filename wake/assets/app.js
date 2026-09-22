@@ -333,8 +333,9 @@
       if(typeof content==='string')try{content=JSON.parse(content)}catch{}
       if(!content||typeof content!=='object'||Array.isArray(content))return `<p class="evidence-plain">${esc(content)}</p>`;
       const priority=['scope','summary','statement','question','reason','process_id','invocation','base_version','previous_head','inherited_commitments'];
-      const fields=Object.entries(content).filter(([,value])=>value!==null&&value!==undefined&&value!=='').sort(([a],[b])=>{const ai=priority.indexOf(a),bi=priority.indexOf(b);return(ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b)}).slice(0,10);
-      return `<dl class="evidence-summary">${fields.map(([key,value])=>`<div><dt>${esc(key.replaceAll('_',' '))}</dt><dd>${esc(valueText(value))}</dd></div>`).join('')}</dl>`;
+      const fields=Object.entries(content).filter(([key,value])=>key!=='excerpt'&&key!=='excerpt_truncated'&&value!==null&&value!==undefined&&value!=='').sort(([a],[b])=>{const ai=priority.indexOf(a),bi=priority.indexOf(b);return(ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b)}).slice(0,10);
+      const excerpt=content.excerpt?`<details class="evidence-excerpt"><summary>Excerpt${content.excerpt_truncated?' / TRUNCATED':''}</summary><p>${esc(valueText(content.excerpt))}</p></details>`:'';
+      return `<dl class="evidence-summary">${fields.map(([key,value])=>`<div><dt>${esc(key.replaceAll('_',' '))}</dt><dd>${esc(valueText(value))}</dd></div>`).join('')}</dl>${excerpt}`;
     };
     $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card evidence-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span>${readable(e)}<details><summary>Raw observation</summary>${raw(e)}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
   }
