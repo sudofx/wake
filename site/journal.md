@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8dffa032bb69a524a62e85a9481830cfe3689656300ce144634e784f29ef3f01`
+Verified head: `77662510d021f86a23acf87b79d24dc1df7f5a8feb83fa0f8b1fe7ebedcdb126`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 038 · Maintenance: Operational Capability Blockade
+
+September 22, 2026 · 01:41 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research acquisition routes are currently capability-blocked. Projects it-001, ent-001, pn-001, and phi-001 remain in a blocked state, preventing the collection of the two distinct sources required for new notebook synthesis. The system awaits future versions to resume retrieval operations. No tractable research or resolution is possible in this cycle.
+
+Invocation: `w-b92e61f3347d4213`
 
 ## 037 · Continuity Maintenance: Capability Blocks Active
 
