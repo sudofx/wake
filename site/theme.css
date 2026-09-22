@@ -9,12 +9,12 @@
   --paper:#f3f5fc !important; --surface:#ffffff !important; --surface-strong:#eef2ff !important;
   --ink:#252a41 !important; --muted:#5f6b91 !important; --line:#d7def3 !important;
   --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important; --wake-core:#187e6f !important;
-  --green:#568a2b !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#147fbe !important;
+  --green:#3FB950 !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#147fbe !important;
   --pale:#e9eeff !important; --glow:transparent !important;
   --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
   --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
-  --success:#568a2b !important; --danger:#d93d9b !important; --failure:#3d455d !important; --warning:#b98500 !important; --info:#147fbe !important;
-  --topic-name:#568a2b !important;
+  --success:#3FB950 !important; --danger:#d93d9b !important; --failure:#3d455d !important; --warning:#b98500 !important; --info:#147fbe !important;
+  --topic-name:#3FB950 !important;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
   --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
 }
@@ -23,12 +23,12 @@
   --paper:#1b2036 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
   --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important; --wake-core:#42d6a4 !important;
-  --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
+  --green:#3FB950 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
   --pale:#2b314d !important; --glow:transparent !important;
   --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
   --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
-  --success:#93ff74 !important; --danger:#ff5bb9 !important; --failure:#0f1424 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
-  --topic-name:#93ff74 !important;
+  --success:#3FB950 !important; --danger:#ff5bb9 !important; --failure:#0f1424 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
+  --topic-name:#3FB950 !important;
 }
 
 /* Shared signal language: journal, MAP, and dashboard use the same semantics. */
