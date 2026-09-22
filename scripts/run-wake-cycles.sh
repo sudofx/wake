@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# WAKE✳︎ operator loop: continue sequentially until a durable quota boundary.
+# WAKE✳︎ operator loop: refresh code/state, then continue sequentially until a durable quota boundary.
 set -uo pipefail
 
 # Usage: scripts/run-wake-cycles.sh [N]
@@ -13,8 +13,47 @@ readonly RUN_DISCOVERY_TIMEOUT_SECONDS=600
 readonly RUN_COMPLETION_TIMEOUT_SECONDS=2700
 readonly RECEIPT_TIMEOUT_SECONDS=600
 
+prepare_workspace() {
+  local root branch changes
+
+  root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    echo "Error: run-wake-cycles.sh must run from inside a Git checkout." >&2
+    exit 69
+  }
+  cd "$root"
+
+  branch="$(git branch --show-current)"
+  if [[ "$branch" != "master" ]]; then
+    echo "Error: refusing to update from branch '$branch'; switch to master first." >&2
+    exit 65
+  fi
+
+  # A fast-forward-only pull cannot create a merge commit or conflict. Refuse
+  # any tracked or untracked work first so neither the update nor state sync can
+  # overwrite an operator's local files.
+  changes="$(git status --porcelain --untracked-files=all)"
+  if [[ -n "$changes" ]]; then
+    echo "Error: refusing to update a dirty checkout. Commit, stash, or remove local changes first." >&2
+    echo "$changes" >&2
+    exit 65
+  fi
+
+  echo "→ Updating WAKE✳︎ code (fast-forward only)..."
+  git pull --ff-only origin master || {
+    echo "Error: code update did not fast-forward cleanly; no wake was started." >&2
+    exit 1
+  }
+
+  echo "→ Syncing durable cloud state..."
+  "$root/scripts/sync-cloud-state.sh" || {
+    echo "Error: cloud-state sync failed; no wake was started." >&2
+    exit 1
+  }
+}
+
 usage() {
   echo "Usage: $0 [N]" >&2
+  echo "Refreshes master and syncs durable cloud state before starting any wake." >&2
   echo "Without N, runs until all configured Gemini daily quotas are exhausted." >&2
   echo "With N, runs exactly N sequential wakes unless a quota or failure stops it first." >&2
   exit 64
@@ -27,6 +66,7 @@ if [[ $# -eq 1 ]]; then
   max_wakes=$((10#$1))
   (( max_wakes >= 1 )) || usage
 fi
+prepare_workspace
 command -v gh >/dev/null 2>&1 || { echo "Error: GitHub CLI (gh) is not installed or not on PATH." >&2; exit 69; }
 gh auth status >/dev/null 2>&1 || { echo "Error: gh is not authenticated. Run: gh auth login" >&2; exit 77; }
 
