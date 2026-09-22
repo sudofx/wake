@@ -202,21 +202,49 @@
     const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
 
     const actionEvents=accepted.map(e=>({cycle:e.payload.proposal?.base_version+1||0,actions:e.payload.proposal?.actions||[]}));
-    const actionCounts={}; actionEvents.forEach(row=>row.actions.forEach(a=>actionCounts[a.type]=(actionCounts[a.type]||0)+1));
-    const actionTotal=Object.values(actionCounts).reduce((a,b)=>a+b,0);
-    const actionPie=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]).map(([name,n])=>`<div class="pie-key"><i style="--slice:${n/actionTotal*360}deg"></i><span>${esc(name)}</span><strong>${n}</strong></div>`).join('');
-    let angle=0; const pieStops=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]).map(([name,n],idx)=>{const from=angle;angle+=actionTotal?n/actionTotal*360:0;return `var(--chart-${idx%6}) ${from}deg ${angle}deg`;}).join(',');
+    const acceptedActions=actionEvents.flatMap(row=>row.actions.map(action=>({cycle:row.cycle,action})));
+    const actionCounts={}; acceptedActions.forEach(({action})=>actionCounts[action.type]=(actionCounts[action.type]||0)+1);
+    const sortedActionCounts=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+    const actionTotal=acceptedActions.length;
+    const actionColor=Object.fromEntries(sortedActionCounts.map(([name],idx)=>[name,idx%6]));
+    const actionPie=sortedActionCounts.map(([name,n])=>`<div class="pie-key"><i style="background:var(--chart-${actionColor[name]})"></i><span>${esc(name)}</span><strong>${n}</strong></div>`).join('');
+    let angle=0; const pieStops=sortedActionCounts.map(([name,n])=>{const from=angle;angle+=actionTotal?n/actionTotal*360:0;return `var(--chart-${actionColor[name]}) ${from}deg ${angle}deg`;}).join(',');
 
-    const topicStats=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,{label:t.label,projects:0,research:0,evidence:0,notebooks:0,accepted:0}]));
-    const ensureTopic=id=>{if(!id)return null;if(!topicStats[id])topicStats[id]={label:topicLabel(id),projects:0,research:0,evidence:0,notebooks:0,accepted:0};return topicStats[id];};
-    projects.forEach(p=>{const t=ensureTopic(p.domain);if(t)t.projects++;});
-    Object.values(s.research||{}).forEach(r=>{const t=ensureTopic(r.domain);if(t)t.research++;});
-    Object.values(s.evidence||{}).forEach(e=>{let domain=e.topic_domain;try{if(!domain&&typeof e.content==='string')domain=JSON.parse(e.content).topic_domain;}catch{}const t=ensureTopic(domain);if(t)t.evidence++;});
-    notebooks.forEach(n=>{const domain=s.projects?.[n.project]?.domain||n.domain;const t=ensureTopic(domain);if(t)t.notebooks++;});
-    actionEvents.forEach(row=>{const ids=new Set();row.actions.forEach(a=>{const domain=a.domain||s.projects?.[a.project]?.domain;if(domain)ids.add(domain);});ids.forEach(id=>{const t=ensureTopic(id);if(t)t.accepted++;});});
-    const topicRows=Object.entries(topicStats).map(([id,t])=>({id,...t,activity:t.projects+t.research+t.evidence+t.notebooks+t.accepted})).sort((a,b)=>b.activity-a.activity||a.label.localeCompare(b.label));
-    const maxTopic=Math.max(1,...topicRows.map(t=>t.activity));
-    const topicChart=topicRows.map(t=>`<div class="topic-metric-row"><a class="topic-metric-name" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a><div class="topic-stack" title="${t.projects} projects · ${t.research} research · ${t.evidence} evidence · ${t.notebooks} notebooks · ${t.accepted} accepted wakes"><i class="topic-projects" style="width:${100*t.projects/maxTopic}%"></i><i class="topic-research" style="width:${100*t.research/maxTopic}%"></i><i class="topic-evidence" style="width:${100*t.evidence/maxTopic}%"></i><i class="topic-notebooks" style="width:${100*t.notebooks/maxTopic}%"></i><i class="topic-wakes" style="width:${100*t.accepted/maxTopic}%"></i></div><strong>${t.activity}</strong></div>`).join('');
+    // Topic distribution and action mix intentionally use the exact same accepted-action population.
+    // We only attribute an action to a topic when the durable action/project record says which topic it belongs to.
+    const actionTopic=action=>{
+      const direct=action.domain;
+      if(direct)return direct;
+      const projectId=action.project || (action.type==='project'?action.id:null);
+      if(projectId&&s.projects?.[projectId]?.domain)return s.projects[projectId].domain;
+      return 'unattributed';
+    };
+    const topicStats=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,{label:t.label,actions:{},total:0}]));
+    const ensureTopic=id=>{
+      const key=id||'unattributed';
+      if(!topicStats[key])topicStats[key]={label:key==='unattributed'?'Unattributed / system':topicLabel(key),actions:{},total:0};
+      return topicStats[key];
+    };
+    acceptedActions.forEach(({action})=>{
+      const topic=ensureTopic(actionTopic(action));
+      topic.actions[action.type]=(topic.actions[action.type]||0)+1;
+      topic.total++;
+    });
+    const topicRows=Object.entries(topicStats).map(([id,t])=>({id,...t})).filter(t=>t.total>0).sort((a,b)=>b.total-a.total||a.label.localeCompare(b.label));
+    const maxTopic=Math.max(1,...topicRows.map(t=>t.total));
+    const topicChart=topicRows.map(t=>{
+      const parts=sortedActionCounts.map(([type])=>{
+        const n=t.actions[type]||0;
+        return n?`<i title="${esc(type)}: ${n}" style="width:${100*n/maxTopic}%;background:var(--chart-${actionColor[type]})"></i>`:'';
+      }).join('');
+      const title=sortedActionCounts.filter(([type])=>t.actions[type]).map(([type])=>`${type}: ${t.actions[type]}`).join(' · ');
+      const label=t.id==='unattributed'
+        ? `<span class="topic-metric-name topic-unattributed">Unattributed / system</span>`
+        : `<a class="topic-metric-name" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a>`;
+      return `<div class="topic-metric-row">${label}<div class="topic-stack" title="${esc(title)}">${parts}</div><strong>${t.total}</strong></div>`;
+    }).join('');
+    const topicLegend=sortedActionCounts.map(([type])=>`<span><i style="background:var(--chart-${actionColor[type]})"></i>${esc(type)}</span>`).join('');
+    const attributedActionTotal=topicRows.reduce((n,t)=>n+t.total,0);
 
     const windows=[]; for(let i=0;i<completed.length;i+=10){const group=completed.slice(i,i+10),a=group.filter(x=>x.status==='accepted').length,r=group.filter(x=>x.status==='rejected').length,d=group.filter(x=>x.status==='deferred').length;windows.push({label:`${i+1}–${i+group.length}`,a,r,d,total:group.length});}
     const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');
