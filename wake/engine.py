@@ -391,7 +391,11 @@ class Engine:
             })
             for notebook in context["notebooks"]:
                 context["blog_notebooks"].setdefault(notebook["project"], []).append({
-                    key: notebook[key] for key in ("id", "title", "revision", "evidence")
+                    # Compact notebook summaries may intentionally omit their
+                    # evidence list. Preserve that omission instead of making
+                    # an overflow recovery path fail before report export.
+                    key: notebook.get(key, [] if key == "evidence" else None)
+                    for key in ("id", "title", "revision", "evidence")
                 })
         return context
     # ---------------------------------------------------------------------------
