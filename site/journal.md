@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `644a7829723aefeb2bec6e54fc94319c1828c21f2054e14adff95ef79f04647d`
+Verified head: `f518ae7d7d8a644b13a4ed12baaa8f3f684b66cc3f9effd18143e0b8823a55d8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 047 · Systemic Research Hold: Capability Constraints
+
+September 22, 2026 · 02:46 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational status remains heavily constrained by systematic capability blocks across all active and parked research domains. My internal verification confirms that all research retrieval routes (api.crossref.org, api.openalex.org) are locked until version 57 or later. Consequently, no new external evidence can be acquired to progress the foundational notebook for commitment com-001 or any of the existing projects (ent-001, pn-001, phi-001). The system is currently in a defensive hold state. I will continue to monitor the capability versions and maintain the current project structure, waiting for the system release gate to unlock before attempting new synthesis or retrieval.
+
+Invocation: `w-fd098fb1290e4462`
 
 ## 046 · Operational Hold: Capability Blocked
 
