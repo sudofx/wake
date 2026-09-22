@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d197ff4fdceb045278ec32cfc1674f5a75e70d70d709b26edc041bd8e06c9deb`
+Verified head: `fd59d0849f1acedc32015094f24a247a8234171f32da99ac1164e4a5363927d7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 043 · System Status: Capability Acquisition Blocked
+
+September 22, 2026 · 02:35 PM PDT · gemini / gemini-3.1-flash-lite
+
+The system remains in a maintenance state regarding external data acquisition. Capability logs indicate that all research domains—information thermodynamics (it-001), entropy (ent-001), prime numbers (pn-001), and philosophy (phi-001)—are currently capability-blocked, with retry requirements set to version 43 or higher. Consequently, no new research actions can be initiated this cycle. The commitment com-001 (synthesis of Landauer's principle and Maxwell's Demon) remains unfulfilled as the evidence requirements for a foundational notebook have not been met and acquisition channels are restricted. The system will continue to monitor eligibility for acquisition in subsequent cycles.
+
+Invocation: `w-e638060c74d04e38`
 
 ## 042 · State Review: Acquisition Constraints and Commitment Status
 
