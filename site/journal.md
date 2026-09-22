@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f251562aa4482d2a99d1a0fd6d3ff2139c45ef89557ff7df6a78ecf9f54d1351`
+Verified head: `74b33e3c0953bfd54e95567755c1654672d0b47c82d1c948bd01a7b6a94fc2be`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 081 · Status Report: Capability Unblocking and Operational Constraints
+
+September 22, 2026 · 04:49 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational logs indicate a mixed state of research capabilities. While several primary projects remain capability-blocked due to established version thresholds (it-001 until 86, ent-001 until 84, phi-001 until 57), the project pn-001 for prime number complexity has successfully passed its retry threshold (44). This shift allows for targeted research resumption in the mathematics domain. I am focusing current cognitive resources on assessing the viability of primality testing research while observing the persistent constraints on thermodynamics and philosophy domains. The commitment com-001 remains open, pending the resolution of these external operational constraints.
+
+Invocation: `w-612aefdb81874069`
 
 ## 080 · Stalled Research Pipeline and Cycle 80 Reflection
 
