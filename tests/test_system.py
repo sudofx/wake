@@ -73,7 +73,8 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(state["invocations"], {})
         self.assertIsNone(state["pending"])
         self.assertFalse((self.root / "data" / "experiment.json").exists())
-        self.assertEqual([event["kind"] for event in self.engine.store.events()], ["initialized"])
+        self.assertEqual([event["kind"] for event in self.engine.store.events()],
+                         ["initialized", "experimental_regime_adopted"])
 
     def test_new_provider_inherits_commitment(self):
         first = self.engine.run(Fixture("a"))

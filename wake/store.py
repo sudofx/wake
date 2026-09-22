@@ -190,6 +190,25 @@ def reduce_event(state, event, historical=False):
         state["research_topics"] = p["topics"]
         if "topic_colors" in p:
             state["topic_colors"] = p["topic_colors"]
+    elif kind == "experimental_regime_adopted":
+        # This is an operator intervention, not an editable preference.  Older
+        # histories deliberately lack this key: replay must not pretend their
+        # wakes ran under a regime that did not exist yet.
+        from .experimental import validate
+        validate(p["controls"])
+        require(p.get("actor") == "operator", "Only an operator may adopt an experimental regime")
+        state["experimental"] = {key: p[key] for key in
+                                 ("id", "controls", "actor", "reason", "adopted_at", "event_seq",
+                                  "effective_from_version", "effective_seconds")}
+        state["temporal"] = {"anchor_time": p["adopted_at"],
+                             "anchor_version": p["effective_from_version"],
+                             "anchor_seq": event["seq"],
+                             "effective_seconds": p["effective_seconds"]}
+    elif kind == "temporal_observed":
+        require(state.get("experimental"), "Temporal receipt requires an experimental regime")
+        require(p["regime_id"] == state["experimental"]["id"], "Temporal receipt regime mismatch")
+        state["temporal"] = {"anchor_time": p["observed_at"], "anchor_version": state["version"],
+                             "anchor_seq": event["seq"], "effective_seconds": p["effective_seconds_total"]}
     elif kind == "research_collected":
         require(p.get("status") in ("collected", "failed", "superseded"), "Invalid research collection status")
         if p["id"] in state.get("research", {}):

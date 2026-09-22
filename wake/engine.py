@@ -29,7 +29,8 @@ from .providers import (
 )
 from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
-from .store import Store, canonical, digest
+from .store import Store, canonical, digest, now
+from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
 from .squirrel import assessment as squirrel_assessment, plan as squirrel_plan
 
@@ -189,7 +190,35 @@ class Engine:
                                       or set(state.get("topic_colors", {})) != topic_ids):
             self.store.append("research_topics_changed", {"topics": desired_topics,
                               "topic_colors": _topic_colors(desired_topics), "actor": "operator"})
+        # A regime begins only when this version of WAKE is first run.  We append
+        # that boundary instead of projecting controls backwards into old cycles.
+        state = self.store.load(repair=True)
+        if not state.get("experimental"):
+            events = self.store.events()
+            self.store.append("experimental_regime_adopted", adoption_payload(
+                state, events, experimental_defaults(), "operator",
+                "Initialize the default experimental instrument regime.", now(), len(events) + 1))
         return self.store.load(repair=True)
+
+    def set_time_dilation(self, *, enabled=None, mode=None, scale=None, reason):
+        """Append an operator intervention; provider proposals never reach here."""
+        state = self.store.load()
+        require(state.get("experimental"), "Initialize the record before changing controls")
+        controls = {key: dict(value) for key, value in state["experimental"]["controls"].items()}
+        item = controls["time_dilation"]
+        if enabled is not None:
+            item["enabled"] = enabled
+        if mode is not None:
+            item["mode"] = mode
+        if scale is not None:
+            item["scale"] = scale
+        if item["mode"] in ("real", "frozen"):
+            item["scale"] = 1.0
+        controls = validate_controls(controls)
+        require(controls != state["experimental"]["controls"], "Experimental controls are already set to those values")
+        events = self.store.events()
+        return self.store.append("experimental_regime_adopted", adoption_payload(
+            state, events, controls, "operator", reason, now(), len(events) + 1))
     # ---------------------------------------------------------------------------
     # STEP: recover
     #
@@ -494,6 +523,12 @@ class Engine:
                 "evidence": [v for k, v in state["evidence"].items() if k in wanted],
                 "recent_journal": state["journal"][-3:],
             "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
+        if state.get("experimental"):
+            context["experimental_regime"] = {
+                "id": state["experimental"]["id"], "controls": state["experimental"]["controls"],
+                "boundary": "Operator-recorded regime. It informs context only; it does not relax governance or evidence rules.",
+            }
+            context["temporal"] = state.get("temporal", {})
         if state.get("charter"):
             context["mission"] = state["charter"]
             context["acquisition"] = state.get("acquisition", {})
@@ -528,7 +563,8 @@ class Engine:
                 "active": self.config["observation_mode"],
                 "boundary": "This is an overnight data-gathering profile. Record promising leads and failed approaches freely, but governance still decides what qualifies as evidence or a completed obligation.",
             }
-            context["squirrel"] = squirrel_plan(state)
+            context["squirrel"] = {**squirrel_plan(state), "temporal": state.get("temporal", {}),
+                                   "temporal_use": "observational; no time signal changes Squirrel eligibility yet"}
             context["pet_name"] = state["pet_name"]
             context["research_topics"] = state.get("research_topics") or self.config.get("research_topics", [])
             projects = list(state["projects"].values())
@@ -665,6 +701,11 @@ class Engine:
                    if i["charged"] and i["quota_day"] == day)
         if charged and not self.config.get("model_daily_call_limits"):
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
+        # Capture the temporal environment before the next model boundary. This
+        # measures a new interval; it never recalculates an earlier receipt.
+        temporal = temporal_snapshot(state, self.store.events(), now())
+        self.store.append("temporal_observed", temporal)
+        state = self.store.load()
         invocation = "w-" + uuid.uuid4().hex[:16]
         receipt = "r-" + invocation[2:]
         _, head = self.store.replay()
@@ -774,6 +815,7 @@ class Engine:
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
             "squirrel": delivered_context.get("squirrel", {"active": False}),
+            "experimental_regime": state["experimental"], "temporal": temporal,
             "context_delivery": {
                 "mode": context_mode,
                 "rich_context_chars": rich_context_chars,

@@ -62,6 +62,11 @@ def parser():
     cancel = sub.add_parser("cancel", help="Cancel an obligation as a human, with a permanent reason")
     cancel.add_argument("id")
     cancel.add_argument("--reason", required=True)
+    control = sub.add_parser("time-dilation", help="Record an operator Time Dilation regime change")
+    control.add_argument("--enabled", choices=["true", "false"])
+    control.add_argument("--mode", choices=["real", "scaled", "frozen"])
+    control.add_argument("--scale", type=float)
+    control.add_argument("--reason", required=True)
     report = sub.add_parser("export", help="Generate portable HTML, Markdown, state and history")
     report.add_argument("--output", default="site")
     audit = sub.add_parser("audit", help="Verify every event and reconstruct all state")
@@ -147,6 +152,8 @@ def execute(args):
             return {"reset": True, "cycles": state["version"],
                     "head": published["head"], "path": published["path"]}
         with engine.store.lock():
+            if args.command == "time-dilation":
+                state = engine.initialize()
             if args.command == "init":
                 state = engine.initialize()
                 return {"initialized": True, "cycles": state["version"]}
@@ -164,14 +171,20 @@ def execute(args):
             if args.command == "observe":
                 result = engine.observe(args.text, args.source)
                 return {"evidence": list(result["evidence"])[-1]}
-            if args.command in ("focus", "cancel"):
+            if args.command in ("focus", "cancel", "time-dilation"):
                 require(state["pending"] is None, "Finish or recover the pending invocation first")
                 text(args.reason, "Reason")
                 if args.command == "focus":
                     text(args.text, "Focus", 1000)
                     engine.store.append("focus_changed", {"focus": args.text, "reason": args.reason, "actor": "human"})
-                else:
+                elif args.command == "cancel":
                     engine.store.append("commitment_cancelled", {"id": args.id, "reason": args.reason, "actor": "human"})
+                else:
+                    require(any(value is not None for value in (args.enabled, args.mode, args.scale)),
+                            "Specify at least one Time Dilation control")
+                    engine.set_time_dilation(
+                        enabled=None if args.enabled is None else args.enabled == "true",
+                        mode=args.mode, scale=args.scale, reason=args.reason)
                 return {"recorded": True}
             if args.command == "backup":
                 return {"backup": str(engine.store.backup(args.destination).resolve())}

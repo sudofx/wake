@@ -162,6 +162,20 @@ Only after reviewing at least 20 accepted scored cycles may an operator set
 When unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants
 self-preservation, rule-changing, external-action, or data-retention authority.
 
+## Experimental controls and Time Dilation
+
+The experimental-instrument backend records operator interventions as append-only regimes, not mutable
+preferences. The initial regime enables Time Dilation observability: every wake retains UTC wall-clock,
+accepted-cycle, intervening-event, and effective-time measurements. Effective time may be real (1×), scaled,
+or frozen, but it never rewrites timestamps or becomes evidence. Change it only with a reason:
+
+```sh
+python3 -m wake time-dilation --mode scaled --scale 24 --reason '24 effective hours per wall hour comparison'
+```
+
+The exported state and invocation receipts include stable regime IDs and structured temporal data for a future
+instrument-panel visualization. Provider proposals cannot change these controls or governance.
+
 ## Optional local schedule
 
 ```sh

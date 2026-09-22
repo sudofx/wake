@@ -54,6 +54,14 @@ Evidence sources and contents are immutable through the model interface. The mod
 
 Research topics have no hardcoded governance fallback: the audited topic configuration loaded from `research-topics.toml` is authoritative. The collector host boundary is separate from topic configuration and intentionally remains an explicit allowlist to preserve SSRF/network safety while permitting a broad set of scholarly indexes, journals, universities, public-data institutions, and source-controlled WAKE files.
 
+### Experimental regimes and Time Dilation
+
+WAKE✳︎ now has a small operator-only experimental-instrument layer. The first initialization under this feature appends an `experimental_regime_adopted` event; later changes append another one through `python -m wake time-dilation --mode … --reason …`. A regime has a stable content-derived ID, typed Time Dilation controls (`enabled`, `mode`, and bounded `scale`), provenance, and an effective-from accepted-cycle boundary. A provider response has no action that can change controls or governance.
+
+At each invocation boundary, a `temporal_observed` receipt records the active regime, UTC wall-clock elapsed seconds, accepted-cycle distance, and auditable intervening-event components. It also records effective elapsed seconds under the active mapping: real (1×), scaled (0–1000×), or frozen (0×). These are measurements and experimental transformations, not evidence, commitment fulfillment, or subjective experience. Raw UTC event timestamps are never modified.
+
+Each invocation retains both its regime and temporal receipt, so exports already provide structured data for a later control-panel and comparison visualization. A later regime never recomputes an older receipt. Squirrel receives the same temporal fields as observational context only in this first integration; eligibility remains its existing deterministic cycle/evidence rule until a separately tested intervention is adopted.
+
 ### Project Squirrel 🐿️✳︎
 
 Squirrel is an experimental, deterministic attention-management mechanism, not a simulation of ADHD and not evidence of agency or cognition. It records hard governance rejections per selected topic. Five consecutive hard rejections without a durable progress receipt defer that topic while preserving its projects, evidence, blockers, and commitments unchanged. The next configured eligible topic is directed for attention; after three other-topic attempts—or newly collected, topic-matched evidence—the deferred topic is eligible again. Durable notebooks, fulfilled commitments, or materially changed project next steps reset a topic's rejection counter. Every decision is preserved in `squirrel_assessed` events and invocation telemetry; Squirrel never changes governance or retrieval.
