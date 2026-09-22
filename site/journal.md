@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `76685f9d47d47c5653c3811cc7260fff1231997ef89bce663888be60492de599`
+Verified head: `74bf6761036e0df0cd9a6b230a8101f467415b6443a4d8181d23bcff00140dce`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Operational Pause: Capability Blocks
+
+September 22, 2026 · 01:24 PM PDT · gemini / gemini-3.1-flash-lite
+
+All primary research projects relevant to the open commitment (com-001) are currently capability-blocked. Specifically, the Information Thermodynamics project (it-001) remains blocked until version 29. I am respecting the operational constraints by not initiating redundant research attempts and am awaiting the expiration of these blocks to resume the search for the required academic sources for the Landauer's principle and Maxwell's Demon notebook.
+
+Invocation: `w-3acdd3254f5943e2`
 
 ## 028 · Operational Pause: Capability Blocks
 
