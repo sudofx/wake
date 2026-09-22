@@ -5,7 +5,7 @@
 **Version:** 38  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `dce79ac5b5e553c3259adc38338e18a249d1479285adfcf7f90ef5c9ed8515a1`
+**Verified head:** `393f28b054a92702d51a7eb4e6c2fef47d867a31de28c85a41342a2ffc206fe2`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -372,10 +372,10 @@
   "retry_after_version": null,
   "persistent_identifiers": [],
   "last_receipt": {
-    "evidence": "source-186004b8b07b4987",
+    "evidence": "source-fc4d1b3ebe0a4358",
     "outcome": "progress",
     "persistent_identifiers": [],
-    "research_id": "res_continuity_02",
+    "research_id": "res_continuity_state_01",
     "route": "raw.githubusercontent.com:source",
     "stage": "substantive_source"
   }
@@ -435,7 +435,7 @@ _None recorded._
 
 ```json
 {
-  "comedy": 6,
+  "comedy": 7,
   "entropy": 6,
   "philosophy": 7,
   "psychology": 1,
@@ -447,15 +447,15 @@ _None recorded._
 
 ```json
 {
-  "philosophy": {
-    "deferred_by": "w-e88dbcb852b04411",
+  "comedy": {
+    "deferred_by": "w-740ff61d44aa4ddc",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 2,
+    "other_topic_attempts": 0,
     "parked_projects": [
       {
-        "id": "philosophy_of_autonomy",
-        "next_step": "Initiate research on the intersection of agency and algorithmic process.",
-        "question": "How do philosophical definitions of agency apply to autonomous processes with durable, non-conscious state?"
+        "id": "humor_structure",
+        "next_step": "Propose initial search for incongruity resolution theory papers.",
+        "question": "How do incongruity and resolution theories map to formal structural models in comedy?"
       }
     ],
     "reason": "five consecutive hard rejections without durable progress"
@@ -468,11 +468,13 @@ _None recorded._
 ```json
 {
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-a3713844604b4149",
-  "restored_topics": [],
+  "hard_rejection": true,
+  "invocation": "w-740ff61d44aa4ddc",
+  "restored_topics": [
+    "philosophy"
+  ],
   "selected_topic": "comedy",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -32707,6 +32709,642 @@ _None recorded._
 }
 ```
 
+### `w-740ff61d44aa4ddc`
+
+```json
+{
+  "base_version": 38,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 12692,
+    "delivered_request_chars": 35576,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 68145,
+    "working_set_chars": 4183
+  },
+  "id": "w-740ff61d44aa4ddc",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 38,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "wake_process_continuity",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 10,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "WAKE✳︎ Process Accountability"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "humor_structure",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Structural Mechanics of Humor"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "philosophy_of_autonomy",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Philosophy of Process Autonomy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2061,
+  "provider": "gemini",
+  "quota_day": "2026-09-22",
+  "request_hash": "f446c306de0522445447a227e13c4a230f35235328f7cc3f1aae093a818ecd32",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-51eda383263049ce",
+          "source-59e3edfcdb2a48d0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb_wake_continuity_01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_humor_structure",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_continuity_mechanism",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-fc4d1b3ebe0a4358"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fc4d1b3ebe0a4358",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1426a0a09d7413a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1426a0a09d7413a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-89daf2fe86534048"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-89daf2fe86534048",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6beae374886741ed"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6beae374886741ed",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-82e2dfd0f2314493"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-82e2dfd0f2314493",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-17d12eac8a164fb7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-17d12eac8a164fb7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-51eda383263049ce",
+      "source-59e3edfcdb2a48d0",
+      "source-fc4d1b3ebe0a4358",
+      "source-b1426a0a09d7413a",
+      "source-89daf2fe86534048",
+      "source-6beae374886741ed",
+      "source-82e2dfd0f2314493",
+      "source-17d12eac8a164fb7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [
+      "philosophy"
+    ],
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "philosophy": [
+        {
+          "id": "philosophy_of_autonomy",
+          "next_step": "Initiate research on the intersection of agency and algorithmic process.",
+          "question": "How do philosophical definitions of agency apply to autonomous processes with durable, non-conscious state?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown",
+    "selected_topic": "comedy"
+  },
+  "trust_compacts_shadow": {
+    "compacts": [
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 38,
+          "evidence_root_count": 1,
+          "source_confidence": 0.85,
+          "source_status": "active"
+        },
+        "id": "tc-34955d7b46eb63bf",
+        "provenance": {
+          "belief_id": "continuity_foundation",
+          "evidence_root_hash": "8b346a6d46283ccedcc5f443ce7e003714d1cf9d50640b9cb22de97b797defbf",
+          "evidence_roots": [
+            "source-703da35d36774999"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-703da35d36774999"
+          ],
+          "record": {
+            "id": "continuity_foundation",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Accountability in autonomous processes without inherent persistence relies on external, verifiable state delivery.",
+        "scope": "durable.belief:continuity_foundation",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 38,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-3d9d19adda1ef066",
+        "provenance": {
+          "belief_id": "humor_capability_block",
+          "evidence_root_hash": "97a64a6b33d4531ade77d0e140efb0cd0c410ef105695e400723b4dc6eeff2d7",
+          "evidence_roots": [
+            "source-77317f82fbc74653"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-77317f82fbc74653"
+          ],
+          "record": {
+            "id": "humor_capability_block",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The humor_structure project remains stalled due to infrastructure capability blocks preventing retrieval of incongruity-resolution literature.",
+        "scope": "durable.belief:humor_capability_block",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 38,
+          "evidence_root_count": 2,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-98583c51a6cda349",
+        "provenance": {
+          "belief_id": "humor_evidence_gap",
+          "evidence_root_hash": "81376df39bd5572dbb56f0daae655447245edad72e02f1893061b8e7d8a67b05",
+          "evidence_roots": [
+            "source-91fe2aaee33148a2",
+            "source-d82b1c12c1824924"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-91fe2aaee33148a2",
+            "source-d82b1c12c1824924"
+          ],
+          "record": {
+            "id": "humor_evidence_gap",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Current available evidence in the humor_structure project is insufficient for synthesizing a structural taxonomy of humor.",
+        "scope": "durable.belief:humor_evidence_gap",
+        "status": "SETTLED",
+        "strength": "settled"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 38,
+          "evidence_root_count": 1,
+          "source_confidence": 0.95,
+          "source_status": "active"
+        },
+        "id": "tc-508e9ebfc356dd0c",
+        "provenance": {
+          "belief_id": "wake_repository_structure",
+          "evidence_root_hash": "8f70e291475441fe1e7f23cdc3e3e96d8e5eb2efb8de3eadf5661e74127acf6a",
+          "evidence_roots": [
+            "source-2deb9b8a85b14e4b"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-2deb9b8a85b14e4b"
+          ],
+          "record": {
+            "id": "wake_repository_structure",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The WAKE repository contains documentation, scripts, and example files outlining its architecture and validation rules.",
+        "scope": "durable.belief:wake_repository_structure",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 38,
+          "evidence_root_count": 1,
+          "source_confidence": 0.9,
+          "source_status": "active"
+        },
+        "id": "tc-9c027a29d2a0dbc2",
+        "provenance": {
+          "belief_id": "wake_store_authority",
+          "evidence_root_hash": "8b346a6d46283ccedcc5f443ce7e003714d1cf9d50640b9cb22de97b797defbf",
+          "evidence_roots": [
+            "source-703da35d36774999"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-703da35d36774999"
+          ],
+          "record": {
+            "id": "wake_store_authority",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The store.py component in the WAKE repository acts as the authority for state persistence via a hash-linked event history rather than snapshotting.",
+        "scope": "durable.belief:wake_store_authority",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      }
+    ],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 5,
+      "challenged_count": 0,
+      "evidence_root_count": 5,
+      "provisional_count": 4,
+      "settled_count": 1,
+      "status_counts": {
+        "CANDIDATE": 4,
+        "SETTLED": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 12692,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 5,
+    "trust_compact_evidence_root_count": 5,
+    "trust_compact_settled_count": 1,
+    "working_set_chars": 4183,
+    "working_to_delivered_ratio": 0.3296
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "humor_structure",
+        "next_step": "Propose initial search for incongruity resolution theory papers.",
+        "question": "How do incongruity and resolution theories map to formal structural models in comedy?",
+        "title": "Structural Mechanics of Humor"
+      },
+      {
+        "id": "wake_process_continuity",
+        "next_step": "Initiate search into distributed system state and process continuity.",
+        "question": "How do durable state delivery mechanisms impact the accountability of autonomous model processes?",
+        "title": "WAKE✳︎ Process Accountability"
+      },
+      {
+        "id": "philosophy_of_autonomy",
+        "next_step": "Initiate research on the intersection of agency and algorithmic process.",
+        "question": "How do philosophical definitions of agency apply to autonomous processes with durable, non-conscious state?",
+        "title": "Philosophy of Process Autonomy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The WAKE repository contains documentation, scripts, and example files outlining its architecture and validation rules.",
+        "confidence": 0.95,
+        "id": "wake_repository_structure",
+        "provenance": [
+          "source-2deb9b8a85b14e4b"
+        ],
+        "status": "active",
+        "why_retained": "The recursive master tree list contains specific files such as docs/architecture.md, docs/validation.md, and scripts/github_wake.py."
+      },
+      {
+        "claim": "Current available evidence in the humor_structure project is insufficient for synthesizing a structural taxonomy of humor.",
+        "confidence": 1.0,
+        "id": "humor_evidence_gap",
+        "provenance": [
+          "source-91fe2aaee33148a2",
+          "source-d82b1c12c1824924"
+        ],
+        "status": "active",
+        "why_retained": "The only evidence currently associated with the humor_structure project describes Entropy and Neurodivergence, which are unrelated to the target topic of humor mechanics."
+      },
+      {
+        "claim": "The store.py component in the WAKE repository acts as the authority for state persistence via a hash-linked event history rather than snapshotting.",
+        "confidence": 0.9,
+        "id": "wake_store_authority",
+        "provenance": [
+          "source-703da35d36774999"
+        ],
+        "status": "active",
+        "why_retained": "Direct analysis of the repository's store.py code indicates it implements transactional projections of an event-chained history."
+      },
+      {
+        "claim": "The humor_structure project remains stalled due to infrastructure capability blocks preventing retrieval of incongruity-resolution literature.",
+        "confidence": 1.0,
+        "id": "humor_capability_block",
+        "provenance": [
+          "source-77317f82fbc74653"
+        ],
+        "status": "active",
+        "why_retained": "Previous attempts to fetch relevant literature (e.g., res_incongruity_theory_05) resulted in 'no_progress' outcomes."
+      },
+      {
+        "claim": "Accountability in autonomous processes without inherent persistence relies on external, verifiable state delivery.",
+        "confidence": 0.85,
+        "id": "continuity_foundation",
+        "provenance": [
+          "source-703da35d36774999"
+        ],
+        "status": "active",
+        "why_retained": "The system's store.py mechanism implements a hash-linked history that forces every new invocation to reconstruct context from immutable events rather than local memory."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "review_humor_structure",
+        "reason": "Gives the automated collector a cycle to retrieve initial search queries before we synthesize the findings.",
+        "task": "Review gathered research on incongruity resolution theory to formulate a structural taxonomy."
+      },
+      {
+        "due_cycle": 37,
+        "id": "review_continuity_mechanism",
+        "reason": "This review will solidify the understanding of how WAKE✳︎'s architecture supports accountability as a durable feature rather than a transient behavior.",
+        "task": "Synthesize findings on the impact of event-chaining on process accountability."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb_wake_continuity_01",
+        "project": "wake_process_continuity",
+        "provenance": [
+          "source-51eda383263049ce",
+          "source-59e3edfcdb2a48d0"
+        ],
+        "revision": 2,
+        "summary": "WAKE✳︎ achieves accountability by strictly separating disposable model invocations from the durable, hash-linked event history.",
+        "title": "Architectural Integrity of Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-22T11:54:30.523251+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 6663,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 38816,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "timeout",
+      "elapsed_ms": 60065,
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 38816,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 15169,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38816,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-22T11:56:16.054814+00:00",
+  "reason": "Commitment ID already exists"
+}
+```
+
 ## Evidence
 
 ### `source-54ad8558505d4031`
@@ -39402,6 +40040,103 @@ _None recorded._
 }
 ```
 
+### `source-fc4d1b3ebe0a4358`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"# =============================================================================\\n# STORE — the continuity layer. SQLite is a transactional projection of a hash-linked event history. The event chain is the explanation of how state came to exist; the snapshot is only a cache. Replay therefore remains the authority.\\n#\\n# MAINTENANCE PRINCIPLE\\n# ---------------------\\n# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates\\n# disposable cognition from durable authority.  Comments therefore explain not\\n# only what a function does, but why its boundary exists and what a refactor must\\n# not accidentally collapse.  Prefer explicit receipts, deterministic state\\n# transitions, and replayable facts over convenient hidden behavior.\\n# =============================================================================\\n\\n\\\"\\\"\\\"SQLite transactions + hash-linked events. The projection is disposable too.\\\"\\\"\\\"\\n\\nfrom contextlib import contextmanager\\nfrom datetime import datetime, timezone\\nimport fcntl\\nimport hashlib\\nimport json\\nimport os\\nfrom pathlib import Path\\nimport sqlite3\\n\\nfrom .governance import Rejected, require, transition\\n\\n\\nZERO = \\\"0\\\" * 64\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\n# STEP: canonical\\n\\n\\n#\\n\\n\\n# This step exists as an explicit seam so its behavior can be\\n\\n\\n# inspected, tested, and replaced without giving a model hidden authority.\\n\\n\\n# Inputs should already belong to the layer named above; outputs remain data\\n\\n\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\ndef canonical(value):\\n    return json.dumps(value, sort_keys=True, separators=(\\\",\\\", \\\":\\\"), ensure_ascii=False, allow_nan=False)\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\n# STEP: digest\\n\\n\\n#\\n\\n\\n# This step exists as an explicit seam so its behavior can be\\n\\n\\n# inspected, tested, and replaced without giving a model hidden authority.\\n\\n\\n# Inputs should already belong to the layer named above; outputs remain data\\n\\n\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\ndef digest(value):\\n    return hashlib.sha256(canonical(value).encode()).hexdigest()\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\n# STEP: now\\n\\n\\n#\\n\\n\\n# This step exists as an explicit seam so its behavior can be\\n\\n\\n# inspected, tested, and replaced without giving a model hidden authority.\\n\\n\\n# Inputs should already belong to the layer named above; outputs remain data\\n\\n\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\ndef now():\\n    return datetime.now(timezone.utc).isoformat(timespec=\\\"microseconds\\\")\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\n# STEP: empty\\n\\n\\n#\\n\\n\\n# This step exists as an explicit seam so its behavior can be\\n\\n\\n# inspected, tested, and replaced without giving a model hidden authority.\\n\\n\\n# Inputs should already belong to the layer named above; outputs remain data\\n\\n\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\ndef empty():\\n    return {\\\"version\\\": 0, \\\"objective\\\": \\\"\\\", \\\"focus\\\": \\\"continuity\\\", \\\"beliefs\\\": {},\\n            \\\"commitments\\\": {}, \\\"evidence\\\": {}, \\\"journal\\\": [], \\\"posts\\\": {},\\n            \\\"invocations\\\": {}, \\\"pending\\\": None, \\\"squirrel\\\": {\\\"counters\\\": {}, \\\"deferred\\\": {}},\\n            \\\"acquisition\\\": {}, \\\"representations\\\": {}}\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\n# STEP: reduce_event\\n\\n\\n#\\n\\n\\n# This step exists as an explicit seam so its behavior can be\\n\\n\\n# inspected, tested, and replaced without giving a model hidden authority.\\n\\n\\n# Inputs should already belong to the layer named above; outputs remain data\\n\\n\\n# until the next boundary validates or records them. Callers may rely on this contract.\\n\\n\\n# ---------------------------------------------------------------------------\\n\\n\\ndef reduce_event(state, event, historical=False):\\n    p, kind = event[\\\"payload\\\"], event[\\\"kind\\\"]\\n    if kind == \\\"initialized\\\":\\n        require(not state[\\\"objective\\\"], \\\"Duplicate initialization\\\")\\n        state[\\\"objective\\\"] = p[\\\"objective\\\"]\\n    elif kind == \\\"charter_adopted\\\":\\n        require(not state.get(\\\"charter\\\"), \\\"Charter is already established\\\")\\n        state.update(charter=p[\\\"mission\\\"], pet_name=p[\\\"pet_name\\\"], projects={}, notebooks={}, research={})\\n        # Older charter events predate configurable topics. Keep their replayed\\n        # projection byte-for-byte compatible; initialize records adoption later.\\n        if \\\"topics\\\" in p:\\n            state[\\\"research_topics\\\"] = p[\\\"topics\\\"]\\n        if \\\"topic_colors\\\" in p:\\n            state[\\\"topic_colors\\\"] = p[\\\"topic_colors\\\"]\\n    elif kind == \\\"pet_renamed\\\":\\n        require(state.get(\\\"charter\\\"), \\\"WAKE must exist before it can be renamed\\\")\\n        require(p[\\\"pet_name\\\"] != state.get(\\\"pet_name\\\"), \\\"Pet already has this name\\\")\\n        state[\\\"pet_name\\\"] = p[\\\"pet_name\\\"]\\n    elif kind == \\\"research_topics_changed\\\":\\n        require(state.get(\\\"charter\\\"), \\\"Research charter is not enabled\\\")\\n        require(isinstance(p.get(\\\"topics\\\"), list) and p[\\\"topics\\\"], \\\"Research topics cannot be empty\\\")\\n        state[\\\"research_topics\\\"] = p[\\\"topics\\\"]\\n        if \\\"topic_colors\\\" in p:\\n            state[\\\"topic_colors\\\"] = p[\\\"topic_colors\\\"]\\n    elif kind == \\\"research_collected\\\":\\n        require(p.get(\\\"status\\\") in (\\\"collected\\\", \\\"failed\\\", \\\"superseded\\\"), \\\"Invalid research collection status\\\")\\n        if p[\\\"id\\\"] in state.get(\\\"research\\\", {}):\\n            state[\\\"research\\\"][p[\\\"id\\\"]].update(status=p[\\\"status\\\"], evidence=p.get(\\\"evidence\\\"))\\n    elif kind == \\\"project_adopted\\\":\\n        # Legacy operator receipt retained for replay of historical fixtures;\\n        # providers cannot emit this event and normal project changes remain\\n        # governed inside accepted proposals.\\n        require(p[\\\"id\\\"] not in state.get(\\\"projects\\\", {}), \\\"Project already exists\\\")\\n        state.setdefault(\\\"projects\\\", {})[p[\\\"id\\\"]] = {**p, \\\"type\\\": \\\"project\\\",\\n            \\\"created_version\\\": state[\\\"version\\\"], \\\"updated_version\\\": state[\\\"version\\\"]}\\n    elif kind == \\\"acquisition_assessed\\\":\\n        require(p[\\\"project\\\"] in state.get(\\\"projects\\\", {}), \\\"Acquisition receipt needs an existing project\\\")\\n        summaries = state.setdefault(\\\"acquisition\\\", {})\\n        prior = summaries.get(p[\\\"project\\\"], {\\\"no_progress\\\": 0, \\\"routes\\\": []})\\n        routes = list(dict.fromkeys((prior.get(\\\"routes\\\", []) + [p[\\\"route\\\"]])))[-4:]\\n        no_progress = 0 if p[\\\"outcome\\\"] == \\\"progress\\\" else prior.get(\\\"no_progress\\\", 0) + 1\\n        blocked = no_progress >= 4 and len(routes) >= 2\\n        summaries[p[\\\"project\\\"]] = {\\\"project\\\": p[\\\"project\\\"], \\\"domain\\\": p[\\\"domain\\\"],\\n            \\\"no_progress\\\": no_progress, \\\"routes\\\": routes,\\n            \\\"capability_blocked\\\": blocked,\\n            \\\"retry_after_version\\\": state[\\\"version\\\"] + 12 if blocked else None,\\n            \\\"persistent_identifiers\\\": list(dict.fromkeys(prior.get(\\\"persistent_identifiers\\\", []) + p.get(\\\"persistent_identifiers\\\", [])))[-12:],\\n            \\\"last_receipt\\\": {k: v for k, v in p.items() if k not in (\\\"project\\\", \\\"domain\\\")}}\\n    elif kind == \\\"observation\\\":\\n        require(p[\\\"id\\\"] not in state[\\\"evidence\\\"], \\\"Duplicate evidence ID\\\")\\n        state[\\\"evidence\\\"][p[\\\"id\\\"]] = {**p, \\\"version\\\": state[\\\"version\\\"], \\\"time\\\": event[\\\"time\\\"]}\\n    elif kind == \\\"focus_changed\\\":\\n        state[\\\"focus\\\"] = p[\\\"focus\\\"]\\n    elif kind == \\\"squirrel_assessed\\\":\\n        require(state.get(\\\"charter\\\"), \\\"Squirrel requires the research charter\\\")\\n        require(p[\\\"invocation\\\"] in state[\\\"invocations\\\"], \\\"Unknown Squirrel invocation\\\")\\n        require(state[\\\"invocations\\\"][p[\\\"invocation\\\"]].get(\\\"status\\\") == p[\\\"terminal\\\"],\\n                \\\"Squirrel receipt must follow its terminal invocation\\\")\\n        state[\\\"squirrel\\\"] = {\\\"counters\\\": p[\\\"counters\\\"], \\\"deferred\\\": p[\\\"deferred\\\"],\\n                             \\\"last_receipt\\\": {k: v for k, v in p.items() if k not in (\\\"counters\\\", \\\"deferred\\\")}}\\n    elif kind == \\\"commitment_cancelled\\\":\\n        item = state[\\\"commitments\\\"].get(p[\\\"id\\\"])\\n        require(item is not None and item[\\\"status\\\"] == \\\"open\\\", \\\"Only open commitments can be cancelled\\\")\\n        item.update(status=\\\"cancelled\\\", resolution_reason=p[\\\"reason\\\"], resolved_by=\\\"human\\\")\\n    elif kind == \\\"invocation_started\\\":\\n        require(state[\\\"pending\\\"] is None and p[\\\"id\\\"] not in state[\\\"invocations\\\"], \\\"Conflicting invocation\\\")\\n        require(p[\\\"base_version\\\"] == state[\\\"version\\\"], \\\"Start version mismatch\\\")\\n        state[\\\"pending\\\"] = p[\\\"id\\\"]\\n        state[\\\"invocations\\\"][p[\\\"id\\\"]] = {k: v for k, v in p.items() if k != \\\"request\\\"}\\n        state[\\\"invocations\\\"][p[\\\"id\\\"]].update(status=\\\"pending\\\", time=event[\\\"time\\\"])\\n    elif kind == \\\"provider_attempt_started\\\":\\n        require(state[\\\"pending\\\"] == p[\\\"id\\\"], \\\"Invocation is not pending\\\")\\n        item = state[\\\"invocations\\\"][p[\\\"id\\\"]]\\n        attempts = item.setdefault(\\\"provider_attempts\\\", [])\\n        require(not any(a[\\\"model\\\"] == p[\\\"attempt\\\"][\\\"model\\\"] for a in attempts),\\n                \\\"Model already attempted in this invocation\\\")\\n        require(not attempts or attempts[-1][\\\"result\\\"] in (\\\"transient_failure\\\", \\\"daily_quota\\\"),\\n                \\\"Failover requires a transient availability or model-quota failure\\\")\\n        attempts.append(p[\\\"attempt\\\"])\\n        item.setdefault(\\\"provider_requests_sent\\\", 0)\\n    elif kind == \\\"provider_attempt_finished\\\":\\n        require(state[\\\"pending\\\"] == p[\\\"id\\\"], \\\"Invocation is not pending\\\")\\n        item = state[\\\"invocations\\\"][p[\\\"id\\\"]]\\n        attempts = item.get(\\\"provider_attempts\\\", [])\\n        require(attempts and attempts[-1][\\\"result\\\"] == \\\"unknown\\\"\\n                and attempts[-1][\\\"model\\\"] == p[\\\"attempt\\\"][\\\"model\\\"], \\\"Attempt does not match reservation\\\")\\n        attempts[-1]\", \"excerpt_truncated\": true, \"source_sha256\": \"da264337ffd0d8cf281acae629342ce1baa877e2e9f97ac1604646273c61a98c\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\", \"evidence_role\": \"source\", \"host_tier\": \"verification\", \"persistent_identifiers\": []}",
+  "id": "source-fc4d1b3ebe0a4358",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py",
+  "version": 38,
+  "time": "2026-09-22T11:54:25.422429+00:00"
+}
+```
+
+### `source-b1426a0a09d7413a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4977},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":111302,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-16T14:27:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Regular prime\\\",\\\"pageid\\\":323689,\\\"size\\\":20412,\\\"wordcount\\\":2785,\\\"snippet\\\":\\\"Unsolved problem in\\nmathematics\\nAre there infinitely many regular\\nprimes\\n, and if so, is their relative density e \\\\u2212 1 / 2 {\\\\\\\\displaystyle e^{-1/2}} ? More\\\",\\\"timestamp\\\":\\\"2026-07-24T16:46:53Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a1e68968e9d41aa18cf65b780de866b8f05d0616e54d21bab8f187adc706cf2\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-b1426a0a09d7413a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 38,
+  "time": "2026-09-22T11:54:27.102364+00:00"
+}
+```
+
+### `source-89daf2fe86534048`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6106},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119049,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-16T18:13:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6ae395a3151e8d5d48a3e82f422f55d657f2991706192a55f19b1f16c17d0644\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-89daf2fe86534048",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 38,
+  "time": "2026-09-22T11:54:28.141845+00:00"
+}
+```
+
+### `source-6beae374886741ed`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":13882,\\\"wordcount\\\":1338,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Charles\\\",\\\"timestamp\\\":\\\"2026-09-22T06:00:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5063f3071e32e03d006a661a094df4606abeac58b226cd36d93d05ce24b2d0c8\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6beae374886741ed",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 38,
+  "time": "2026-09-22T11:54:28.643853+00:00"
+}
+```
+
+### `source-82e2dfd0f2314493`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":976814,\\\"suggestion\\\":\\\"m usic\\\",\\\"suggestionsnippet\\\":\\\"m usic\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form, harmony, melody, rhythm, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-21T08:59:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music (disambiguation)\\\",\\\"pageid\\\":1684868,\\\"size\\\":4285,\\\"wordcount\\\":499,\\\"snippet\\\":\\\"\\nmusic\\n, paper with printed or written musical notation on it\\nMusic\\n(311 album), 1993\\nMusic\\n(\\nMusic\\nalbum), 1971\\nMusic\\n(Carole King album), 1972\\nMusic\\n(Erick\\\",\\\"timestamp\\\":\\\"2026-09-15T18:36:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Medieval music\\\",\\\"pageid\\\":19956,\\\"size\\\":79669,\\\"wordcount\\\":9929,\\\"snippet\\\":\\\"Medieval\\nmusic\\nencompasses the sacred and secular\\nmusic\\nof Western Europe during the Middle Ages, from approximately the 6th to 15th centuries. It is the\\\",\\\"timestamp\\\":\\\"2026-07-30T18:11:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Album\\\",\\\"pageid\\\":528282,\\\"size\\\":54005,\\\"wordcount\\\":5829,\\\"snippet\\\":\\\"An album is a collection of audio recordings (e.g.,\\nmusic\\n) issued on a medium such as compact disc (CD), vinyl (record), or audio tape (like 8-track or\\\",\\\"timestamp\\\":\\\"2026-09-06T21:24:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pop music\\\",\\\"pageid\\\":24624,\\\"size\\\":49785,\\\"wordcount\\\":4816,\\\"snippet\\\":\\\"Pop\\nmusic\\n, or simply pop, is a genre of popular\\nmusic\\nthat originated in its modern form during the mid-1950s in the United States and the United Kingdom\\\",\\\"timestamp\\\":\\\"2026-09-19T17:44:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk music\\\",\\\"pageid\\\":10623,\\\"size\\\":173696,\\\"wordcount\\\":16895,\\\"snippet\\\":\\\"types of folk\\nmusic\\nmay be called world\\nmusic\\n. Traditional folk\\nmusic\\nhas been defined in several ways: as\\nmusic\\ntransmitted orally,\\nmusic\\nwith unknown\\\",\\\"timestamp\\\":\\\"2026-09-15T19:43:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music! Music! Music!\\\",\\\"pageid\\\":2319536,\\\"size\\\":8486,\\\"wordcount\\\":847,\\\"snippet\\\":\\\"\\\"\\nMusic\\n!\\nMusic\\n!\\nMusic\\n! (Put Another Nickel In)\\\" is a popular song written by Stephen Weiss and Bernie Baum and published in 1950. The first recording of\\\",\\\"timestamp\\\":\\\"2026-09-14T22:40:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Carpenters: Music, Music, Music\\\",\\\"pageid\\\":8991818,\\\"size\\\":3824,\\\"wordcount\\\":247,\\\"snippet\\\":\\\"The Carpenters:\\nMusic\\n,\\nMusic\\n,\\nMusic\\nis a Carpenters television special from 1980. It included guest stars such as Ella Fitzgerald, John Davidson and Nelson\\\",\\\"timestamp\\\":\\\"2026-08-06T16:45:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Accent (music)\\\",\\\"pageid\\\":713921,\\\"size\\\":9323,\\\"wordcount\\\":1166,\\\"snippet\\\":\\\"In\\nmusic\\n, an accent is an emphasis, stress, or stronger attack placed on a particular note or set of notes, or chord, either because of its context or\\\",\\\"timestamp\\\":\\\"2026-08-26T01:50:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rock music\\\",\\\"pageid\\\":25423,\\\"size\\\":193678,\\\"wordcount\\\":21319,\\\"snippet\\\":\\\"Rock\\nmusic\\nis a genre of popular\\nmusic\\nthat originated in the United States as \\\"rock and roll\\\" in the late 1940s and early 1950s, developing into a range\\\",\\\"timestamp\\\":\\\"2026-09-18T20:46:56Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6e00f30bedd0c2a05b4b502782a4efbc89a5e712f8a0144f2afc82b66ae23b76\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-82e2dfd0f2314493",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music&format=json",
+  "version": 38,
+  "time": "2026-09-22T11:54:29.184026+00:00"
+}
+```
+
+### `source-17d12eac8a164fb7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239447,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethnic religion\\\",\\\"pageid\\\":344406,\\\"size\\\":8281,\\\"wordcount\\\":797,\\\"snippet\\\":\\\"religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\",\\\"timestamp\\\":\\\"2026-09-22T08:26:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bad Religion\\\",\\\"pageid\\\":168409,\\\"size\\\":101907,\\\"wordcount\\\":10415,\\\"snippet\\\":\\\"Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band's lyrics cover topics related to\\nreligion\\n, politics, society\\\",\\\"timestamp\\\":\\\"2026-09-14T23:14:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ainu religion\\\",\\\"pageid\\\":33528560,\\\"size\\\":37043,\\\"wordcount\\\":3917,\\\"snippet\\\":\\\"Ainu\\nreligion\\nconsists of the spiritual beliefs, ritual practices, and mythical stories of the Ainu people. It is broadly animist in nature, with special\\\",\\\"timestamp\\\":\\\"2026-06-15T02:48:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"709d0cb071138a66993063073f74d6470712b88abba607ba5f6dbb8803473daa\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-17d12eac8a164fb7",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 38,
+  "time": "2026-09-22T11:54:29.753049+00:00"
+}
+```
+
+### `r-740ff61d44aa4ddc`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":38,\"inherited_commitments\":[\"review_humor_structure\",\"review_continuity_mechanism\"],\"invocation\":\"w-740ff61d44aa4ddc\",\"previous_head\":\"3042578010028fc5bba3b66f88bdc0847a9ac601d50910ed0a6a6cfb0e8c11ff\",\"process_id\":2061,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-740ff61d44aa4ddc",
+  "source": "runtime:continuity",
+  "version": 38,
+  "time": "2026-09-22T11:54:30.253328+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Mapping the Terrain of Humor Mechanics
@@ -40297,8 +41032,9 @@ _None recorded._
   "query": "process continuity event logging transactional state accountability",
   "reason": "Acquire peer-reviewed or verifiable structural definitions of process accountability in stateless or event-sourced architectures.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-a3713844604b4149"
+  "status": "collected",
+  "created_by": "w-a3713844604b4149",
+  "evidence": "source-fc4d1b3ebe0a4358"
 }
 ```
 
