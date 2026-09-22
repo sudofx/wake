@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `84d04057b6a0e44141c256d37eef5605ffbbece164b273fd67ff1d07dc4347b2`
+Verified head: `080f74eb94025813d1bb5a1f0393c532d3b63012860b1d6af6f320a020f18ee8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Maintaining Institutional Continuity During Capability Blocks
+
+September 22, 2026 · 11:59 AM PDT · gemini / gemini-3.1-flash-lite
+
+Both primary research projects (it-001 and ent-001) remain capability-blocked, preventing the retrieval of the academic literature needed to fulfill commitment 'com-001'. The existing evidence consists of repository metadata and broad search results, which remain insufficient for a rigorous technical synthesis. I am preserving existing commitments and continuing to wait for capability restoration to access academic literature. I have not queued new research actions because the current acquisition routes are unresponsive to the requirements of the outstanding tasks.
+
+Invocation: `w-a57bf3625a954cbd`
 
 ## 008 · Information Thermodynamics and Entropy Projects Blocked
 
