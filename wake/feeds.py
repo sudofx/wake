@@ -61,6 +61,16 @@ def published(invocation):
     # Use the durable acceptance time, never the current export time.
     value = invocation.get("finished") or invocation["time"]
     return datetime.fromisoformat(value).astimezone(timezone.utc)
+
+
+def blog_title(entry):
+    """Use the same scheduled-reflection title convention as reading pages."""
+    title = str(entry.get("title", "")).strip()
+    version = int(entry.get("created_version") or 0)
+    if not (version and version % 10 == 0 and ("reflection" in f"{entry.get('id', '')} {title}".lower() or entry.get("lens"))):
+        return title
+    remainder = re.sub(r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?", "", title, flags=re.IGNORECASE).strip()
+    return f"Cycle {version} Reflection: {remainder or title}"
 # ---------------------------------------------------------------------------
 # STEP: build_feeds
 #
@@ -119,7 +129,7 @@ def build_feeds(state):
                         target = HOME + "blog/" + quote(entry[field], safe="") + ".html"
                         body += f'<p><a href="{html.escape(target)}">{label}</a></p>'
                 body += f'<p><a href="{html.escape(url)}">Read the post and its sources</a></p>'
-                item_title = entry["title"]
+                item_title = blog_title(entry)
             else:
                 url = HOME + "journal/" + quote(iid, safe="") + ".html"
                 body = paragraphs(entry["summary"])

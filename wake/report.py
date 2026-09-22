@@ -494,6 +494,22 @@ def _notebook_html(notebook, state):
 # ---------------------------------------------------------------------------
 
 
+def _blog_display_title(post):
+    """Keep scheduled Bob reflections recognisable in every public export."""
+    title = str(post.get("title", "")).strip()
+    version = int(post.get("created_version") or 0)
+    is_reflection = version and version % 10 == 0 and (
+        "reflection" in f"{post.get('id', '')} {title}".lower() or post.get("lens")
+    )
+    if not is_reflection:
+        return title
+    remainder = re.sub(
+        r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?",
+        "", title, flags=re.IGNORECASE,
+    ).strip()
+    return f"Cycle {version} Reflection: {remainder or title}"
+
+
 def _blog_html(post, state):
     paragraphs = "".join(f"<p>{_html_text(part)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
     lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{_html_text(post["lens"])}</p></div>' if post.get("lens") else ""
@@ -514,7 +530,7 @@ def _blog_html(post, state):
         '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
     )
     body += '<p><a href="../blog.xml">Subscribe to Bob’s blog via RSS</a></p>'
-    return _reading_page(post["title"], "BOB / WAKE✳︎ BLOG", body, post["id"] + ".md")
+    return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, post["id"] + ".md")
 
 
 # ---------------------------------------------------------------------------
@@ -608,7 +624,7 @@ def export(store, destination="site", experiment=None, operation=None):
                 for item in post["notebooks"])
             source_links = newline.join(
                 f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
-            parts = [f"# {_md_text(post['title'])}", "", _md_text(post["lede"]), "", _md_text(post["body"])]
+            parts = [f"# {_md_text(_blog_display_title(post))}", "", _md_text(post["lede"]), "", _md_text(post["body"])]
             if post.get("lens"):
                 parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_md_text(post['lens'])}"]
             if post.get("superseded_by"):

@@ -77,6 +77,20 @@
   const refs = ids => (ids || []).map(id => `<a href="#evidence/${encodeURIComponent(id)}">${esc(id)} →</a>`).join(' ');
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
   const raw = value => `<pre>${esc(JSON.stringify(value,null,2))}</pre>`;
+  function expandRecordDetails(root=document) {
+    root.querySelectorAll('details:not(.nav-group)').forEach(disclosure=>{
+      const panel=document.createElement('section');
+      for(const attribute of [...disclosure.attributes]) panel.setAttribute(attribute.name,attribute.value);
+      panel.classList.add('expanded-record');
+      const summary=disclosure.querySelector(':scope > summary');
+      if(summary){
+        const heading=document.createElement('div'); heading.className='record-panel-head'; heading.innerHTML=summary.innerHTML;
+        panel.append(heading);
+      }
+      for(const child of [...disclosure.children]) if(child!==summary) panel.append(child);
+      disclosure.replaceWith(panel);
+    });
+  }
   const topicNames=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,t.label]));
   const topicColors=s.topic_colors||{};
   const topicLabel=id=>topicNames[id]||String(id||'').replaceAll('_',' ');
@@ -90,6 +104,12 @@
     return [...new Set(ids.filter(Boolean))];
   };
   const postTopic=post=>((Number(post.created_version)%10===0)&&(/reflection/i.test(String(post.id))||/reflection/i.test(String(post.title))))?'reflection':s.projects?.[post.project]?.domain;
+  const postTitle=post=>{
+    const title=String(post.title||'').trim();
+    if(!((Number(post.created_version)%10===0)&&(/reflection/i.test(`${post.id||''} ${title}`)||post.lens)))return title;
+    const remainder=title.replace(/^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?/i,'').trim();
+    return `Cycle ${post.created_version} Reflection: ${remainder||title}`;
+  };
   const proofNames = {
     fresh_sessions:'Fresh-session continuity', causal_state:'Causal state intervention',
     commitment_handoff:'Commitments across providers', invalid_transition:'Invalid actions rejected',
@@ -114,14 +134,15 @@
   });
   function journal() {
     const query=$('search').value.toLowerCase(), provider=providerSelect.value;
-    const selected=decodeURIComponent((location.hash.match(/^#journal\/topic:([^/]+)/)||[])[1]||'');
+    const routeMatch=location.hash.match(/^#journal\/(topic:|cycle:)([^/]+)/);
+    const selectedKind=routeMatch?.[1]||'', selected=decodeURIComponent(routeMatch?.[2]||'');
     const entries=[...s.journal].reverse().filter(j =>
       (provider==='all'||s.invocations[j.invocation].provider===provider) &&
-      (!selected||journalTopics(j).includes(selected)) &&
+      (!selected||(selectedKind==='topic:'?journalTopics(j).includes(selected):String(j.cycle)===selected)) &&
       `${j.title} ${j.summary} ${j.invocation} ${j.cycle} ${journalTopics(j).map(topicLabel).join(' ')}`.toLowerCase().includes(query));
-    $('entries').innerHTML=entries.slice(0,journalLimit).map((j,index) => {
+    $('entries').innerHTML=entries.slice(0,journalLimit).map(j => {
       const i=s.invocations[j.invocation], event=decisions[j.invocation], actions=event.payload.proposal.actions;
-      return `<details class="entry record-panel" id="cycle-${j.cycle}"${index<2?' open':''}><summary><div class="record-panel-meta journal-meta"><span class="cycle">WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time>${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}<span class="journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span></div><h3>${esc(j.title)}</h3></summary><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}</span><span>${actions.length} recorded change${actions.length===1?'':'s'}</span></div><details><summary>Open the lab notes →</summary>${actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'}<a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></details></div></details>`;
+      return `<article class="entry record-panel" id="cycle-${j.cycle}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="cycle">WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time>${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}<span class="journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}</span><span>${actions.length} recorded change${actions.length===1?'':'s'}</span></div><section class="lab-notes"><p class="eyebrow">LAB NOTES</p>${actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'}</section><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
   }
@@ -287,7 +308,7 @@
     if(selected.startsWith('topic:')){
       const topic=decodeURIComponent(selected.slice(6));
       const filtered=posts.filter(post=>postTopic(post)===topic);
-      $('blog-content').innerHTML='<p class="topic-filter-note">Showing <strong>'+esc(topic==='reflection'?'reflection':topicLabel(topic).toLowerCase())+'</strong> · <a href="#blog">show all</a></p>'+(filtered.length?'<div class="blog-grid">'+filtered.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head"><div class="record-panel-meta"><time>'+esc(fmt(invocation.time))+'</time>'+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</div><h2>'+esc(post.title)+'</h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div>':'<p class="empty">No posts match this topic.</p>');
+      $('blog-content').innerHTML='<p class="topic-filter-note">Showing <strong>'+esc(topic==='reflection'?'reflection':topicLabel(topic).toLowerCase())+'</strong> · <a href="#blog">show all</a></p>'+(filtered.length?'<div class="blog-grid">'+filtered.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head"><div class="record-panel-meta"><time>'+esc(fmt(invocation.time))+'</time>'+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</div><h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div>':'<p class="empty">No posts match this topic.</p>');
       return;
     }
     if(selected){
@@ -298,10 +319,10 @@
       const notebooks=post.notebooks.map(id=>'<a class="text-link" href="#projects/notebook:'+encodeURIComponent(id)+'">'+esc(s.notebooks[id].title)+' →</a>').join('');
       const sources=post.evidence.map(id=>'<a href="#evidence/'+encodeURIComponent(id)+'">'+esc(id)+' →</a>').join(' ');
       const correction=post.status==='superseded'?'<div class="research-note">A later post corrected or superseded this one. <a href="#blog/'+encodeURIComponent(post.superseded_by)+'">Read the follow-up →</a></div>':post.supersedes?'<div class="research-note">This note corrects an earlier post. <a href="#blog/'+encodeURIComponent(post.supersedes)+'">Read the original →</a></div>':'';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a><p class="eyebrow">BY BOB / WAKE '+String(post.created_version).padStart(3,'0')+' / '+esc(fmt(invocation.time))+' '+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</p><h2>'+esc(post.title)+'</h2><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p><p>Related project: <a href="#projects/'+encodeURIComponent(post.project)+'">'+esc(s.projects[post.project].title)+' →</a></p><div>'+notebooks+'</div><p>'+sources+'</p><a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a> · <a class="subtle" href="blog/'+encodeURIComponent(post.id)+'.md">Markdown ↓</a></div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a><p class="eyebrow">BY BOB / WAKE '+String(post.created_version).padStart(3,'0')+' / '+esc(fmt(invocation.time))+' '+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</p><h2>'+esc(postTitle(post))+'</h2><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p><p>Related project: <a href="#projects/'+encodeURIComponent(post.project)+'">'+esc(s.projects[post.project].title)+' →</a></p><div>'+notebooks+'</div><p>'+sources+'</p><a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a> · <a class="subtle" href="blog/'+encodeURIComponent(post.id)+'.md">Markdown ↓</a></div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
-    $('blog-content').innerHTML=posts.length?'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=(Number(post.created_version)%10===0)&&(/reflection/i.test(String(post.id))||/reflection/i.test(String(post.title)));return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head"><div class="record-panel-meta"><time>'+esc(fmt(invocation.time))+'</time>'+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</div><h2>'+esc(post.title)+'</h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.</p>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
+    $('blog-content').innerHTML=posts.length?'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=(Number(post.created_version)%10===0)&&(/reflection/i.test(String(post.id))||/reflection/i.test(String(post.title)));return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head"><div class="record-panel-meta"><time>'+esc(fmt(invocation.time))+'</time>'+topicTag(postTopic(post),'blog',postTopic(post)==='reflection'?'reflection':topicLabel(postTopic(post)))+'</div><h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.</p>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
   }
   function evidence(selected='') {
     const query=$('evidence-search').value.toLowerCase();
@@ -334,6 +355,7 @@
     if(page==='evidence')evidence(selected);
     if(page==='history')history(selected);
     if(page==='home'||page==='projects')window.WakePet.render(page,selected);
+    expandRecordDetails();
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
   }
