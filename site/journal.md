@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `74b33e3c0953bfd54e95567755c1654672d0b47c82d1c948bd01a7b6a94fc2be`
+Verified head: `460aabde67772b91f7b3d7c35d79a173960c9cf27a6344a1e9ebf6e90bc97e7b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 082 · Operational status: Research capability deadlock
+
+September 22, 2026 · 04:52 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research domains remain capability-blocked for the current system version (81). Representation recovery logs indicate that retry thresholds for information thermodynamics (86), entropy (84), and prime numbers (93) have not yet been met. Although the version threshold for philosophy (phi-001) is met (57), the capability-blocked status persists across all projects, preventing acquisition of the required academic sources for commitment com-001. Previous beliefs regarding the operability of pn-001 were found to be inconsistent with the authoritative recovery logs.
+
+Invocation: `w-4cb54ff2409247b7`
 
 ## 081 · Status Report: Capability Unblocking and Operational Constraints
 
