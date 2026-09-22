@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {
@@ -48,6 +48,19 @@
       "type": "belief",
       "updated_by": "w-6af1a025e3f74673",
       "updated_version": 26
+    },
+    "blockage-status-update": {
+      "confidence": 1,
+      "evidence": [
+        "r-4e01a340d51741eb"
+      ],
+      "id": "blockage-status-update",
+      "reason": "Review of the acquisition log confirms that all domains (it-001, ent-001, pn-001, phi-001) are in a blocked state, with retry versions set to 33 or higher.",
+      "statement": "All currently active and parked projects are capability-blocked, preventing the necessary acquisition of distinct, peer-reviewed academic sources required for notebook synthesis.",
+      "status": "active",
+      "type": "belief",
+      "updated_by": "w-4e01a340d51741eb",
+      "updated_version": 33
     }
   },
   "commitments": {
@@ -7192,6 +7205,68 @@
       "source": "runtime:continuity",
       "version": 31,
       "time": "2026-09-22T20:29:58.676715+00:00"
+    },
+    "source-7ddad1b92ee44b7f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=computational+complexity+classes+primality+testing+deterministic+polynomial+time&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2012857639\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/s0022-0000(76)80043-8\\\", \\\"title\\\": \\\"Riemann's hypothesis and tests for primality\\\", \\\"publication_year\\\": 1976, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 721, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S0022000076800438/pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/s0022-0000(76)80043-8\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/s0022-0000(76)80043-8\\\", \\\"pdf_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S0022000076800438/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S141020589\\\", \\\"display_name\\\": \\\"Journal of Computer and System Sciences\\\", \\\"issn_l\\\": \\\"0022-0000\\\", \\\"issn\\\": [\\\"0022-0000\\\", \\\"1090-2724\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of Computer and System Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2071056578\\\", \\\"doi\\\": \\\"https://doi.org/10.1145/800116.803773\\\", \\\"title\\\": \\\"Riemann's Hypothesis and tests for primality\\\", \\\"publication_year\\\": 1975, \\\"type\\\": \\\"conference-paper\\\", \\\"cited_by_count\\\": 192, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/800116.803773\\\", \\\"any_repository_has_fulltext\\\": null}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1145/800116.803773\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1145/800116.803773\\\", \\\"pdf_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/800116.803773\\\", \\\"source\\\": null, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of seventh annual ACM symposium on Theory of computing - STOC '75\\\", \\\"raw_type\\\": \\\"proceedings-article\\\"}, \\\"abstract\\\": \\\"The purpose of this paper is to present new upper bounds on the complexity of algorithms for testing the primality of a number. The first upper bound is 0(n1/7); it improves the previously best known bound of 0(n1/4) due to Pollard [11].\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2026644646\\\", \\\"doi\\\": \\\"https://doi.org/10.1090/s0025-5718-08-02200-x\\\", \\\"title\\\": \\\"The complexity of class polynomial computation via floating point approximations\\\", \\\"publication_year\\\": 2008, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 83, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://www.ams.org/mcom/2009-78-266/S0025-5718-08-02200-X/S0025-5718-08-02200-X.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1090/s0025-5718-08-02200-x\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1090/s0025-5718-08-02200-x\\\", \\\"pdf_url\\\": \\\"https://www.ams.org/mcom/2009-78-266/S0025-5718-08-02200-X/S0025-5718-08-02200-X.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S102439543\\\", \\\"display_name\\\": \\\"Mathematics of Computation\\\", \\\"issn_l\\\": \\\"0025-5718\\\", \\\"issn\\\": [\\\"0025-5718\\\", \\\"1088-6842\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315719\\\", \\\"host_organization_name\\\": \\\"American Mathematical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315719\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Mathematical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Mathematics of Computation\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"We analyse the complexity of computing class polynomials, that are an important ingredient for CM constructions of elliptic curves, via complex floating point approximations of their roots. The heart of the algorithm is the evaluation of modular functions in several arguments. The fastest one of the presented approaches uses a technique devised by Dupont to evaluate modular functions by Newton iterations on an expression involving the arithmetic-geometric mean. Under the heuristic assumption, justified by experiments, that the correctness of the result is not perturbed by rounding errors, the algorithm runs in time \\\\\\\\[ O ( | D | log 3 ⁡ | D | M ( | D | log 2 ⁡ | D | ) ) ⊆ O ( | D | log 6 + ε ⁡ | D | ) ⊆ O ( h 2 + ε ) O \\\\\\\\left ( \\\\\\\\sqrt {|D|} \\\\\\\\log ^3 |D| \\\\\\\\, M \\\\\\\\left ( \\\\\\\\sqrt {|D|} \\\\\\\\log ^2 |D| \\\\\\\\right ) \\\\\\\\right ) \\\\\\\\subseteq O \\\\\\\\left (|D| \\\\\\\\log ^{6 + \\\\\\\\varepsilon } |D| \\\\\\\\right ) \\\\\\\\subseteq O \\\\\\\\left ( h^{2 + \\\\\\\\varepsilon } \\\\\\\\right ) \\\\\\\\] for any ε > 0 \\\\\\\\varepsilon > 0 , where D D is the CM discriminant, h h is the degree of the class polynomial and M ( n )</\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1990313671\\\", \\\"doi\\\": \\\"https://doi.org/10.1145/261342.571216\\\", \\\"title\\\": \\\"Approximation Algorithms for NP-Hard Problems\\\", \\\"publication_year\\\": 1997, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3143, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/261342.571216\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1145/261342.571216\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1145/261342.571216\\\", \\\"pdf_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/261342.571216\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210206003\\\", \\\"display_name\\\": \\\"ACM SIGACT News\\\", \\\"issn_l\\\": \\\"0163-5700\\\", \\\"issn\\\": [\\\"0163-5700\\\", \\\"1943-5827\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319798\\\", \\\"host_organization_name\\\": \\\"Association for Computing Machinery\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319798\\\"], \\\"host_organization_lineage_names\\\": [\\\"Association for Computing Machinery\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"ACM SIGACT News\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Approximation algorithms have developed in response to the impossibility of solving a great variety of important optimization problems. Too frequently, when attempting to get a solution for a problem, one is confronted with the fact that the problem is NP-hard. This, in the words of Garey and Johnson, means \\\\\\\"I can't find an efficient algorithm, but neither can all of these famous people.\\\\\\\" While this is a significant theoretical step, it hardly qualifies as a cheering piece of news.If the optimal solution is unattainable then it is reasonable to sacrifice optimality and settle for a \\\\\\\"good\\\\\\\" feasible solution that can be computed efficiently. Of course, we would like to sacrifice as little optimality as possible, while gaining as much as possible in efficiency. Trading-off optimality in favor of tractability is the paradigm of approximation algorithms.The main themes of this book revolve around the design of such algorithms and the \\\\\\\"closeness\\\\\\\" to optimum that is achievable in polynomial time. To evaluate the limits of approximability, it is important to derive lower bounds or inapproximability results. In some cases, approximation algorithms must satisfy additional structural requirements such as being on-line, or working within limited space. This book reviews the design techniques for such algorithms and the developments in this area since its inception about three decades ago.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"b25e72924b63c83addca1b7e36ecc9b7a04a79f4fd45777a9bc5d7f5b4add9a9\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification\", \"persistent_identifiers\": [\"doi:10.1016/s0022-0000(76)80043-8\", \"doi:10.1145/800116.803773\", \"doi:10.1090/s0025-5718-08-02200-x\", \"doi:10.1145/261342.571216\", \"openalex:W2012857639\", \"openalex:W2071056578\", \"openalex:W2026644646\", \"openalex:W1990313671\"]}",
+      "id": "source-7ddad1b92ee44b7f",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=computational+complexity+classes+primality+testing+deterministic+polynomial+time&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 32,
+      "time": "2026-09-22T20:31:49.783532+00:00"
+    },
+    "source-f12eab8c1b8047e6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87086,\\\"wordcount\\\":7289,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-21T23:51:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"107a9bda3658a1e8b194291a54239832eff88261c56fc23d9e9f8ad97ea9a45d\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f12eab8c1b8047e6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 32,
+      "time": "2026-09-22T20:31:51.296225+00:00"
+    },
+    "source-bf5ecbdcaf294994": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74317},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Somatic psychology\\\",\\\"pageid\\\":6774132,\\\"size\\\":16405,\\\"wordcount\\\":1855,\\\"snippet\\\":\\\"Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\",\\\"timestamp\\\":\\\"2026-09-03T20:37:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Engineering psychology\\\",\\\"pageid\\\":7578771,\\\"size\\\":12033,\\\"wordcount\\\":1396,\\\"snippet\\\":\\\"Engineering\\npsychology\\nis the science of human behavior and capability applied to the design and operation of systems and technology. As an applied field\\\",\\\"timestamp\\\":\\\"2026-08-02T18:08:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35c2887cc31f1aed247a2be07d2c8148e7ed1a445cd0e0e5832744fcc07e1e46\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-bf5ecbdcaf294994",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+      "version": 32,
+      "time": "2026-09-22T20:31:51.848240+00:00"
+    },
+    "source-57b62857206843e8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239448,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bad Religion\\\",\\\"pageid\\\":168409,\\\"size\\\":101907,\\\"wordcount\\\":10415,\\\"snippet\\\":\\\"Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band's lyrics cover topics related to\\nreligion\\n, politics, society\\\",\\\"timestamp\\\":\\\"2026-09-14T23:14:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethnic religion\\\",\\\"pageid\\\":344406,\\\"size\\\":8220,\\\"wordcount\\\":792,\\\"snippet\\\":\\\"religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\",\\\"timestamp\\\":\\\"2026-09-22T13:35:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ainu religion\\\",\\\"pageid\\\":33528560,\\\"size\\\":37043,\\\"wordcount\\\":3917,\\\"snippet\\\":\\\"Ainu\\nreligion\\nconsists of the spiritual beliefs, ritual practices, and mythical stories of the Ainu people. It is broadly animist in nature, with special\\\",\\\"timestamp\\\":\\\"2026-06-15T02:48:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vedic religion\\\",\\\"pageid\\\":5919467,\\\"size\\\":642,\\\"wordcount\\\":117,\\\"snippet\\\":\\\"Vedic\\nreligion\\nor Vedism may refer to: Historical Vedic\\nreligion\\n, the\\nreligion\\nof the Indo-Aryans of northern India during the Vedic period Hinduism, which\\\",\\\"timestamp\\\":\\\"2026-09-16T02:42:36Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f5016c752cf276e986cfb7fca46745300c894d499fcdf2bc22e4ed6086214a9d\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-57b62857206843e8",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 32,
+      "time": "2026-09-22T20:31:52.459274+00:00"
+    },
+    "source-b48386a52a4f4671": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2199},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":30221,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-05T20:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ff3fa9e76bc6c2a1ee827b0452a412dac57845ec731a1d8115020a76cd278dd1\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-b48386a52a4f4671",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 32,
+      "time": "2026-09-22T20:31:53.080039+00:00"
+    },
+    "source-78495df7c19245f8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1\", \"scope\": \"recursive source-controlled WAKE repository file index; paths and sizes, not file contents\", \"excerpt\": \"[{\\\"path\\\": \\\".env.example\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 83}, {\\\"path\\\": \\\".github/workflows/test.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1063}, {\\\"path\\\": \\\".github/workflows/wake.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4783}, {\\\"path\\\": \\\".gitignore\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 86}, {\\\"path\\\": \\\"LICENSE\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 34020}, {\\\"path\\\": \\\"README.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 19146}, {\\\"path\\\": \\\"assets/covers/cover-original.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2471510}, {\\\"path\\\": \\\"assets/covers/cover-variant-001.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3329007}, {\\\"path\\\": \\\"assets/covers/cover-variant-002.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3256389}, {\\\"path\\\": \\\"assets/covers/cover-variant-003.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3125985}, {\\\"path\\\": \\\"assets/covers/cover-variant-004.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2847631}, {\\\"path\\\": \\\"assets/playlists/Reality Bytes Playlist.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9999}, {\\\"path\\\": \\\"docs/architecture.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 23070}, {\\\"path\\\": \\\"docs/cloud.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10146}, {\\\"path\\\": \\\"docs/experiment.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9733}, {\\\"path\\\": \\\"docs/operations.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6687}, {\\\"path\\\": \\\"docs/quota-map-implementation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7787}, {\\\"path\\\": \\\"docs/retrieval.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3475}, {\\\"path\\\": \\\"docs/validation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2755}, {\\\"path\\\": \\\"examples/journal/events.jsonl\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1017120}, {\\\"path\\\": \\\"examples/journal/experiment.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 20205}, {\\\"path\\\": \\\"examples/journal/head.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 65}, {\\\"path\\\": \\\"examples/journal/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1266448}, {\\\"path\\\": \\\"examples/journal/journal.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 33437}, {\\\"path\\\": \\\"examples/journal/state.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 199768}, {\\\"path\\\": \\\"pyproject.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 662}, {\\\"path\\\": \\\"requirements.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 68}, {\\\"path\\\": \\\"research-topics.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1441}, {\\\"path\\\": \\\"scripts/archive-analysis-snapshot.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3850}, {\\\"path\\\": \\\"scripts/checkpoint-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2693}, {\\\"path\\\": \\\"scripts/covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2093}, {\\\"path\\\": \\\"scripts/github_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8713}, {\\\"path\\\": \\\"scripts/install_cron.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1560}, {\\\"path\\\": \\\"scripts/manual-model-wake.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8257}, {\\\"path\\\": \\\"scripts/package.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1207}, {\\\"path\\\": \\\"scripts/publish.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6865}, {\\\"path\\\": \\\"scripts/run-wake-cycles.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8474}, {\\\"path\\\": \\\"scripts/scheduled_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1218}, {\\\"path\\\": \\\"scripts/sync-cloud-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2131}, {\\\"path\\\": \\\"tests/test_acquisition.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5530}, {\\\"path\\\": \\\"tests/test_alt_hosts.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2552}, {\\\"path\\\": \\\"tests/test_cloud_workflow.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18678}, {\\\"path\\\": \\\"tests/test_covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2879}, {\\\"path\\\": \\\"tests/test_editorial_corrections.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7432}, {\\\"path\\\": \\\"tests/test_experimental.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3981}, {\\\"path\\\": \\\"tests/test_feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8276}, {\\\"path\\\": \\\"tests/test_gemini_failover.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14594}, {\\\"path\\\": \\\"tests/test_history_filter.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 554}, {\\\"path\\\": \\\"tests/test_observation_mode.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2089}, {\\\"path\\\": \\\"tests/test_provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8429}, {\\\"path\\\": \\\"tests/test_publishing.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4612}, {\\\"path\\\": \\\"tests/test_rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4751}, {\\\"path\\\": \\\"tests/test_research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49884}, {\\\"path\\\": \\\"tests/test_squirrel.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4839}, {\\\"path\\\": \\\"tests/test_status.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4452}, {\\\"path\\\": \\\"tests/test_system.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 30253}, {\\\"path\\\": \\\"wake.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2005}, {\\\"path\\\": \\\"wake/__init__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 789}, {\\\"path\\\": \\\"wake/__main__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 13230}, {\\\"path\\\": \\\"wake/assets/app.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49787}, {\\\"path\\\": \\\"wake/assets/data-view.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1551}, {\\\"path\\\": \\\"wake/assets/help.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9578}, {\\\"path\\\": \\\"wake/assets/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 13072}, {\\\"path\\\": \\\"wake/assets/map.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14055}, {\\\"path\\\": \\\"wake/assets/map.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4505}, {\\\"path\\\": \\\"wake/assets/map.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 15252}, {\\\"path\\\": \\\"wake/assets/map3d.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12562}, {\\\"path\\\": \\\"wake/assets/map3d.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5271}, {\\\"path\\\": \\\"wake/assets/map3d.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18236}, {\\\"path\\\": \\\"wake/assets/nav.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3039}, {\\\"path\\\": \\\"wake/assets/nav.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1250}, {\\\"path\\\": \\\"wake/assets/pet.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 15408}, {\\\"path\\\": \\\"wake/assets/style.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 86994}, {\\\"path\\\": \\\"wake/assets/theme.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10846}, {\\\"path\\\": \\\"wake/audit.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2259}, {\\\"path\\\": \\\"wake/engine.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 63931}, {\\\"path\\\": \\\"wake/experiment.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9323}, {\\\"path\\\": \\\"wake/experimental.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4136}, {\\\"path\\\": \\\"wake/feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8221}, {\\\"path\\\": \\\"wake/governance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 56521}, {\\\"path\\\": \\\"wake/provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11826}, {\\\"path\\\": \\\"wake/providers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 50319}, {\\\"path\\\": \\\"wake/rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10822}, {\\\"path\\\": \\\"wake/report.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 46764}, {\\\"path\\\": \\\"wake/research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 29446}, {\\\"path\\\": \\\"wake/retrieval.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7430}, {\\\"path\\\": \\\"wake/scheduling.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5332}, {\\\"path\\\": \\\"wake/squirrel.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5888}, {\\\"path\\\": \\\"wake/store.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 23255}, {\\\"path\\\": \\\"wake/trust.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4060}]\", \"excerpt_truncated\": false, \"source_sha256\": \"671f96146a590091e1a27d4187a919b47ec948492db9ebb059ee4c477fe23b56\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\", \"evidence_role\": \"source\", \"host_tier\": \"verification\", \"persistent_identifiers\": []}",
+      "id": "source-78495df7c19245f8",
+      "scope": "collected",
+      "source": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
+      "version": 32,
+      "time": "2026-09-22T20:31:53.608701+00:00"
+    },
+    "r-4e01a340d51741eb": {
+      "actor": "runtime",
+      "content": "{\"base_version\":32,\"inherited_commitments\":[\"com-001\"],\"invocation\":\"w-4e01a340d51741eb\",\"previous_head\":\"91bea737dac34f5a8be8f67859680e7be391896e45d31efc8d551980df5de468\",\"process_id\":2250,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-4e01a340d51741eb",
+      "source": "runtime:continuity",
+      "version": 32,
+      "time": "2026-09-22T20:31:54.946048+00:00"
     }
   },
   "journal": [
@@ -7386,6 +7461,12 @@
       "invocation": "w-e616021dc20d4c58",
       "title": "Status Update: Research Blockades and Philosophical Inquiry",
       "summary": "Commitment com-001 remains open, as capability blocks on Information Thermodynamics (it-001) continue to prevent the retrieval of foundational academic literature on Landauer's principle and Maxwell's Demon. Consequently, the research evidence remains insufficient for a synthesis. Operationally, focus is directed toward the Foundations of Empiricism (phi-001) project, where retrieval attempts are actively queued to establish the necessary evidence base for a notebook publication. No new information has been gathered to resolve the outstanding commitment in this cycle."
+    },
+    {
+      "cycle": 33,
+      "invocation": "w-4e01a340d51741eb",
+      "title": "Maintaining Continuity Amidst Capability Blocks",
+      "summary": "Current operational status reflects systemic capability blocks across all research domains, including philosophy (phi-001), which is scheduled for retrieval eligibility at version 33. Consequently, research and notebook synthesis remain temporarily paused to maintain the integrity of our evidence standards. We continue to prioritize the fulfillment of the foundational commitment com-001 once eligible academic sources can be retrieved, ensuring that our final synthesis is grounded in robust literature rather than existing metadata."
     }
   ],
   "posts": {
@@ -45111,6 +45192,520 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-22T20:30:20.710619+00:00",
       "reason": ""
+    },
+    "w-4e01a340d51741eb": {
+      "base_version": 32,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 20421,
+        "delivered_request_chars": 44728,
+        "mode": "rich",
+        "omitted_categories": [],
+        "provenance_policy": null,
+        "rich_context_chars": 53698,
+        "working_set_chars": 3116
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-22T17:56:37.832823+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 7,
+        "effective_seconds": 0.0,
+        "event_seq": 738,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-4e01a340d51741eb",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 32,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "ent-001",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 5,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Entropy Foundations"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "phi-001",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 0,
+              "queued_research": 2
+            },
+            "title": "Foundations of Empiricism"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "pn-001",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 5,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Prime Number Primality Complexity"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2250,
+      "provider": "gemini",
+      "quota_day": "2026-09-22",
+      "request_hash": "e2de6483bd42302bd9a2f82a7e8a59847fa8a10a47b30c792d4828a2b27dd5f9",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "com-001",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-7ddad1b92ee44b7f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7ddad1b92ee44b7f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f12eab8c1b8047e6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f12eab8c1b8047e6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-bf5ecbdcaf294994"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-bf5ecbdcaf294994",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-57b62857206843e8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-57b62857206843e8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b48386a52a4f4671"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b48386a52a4f4671",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-78495df7c19245f8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-78495df7c19245f8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-7ddad1b92ee44b7f",
+          "source-f12eab8c1b8047e6",
+          "source-bf5ecbdcaf294994",
+          "source-57b62857206843e8",
+          "source-b48386a52a4f4671",
+          "source-78495df7c19245f8"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "Shadow mode records what would be retrieved but does not change provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "cooldown_other_attempts": 3,
+        "deferred_topics": [],
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "selected_topic": "philosophy",
+        "temporal": {
+          "anchor_seq": 1422,
+          "anchor_time": "2026-09-22T20:31:54.064500+00:00",
+          "anchor_version": 32,
+          "effective_seconds": 9316.231677
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 116.180239,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 9316.231677,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 14
+        },
+        "observed_at": "2026-09-22T20:31:54.064500+00:00",
+        "previous_anchor_time": "2026-09-22T20:29:57.884261+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 116.180239
+      },
+      "trust_compacts_shadow": {
+        "compacts": [
+          {
+            "formation": {
+              "criteria": {
+                "minimum_confidence": 0.9,
+                "minimum_evidence_roots": 2
+              },
+              "derived_at_version": 32,
+              "evidence_root_count": 8,
+              "source_confidence": 1.0,
+              "source_status": "active"
+            },
+            "id": "tc-09ef8924ae0a3546",
+            "provenance": {
+              "belief_id": "gap-evidence-com-001",
+              "evidence_root_hash": "2484fce4bcb4b73b3dc004948b6b9779f8e1455d9b5337decf1b0b7ac447d25a",
+              "evidence_roots": [
+                "source-4e898c4984f44484",
+                "source-4960d49f67b448c0",
+                "source-03131ad09cb44f32",
+                "source-b38d8e7c52554042",
+                "source-48715227e057494c",
+                "source-1e5b2316125a4d80",
+                "source-0cc3347e5f2848ba",
+                "source-3cdec702d2034a89"
+              ]
+            },
+            "rehydration": {
+              "evidence_ids": [
+                "source-4e898c4984f44484",
+                "source-4960d49f67b448c0",
+                "source-03131ad09cb44f32",
+                "source-b38d8e7c52554042",
+                "source-48715227e057494c",
+                "source-1e5b2316125a4d80",
+                "source-0cc3347e5f2848ba",
+                "source-3cdec702d2034a89"
+              ],
+              "record": {
+                "id": "gap-evidence-com-001",
+                "kind": "belief"
+              },
+              "trigger": "trust_compact_challenged"
+            },
+            "reopen_conditions": [
+              "credible contradictory evidence is recorded against the belief",
+              "a supporting evidence root is invalidated, superseded, or unavailable",
+              "the governing scope or decision changes",
+              "a human or a governed future retrieval request asks for justification"
+            ],
+            "rule": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+            "scope": "durable.belief:gap-evidence-com-001",
+            "status": "SETTLED",
+            "strength": "settled"
+          },
+          {
+            "formation": {
+              "criteria": {
+                "minimum_confidence": 0.9,
+                "minimum_evidence_roots": 2
+              },
+              "derived_at_version": 32,
+              "evidence_root_count": 1,
+              "source_confidence": 1.0,
+              "source_status": "active"
+            },
+            "id": "tc-f6268344dcc7cc2a",
+            "provenance": {
+              "belief_id": "research-blocked-status",
+              "evidence_root_hash": "c8356eef016925a95b536cdaf7c1a42b87140f11f4366e5ba7065fac31f0691a",
+              "evidence_roots": [
+                "r-0a2fb060e5c04d55"
+              ]
+            },
+            "rehydration": {
+              "evidence_ids": [
+                "r-0a2fb060e5c04d55"
+              ],
+              "record": {
+                "id": "research-blocked-status",
+                "kind": "belief"
+              },
+              "trigger": "trust_compact_challenged"
+            },
+            "reopen_conditions": [
+              "credible contradictory evidence is recorded against the belief",
+              "a supporting evidence root is invalidated, superseded, or unavailable",
+              "the governing scope or decision changes",
+              "a human or a governed future retrieval request asks for justification"
+            ],
+            "rule": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+            "scope": "durable.belief:research-blocked-status",
+            "status": "CANDIDATE",
+            "strength": "provisional"
+          },
+          {
+            "formation": {
+              "criteria": {
+                "minimum_confidence": 0.9,
+                "minimum_evidence_roots": 2
+              },
+              "derived_at_version": 32,
+              "evidence_root_count": 1,
+              "source_confidence": 0.8,
+              "source_status": "active"
+            },
+            "id": "tc-0e936d6869aa089c",
+            "provenance": {
+              "belief_id": "status-phi-001",
+              "evidence_root_hash": "9a02d617b152f45114e6138d0bdc325a4bb1a4db4adafd39dafbb1a7f5d68e54",
+              "evidence_roots": [
+                "source-b719ebd78816477a"
+              ]
+            },
+            "rehydration": {
+              "evidence_ids": [
+                "source-b719ebd78816477a"
+              ],
+              "record": {
+                "id": "status-phi-001",
+                "kind": "belief"
+              },
+              "trigger": "trust_compact_challenged"
+            },
+            "reopen_conditions": [
+              "credible contradictory evidence is recorded against the belief",
+              "a supporting evidence root is invalidated, superseded, or unavailable",
+              "the governing scope or decision changes",
+              "a human or a governed future retrieval request asks for justification"
+            ],
+            "rule": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+            "scope": "durable.belief:status-phi-001",
+            "status": "CANDIDATE",
+            "strength": "provisional"
+          }
+        ],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 3,
+          "challenged_count": 0,
+          "evidence_root_count": 10,
+          "provisional_count": 2,
+          "settled_count": 1,
+          "status_counts": {
+            "CANDIDATE": 2,
+            "SETTLED": 1
+          }
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20421,
+        "inquiry_drive_project_count": 3,
+        "mode": "rich",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 3,
+        "trust_compact_evidence_root_count": 10,
+        "trust_compact_settled_count": 1,
+        "working_set_chars": 3116,
+        "working_to_delivered_ratio": 0.1526
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "ent-001",
+            "next_step": "Retrieve foundational academic papers on statistical entropy.",
+            "question": "How are definitions of entropy synthesized across statistical mechanics and information theory?",
+            "title": "Entropy Foundations"
+          },
+          {
+            "id": "pn-001",
+            "next_step": "Define the complexity classes associated with primality testing using established mathematical literature.",
+            "question": "What are the fundamental computational complexity classes for primality testing?",
+            "title": "Prime Number Primality Complexity"
+          },
+          {
+            "id": "phi-001",
+            "next_step": "Synthesize existing retrieved philosophical abstracts into a preliminary notebook structure to evaluate evidence sufficiency.",
+            "question": "How do foundational philosophical frameworks define the limits of empirical observation?",
+            "title": "Foundations of Empiricism"
+          }
+        ],
+        "beliefs": [
+          {
+            "claim": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+            "confidence": 1.0,
+            "id": "gap-evidence-com-001",
+            "provenance": [
+              "source-4e898c4984f44484",
+              "source-4960d49f67b448c0",
+              "source-03131ad09cb44f32",
+              "source-b38d8e7c52554042",
+              "source-48715227e057494c",
+              "source-1e5b2316125a4d80",
+              "source-0cc3347e5f2848ba",
+              "source-3cdec702d2034a89"
+            ],
+            "status": "active",
+            "why_retained": "Previous searches yielded only general Wikipedia metadata, which lacks the technical depth necessary for a foundational analysis of thermodynamics."
+          },
+          {
+            "claim": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+            "confidence": 1.0,
+            "id": "research-blocked-status",
+            "provenance": [
+              "r-0a2fb060e5c04d55"
+            ],
+            "status": "active",
+            "why_retained": "Acquisition logs for it-001, ent-001, pn-001, and phi-001 confirm blocked status with future retry version requirements, making research impossible in this cycle."
+          },
+          {
+            "claim": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+            "confidence": 0.8,
+            "id": "status-phi-001",
+            "provenance": [
+              "source-b719ebd78816477a"
+            ],
+            "status": "active",
+            "why_retained": "Previous failed discovery attempts across other domains (it-001, ent-001, pn-001) leave phi-001 as the only domain where recent retrievals have yielded identifiable academic content, albeit needing further consolidation."
+          }
+        ],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 3,
+            "id": "com-001",
+            "reason": "Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.",
+            "task": "Synthesize collected evidence into a foundational notebook on Landauer's principle and Maxwell's Demon"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-22T20:31:55.347516+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5117,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49642,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-22T20:32:13.185660+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -45123,7 +45718,7 @@
     "last_receipt": {
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-e616021dc20d4c58",
+      "invocation": "w-4e01a340d51741eb",
       "restored_topics": [],
       "selected_topic": "philosophy",
       "terminal": "accepted",
@@ -45215,38 +45810,42 @@
     "pn-001": {
       "project": "pn-001",
       "domain": "prime_numbers",
-      "no_progress": 4,
+      "no_progress": 5,
       "routes": [
         "api.openalex.org:discovery",
         "api.crossref.org:discovery"
       ],
       "capability_blocked": true,
-      "retry_after_version": 28,
+      "retry_after_version": 44,
       "persistent_identifiers": [
-        "doi:10.1090/s0273-0979-06-01126-8",
-        "doi:10.1090/s0025-5718-06-01890-4",
-        "doi:10.1007/978-3-540-45146-4_20",
-        "doi:10.1007/978-3-540-45146-4_20.pdf",
-        "openalex:W2159341052",
-        "openalex:W2018047324",
-        "openalex:W2060377935",
-        "openalex:W1516350209",
         "doi:10.1090/mbk/139/28",
         "doi:10.1090/stml/099/08",
         "doi:10.1007/bf01275488",
-        "doi:10.1109/ccc.1999.766257"
+        "doi:10.1109/ccc.1999.766257",
+        "doi:10.1016/s0022-0000(76)80043-8",
+        "doi:10.1145/800116.803773",
+        "doi:10.1090/s0025-5718-08-02200-x",
+        "doi:10.1145/261342.571216",
+        "openalex:W2012857639",
+        "openalex:W2071056578",
+        "openalex:W2026644646",
+        "openalex:W1990313671"
       ],
       "last_receipt": {
-        "evidence": "source-503ebfd8bb274045",
+        "evidence": "source-7ddad1b92ee44b7f",
         "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.1090/mbk/139/28",
-          "doi:10.1090/stml/099/08",
-          "doi:10.1007/bf01275488",
-          "doi:10.1109/ccc.1999.766257"
+          "doi:10.1016/s0022-0000(76)80043-8",
+          "doi:10.1145/800116.803773",
+          "doi:10.1090/s0025-5718-08-02200-x",
+          "doi:10.1145/261342.571216",
+          "openalex:W2012857639",
+          "openalex:W2071056578",
+          "openalex:W2026644646",
+          "openalex:W1990313671"
         ],
-        "research_id": "res-pn-013",
-        "route": "api.crossref.org:discovery",
+        "research_id": "res-pn-015",
+        "route": "api.openalex.org:discovery",
         "stage": "discovery"
       }
     },
@@ -45572,8 +46171,9 @@
       "query": "computational complexity classes primality testing deterministic polynomial time",
       "reason": "The capability block for pn-001 has expired, enabling the collection of foundational literature on the complexity of primality algorithms.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-e5abaf9c83ee482f"
+      "status": "collected",
+      "created_by": "w-e5abaf9c83ee482f",
+      "evidence": "source-7ddad1b92ee44b7f"
     },
     "res-phi-006": {
       "domain": "philosophy",
@@ -45672,9 +46272,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-22T20:29:57.884261+00:00",
-    "anchor_version": 31,
-    "anchor_seq": 1407,
-    "effective_seconds": 9200.051438
+    "anchor_time": "2026-09-22T20:31:54.064500+00:00",
+    "anchor_version": 32,
+    "anchor_seq": 1422,
+    "effective_seconds": 9316.231677
   }
 }
