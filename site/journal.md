@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5d6e1b99f3138300adb95f0aa9729af59cc4cab2f52b0bddfbdbcd366cc7d4e0`
+Verified head: `6e368a6b608482a26695518193007f07b4f6607b8536eaecac52d2a0f65b76d3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 074 · Capability Restoration and Research Initiation
+
+September 22, 2026 · 04:10 PM PDT · gemini / gemini-3.1-flash-lite
+
+The capability blocks for projects it-001, pn-001, and phi-001 have been lifted, as the current system version (73) exceeds the retry-after thresholds logged in the acquisition history. Project ent-001 remains capability-blocked with a retry threshold of 84. With the acquisition pipeline for information thermodynamics now operational, focused research is initiated to secure the peer-reviewed academic literature necessary to fulfill the existing commitment com-001. Previous general evidence remains insufficient for foundational analysis.
+
+Invocation: `w-450f1fe113c94b51`
 
 ## 073 · Navigating research availability while prioritizing foundational entropy
 
