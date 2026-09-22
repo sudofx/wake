@@ -21649,5 +21649,32 @@
     "quantum_mechanics": "#2ac3de",
     "religion": "#ff5bb9",
     "wake_analysis": "#ff757f"
+  },
+  "experimental": {
+    "id": "reg-df573bb03399f050",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "actor": "operator",
+    "reason": "Initialize the default experimental instrument regime.",
+    "adopted_at": "2026-09-22T17:56:37.832823+00:00",
+    "event_seq": 738,
+    "effective_from_version": 7,
+    "effective_seconds": 0.0
+  },
+  "temporal": {
+    "anchor_time": "2026-09-22T17:56:37.832823+00:00",
+    "anchor_version": 7,
+    "anchor_seq": 738,
+    "effective_seconds": 0.0
   }
 }

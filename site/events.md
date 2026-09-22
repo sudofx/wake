@@ -2,9 +2,42 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `a4b9b621218b1dd19071480f1987e4cd8821584d8b80b19d19d617f9f203f6ee`
+Verified head: `6b9274075b0cdab29117c6650c77b0d16c59e08b3ae120afa8d2188091cf01b7`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0738 · `experimental_regime_adopted`
+
+**Time:** 2026-09-22T17:56:37.899351+00:00  
+**ID:** `reg-df573bb03399f050`  
+**Hash:** `6b9274075b0cdab29117c6650c77b0d16c59e08b3ae120afa8d2188091cf01b7`  
+**Previous hash:** `a4b9b621218b1dd19071480f1987e4cd8821584d8b80b19d19d617f9f203f6ee`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "adopted_at": "2026-09-22T17:56:37.832823+00:00",
+  "controls": {
+    "time_dilation": {
+      "affects": [
+        "telemetry",
+        "provider_context"
+      ],
+      "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+      "enabled": true,
+      "mode": "real",
+      "scale": 1.0
+    }
+  },
+  "effective_from_version": 7,
+  "effective_seconds": 0.0,
+  "event_seq": 738,
+  "id": "reg-df573bb03399f050",
+  "reason": "Initialize the default experimental instrument regime."
+}
+```
 
 ## Event 0737 · `deferred`
 
