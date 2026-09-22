@@ -78,7 +78,7 @@
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
   const raw = value => `<pre>${esc(JSON.stringify(value,null,2))}</pre>`;
   function expandRecordDetails(root=document) {
-    root.querySelectorAll('details:not(.nav-group)').forEach(disclosure=>{
+    root.querySelectorAll('details.record-panel').forEach(disclosure=>{
       const panel=document.createElement('section');
       for(const attribute of [...disclosure.attributes]) panel.setAttribute(attribute.name,attribute.value);
       panel.classList.add('expanded-record');
@@ -327,7 +327,16 @@
   function evidence(selected='') {
     const query=$('evidence-search').value.toLowerCase();
     const rows=Object.values(s.evidence).reverse().filter(e=>(!selected||e.id===selected)&&JSON.stringify(e).toLowerCase().includes(query));
-    $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span><p>${esc(e.content)}</p><details><summary>Raw observation</summary>${raw(e)}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
+    const valueText=value=>Array.isArray(value)?value.map(valueText).join(' · '):value&&typeof value==='object'?JSON.stringify(value):String(value??'');
+    const readable=e=>{
+      let content=e.content;
+      if(typeof content==='string')try{content=JSON.parse(content)}catch{}
+      if(!content||typeof content!=='object'||Array.isArray(content))return `<p class="evidence-plain">${esc(content)}</p>`;
+      const priority=['scope','summary','statement','question','reason','process_id','invocation','base_version','previous_head','inherited_commitments'];
+      const fields=Object.entries(content).filter(([,value])=>value!==null&&value!==undefined&&value!=='').sort(([a],[b])=>{const ai=priority.indexOf(a),bi=priority.indexOf(b);return(ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b)}).slice(0,10);
+      return `<dl class="evidence-summary">${fields.map(([key,value])=>`<div><dt>${esc(key.replaceAll('_',' '))}</dt><dd>${esc(valueText(value))}</dd></div>`).join('')}</dl>`;
+    };
+    $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card evidence-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span>${readable(e)}<details><summary>Raw observation</summary>${raw(e)}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
   }
   function history(selected='') {
     const query=$('history-search').value.toLowerCase(), filter=selected.startsWith('filter:')?selected.slice(7):'', kind=filter==='rejected'?'rejected':$('event-filter').value;
