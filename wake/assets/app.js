@@ -205,47 +205,43 @@
     const acceptedActions=actionEvents.flatMap(row=>row.actions.map(action=>({cycle:row.cycle,action})));
     const actionCounts={}; acceptedActions.forEach(({action})=>actionCounts[action.type]=(actionCounts[action.type]||0)+1);
     const sortedActionCounts=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+    const actionTypes=sortedActionCounts.map(([type])=>type);
     const actionTotal=acceptedActions.length;
-    const actionColor=Object.fromEntries(sortedActionCounts.map(([name],idx)=>[name,idx%6]));
-    const actionPie=sortedActionCounts.map(([name,n])=>`<div class="pie-key"><i style="background:var(--chart-${actionColor[name]})"></i><span>${esc(name)}</span><strong>${n}</strong></div>`).join('');
-    let angle=0; const pieStops=sortedActionCounts.map(([name,n])=>{const from=angle;angle+=actionTotal?n/actionTotal*360:0;return `var(--chart-${actionColor[name]}) ${from}deg ${angle}deg`;}).join(',');
 
-    // Topic distribution and action mix intentionally use the exact same accepted-action population.
-    // We only attribute an action to a topic when the durable action/project record says which topic it belongs to.
+    // One canonical population powers this entire matrix: accepted proposal actions.
+    // Topic attribution remains conservative. A topic is used only when the action
+    // carries a domain or references a durable project with a recorded domain.
     const actionTopic=action=>{
-      const direct=action.domain;
-      if(direct)return direct;
+      if(action.domain)return action.domain;
       const projectId=action.project || (action.type==='project'?action.id:null);
       if(projectId&&s.projects?.[projectId]?.domain)return s.projects[projectId].domain;
-      return 'unattributed';
+      return null;
     };
     const topicStats=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,{label:t.label,actions:{},total:0}]));
-    const ensureTopic=id=>{
-      const key=id||'unattributed';
-      if(!topicStats[key])topicStats[key]={label:key==='unattributed'?'Unattributed / system':topicLabel(key),actions:{},total:0};
-      return topicStats[key];
-    };
+    const systemActions={actions:{},total:0};
     acceptedActions.forEach(({action})=>{
-      const topic=ensureTopic(actionTopic(action));
-      topic.actions[action.type]=(topic.actions[action.type]||0)+1;
-      topic.total++;
+      const topicId=actionTopic(action);
+      const target=topicId&&topicStats[topicId]?topicStats[topicId]:systemActions;
+      target.actions[action.type]=(target.actions[action.type]||0)+1;
+      target.total++;
     });
-    const topicRows=Object.entries(topicStats).map(([id,t])=>({id,...t})).filter(t=>t.total>0).sort((a,b)=>b.total-a.total||a.label.localeCompare(b.label));
-    const maxTopic=Math.max(1,...topicRows.map(t=>t.total));
-    const topicChart=topicRows.map(t=>{
-      const parts=sortedActionCounts.map(([type])=>{
-        const n=t.actions[type]||0;
-        return n?`<i title="${esc(type)}: ${n}" style="width:${100*n/maxTopic}%;background:var(--chart-${actionColor[type]})"></i>`:'';
-      }).join('');
-      const title=sortedActionCounts.filter(([type])=>t.actions[type]).map(([type])=>`${type}: ${t.actions[type]}`).join(' · ');
-      const label=t.id==='unattributed'
-        ? `<span class="topic-metric-name topic-unattributed">Unattributed / system</span>`
-        : `<a class="topic-metric-name" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a>`;
-      return `<div class="topic-metric-row">${label}<div class="topic-stack" title="${esc(title)}">${parts}</div><strong>${t.total}</strong></div>`;
-    }).join('');
-    const topicLegend=sortedActionCounts.map(([type])=>`<span><i style="background:var(--chart-${actionColor[type]})"></i>${esc(type)}</span>`).join('');
-    const attributedActionTotal=topicRows.reduce((n,t)=>n+t.total,0);
-
+    const topicRows=Object.entries(topicStats)
+      .map(([id,t])=>({id,...t}))
+      .filter(t=>t.total>0)
+      .sort((a,b)=>b.total-a.total||a.label.localeCompare(b.label));
+    const configuredTopicCount=(s.research_topics||[]).length;
+    const topicAttributedTotal=topicRows.reduce((n,t)=>n+t.total,0);
+    const matrixCell=(count,total)=>count
+      ? `<span class="matrix-value" style="--cell-fill:${Math.max(8,100*count/Math.max(1,total))}%"><b>${count}</b></span>`
+      : '<span class="matrix-value zero">0</span>';
+    const matrixHeader=actionTypes.map(type=>`<span class="matrix-head">${esc(type)}</span>`).join('');
+    const matrixRows=topicRows.map(t=>`<div class="matrix-row"><a class="matrix-topic" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a>${actionTypes.map(type=>matrixCell(t.actions[type]||0,t.total)).join('')}<strong class="matrix-total">${t.total}</strong></div>`).join('');
+    const matrixTotals=actionTypes.map(type=>`<strong>${actionCounts[type]||0}</strong>`).join('');
+    const systemMatrix=systemActions.total
+      ? `<div class="matrix-system-row"><span>UNATTRIBUTED / SYSTEM</span>${actionTypes.map(type=>`<b>${systemActions.actions[type]||0}</b>`).join('')}<strong>${systemActions.total}</strong></div>`
+      : '';
+    const mobileMatrix=topicRows.map(t=>`<details class="matrix-topic-card"><summary><span>${esc(t.label)}</span><strong>${t.total}</strong></summary><div>${actionTypes.filter(type=>t.actions[type]).map(type=>`<p><span>${esc(type)}</span><b>${t.actions[type]}</b></p>`).join('')}</div></details>`).join('')
+      + (systemActions.total?`<details class="matrix-topic-card matrix-system-card"><summary><span>Unattributed / system</span><strong>${systemActions.total}</strong></summary><div>${actionTypes.filter(type=>systemActions.actions[type]).map(type=>`<p><span>${esc(type)}</span><b>${systemActions.actions[type]}</b></p>`).join('')}</div></details>`:'');
     const windows=[]; for(let i=0;i<completed.length;i+=10){const group=completed.slice(i,i+10),a=group.filter(x=>x.status==='accepted').length,r=group.filter(x=>x.status==='rejected').length,d=group.filter(x=>x.status==='deferred').length;windows.push({label:`${i+1}–${i+group.length}`,a,r,d,total:group.length});}
     const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');
 
@@ -268,8 +264,7 @@
     const providerSuccesses=knownAttempts.filter(a=>['success','accepted','ok'].includes(String(a.result||'').toLowerCase())).length;
     const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
     const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
-    const configuredTopicCount=(s.research_topics||[]).length;
-    const topicActive=topicRows.filter(t=>t.id!=='unattributed').length;
+    const topicActive=topicRows.length;
     // Recovery telemetry is derived from durable receipts and frame records;
     // it describes interventions without treating them as research success.
     const frames=Object.values(s.representations||{}).flat();
@@ -304,8 +299,7 @@
     $('metrics-dashboard').innerHTML=`
       <section class="metrics-row-one">
         <section class="dashboard-grid">
-        <article class="dashboard-panel panel-topic"><div class="panel-heading"><div><p class="eyebrow">TOPIC DISTRIBUTION</p><h2>Where accepted work goes.</h2></div><div class="landscape-status"><span>CURRENT TOPICS</span><strong>${configuredTopicCount}</strong></div></div><p class="small">The same ${actionTotal} accepted actions shown in Action Mix, regrouped by research topic. Actions without an explicit durable topic are shown as Unattributed / system.</p><div class="topic-metrics">${topicChart||'<p class="empty">No accepted actions yet.</p>'}</div><div class="topic-legend" aria-label="Accepted action type color key">${topicLegend}</div><p class="small metric-reconcile">${attributedActionTotal} / ${actionTotal} accepted actions reconciled.</p></article>
-        <article class="dashboard-panel panel-action"><p class="eyebrow">ACCEPTED ACTION MIX</p><h2>What kind of work survives governance?</h2><div class="pie-layout"><div class="css-pie" style="background:conic-gradient(${pieStops||'var(--line) 0deg 360deg'})" role="img" aria-label="Accepted action type composition"></div><div class="pie-keys">${actionPie||'<p class="empty">No accepted actions yet.</p>'}</div></div></article>
+        <article class="dashboard-panel panel-action-matrix"><div class="panel-heading"><div><p class="eyebrow">ACCEPTED ACTION MATRIX</p><h2>Where accepted work goes — and what kind it is.</h2></div><div class="landscape-status"><span>ACCEPTED ACTIONS</span><strong>${actionTotal}</strong></div></div><p class="small">One population, two dimensions: rows are configured research topics; columns are accepted action types. Row totals and column totals reconcile to the same accepted-action record. Actions without a durable topic stay separate below the research matrix.</p><div class="action-matrix-desktop"><div class="action-matrix-scroll"><div class="action-matrix" style="--action-cols:${Math.max(1,actionTypes.length)}"><div class="matrix-header"><span>TOPIC</span>${matrixHeader}<strong>TOTAL</strong></div>${matrixRows||'<p class="empty">No topic-attributed accepted actions yet.</p>'}<div class="matrix-total-row"><span>ALL TOPICS</span>${matrixTotals}<strong>${actionTotal}</strong></div>${systemMatrix}</div></div><p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total accepted actions.</p></div><div class="action-matrix-mobile">${mobileMatrix||'<p class="empty">No accepted actions yet.</p>'}<p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total.</p></div></article>
         <article class="dashboard-panel panel-correctability"><p class="eyebrow">CORRECTABILITY</p><h2>What governance stopped.</h2><div class="metric-bars">${outcomeBars}</div><h3>Most common rejection families</h3><div class="reason-list">${reasons}</div><a class="text-link" href="#history/filter:rejected">Inspect rejected work →</a></article>
         <article class="dashboard-panel panel-continuity"><p class="eyebrow">CONTINUITY</p><h2>Does work cross fresh sessions?</h2><div class="dashboard-stat"><strong>${inheritedFulfilled.length}</strong><span>obligations fulfilled by a later invocation</span></div><div class="dashboard-stat"><strong>${obligations.filter(c=>c.status==='open').length}</strong><span>open obligations still carried forward</span></div><div class="dashboard-stat"><strong>${recoveredCount}</strong><span>recovered calls with durable state retained</span></div><div class="dashboard-stat"><strong>${overdue}</strong><span>open obligations at or past due cycle</span></div></article>
         <article class="dashboard-panel panel-yield"><p class="eyebrow">RESEARCH YIELD</p><h2>What survives as usable work?</h2><div class="dashboard-stat"><strong>${evidenceCount}</strong><span>evidence records</span></div><div class="dashboard-stat"><strong>${projects.length}</strong><span>research projects</span></div><div class="dashboard-stat"><strong>${notebooks.length}</strong><span>notebooks</span></div><div class="dashboard-stat"><strong>${Object.keys(s.posts||{}).length}</strong><span>published posts</span></div></article>
