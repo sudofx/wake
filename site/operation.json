@@ -1,7 +1,7 @@
 {
   "status": "rejected",
-  "id": "w-5ddd1bbc7e574ebb",
-  "reason": "Commitment must be due in a future cycle, within 100 cycles",
+  "id": "w-2e499a0fb6a940f8",
+  "reason": "WAKE analysis notebooks must cite only source-controlled sudofx/wake files",
   "wake_status": {
     "last_accepted": {
       "id": "w-945dbd04e5914a4a",
@@ -45,29 +45,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-5ddd1bbc7e574ebb",
-      "time": "2026-09-22T12:42:53.790836+00:00",
-      "finished": "2026-09-22T12:43:08.623256+00:00",
+      "id": "w-2e499a0fb6a940f8",
+      "time": "2026-09-22T12:44:32.061606+00:00",
+      "finished": "2026-09-22T12:44:53.492170+00:00",
       "status": "rejected",
-      "reason": "Commitment must be due in a future cycle, within 100 cycles",
+      "reason": "WAKE analysis notebooks must cite only source-controlled sudofx/wake files",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 4411,
+          "elapsed_ms": 10345,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 39064,
+          "request_payload_bytes": 38791,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 41,
-    "next_eligible": "2026-09-22T12:47:53.790836+00:00",
+    "next_eligible": "2026-09-22T12:49:32.061606+00:00",
     "pending": false,
-    "attempts_today": 26,
-    "provider_requests_today": 55,
-    "provider_request_slots_today": 55,
+    "attempts_today": 27,
+    "provider_requests_today": 56,
+    "provider_request_slots_today": 56,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
