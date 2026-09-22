@@ -62,10 +62,10 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(count, "2")
                 files = subprocess.check_output(["git", "--git-dir", str(remote), "ls-tree", "--name-only", "journal-pages"],text=True).splitlines()
                 self.assertEqual(set(files), {
-                    ".nojekyll", "index.html", "journal.md", "style.css", "nav.css", "map.css", "theme.css",
+                    ".nojekyll", "index.html", "journal.md", "style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                     "state.json", "state.md", "state.html",
                     "events.jsonl", "events.md", "events.html",
-                    "head.txt", "map.html", "map-data.json", "blog.xml", "journal.xml", "journal",
+                    "head.txt", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "blog.xml", "journal.xml", "journal",
                 })
                 self.assertFalse((project/"index.html").exists())
                 map_path = project/"site/map-data.json"

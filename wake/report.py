@@ -546,7 +546,7 @@ def export(store, destination="site", experiment=None, operation=None):
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
-        for name in ("style.css", "nav.css", "map.css", "theme.css"):
+        for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
             atomic_write(target / name, (assets / name).read_text())
         embedded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
@@ -637,5 +637,12 @@ def export(store, destination="site", experiment=None, operation=None):
         map_page = map_page.replace("MAP_DATA", graph_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
         atomic_write(target / "map-data.json", graph_json)
         atomic_write(target / "map.html", map_page)
+        map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+        map3d_page = map3d_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
+        map3d_page = map3d_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
+        map3d_page = map3d_page.replace("/* MAP3D_SCRIPT */", (assets / "map3d.js").read_text())
+        map3d_page = map3d_page.replace("MAP_DATA", graph_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+        atomic_write(target / "map3d-data.json", graph_json)
+        atomic_write(target / "map3d.html", map3d_page)
         atomic_write(target / "index.html", page)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}

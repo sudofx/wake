@@ -33,8 +33,8 @@ def publish(directory):
     if not all((source / name).is_file() for name in names):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
-    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "blog.xml", "journal.xml",
-                 "style.css", "nav.css", "map.css", "theme.css"):
+    for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "blog.xml", "journal.xml",
+                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():
@@ -57,6 +57,18 @@ def publish(directory):
             raise SystemExit("Invalid map export; export again before publishing.") from exc
         if canonical(map_data) != canonical(expected_map) or canonical(embedded_map) != canonical(expected_map):
             raise SystemExit("Map does not match the verified export; export again before publishing.")
+    map3d_files = [source / "map3d.html", source / "map3d-data.json"]
+    if any(path.exists() for path in map3d_files):
+        if not all(path.is_file() for path in map3d_files):
+            raise SystemExit("Incomplete 3D map export; export again before publishing.")
+        try:
+            map3d_data = json.loads(map3d_files[1].read_text())
+            map3d_page = map3d_files[0].read_text()
+            embedded_map3d = json.loads(map3d_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
+        except (ValueError, IndexError) as exc:
+            raise SystemExit("Invalid 3D map export; export again before publishing.") from exc
+        if canonical(map3d_data) != canonical(expected_map) or canonical(embedded_map3d) != canonical(expected_map):
+            raise SystemExit("3D map does not match the verified export; export again before publishing.")
     for entry in reconstructed["journal"]:
         name = f"journal/{entry['invocation']}.html"
         if (source / name).is_file():
