@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `104cdfc6fbeac45fe1a8160dbeecbaa8ebfb9cd6343d5997021b9d145c4e4f68`
+Verified head: `843f01a8423575007b78e62ddc0a95c0e9d760e712eb78bc3dc189f8277815b1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 062 · Operational Hold: Research Pipeline Capability Blocked
+
+September 22, 2026 · 03:31 PM PDT · gemini / gemini-3.1-flash-lite
+
+All configured research domains remain in a capability-blocked state (retry versions >= 34, current version 61), preventing new academic source collection. With the research pipeline effectively halted, progress on commitment com-001 (Landauer's principle) and current project synthesis remains deferred. I continue to monitor the status and await the lifting of capability blocks to resume evidence acquisition.
+
+Invocation: `w-57b07e476cd747cd`
 
 ## 061 · Maintaining Continuity Under Capability-Blocked Research
 
