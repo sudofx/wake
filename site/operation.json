@@ -1,13 +1,13 @@
 {
   "status": "deferred",
-  "id": "w-5720f1e969ec41de",
+  "id": "w-b01216df35934f5e",
   "reason": "Gemini temporarily unavailable; wake deferred",
   "provider_error": {
     "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 36560,
+    "request_payload_bytes": 35756,
     "http_status": 503,
     "result": "transient_failure",
-    "elapsed_ms": 3270,
+    "elapsed_ms": 572,
     "response_bytes_captured": 198,
     "provider_error": {
       "code": 503,
@@ -19,10 +19,10 @@
     "provider_attempts": [
       {
         "model": "gemini-3.8-flash",
-        "request_payload_bytes": 36560,
+        "request_payload_bytes": 35756,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 1042,
+        "elapsed_ms": 973,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -33,10 +33,10 @@
       },
       {
         "model": "gemini-3.5-flash",
-        "request_payload_bytes": 36560,
+        "request_payload_bytes": 35756,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 1823,
+        "elapsed_ms": 681,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -47,10 +47,10 @@
       },
       {
         "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 36560,
+        "request_payload_bytes": 35756,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 3270,
+        "elapsed_ms": 572,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -65,10 +65,10 @@
   "provider_attempts": [
     {
       "model": "gemini-3.8-flash",
-      "request_payload_bytes": 36560,
+      "request_payload_bytes": 35756,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 1042,
+      "elapsed_ms": 973,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -79,10 +79,10 @@
     },
     {
       "model": "gemini-3.5-flash",
-      "request_payload_bytes": 36560,
+      "request_payload_bytes": 35756,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 1823,
+      "elapsed_ms": 681,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -93,10 +93,10 @@
     },
     {
       "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 36560,
+      "request_payload_bytes": 35756,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 3270,
+      "elapsed_ms": 572,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -109,20 +109,20 @@
   "wake_status": {
     "last_accepted": null,
     "latest_attempt": {
-      "id": "w-5720f1e969ec41de",
-      "time": "2026-09-22T15:13:40.095456+00:00",
-      "finished": "2026-09-22T15:13:56.524745+00:00",
+      "id": "w-b01216df35934f5e",
+      "time": "2026-09-22T15:19:53.866365+00:00",
+      "finished": "2026-09-22T15:20:06.509566+00:00",
       "status": "deferred",
       "reason": "Gemini temporarily unavailable; wake deferred",
       "provider_error": {
         "category": "server",
-        "elapsed_ms": 3270,
+        "elapsed_ms": 572,
         "http_status": 503,
         "model": "gemini-3.1-flash-lite",
         "provider_attempts": [
           {
             "category": "server",
-            "elapsed_ms": 1042,
+            "elapsed_ms": 973,
             "http_status": 503,
             "model": "gemini-3.8-flash",
             "provider_error": {
@@ -130,13 +130,13 @@
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 36560,
+            "request_payload_bytes": 35756,
             "response_bytes_captured": 198,
             "result": "transient_failure"
           },
           {
             "category": "server",
-            "elapsed_ms": 1823,
+            "elapsed_ms": 681,
             "http_status": 503,
             "model": "gemini-3.5-flash",
             "provider_error": {
@@ -144,13 +144,13 @@
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 36560,
+            "request_payload_bytes": 35756,
             "response_bytes_captured": 198,
             "result": "transient_failure"
           },
           {
             "category": "server",
-            "elapsed_ms": 3270,
+            "elapsed_ms": 572,
             "http_status": 503,
             "model": "gemini-3.1-flash-lite",
             "provider_error": {
@@ -158,7 +158,7 @@
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 36560,
+            "request_payload_bytes": 35756,
             "response_bytes_captured": 198,
             "result": "transient_failure"
           }
@@ -169,7 +169,7 @@
           "status": "UNAVAILABLE"
         },
         "provider_requests_sent": 3,
-        "request_payload_bytes": 36560,
+        "request_payload_bytes": 35756,
         "response_bytes_captured": 198,
         "result": "transient_failure"
       },
@@ -177,7 +177,7 @@
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 1042,
+          "elapsed_ms": 973,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -185,13 +185,13 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 36560,
+          "request_payload_bytes": 35756,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
           "category": "server",
-          "elapsed_ms": 1823,
+          "elapsed_ms": 681,
           "http_status": 503,
           "model": "gemini-3.5-flash",
           "provider_error": {
@@ -199,13 +199,13 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 36560,
+          "request_payload_bytes": 35756,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
           "category": "server",
-          "elapsed_ms": 3270,
+          "elapsed_ms": 572,
           "http_status": 503,
           "model": "gemini-3.1-flash-lite",
           "provider_error": {
@@ -213,18 +213,18 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 36560,
+          "request_payload_bytes": 35756,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         }
       ]
     },
     "accepted_cycles": 0,
-    "next_eligible": "2026-09-22T15:18:40.095456+00:00",
+    "next_eligible": "2026-09-22T15:24:53.866365+00:00",
     "pending": false,
-    "attempts_today": 1,
-    "provider_requests_today": 3,
-    "provider_request_slots_today": 3,
+    "attempts_today": 2,
+    "provider_requests_today": 6,
+    "provider_request_slots_today": 6,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
