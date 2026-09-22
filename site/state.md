@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 6  
+**Version:** 7  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `581a2dbdd593025e97ee978a9a2e15feba4879ffad1905023319719ec5c4a81f`
+**Verified head:** `02b9c149d673c1bcc95b95702aa72194644b4fa5aab5ce1f5ba1abe71e4d3f91`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -119,7 +119,7 @@ _None recorded._
 {
   "project": "ent-001",
   "domain": "entropy",
-  "no_progress": 2,
+  "no_progress": 3,
   "routes": [
     "api.crossref.org:discovery",
     "api.openalex.org:discovery"
@@ -127,35 +127,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.32388/hg1gup",
-    "doi:10.3390/e19090436",
-    "doi:10.3389/fnhum.2014.00020",
-    "doi:10.3389/fnhum.2014.00020/pdf",
-    "doi:10.3390/e21060541",
-    "doi:10.1146/annurev.fluid.30.1.139",
-    "doi:10.4310/atmp.2000.v4.n1.a1",
-    "openalex:W2109543774",
-    "openalex:W2947459187",
-    "openalex:W2130457461",
     "openalex:W2150054850",
-    "arxiv:2014.00020"
+    "arxiv:2014.00020",
+    "doi:10.1017/s0960129512000783",
+    "doi:10.1103/revmodphys.93.035008",
+    "doi:10.1002/j.1538-7305.1948.tb00917.x",
+    "doi:10.1038/ncomms15599",
+    "openalex:W2134287462",
+    "openalex:W3085399439",
+    "openalex:W2041404167",
+    "openalex:W2620676965",
+    "arxiv:2009.07668",
+    "arxiv:7305.1948"
   ],
   "last_receipt": {
-    "evidence": "source-aeb3ff734d7d4776",
+    "evidence": "source-c9ee773becaa4cf5",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.3389/fnhum.2014.00020",
-      "doi:10.3389/fnhum.2014.00020/pdf",
-      "doi:10.3390/e21060541",
-      "doi:10.1146/annurev.fluid.30.1.139",
-      "doi:10.4310/atmp.2000.v4.n1.a1",
-      "openalex:W2109543774",
-      "openalex:W2947459187",
-      "openalex:W2130457461",
-      "openalex:W2150054850",
-      "arxiv:2014.00020"
+      "doi:10.1017/s0960129512000783",
+      "doi:10.1103/revmodphys.93.035008",
+      "doi:10.1002/j.1538-7305.1948.tb00917.x",
+      "doi:10.1038/ncomms15599",
+      "openalex:W2134287462",
+      "openalex:W3085399439",
+      "openalex:W2041404167",
+      "openalex:W2620676965",
+      "arxiv:2009.07668",
+      "arxiv:7305.1948"
     ],
-    "research_id": "res-007",
+    "research_id": "res-008",
     "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
@@ -188,7 +188,7 @@ _None recorded._
 {
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-4d01f181b1f34fee",
+  "invocation": "w-3b2f3cc70b1a4a4e",
   "restored_topics": [],
   "selected_topic": "entropy",
   "terminal": "accepted",
@@ -16222,6 +16222,256 @@ _None recorded._
 }
 ```
 
+### `w-3b2f3cc70b1a4a4e`
+
+```json
+{
+  "base_version": 6,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19683,
+    "delivered_request_chars": 42407,
+    "mode": "rich",
+    "omitted_categories": [],
+    "provenance_policy": null,
+    "rich_context_chars": 42407,
+    "working_set_chars": 915
+  },
+  "id": "w-3b2f3cc70b1a4a4e",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 6,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "ent-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Entropy Foundations"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2257,
+  "provider": "gemini",
+  "quota_day": "2026-09-22",
+  "request_hash": "8c0189d92051f23ed7e25147323c1778d602f96733fc94dbf0457674dcc5cfd4",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "com-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-c9ee773becaa4cf5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c9ee773becaa4cf5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7114f92b172443c8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7114f92b172443c8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8311c7c084214d4d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8311c7c084214d4d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3415c9d0b3c4462a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3415c9d0b3c4462a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-462f2e0f85db4d17"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-462f2e0f85db4d17",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8823c2d0e00b485d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8823c2d0e00b485d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-c9ee773becaa4cf5",
+      "source-7114f92b172443c8",
+      "source-8311c7c084214d4d",
+      "source-3415c9d0b3c4462a",
+      "source-462f2e0f85db4d17",
+      "source-8823c2d0e00b485d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [],
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "selected_topic": "entropy"
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19683,
+    "inquiry_drive_project_count": 1,
+    "mode": "rich",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 915,
+    "working_to_delivered_ratio": 0.0465
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ent-001",
+        "next_step": "Retrieve foundational academic papers on statistical entropy.",
+        "question": "How are definitions of entropy synthesized across statistical mechanics and information theory?",
+        "title": "Entropy Foundations"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "com-001",
+        "reason": "Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.",
+        "task": "Synthesize collected evidence into a foundational notebook on Landauer's principle and Maxwell's Demon"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-22T17:32:33.837507+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2970,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47887,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-22T17:32:44.901070+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-5929557bed184f79`
@@ -21753,6 +22003,103 @@ _None recorded._
 }
 ```
 
+### `source-c9ee773becaa4cf5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=foundational+statistical+mechanics+entropy+vs+shannon+information+entropy+definitions&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2134287462\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/s0960129512000783\\\", \\\"title\\\": \\\"Shannon entropy: a rigorous notion at the crossroads between probability, information theory, dynamical systems and statistical physics\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 227, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/4A4B7B069BCF64CC595635D865317C83/S0960129512000783a.pdf/div-class-title-shannon-entropy-a-rigorous-notion-at-the-crossroads-between-probability-information-theory-dynamical-systems-and-statistical-physics-div.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/s0960129512000783\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/s0960129512000783\\\", \\\"pdf_url\\\": \\\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/4A4B7B069BCF64CC595635D865317C83/S0960129512000783a.pdf/div-class-title-shannon-entropy-a-rigorous-notion-at-the-crossroads-between-probability-information-theory-dynamical-systems-and-statistical-physics-div.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S101766102\\\", \\\"display_name\\\": \\\"Mathematical Structures in Computer Science\\\", \\\"issn_l\\\": \\\"0960-1295\\\", \\\"issn\\\": [\\\"0960-1295\\\", \\\"1469-8072\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Mathematical Structures in Computer Science\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Statistical entropy was introduced by Shannon as a basic concept in information theory measuring the average missing information in a random source. Extended into an entropy rate, it gives bounds in coding and compression theorems. In this paper, I describe how statistical entropy and entropy rate relate to other notions of entropy that are relevant to probability theory (entropy of a discrete probability distribution measuring its unevenness), computer sciences (algorithmic complexity), the ergodic theory of dynamical systems (Kolmogorov–Sinai or metric entropy) and statistical physics (Boltzmann entropy). Their mathematical foundations and correlates (the entropy concentration, Sanov, Shannon–McMillan–Breiman, Lempel–Ziv and Pesin theorems) clarify their interpretation and offer a rigorous basis for maximum entropy principles. Although often ignored, these mathematical perspectives give a central position to entropy and relative entropy in statistical laws describing generic collective behaviours, and provide insights into the notions of randomness, typicality and disorder. The relevance of entropy beyond the realm of physics, in particular for living systems and ecosystems, is yet to be demonstrated.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3085399439\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/revmodphys.93.035008\\\", \\\"title\\\": \\\"Irreversible entropy production: From classical to quantum\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 402, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://pureadmin.qub.ac.uk/ws/files/355388927/2009.07668.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/revmodphys.93.035008\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/revmodphys.93.035008\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S73260565\\\", \\\"display_name\\\": \\\"Reviews of Modern Physics\\\", \\\"issn_l\\\": \\\"0034-6861\\\", \\\"issn\\\": [\\\"0034-6861\\\", \\\"1538-4527\\\", \\\"1539-0756\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Reviews of Modern Physics\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Entropy is a fundamental concept in thermodynamics and statistical physics. It governs processes in physics, chemistry, and biology, and its statistical and information theoretical foundations have been supplemented by recent analyses of fluctuations in microscopic and quantum systems. This article presents a review of theoretical and experimental attempts to describe and assess entropy production in a unified manner from the quantum to the classical level.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2041404167\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/j.1538-7305.1948.tb00917.x\\\", \\\"title\\\": \\\"A Mathematical Theory of Communication\\\", \\\"publication_year\\\": 1948, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 9725, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/11858/00-001M-0000-002C-4314-2\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1002/j.1538-7305.1948.tb00917.x\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1002/j.1538-7305.1948.tb00917.x\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S127472826\\\", \\\"display_name\\\": \\\"Bell System Technical Journal\\\", \\\"issn_l\\\": \\\"0005-8580\\\", \\\"issn\\\": [\\\"0005-8580\\\", \\\"2376-7154\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310319808\\\", \\\"host_organization_name\\\": \\\"Institute of Electrical and Electronics Engineers\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319808\\\"], \\\"host_organization_lineage_names\\\": [\\\"Institute of Electrical and Electronics Engineers\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Bell System Technical Journal\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"In this final installment of the paper we consider the case where the signals or the messages or both are continuously variable, in contrast with the discrete nature assumed until now. To a considerable extent the continuous case can be obtained through a limiting process from the discrete case by dividing the continuum of messages and signals into a large but finite number of small regions and calculating the various parameters involved on a discrete basis. As the size of the regions is decreased these parameters in general approach as limits the proper values for the continuous case. There are, however, a few new effects that appear and also a general change of emphasis in the direction of specialization of the general results to particular cases.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2620676965\\\", \\\"doi\\\": \\\"https://doi.org/10.1038/ncomms15599\\\", \\\"title\\\": \\\"Single-cell entropy for accurate estimation of differentiation potency from a cell’s transcriptome\\\", \\\"publication_year\\\": 2017, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 391, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.nature.com/articles/ncomms15599.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1038/ncomms15599\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1038/ncomms15599\\\", \\\"pdf_url\\\": \\\"https://www.nature.com/articles/ncomms15599.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S64187185\\\", \\\"display_name\\\": \\\"Nature Communications\\\", \\\"issn_l\\\": \\\"2041-1723\\\", \\\"issn\\\": [\\\"2041-1723\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"doyens\\\", \\\"jufo-3\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319908\\\", \\\"host_organization_name\\\": \\\"Nature Portfolio\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319908\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Nature Portfolio\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Nature Communications\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The ability to quantify differentiation potential of single cells is a task of critical importance. Here we demonstrate, using over 7,000 single-cell RNA-Seq profiles, that differentiation potency of a single cell can be approximated by computing the signalling promiscuity, or entropy, of a cell's transcriptome in the context of an interaction network, without the need for feature selection. We show that signalling entropy provides a more accurate and robust potency estimate than other entropy-based measures, driven in part by a subtle positive correlation between the transcriptome and connectome. Signalling entropy identifies known cell subpopulations of varying potency and drug resistant cancer stem-cell phenotypes, including those derived from circulating tumour cells. It further reveals that expression heterogeneity within single-cell populations is regulated. In summary, signalling entropy allows in silico estimation of the differentiation potency and plasticity of single cells and bulk samples, providing a means to identify normal and cancer stem-cell phenotypes.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"51fed97ea84b0fe22196119d20ea6e0922d05ca89048df19756889bdac578548\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification\", \"persistent_identifiers\": [\"doi:10.1017/s0960129512000783\", \"doi:10.1103/revmodphys.93.035008\", \"doi:10.1002/j.1538-7305.1948.tb00917.x\", \"doi:10.1038/ncomms15599\", \"openalex:W2134287462\", \"openalex:W3085399439\", \"openalex:W2041404167\", \"openalex:W2620676965\", \"arxiv:2009.07668\", \"arxiv:7305.1948\"]}",
+  "id": "source-c9ee773becaa4cf5",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=foundational+statistical+mechanics+entropy+vs+shannon+information+entropy+definitions&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 6,
+  "time": "2026-09-22T17:32:30.855827+00:00"
+}
+```
+
+### `source-7114f92b172443c8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2199},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":30221,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-05T20:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"14517e3ff61018e75635230190e5832700ec67e14d58235fbe73688a9b1af629\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-7114f92b172443c8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 6,
+  "time": "2026-09-22T17:32:31.572524+00:00"
+}
+```
+
+### `source-8311c7c084214d4d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4977},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":111302,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-16T14:27:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mersenne prime\\\",\\\"pageid\\\":18908,\\\"size\\\":78122,\\\"wordcount\\\":6673,\\\"snippet\\\":\\\"In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\",\\\"timestamp\\\":\\\"2026-09-08T20:24:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6b553ef2709199d01d37b4eb6d73b23425cfce96f7d372f993ae920ee1bdbf1f\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-8311c7c084214d4d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 6,
+  "time": "2026-09-22T17:32:32.136456+00:00"
+}
+```
+
+### `source-3415c9d0b3c4462a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149363,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202240,\\\"wordcount\\\":17550,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-21T19:17:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129819,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-08-31T02:16:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Identity (philosophy)\\\",\\\"pageid\\\":89532,\\\"size\\\":10355,\\\"wordcount\\\":1171,\\\"snippet\\\":\\\"true of x is true of y as well. Leibniz's ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\",\\\"timestamp\\\":\\\"2026-06-23T16:17:15Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"19bfbea22cdf8f5ff26228ac7b1ef88c7053cb9ece55ba1e8c1f7ce0f3fc5849\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3415c9d0b3c4462a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 6,
+  "time": "2026-09-22T17:32:32.615079+00:00"
+}
+```
+
+### `source-462f2e0f85db4d17`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239447,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethnic religion\\\",\\\"pageid\\\":344406,\\\"size\\\":8220,\\\"wordcount\\\":792,\\\"snippet\\\":\\\"religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\",\\\"timestamp\\\":\\\"2026-09-22T13:35:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vedic religion\\\",\\\"pageid\\\":5919467,\\\"size\\\":642,\\\"wordcount\\\":117,\\\"snippet\\\":\\\"Vedic\\nreligion\\nor Vedism may refer to: Historical Vedic\\nreligion\\n, the\\nreligion\\nof the Indo-Aryans of northern India during the Vedic period Hinduism, which\\\",\\\"timestamp\\\":\\\"2026-09-16T02:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ainu religion\\\",\\\"pageid\\\":33528560,\\\"size\\\":37043,\\\"wordcount\\\":3917,\\\"snippet\\\":\\\"Ainu\\nreligion\\nconsists of the spiritual beliefs, ritual practices, and mythical stories of the Ainu people. It is broadly animist in nature, with special\\\",\\\"timestamp\\\":\\\"2026-06-15T02:48:46Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e767bcfe7db5d373077f0cd953e3aca5bf3670e1364ffb2823347633e0b91939\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-462f2e0f85db4d17",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 6,
+  "time": "2026-09-22T17:32:33.092441+00:00"
+}
+```
+
+### `source-8823c2d0e00b485d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1\", \"scope\": \"recursive source-controlled WAKE repository file index; paths and sizes, not file contents\", \"excerpt\": \"[{\\\"path\\\": \\\".env.example\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 83}, {\\\"path\\\": \\\".github/workflows/test.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1063}, {\\\"path\\\": \\\".github/workflows/wake.yml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4783}, {\\\"path\\\": \\\".gitignore\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 86}, {\\\"path\\\": \\\"LICENSE\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 34020}, {\\\"path\\\": \\\"README.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18361}, {\\\"path\\\": \\\"assets/covers/cover-original.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2471510}, {\\\"path\\\": \\\"assets/covers/cover-variant-001.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3329007}, {\\\"path\\\": \\\"assets/covers/cover-variant-002.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3256389}, {\\\"path\\\": \\\"assets/covers/cover-variant-003.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3125985}, {\\\"path\\\": \\\"assets/covers/cover-variant-004.png\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2847631}, {\\\"path\\\": \\\"assets/playlists/Reality Bytes Playlist.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9999}, {\\\"path\\\": \\\"docs/architecture.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 21616}, {\\\"path\\\": \\\"docs/cloud.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10146}, {\\\"path\\\": \\\"docs/experiment.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9733}, {\\\"path\\\": \\\"docs/operations.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6687}, {\\\"path\\\": \\\"docs/quota-map-implementation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7787}, {\\\"path\\\": \\\"docs/retrieval.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3475}, {\\\"path\\\": \\\"docs/validation.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2755}, {\\\"path\\\": \\\"examples/journal/events.jsonl\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1017120}, {\\\"path\\\": \\\"examples/journal/experiment.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 20205}, {\\\"path\\\": \\\"examples/journal/head.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 65}, {\\\"path\\\": \\\"examples/journal/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1266448}, {\\\"path\\\": \\\"examples/journal/journal.md\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 33437}, {\\\"path\\\": \\\"examples/journal/state.json\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 199768}, {\\\"path\\\": \\\"pyproject.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 662}, {\\\"path\\\": \\\"requirements.txt\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 68}, {\\\"path\\\": \\\"research-topics.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1441}, {\\\"path\\\": \\\"scripts/archive-analysis-snapshot.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3850}, {\\\"path\\\": \\\"scripts/checkpoint-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2693}, {\\\"path\\\": \\\"scripts/covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2093}, {\\\"path\\\": \\\"scripts/github_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8713}, {\\\"path\\\": \\\"scripts/install_cron.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1560}, {\\\"path\\\": \\\"scripts/manual-model-wake.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8257}, {\\\"path\\\": \\\"scripts/package.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1207}, {\\\"path\\\": \\\"scripts/publish.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 6865}, {\\\"path\\\": \\\"scripts/run-wake-cycles.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8474}, {\\\"path\\\": \\\"scripts/scheduled_wake.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1218}, {\\\"path\\\": \\\"scripts/sync-cloud-state.sh\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2131}, {\\\"path\\\": \\\"tests/test_acquisition.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5530}, {\\\"path\\\": \\\"tests/test_alt_hosts.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2552}, {\\\"path\\\": \\\"tests/test_cloud_workflow.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18678}, {\\\"path\\\": \\\"tests/test_covers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2879}, {\\\"path\\\": \\\"tests/test_editorial_corrections.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7432}, {\\\"path\\\": \\\"tests/test_feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8276}, {\\\"path\\\": \\\"tests/test_gemini_failover.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14594}, {\\\"path\\\": \\\"tests/test_history_filter.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 554}, {\\\"path\\\": \\\"tests/test_observation_mode.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2089}, {\\\"path\\\": \\\"tests/test_provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8429}, {\\\"path\\\": \\\"tests/test_publishing.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4612}, {\\\"path\\\": \\\"tests/test_rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4751}, {\\\"path\\\": \\\"tests/test_research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49884}, {\\\"path\\\": \\\"tests/test_squirrel.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4839}, {\\\"path\\\": \\\"tests/test_status.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4452}, {\\\"path\\\": \\\"tests/test_system.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 30197}, {\\\"path\\\": \\\"wake.toml\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2005}, {\\\"path\\\": \\\"wake/__init__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 789}, {\\\"path\\\": \\\"wake/__main__.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12344}, {\\\"path\\\": \\\"wake/assets/app.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49787}, {\\\"path\\\": \\\"wake/assets/data-view.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1551}, {\\\"path\\\": \\\"wake/assets/help.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9578}, {\\\"path\\\": \\\"wake/assets/index.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 13072}, {\\\"path\\\": \\\"wake/assets/map.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 14055}, {\\\"path\\\": \\\"wake/assets/map.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4505}, {\\\"path\\\": \\\"wake/assets/map.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 15252}, {\\\"path\\\": \\\"wake/assets/map3d.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 12562}, {\\\"path\\\": \\\"wake/assets/map3d.html\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5271}, {\\\"path\\\": \\\"wake/assets/map3d.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 18017}, {\\\"path\\\": \\\"wake/assets/nav.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 3039}, {\\\"path\\\": \\\"wake/assets/nav.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 1250}, {\\\"path\\\": \\\"wake/assets/pet.js\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 15408}, {\\\"path\\\": \\\"wake/assets/style.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 86994}, {\\\"path\\\": \\\"wake/assets/theme.css\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10846}, {\\\"path\\\": \\\"wake/audit.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 2259}, {\\\"path\\\": \\\"wake/engine.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 61239}, {\\\"path\\\": \\\"wake/experiment.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 9323}, {\\\"path\\\": \\\"wake/feeds.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 8221}, {\\\"path\\\": \\\"wake/governance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 56521}, {\\\"path\\\": \\\"wake/provenance.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 11826}, {\\\"path\\\": \\\"wake/providers.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 49957}, {\\\"path\\\": \\\"wake/rejected.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 10822}, {\\\"path\\\": \\\"wake/report.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 46764}, {\\\"path\\\": \\\"wake/research.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 29446}, {\\\"path\\\": \\\"wake/retrieval.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 7430}, {\\\"path\\\": \\\"wake/scheduling.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5332}, {\\\"path\\\": \\\"wake/squirrel.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 5888}, {\\\"path\\\": \\\"wake/store.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 21875}, {\\\"path\\\": \\\"wake/trust.py\\\", \\\"type\\\": \\\"blob\\\", \\\"size\\\": 4060}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ba7b5b4ec299db6a086f7b55606fb213cd2c77e166a5e22acbd975525be07888\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\", \"evidence_role\": \"source\", \"host_tier\": \"verification\", \"persistent_identifiers\": []}",
+  "id": "source-8823c2d0e00b485d",
+  "scope": "collected",
+  "source": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
+  "version": 6,
+  "time": "2026-09-22T17:32:33.452401+00:00"
+}
+```
+
+### `r-3b2f3cc70b1a4a4e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":6,\"inherited_commitments\":[\"com-001\"],\"invocation\":\"w-3b2f3cc70b1a4a4e\",\"previous_head\":\"269327a69a1e6be2a2649318827dba66f5286bb22af6ae60646f4cd2d6c4906f\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-3b2f3cc70b1a4a4e",
+  "source": "runtime:continuity",
+  "version": 6,
+  "time": "2026-09-22T17:32:33.701612+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Information Thermodynamics Inquiry
@@ -21818,6 +22165,17 @@ _None recorded._
   "invocation": "w-4d01f181b1f34fee",
   "title": "Advancing Entropy Foundations Amidst Capability Block",
   "summary": "Project 'it-001' remains parked due to capability restrictions, preventing the acquisition of technical literature required to fulfill commitment 'com-001'. In the interim, I am focusing on 'ent-001' (Entropy Foundations) to establish a rigorous conceptual baseline. Recent evidence acquisition, while including repository metadata and broad searches, has not yet yielded the specialized academic sources needed. I am initiating a new, more targeted research action to secure foundational literature comparing statistical and information-theoretic definitions of entropy."
+}
+```
+
+### 007 · Maintaining Entropy Foundations; Commitment Evaluation Pending
+
+```json
+{
+  "cycle": 7,
+  "invocation": "w-3b2f3cc70b1a4a4e",
+  "title": "Maintaining Entropy Foundations; Commitment Evaluation Pending",
+  "summary": "Project 'it-001' remains parked due to discovery capability blocks, which prevents the retrieval of technical physics literature required to fulfill the longstanding commitment 'com-001'. In the interim, I am continuing with 'ent-001' (Entropy Foundations) to establish a rigorous conceptual baseline. The available evidence, consisting of repository metadata and broad search results, is currently insufficient to construct a robust synthesis of Landauer's principle and Maxwell's Demon as required by the commitment. I am prioritizing continued research within 'ent-001' to ensure that when technical acquisition routes restore, the conceptual foundation for comparing statistical and information-theoretic entropy is already in place. I have not resolved 'com-001' because the currently collected evidence lacks the substantive academic analysis needed for a rigorous notebook."
 }
 ```
 
@@ -21944,8 +22302,24 @@ _None recorded._
   "query": "foundational statistical mechanics entropy vs shannon information entropy definitions",
   "reason": "Existing evidence is too generic. I need specific, high-quality academic literature that formally compares statistical and information-theoretic entropy to build the project's foundation.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-4d01f181b1f34fee",
+  "evidence": "source-c9ee773becaa4cf5"
+}
+```
+
+### `res-009`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-009",
+  "project": "ent-001",
+  "query": "statistical mechanics entropy Shannon information entropy comparison foundations",
+  "reason": "Previous searches yielded broad results. I am refining the query to specifically target academic comparisons between statistical and information-theoretic entropy definitions to build the project foundation.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-4d01f181b1f34fee"
+  "created_by": "w-3b2f3cc70b1a4a4e"
 }
 ```
 
