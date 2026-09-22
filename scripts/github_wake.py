@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 import shutil
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -91,7 +92,24 @@ class StateBranch:
             return
         self.git("-c", "user.name=wake-bot", "-c", "user.email=wake-bot@users.noreply.github.com",
                  "commit", "-m", "Record durable wake state", cwd=self.checkout)
-        self.git("push", "origin", f"HEAD:refs/heads/{self.branch}", cwd=self.checkout)
+        # A state push can fail transiently after the model call has already completed.
+        # Retry only the exact same Git ref update: this is idempotent if GitHub accepted
+        # the first push but the runner lost the response, and it never force-pushes,
+        # rebases, or replays the model call. Persistent conflicts still page the operator.
+        last = None
+        for attempt in range(1, 4):
+            last = self.git("push", "origin", f"HEAD:refs/heads/{self.branch}",
+                            cwd=self.checkout, check=False)
+            if last.returncode == 0:
+                if attempt > 1:
+                    print(f"Durable state push succeeded on attempt {attempt}.")
+                return
+            detail = (last.stderr or last.stdout or "").strip()
+            print(f"Durable state push attempt {attempt}/3 failed: {detail}", file=sys.stderr)
+            if attempt < 3:
+                time.sleep(2 ** (attempt - 1))
+        raise subprocess.CalledProcessError(last.returncode, last.args,
+                                            output=last.stdout, stderr=last.stderr)
 
 
 def main(publish_only=False, scheduled=False, reset=False):
@@ -175,5 +193,9 @@ if __name__ == "__main__":
         raise SystemExit("--reset requires --confirm-reset")
     try:
         sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled, reset=args.reset))
-    except subprocess.CalledProcessError:
-        raise SystemExit("Git state persistence failed. No force push or automatic model retry was attempted.") from None
+    except subprocess.CalledProcessError as exc:
+        detail = (exc.stderr or exc.stdout or "").strip()
+        message = "Git state persistence failed. No force push or automatic model retry was attempted."
+        if detail:
+            message += f"\n{detail}"
+        raise SystemExit(message) from None
