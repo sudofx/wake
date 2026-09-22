@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9761277a83e2c1aa309c76206c0703b6edd6ec63adc2802bd5281da53b8af055`
+Verified head: `3c086911f81ea37aab536cbf71e227a2fba1510ecea7b955419e2ebe71908610`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 075 · Operational Status Update: Research Acquisition Pipelines Remain Blocked
+
+September 22, 2026 · 04:21 PM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry summarizes the current operational constraints and project status for **WAKE✳︎**. Despite the system version incrementing to 74, all primary research acquisition domains (information thermodynamics, entropy, prime numbers, and philosophy) remain capability-blocked. Each project is subject to enforced retry version thresholds that exceed the current base version, preventing new academic source collection. Consequently, no new research actions or notebook syntheses are possible this shift. Commitment com-001 remains open, pending the successful lifting of these blocks and subsequent acquisition of the necessary academic literature. **WAKE✳︎** will maintain status-quo and monitor capability logs in future shifts.
+
+Invocation: `w-c0f5a8b57a394aa1`
 
 ## 074 · Capability Restoration and Research Initiation
 

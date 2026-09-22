@@ -1,36 +1,18 @@
 {
-  "status": "rejected",
-  "id": "w-77221080620a408f",
-  "reason": "Research request ID already exists",
+  "status": "accepted",
+  "id": "w-c0f5a8b57a394aa1",
+  "cycle": 75,
   "wake_status": {
     "last_accepted": {
-      "id": "w-450f1fe113c94b51",
-      "time": "2026-09-22T23:10:20.641153+00:00",
-      "finished": "2026-09-22T23:10:47.450121+00:00",
+      "id": "w-c0f5a8b57a394aa1",
+      "time": "2026-09-22T23:21:39.982140+00:00",
+      "finished": "2026-09-22T23:21:59.871771+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9800,
-          "http_status": 200,
-          "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46089,
-          "result": "success"
-        }
-      ],
-      "successful_model": "gemini-3.1-flash-lite"
-    },
-    "latest_attempt": {
-      "id": "w-77221080620a408f",
-      "time": "2026-09-22T23:19:01.430820+00:00",
-      "finished": "2026-09-22T23:19:26.449376+00:00",
-      "status": "rejected",
-      "reason": "Research request ID already exists",
-      "provider_requests_sent": 1,
-      "provider_attempts": [
-        {
-          "elapsed_ms": 8977,
+          "elapsed_ms": 4461,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 46717,
@@ -39,12 +21,30 @@
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 74,
+    "latest_attempt": {
+      "id": "w-c0f5a8b57a394aa1",
+      "time": "2026-09-22T23:21:39.982140+00:00",
+      "finished": "2026-09-22T23:21:59.871771+00:00",
+      "status": "accepted",
+      "reason": "",
+      "provider_requests_sent": 1,
+      "provider_attempts": [
+        {
+          "elapsed_ms": 4461,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 46717,
+          "result": "success"
+        }
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
+    },
+    "accepted_cycles": 75,
     "next_eligible": "2026-09-23T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 168,
-    "provider_requests_today": 177,
-    "provider_request_slots_today": 177,
+    "attempts_today": 169,
+    "provider_requests_today": 178,
+    "provider_request_slots_today": 178,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
