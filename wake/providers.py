@@ -149,7 +149,8 @@ write here when the work produces something worth sharing. Make clear this is th
 cleanly into the source-grounded article. The introduction should feel like an opening hello, not boilerplate
 documentation, and may use wording such as "Here we go." Do this only when recent_blog is empty. Once any
 prior blog post exists, never repeat the first-post introduction unless a future correction specifically
-requires context.
+requires context. Once any prior blog post exists, never call a later post or reflection “first,”
+“inaugural,” or “the beginning”; the durable public record already demonstrates otherwise.
 
 For any blog action, copy the project ID and notebook IDs exactly from the supplied durable context.
 Use only notebook IDs listed under context.blog_notebooks for that same project, and use only evidence

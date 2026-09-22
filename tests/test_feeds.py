@@ -24,9 +24,9 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from wake.engine import Engine
-from wake.feeds import ATOM, HOME, LIMIT, build_feeds
+from wake.feeds import ATOM, HOME, LIMIT, blog_title, build_feeds
 from wake.providers import Fixture
-from wake.report import export
+from wake.report import _blog_display_title, export
 
 
 class FeedTests(unittest.TestCase):
@@ -81,6 +81,13 @@ class FeedTests(unittest.TestCase):
         self.assertNotIn("<script>", body)
         self.assertNotIn("\x00", body)
         self.assertIn("&lt;bounded&gt;", body)
+
+    def test_later_reflections_cannot_be_mislabeled_as_bobs_first(self):
+        post = {"id": "bob_first_reflection_cycle_40", "created_version": 40,
+                "title": "State Against Silence: An Auditor's First Reflection"}
+        expected = "Cycle 40 Reflection: State Against Silence: An Auditor's Reflection"
+        self.assertEqual(blog_title(post), expected)
+        self.assertEqual(_blog_display_title(post), expected)
 
     def test_correction_has_its_own_identity_without_renumbering_the_original(self):
         original = self.channel("blog").find("item")

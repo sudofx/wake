@@ -103,11 +103,13 @@
     });
     return [...new Set(ids.filter(Boolean))];
   };
-  const postTopic=post=>((Number(post.created_version)%10===0)&&(/reflection/i.test(String(post.id))||/reflection/i.test(String(post.title))))?'reflection':s.projects?.[post.project]?.domain;
+  // Every tenth accepted cycle is a governed Bob reflection, regardless of
+  // whether an older model happened to include the word in its raw title.
+  const postTopic=post=>Number(post.created_version)%10===0?'reflection':s.projects?.[post.project]?.domain;
   const postTitle=post=>{
     const title=String(post.title||'').trim();
-    if(!((Number(post.created_version)%10===0)&&(/reflection/i.test(`${post.id||''} ${title}`)||post.lens)))return title;
-    const remainder=title.replace(/^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?/i,'').trim();
+    if(!(Number(post.created_version)%10===0))return title;
+    const remainder=title.replace(/^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?/i,'').replace(/\b(?:first|inaugural)\s+reflection\b/ig,'Reflection').trim();
     return `Cycle ${post.created_version} Reflection: ${remainder||title}`;
   };
   const proofNames = {

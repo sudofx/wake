@@ -500,15 +500,14 @@ def _blog_display_title(post):
     """Keep scheduled Bob reflections recognisable in every public export."""
     title = str(post.get("title", "")).strip()
     version = int(post.get("created_version") or 0)
-    is_reflection = version and version % 10 == 0 and (
-        "reflection" in f"{post.get('id', '')} {title}".lower() or post.get("lens")
-    )
+    is_reflection = version and version % 10 == 0
     if not is_reflection:
         return title
     remainder = re.sub(
         r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?",
         "", title, flags=re.IGNORECASE,
-    ).strip()
+    )
+    remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
     return f"Cycle {version} Reflection: {remainder or title}"
 
 

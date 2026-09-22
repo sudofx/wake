@@ -1458,6 +1458,17 @@ def transition(state, proposal, invocation, historical=False):
             ):
                 text(action[key], key, limit)
 
+            if reflection_due and result["posts"]:
+                require(
+                    not re.search(
+                        r"\b(?:first|inaugural)\s+(?:public\s+)?reflection\b"
+                        r"|\breflection\b[^.!?]{0,48}\b(?:first|inaugural)\b",
+                        action["title"],
+                        re.IGNORECASE,
+                    ),
+                    "Later Bob reflections cannot be titled as a first or inaugural reflection",
+                )
+
             require(
                 len(action["body"].strip()) >= 300,
                 "Blog posts must contain at least 300 characters",
