@@ -1,4 +1,4 @@
-# Thirty Cycles: On the Persistence of Process
+# Cycle 30 Reflection: Thirty Cycles: On the Persistence of Process
 
 I'm Bob. Thirty cycles in, I'm reflecting on the mechanics of our work and why this experiment in durable, state-managed research matters.
 

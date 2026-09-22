@@ -48,6 +48,8 @@ const timeline=document.getElementById('timeline'), constellation=document.getEl
 const emptyConstellation=constellation.innerHTML, emptyDetails=details.innerHTML;
 const adjacency=new Map(); for(const edge of data.edges){for(const id of [edge.source,edge.target]){if(!adjacency.has(id))adjacency.set(id,[]);adjacency.get(id).push(edge)}}
 let context=null, selected=null, lastFocus=null;
+const recordFromHash=()=>{try{return decodeURIComponent((location.hash.match(/^#record=(.+)$/)||[])[1]||'')}catch{return ''}};
+function writeRecordHash(id){const url=new URL(location.href);url.hash=id?`record=${encodeURIComponent(id)}`:'';history.replaceState(null,'',url)}
 const labels={journal:'Journal',blog:'Blog',belief:'Belief',notebook:'Notebook',evidence:'Source / receipt',project:'Project',commitment:'Commitment',research:'Research request',invocation:'Invocation',editorial:'Editorial decision'};
 function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)mark(e,String(text));return e}
 function mark(e,text){text=text.replace(/^\[([^\[\]\n]+)\]$/,'$1');const parts=text.split(/(WAKE✳︎?)/g);for(const part of parts){if(/^WAKE✳︎?$/.test(part)){const b=document.createElement('strong');b.className='wake-mark';b.textContent='WAKE✳︎';e.append(b)}else e.append(document.createTextNode(part))}}
@@ -116,10 +118,12 @@ else if(n.kind==='blog'){const origins=origin.get(id)||[];context=origins.length
 // same wake. Redrawing is only necessary when the wake context changes.
 if(context!==previousContext)bloom();
 showDetails(id);clearButton.disabled=false;emphasis();
+writeRecordHash(id);
 }
-function clear(){selected=null;context=null;constellation.innerHTML=emptyConstellation;details.innerHTML=emptyDetails;details.classList.remove('active');clearButton.disabled=true;emphasis();if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});else timeline.querySelector('button')?.focus({preventScroll:true})}
+function clear(){selected=null;context=null;constellation.innerHTML=emptyConstellation;details.innerHTML=emptyDetails;details.classList.remove('active');clearButton.disabled=true;emphasis();writeRecordHash('');if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});else timeline.querySelector('button')?.focus({preventScroll:true})}
 clearButton.addEventListener('click',clear);document.addEventListener('keydown',e=>{if(e.key==='Escape')clear()});document.getElementById('map-field').addEventListener('click',e=>{if(e.target.id==='map-field'||e.target.classList.contains('spatial')||e.target.id==='timeline'||e.target.id==='constellation')clear()});
 const theme=document.getElementById('theme-toggle'),themeIcon=document.querySelector('.theme-icon');function savedTheme(){try{return localStorage.getItem('wake-theme')}catch{return null}}function syncTheme(){const dark=document.documentElement.dataset.theme==='dark',manual=Boolean(savedTheme());theme.checked=dark;theme.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');document.documentElement.dataset.themeMode=manual?'manual':'system';if(themeIcon)themeIcon.textContent=manual?(dark?'◑':'☼'):'◐';theme.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${dark?'dark':'light'} theme`:`Following system ${dark?'dark':'light'} theme`)}syncTheme();theme.addEventListener('change',()=>{const dark=theme.checked;if(dark)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',dark?'dark':'light')}catch{}syncTheme()});try{const systemTheme=matchMedia('(prefers-color-scheme:dark)');systemTheme.addEventListener('change',event=>{if(savedTheme())return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;syncTheme()})}catch{}
+const initialRecord=recordFromHash();if(initialRecord&&nodes.has(initialRecord))select(initialRecord);
 })();
 </script><script>/*
  * WAKE✳︎ MAINTAINER NOTE

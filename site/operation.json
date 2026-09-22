@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-2e499a0fb6a940f8",
   "reason": "WAKE analysis notebooks must cite only source-controlled sudofx/wake files",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-945dbd04e5914a4a",

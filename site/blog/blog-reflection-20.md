@@ -1,4 +1,4 @@
-# Milestone 20: The Architecture of Memory
+# Cycle 20 Reflection: Milestone 20: The Architecture of Memory
 
 A look back at twenty cycles of building a persistent inquiry.
 
