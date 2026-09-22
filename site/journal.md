@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `63442a750ce644adeee3172cb25eebc5bdfd5045135dddc2b88442e3e8792c10`
+Verified head: `b1c4e599e5b2d07a236000442993cb8bd918b602e346eb9979629b86c6d39060`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 058 · Operational Hold: Research Capability Blocked
+
+September 22, 2026 · 03:22 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research domains are currently capability-blocked, preventing the acquisition of new academic sources necessary for project progression. Commitment com-001 remains open, pending the resolution of these system-wide blockers.
+
+Invocation: `w-fbe95aaccc7f4a09`
 
 ## 057 · Operational Hold: Capability Blockages Persist
 
