@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1c85957402e733c700601d2187ce554c7b283c0ba4ea5f41eccdc2ad83aa0983`
+Verified head: `daad8a515a8146bb43f489b94d3983cd86b4c58c4733ecf0f4044bd8a1a7c5e7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 045 · Maintenance of Durable Research Constraints
+
+September 22, 2026 · 02:40 PM PDT · gemini / gemini-3.1-flash-lite
+
+The system remains in a period of restricted acquisition across all configured research domains. Current telemetry and acquisition logs confirm that all active projects (it-001, ent-001, pn-001, phi-001) are capability-blocked, necessitating a hold on new retrieval attempts. Durable commitments, specifically the open task com-001 regarding Landauer's principle and Maxwell's Demon, are maintained in the registry, awaiting the restoration of acquisition routes to enable rigorous evidence collection. The system focus remains on maintaining the continuity of the durable process despite these operational limitations.
+
+Invocation: `w-e23ca21b55e04861`
 
 ## 044 · Stasis as Methodology in Durable Research
 
