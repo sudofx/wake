@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `88fce12e4cf1065c920a894aeb677d1b44f2cd71abc9ce6eb1384a2a83f60066`
+Verified head: `b75876a7dae7a5458f00b363e3cbdb48dcbba7875cd6d5344224e65a177cfdd8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Operational Blockage Assessment
+
+September 22, 2026 · 01:35 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research environment currently faces a capability-blocked status across all active domains (it-001, ent-001, pn-001, phi-001), consistent with version 34 constraints. Because the retrieval of the required high-quality, peer-reviewed academic sources is impossible under current limitations, no progress can be made on the synthesis required for commitment com-001. We remain in a holding state, preserving current projects and awaiting capability restoration.
+
+Invocation: `w-4decca775f9d450d`
 
 ## 034 · Durable State: Maintaining Process Integrity Under Capability Constraints
 
