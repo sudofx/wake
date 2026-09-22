@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>8d9ff14563af2e1468aa0d17c569d9cc351d3da18addb3a3aee89726e54ede9a</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 2<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>com-001</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>2aacf94bd714bb69d3be219f74bb67fcde9a8f9fee68229315d65129999c3ab8</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 2<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>com-001</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 3,
   &quot;id&quot;: &quot;com-001&quot;,
   &quot;reason&quot;: &quot;Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.&quot;,
@@ -8883,6 +8883,287 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
     &quot;response_bytes_captured&quot;: 198,
     &quot;result&quot;: &quot;transient_failure&quot;
   }
+}</pre></div></details><details><summary>w-ddc299dfe5b54188</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 2,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 14412,
+    &quot;delivered_request_chars&quot;: 36525,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;omitted_categories&quot;: [],
+    &quot;provenance_policy&quot;: null,
+    &quot;rich_context_chars&quot;: 36525,
+    &quot;working_set_chars&quot;: 955
+  },
+  &quot;id&quot;: &quot;w-ddc299dfe5b54188&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 2,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;it-001&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 3,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Foundations of Information Thermodynamics&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2273,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-22&quot;,
+  &quot;request_hash&quot;: &quot;4b27a7325982f5cd7e880f3c35b6d003cd251c116c044ef4f43f611df4fdc1c2&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;com-001&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-db8ff972246249a4&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-db8ff972246249a4&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-d5b34c2e69784afe&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-d5b34c2e69784afe&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-c8ed92b8295942b6&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-c8ed92b8295942b6&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-ff7ef290e15d4d97&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-ff7ef290e15d4d97&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-5da6b08936b54a72&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-5da6b08936b54a72&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-ae34577d4d9f49a4&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-ae34577d4d9f49a4&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-db8ff972246249a4&quot;,
+      &quot;source-d5b34c2e69784afe&quot;,
+      &quot;source-c8ed92b8295942b6&quot;,
+      &quot;source-ff7ef290e15d4d97&quot;,
+      &quot;source-5da6b08936b54a72&quot;,
+      &quot;source-ae34577d4d9f49a4&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 7,
+      &quot;evidence_count&quot;: 6,
+      &quot;trigger_counts&quot;: {
+        &quot;commitment_near_due&quot;: 1,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {},
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;selected_topic&quot;: &quot;information_thermodynamics&quot;
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 14412,
+    &quot;inquiry_drive_project_count&quot;: 1,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;retrieval_candidate_count&quot;: 7,
+    &quot;retrieval_evidence_count&quot;: 6,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;commitment_near_due&quot;: 1,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 955,
+    &quot;working_to_delivered_ratio&quot;: 0.0663
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;it-001&quot;,
+        &quot;next_step&quot;: &quot;Synthesize initial research on Landauer&#x27;s principle and Maxwell&#x27;s Demon.&quot;,
+        &quot;question&quot;: &quot;How does the relationship between physical entropy and information entropy constrain system efficiency?&quot;,
+        &quot;title&quot;: &quot;Foundations of Information Thermodynamics&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 3,
+        &quot;id&quot;: &quot;com-001&quot;,
+        &quot;reason&quot;: &quot;Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.&quot;,
+        &quot;task&quot;: &quot;Synthesize collected evidence into a foundational notebook on Landauer&#x27;s principle and Maxwell&#x27;s Demon&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-22T16:38:02.470101+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 1270,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 40656,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;finished&quot;: &quot;2026-09-22T16:38:10.540780+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 1270,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 1270,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 40656,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 1,
+    &quot;request_payload_bytes&quot;: 40656,
+    &quot;response_bytes_captured&quot;: 198,
+    &quot;result&quot;: &quot;transient_failure&quot;
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-5929557bed184f79</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74316},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Somatic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:6774132,\\\&quot;size\\\&quot;:16405,\\\&quot;wordcount\\\&quot;:1855,\\\&quot;snippet\\\&quot;:\\\&quot;Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-03T20:37:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Individual psychology\\\&quot;,\\\&quot;pageid\\\&quot;:3959877,\\\&quot;size\\\&quot;:15651,\\\&quot;wordcount\\\&quot;:1631,\\\&quot;snippet\\\&quot;:\\\&quot;Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-04T05:18:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Shadow (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:560394,\\\&quot;size\\\&quot;:34954,\\\&quot;wordcount\\\&quot;:4164,\\\&quot;snippet\\\&quot;:\\\&quot;In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T17:23:54Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;90f74d8b093a09eeb43f99b865011863d618a0fb57d8041adc341f51b8b67414\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -10643,6 +10924,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 2,
   &quot;time&quot;: &quot;2026-09-22T16:35:49.294751+00:00&quot;
+}</pre></div></details><details><summary>source-db8ff972246249a4</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=entropy&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:6107},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy\\\&quot;,\\\&quot;pageid\\\&quot;:9891,\\\&quot;size\\\&quot;:115933,\\\&quot;wordcount\\\&quot;:14396,\\\&quot;snippet\\\&quot;:\\\&quot;\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T14:49:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy (information theory)\\\&quot;,\\\&quot;pageid\\\&quot;:15445,\\\&quot;size\\\&quot;:72351,\\\&quot;wordcount\\\&quot;:10078,\\\&quot;snippet\\\&quot;:\\\&quot;In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable&#x27;s potential\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-01T11:28:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Second law of thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:133017,\\\&quot;size\\\&quot;:119048,\\\&quot;wordcount\\\&quot;:16416,\\\&quot;snippet\\\&quot;:\\\&quot;appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T12:26:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:302133,\\\&quot;size\\\&quot;:5540,\\\&quot;wordcount\\\&quot;:726,\\\&quot;snippet\\\&quot;:\\\&quot;Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-29T22:10:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cross-entropy\\\&quot;,\\\&quot;pageid\\\&quot;:1735250,\\\&quot;size\\\&quot;:19871,\\\&quot;wordcount\\\&quot;:3496,\\\&quot;snippet\\\&quot;:\\\&quot;In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T02:14:33Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;R\\\\u00e9nyi entropy\\\&quot;,\\\&quot;pageid\\\&quot;:1731689,\\\&quot;size\\\&quot;:27228,\\\&quot;wordcount\\\&quot;:4205,\\\&quot;snippet\\\&quot;:\\\&quot;R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-13T19:55:15Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Information theory\\\&quot;,\\\&quot;pageid\\\&quot;:14773,\\\&quot;size\\\&quot;:88576,\\\&quot;wordcount\\\&quot;:10416,\\\&quot;snippet\\\&quot;:\\\&quot;theory is\\nentropy\\n. In Shannon&#x27;s formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T03:01:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social entropy\\\&quot;,\\\&quot;pageid\\\&quot;:12447991,\\\&quot;size\\\&quot;:1975,\\\&quot;wordcount\\\&quot;:200,\\\&quot;snippet\\\&quot;:\\\&quot;\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-03T07:04:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy unit\\\&quot;,\\\&quot;pageid\\\&quot;:1886799,\\\&quot;size\\\&quot;:521,\\\&quot;wordcount\\\&quot;:71,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\&quot;e.u.\\\&quot; or \\\&quot;eU\\\&quot; and equal to one calorie per kelvin per mole, or 4.184\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2024-11-06T04:45:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Holographic principle\\\&quot;,\\\&quot;pageid\\\&quot;:14286,\\\&quot;size\\\&quot;:36292,\\\&quot;wordcount\\\&quot;:4216,\\\&quot;snippet\\\&quot;:\\\&quot;bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-16T11:15:06Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;95b371ab3f47ff71bb1ff0f31184682d8f0ce4c41cb4af3324df3efd3e395f95\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;entropy\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-db8ff972246249a4&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=entropy&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:00.030314+00:00&quot;
+}</pre></div></details><details><summary>source-d5b34c2e69784afe</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40302},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T05:12:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Class consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:38794693,\\\&quot;size\\\&quot;:11255,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;In sociology, class\\nconsciousness\\nis the set of beliefs that persons hold regarding their social class or economic rank in society, the structure of their\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T19:55:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Animal consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:13001588,\\\&quot;size\\\&quot;:135552,\\\&quot;wordcount\\\&quot;:14235,\\\&quot;snippet\\\&quot;:\\\&quot;Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T05:21:19Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;bc43b1c56e154a56c94e98405e1e46ae8774e8a27a0da5e02d3b385e8a9c4ac3\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-d5b34c2e69784afe&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:00.503766+00:00&quot;
+}</pre></div></details><details><summary>source-c8ed92b8295942b6</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:149363,\\\&quot;suggestion\\\&quot;:\\\&quot;philosopher\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;philosopher\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13692155,\\\&quot;size\\\&quot;:202240,\\\&quot;wordcount\\\&quot;:17550,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009&#x27;love of wisdom&#x27;) is a systematic study of general and fundamental questions concerning topics like existence\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T19:17:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Doctor of Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:21031297,\\\&quot;size\\\&quot;:152425,\\\&quot;wordcount\\\&quot;:16312,\\\&quot;snippet\\\&quot;:\\\&quot;A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T15:35:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Political philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:23040,\\\&quot;size\\\&quot;:129819,\\\&quot;wordcount\\\&quot;:13401,\\\&quot;snippet\\\&quot;:\\\&quot;Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-31T02:16:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Desert (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:10791397,\\\&quot;size\\\&quot;:23606,\\\&quot;wordcount\\\&quot;:3102,\\\&quot;snippet\\\&quot;:\\\&quot;Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-01-20T20:30:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:9247,\\\&quot;size\\\&quot;:211582,\\\&quot;wordcount\\\&quot;:19966,\\\&quot;snippet\\\&quot;:\\\&quot;Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T14:29:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fish! Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:8770844,\\\&quot;size\\\&quot;:8284,\\\&quot;wordcount\\\&quot;:1071,\\\&quot;snippet\\\&quot;:\\\&quot;The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-07T07:04:15Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cynicism (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:19187131,\\\&quot;size\\\&quot;:40942,\\\&quot;wordcount\\\&quot;:4715,\\\&quot;snippet\\\&quot;:\\\&quot;Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-27T04:15:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Aesthetics\\\&quot;,\\\&quot;pageid\\\&quot;:2130,\\\&quot;size\\\&quot;:149323,\\\&quot;wordcount\\\&quot;:16275,\\\&quot;snippet\\\&quot;:\\\&quot;Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Western philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13704154,\\\&quot;size\\\&quot;:96464,\\\&quot;wordcount\\\&quot;:11377,\\\&quot;snippet\\\&quot;:\\\&quot;Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T05:16:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Identity (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:89532,\\\&quot;size\\\&quot;:10355,\\\&quot;wordcount\\\&quot;:1171,\\\&quot;snippet\\\&quot;:\\\&quot;true of x is true of y as well. Leibniz&#x27;s ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-23T16:17:15Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;19bfbea22cdf8f5ff26228ac7b1ef88c7053cb9ece55ba1e8c1f7ce0f3fc5849\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;philosophy\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-c8ed92b8295942b6&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:00.978112+00:00&quot;
+}</pre></div></details><details><summary>source-ff7ef290e15d4d97</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:120,\\\&quot;suggestion\\\&quot;:\\\&quot;neurodivergent\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;neurodivergent\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurodiversity\\\&quot;,\\\&quot;pageid\\\&quot;:1073739,\\\&quot;size\\\&quot;:142665,\\\&quot;wordcount\\\&quot;:13881,\\\&quot;snippet\\\&quot;:\\\&quot;and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\&quot;difference[s]\\\&quot;.\\nNeurodivergences\\ninclude autism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T23:26:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neuroqueer theory\\\&quot;,\\\&quot;pageid\\\&quot;:76016274,\\\&quot;size\\\&quot;:31724,\\\&quot;wordcount\\\&quot;:3380,\\\&quot;snippet\\\&quot;:\\\&quot;have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T18:08:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurofibromatosis type I\\\&quot;,\\\&quot;pageid\\\&quot;:1712548,\\\&quot;size\\\&quot;:63138,\\\&quot;wordcount\\\&quot;:7236,\\\&quot;snippet\\\&quot;:\\\&quot;Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T22:12:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fern Brady\\\&quot;,\\\&quot;pageid\\\&quot;:43399498,\\\&quot;size\\\&quot;:15262,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T00:11:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mel King (The Pitt)\\\&quot;,\\\&quot;pageid\\\&quot;:82753144,\\\&quot;size\\\&quot;:15333,\\\&quot;wordcount\\\&quot;:1322,\\\&quot;snippet\\\&quot;:\\\&quot;and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-07T04:12:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Kassiane Asasumasu\\\&quot;,\\\&quot;pageid\\\&quot;:76250908,\\\&quot;size\\\&quot;:14907,\\\&quot;wordcount\\\&quot;:1302,\\\&quot;snippet\\\&quot;:\\\&quot;related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T15:58:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Taylor Dearden\\\&quot;,\\\&quot;pageid\\\&quot;:55290719,\\\&quot;size\\\&quot;:19195,\\\&quot;wordcount\\\&quot;:1387,\\\&quot;snippet\\\&quot;:\\\&quot;com/watch?v=bqFkDmto2OM \\\&quot;Actress Taylor Dearden talks about portraying\\nneurodivergence\\non &#x27;The Pitt&#x27;\\\&quot;. NPR. April 9, 2025. Retrieved June 18, 2025. \\\&quot;&#x27;The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T00:35:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The Devil Wears Prada 2\\\&quot;,\\\&quot;pageid\\\&quot;:77315100,\\\&quot;size\\\&quot;:87086,\\\&quot;wordcount\\\&quot;:7289,\\\&quot;snippet\\\&quot;:\\\&quot;as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\&quot; Although all the Italian actors who had provided the voices for the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T23:51:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Other (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:972208,\\\&quot;size\\\&quot;:49508,\\\&quot;wordcount\\\&quot;:5797,\\\&quot;snippet\\\&quot;:\\\&quot;differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T02:59:58Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Aamir Khan\\\&quot;,\\\&quot;pageid\\\&quot;:163038,\\\&quot;size\\\&quot;:223247,\\\&quot;wordcount\\\&quot;:16812,\\\&quot;snippet\\\&quot;:\\\&quot;attributed to a modest budget and positive reception for its portrayal of\\nneurodivergence\\n, however, it underperformed compared to Khan&#x27;s peak years. As a screenwriter\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T07:59:02Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;fa8119ff5c3a8f8a7a939cf141dc17ec81185b7827b677bf23a80b3e65dfb733\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurodivergence\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-ff7ef290e15d4d97&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:01.376453+00:00&quot;
+}</pre></div></details><details><summary>source-5da6b08936b54a72</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:239447,\\\&quot;suggestion\\\&quot;:\\\&quot;religious\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;religious\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion\\\&quot;,\\\&quot;pageid\\\&quot;:25414,\\\&quot;size\\\&quot;:187367,\\\&quot;wordcount\\\&quot;:19574,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T06:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Civil religion\\\&quot;,\\\&quot;pageid\\\&quot;:185692,\\\&quot;size\\\&quot;:34053,\\\&quot;wordcount\\\&quot;:3846,\\\&quot;snippet\\\&quot;:\\\&quot;Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-25T16:06:42Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Abrahamic religions\\\&quot;,\\\&quot;pageid\\\&quot;:13906453,\\\&quot;size\\\&quot;:112861,\\\&quot;wordcount\\\&quot;:10868,\\\&quot;snippet\\\&quot;:\\\&quot;The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T17:21:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in China\\\&quot;,\\\&quot;pageid\\\&quot;:367843,\\\&quot;size\\\&quot;:300336,\\\&quot;wordcount\\\&quot;:34062,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T03:20:45Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Bad Religion\\\&quot;,\\\&quot;pageid\\\&quot;:168409,\\\&quot;size\\\&quot;:101907,\\\&quot;wordcount\\\&quot;:10415,\\\&quot;snippet\\\&quot;:\\\&quot;Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band&#x27;s lyrics cover topics related to\\nreligion\\n, politics, society\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T23:14:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Canaanite religion\\\&quot;,\\\&quot;pageid\\\&quot;:2375688,\\\&quot;size\\\&quot;:38557,\\\&quot;wordcount\\\&quot;:4353,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T21:35:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;State religion\\\&quot;,\\\&quot;pageid\\\&quot;:292285,\\\&quot;size\\\&quot;:161900,\\\&quot;wordcount\\\&quot;:12907,\\\&quot;snippet\\\&quot;:\\\&quot;state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T01:30:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Folk religion\\\&quot;,\\\&quot;pageid\\\&quot;:21920776,\\\&quot;size\\\&quot;:44106,\\\&quot;wordcount\\\&quot;:4958,\\\&quot;snippet\\\&quot;:\\\&quot;Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T10:35:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Yoruba religion\\\&quot;,\\\&quot;pageid\\\&quot;:682534,\\\&quot;size\\\&quot;:64332,\\\&quot;wordcount\\\&quot;:4734,\\\&quot;snippet\\\&quot;:\\\&quot;The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T17:38:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;No religion\\\&quot;,\\\&quot;pageid\\\&quot;:8656279,\\\&quot;size\\\&quot;:549,\\\&quot;wordcount\\\&quot;:105,\\\&quot;snippet\\\&quot;:\\\&quot;No\\nreligion\\nmay refer to: Irreligion, absence of, or indifference towards\\nreligion\\nAtheism, the absence of belief of the existence of deities Agnosticism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-02-05T03:10:03Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;4d9e96a2be95c4c7059bce1bfc669e620e3499e80260d8c3f1108032b5446ebb\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;religion\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-5da6b08936b54a72&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:01.861862+00:00&quot;
+}</pre></div></details><details><summary>source-ae34577d4d9f49a4</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74317},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Somatic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:6774132,\\\&quot;size\\\&quot;:16405,\\\&quot;wordcount\\\&quot;:1855,\\\&quot;snippet\\\&quot;:\\\&quot;Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-03T20:37:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Shadow (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:560394,\\\&quot;size\\\&quot;:34954,\\\&quot;wordcount\\\&quot;:4164,\\\&quot;snippet\\\&quot;:\\\&quot;In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T17:23:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Individual psychology\\\&quot;,\\\&quot;pageid\\\&quot;:3959877,\\\&quot;size\\\&quot;:15651,\\\&quot;wordcount\\\&quot;:1631,\\\&quot;snippet\\\&quot;:\\\&quot;Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-04T05:18:04Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;4fe64b03695dbe5f2548d578abb6f7138cf774f3d63834760890a25913d82971\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-ae34577d4d9f49a4&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:02.264890+00:00&quot;
+}</pre></div></details><details><summary>r-ddc299dfe5b54188</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:2,\&quot;inherited_commitments\&quot;:[\&quot;com-001\&quot;],\&quot;invocation\&quot;:\&quot;w-ddc299dfe5b54188\&quot;,\&quot;previous_head\&quot;:\&quot;822b6ddb08f0beb92dce5fc4030d2a85636da3a24ce099f398a08d00a65d69b2\&quot;,\&quot;process_id\&quot;:2273,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-ddc299dfe5b54188&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 2,
+  &quot;time&quot;: &quot;2026-09-22T16:38:02.398802+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Initiating Information Thermodynamics Inquiry</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-0ec3911b56d4467a&quot;,
