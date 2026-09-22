@@ -5,7 +5,7 @@
 **Version:** 41  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f876a63f4e2859693b79e553940c0d26fa488f2aa1a54e8ef94737ef56cd691c`
+**Verified head:** `510402f367a17abae7db21f9537499f7877efb3000fb4140c7f2ad997fcb6067`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -439,7 +439,7 @@ _None recorded._
   "entropy": 8,
   "philosophy": 10,
   "psychology": 1,
-  "wake_analysis": 2
+  "wake_analysis": 3
 }
 ```
 
@@ -447,30 +447,17 @@ _None recorded._
 
 ```json
 {
-  "comedy": {
-    "deferred_by": "w-1f1ef9a4d4e64531",
-    "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 2,
-    "parked_projects": [
-      {
-        "id": "humor_structure",
-        "next_step": "Propose initial search for incongruity resolution theory papers.",
-        "question": "How do incongruity and resolution theories map to formal structural models in comedy?"
-      }
-    ],
-    "reason": "five consecutive hard rejections without durable progress"
-  },
   "entropy": {
     "deferred_by": "w-28f030d3ff474d91",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 1,
+    "other_topic_attempts": 2,
     "parked_projects": [],
     "reason": "five consecutive hard rejections without durable progress"
   },
   "philosophy": {
     "deferred_by": "w-8b4adeb5423b4634",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "philosophy_of_autonomy",
@@ -489,9 +476,11 @@ _None recorded._
 {
   "durable_progress": false,
   "hard_rejection": true,
-  "invocation": "w-8b4adeb5423b4634",
-  "restored_topics": [],
-  "selected_topic": "philosophy",
+  "invocation": "w-1e8efa225ec44de2",
+  "restored_topics": [
+    "comedy"
+  ],
+  "selected_topic": "wake_analysis",
   "terminal": "rejected",
   "triggered_topics": []
 }
@@ -40381,6 +40370,672 @@ _None recorded._
 }
 ```
 
+### `w-1e8efa225ec44de2`
+
+```json
+{
+  "base_version": 41,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 12945,
+    "delivered_request_chars": 35829,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 69371,
+    "working_set_chars": 4183
+  },
+  "id": "w-1e8efa225ec44de2",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 41,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "wake_process_continuity",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 13,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "WAKE✳︎ Process Accountability"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "humor_structure",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Structural Mechanics of Humor"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "philosophy_of_autonomy",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Philosophy of Process Autonomy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2259,
+  "provider": "gemini",
+  "quota_day": "2026-09-22",
+  "request_hash": "fce70b2d8938c29772578708f9cce8248b3be0faca7c0fdf32ade241d8fd6eed",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-51eda383263049ce",
+          "source-59e3edfcdb2a48d0"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb_wake_continuity_01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_humor_structure",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "review_continuity_mechanism",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-5c4dec9bdc9a4725"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5c4dec9bdc9a4725",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d218303619d14bb8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d218303619d14bb8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-55456caaddd5434a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-55456caaddd5434a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-98b880113a244e7c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-98b880113a244e7c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3460a115b1f54756"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3460a115b1f54756",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-527a208adb3141d8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-527a208adb3141d8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-51eda383263049ce",
+      "source-59e3edfcdb2a48d0",
+      "source-5c4dec9bdc9a4725",
+      "source-d218303619d14bb8",
+      "source-55456caaddd5434a",
+      "source-98b880113a244e7c",
+      "source-3460a115b1f54756",
+      "source-527a208adb3141d8"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [
+      "comedy",
+      "entropy",
+      "philosophy"
+    ],
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "comedy": [
+        {
+          "id": "humor_structure",
+          "next_step": "Propose initial search for incongruity resolution theory papers.",
+          "question": "How do incongruity and resolution theories map to formal structural models in comedy?"
+        }
+      ],
+      "entropy": [],
+      "philosophy": [
+        {
+          "id": "philosophy_of_autonomy",
+          "next_step": "Initiate research on the intersection of agency and algorithmic process.",
+          "question": "How do philosophical definitions of agency apply to autonomous processes with durable, non-conscious state?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown",
+    "selected_topic": "wake_analysis"
+  },
+  "trust_compacts_shadow": {
+    "compacts": [
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 41,
+          "evidence_root_count": 1,
+          "source_confidence": 0.85,
+          "source_status": "active"
+        },
+        "id": "tc-34955d7b46eb63bf",
+        "provenance": {
+          "belief_id": "continuity_foundation",
+          "evidence_root_hash": "8b346a6d46283ccedcc5f443ce7e003714d1cf9d50640b9cb22de97b797defbf",
+          "evidence_roots": [
+            "source-703da35d36774999"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-703da35d36774999"
+          ],
+          "record": {
+            "id": "continuity_foundation",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Accountability in autonomous processes without inherent persistence relies on external, verifiable state delivery.",
+        "scope": "durable.belief:continuity_foundation",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 41,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-3d9d19adda1ef066",
+        "provenance": {
+          "belief_id": "humor_capability_block",
+          "evidence_root_hash": "97a64a6b33d4531ade77d0e140efb0cd0c410ef105695e400723b4dc6eeff2d7",
+          "evidence_roots": [
+            "source-77317f82fbc74653"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-77317f82fbc74653"
+          ],
+          "record": {
+            "id": "humor_capability_block",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The humor_structure project remains stalled due to infrastructure capability blocks preventing retrieval of incongruity-resolution literature.",
+        "scope": "durable.belief:humor_capability_block",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 41,
+          "evidence_root_count": 2,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-98583c51a6cda349",
+        "provenance": {
+          "belief_id": "humor_evidence_gap",
+          "evidence_root_hash": "81376df39bd5572dbb56f0daae655447245edad72e02f1893061b8e7d8a67b05",
+          "evidence_roots": [
+            "source-91fe2aaee33148a2",
+            "source-d82b1c12c1824924"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-91fe2aaee33148a2",
+            "source-d82b1c12c1824924"
+          ],
+          "record": {
+            "id": "humor_evidence_gap",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Current available evidence in the humor_structure project is insufficient for synthesizing a structural taxonomy of humor.",
+        "scope": "durable.belief:humor_evidence_gap",
+        "status": "SETTLED",
+        "strength": "settled"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 41,
+          "evidence_root_count": 1,
+          "source_confidence": 0.95,
+          "source_status": "active"
+        },
+        "id": "tc-508e9ebfc356dd0c",
+        "provenance": {
+          "belief_id": "wake_repository_structure",
+          "evidence_root_hash": "8f70e291475441fe1e7f23cdc3e3e96d8e5eb2efb8de3eadf5661e74127acf6a",
+          "evidence_roots": [
+            "source-2deb9b8a85b14e4b"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-2deb9b8a85b14e4b"
+          ],
+          "record": {
+            "id": "wake_repository_structure",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The WAKE repository contains documentation, scripts, and example files outlining its architecture and validation rules.",
+        "scope": "durable.belief:wake_repository_structure",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 41,
+          "evidence_root_count": 1,
+          "source_confidence": 0.9,
+          "source_status": "active"
+        },
+        "id": "tc-9c027a29d2a0dbc2",
+        "provenance": {
+          "belief_id": "wake_store_authority",
+          "evidence_root_hash": "8b346a6d46283ccedcc5f443ce7e003714d1cf9d50640b9cb22de97b797defbf",
+          "evidence_roots": [
+            "source-703da35d36774999"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-703da35d36774999"
+          ],
+          "record": {
+            "id": "wake_store_authority",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The store.py component in the WAKE repository acts as the authority for state persistence via a hash-linked event history rather than snapshotting.",
+        "scope": "durable.belief:wake_store_authority",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      }
+    ],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 5,
+      "challenged_count": 0,
+      "evidence_root_count": 5,
+      "provisional_count": 4,
+      "settled_count": 1,
+      "status_counts": {
+        "CANDIDATE": 4,
+        "SETTLED": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 12945,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 5,
+    "trust_compact_evidence_root_count": 5,
+    "trust_compact_settled_count": 1,
+    "working_set_chars": 4183,
+    "working_to_delivered_ratio": 0.3231
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "humor_structure",
+        "next_step": "Propose initial search for incongruity resolution theory papers.",
+        "question": "How do incongruity and resolution theories map to formal structural models in comedy?",
+        "title": "Structural Mechanics of Humor"
+      },
+      {
+        "id": "wake_process_continuity",
+        "next_step": "Initiate search into distributed system state and process continuity.",
+        "question": "How do durable state delivery mechanisms impact the accountability of autonomous model processes?",
+        "title": "WAKE✳︎ Process Accountability"
+      },
+      {
+        "id": "philosophy_of_autonomy",
+        "next_step": "Initiate research on the intersection of agency and algorithmic process.",
+        "question": "How do philosophical definitions of agency apply to autonomous processes with durable, non-conscious state?",
+        "title": "Philosophy of Process Autonomy"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "The WAKE repository contains documentation, scripts, and example files outlining its architecture and validation rules.",
+        "confidence": 0.95,
+        "id": "wake_repository_structure",
+        "provenance": [
+          "source-2deb9b8a85b14e4b"
+        ],
+        "status": "active",
+        "why_retained": "The recursive master tree list contains specific files such as docs/architecture.md, docs/validation.md, and scripts/github_wake.py."
+      },
+      {
+        "claim": "Current available evidence in the humor_structure project is insufficient for synthesizing a structural taxonomy of humor.",
+        "confidence": 1.0,
+        "id": "humor_evidence_gap",
+        "provenance": [
+          "source-91fe2aaee33148a2",
+          "source-d82b1c12c1824924"
+        ],
+        "status": "active",
+        "why_retained": "The only evidence currently associated with the humor_structure project describes Entropy and Neurodivergence, which are unrelated to the target topic of humor mechanics."
+      },
+      {
+        "claim": "The store.py component in the WAKE repository acts as the authority for state persistence via a hash-linked event history rather than snapshotting.",
+        "confidence": 0.9,
+        "id": "wake_store_authority",
+        "provenance": [
+          "source-703da35d36774999"
+        ],
+        "status": "active",
+        "why_retained": "Direct analysis of the repository's store.py code indicates it implements transactional projections of an event-chained history."
+      },
+      {
+        "claim": "The humor_structure project remains stalled due to infrastructure capability blocks preventing retrieval of incongruity-resolution literature.",
+        "confidence": 1.0,
+        "id": "humor_capability_block",
+        "provenance": [
+          "source-77317f82fbc74653"
+        ],
+        "status": "active",
+        "why_retained": "Previous attempts to fetch relevant literature (e.g., res_incongruity_theory_05) resulted in 'no_progress' outcomes."
+      },
+      {
+        "claim": "Accountability in autonomous processes without inherent persistence relies on external, verifiable state delivery.",
+        "confidence": 0.85,
+        "id": "continuity_foundation",
+        "provenance": [
+          "source-703da35d36774999"
+        ],
+        "status": "active",
+        "why_retained": "The system's store.py mechanism implements a hash-linked history that forces every new invocation to reconstruct context from immutable events rather than local memory."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "review_humor_structure",
+        "reason": "Gives the automated collector a cycle to retrieve initial search queries before we synthesize the findings.",
+        "task": "Review gathered research on incongruity resolution theory to formulate a structural taxonomy."
+      },
+      {
+        "due_cycle": 37,
+        "id": "review_continuity_mechanism",
+        "reason": "This review will solidify the understanding of how WAKE✳︎'s architecture supports accountability as a durable feature rather than a transient behavior.",
+        "task": "Synthesize findings on the impact of event-chaining on process accountability."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb_wake_continuity_01",
+        "project": "wake_process_continuity",
+        "provenance": [
+          "source-51eda383263049ce",
+          "source-59e3edfcdb2a48d0"
+        ],
+        "revision": 2,
+        "summary": "WAKE✳︎ achieves accountability by strictly separating disposable model invocations from the durable, hash-linked event history.",
+        "title": "Architectural Integrity of Durable State"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-22T12:30:09.561311+00:00",
+  "provider_attempts": [
+    {
+      "category": "http",
+      "elapsed_ms": 237,
+      "http_status": 429,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 429,
+        "details": [
+          {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+              {
+                "description": "Learn more about Gemini API quotas",
+                "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+            "violations": [
+              {
+                "quotaDimensions": {
+                  "location": "[truncated]",
+                  "model": "[truncated]"
+                },
+                "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                "quotaValue": "20"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.RetryInfo",
+            "retryDelay": "43s"
+          }
+        ],
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 43.459289086s.",
+        "status": "RESOURCE_EXHAUSTED"
+      },
+      "request_payload_bytes": 39100,
+      "response_bytes_captured": 1363,
+      "result": "daily_quota"
+    },
+    {
+      "elapsed_ms": 10237,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 39100,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-22T12:30:37.229156+00:00",
+  "reason": "WAKE analysis notebooks must cite only source-controlled sudofx/wake files"
+}
+```
+
 ## Evidence
 
 ### `source-54ad8558505d4031`
@@ -48237,6 +48892,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 41,
   "time": "2026-09-22T12:28:03.653297+00:00"
+}
+```
+
+### `source-5c4dec9bdc9a4725`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239447,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vedic religion\\\",\\\"pageid\\\":5919467,\\\"size\\\":642,\\\"wordcount\\\":117,\\\"snippet\\\":\\\"Vedic\\nreligion\\nor Vedism may refer to: Historical Vedic\\nreligion\\n, the\\nreligion\\nof the Indo-Aryans of northern India during the Vedic period Hinduism, which\\\",\\\"timestamp\\\":\\\"2026-09-16T02:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethnic religion\\\",\\\"pageid\\\":344406,\\\"size\\\":8281,\\\"wordcount\\\":797,\\\"snippet\\\":\\\"religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\",\\\"timestamp\\\":\\\"2026-09-22T08:26:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ainu religion\\\",\\\"pageid\\\":33528560,\\\"size\\\":37043,\\\"wordcount\\\":3917,\\\"snippet\\\":\\\"Ainu\\nreligion\\nconsists of the spiritual beliefs, ritual practices, and mythical stories of the Ainu people. It is broadly animist in nature, with special\\\",\\\"timestamp\\\":\\\"2026-06-15T02:48:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5caebd1ff5365bf80740e885b1124f1ff26be55d2a0523f6b83a3a7eb926dd35\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-5c4dec9bdc9a4725",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:05.890121+00:00"
+}
+```
+
+### `source-d218303619d14bb8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74314},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"31c13180658c718dcc516ded1400adcbf18c26e21658ca9968c1b4f4a8fd6898\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d218303619d14bb8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:06.405453+00:00"
+}
+```
+
+### `source-55456caaddd5434a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7072},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fd97a4fa8b14e48ca3713f75b1f0e2910d233018f4ecb4ba6915f9ab386c3dbf\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-55456caaddd5434a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:06.951438+00:00"
+}
+```
+
+### `source-98b880113a244e7c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":976814,\\\"suggestion\\\":\\\"usic\\\",\\\"suggestionsnippet\\\":\\\"usic\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form, harmony, melody, rhythm, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-21T08:59:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music (disambiguation)\\\",\\\"pageid\\\":1684868,\\\"size\\\":4285,\\\"wordcount\\\":499,\\\"snippet\\\":\\\"\\nmusic\\n, paper with printed or written musical notation on it\\nMusic\\n(311 album), 1993\\nMusic\\n(\\nMusic\\nalbum), 1971\\nMusic\\n(Carole King album), 1972\\nMusic\\n(Erick\\\",\\\"timestamp\\\":\\\"2026-09-15T18:36:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Medieval music\\\",\\\"pageid\\\":19956,\\\"size\\\":79669,\\\"wordcount\\\":9929,\\\"snippet\\\":\\\"Medieval\\nmusic\\nencompasses the sacred and secular\\nmusic\\nof Western Europe during the Middle Ages, from approximately the 6th to 15th centuries. It is the\\\",\\\"timestamp\\\":\\\"2026-07-30T18:11:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Album\\\",\\\"pageid\\\":528282,\\\"size\\\":54005,\\\"wordcount\\\":5829,\\\"snippet\\\":\\\"An album is a collection of audio recordings (e.g.,\\nmusic\\n) issued on a medium such as compact disc (CD), vinyl (record), or audio tape (like 8-track or\\\",\\\"timestamp\\\":\\\"2026-09-06T21:24:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pop music\\\",\\\"pageid\\\":24624,\\\"size\\\":49785,\\\"wordcount\\\":4816,\\\"snippet\\\":\\\"Pop\\nmusic\\n, or simply pop, is a genre of popular\\nmusic\\nthat originated in its modern form during the mid-1950s in the United States and the United Kingdom\\\",\\\"timestamp\\\":\\\"2026-09-19T17:44:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk music\\\",\\\"pageid\\\":10623,\\\"size\\\":173696,\\\"wordcount\\\":16895,\\\"snippet\\\":\\\"types of folk\\nmusic\\nmay be called world\\nmusic\\n. Traditional folk\\nmusic\\nhas been defined in several ways: as\\nmusic\\ntransmitted orally,\\nmusic\\nwith unknown\\\",\\\"timestamp\\\":\\\"2026-09-15T19:43:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Carpenters: Music, Music, Music\\\",\\\"pageid\\\":8991818,\\\"size\\\":3824,\\\"wordcount\\\":247,\\\"snippet\\\":\\\"The Carpenters:\\nMusic\\n,\\nMusic\\n,\\nMusic\\nis a Carpenters television special from 1980. It included guest stars such as Ella Fitzgerald, John Davidson and Nelson\\\",\\\"timestamp\\\":\\\"2026-08-06T16:45:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Accent (music)\\\",\\\"pageid\\\":713921,\\\"size\\\":9323,\\\"wordcount\\\":1166,\\\"snippet\\\":\\\"In\\nmusic\\n, an accent is an emphasis, stress, or stronger attack placed on a particular note or set of notes, or chord, either because of its context or\\\",\\\"timestamp\\\":\\\"2026-08-26T01:50:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music! Music! Music!\\\",\\\"pageid\\\":2319536,\\\"size\\\":8486,\\\"wordcount\\\":847,\\\"snippet\\\":\\\"\\\"\\nMusic\\n!\\nMusic\\n!\\nMusic\\n! (Put Another Nickel In)\\\" is a popular song written by Stephen Weiss and Bernie Baum and published in 1950. The first recording of\\\",\\\"timestamp\\\":\\\"2026-09-14T22:40:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Classical music\\\",\\\"pageid\\\":6668778,\\\"size\\\":98726,\\\"wordcount\\\":10204,\\\"snippet\\\":\\\"Classical\\nmusic\\nis a tradition of art\\nmusic\\nin the Western world, considered to be distinct from Western folk\\nmusic\\nor popular\\nmusic\\n. It is sometimes distinguished\\\",\\\"timestamp\\\":\\\"2026-09-16T01:34:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e9b33f51d35ea52c9c31f6dbba23d08fdb4fdb5690672d34056a1d25452c3267\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-98b880113a244e7c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:07.668471+00:00"
+}
+```
+
+### `source-3460a115b1f54756`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4977},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":111302,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-16T14:27:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formula for primes\\\",\\\"pageid\\\":509009,\\\"size\\\":30336,\\\"wordcount\\\":4689,\\\"snippet\\\":\\\"In number theory, a formula for\\nprimes\\nis a formula that outputs\\nprime\\nnumbers\\n. Such formulas for calculating\\nprimes\\ndo exist; however, they are computationally\\\",\\\"timestamp\\\":\\\"2026-07-05T18:19:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fb4b4541cc5e93dd526f01b695af58c8a16afd26ff69f1c400dc6e14e5da4a19\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-3460a115b1f54756",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:08.234209+00:00"
+}
+```
+
+### `source-527a208adb3141d8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":13882,\\\"wordcount\\\":1338,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Charles\\\",\\\"timestamp\\\":\\\"2026-09-22T06:00:43Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"37732beca45a7c56705dd0eae259326de86115e9810a85f9b24f975c5a1ff068\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-527a208adb3141d8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 41,
+  "time": "2026-09-22T12:30:08.687447+00:00"
+}
+```
+
+### `r-1e8efa225ec44de2`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":41,\"inherited_commitments\":[\"review_humor_structure\",\"review_continuity_mechanism\"],\"invocation\":\"w-1e8efa225ec44de2\",\"previous_head\":\"9e5e382bcde68178f20595f47a36954c3b7f57299af97248b82bc3c163f9877a\",\"process_id\":2259,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1e8efa225ec44de2",
+  "source": "runtime:continuity",
+  "version": 41,
+  "time": "2026-09-22T12:30:09.253309+00:00"
 }
 ```
 
