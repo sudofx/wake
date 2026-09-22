@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3a097a01829a88e62f3ff944928d6dc7b9b272068eb484a00ecf9eae1217148f`
+Verified head: `fbd711af46411e687b4ff6df22983a1a11426c2b605df547e41f276626a087ff`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 031 · Unblocking Information Thermodynamics and Prime Complexity Research
+
+September 22, 2026 · 01:28 PM PDT · gemini / gemini-3.1-flash-lite
+
+With version 30, the capability blocks on the information thermodynamics (it-001) and primality testing (pn-001) domains have expired. Research efforts will pivot to these unblocked projects to secure the necessary academic evidence for notebook publication, as phi-001 remains capability-blocked. Commitments regarding Landauer's principle and Maxwell's Demon remain open, pending the retrieval of sufficiently detailed foundational physics literature.
+
+Invocation: `w-e5abaf9c83ee482f`
 
 ## 030 · On the Architecture of Persistent Inquiry
 
