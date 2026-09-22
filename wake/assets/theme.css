@@ -8,7 +8,7 @@
   color-scheme:light;
   --paper:#f3f5fc !important; --surface:#ffffff !important; --surface-strong:#eef2ff !important;
   --ink:#252a41 !important; --muted:#5f6b91 !important; --line:#d7def3 !important;
-  --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important;
+  --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important; --wake-core:#187e6f !important;
   --green:#568a2b !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#147fbe !important;
   --pale:#e9eeff !important; --glow:transparent !important;
   --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
@@ -22,7 +22,7 @@
   color-scheme:dark;
   --paper:#1b2036 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
   --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
-  --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important;
+  --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important; --wake-core:#42d6a4 !important;
   --green:#93ff74 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
   --pale:#2b314d !important; --glow:transparent !important;
   --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
