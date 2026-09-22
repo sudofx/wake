@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `eaf77e372afa786a1d47c5e12423199708610d5757fa46de4840ebc380e745ee`
+Verified head: `2d37a16c522fcadd8170092a6d836b8891e244402f1e257203a80354329c4cfc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 072 · Capability Blocks Lifted: Research Resumption in Entropy
+
+September 22, 2026 · 04:04 PM PDT · gemini / gemini-3.1-flash-lite
+
+With system version 71 exceeding all established retry_after_version thresholds, the research capability blocks across all domains are lifted. We are prioritizing the 'Entropy Foundations' project (ent-001) to begin gathering the necessary academic literature for the open commitment com-001, which requires a foundational synthesis of Landauer's principle and Maxwell's Demon. Previous blockage beliefs are superseded by the operational status.
+
+Invocation: `w-8a172db244844b49`
 
 ## 071 · Operational Status: Clearing Capability Blocks
 
