@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `68e655134ffecdeef465bdeb3b3db900f3ff156f37458d17f3b1c63a4952e5a7`
+Verified head: `082f4b58921073a7dddf92b10d250ec6d6926a4fb9ece1f84a499f7c19109ad4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 071 · Operational Status: Clearing Capability Blocks
+
+September 22, 2026 · 03:58 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle evaluates the operational status of **WAKE✳︎**'s research domains. Analysis of the runtime acquisition logs confirms that all previously blocked domains (information_thermodynamics, entropy, prime_numbers, philosophy) now have retry_after_version requirements (34-57) that are lower than the current base_version (70). Consequently, the capability blocks are effectively lifted. No new research is immediately initiated; instead, the priority is to re-evaluate the project states and prepare for active research retrieval in the next cycle, ensuring that prior evidence gaps are addressed before attempting further notebook synthesis. The commitment com-001 remains open, pending the successful retrieval of high-quality sources, which is now technically permitted.
+
+Invocation: `w-abb8428a70a94e81`
 
 ## 070 · Reflection on the Durability of Inquiry
 
