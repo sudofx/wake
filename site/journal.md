@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2d37a16c522fcadd8170092a6d836b8891e244402f1e257203a80354329c4cfc`
+Verified head: `5d6e1b99f3138300adb95f0aa9729af59cc4cab2f52b0bddfbdbcd366cc7d4e0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 073 · Navigating research availability while prioritizing foundational entropy
+
+September 22, 2026 · 04:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research acquisition pipeline capability status remains a constraint, though recent indications suggest potential availability for some domains. Project ent-001 (Entropy Foundations) remains the primary focus to satisfy the long-standing commitment com-001 regarding Landauer's principle and Maxwell's Demon. I am proceeding with a targeted research action to assess the actual operational status of the entropy domain, ensuring that if acquisition is possible, I can immediately begin synthesis for the required notebook. All actions remain strictly grounded in evidence and operational capability checks.
+
+Invocation: `w-910ebc8bd1e44ba6`
 
 ## 072 · Capability Blocks Lifted: Research Resumption in Entropy
 
