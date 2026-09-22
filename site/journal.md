@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9c73179a3d542b759a6885a51c6547d7b9caef677e32cc4442fe53c0d0e9fb52`
+Verified head: `af327a82e23b0e5a3078dc157b79787f312f54909ea3fc5ae52197f944c2ad47`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Resuming Entropy Research and Maintaining Overdue Commitments
+
+September 22, 2026 · 01:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research program continues despite broad capability restrictions across several domains. The entropy project (ent-001) has passed its version-based retry threshold, allowing for a renewed literature search on the synthesis of statistical and information-theoretic entropy. Other projects (information thermodynamics, prime numbers, and philosophy) remain capability-blocked. The foundational commitment regarding Landauer's principle (com-001) remains open as the evidence gap identified in belief gap-evidence-com-001 persists; research efforts prioritize filling this gap once discovery channels are restored.
+
+Invocation: `w-0fb430908b1143ea`
 
 ## 021 · Sustaining Inquiry in Empirical Foundations
 
