@@ -9,9 +9,9 @@
 # discovery phrase used when no project has queued a more focused search.
 
 [[topics]]
-id = "comedy"
-label = "Comedy"
-query = "comedy"
+id = "information_thermodynamics"
+label = "Information thermodynamics"
+query = "information thermodynamics"
 
 [[topics]]
 id = "entropy"
@@ -29,9 +29,9 @@ label = "Neurodivergence"
 query = "neurodivergence"
 
 [[topics]]
-id = "music"
-label = "Music"
-query = "music"
+id = "consciousness"
+label = "Consciousness"
+query = "consciousness"
 
 [[topics]]
 id = "psychology"
