@@ -142,7 +142,7 @@
       `${j.title} ${j.summary} ${j.invocation} ${j.cycle} ${journalTopics(j).map(topicLabel).join(' ')}`.toLowerCase().includes(query));
     $('entries').innerHTML=entries.slice(0,journalLimit).map(j => {
       const i=s.invocations[j.invocation], event=decisions[j.invocation], actions=event.payload.proposal.actions;
-      return `<article class="entry record-panel" id="cycle-${j.cycle}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="cycle">WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time>${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}<span class="journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}</span><span>${actions.length} recorded change${actions.length===1?'':'s'}</span></div><section class="lab-notes"><p class="eyebrow">LAB NOTES</p>${actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'}</section><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
+      return `<article class="entry record-panel" id="cycle-${j.cycle}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="cycle">WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time><span class="journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><span class="record-outcome">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}</span><span>${actions.length} recorded change${actions.length===1?'':'s'}</span></div><section class="lab-notes"><p class="eyebrow">LAB NOTES</p>${actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'}</section><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
   }
@@ -372,7 +372,8 @@
   $('history-search').addEventListener('input',()=>{historyLimit=35;route();});
   $('event-filter').addEventListener('change',()=>{historyLimit=35;route();});
   $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
-  window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();window.scrollTo(0,0);});
+  const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
+  window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
   $('generated').textContent=`Exported ${fmt(data.generated)}.`;
   journal();route();
 })();
