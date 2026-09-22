@@ -210,7 +210,7 @@ while true; do
   echo "[wake $i] ${operation_status} (accepted: $accepted; rejected: $rejected; deferred: $deferred; waiting: $waiting)."
 
   if [[ "$operation_status" == "deferred" ]] && jq -e '.reason | startswith("Gemini temporarily unavailable")' >/dev/null 2>&1 <<<"$operation"; then
-    echo "[wake $i] Temporary provider outage; waiting five minutes before retrying."
+    echo "[wake $i] Temporary provider outage; waiting one minute before retrying."
     # A transient outage produced no research result. Do not let it consume
     # one of the operator-requested cycles before the next dispatch.
     i=$((i - 1))
