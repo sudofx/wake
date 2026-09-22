@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-450f1fe113c94b51",
-  "cycle": 74,
+  "status": "rejected",
+  "id": "w-563e2e6e7bd44295",
+  "reason": "Cannot retract a nonexistent belief",
   "wake_status": {
     "last_accepted": {
       "id": "w-450f1fe113c94b51",
@@ -22,18 +22,18 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-450f1fe113c94b51",
-      "time": "2026-09-22T23:10:20.641153+00:00",
-      "finished": "2026-09-22T23:10:47.450121+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-563e2e6e7bd44295",
+      "time": "2026-09-22T23:13:05.861307+00:00",
+      "finished": "2026-09-22T23:13:34.580344+00:00",
+      "status": "rejected",
+      "reason": "Cannot retract a nonexistent belief",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9800,
+          "elapsed_ms": 11804,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 46089,
+          "request_payload_bytes": 46717,
           "result": "success"
         }
       ],
@@ -42,9 +42,9 @@
     "accepted_cycles": 74,
     "next_eligible": "2026-09-23T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 165,
-    "provider_requests_today": 174,
-    "provider_request_slots_today": 174,
+    "attempts_today": 166,
+    "provider_requests_today": 175,
+    "provider_request_slots_today": 175,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
