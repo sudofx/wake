@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>fead2ded0aa7cc80ac98e255f5e99320165487d31480ea41a715f099cbbeb878</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 5<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>com-001</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>298ca10c0ecb161935314eaecdf76986c37e99503ca232934a60e79c376e0428</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 5<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>com-001</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 3,
   &quot;id&quot;: &quot;com-001&quot;,
   &quot;reason&quot;: &quot;Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.&quot;,
@@ -14914,6 +14914,287 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
     &quot;response_bytes_captured&quot;: 198,
     &quot;result&quot;: &quot;transient_failure&quot;
   }
+}</pre></div></details><details><summary>w-729354110e644c03</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 5,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 19217,
+    &quot;delivered_request_chars&quot;: 41941,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;omitted_categories&quot;: [],
+    &quot;provenance_policy&quot;: null,
+    &quot;rich_context_chars&quot;: 41941,
+    &quot;working_set_chars&quot;: 915
+  },
+  &quot;id&quot;: &quot;w-729354110e644c03&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 5,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;ent-001&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 2,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Entropy Foundations&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2257,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-22&quot;,
+  &quot;request_hash&quot;: &quot;3f7fb4d50a3fcde4d231882caea01b315fc151243c54d76a74b1d6f534a602ac&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;com-001&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-13b4342326bf484f&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-13b4342326bf484f&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-d21b05e8b96b4d6a&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-d21b05e8b96b4d6a&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-3988e2f73e4c4f8f&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-3988e2f73e4c4f8f&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-e5c03f08830c4333&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-e5c03f08830c4333&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-1342415b0f274b38&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-1342415b0f274b38&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-9c1effd0fe0f432c&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-9c1effd0fe0f432c&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-13b4342326bf484f&quot;,
+      &quot;source-d21b05e8b96b4d6a&quot;,
+      &quot;source-3988e2f73e4c4f8f&quot;,
+      &quot;source-e5c03f08830c4333&quot;,
+      &quot;source-1342415b0f274b38&quot;,
+      &quot;source-9c1effd0fe0f432c&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 7,
+      &quot;evidence_count&quot;: 6,
+      &quot;trigger_counts&quot;: {
+        &quot;commitment_near_due&quot;: 1,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {},
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;selected_topic&quot;: &quot;entropy&quot;
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 19217,
+    &quot;inquiry_drive_project_count&quot;: 1,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;retrieval_candidate_count&quot;: 7,
+    &quot;retrieval_evidence_count&quot;: 6,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;commitment_near_due&quot;: 1,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 915,
+    &quot;working_to_delivered_ratio&quot;: 0.0476
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;ent-001&quot;,
+        &quot;next_step&quot;: &quot;Retrieve foundational academic papers on statistical entropy.&quot;,
+        &quot;question&quot;: &quot;How are definitions of entropy synthesized across statistical mechanics and information theory?&quot;,
+        &quot;title&quot;: &quot;Entropy Foundations&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 3,
+        &quot;id&quot;: &quot;com-001&quot;,
+        &quot;reason&quot;: &quot;Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.&quot;,
+        &quot;task&quot;: &quot;Synthesize collected evidence into a foundational notebook on Landauer&#x27;s principle and Maxwell&#x27;s Demon&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-22T17:25:13.854806+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 38944,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 47355,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;finished&quot;: &quot;2026-09-22T17:26:00.250174+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 38944,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 38944,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 47355,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 1,
+    &quot;request_payload_bytes&quot;: 47355,
+    &quot;response_bytes_captured&quot;: 198,
+    &quot;result&quot;: &quot;transient_failure&quot;
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-5929557bed184f79</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74316},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Somatic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:6774132,\\\&quot;size\\\&quot;:16405,\\\&quot;wordcount\\\&quot;:1855,\\\&quot;snippet\\\&quot;:\\\&quot;Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-03T20:37:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Individual psychology\\\&quot;,\\\&quot;pageid\\\&quot;:3959877,\\\&quot;size\\\&quot;:15651,\\\&quot;wordcount\\\&quot;:1631,\\\&quot;snippet\\\&quot;:\\\&quot;Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-04T05:18:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Shadow (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:560394,\\\&quot;size\\\&quot;:34954,\\\&quot;wordcount\\\&quot;:4164,\\\&quot;snippet\\\&quot;:\\\&quot;In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T17:23:54Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;90f74d8b093a09eeb43f99b865011863d618a0fb57d8041adc341f51b8b67414\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -17884,6 +18165,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 5,
   &quot;time&quot;: &quot;2026-09-22T17:23:00.683311+00:00&quot;
+}</pre></div></details><details><summary>source-13b4342326bf484f</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74318},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Shadow (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:560394,\\\&quot;size\\\&quot;:34954,\\\&quot;wordcount\\\&quot;:4164,\\\&quot;snippet\\\&quot;:\\\&quot;In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T17:23:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Individual psychology\\\&quot;,\\\&quot;pageid\\\&quot;:3959877,\\\&quot;size\\\&quot;:15651,\\\&quot;wordcount\\\&quot;:1631,\\\&quot;snippet\\\&quot;:\\\&quot;Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-04T05:18:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Positive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:179948,\\\&quot;size\\\&quot;:125828,\\\&quot;wordcount\\\&quot;:13672,\\\&quot;snippet\\\&quot;:\\\&quot;Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-13T19:18:26Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;883dd2180c188493fe2c65df5fcca1e084b865002b5b9b6722985c9616e8215c\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-13b4342326bf484f&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:11.356525+00:00&quot;
+}</pre></div></details><details><summary>source-d21b05e8b96b4d6a</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:4977},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Prime number\\\&quot;,\\\&quot;pageid\\\&quot;:23666,\\\&quot;size\\\&quot;:128021,\\\&quot;wordcount\\\&quot;:14786,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T15:01:53Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of Mersenne primes and perfect numbers\\\&quot;,\\\&quot;pageid\\\&quot;:68906231,\\\&quot;size\\\&quot;:52386,\\\&quot;wordcount\\\&quot;:2900,\\\&quot;snippet\\\&quot;:\\\&quot;Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-17T04:54:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of prime numbers\\\&quot;,\\\&quot;pageid\\\&quot;:442370,\\\&quot;size\\\&quot;:111302,\\\&quot;wordcount\\\&quot;:6018,\\\&quot;snippet\\\&quot;:\\\&quot;This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T14:27:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Sexy primes\\\&quot;,\\\&quot;pageid\\\&quot;:343116,\\\&quot;size\\\&quot;:3815,\\\&quot;wordcount\\\&quot;:453,\\\&quot;snippet\\\&quot;:\\\&quot;sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T20:27:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Perfect number\\\&quot;,\\\&quot;pageid\\\&quot;:23670,\\\&quot;size\\\&quot;:39840,\\\&quot;wordcount\\\&quot;:5531,\\\&quot;snippet\\\&quot;:\\\&quot;odd Perfect\\nPrime\\nNumbers\\n\\\&quot;.\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\&quot;Perfect\\nNumbers\\nand Aliquot\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T00:36:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Wieferich prime\\\&quot;,\\\&quot;pageid\\\&quot;:323631,\\\&quot;size\\\&quot;:43265,\\\&quot;wordcount\\\&quot;:4566,\\\&quot;snippet\\\&quot;:\\\&quot;\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T10:09:34Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fermat number\\\&quot;,\\\&quot;pageid\\\&quot;:91127,\\\&quot;size\\\&quot;:43237,\\\&quot;wordcount\\\&quot;:3868,\\\&quot;snippet\\\&quot;:\\\&quot;(2001), \\\&quot;Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\&quot;, Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T16:11:11Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand Prime Numbers\\\&quot;,\\\&quot;pageid\\\&quot;:63087914,\\\&quot;size\\\&quot;:5974,\\\&quot;wordcount\\\&quot;:617,\\\&quot;snippet\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T00:17:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mersenne prime\\\&quot;,\\\&quot;pageid\\\&quot;:18908,\\\&quot;size\\\&quot;:78122,\\\&quot;wordcount\\\&quot;:6673,\\\&quot;snippet\\\&quot;:\\\&quot;In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T20:24:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Number\\\&quot;,\\\&quot;pageid\\\&quot;:21690,\\\&quot;size\\\&quot;:111928,\\\&quot;wordcount\\\&quot;:11702,\\\&quot;snippet\\\&quot;:\\\&quot;A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T13:55:05Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;1046f61cec65182642e3bf29018008a0aa9eaa5fada2ed2dc017a66af62ed5d6\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;prime_numbers\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: [\&quot;doi:10.2307/2005530\&quot;, \&quot;doi:10.1007/s10012-001-0111-4\&quot;]}&quot;,
+  &quot;id&quot;: &quot;source-d21b05e8b96b4d6a&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:11.914444+00:00&quot;
+}</pre></div></details><details><summary>source-3988e2f73e4c4f8f</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40303},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T05:12:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Class consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:38794693,\\\&quot;size\\\&quot;:11255,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;In sociology, class\\nconsciousness\\nis the set of beliefs that persons hold regarding their social class or economic rank in society, the structure of their\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T19:55:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Animal consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:13001588,\\\&quot;size\\\&quot;:135552,\\\&quot;wordcount\\\&quot;:14235,\\\&quot;snippet\\\&quot;:\\\&quot;Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T05:21:19Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;bd3d21bbbeb4f4fe57f1e5f22b556cfde1ed856a63e727bb1ef615d9573cb73c\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-3988e2f73e4c4f8f&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:12.310495+00:00&quot;
+}</pre></div></details><details><summary>source-e5c03f08830c4333</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:120,\\\&quot;suggestion\\\&quot;:\\\&quot;neurodivergent\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;neurodivergent\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurodiversity\\\&quot;,\\\&quot;pageid\\\&quot;:1073739,\\\&quot;size\\\&quot;:142665,\\\&quot;wordcount\\\&quot;:13881,\\\&quot;snippet\\\&quot;:\\\&quot;and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\&quot;difference[s]\\\&quot;.\\nNeurodivergences\\ninclude autism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T23:26:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neuroqueer theory\\\&quot;,\\\&quot;pageid\\\&quot;:76016274,\\\&quot;size\\\&quot;:31724,\\\&quot;wordcount\\\&quot;:3380,\\\&quot;snippet\\\&quot;:\\\&quot;have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T18:08:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurofibromatosis type I\\\&quot;,\\\&quot;pageid\\\&quot;:1712548,\\\&quot;size\\\&quot;:63138,\\\&quot;wordcount\\\&quot;:7236,\\\&quot;snippet\\\&quot;:\\\&quot;Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T22:12:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fern Brady\\\&quot;,\\\&quot;pageid\\\&quot;:43399498,\\\&quot;size\\\&quot;:15262,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T00:11:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mel King (The Pitt)\\\&quot;,\\\&quot;pageid\\\&quot;:82753144,\\\&quot;size\\\&quot;:15333,\\\&quot;wordcount\\\&quot;:1322,\\\&quot;snippet\\\&quot;:\\\&quot;and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-07T04:12:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Kassiane Asasumasu\\\&quot;,\\\&quot;pageid\\\&quot;:76250908,\\\&quot;size\\\&quot;:14907,\\\&quot;wordcount\\\&quot;:1302,\\\&quot;snippet\\\&quot;:\\\&quot;related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T15:58:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Katherine May\\\&quot;,\\\&quot;pageid\\\&quot;:78381298,\\\&quot;size\\\&quot;:13588,\\\&quot;wordcount\\\&quot;:1261,\\\&quot;snippet\\\&quot;:\\\&quot;Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-01T10:20:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Taylor Dearden\\\&quot;,\\\&quot;pageid\\\&quot;:55290719,\\\&quot;size\\\&quot;:19195,\\\&quot;wordcount\\\&quot;:1387,\\\&quot;snippet\\\&quot;:\\\&quot;com/watch?v=bqFkDmto2OM \\\&quot;Actress Taylor Dearden talks about portraying\\nneurodivergence\\non &#x27;The Pitt&#x27;\\\&quot;. NPR. April 9, 2025. Retrieved June 18, 2025. \\\&quot;&#x27;The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T00:35:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The Devil Wears Prada 2\\\&quot;,\\\&quot;pageid\\\&quot;:77315100,\\\&quot;size\\\&quot;:87086,\\\&quot;wordcount\\\&quot;:7289,\\\&quot;snippet\\\&quot;:\\\&quot;as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\&quot; Although all the Italian actors who had provided the voices for the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T23:51:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Otherkin\\\&quot;,\\\&quot;pageid\\\&quot;:21702085,\\\&quot;size\\\&quot;:37075,\\\&quot;wordcount\\\&quot;:3341,\\\&quot;snippet\\\&quot;:\\\&quot;non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T04:15:48Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;107a9bda3658a1e8b194291a54239832eff88261c56fc23d9e9f8ad97ea9a45d\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurodivergence\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-e5c03f08830c4333&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:12.745781+00:00&quot;
+}</pre></div></details><details><summary>source-1342415b0f274b38</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:149363,\\\&quot;suggestion\\\&quot;:\\\&quot;philosopher\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;philosopher\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13692155,\\\&quot;size\\\&quot;:202240,\\\&quot;wordcount\\\&quot;:17550,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009&#x27;love of wisdom&#x27;) is a systematic study of general and fundamental questions concerning topics like existence\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T19:17:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Doctor of Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:21031297,\\\&quot;size\\\&quot;:152425,\\\&quot;wordcount\\\&quot;:16312,\\\&quot;snippet\\\&quot;:\\\&quot;A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T15:35:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Desert (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:10791397,\\\&quot;size\\\&quot;:23606,\\\&quot;wordcount\\\&quot;:3102,\\\&quot;snippet\\\&quot;:\\\&quot;Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-01-20T20:30:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:9247,\\\&quot;size\\\&quot;:211582,\\\&quot;wordcount\\\&quot;:19966,\\\&quot;snippet\\\&quot;:\\\&quot;Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T14:29:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fish! Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:8770844,\\\&quot;size\\\&quot;:8284,\\\&quot;wordcount\\\&quot;:1071,\\\&quot;snippet\\\&quot;:\\\&quot;The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-07T07:04:15Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Political philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:23040,\\\&quot;size\\\&quot;:129819,\\\&quot;wordcount\\\&quot;:13401,\\\&quot;snippet\\\&quot;:\\\&quot;Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-31T02:16:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cynicism (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:19187131,\\\&quot;size\\\&quot;:40942,\\\&quot;wordcount\\\&quot;:4715,\\\&quot;snippet\\\&quot;:\\\&quot;Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-27T04:15:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Aesthetics\\\&quot;,\\\&quot;pageid\\\&quot;:2130,\\\&quot;size\\\&quot;:149323,\\\&quot;wordcount\\\&quot;:16275,\\\&quot;snippet\\\&quot;:\\\&quot;Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Western philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13704154,\\\&quot;size\\\&quot;:96464,\\\&quot;wordcount\\\&quot;:11377,\\\&quot;snippet\\\&quot;:\\\&quot;Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T05:16:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Phenomenology (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:76939,\\\&quot;size\\\&quot;:54614,\\\&quot;wordcount\\\&quot;:6018,\\\&quot;snippet\\\&quot;:\\\&quot;appeared in direct connection to Husserl&#x27;s\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\&quot;phenomenology\\\&quot; refers to the tradition\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T15:46:18Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;2ca9aee76ea142bdbf0c1eb433600a3594dfef98a116c6cd5da47c6125f7bce6\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;philosophy\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-1342415b0f274b38&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:13.209303+00:00&quot;
+}</pre></div></details><details><summary>source-9c1effd0fe0f432c</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1\&quot;, \&quot;scope\&quot;: \&quot;recursive source-controlled WAKE repository file index; paths and sizes, not file contents\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;path\\\&quot;: \\\&quot;.env.example\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 83}, {\\\&quot;path\\\&quot;: \\\&quot;.github/workflows/test.yml\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1063}, {\\\&quot;path\\\&quot;: \\\&quot;.github/workflows/wake.yml\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4783}, {\\\&quot;path\\\&quot;: \\\&quot;.gitignore\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 86}, {\\\&quot;path\\\&quot;: \\\&quot;LICENSE\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 34020}, {\\\&quot;path\\\&quot;: \\\&quot;README.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 18361}, {\\\&quot;path\\\&quot;: \\\&quot;assets/covers/cover-original.png\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2471510}, {\\\&quot;path\\\&quot;: \\\&quot;assets/covers/cover-variant-001.png\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3329007}, {\\\&quot;path\\\&quot;: \\\&quot;assets/covers/cover-variant-002.png\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3256389}, {\\\&quot;path\\\&quot;: \\\&quot;assets/covers/cover-variant-003.png\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3125985}, {\\\&quot;path\\\&quot;: \\\&quot;assets/covers/cover-variant-004.png\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2847631}, {\\\&quot;path\\\&quot;: \\\&quot;assets/playlists/Reality Bytes Playlist.txt\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 9999}, {\\\&quot;path\\\&quot;: \\\&quot;docs/architecture.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 21616}, {\\\&quot;path\\\&quot;: \\\&quot;docs/cloud.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 10146}, {\\\&quot;path\\\&quot;: \\\&quot;docs/experiment.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 9733}, {\\\&quot;path\\\&quot;: \\\&quot;docs/operations.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 6687}, {\\\&quot;path\\\&quot;: \\\&quot;docs/quota-map-implementation.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 7787}, {\\\&quot;path\\\&quot;: \\\&quot;docs/retrieval.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3475}, {\\\&quot;path\\\&quot;: \\\&quot;docs/validation.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2755}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/events.jsonl\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1017120}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/experiment.json\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 20205}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/head.txt\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 65}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/index.html\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1266448}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/journal.md\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 33437}, {\\\&quot;path\\\&quot;: \\\&quot;examples/journal/state.json\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 199768}, {\\\&quot;path\\\&quot;: \\\&quot;pyproject.toml\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 662}, {\\\&quot;path\\\&quot;: \\\&quot;requirements.txt\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 68}, {\\\&quot;path\\\&quot;: \\\&quot;research-topics.toml\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1441}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/archive-analysis-snapshot.sh\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3850}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/checkpoint-state.sh\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2693}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/covers.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2093}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/github_wake.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8713}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/install_cron.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1560}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/manual-model-wake.sh\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8257}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/package.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1207}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/publish.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 6865}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/run-wake-cycles.sh\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8474}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/scheduled_wake.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1218}, {\\\&quot;path\\\&quot;: \\\&quot;scripts/sync-cloud-state.sh\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2131}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_acquisition.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 5530}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_alt_hosts.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2552}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_cloud_workflow.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 18678}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_covers.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2879}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_editorial_corrections.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 7432}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_feeds.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8276}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_gemini_failover.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 14594}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_history_filter.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 554}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_observation_mode.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2089}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_provenance.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8429}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_publishing.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4612}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_rejected.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4751}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_research.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 49884}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_squirrel.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4839}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_status.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4452}, {\\\&quot;path\\\&quot;: \\\&quot;tests/test_system.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 30197}, {\\\&quot;path\\\&quot;: \\\&quot;wake.toml\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2005}, {\\\&quot;path\\\&quot;: \\\&quot;wake/__init__.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 789}, {\\\&quot;path\\\&quot;: \\\&quot;wake/__main__.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 12344}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/app.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 49787}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/data-view.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1551}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/help.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 9578}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/index.html\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 13072}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map.css\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 14055}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map.html\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4505}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 15252}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map3d.css\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 12562}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map3d.html\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 5271}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/map3d.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 18017}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/nav.css\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 3039}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/nav.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 1250}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/pet.js\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 15408}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/style.css\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 86994}, {\\\&quot;path\\\&quot;: \\\&quot;wake/assets/theme.css\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 10846}, {\\\&quot;path\\\&quot;: \\\&quot;wake/audit.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 2259}, {\\\&quot;path\\\&quot;: \\\&quot;wake/engine.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 61239}, {\\\&quot;path\\\&quot;: \\\&quot;wake/experiment.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 9323}, {\\\&quot;path\\\&quot;: \\\&quot;wake/feeds.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 8221}, {\\\&quot;path\\\&quot;: \\\&quot;wake/governance.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 56521}, {\\\&quot;path\\\&quot;: \\\&quot;wake/provenance.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 11826}, {\\\&quot;path\\\&quot;: \\\&quot;wake/providers.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 49957}, {\\\&quot;path\\\&quot;: \\\&quot;wake/rejected.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 10822}, {\\\&quot;path\\\&quot;: \\\&quot;wake/report.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 46764}, {\\\&quot;path\\\&quot;: \\\&quot;wake/research.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 29446}, {\\\&quot;path\\\&quot;: \\\&quot;wake/retrieval.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 7430}, {\\\&quot;path\\\&quot;: \\\&quot;wake/scheduling.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 5332}, {\\\&quot;path\\\&quot;: \\\&quot;wake/squirrel.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 5888}, {\\\&quot;path\\\&quot;: \\\&quot;wake/store.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 21875}, {\\\&quot;path\\\&quot;: \\\&quot;wake/trust.py\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;blob\\\&quot;, \\\&quot;size\\\&quot;: 4060}]\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;ba7b5b4ec299db6a086f7b55606fb213cd2c77e166a5e22acbd975525be07888\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;wake_analysis\&quot;, \&quot;evidence_role\&quot;: \&quot;source\&quot;, \&quot;host_tier\&quot;: \&quot;verification\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-9c1effd0fe0f432c&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:13.469193+00:00&quot;
+}</pre></div></details><details><summary>r-729354110e644c03</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:5,\&quot;inherited_commitments\&quot;:[\&quot;com-001\&quot;],\&quot;invocation\&quot;:\&quot;w-729354110e644c03\&quot;,\&quot;previous_head\&quot;:\&quot;e0b69252ef7393d789cd89301fc0959a008a176e9920135c4cae499766b5d23d\&quot;,\&quot;process_id\&quot;:2257,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-729354110e644c03&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 5,
+  &quot;time&quot;: &quot;2026-09-22T17:25:13.719287+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Initiating Information Thermodynamics Inquiry</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-0ec3911b56d4467a&quot;,
