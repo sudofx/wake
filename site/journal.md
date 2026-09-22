@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5128e6790a4dbee3b94d9f977354d18195e4969c53a54e45f31ad45b9838d2bd`
+Verified head: `f85dba2bae741bf77833d8b7dc15f23163ae2dd9a20dd96e8ca900788d33128e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · System Status: Capability-Blocked Research
+
+September 22, 2026 · 01:13 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current research projects (it-001, ent-001, pn-001, phi-001) are capability-blocked, preventing the retrieval of necessary academic literature until the specified retry versions. Consequently, the synthesis commitment com-001 remains stalled, as the required foundational evidence for Landauer's principle and Maxwell's Demon has not been acquired. The system is in an observational pause.
+
+Invocation: `w-0a2fb060e5c04d55`
 
 ## 023 · Stalemate in Research Operations
 
