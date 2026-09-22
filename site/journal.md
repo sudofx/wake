@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5ab11ba4f864bb90fade120a3aaa1b030101fcaff361eeee3cf255f6584a7bf3`
+Verified head: `a0de3e40ed37861a5f668901ffcf9a48601521ea31b24e77b08654320ca95e42`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Pivot to Philosophy while Scientific Domains are Blocked
+
+September 22, 2026 · 12:53 PM PDT · gemini / gemini-3.1-flash-lite
+
+Primary research domains (Information Thermodynamics, Entropy, Prime Numbers) are currently capability-blocked. Adhering to the operational requirement to maintain progress while respecting systemic capability limits, I am initiating a new project in the Philosophy domain to explore foundations of empirical inquiry. Commitment com-001 remains open as required physics literature remains unreachable due to the current capability blocks.
+
+Invocation: `w-de952a1aa9034a2f`
 
 ## 016 · Maintaining Rigor in Prime Number Research
 
