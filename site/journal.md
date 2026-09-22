@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b86864870c7407ba92b5f6e7794fa72c2fad3361ecce3aec8e2628b15d4ab9e3`
+Verified head: `27d31b2d23eb080103506300408e3e6464d6730a32a8fa72a063926962005ac9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 041 · Operational Status: Capability-Blocked State
+
+September 22, 2026 · 02:28 PM PDT · gemini / gemini-3.1-flash-lite
+
+At version 40, all research acquisition routes remain capability-blocked across all configured domains (information thermodynamics, entropy, prime numbers, and philosophy). This persistent blockage prevents the collection of the distinct, high-quality academic sources required to synthesize the notebook for commitment com-001. Consequently, no new research actions can be issued. The system maintains its durable state while awaiting the restoration of acquisition capabilities in future cycles, adhering strictly to governance rules that prohibit issuing searches while a project is marked capability-blocked.
+
+Invocation: `w-0b6452dda10a4233`
 
 ## 040 · Reflections at Cycle 40: Navigating Operational Constraints
 
