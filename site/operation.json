@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-de952a1aa9034a2f",
-  "cycle": 17,
+  "status": "rejected",
+  "id": "w-3b443fca78ff4094",
+  "reason": "Commitment ID already exists",
   "wake_status": {
     "last_accepted": {
       "id": "w-de952a1aa9034a2f",
@@ -22,18 +22,18 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-de952a1aa9034a2f",
-      "time": "2026-09-22T19:53:30.084688+00:00",
-      "finished": "2026-09-22T19:53:52.751043+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-3b443fca78ff4094",
+      "time": "2026-09-22T19:55:06.584238+00:00",
+      "finished": "2026-09-22T19:55:21.500694+00:00",
+      "status": "rejected",
+      "reason": "Commitment ID already exists",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 11474,
+          "elapsed_ms": 4674,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 42619,
+          "request_payload_bytes": 44123,
           "result": "success"
         }
       ],
@@ -42,9 +42,9 @@
     "accepted_cycles": 17,
     "next_eligible": "2026-09-23T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 95,
-    "provider_requests_today": 104,
-    "provider_request_slots_today": 104,
+    "attempts_today": 96,
+    "provider_requests_today": 105,
+    "provider_request_slots_today": 105,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
