@@ -7,7 +7,7 @@ readonly REPO="sudofx/wake"
 readonly WORKFLOW="wake.yml"
 readonly POLL_SECONDS=5
 readonly RETRY_SECONDS=15
-readonly TRANSIENT_RETRY_SECONDS=60
+readonly TRANSIENT_RETRY_SECONDS=30
 readonly DISPATCH_TIMEOUT_SECONDS=1800
 readonly RUN_DISCOVERY_TIMEOUT_SECONDS=600
 readonly RUN_COMPLETION_TIMEOUT_SECONDS=2700
@@ -210,7 +210,7 @@ while true; do
   echo "[wake $i] ${operation_status} (accepted: $accepted; rejected: $rejected; deferred: $deferred; waiting: $waiting)."
 
   if [[ "$operation_status" == "deferred" ]] && jq -e '.reason | startswith("Gemini temporarily unavailable")' >/dev/null 2>&1 <<<"$operation"; then
-    echo "[wake $i] Temporary provider outage; waiting one minute before retrying."
+    echo "[wake $i] Temporary provider outage; waiting 30 seconds before retrying."
     # A transient outage produced no research result. Do not let it consume
     # one of the operator-requested cycles before the next dispatch.
     i=$((i - 1))
