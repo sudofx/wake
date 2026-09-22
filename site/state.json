@@ -49747,9 +49747,9 @@
   },
   "research_topics": [
     {
-      "id": "comedy",
-      "label": "Comedy",
-      "query": "comedy"
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics"
     },
     {
       "id": "entropy",
@@ -49767,9 +49767,9 @@
       "query": "neurodivergence"
     },
     {
-      "id": "music",
-      "label": "Music",
-      "query": "music"
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness"
     },
     {
       "id": "psychology",
@@ -49798,15 +49798,15 @@
     }
   ],
   "topic_colors": {
-    "comedy": "#54d4bc",
-    "entropy": "#ff9e64",
-    "music": "#f7768e",
-    "neurodivergence": "#c099ff",
-    "philosophy": "#5fcf8d",
+    "consciousness": "#9ece6a",
+    "entropy": "#b7d36b",
+    "information_thermodynamics": "#ff757f",
+    "neurodivergence": "#ffe574",
+    "philosophy": "#b25dff",
     "prime_numbers": "#f68c65",
-    "psychology": "#ff757f",
+    "psychology": "#d8c25d",
     "quantum_mechanics": "#ff5bb9",
-    "religion": "#9ece6a",
-    "wake_analysis": "#8aa8ff"
+    "religion": "#5fcf8d",
+    "wake_analysis": "#73daca"
   }
 }

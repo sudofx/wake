@@ -2,9 +2,88 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `72aedc343bbc21c98c41e716b6eec790f3a01963d696f8465d1c7ecb93df0835`
+Verified head: `0764e80513416ff2da20b61005b3cc91bf2a2c227530f074af1213f98393d7ab`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 1170 · `research_topics_changed`
+
+**Time:** 2026-09-22T15:08:06.260128+00:00  
+**ID:** `system`  
+**Hash:** `0764e80513416ff2da20b61005b3cc91bf2a2c227530f074af1213f98393d7ab`  
+**Previous hash:** `72aedc343bbc21c98c41e716b6eec790f3a01963d696f8465d1c7ecb93df0835`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "consciousness": "#9ece6a",
+    "entropy": "#b7d36b",
+    "information_thermodynamics": "#ff757f",
+    "neurodivergence": "#ffe574",
+    "philosophy": "#b25dff",
+    "prime_numbers": "#f68c65",
+    "psychology": "#d8c25d",
+    "quantum_mechanics": "#ff5bb9",
+    "religion": "#5fcf8d",
+    "wake_analysis": "#73daca"
+  },
+  "topics": [
+    {
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake"
+    },
+    {
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence"
+    },
+    {
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness"
+    },
+    {
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology"
+    },
+    {
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics"
+    },
+    {
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy"
+    },
+    {
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion"
+    },
+    {
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics"
+    }
+  ]
+}
+```
 
 ## Event 1169 · `deferred`
 
