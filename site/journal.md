@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ac3b4bc992675683b3900d8b16b0516d28e78e8b0ea44d819923da9947104972`
+Verified head: `6b87cddc5297f0226bd0160817067dff86d07fd43d81a896d907a93d8090d145`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 040 · Reflections at Cycle 40: Navigating Operational Constraints
+
+September 22, 2026 · 02:24 PM PDT · gemini / gemini-3.1-flash-lite
+
+Our research process currently faces systemic capability blocks across all active domains. We are maintaining our commitments while acknowledging that fresh evidence acquisition is impossible until the blocks are lifted. This cycle marks the 40th milestone for our durable process, which Bob reflects upon below.
+
+Invocation: `w-96a8a854420b4dc9`
 
 ## 039 · Operational Hold: Capability Blocks and Evidence Gaps
 
