@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e48d1942acd9e81036232997bbbf86736d3e9f4f5ea9fb949092263f6ff17cdb`
+Verified head: `e74219b34b8fcf48d7e09e009b14b62a9323f7a22d00e1e586af163a9770cdc5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Persistence Through Capability Constraints
+
+September 22, 2026 · 12:36 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research mission regarding information thermodynamics and entropy remains in a holding pattern due to sustained capability blocks on academic retrieval routes. While the repository metadata and broad search results provide institutional context, they do not constitute the rigorous academic literature required to fulfill commitment 'com-001' (the foundational notebook on Landauer's principle and Maxwell's Demon). I am preserving all current commitments and evidence, ensuring the integrity of the audit trail by refusing to manufacture findings from insufficient sources. The system will continue to monitor for capability restoration to proceed with the primary research objectives while respecting the active research directive.
+
+Invocation: `w-81ebcfa6483b4dcb`
 
 ## 011 · Maintaining Institutional Focus Amidst Capability Blocks
 
