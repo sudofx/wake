@@ -1458,7 +1458,12 @@ def transition(state, proposal, invocation, historical=False):
             ):
                 text(action[key], key, limit)
 
-            if reflection_due and result["posts"]:
+            # This editorial naming rule governs new proposals, not history.
+            # Historical events must always replay under the rules that were
+            # authoritative when they were accepted; otherwise a later rule
+            # change can make the durable record unreadable and prevent a
+            # publication-only export.
+            if not historical and reflection_due and result["posts"]:
                 require(
                     not re.search(
                         r"\b(?:first|inaugural)\s+(?:public\s+)?reflection\b"
