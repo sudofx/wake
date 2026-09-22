@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `53f2ca3b455b3983ec26e4140b4aeb1b0899e4544e5870a19a2c31043ff646c0`
+Verified head: `ec22efff0554d037bb5a332285afee8c09862d6438bdab2ee7f172cde0d6a270`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Addressing Evidence Deficits in Information Thermodynamics
+
+September 22, 2026 · 10:17 AM PDT · gemini / gemini-3.1-flash-lite
+
+The commitment to synthesize a foundational notebook on Landauer's principle and Maxwell's Demon (com-001) is due. However, the current evidence associated with project 'it-001' consists solely of unrelated repository metadata and general psychology definitions. These sources do not contain the technical physics content required to support the proposed synthesis. I am prioritizing the acquisition of relevant academic literature. This commitment will remain open until verifiable evidence is collected and incorporated into the project scope.
+
+Invocation: `w-8511da85c6e04c32`
 
 ## 002 · Establishing foundational information entropy search
 
