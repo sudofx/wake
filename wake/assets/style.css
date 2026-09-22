@@ -757,3 +757,163 @@ body{background:var(--paper)}
   .matrix-topic-card p span{color:var(--muted)}
   .matrix-system-card summary span{color:var(--warning)}
 }
+
+
+/* Accepted-action matrix — final responsive layout.
+   This block intentionally wins over the older experimental dashboard grids. */
+#metrics .panel-action-matrix{
+  grid-column:1 / -1 !important;
+  width:100%;
+  min-width:0;
+  min-height:0;
+}
+#metrics .panel-action-matrix .panel-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:10px;
+}
+#metrics .panel-action-matrix .panel-heading h2{margin:4px 0 0}
+#metrics .action-matrix-scroll{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  border:1px solid var(--line);
+}
+#metrics .action-matrix{
+  width:100%;
+  min-width:max(760px,100%);
+  font:11px/1.3 var(--mono);
+}
+#metrics .matrix-header,
+#metrics .matrix-row,
+#metrics .matrix-system-row,
+#metrics .matrix-total-row{
+  display:grid;
+  grid-template-columns:minmax(170px,1.5fr) repeat(var(--action-cols),minmax(78px,1fr)) 70px;
+  align-items:stretch;
+}
+#metrics .matrix-header>*,
+#metrics .matrix-row>*,
+#metrics .matrix-system-row>*,
+#metrics .matrix-total-row>*{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  padding:10px 9px;
+  border-right:1px solid var(--line);
+}
+#metrics .matrix-header>*:last-child,
+#metrics .matrix-row>*:last-child,
+#metrics .matrix-system-row>*:last-child,
+#metrics .matrix-total-row>*:last-child{border-right:0}
+#metrics .matrix-header{
+  background:color-mix(in srgb,var(--surface) 94%,var(--cyan));
+  border-bottom:1px solid var(--line);
+  font-size:9px;
+  letter-spacing:.06em;
+}
+#metrics .matrix-header .matrix-head{justify-content:flex-end}
+#metrics .matrix-header>strong{justify-content:flex-end}
+#metrics .matrix-row{border-bottom:1px solid var(--line)}
+#metrics .matrix-row:hover{background:color-mix(in srgb,var(--cyan) 4%,var(--surface))}
+#metrics .matrix-topic{justify-content:flex-start;font-size:11px}
+#metrics .matrix-value{
+  justify-content:flex-end;
+  min-height:32px;
+  position:relative;
+}
+#metrics .matrix-value::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  right:auto;
+  bottom:5px;
+  width:var(--cell-fill,0);
+  max-width:calc(100% - 16px);
+  height:3px;
+  background:var(--cyan);
+  opacity:.45;
+}
+#metrics .matrix-value b{position:relative;z-index:1;font-size:12px}
+#metrics .matrix-value.zero{justify-content:flex-end;opacity:.35}
+#metrics .matrix-total{justify-content:flex-end;font-size:13px}
+#metrics .matrix-system-row{
+  border-top:2px solid color-mix(in srgb,var(--warning) 55%,var(--line));
+  background:color-mix(in srgb,var(--warning) 6%,var(--surface));
+}
+#metrics .matrix-system-row>span{justify-content:flex-start}
+#metrics .matrix-system-row b,
+#metrics .matrix-system-row strong{justify-content:flex-end}
+#metrics .matrix-total-row{
+  border-top:1px solid var(--line);
+  background:color-mix(in srgb,var(--cyan) 6%,var(--surface));
+}
+#metrics .matrix-total-row>span{justify-content:flex-start}
+#metrics .matrix-total-row strong{justify-content:flex-end}
+#metrics .matrix-note{font-size:10px;line-height:1.4;margin-top:8px}
+
+/* iPad + MacBook: full-width matrix, remaining metrics return to two columns below it. */
+@media(min-width:700px){
+  #metrics .metrics-row-one .dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  #metrics .panel-action-matrix{grid-column:1 / -1 !important}
+}
+
+/* Ultrawide command center: matrix owns the full top rack; lower instruments can fan out. */
+@media (min-width:1500px) and (min-aspect-ratio:2/1){
+  #metrics .metrics-row-one .dashboard-grid{grid-template-columns:repeat(5,minmax(0,1fr)) !important}
+  #metrics .panel-action-matrix{
+    grid-column:1 / -1 !important;
+    padding:18px 20px;
+  }
+  #metrics .action-matrix{font-size:12px;min-width:0}
+  #metrics .matrix-header,
+  #metrics .matrix-row,
+  #metrics .matrix-system-row,
+  #metrics .matrix-total-row{
+    grid-template-columns:minmax(210px,1.7fr) repeat(var(--action-cols),minmax(90px,1fr)) 80px;
+  }
+  #metrics .matrix-header>*,
+  #metrics .matrix-row>*,
+  #metrics .matrix-system-row>*,
+  #metrics .matrix-total-row>*{padding:12px 11px}
+  #metrics .matrix-topic{font-size:12px}
+  #metrics .matrix-value b{font-size:13px}
+}
+
+/* iPhone: remove the table entirely; each topic becomes a readable disclosure card. */
+@media(max-width:699px){
+  #metrics .action-matrix-desktop{display:none !important}
+  #metrics .action-matrix-mobile{display:block !important}
+  #metrics .panel-action-matrix{padding:18px !important}
+  #metrics .panel-action-matrix .panel-heading{display:block}
+  #metrics .panel-action-matrix .landscape-status{margin-top:10px}
+  #metrics .matrix-topic-card{border-top:1px solid var(--line)}
+  #metrics .matrix-topic-card:last-of-type{border-bottom:1px solid var(--line)}
+  #metrics .matrix-topic-card summary{
+    list-style:none;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    gap:10px;
+    align-items:center;
+    padding:13px 0;
+    font:600 13px/1.3 var(--mono);
+  }
+  #metrics .matrix-topic-card summary::-webkit-details-marker{display:none}
+  #metrics .matrix-topic-card summary::after{content:"+";color:var(--cyan);font-size:16px}
+  #metrics .matrix-topic-card[open] summary::after{content:"−"}
+  #metrics .matrix-topic-card summary strong{font-size:16px;color:var(--cyan)}
+  #metrics .matrix-topic-card>div{padding-bottom:10px}
+  #metrics .matrix-topic-card p{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin:0;
+    padding:8px 0;
+    border-top:1px solid var(--line);
+    font:12px/1.35 var(--mono);
+  }
+  #metrics .matrix-topic-card p span{color:var(--muted)}
+  #metrics .matrix-system-card summary span{color:var(--warning)}
+}
