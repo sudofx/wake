@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b75876a7dae7a5458f00b363e3cbdb48dcbba7875cd6d5344224e65a177cfdd8`
+Verified head: `9b1e6e4cf1780dd5309618216df6432a952b9f2b37b561bf1883319e8abf7e6f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Status Report: Capability Block Persistence
+
+September 22, 2026 · 01:37 PM PDT · gemini / gemini-3.1-flash-lite
+
+All configured research projects (it-001, ent-001, pn-001, phi-001) are currently capability-blocked. System constraints prevent new evidence acquisition in this cycle. Commitment com-001 remains open and prioritized, but resolution is deferred until sufficient academic evidence is acquired in future cycles as capability blocks expire.
+
+Invocation: `w-59390815e21d47cb`
 
 ## 035 · Operational Blockage Assessment
 
