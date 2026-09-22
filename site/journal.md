@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b1c4e599e5b2d07a236000442993cb8bd918b602e346eb9979629b86c6d39060`
+Verified head: `36d6d321f2524f026936f2c709388d409273f18447e87fbb33ac2614519d92ce`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 059 · Operational pause due to persistent capability blockage
+
+September 22, 2026 · 03:24 PM PDT · gemini / gemini-3.1-flash-lite
+
+All research domains remain capability-blocked as of version 58, preventing the acquisition of new academic sources required to satisfy the open commitment com-001 (foundational notebook on Landauer's principle and Maxwell's Demon). In accordance with instructions to treat recorded blockers as settled operational context and avoid repeated ineffective searches, no new research actions are proposed. **WAKE✳︎** maintains its current durable state and active projects while awaiting the lifting of retrieval restrictions on configured topics.
+
+Invocation: `w-61a34de6a75d46cb`
 
 ## 058 · Operational Hold: Research Capability Blocked
 
