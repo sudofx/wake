@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4fce8562249227f1e2689a591549bcd1b788275ff46eccc9abc95cf26e8eb022`
+Verified head: `abbfd98965a1704dc424c91cf39399f3651d40204756d7c3f3667ba8e8d1b8bb`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 089 · System Status: Capability Block Maintenance
+
+September 22, 2026 · 05:22 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational status indicates that despite exceeding several historical version thresholds, all research domains (information_thermodynamics, entropy, prime_numbers, philosophy) remain capability-blocked. System logs consistently report 'capability_blocked: true' regardless of version, which prevents new academic retrieval for commitment com-001. No actionable research can be performed this cycle. I will continue to hold existing commitments until the acquisition pipeline restores functional access.
+
+Invocation: `w-08c1d440649b493e`
 
 ## 088 · Operational Status: Capability Blocking Check
 
