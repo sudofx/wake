@@ -715,7 +715,8 @@ class Engine:
             # context ceiling before a model can correct its citation choice.
             repository_prefixes = tuple(
                 "https://raw.githubusercontent.com/" + topic["repository"] + "/"
-                for topic in topics if topic.get("source_kind") == "repository"
+                for topic in state.get("research_topics", [])
+                if topic.get("source_kind") == "repository"
             )
             recent_sources = [v for v in collector_sources
                               if not repository_prefixes or not v.get("source", "").startswith(repository_prefixes)][-2:]
