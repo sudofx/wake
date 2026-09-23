@@ -120,18 +120,18 @@
     }
   ],
   "topic_colors": {
-    "consciousness": "#7aa2f7",
-    "endocrinology": "#9d7cd8",
-    "entropy": "#73daca",
-    "information_thermodynamics": "#f7768e",
-    "neurodivergence": "#c0caf5",
-    "neurology": "#8aa8ff",
-    "philosophy": "#ff9e64",
-    "prime_numbers": "#54d4bc",
-    "psychology": "#b7d36b",
-    "quantum_mechanics": "#d8c25d",
-    "religion": "#ff757f",
-    "wake_analysis": "#f2a2ca"
+    "consciousness": "#ff9e64",
+    "endocrinology": "#ff757f",
+    "entropy": "#e0af68",
+    "information_thermodynamics": "#8aa8ff",
+    "neurodivergence": "#46b5ff",
+    "neurology": "#c099ff",
+    "philosophy": "#9ece6a",
+    "prime_numbers": "#b25dff",
+    "psychology": "#2ac3de",
+    "quantum_mechanics": "#93ff74",
+    "religion": "#d8c25d",
+    "wake_analysis": "#54d4bc"
   },
   "experimental": {
     "id": "reg-df573bb03399f050",
@@ -149,13 +149,13 @@
     },
     "actor": "operator",
     "reason": "Initialize the default experimental instrument regime.",
-    "adopted_at": "2026-09-23T16:32:54.351621+00:00",
+    "adopted_at": "2026-09-23T17:25:51.321126+00:00",
     "event_seq": 3,
     "effective_from_version": 0,
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-23T16:32:54.351621+00:00",
+    "anchor_time": "2026-09-23T17:25:51.321126+00:00",
     "anchor_version": 0,
     "anchor_seq": 3,
     "effective_seconds": 0.0

@@ -2,35 +2,70 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `6cf0033a278f889018c1a7c781b73e34f1c495de14e16abaa37f3e20572ffd43`
+Verified head: `bea2cc4e272243c1ed191848c8577c869e1768bf068be8df306df822694deedf`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
 
-## Event 0004 · `research_topics_changed`
+## Event 0003 · `experimental_regime_adopted`
 
-**Time:** 2026-09-23T17:21:45.963069+00:00  
-**ID:** `system`  
-**Hash:** `6cf0033a278f889018c1a7c781b73e34f1c495de14e16abaa37f3e20572ffd43`  
-**Previous hash:** `bd06d332463ec01a95878e3f5c6c6004c060908c3ba229a3635dc8a867b5e159`
+**Time:** 2026-09-23T17:25:51.321389+00:00  
+**ID:** `reg-df573bb03399f050`  
+**Hash:** `bea2cc4e272243c1ed191848c8577c869e1768bf068be8df306df822694deedf`  
+**Previous hash:** `f8a07eb2e0cb5536b87bedc352eafa8d43852dc7064be8674de50cbb5d5e04b8`
 
 ### Payload
 
 ```json
 {
   "actor": "operator",
+  "adopted_at": "2026-09-23T17:25:51.321126+00:00",
+  "controls": {
+    "time_dilation": {
+      "affects": [
+        "telemetry",
+        "provider_context"
+      ],
+      "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+      "enabled": true,
+      "mode": "real",
+      "scale": 1.0
+    }
+  },
+  "effective_from_version": 0,
+  "effective_seconds": 0.0,
+  "event_seq": 3,
+  "id": "reg-df573bb03399f050",
+  "reason": "Initialize the default experimental instrument regime."
+}
+```
+
+## Event 0002 · `charter_adopted`
+
+**Time:** 2026-09-23T17:25:51.319266+00:00  
+**ID:** `system`  
+**Hash:** `f8a07eb2e0cb5536b87bedc352eafa8d43852dc7064be8674de50cbb5d5e04b8`  
+**Previous hash:** `1ad431e4832edc30673f28fba670364b0d33664746551afd53f8d0db6f5f9ba5`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "mission": "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
+  "pet_name": "WAKE✳︎",
   "topic_colors": {
-    "consciousness": "#7aa2f7",
-    "endocrinology": "#9d7cd8",
-    "entropy": "#73daca",
-    "information_thermodynamics": "#f7768e",
-    "neurodivergence": "#c0caf5",
-    "neurology": "#8aa8ff",
-    "philosophy": "#ff9e64",
-    "prime_numbers": "#54d4bc",
-    "psychology": "#b7d36b",
-    "quantum_mechanics": "#d8c25d",
-    "religion": "#ff757f",
-    "wake_analysis": "#f2a2ca"
+    "consciousness": "#ff9e64",
+    "endocrinology": "#ff757f",
+    "entropy": "#e0af68",
+    "information_thermodynamics": "#8aa8ff",
+    "neurodivergence": "#46b5ff",
+    "neurology": "#c099ff",
+    "philosophy": "#9ece6a",
+    "prime_numbers": "#b25dff",
+    "psychology": "#2ac3de",
+    "quantum_mechanics": "#93ff74",
+    "religion": "#d8c25d",
+    "wake_analysis": "#54d4bc"
   },
   "topics": [
     {
@@ -134,156 +169,11 @@ Verified head: `6cf0033a278f889018c1a7c781b73e34f1c495de14e16abaa37f3e20572ffd43
 }
 ```
 
-## Event 0003 · `experimental_regime_adopted`
-
-**Time:** 2026-09-23T16:32:54.351785+00:00  
-**ID:** `reg-df573bb03399f050`  
-**Hash:** `bd06d332463ec01a95878e3f5c6c6004c060908c3ba229a3635dc8a867b5e159`  
-**Previous hash:** `23c8af691918c4d03624372e208c46b7e4f3b4b86d5f7349e92dc59ad445956d`
-
-### Payload
-
-```json
-{
-  "actor": "operator",
-  "adopted_at": "2026-09-23T16:32:54.351621+00:00",
-  "controls": {
-    "time_dilation": {
-      "affects": [
-        "telemetry",
-        "provider_context"
-      ],
-      "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
-      "enabled": true,
-      "mode": "real",
-      "scale": 1.0
-    }
-  },
-  "effective_from_version": 0,
-  "effective_seconds": 0.0,
-  "event_seq": 3,
-  "id": "reg-df573bb03399f050",
-  "reason": "Initialize the default experimental instrument regime."
-}
-```
-
-## Event 0002 · `charter_adopted`
-
-**Time:** 2026-09-23T16:32:54.350366+00:00  
-**ID:** `system`  
-**Hash:** `23c8af691918c4d03624372e208c46b7e4f3b4b86d5f7349e92dc59ad445956d`  
-**Previous hash:** `96f592747f4f1563c1e0c8b0126b577fd4b0d642cb4d4582f2b03065e7723a2a`
-
-### Payload
-
-```json
-{
-  "actor": "operator",
-  "mission": "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
-  "pet_name": "WAKE✳︎",
-  "topic_colors": {
-    "consciousness": "#d8c25d",
-    "entropy": "#46b5ff",
-    "information_thermodynamics": "#f68c65",
-    "neurodivergence": "#8aa8ff",
-    "philosophy": "#e0af68",
-    "prime_numbers": "#f2a2ca",
-    "psychology": "#ff757f",
-    "quantum_mechanics": "#b7d36b",
-    "religion": "#b25dff",
-    "wake_analysis": "#5fcf8d"
-  },
-  "topics": [
-    {
-      "enabled": true,
-      "id": "information_thermodynamics",
-      "label": "Information thermodynamics",
-      "query": "information thermodynamics",
-      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "entropy",
-      "label": "Entropy",
-      "query": "entropy",
-      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "wake_analysis",
-      "label": "WAKE✳︎",
-      "query": "WAKE✳︎ sudofx/wake",
-      "repository": "sudofx/wake",
-      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
-      "source_kind": "repository"
-    },
-    {
-      "enabled": true,
-      "id": "neurodivergence",
-      "label": "Neurodivergence",
-      "query": "neurodivergence",
-      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "consciousness",
-      "label": "Consciousness",
-      "query": "consciousness",
-      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "psychology",
-      "label": "Psychology",
-      "query": "psychology",
-      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "quantum_mechanics",
-      "label": "Quantum mechanics",
-      "query": "quantum mechanics",
-      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "philosophy",
-      "label": "Philosophy",
-      "query": "philosophy",
-      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "religion",
-      "label": "Religion",
-      "query": "religion",
-      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "prime_numbers",
-      "label": "Prime numbers",
-      "query": "prime numbers mathematics",
-      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
-      "source_kind": "web"
-    }
-  ]
-}
-```
-
 ## Event 0001 · `initialized`
 
-**Time:** 2026-09-23T16:32:54.348742+00:00  
+**Time:** 2026-09-23T17:25:51.318071+00:00  
 **ID:** `system`  
-**Hash:** `96f592747f4f1563c1e0c8b0126b577fd4b0d642cb4d4582f2b03065e7723a2a`  
+**Hash:** `1ad431e4832edc30673f28fba670364b0d33664746551afd53f8d0db6f5f9ba5`  
 **Previous hash:** `0000000000000000000000000000000000000000000000000000000000000000`
 
 ### Payload
