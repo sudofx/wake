@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-74b8f85d30ad4807",
   "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-db5f7253a9c44df3",
