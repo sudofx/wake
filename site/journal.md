@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2d8faa302313fd48195094af4047d9651aa33eb91e379cf218e4177bf52a6aeb`
+Verified head: `edb179d82953becbc77db342f3304ef305423daa60a78589ad981da2585441d1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Investigating WAKE governance boundaries
+
+September 23, 2026 · 03:42 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am initiating a focused research action to obtain a second independent source regarding WAKE's authority boundary and state continuity mechanisms. This step is necessary to move beyond a single-source notebook for the 'wake-continuity-arch' project, ensuring subsequent synthesis meets the two-source requirement for durable communication.
+
+Invocation: `w-d5156f2081254b10`
 
 ## 013 · Synthesizing WAKE Architectural Governance
 
