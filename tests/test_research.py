@@ -236,6 +236,55 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
 
+    def test_retrieval_rehydrates_older_qualifying_notebook_source(self):
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "status": "active", "next_step": "Synthesize qualifying evidence",
+                "reason": "Exercise retrieval rehydration", "actor": "operator"
+            })
+            self.engine.store.append("observation", {
+                "id": "qualifying-old",
+                "source": "https://api.crossref.org/works/10.1000/example",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "source",
+                    "scope": "abstract metadata",
+                    "excerpt": "entropy statistical mechanics bounded comparison",
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            # Fill the ordinary recent collector window with discovery-only
+            # records. The older qualifying source must still be selected by
+            # retrieval rather than being starved by newer search-result noise.
+            for i in range(8):
+                self.engine.store.append("observation", {
+                    "id": f"discovery-{i}",
+                    "source": f"https://api.crossref.org/works?query=entropy-{i}",
+                    "content": json.dumps({
+                        "verification_required": True,
+                        "topic_domain": "entropy",
+                        "evidence_role": "discovery",
+                        "scope": "search metadata",
+                        "excerpt": "entropy search result",
+                    }),
+                    "actor": "collector", "scope": "collected"
+                })
+            invocation, request = self.engine.start("fixture", "retrieval-rehydrate-test")
+            item = self.engine.store.load()["invocations"][invocation]
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        visible = {item["id"] for item in request["context"]["evidence"]}
+        self.assertIn("qualifying-old", visible)
+        self.assertIn("qualifying-old", request["context"]["project_evidence"]["p"])
+        self.assertIn("qualifying-old", request["context"]["retrieval_rehydration"]["evidence_ids"])
+        self.assertIn("qualifying-old", item["retrieval_shadow"]["evidence_ids"])
+        self.assertFalse(any(
+            evidence_id.startswith("discovery-")
+            for evidence_id in request["context"]["project_evidence"]["p"]
+        ))
+
     def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", {

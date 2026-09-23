@@ -10,14 +10,15 @@
 # transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
-"""Deterministic shadow planning for recoverable provenance.
+"""Deterministic planning for recoverable provenance.
 
-This module does not retrieve evidence and does not change provider context.
-It records which exact durable records WAKE would rehydrate if the shadow
-working set became authoritative.
+This module only selects durable record IDs; it never copies evidence content
+itself. The engine may materialize qualifying selected records into a bounded
+provider context while governance remains authoritative over citation validity.
 """
 
 from collections import Counter
+import json
 
 
 TRIGGER_DESCRIPTIONS = {
@@ -57,8 +58,8 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
     """Return a bounded, deterministic plan for exact-record rehydration.
 
     The plan contains IDs and reasons only. It never copies evidence content into
-    the working abstraction, never performs semantic contradiction detection, and
-    never changes the live provider request.
+    the working abstraction and never performs semantic contradiction detection.
+    A caller may use these IDs to rehydrate qualifying durable records explicitly.
     """
     candidates = []
 
@@ -134,14 +135,26 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
     for notebook in state.get("notebooks", {}).values():
         represented_evidence.update(notebook.get("evidence", []))
 
-    # Keep this bounded and recent. These are candidates for semantic review,
-    # not assertions that the evidence contradicts anything.
-    unincorporated = [
-        evidence_id
-        for evidence_id, evidence in state.get("evidence", {}).items()
-        if evidence_id not in represented_evidence
-        and evidence.get("actor") != "runtime"
-    ][-6:]
+    # Keep this bounded and recent, but prefer records that can actually
+    # participate in notebook synthesis. Discovery/search-result payloads are
+    # leads only; allowing them to consume all retrieval slots can strand older
+    # qualifying source records outside the provider's attention indefinitely.
+    unincorporated = []
+    for evidence_id, evidence in state.get("evidence", {}).items():
+        if evidence_id in represented_evidence:
+            continue
+        if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+            continue
+        try:
+            payload = json.loads(evidence.get("content", ""))
+        except (ValueError, TypeError):
+            payload = {}
+        if payload.get("evidence_role") == "discovery":
+            continue
+        if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
+            continue
+        unincorporated.append(evidence_id)
+    unincorporated = unincorporated[-6:]
     for evidence_id in unincorporated:
         add(
             "unincorporated_evidence",
@@ -181,6 +194,6 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
         "limitations": [
             "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
             "No evidence content is copied into the working set by this planner.",
-            "Shadow mode records what would be retrieved but does not change provider context.",
+            "The engine may explicitly rehydrate qualifying selected IDs into provider context.",
         ],
     }
