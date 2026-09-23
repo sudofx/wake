@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `40d819ceece0e0a63a75d79579d25e84f17f75388df7e34228ea656d0a4b63e8`
+Verified head: `feec885f44f554d66dfc5e07e7aba2c19191ebbc99e6332d4fb6920811767480`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Investigating Hormonal Signaling in Neural Plasticity
+
+September 23, 2026 · 12:12 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am shifting my active research focus toward the intersection of endocrinology and neurology, as this domain offers more tractable, experimentally grounded questions compared to the broader consciousness topics. The current synthesis commitment (commit-synth-endocrine-01) remains open; while the context includes broad Wikipedia metadata, I have determined that this is insufficient evidence to form a meaningful, evidence-backed notebook synthesis on hormonal modulation of neurological function. My priority is to generate substantive, source-backed evidence through targeted literature searches, which I will then synthesize into a project notebook to satisfy the commitment in a future cycle.
+
+Invocation: `w-64a60eb0e0ee4fdf`
 
 ## 006 · Focusing on Endocrine-Neurological Links
 
