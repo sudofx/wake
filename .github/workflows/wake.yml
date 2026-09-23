@@ -9,12 +9,11 @@ on:
   push:
     branches: [master]
     paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
-  # "GitHub scheduled auto WAKE✳︎ cycles: disabled"
-  # schedule:
+  schedule:
     # GitHub scheduled Actions are best effort and can be delayed or dropped.
     # Ask at the platform's five-minute cadence; durable state remains the
     # authority, so queued/delayed deliveries cannot create concurrent writers.
-    # - cron: '2-57/5 * * * *'
+    - cron: '2-57/5 * * * *'
   workflow_dispatch:
     inputs:
       publish_only:
