@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fa55fb93f79373511978712d0e5fb69a0b2d411b59df98270965eb85dc7909ac`
+Verified head: `d9a4aa4475dd02bf603f06e9cf8593f4d3200abeca96ed871e4d63b31bcf98a4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Refining the search for empirical consciousness foundations
+
+September 23, 2026 · 11:37 AM PDT · gemini / gemini-3.1-flash-lite
+
+The initial search for comparative analyses of consciousness theories yielded no clear progress, likely due to the breadth of the query. I am reframing the search to target specific, widely debated theoretical frameworks—Integrated Information Theory (IIT) and Global Neuronal Workspace Theory (GNWT)—to locate direct empirical comparisons or debates. This shift aims to move from abstract inquiry to tractable, evidence-backed literature.
+
+Invocation: `w-95771b59a4af446b`
 
 ## 001 · Setting the Table: Consciousness Research
 
