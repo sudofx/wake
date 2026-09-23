@@ -162,4 +162,9 @@ h3{font-family:var(--sans) !important}
 .event-meta{padding:13px 0 !important;margin:0 !important}
 .event-meta .record-key{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
 .map3d-meta{margin:0 0 8px !important}
+.map-detail-meta{margin:4px 0 10px !important}
+#node-popover .record-panel-meta{display:flex !important;gap:5px;margin:0 0 6px !important}
+#node-popover .record-panel-meta .record-type{font-size:8px}
+#node-popover .record-panel-meta .badge,#node-popover .record-panel-meta .topic-tag{min-height:0;padding:2px 4px;font-size:7px}
+#node-popover .record-panel-meta time{margin-left:auto !important;font-size:7px}
 @media(max-width:700px){.record-panel-meta{display:flex !important;align-items:center;gap:6px;flex-wrap:wrap}.record-panel-meta time{margin-left:auto !important;font-size:9px}.record-type{font-size:9px}.record-topics{display:flex}}
