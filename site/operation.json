@@ -1,50 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-4485080d655d47d9",
-  "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
+  "status": "accepted",
+  "id": "w-d0186be80ba44553",
+  "cycle": 15,
   "wake_status": {
     "last_accepted": {
-      "id": "w-1940d481f8a045e3",
-      "time": "2026-09-23T11:06:26.674076+00:00",
-      "finished": "2026-09-23T11:06:43.942613+00:00",
+      "id": "w-d0186be80ba44553",
+      "time": "2026-09-23T11:20:55.304176+00:00",
+      "finished": "2026-09-23T11:21:08.501108+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 9777,
+          "elapsed_ms": 4996,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 48262,
+          "request_payload_bytes": 47590,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-4485080d655d47d9",
-      "time": "2026-09-23T11:18:57.586004+00:00",
-      "finished": "2026-09-23T11:19:18.318478+00:00",
-      "status": "rejected",
-      "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
+      "id": "w-d0186be80ba44553",
+      "time": "2026-09-23T11:20:55.304176+00:00",
+      "finished": "2026-09-23T11:21:08.501108+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 12613,
+          "elapsed_ms": 4996,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 48340,
+          "request_payload_bytes": 47590,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 14,
-    "next_eligible": "2026-09-23T11:23:57.586004+00:00",
+    "accepted_cycles": 15,
+    "next_eligible": "2026-09-23T11:25:55.304176+00:00",
     "pending": false,
-    "attempts_today": 42,
-    "provider_requests_today": 71,
-    "provider_request_slots_today": 72,
+    "attempts_today": 43,
+    "provider_requests_today": 72,
+    "provider_request_slots_today": 73,
     "provider_request_counts_incomplete": true,
     "daily_call_limit": null
   }
