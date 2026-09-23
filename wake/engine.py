@@ -80,13 +80,19 @@ def _topics(settings, config_path=None):
             "Research topics must contain 1–24 entries")
     normalized = []
     for item in topics:
-        require(isinstance(item, dict) and set(item) == {"id", "label", "query"},
-                "Each research topic needs exactly id, label, and query")
+        # A seed question is an operator-supplied starting coordinate, not a
+        # permanent mission.  It is stored with the audited topic configuration
+        # so old cycles remain truthful about whether a seed existed yet.
+        allowed = {"id", "label", "query", "seed_question"}
+        require(isinstance(item, dict) and {"id", "label", "query"} <= set(item) <= allowed,
+                "Each research topic needs id, label, query, and may include seed_question")
         require(isinstance(item["id"], str) and re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", item["id"]),
                 "Research topic IDs must use letters, digits, underscores or hyphens")
         text(item["label"], "Research topic label", 120)
         text(item["query"], "Research topic query", 200)
-        normalized.append({key: item[key] for key in ("id", "label", "query")})
+        if "seed_question" in item:
+            text(item["seed_question"], "Research topic seed question", 600)
+        normalized.append({key: item[key] for key in ("id", "label", "query", "seed_question") if key in item})
     require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
     return normalized
 # ---------------------------------------------------------------------------
@@ -566,8 +572,30 @@ class Engine:
             context["squirrel"] = {**squirrel_plan(state), "temporal": state.get("temporal", {}),
                                    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"}
             context["pet_name"] = state["pet_name"]
-            context["research_topics"] = state.get("research_topics") or self.config.get("research_topics", [])
+            topics = state.get("research_topics") or self.config.get("research_topics", [])
             projects = list(state["projects"].values())
+            # Seeds are consumed by circumstance rather than mutated away.  Once
+            # a topic owns any project, the seed disappears from provider context;
+            # durable projects/questions take over and can wander, fail, or be
+            # re-represented normally.  This keeps the seed from becoming a
+            # repeated fixation instruction while retaining exact provenance in
+            # the audited topic-configuration event.
+            project_domains = {project.get("domain") for project in projects}
+            context["research_topics"] = [
+                {key: value for key, value in topic.items()
+                 if key != "seed_question" or topic["id"] not in project_domains}
+                for topic in topics
+            ]
+            context["seed_questions"] = [
+                {"topic": topic["id"], "question": topic["seed_question"]}
+                for topic in context["research_topics"] if topic.get("seed_question")
+            ]
+            context["seed_question_metrics"] = {
+                "configured": sum(bool(topic.get("seed_question")) for topic in topics),
+                "available": len(context["seed_questions"]),
+                "started": sum(topic["id"] in project_domains and bool(topic.get("seed_question")) for topic in topics),
+                "boundary": "Derived from audited topic configuration and durable project domains; seeds do not count as evidence."
+            }
             context["projects"] = [p for p in projects if p["status"] == "active"] + [p for p in projects if p["status"] != "active"][-8:]
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
                                     for n in list(state["notebooks"].values())[-8:]]

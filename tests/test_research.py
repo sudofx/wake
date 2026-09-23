@@ -83,7 +83,8 @@ class ResearchTests(unittest.TestCase):
 
     def test_topic_file_changes_become_audited_configuration(self):
         changed = [*self.engine.config["research_topics"],
-                   {"id": "new_topic", "label": "A new topic", "query": "new topic"}]
+                   {"id": "new_topic", "label": "A new topic", "query": "new topic",
+                    "seed_question": "What concrete question should start this topic?"}]
         self.engine.config["research_topics"] = changed
         with self.engine.store.lock():
             state = self.engine.initialize()
@@ -93,10 +94,39 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(set(state["topic_colors"]), {topic["id"] for topic in changed})
         self.assertEqual(len(set(state["topic_colors"].values())), len(changed))
         self.assertEqual([event["kind"] for event in self.engine.store.events()].count("research_topics_changed"), 1)
-        self.assertIn("new_topic", [topic["id"] for topic in request["context"]["research_topics"]])
+        new_topic = next(topic for topic in request["context"]["research_topics"] if topic["id"] == "new_topic")
+        self.assertEqual(new_topic["seed_question"], "What concrete question should start this topic?")
+        self.assertIn({"topic": "new_topic", "question": "What concrete question should start this topic?"},
+                      request["context"]["seed_questions"])
+        self.assertEqual(request["context"]["seed_question_metrics"]["available"], 1)
         variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
+
+    def test_seed_question_is_initial_condition_not_repeated_instruction(self):
+        topic = next(item for item in self.engine.config["research_topics"] if item["id"] == "entropy")
+        self.engine.config["research_topics"] = [
+            {**item, **({"seed_question": "What distinguishes the major entropy definitions?"}
+                       if item["id"] == "entropy" else {})}
+            for item in self.engine.config["research_topics"]
+        ]
+        with self.engine.store.lock():
+            state = self.engine.initialize()
+            before = self.engine.context(state, "seed-before")
+            seeded = next(item for item in before["research_topics"] if item["id"] == "entropy")
+            self.assertIn("seed_question", seeded)
+            self.engine.store.append("project_adopted", {
+                "id": "seeded-entropy", "title": "Seeded entropy project",
+                "question": seeded["seed_question"], "domain": "entropy",
+                "status": "active", "next_step": "Collect qualifying evidence.",
+                "reason": "Start from the configured seed.", "actor": "operator"
+            })
+            after = self.engine.context(self.engine.store.load(), "seed-after")
+        entropy = next(item for item in after["research_topics"] if item["id"] == "entropy")
+        self.assertNotIn("seed_question", entropy)
+        self.assertNotIn("entropy", [item["topic"] for item in after["seed_questions"]])
+        self.assertGreaterEqual(after["seed_question_metrics"]["started"], 1)
+        self.assertEqual(topic["id"], "entropy")
 
     def test_bob_reflection_is_due_on_each_tenth_accepted_wake(self):
         state = self.engine.store.load()
