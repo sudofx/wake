@@ -2,9 +2,164 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `d07a7e98060b5d7fb9175e36e575ae7ca323e17e8342aae01767dd0de811aa5a`
+Verified head: `fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0688 · `research_topics_changed`
+
+**Time:** 2026-09-23T21:07:00.803390+00:00  
+**ID:** `system`  
+**Hash:** `fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151`  
+**Previous hash:** `d07a7e98060b5d7fb9175e36e575ae7ca323e17e8342aae01767dd0de811aa5a`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "complex_systems": "#46b5ff",
+    "consciousness": "#73daca",
+    "endocrinology": "#d8c25d",
+    "entropy": "#9ece6a",
+    "epistemology": "#b25dff",
+    "evolutionary_biology": "#ffe574",
+    "information_thermodynamics": "#f2a2ca",
+    "neurodivergence": "#f7768e",
+    "neurology": "#5fcf8d",
+    "philosophy": "#7aa2f7",
+    "prime_numbers": "#b7d36b",
+    "psychology": "#f68c65",
+    "quantum_mechanics": "#ff757f",
+    "religion": "#2ac3de",
+    "wake_analysis": "#9d7cd8"
+  },
+  "topics": [
+    {
+      "enabled": true,
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake",
+      "repository": "sudofx/wake",
+      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+      "source_kind": "repository"
+    },
+    {
+      "enabled": true,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurology",
+      "label": "Neurology",
+      "query": "neurology nervous system neurological disorders",
+      "seed_question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "endocrinology",
+      "label": "Endocrinology",
+      "query": "endocrinology hormones endocrine disorders",
+      "seed_question": "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "complex_systems",
+      "label": "Complex systems",
+      "query": "complex systems emergence self-organization",
+      "seed_question": "How do simple local interactions produce stable large-scale patterns in complex systems, and what distinguishes genuine emergence from a useful descriptive abstraction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "evolutionary_biology",
+      "label": "Evolutionary biology",
+      "query": "evolutionary biology adaptation byproduct drift constraint",
+      "seed_question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "epistemology",
+      "label": "Epistemology",
+      "query": "epistemology evidence justification belief uncertainty",
+      "seed_question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+      "source_kind": "web"
+    }
+  ]
+}
+```
 
 ## Event 0687 · `squirrel_assessed`
 

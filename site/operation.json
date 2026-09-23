@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-df987fea7f744656",
   "reason": "Evidence reference does not exist",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-c2f2c01b65b548ff",
