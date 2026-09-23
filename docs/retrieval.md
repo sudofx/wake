@@ -1,10 +1,8 @@
 # Retrieval shadow: making forgetting observable
 
-> **Active experimental design note.** This describes current shadow-mode work on progressive abstraction, forgetting and deterministic retrieval planning. It does not claim that retrieval is fully activated.
+> **Active experimental design note.** This describes the current progressive-abstraction and deterministic retrieval layer. Shadow measurements remain important, but bounded-context delivery is no longer purely hypothetical: the engine can make a controlled fallback to the working representation when the rich request cannot fit.
 
-**WAKE✳︎** already records a deliberately lossy working-set shadow beside each invocation. The next experimental step is to record the inverse operation too: **what exact durable records would need to come back if the abstraction became too expensive to trust?**
-
-This is still shadow mode. The provider continues to receive the existing rich context. Retrieval planning is measured, not activated.
+**WAKE✳︎** records a deliberately lossy working-set representation beside each invocation and a deterministic plan for which exact durable records become important when an abstraction is expensive to trust. Under the normal context ceiling, the provider still receives the richer context and these structures remain observational. If the rich request remains above the configured ceiling after ordinary compaction, the engine can make one explicit, receipt-bearing switch to the bounded working representation rather than silently dropping durable obligations or evidence.
 
 ## Why this exists
 
@@ -47,13 +45,11 @@ Each invocation should now retain:
 - counts by deterministic trigger
 - `trust_compacts_shadow`: candidate operational rules, their evidence roots, and their deterministic reopen hooks.
 
-The live request must not contain `working_set_shadow`, `retrieval_shadow`, or `trust_compacts_shadow` during this phase.
+`retrieval_shadow` and `trust_compacts_shadow` remain receipt-side measurements rather than independent authorities. The working representation can become provider input only through the engine's controlled context-delivery fallback; exact records remain authoritative and the receipt records which delivery mode was used.
 
-## Exit condition for shadow mode
+## Evaluation boundary
 
-Do not activate working-set delivery plus rehydration merely because it is smaller.
-
-First collect enough paired invocations to score whether the shadow representation would have preserved:
+The size-triggered bounded-context fallback is an operational safeguard, not evidence that the abstraction is behaviorally equivalent to rich context. Before making bounded delivery the ordinary/default mode, collect enough paired invocations to score whether the representation preserves:
 
 - evidence-backed belief revision,
 - contradiction/counterevidence handling,
@@ -65,10 +61,10 @@ First collect enough paired invocations to score whether the shadow representati
 The comparison remains:
 
 **A — rich context**  
-Current behavior.
+Normal delivery when it fits.
 
 **B — working abstraction + recoverable provenance**  
-Future candidate.
+Current controlled fallback and future candidate for broader use.
 
 **C — overcompressed control**  
 A deliberately weakened condition that removes provenance or uncertainty cues.
