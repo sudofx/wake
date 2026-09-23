@@ -716,6 +716,28 @@ class Engine:
         existing = {item["id"] for item in context.get("evidence", [])}
         rehydrated = []
 
+        # Rehydrate only when the bounded working view is actually missing a
+        # usable notebook source, or a near-due commitment has no temporally
+        # eligible resolution evidence. This keeps retrieval corrective rather
+        # than turning it into a second broad recent-evidence feed.
+        project_evidence = context.get("project_evidence", {})
+        projects_need_source = any(
+            not project_evidence.get(project.get("id"), [])
+            for project in context.get("projects", [])
+            if project.get("status") == "active"
+        )
+        commitments_need_evidence = any(
+            commitment.get("due_cycle", 10**9) <= state.get("version", 0) + 2
+            and not commitment.get("resolution_evidence", [])
+            for commitment in context.get("commitments", [])
+        )
+        if not projects_need_source and not commitments_need_evidence:
+            context["retrieval_rehydration"] = {
+                "evidence_ids": [],
+                "boundary": "No visible active project or near-due commitment required exact-record recovery.",
+            }
+            return context
+
         for evidence_id in requested:
             evidence = state.get("evidence", {}).get(evidence_id)
             if not evidence:
@@ -744,6 +766,12 @@ class Engine:
                     "context_excerpt": len(content) > content_limit,
                 })
                 existing.add(evidence_id)
+
+            # One provisional notebook needs only one qualifying source; allow a
+            # small second/third record for comparison or commitment resolution
+            # without recreating the unbounded context problem retrieval solves.
+            if len(rehydrated) >= 3:
+                break
 
         context["retrieval_rehydration"] = {
             "evidence_ids": rehydrated,
