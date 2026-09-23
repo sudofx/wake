@@ -26,4 +26,4 @@ The GitHub workflow is configured to run on Python 3.11 and 3.13; those remote j
 
 ## Reading this snapshot now
 
-Since this snapshot, **WAKE✳︎** has continued to change: cloud scheduling, Gemini fallback/accounting, MAP, research-topic configuration, collector boundaries, forward-only claim corroboration, queue lifecycle handling, themes and public UI have all evolved. Do not use the table above as proof that those later changes were covered by the September 11 run. The repository's `Verify the record` workflow is the current regression gate.
+Since this snapshot, **WAKE✳︎** has continued to change: cloud dispatch/scheduling, Gemini fallback/accounting, MAP, dynamic topic configuration and seed questions, observation-mode collection, discovery/source promotion, acquisition and re-representation receipts, progressive evidence gates, bounded-context delivery, retrieval/trust shadows, experimental regimes, themes and public UI have all evolved. Do not use the table above as proof that those later changes were covered by the September 11 run. The repository's `Verify the record` workflow is the current regression gate.
