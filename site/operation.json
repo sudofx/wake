@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-60f087ec5bbb4fb9",
   "reason": "Research notebooks need at least two distinct retrieved source URLs",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-03c9df8165bb430a",
