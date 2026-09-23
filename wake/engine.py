@@ -22,7 +22,7 @@ import tomllib
 import uuid
 from zoneinfo import ZoneInfo
 
-from .governance import Rejected, require, text, transition
+from .governance import Rejected, bob_reflection_due_cycle, require, text, transition
 from .providers import (
     SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
@@ -436,8 +436,8 @@ class Engine:
                 "notebooks": working_set.get("recent_notebooks", []),
                 "blog_notebooks": {}, "working_notebook": None, "research": [],
                 "recent_blog": [], "editorial_notes": [],
-                "bob_reflection_cycle": state["version"] + 1,
-                "bob_reflection_due": (state["version"] + 1) % 10 == 0,
+                "bob_reflection_cycle": bob_reflection_due_cycle(state),
+                "bob_reflection_due": bob_reflection_due_cycle(state) is not None,
                 "project_evidence": {},
                 "representation_recovery": recovery,
             })
@@ -693,15 +693,15 @@ class Engine:
                                            "context_excerpt": True} if working else None)
             context["research"] = list(state["research"].values())[-8:]
             context["recent_blog"] = [
-                {**{key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version",
+                {**{key: post.get(key) for key in ("id", "project", "title", "lede", "lens", "created_version", "reflection_cycle",
                                                   "status", "supersedes", "superseded_by")},
                  "retractable_quotes": retractable_quotes(post)}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
             # Bob reflects on the whole durable journey every tenth accepted wake.
             # state.version is the accepted-cycle count before the pending wake.
-            context["bob_reflection_cycle"] = state["version"] + 1
-            context["bob_reflection_due"] = context["bob_reflection_cycle"] % 10 == 0
+            context["bob_reflection_cycle"] = bob_reflection_due_cycle(state)
+            context["bob_reflection_due"] = context["bob_reflection_cycle"] is not None
             # Source-controlled operator review notes are editorial context, not research evidence.
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
