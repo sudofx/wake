@@ -96,3 +96,24 @@ id = "endocrinology"
 label = "Endocrinology"
 query = "endocrinology hormones endocrine disorders"
 seed_question = "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?"
+
+[[topics]]
+enabled = true
+id = "complex_systems"
+label = "Complex systems"
+query = "complex systems emergence self-organization"
+seed_question = "How do simple local interactions produce stable large-scale patterns in complex systems, and what distinguishes genuine emergence from a useful descriptive abstraction?"
+
+[[topics]]
+enabled = true
+id = "evolutionary_biology"
+label = "Evolutionary biology"
+query = "evolutionary biology adaptation byproduct drift constraint"
+seed_question = "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?"
+
+[[topics]]
+enabled = true
+id = "epistemology"
+label = "Epistemology"
+query = "epistemology evidence justification belief uncertainty"
+seed_question = "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
