@@ -28,6 +28,7 @@ from wake.governance import Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import allowed_url, collect, discovery_urls, repository_sources
 from wake.report import export
+from support import charter_settings
 
 
 def project(identifier="p", status="active"):
@@ -45,7 +46,7 @@ class ResearchTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.engine = Engine(self.root/"data", {**DEFAULTS, "mission":"Explore big ideas through small useful projects."})
+        self.engine = Engine(self.root/"data", charter_settings("Explore big ideas through small useful projects."))
         with self.engine.store.lock():
             self.engine.initialize()
 
@@ -65,7 +66,7 @@ class ResearchTests(unittest.TestCase):
                 content=json.dumps({"scope":source_scope, "excerpt":"Only a fixture"}), actor="collector", scope=status))
 
     def test_existing_pet_name_is_migrated_through_an_audited_event(self):
-        legacy = Engine(self.root/"legacy", {**DEFAULTS, "mission":"Explore big ideas.", "pet_name":"Wake"})
+        legacy = Engine(self.root/"legacy", charter_settings("Explore big ideas.", pet_name="Wake"))
         try:
             with legacy.store.lock():
                 legacy.initialize()
@@ -120,7 +121,7 @@ class ResearchTests(unittest.TestCase):
         self.assertNotIn("disabled_topic", project_schema["properties"]["domain"]["enum"])
 
     def test_project_name_is_configuration_driven(self):
-        renamed = Engine(self.root/"renamed", {**DEFAULTS, "mission":"Explore.", "project_name":"Project Star"})
+        renamed = Engine(self.root/"renamed", charter_settings("Explore.", project_name="Project Star"))
         try:
             with renamed.store.lock():
                 state = renamed.initialize()
@@ -507,7 +508,7 @@ class ResearchTests(unittest.TestCase):
         action = project(); action["domain"] = "wake_analysis"
         self.assertEqual(self.propose([action, notebook(["r1", "r2"])])["status"], "accepted")
 
-        other = Engine(self.root/"other", {**DEFAULTS, "mission":"test"})
+        other = Engine(self.root/"other", charter_settings("test"))
         original = self.engine
         try:
             with other.store.lock(): other.initialize()
@@ -719,7 +720,7 @@ class ResearchTests(unittest.TestCase):
     def test_editorial_review_notes_reach_fresh_invocations_without_becoming_evidence(self):
         note = ("Review Bob post post-one for possible overstatement; if evidence supports a narrower "
                 "claim, publish a transparent correction rather than rewriting history.")
-        engine = Engine(self.root/"editorial", {**DEFAULTS, "mission":"Explore.", "editorial_notes":[note]})
+        engine = Engine(self.root/"editorial", charter_settings("Explore.", editorial_notes=[note]))
         try:
             with engine.store.lock():
                 engine.initialize()
