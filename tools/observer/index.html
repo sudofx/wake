@@ -60,9 +60,12 @@
   <section id="brief" aria-live="polite"></section>
 
   <section class="panel opinion-panel">
-    <div class="section-heading">
-      <p class="eyebrow">OPTIONAL ANALYST OPINION</p>
-      <h2>Interpretation stays outside the record.</h2>
+    <div class="opinion-heading">
+      <div class="section-heading">
+        <p class="eyebrow">OPTIONAL ANALYST OPINION</p>
+        <h2>Interpretation stays outside the record.</h2>
+      </div>
+      <button id="copy-opinion" class="quiet-action copy-action" type="button" aria-label="Copy analyst opinion to clipboard">Copy opinion</button>
     </div>
     <p id="opinion-text">Uses your local <code>GEMINI_API_KEY</code>. Gemini receives the generated Observer report only and never writes to WAKE✳︎.</p>
   </section>
