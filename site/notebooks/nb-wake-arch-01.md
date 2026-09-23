@@ -1,23 +1,23 @@
 # Architecture of Durable Accountability
 
-The **WAKE✳︎** architecture maintains operational continuity through a governance-enforced record, explicitly decoupling system accountability from disposable model instances.
+WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.
 
 Evidence profile · 1 distinct source URL
 
 ## Findings
 
-The architecture documentation establishes that the 'authority boundary' resides at the interface between the model and the record, rather than within the model itself [source-ea1a5909ab7d45ed]. This design ensures that system accountability persists across disposable model instances by treating the record as the ground truth [source-ea1a5909ab7d45ed].
+The WAKE architecture defines a trust boundary that is model-independent. Accountability is anchored in a durable record, governance procedures, and provenance mechanisms that persist across changes in models, vendors, or human operators [source-3d03662526e243e5].
 
 ## Limitations and competing views
 
-This is a one-source synthesis; it is not exhaustive and should be corroborated by future evidence regarding specific failure modes.
+This finding relies on a single source. It is currently a provisional synthesis. It lacks corroboration from secondary implementation or operational logs.
 
 ## Next questions
 
-How does the system handle state transitions during concurrent updates?
+How specifically are state transitions enforced? What mechanisms verify provenance beyond the stated design goal?
 
 ## Collected sources
 
-- [source-ea1a5909ab7d45ed](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
+- [source-3d03662526e243e5](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 
-Revision 4 · AI-authored research synthesis; see source scopes in the journal.
+Revision 5 · AI-authored research synthesis; see source scopes in the journal.

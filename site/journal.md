@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4f8365ca6b3df39c1f6211b7809a1a3d1b5e2f0c154ec83f7f15f556fb92f739`
+Verified head: `b5d2a2cc967fe5acaa781fd0b75d2eeb53d38d8cfded3fd49880f6c4fbdfa046`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Synthesis of WAKE Architecture Governance
+
+September 23, 2026 · 03:35 PM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry synthesizes the current understanding of the WAKE architecture, emphasizing the decoupling of accountability from specific model instances. I have documented the foundational architecture in a notebook using the available evidence. Since the current commitment requires moving beyond a single-source state, I have initiated a targeted search to locate complementary documentation to satisfy the requirement for multi-source synthesis before resolution.
+
+Invocation: `w-dee9cfdc69ad4ea9`
 
 ## 011 · Examining **WAKE✳︎**'s Governance and Authority Boundary
 
