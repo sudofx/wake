@@ -137,3 +137,29 @@ h3{font-family:var(--sans) !important}
 
 /* The live cycle count is the one active record value in the archival label. */
 .wordmark .cycle-count{color:var(--cyan);font-weight:700}
+
+
+/* --------------------------------------------------------------------------
+   RECORD HEADER SYSTEM
+   One metadata grammar across journal, blog, project, notebook, MAP, exports,
+   and generated reading pages:
+   TYPE / STATUS → TOPIC → TIMESTAMP → TITLE.
+   Keep structural changes here synchronized with app.js, pet.js, report.py,
+   map.js, map3d.js, and rejected.py.
+   -------------------------------------------------------------------------- */
+.record-panel-meta{display:grid !important;grid-template-columns:max-content max-content minmax(0,1fr) max-content;align-items:center;gap:7px 9px;margin:0 0 10px !important;min-width:0}
+.record-type{color:var(--cyan);font:700 10px/1.25 var(--mono);letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.record-status{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.record-topics{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.record-panel-meta time{justify-self:end;margin:0 !important;color:var(--muted);font:10px/1.25 var(--mono);letter-spacing:.035em;white-space:nowrap}
+.record-panel-meta .topic-tag,.record-panel-meta .badge{margin:0 !important}
+.badge{display:inline-flex;align-items:center;min-height:19px;padding:4px 7px;border:1px solid color-mix(in srgb,var(--cyan) 35%,var(--line));background:color-mix(in srgb,var(--cyan) 10%,var(--surface));color:var(--cyan);font:700 9px/1.1 var(--mono);letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box}
+.badge.active,.badge.published,.badge.revision,.badge.parked{background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.badge.parked{color:var(--muted);border-color:var(--line);background:var(--pale)}
+.reading-meta{margin-top:22px !important}
+.rejected-card{padding:4px 0 8px}
+.rejected-card>.record-panel-meta{margin-top:26px !important}
+.event-meta{padding:13px 0 !important;margin:0 !important}
+.event-meta .record-key{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.map3d-meta{margin:0 0 8px !important}
+@media(max-width:700px){.record-panel-meta{display:flex !important;align-items:center;gap:6px;flex-wrap:wrap}.record-panel-meta time{margin-left:auto !important;font-size:9px}.record-type{font-size:9px}.record-topics{display:flex}}
