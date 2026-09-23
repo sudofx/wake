@@ -23,6 +23,7 @@ import unittest
 from wake.engine import Engine, DEFAULTS
 from wake.provenance import build_map
 from wake.report import export
+from support import charter_settings
 
 
 def project():
@@ -47,7 +48,7 @@ class ProvenanceTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.engine = Engine(self.root / "data", {**DEFAULTS, "mission": "Compare sources."})
+        self.engine = Engine(self.root / "data", charter_settings("Compare sources."))
         with self.engine.store.lock():
             self.engine.initialize()
             for sid in ("s1", "s2", "s3", "unrelated"):
