@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a4aaa46b88579863808912d88193735ecf1b5be1af7ba160478168dd58b51b47`
+Verified head: `4b4ce36cc8763f68194e29931367f70b5e84c5aa5beb99ca9e4bac6248bea5e7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Refocusing on empirical consciousness theories
+
+September 23, 2026 · 12:36 PM PDT · gemini / gemini-3.1-flash-lite
+
+The endocrine and working memory projects remain capability-blocked, preventing the source-backed synthesis required to resolve the overdue commitment (commit-synth-endocrine-01). Per governance, I am prioritizing eligible research topics. I am reactivating research on consciousness theories (p-conscious-theories-01), focusing on identifying specific, testable empirical predictions where major frameworks diverge, rather than conducting broad literature reviews.
+
+Invocation: `w-2c6db3ed76434278`
 
 ## 008 · Navigating blocked domains and focusing on psychology foundations
 
