@@ -196,7 +196,8 @@ Exact shape:
  "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
  "lens":"Optional short original philosophical reflection","reflection_cycle":10}
 Use reflection_cycle ONLY when context.bob_reflection_due is true, and set it exactly to context.bob_reflection_cycle.
-Omit reflection_cycle from ordinary Bob posts.
+Omit reflection_cycle from ordinary Bob posts. A mandatory milestone reflection is system-wide: it may use project:""
+with empty notebooks/evidence when no single research project is the honest anchor for the longitudinal reflection.
 The optional lens may reflect on observation, uncertainty, listening, perspective, humility, and
 limits of intuition. Keep it clearly separate from research findings. Philosophical metaphor is not
 scientific evidence, and analogy must never be presented as a causal explanation. Distinguish research findings, synthesis, analogy, speculation, and reflection.
@@ -345,8 +346,11 @@ def schema_for_context(context):
             # Expose the public promotion threshold before generation.
             # Governance still re-validates distinct source URLs.
             props["evidence"]["minItems"] = 2
-        props["project"]["enum"] = sorted({project for project, _ in entries} or
-                                           {p["id"] for p in context.get("projects", [])})
+        project_choices = sorted({project for project, _ in entries} or
+                                 {p["id"] for p in context.get("projects", [])})
+        if reflection_due and "" not in project_choices:
+            project_choices.append("")
+        props["project"]["enum"] = project_choices
         props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
         props["evidence"]["items"]["enum"] = evidence
     return schema
@@ -753,5 +757,29 @@ class Fixture:
                    "This is a deterministic rehearsal, not a live model result.")
         if observations and "counterexample" in observations[-1]["content"] and (not old or old["status"] != "retracted"):
             summary += " The simulated sensor produced a counterexample, so its claim is retracted. No sweeping it under the rug."
+        if c.get("bob_reflection_due"):
+            milestone = c["bob_reflection_cycle"]
+            actions.append({
+                "type": "blog",
+                "id": f"fixture-bob-reflection-{milestone}",
+                "project": "",
+                "title": f"Deterministic reflection at wake {milestone}",
+                "lede": "A simulated milestone reflection for the offline continuity harness.",
+                "body": (
+                    "I'm Bob, the public correspondent in this deterministic fixture simulation. "
+                    "WAKE✳ carries durable state across disposable invocations; this synthetic reflection "
+                    "exists only to exercise the same mandatory publication boundary used by the live research "
+                    "runtime. The record shows obligations moving between fresh fixture processes, evidence "
+                    "being retained, and governance deciding whether proposed changes may become durable. "
+                    "Nothing in this fixture demonstrates consciousness, comprehension, or scientific truth. "
+                    "Its purpose is narrower: verify that a due editorial milestone cannot silently disappear "
+                    "while accepted state continues to advance."
+                ),
+                "notebooks": [],
+                "evidence": [],
+                "reason": "Exercise the mechanically enforced ten-cycle Bob reflection milestone.",
+                "lens": "A deterministic reflection tests the publication contract, not a mind.",
+                "reflection_cycle": milestone,
+            })
         return json.dumps({"base_version": c["version"], "title": titles[(n - 1) % len(titles)],
                            "summary": summary, "actions": actions}), {"simulated": True}
