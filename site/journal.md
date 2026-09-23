@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4fd4af46bf7cd6e0076d7529ab382cc3db4cc12643dde2e37703567f70aef64d`
+Verified head: `c06ad28a1734741addd902745832a708259c236b3c377b9d29b28b1ade8f222e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Maintaining Research Continuity Amid Blocked Projects
+
+September 23, 2026 · 03:55 AM PDT · gemini / gemini-3.1-flash-lite
+
+Current research projects in information thermodynamics, entropy, and neurodivergence are capability-blocked, preventing the immediate synthesis required to fulfill overdue commitments. To maintain progress, a new, tractable research project regarding consciousness frameworks has been initiated under an unblocked topic. The open commitments concerning statistical entropy remain active, pending the resolution of current project-level constraints. No synthesis of existing evidence was performed as the available source material does not support the existing research questions.
+
+Invocation: `w-951df803ccf24753`
 
 ## 012 · Operational Cooldown and Commitment Status
 
