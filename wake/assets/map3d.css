@@ -26,3 +26,19 @@
 .constellation-workspace{position:relative}.constellation-workspace #constellation-stage{height:clamp(460px,calc(100svh - 260px),900px);min-height:0}.constellation-workspace #constellation-svg{height:100%}.constellation-workspace>#details[hidden]{display:none}.constellation-workspace>#details.active{position:absolute;z-index:3;right:16px;top:64px;width:min(360px,calc(100% - 32px));max-height:calc(100% - 82px);overflow:auto;padding:20px;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);background:var(--surface)}
 @media (min-width:1921px){.constellation-workspace{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}.constellation-workspace>#details.active{position:static;width:auto;max-height:calc(100svh - 160px);min-height:360px;margin-top:64px}.constellation-key{margin-right:414px}}
 @media (max-width:700px){.constellation-workspace #constellation-stage{height:clamp(420px,calc(100svh - 230px),510px)}.constellation-workspace>#details.active{right:10px;left:10px;top:auto;bottom:10px;width:auto;max-height:45%;border-radius:10px}}
+
+/* Constellation interaction/theme polish. */
+:root:not([data-theme="dark"]) .constellation-node text,
+:root:not([data-theme="dark"]) .constellation-labels .node-label{
+  fill:#f2f5ff;
+  stroke:#26304a;
+  stroke-width:4px;
+}
+:root:not([data-theme="dark"]) .constellation-node.is-wake .root-label{
+  fill:#f2f5ff;
+  stroke:#18223a;
+}
+#node-popover{z-index:6}
+/* WAKE✳︎ sits behind the floor horizon: mask the lower half of its event-horizon orb. */
+.constellation-node.is-wake .node-orb{clip-path:inset(0 0 50% 0)}
+/* Explore outcome totals use the same semantic colors as their wake cells. */
