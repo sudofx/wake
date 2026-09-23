@@ -6,7 +6,8 @@ const edges=data.edges.filter(edge=>nodes.has(edge.source)&&nodes.has(edge.targe
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
 const details=document.getElementById('details'),clear=document.getElementById('clear'),popover=document.getElementById('node-popover');
 const roots=new Map([['root:wake',{id:'root:wake',kind:'root',title:'WAKE✳︎'}],['root:journal',{id:'root:journal',kind:'root',title:'Journal'}],['root:blog',{id:'root:blog',kind:'root',title:'Blog'}],['root:topics',{id:'root:topics',kind:'root',title:'Topics'}],['root:projects',{id:'root:projects',kind:'root',title:'Projects'}],['root:commitments',{id:'root:commitments',kind:'root',title:'Commitments'}],['root:evidence',{id:'root:evidence',kind:'root',title:'Evidence'}],['root:research',{id:'root:research',kind:'root',title:'Research'}]]);
-const related=new Map(),topics=new Map(),pos=new Map(),topicColors=data.meta?.topic_colors||{};
+const related=new Map(),topics=new Map(),pos=new Map(),topicColors=data.meta?.topic_colors||{},topicLabels=data.meta?.topic_labels||{};
+const topicLabel=domain=>topicLabels[domain]||String(domain||'').replaceAll('_',' ');
 for(const edge of edges)for(const [from,to] of [[edge.source,edge.target],[edge.target,edge.source]])(related.get(from)||related.set(from,[]).get(from)).push(to);
 const newestFirst=(a,b)=>String(b.detail?.time||b.detail?.updated_version||'').localeCompare(String(a.detail?.time||a.detail?.updated_version||''));
 const journals=[...nodes.values()].filter(node=>node.kind==='journal').sort(newestFirst).slice(0,48);
@@ -23,7 +24,7 @@ const rootChildren=[
   (projects.length||notebooks.length)&&'root:projects',commitments.length&&'root:commitments',
   evidence.length&&'root:evidence',research.length&&'root:research'
 ].filter(Boolean);
-for(const node of records){const domain=node.detail?.domain;if(!domain)continue;const id=`topic:${domain}`;if(!topics.has(id))topics.set(id,{id,kind:'topic',title:domain.replaceAll('_',' '),domain});}
+for(const node of records){const domain=node.detail?.domain;if(!domain)continue;const id=`topic:${domain}`;if(!topics.has(id))topics.set(id,{id,kind:'topic',title:topicLabel(domain),domain});}
 let path=[],preview=null,hovered=null,drag=null,view={x:0,y:0,k:1},frozenAt=performance.now(),frame=null,lastActivation=0,orbitLast=0;
 const recordFromHash=()=>{try{return decodeURIComponent((location.hash.match(/^#record=(.+)$/)||[])[1]||'')}catch{return ''}};
 function writeRecordHash(id){const url=new URL(location.href);url.hash=id?`record=${encodeURIComponent(id)}`:'';history.replaceState(null,'',url)}
@@ -36,7 +37,7 @@ const reflection=node=>node.kind==='blog'&&Number(node.detail?.created_version)%
 const nodeTime=node=>{if(node.detail?.time)return node.detail.time;for(const field of ['updated_by','created_by']){const iid=node.detail?.[field];const invocation=iid&&nodes.get('invocation:'+iid);if(invocation?.detail?.time)return invocation.detail.time}return ''};
 const timeLabel=value=>{if(!value||Number.isNaN(Date.parse(value)))return '';return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'}).format(new Date(value))};
 const nodeDomain=node=>{if(node.detail?.domain)return node.detail.domain;for(const id of related.get(node.id)||[]){const other=get(id);if(other?.detail?.domain)return other.detail.domain}return ''};
-const nodeMeta=node=>{if(node.kind==='root'||node.kind==='topic')return '';const status=node.detail?.status?`<span class="record-status"><span class="badge ${esc(node.detail.status)}">${esc(String(node.detail.status).replaceAll('_',' '))}</span></span>`:'';const domain=nodeDomain(node);const topic=domain?`<span class="record-topics"><span class="topic-tag" style="--topic-color:${esc(topicColors[domain]||'var(--cyan)')}">${esc(domain.replaceAll('_',' ').toLowerCase())}</span></span>`:'<span class="record-topics"></span>';const stamp=timeLabel(nodeTime(node));return `<div class="record-panel-meta map3d-meta"><span class="record-type">${esc(node.kind)}</span>${status}${topic}${stamp?`<time>${esc(stamp)}</time>`:''}</div>`};
+const nodeMeta=node=>{if(node.kind==='root'||node.kind==='topic')return '';const status=node.detail?.status?`<span class="record-status"><span class="badge ${esc(node.detail.status)}">${esc(String(node.detail.status).replaceAll('_',' '))}</span></span>`:'';const domain=nodeDomain(node);const topic=domain?`<span class="record-topics"><span class="topic-tag" style="--topic-color:${esc(topicColors[domain]||'var(--cyan)')}">${esc(topicLabel(domain).toLowerCase())}</span></span>`:'<span class="record-topics"></span>';const stamp=timeLabel(nodeTime(node));return `<div class="record-panel-meta map3d-meta"><span class="record-type">${esc(node.kind)}</span>${status}${topic}${stamp?`<time>${esc(stamp)}</time>`:''}</div>`};
 const rootColors={'root:wake':'#0a0d15','root:journal':'#38bdf8','root:blog':'#ff5cac','root:topics':'#aa6bff','root:projects':'#ff9457','root:commitments':'#ffd166','root:evidence':'#8ded62','root:research':'#4ddbc2'};
 const categoryColors={journal:'#38bdf8',blog:'#ff9b5f',project:'#b56cff',notebook:'#8dea63',commitment:'#ffd166',evidence:'#ffe273',research:'#4ddbc2',belief:'#a979ff',invocation:'#91a5da',editorial:'#f2709c'};
 const color=node=>node.kind==='root'?(rootColors[node.id]||'#38bdf8'):node.kind==='topic'?(topicColors[node.domain]||'#aa6bff'):node.kind==='blog'?(reflection(node)?'#ff63c5':categoryColors.blog):(categoryColors[node.kind]||'var(--muted)');

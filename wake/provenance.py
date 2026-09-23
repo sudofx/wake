@@ -197,8 +197,17 @@ def build_map(state, events, head):
     for pid, post in state.get("posts", {}).items():
         if not any(e["source"] == f"blog:{pid}" and e["relation"] == "notebooks" for e in edges.values()):
             artifact("blog", pid, state, state["version"], set())
+    # Topic IDs are durable provenance keys.  Public MAP surfaces receive the
+    # configured labels separately so presentation never has to prettify an ID
+    # and accidentally expose implementation names such as information_thermodynamics.
+    topic_labels = {
+        item["id"]: item["label"]
+        for item in state.get("research_topics", [])
+        if item.get("id") and item.get("label")
+    }
     return {"journals": journals, "blogs": blogs, "nodes": list(nodes.values()), "edges": list(edges.values()),
             "meta": {"head": head, "version": state["version"], "schema_version": 1,
                      "topic_colors": state.get("topic_colors", {}),
+                     "topic_labels": topic_labels,
                      "principle": "The record is auditable. The record is not thereby proven correct.",
                      "shadow_note": "Character ratios are observational instrumentation, not token savings or proof of behavioral equivalence."}}
