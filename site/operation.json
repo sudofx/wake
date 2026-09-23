@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-f6cee51d840249e3",
   "reason": "Finish or park work before starting a fourth active project",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-c2f2c01b65b548ff",

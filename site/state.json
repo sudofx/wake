@@ -16101,6 +16101,39 @@
   "research_topics": [
     {
       "enabled": true,
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake",
+      "repository": "sudofx/wake",
+      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+      "source_kind": "repository"
+    },
+    {
+      "enabled": true,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
       "id": "consciousness",
       "label": "Consciousness",
       "query": "consciousness",
@@ -16113,6 +16146,14 @@
       "label": "Psychology",
       "query": "psychology",
       "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
       "source_kind": "web"
     },
     {
@@ -16133,6 +16174,14 @@
     },
     {
       "enabled": true,
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
       "id": "neurology",
       "label": "Neurology",
       "query": "neurology nervous system neurological disorders",
@@ -16149,12 +16198,18 @@
     }
   ],
   "topic_colors": {
-    "consciousness": "#c0caf5",
-    "endocrinology": "#8aa8ff",
-    "neurology": "#93ff74",
-    "philosophy": "#ff5bb9",
-    "psychology": "#b25dff",
-    "religion": "#73daca"
+    "consciousness": "#e0af68",
+    "endocrinology": "#f68c65",
+    "entropy": "#5fcf8d",
+    "information_thermodynamics": "#b25dff",
+    "neurodivergence": "#ff9e64",
+    "neurology": "#d8c25d",
+    "philosophy": "#7aa2f7",
+    "prime_numbers": "#ffe574",
+    "psychology": "#8aa8ff",
+    "quantum_mechanics": "#b7d36b",
+    "religion": "#2ac3de",
+    "wake_analysis": "#54d4bc"
   },
   "experimental": {
     "id": "reg-df573bb03399f050",
