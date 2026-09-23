@@ -977,3 +977,55 @@ html,body{max-width:100%;overflow-x:clip}
   .motion-numbers div{padding:12px 7px}
   .observatory-topic{padding:18px 16px}
 }
+
+/* Help system — current WAKE✳︎ theme. One shared treatment for every contextual ? panel. */
+.help-trigger{
+  color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 72%,var(--line));
+  background:color-mix(in srgb,var(--cyan) 7%,transparent);
+  transition:background .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.help-trigger:hover,.help-trigger:focus-visible{
+  color:var(--paper);background:var(--cyan);border-color:var(--cyan);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan) 18%,transparent)
+}
+.help-layer{
+  background:color-mix(in srgb,#090b16 78%,transparent);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  padding:24px
+}
+.help-panel{
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);
+  border-top:4px solid var(--cyan);
+  box-shadow:0 24px 70px color-mix(in srgb,#090b16 46%,transparent),0 0 0 1px color-mix(in srgb,var(--purple) 12%,transparent);
+  border-radius:7px;padding:27px 30px 29px
+}
+.help-panel::before{
+  content:"";position:absolute;left:0;top:0;width:38%;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));pointer-events:none
+}
+.help-panel>.eyebrow{color:var(--cyan);letter-spacing:.14em}
+.help-panel>h2{color:var(--ink)}
+.help-copy{border-top:1px solid var(--line);padding-top:17px;row-gap:12px}
+.help-copy h3{color:var(--purple)}
+.help-copy p{color:var(--muted)}
+.help-close{
+  color:var(--muted);border:1px solid transparent;border-radius:4px;
+  background:transparent
+}
+.help-close:hover,.help-close:focus-visible{
+  color:var(--cyan);border-color:var(--line);
+  background:color-mix(in srgb,var(--cyan) 7%,transparent)
+}
+:root:not([data-theme="dark"]) .help-layer{background:color-mix(in srgb,#1f2335 48%,transparent)}
+:root:not([data-theme="dark"]) .help-panel{box-shadow:0 22px 58px color-mix(in srgb,#232a26 22%,transparent)}
+@media(max-width:700px){
+  .help-layer{padding:0;align-items:flex-end}
+  .help-panel{
+    width:100%;max-height:calc(100dvh - 8px);padding:22px 18px max(24px,env(safe-area-inset-bottom));
+    border-left:0;border-right:0;border-bottom:0;border-radius:10px 10px 0 0;
+    box-shadow:0 -18px 52px color-mix(in srgb,#090b16 45%,transparent)
+  }
+  .help-panel::before{width:48%}
+  .help-copy{padding-top:14px;row-gap:5px}
+  .help-copy h3{margin-top:8px}
+}
