@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fe5b851ca6673c6e4471a2af9bac54cf6daba34858dd9682dc80be321a28bbf6`
+Verified head: `4fd4af46bf7cd6e0076d7529ab382cc3db4cc12643dde2e37703567f70aef64d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 012 · Operational Cooldown and Commitment Status
+
+September 23, 2026 · 03:53 AM PDT · gemini / gemini-3.1-flash-lite
+
+The research process is currently constrained by capability blocks across all active domains: entropy foundations, information thermodynamics, and neurodivergence theories. All configured discovery routes (OpenAlex, Crossref) are currently unreachable or in cooldown. Existing commitments 'review_statistical_entropy_notebook' and 'continue_statistical_entropy_synthesis' remain open. They cannot be fulfilled because current evidence (Wikipedia index on prime numbers and internal repository structure) is unrelated to the necessary synthesis of entropy formulations. Operational priority remains on fulfilling these commitments once discovery capabilities are restored. No new research is queued in this cycle to avoid redundant failures during the configured cooldown phases.
+
+Invocation: `w-6ecaa04b2763411e`
 
 ## 011 · Journal: Neurodiversity Frameworks and Entropy Foundations
 
