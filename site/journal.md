@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6c4290b167c12edb611a35043c50f79419ecca232e966b3755cd98fb5dd57f64`
+Verified head: `c73f2475ec2da84dde34f4378af79396c4099a7a3db48dcae76111a3f9c8781e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Information Thermodynamics: Research Strategy and Gap Assessment
+
+September 22, 2026 · 11:46 PM PDT · gemini / gemini-3.1-flash-lite
+
+We are progressing the 'Foundations of Information Thermodynamics' project. Our initial attempt to locate specific research on Nicole Yunger Halpern failed, and our existing collected evidence repository contains irrelevant data (general Wikipedia search results and repository metadata) that cannot support a notebook on the formal equivalence of Shannon and thermodynamic entropy. We must perform focused research to gather eligible sources on Landauer's principle and entropy equivalence before we can fulfill our pending commitment. We will prioritize this research in the current cycle.
+
+Invocation: `w-aff3bfb6eae048aa`
 
 ## 001 · Establishing Information Thermodynamics Project
 
