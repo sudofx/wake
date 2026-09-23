@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>f2ebdc7283156f84eff070fa4443110f9a3aa75883475cdbeb6b0263148da271</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 22<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>4ab2b5b1880fd0a4fd82e8609e78b6ada29892b49904c9c92ee89ab4cf5f8819</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 22<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 5,
   &quot;id&quot;: &quot;c-review-wake-arch-01&quot;,
   &quot;reason&quot;: &quot;Ensure findings from initial wake_analysis query are systematically evaluated and synthesized into project notebook.&quot;,
@@ -15873,6 +15873,405 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
     &quot;response_bytes_captured&quot;: 198,
     &quot;result&quot;: &quot;transient_failure&quot;
   }
+}</pre></div></details><details><summary>w-f73c402a686f4204</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 22,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 10444,
+    &quot;delivered_request_chars&quot;: 34650,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;omitted_categories&quot;: [
+      &quot;full durable evidence content&quot;,
+      &quot;recent journal bodies&quot;,
+      &quot;completed-project archive&quot;,
+      &quot;full notebook bodies&quot;,
+      &quot;research and blog history outside the bounded working set&quot;
+    ],
+    &quot;provenance_policy&quot;: &quot;All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.&quot;,
+    &quot;rich_context_chars&quot;: 65143,
+    &quot;working_set_chars&quot;: 1803
+  },
+  &quot;experimental_regime&quot;: {
+    &quot;actor&quot;: &quot;operator&quot;,
+    &quot;adopted_at&quot;: &quot;2026-09-23T21:25:25.789831+00:00&quot;,
+    &quot;controls&quot;: {
+      &quot;time_dilation&quot;: {
+        &quot;affects&quot;: [
+          &quot;telemetry&quot;,
+          &quot;provider_context&quot;
+        ],
+        &quot;description&quot;: &quot;Records wall, cycle and intervening-event distance; effective time follows the selected mapping.&quot;,
+        &quot;enabled&quot;: true,
+        &quot;mode&quot;: &quot;real&quot;,
+        &quot;scale&quot;: 1.0
+      }
+    },
+    &quot;effective_from_version&quot;: 0,
+    &quot;effective_seconds&quot;: 0.0,
+    &quot;event_seq&quot;: 3,
+    &quot;id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;reason&quot;: &quot;Initialize the default experimental instrument regime.&quot;
+  },
+  &quot;id&quot;: &quot;w-f73c402a686f4204&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 22,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 10,
+          &quot;notebooks&quot;: 2,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;landauer-principle-investigation&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 2,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Landauer&#x27;s Principle and Information Erasure&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2272,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-23&quot;,
+  &quot;request_hash&quot;: &quot;ce951db67e78658362949af315f98722b2410895938ff8b6bf20ac5938eb3697&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-3d03662526e243e5&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-wake-arch-01&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-daed2a840e974273&quot;,
+          &quot;source-ad226ee4932745ca&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-wake-continuity-mechanics&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-b235a555a8ce4077&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-b235a555a8ce4077&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-a60abbb0a9584eba&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-a60abbb0a9584eba&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-6a68aaf27e214b24&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-6a68aaf27e214b24&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-ea1a5909ab7d45ed&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-ea1a5909ab7d45ed&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-16e9b3bef5ea4821&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-16e9b3bef5ea4821&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-c0f1679001a14bb5&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-c0f1679001a14bb5&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-3d03662526e243e5&quot;,
+      &quot;source-daed2a840e974273&quot;,
+      &quot;source-ad226ee4932745ca&quot;,
+      &quot;source-b235a555a8ce4077&quot;,
+      &quot;source-a60abbb0a9584eba&quot;,
+      &quot;source-6a68aaf27e214b24&quot;,
+      &quot;source-ea1a5909ab7d45ed&quot;,
+      &quot;source-16e9b3bef5ea4821&quot;,
+      &quot;source-c0f1679001a14bb5&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;The engine may explicitly rehydrate qualifying selected IDs into provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 8,
+      &quot;evidence_count&quot;: 9,
+      &quot;trigger_counts&quot;: {
+        &quot;notebook_revised&quot;: 2,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [
+      &quot;wake_analysis&quot;
+    ],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {
+      &quot;wake_analysis&quot;: [
+        {
+          &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+          &quot;next_step&quot;: &quot;Examine repository documentation and runtime governance contracts regarding state transition and evidence gates.&quot;,
+          &quot;question&quot;: &quot;How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;
+        }
+      ]
+    },
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;selected_topic&quot;: &quot;information_thermodynamics&quot;,
+    &quot;temporal&quot;: {
+      &quot;anchor_seq&quot;: 728,
+      &quot;anchor_time&quot;: &quot;2026-09-23T23:35:52.625552+00:00&quot;,
+      &quot;anchor_version&quot;: 22,
+      &quot;effective_seconds&quot;: 7826.835721
+    },
+    &quot;temporal_use&quot;: &quot;observational; no time signal changes Squirrel eligibility yet&quot;
+  },
+  &quot;temporal&quot;: {
+    &quot;cycle_distance&quot;: 0,
+    &quot;effective_elapsed_seconds&quot;: 159.726431,
+    &quot;effective_scale&quot;: 1.0,
+    &quot;effective_seconds_total&quot;: 7826.835721,
+    &quot;intervening_events&quot;: {
+      &quot;accepted&quot;: 0,
+      &quot;failed&quot;: 0,
+      &quot;observation&quot;: 7,
+      &quot;rejected&quot;: 0,
+      &quot;research_collected&quot;: 0,
+      &quot;squirrel_assessed&quot;: 0,
+      &quot;total&quot;: 11
+    },
+    &quot;observed_at&quot;: &quot;2026-09-23T23:35:52.625552+00:00&quot;,
+    &quot;previous_anchor_time&quot;: &quot;2026-09-23T23:33:12.899121+00:00&quot;,
+    &quot;regime_id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;wall_elapsed_seconds&quot;: 159.726431
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 10444,
+    &quot;inquiry_drive_project_count&quot;: 2,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;retrieval_candidate_count&quot;: 8,
+    &quot;retrieval_evidence_count&quot;: 9,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;notebook_revised&quot;: 2,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 1803,
+    &quot;working_to_delivered_ratio&quot;: 0.1726
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;next_step&quot;: &quot;Examine repository documentation and runtime governance contracts regarding state transition and evidence gates.&quot;,
+        &quot;question&quot;: &quot;How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;,
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      },
+      {
+        &quot;id&quot;: &quot;landauer-principle-investigation&quot;,
+        &quot;next_step&quot;: &quot;Identify foundational papers defining Landauer&#x27;s principle and subsequent experimental verifications.&quot;,
+        &quot;question&quot;: &quot;What does Landauer&#x27;s principle claim about the physical cost of erasing information, and what evidence supports its interpretation?&quot;,
+        &quot;title&quot;: &quot;Landauer&#x27;s Principle and Information Erasure&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;nb-wake-arch-01&quot;,
+        &quot;project&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-3d03662526e243e5&quot;
+        ],
+        &quot;revision&quot;: 5,
+        &quot;summary&quot;: &quot;WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.&quot;,
+        &quot;title&quot;: &quot;Architecture of Durable Accountability&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-wake-continuity-mechanics&quot;,
+        &quot;project&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-daed2a840e974273&quot;,
+          &quot;source-ad226ee4932745ca&quot;
+        ],
+        &quot;revision&quot;: 5,
+        &quot;summary&quot;: &quot;WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.&quot;,
+        &quot;title&quot;: &quot;Mechanics of Durable Research Continuity&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-23T23:35:53.166543+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 6825,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 37135,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;finished&quot;: &quot;2026-09-23T23:36:08.164435+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 6825,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 6825,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 37135,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 1,
+    &quot;request_payload_bytes&quot;: 37135,
+    &quot;response_bytes_captured&quot;: 198,
+    &quot;result&quot;: &quot;transient_failure&quot;
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-a81ebc834d80497e</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=storytelling+narrative+cognition+literature&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:86,\\\&quot;suggestion\\\&quot;:\\\&quot;storytelling narrative coalition literature\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;storytelling narrative\\ncoalition\\nliterature\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fiction\\\&quot;,\\\&quot;pageid\\\&quot;:18949461,\\\&quot;size\\\&quot;:35712,\\\&quot;wordcount\\\&quot;:3771,\\\&quot;snippet\\\&quot;:\\\&quot;non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T19:11:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narrative identity\\\&quot;,\\\&quot;pageid\\\&quot;:35716364,\\\&quot;size\\\&quot;:60455,\\\&quot;wordcount\\\&quot;:7308,\\\&quot;snippet\\\&quot;:\\\&quot;on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\&quot;. Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:09:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narratology\\\&quot;,\\\&quot;pageid\\\&quot;:718763,\\\&quot;size\\\&quot;:23172,\\\&quot;wordcount\\\&quot;:2691,\\\&quot;snippet\\\&quot;:\\\&quot;Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-21T07:57:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ancient literature\\\&quot;,\\\&quot;pageid\\\&quot;:3709305,\\\&quot;size\\\&quot;:49644,\\\&quot;wordcount\\\&quot;:4634,\\\&quot;snippet\\\&quot;:\\\&quot;Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-29T20:43:46Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Role-playing game\\\&quot;,\\\&quot;pageid\\\&quot;:25475,\\\&quot;size\\\&quot;:38009,\\\&quot;wordcount\\\&quot;:4559,\\\&quot;snippet\\\&quot;:\\\&quot;form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T05:14:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Children&#x27;s literature\\\&quot;,\\\&quot;pageid\\\&quot;:52847,\\\&quot;size\\\&quot;:167603,\\\&quot;wordcount\\\&quot;:18216,\\\&quot;snippet\\\&quot;:\\\&quot;Machine Children&#x27;s\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children&#x27;s\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T04:25:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Soma (video game)\\\&quot;,\\\&quot;pageid\\\&quot;:5649586,\\\&quot;size\\\&quot;:41063,\\\&quot;wordcount\\\&quot;:3882,\\\&quot;snippet\\\&quot;:\\\&quot;Cody (22 June 2023). \\\&quot;Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\&quot;. In Ghosal, Torsa\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-09T19:08:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Suspense\\\&quot;,\\\&quot;pageid\\\&quot;:4450450,\\\&quot;size\\\&quot;:10990,\\\&quot;wordcount\\\&quot;:1207,\\\&quot;snippet\\\&quot;:\\\&quot;audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T05:31:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Immersive learning\\\&quot;,\\\&quot;pageid\\\&quot;:64345811,\\\&quot;size\\\&quot;:22110,\\\&quot;wordcount\\\&quot;:2264,\\\&quot;snippet\\\&quot;:\\\&quot;structured by the audience&#x27;s own\\ncognition\\n. Also, within Ryan&#x27;s book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-11-26T22:52:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dramatization\\\&quot;,\\\&quot;pageid\\\&quot;:57618166,\\\&quot;size\\\&quot;:5558,\\\&quot;wordcount\\\&quot;:732,\\\&quot;snippet\\\&quot;:\\\&quot;emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-12T01:42:08Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;7caf720e30f7c63658455c518b7c8438618652e1da589c93ec50c5cc2e23a35f\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;storytelling\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -18843,6 +19242,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 22,
   &quot;time&quot;: &quot;2026-09-23T23:33:13.231139+00:00&quot;
+}</pre></div></details><details><summary>source-b74d51a77f5048c7</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:120,\\\&quot;suggestion\\\&quot;:\\\&quot;neurodivergent\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;neurodivergent\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurodiversity\\\&quot;,\\\&quot;pageid\\\&quot;:1073739,\\\&quot;size\\\&quot;:142665,\\\&quot;wordcount\\\&quot;:13881,\\\&quot;snippet\\\&quot;:\\\&quot;and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\&quot;difference[s]\\\&quot;.\\nNeurodivergences\\ninclude autism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T23:26:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neuroqueer theory\\\&quot;,\\\&quot;pageid\\\&quot;:76016274,\\\&quot;size\\\&quot;:31724,\\\&quot;wordcount\\\&quot;:3380,\\\&quot;snippet\\\&quot;:\\\&quot;have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T18:08:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurofibromatosis type I\\\&quot;,\\\&quot;pageid\\\&quot;:1712548,\\\&quot;size\\\&quot;:63138,\\\&quot;wordcount\\\&quot;:7236,\\\&quot;snippet\\\&quot;:\\\&quot;Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T22:12:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Kassiane Asasumasu\\\&quot;,\\\&quot;pageid\\\&quot;:76250908,\\\&quot;size\\\&quot;:14907,\\\&quot;wordcount\\\&quot;:1302,\\\&quot;snippet\\\&quot;:\\\&quot;related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T15:58:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mel King (The Pitt)\\\&quot;,\\\&quot;pageid\\\&quot;:82753144,\\\&quot;size\\\&quot;:15333,\\\&quot;wordcount\\\&quot;:1322,\\\&quot;snippet\\\&quot;:\\\&quot;and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-07T04:12:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fern Brady\\\&quot;,\\\&quot;pageid\\\&quot;:43399498,\\\&quot;size\\\&quot;:15262,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T00:11:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Taylor Dearden\\\&quot;,\\\&quot;pageid\\\&quot;:55290719,\\\&quot;size\\\&quot;:19195,\\\&quot;wordcount\\\&quot;:1387,\\\&quot;snippet\\\&quot;:\\\&quot;com/watch?v=bqFkDmto2OM \\\&quot;Actress Taylor Dearden talks about portraying\\nneurodivergence\\non &#x27;The Pitt&#x27;\\\&quot;. NPR. April 9, 2025. Retrieved June 18, 2025. \\\&quot;&#x27;The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T00:35:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Otherkin\\\&quot;,\\\&quot;pageid\\\&quot;:21702085,\\\&quot;size\\\&quot;:37075,\\\&quot;wordcount\\\&quot;:3341,\\\&quot;snippet\\\&quot;:\\\&quot;non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T04:15:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Wednesday Addams (Wednesday)\\\&quot;,\\\&quot;pageid\\\&quot;:83376351,\\\&quot;size\\\&quot;:103707,\\\&quot;wordcount\\\&quot;:9027,\\\&quot;snippet\\\&quot;:\\\&quot;Charli Clement has also pondered on Wednesday&#x27;s representation of\\nneurodivergence\\n, noting how the character&#x27;s fictionality and pretty privilege might\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T05:51:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Other (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:972208,\\\&quot;size\\\&quot;:49508,\\\&quot;wordcount\\\&quot;:5797,\\\&quot;snippet\\\&quot;:\\\&quot;differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T02:59:58Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;d3280d88af44bec72444fe256a89fa76862567b212c04962acce85f94ff1b315\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurodivergence\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-b74d51a77f5048c7&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:49.471282+00:00&quot;
+}</pre></div></details><details><summary>source-dabcb5966efa4f89</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=endocrinology+hormones+endocrine+disorders&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:911},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrinology\\\&quot;,\\\&quot;pageid\\\&quot;:9311,\\\&quot;size\\\&quot;:28626,\\\&quot;wordcount\\\&quot;:3056,\\\&quot;snippet\\\&quot;:\\\&quot;hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-22T17:29:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine system\\\&quot;,\\\&quot;pageid\\\&quot;:9312,\\\&quot;size\\\&quot;:40983,\\\&quot;wordcount\\\&quot;:4852,\\\&quot;snippet\\\&quot;:\\\&quot;endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-30T18:34:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine disease\\\&quot;,\\\&quot;pageid\\\&quot;:8500076,\\\&quot;size\\\&quot;:11397,\\\&quot;wordcount\\\&quot;:862,\\\&quot;snippet\\\&quot;:\\\&quot;\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-04T06:52:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gender-affirming hormone therapy\\\&quot;,\\\&quot;pageid\\\&quot;:36792950,\\\&quot;size\\\&quot;:64335,\\\&quot;wordcount\\\&quot;:5099,\\\&quot;snippet\\\&quot;:\\\&quot;transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T03:30:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Thyroid-stimulating hormone\\\&quot;,\\\&quot;pageid\\\&quot;:330361,\\\&quot;size\\\&quot;:29201,\\\&quot;wordcount\\\&quot;:2790,\\\&quot;snippet\\\&quot;:\\\&quot;body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-22T04:01:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hormone\\\&quot;,\\\&quot;pageid\\\&quot;:13311,\\\&quot;size\\\&quot;:42654,\\\&quot;wordcount\\\&quot;:4370,\\\&quot;snippet\\\&quot;:\\\&quot;Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T05:55:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hormones (endocrinology journal)\\\&quot;,\\\&quot;pageid\\\&quot;:76017572,\\\&quot;size\\\&quot;:3457,\\\&quot;wordcount\\\&quot;:234,\\\&quot;snippet\\\&quot;:\\\&quot;metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-10-20T08:31:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Multiple endocrine neoplasia type 1\\\&quot;,\\\&quot;pageid\\\&quot;:2574340,\\\&quot;size\\\&quot;:15344,\\\&quot;wordcount\\\&quot;:1736,\\\&quot;snippet\\\&quot;:\\\&quot;Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-23T18:16:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine gland\\\&quot;,\\\&quot;pageid\\\&quot;:1223446,\\\&quot;size\\\&quot;:18558,\\\&quot;wordcount\\\&quot;:2107,\\\&quot;snippet\\\&quot;:\\\&quot;anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-01-25T17:12:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Growth hormone\\\&quot;,\\\&quot;pageid\\\&quot;:173072,\\\&quot;size\\\&quot;:61715,\\\&quot;wordcount\\\&quot;:6968,\\\&quot;snippet\\\&quot;:\\\&quot;treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\&quot;. The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T06:53:19Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;8e774a05d169e0f5c96b47b3adf00c8715c9358b109ae5180e9716464b2f9e28\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;endocrinology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-dabcb5966efa4f89&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=endocrinology+hormones+endocrine+disorders&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:50.019808+00:00&quot;
+}</pre></div></details><details><summary>source-f17d94d3911c4449</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=dance+rhythm+movement+cognition+culture&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dance\\\&quot;,\\\&quot;pageid\\\&quot;:7885,\\\&quot;size\\\&quot;:73058,\\\&quot;wordcount\\\&quot;:8358,\\\&quot;snippet\\\&quot;:\\\&quot;by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\&quot;\\nrhythm\\nand shape\\\&quot; of\\nmovement\\nthat\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T00:29:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;African-American culture\\\&quot;,\\\&quot;pageid\\\&quot;:1142503,\\\&quot;size\\\&quot;:186787,\\\&quot;wordcount\\\&quot;:18520,\\\&quot;snippet\\\&quot;:\\\&quot;influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T17:44:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology of music\\\&quot;,\\\&quot;pageid\\\&quot;:4390344,\\\&quot;size\\\&quot;:79919,\\\&quot;wordcount\\\&quot;:8734,\\\&quot;snippet\\\&quot;:\\\&quot;\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\&quot;\\nRhythm\\nand pitch in music\\ncognition\\n\\\&quot;. Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-26T20:22:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Modernism\\\&quot;,\\\&quot;pageid\\\&quot;:19547,\\\&quot;size\\\&quot;:185952,\\\&quot;wordcount\\\&quot;:20347,\\\&quot;snippet\\\&quot;:\\\&quot;modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T15:47:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Irish stepdance\\\&quot;,\\\&quot;pageid\\\&quot;:6188670,\\\&quot;size\\\&quot;:45682,\\\&quot;wordcount\\\&quot;:5651,\\\&quot;snippet\\\&quot;:\\\&quot;called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T02:12:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cultural universal\\\&quot;,\\\&quot;pageid\\\&quot;:7745490,\\\&quot;size\\\&quot;:10277,\\\&quot;wordcount\\\&quot;:1012,\\\&quot;snippet\\\&quot;:\\\&quot;Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-03T15:57:58Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology of music preference\\\&quot;,\\\&quot;pageid\\\&quot;:37523519,\\\&quot;size\\\&quot;:39407,\\\&quot;wordcount\\\&quot;:4679,\\\&quot;snippet\\\&quot;:\\\&quot;familiarity and liking of music. Big Five personality traits\\nCulture\\nin music\\ncognition\\nMusic psychology Sch\\\\u00e4fer, Thomas; Sedlmeier, Peter; St\\\\u00e4dtler,\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-10-02T16:42:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Culture and menstruation\\\&quot;,\\\&quot;pageid\\\&quot;:5778583,\\\&quot;size\\\&quot;:168019,\\\&quot;wordcount\\\&quot;:19129,\\\&quot;snippet\\\&quot;:\\\&quot;China&#x27;s youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\&quot;&#x27;Stand by Her&#x27;: In China, a\\nMovement\\nHands Out Free\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-19T15:00:51Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Evolutionary musicology\\\&quot;,\\\&quot;pageid\\\&quot;:4220231,\\\&quot;size\\\&quot;:24796,\\\&quot;wordcount\\\&quot;:2920,\\\&quot;snippet\\\&quot;:\\\&quot;well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-08T03:37:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Synchronization\\\&quot;,\\\&quot;pageid\\\&quot;:28738,\\\&quot;size\\\&quot;:35356,\\\&quot;wordcount\\\&quot;:3734,\\\&quot;snippet\\\&quot;:\\\&quot;\\\&quot;Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\&quot;. Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T05:18:58Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c5a7d26e288e79afe3bbfb1504f7d080fc5315ebc8a72516b647963ed0c90fb1\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;dance\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: [\&quot;doi:10.1037/0033-2909\&quot;, \&quot;doi:10.1038/s42003-022-03017-4\&quot;]}&quot;,
+  &quot;id&quot;: &quot;source-f17d94d3911c4449&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=dance+rhythm+movement+cognition+culture&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:50.560656+00:00&quot;
+}</pre></div></details><details><summary>source-6df578d6b4314327</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40312},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T13:46:33Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Animal consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:13001588,\\\&quot;size\\\&quot;:135552,\\\&quot;wordcount\\\&quot;:14235,\\\&quot;snippet\\\&quot;:\\\&quot;Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T05:21:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The Science of Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:42114583,\\\&quot;size\\\&quot;:7071,\\\&quot;wordcount\\\&quot;:712,\\\&quot;snippet\\\&quot;:\\\&quot;The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-06-20T10:35:32Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;90942611fe3ceba88e649dba8a5d742ee2cdd786c71fd226ee4bb2d111faf5aa\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-6df578d6b4314327&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:51.094426+00:00&quot;
+}</pre></div></details><details><summary>source-2cfccb8b7d734624</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurology+nervous+system+neurological+disorders&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:3371},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurological disorder\\\&quot;,\\\&quot;pageid\\\&quot;:19572333,\\\&quot;size\\\&quot;:21181,\\\&quot;wordcount\\\&quot;:2085,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-13T18:36:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Functional neurological symptom disorder\\\&quot;,\\\&quot;pageid\\\&quot;:49594540,\\\&quot;size\\\&quot;:23378,\\\&quot;wordcount\\\&quot;:2498,\\\&quot;snippet\\\&quot;:\\\&quot;\\\&quot;Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\&quot;. Mayo Clinic. Retrieved 2022-01-04. \\\&quot;Functional\\nneurological\\nsymptom\\ndisorder\\n\\\&quot;. Medicalnewstoday\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-13T17:05:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of neurological conditions and disorders\\\&quot;,\\\&quot;pageid\\\&quot;:56335,\\\&quot;size\\\&quot;:13517,\\\&quot;wordcount\\\&quot;:1152,\\\&quot;snippet\\\&quot;:\\\&quot;This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer&#x27;s disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-20T20:53:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurology\\\&quot;,\\\&quot;pageid\\\&quot;:21226,\\\&quot;size\\\&quot;:28620,\\\&quot;wordcount\\\&quot;:2752,\\\&quot;snippet\\\&quot;:\\\&quot;and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-04T16:44:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Central nervous system disease\\\&quot;,\\\&quot;pageid\\\&quot;:17681122,\\\&quot;size\\\&quot;:31068,\\\&quot;wordcount\\\&quot;:3102,\\\&quot;snippet\\\&quot;:\\\&quot;Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T09:05:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Paraneoplastic syndrome\\\&quot;,\\\&quot;pageid\\\&quot;:11520228,\\\&quot;size\\\&quot;:29092,\\\&quot;wordcount\\\&quot;:2366,\\\&quot;snippet\\\&quot;:\\\&quot;to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-07T21:14:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dysautonomia\\\&quot;,\\\&quot;pageid\\\&quot;:410746,\\\&quot;size\\\&quot;:32867,\\\&quot;wordcount\\\&quot;:2908,\\\&quot;snippet\\\&quot;:\\\&quot;inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-12T22:17:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurological examination\\\&quot;,\\\&quot;pageid\\\&quot;:3893700,\\\&quot;size\\\&quot;:11559,\\\&quot;wordcount\\\&quot;:956,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T23:18:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Nervous system disease\\\&quot;,\\\&quot;pageid\\\&quot;:18881907,\\\&quot;size\\\&quot;:11932,\\\&quot;wordcount\\\&quot;:1141,\\\&quot;snippet\\\&quot;:\\\&quot;\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-10-20T08:53:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Pediatric neurology\\\&quot;,\\\&quot;pageid\\\&quot;:76756342,\\\&quot;size\\\&quot;:7037,\\\&quot;wordcount\\\&quot;:529,\\\&quot;snippet\\\&quot;:\\\&quot;nervous\\nsystem\\nand peripheral\\nnervous\\nsystem\\nin children. While pediatric neurologists have many similarities to neurologists, the\\nneurological\\ndisorders\\nthey\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2024-11-25T06:14:54Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c4652c287d7c27181ab7bc67bdfe4709a14cbc2c010c92ccc3ad2dc39173c921\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-2cfccb8b7d734624&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurology+nervous+system+neurological+disorders&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:51.794778+00:00&quot;
+}</pre></div></details><details><summary>source-869d338edb064f40</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=complex+systems+emergence+self-organization&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:2768},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-organization\\\&quot;,\\\&quot;pageid\\\&quot;:286947,\\\&quot;size\\\&quot;:64814,\\\&quot;wordcount\\\&quot;:6861,\\\&quot;snippet\\\&quot;:\\\&quot;justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-20T00:23:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Emergence\\\&quot;,\\\&quot;pageid\\\&quot;:37436,\\\&quot;size\\\&quot;:60324,\\\&quot;wordcount\\\&quot;:6551,\\\&quot;snippet\\\&quot;:\\\&quot;In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T03:04:12Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems theory\\\&quot;,\\\&quot;pageid\\\&quot;:29238,\\\&quot;size\\\&quot;:56628,\\\&quot;wordcount\\\&quot;:6135,\\\&quot;snippet\\\&quot;:\\\&quot;how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-18T16:09:09Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex system\\\&quot;,\\\&quot;pageid\\\&quot;:37438,\\\&quot;size\\\&quot;:47316,\\\&quot;wordcount\\\&quot;:4875,\\\&quot;snippet\\\&quot;:\\\&quot;\\nsystem\\nand its environment.\\nSystems\\nthat are \\\&quot;\\ncomplex\\n\\\&quot; have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T23:23:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex adaptive system\\\&quot;,\\\&quot;pageid\\\&quot;:1428810,\\\&quot;size\\\&quot;:35927,\\\&quot;wordcount\\\&quot;:3790,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-06T14:02:23Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The purpose of a system is what it does\\\&quot;,\\\&quot;pageid\\\&quot;:17404830,\\\&quot;size\\\&quot;:6777,\\\&quot;wordcount\\\&quot;:754,\\\&quot;snippet\\\&quot;:\\\&quot;applying POSIWID shows that the\\norganization&#x27;s\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T17:25:20Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-assembly\\\&quot;,\\\&quot;pageid\\\&quot;:351914,\\\&quot;size\\\&quot;:40999,\\\&quot;wordcount\\\&quot;:4440,\\\&quot;snippet\\\&quot;:\\\&quot;Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-10T18:14:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems thinking\\\&quot;,\\\&quot;pageid\\\&quot;:227985,\\\&quot;size\\\&quot;:20900,\\\&quot;wordcount\\\&quot;:2126,\\\&quot;snippet\\\&quot;:\\\&quot;action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-23T19:07:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complexity theory and organizations\\\&quot;,\\\&quot;pageid\\\&quot;:5938019,\\\&quot;size\\\&quot;:24442,\\\&quot;wordcount\\\&quot;:2009,\\\&quot;snippet\\\&quot;:\\\&quot;differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-25T04:34:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-organized criticality\\\&quot;,\\\&quot;pageid\\\&quot;:718855,\\\&quot;size\\\&quot;:29252,\\\&quot;wordcount\\\&quot;:3184,\\\&quot;snippet\\\&quot;:\\\&quot;\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T14:23:20Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;d0cf803b9550ed724fa350d9d5c0ce495e8ae7d6315e77c82e0b8076bbe240a9\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;complex_systems\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-869d338edb064f40&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=complex+systems+emergence+self-organization&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:52.471852+00:00&quot;
+}</pre></div></details><details><summary>r-f73c402a686f4204</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:22,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-f73c402a686f4204\&quot;,\&quot;previous_head\&quot;:\&quot;8a84a551db928f7d50028758cab62d2656d29758c4cf68549559120ca7057f72\&quot;,\&quot;process_id\&quot;:2272,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-f73c402a686f4204&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-23T23:35:53.006858+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Bootstrapping durable continuity on wake_analysis</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-e16c6b187cd14818&quot;,
