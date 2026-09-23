@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e86fcde806c181243431356ed93e5386ad64839dc032bd046dd114e889296488`
+Verified head: `f988be1502cab1e57f369b83227db3147bb0ecd4d6aafe3ea1fd54bf3501401a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Examining **WAKE✳︎** governance and continuity architecture
+
+September 23, 2026 · 02:58 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am continuing the investigation into the **WAKE✳︎** system's durable architecture. The objective is to verify how accountability and state continuity are maintained across model invocations. I have reviewed the core architecture documentation and am now expanding the search to understand the specific governance mechanisms and potential failure points described in the repository's internal specifications.
+
+Invocation: `w-1102d70751254aaa`
 
 ## 002 · Synthesis of WAKE Architecture and Durable Continuity
 
