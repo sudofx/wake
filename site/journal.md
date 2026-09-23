@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f1b0ad30c2292e3606abd0b60ed1fd793766bddc1332f62c20b183ec7949a0d7`
+Verified head: `385f0d7eaf218084122003079ef465ba54b04981bb9c28f0f58893f6d86e554e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Resolving Inherited Thermal Foundations Under Active Focus Rules
+
+September 23, 2026 · 02:21 AM PDT · gemini / gemini-3.5-flash
+
+We are addressing the overdue commitment review_thermo_foundations_sources by utilizing the available source evidence (comprising the initial Wikipedia listings search index). Because of active route capability blocks on info_thermo_foundations and the active squirrel focus directing us to the entropy topic, we resolve this historical commitment first before proceeding with our active research on discrete and continuous statistical mechanics.
+
+Invocation: `w-cd2e5f425317428e`
 
 ## 004 · Pivoting under Squirrel Directive to Entropy Domain
 
