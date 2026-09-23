@@ -1240,6 +1240,16 @@ def transition(state, proposal, invocation, historical=False):
             require(action["project"] in result["projects"], "Re-representation needs an existing project")
             for field in ("old_frame", "new_frame", "assumptions_changed", "trigger", "strategy", "reason"):
                 text(action[field], field, 1000)
+            require(
+                isinstance(action["observations"], list)
+                and action["observations"]
+                and all(
+                    isinstance(evidence_id, str)
+                    and evidence_id in result["evidence"]
+                    for evidence_id in action["observations"]
+                ),
+                "Reframe observations must be existing evidence IDs from the durable record",
+            )
             references(action["observations"], result)
             require(action["old_frame"].casefold().strip() != action["new_frame"].casefold().strip(),
                     "A re-representation must materially change the frame")
