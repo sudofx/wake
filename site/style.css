@@ -956,3 +956,24 @@ html,body{max-width:100%;overflow-x:clip}
   .observatory-question,.observatory-now,.lead-story-label,.lead-story-copy,.lead-story-depth,.motion-pulse,.motion-numbers,.observatory-topic,.home-depth>div,.home-depth nav{min-width:0;max-width:100%}
   .observatory-question h1,.lead-story-copy h2,.home-motion h2,.home-landscape h2,.home-depth h2{max-width:100%;overflow-wrap:anywhere}
 }
+
+/* Small-phone density: use the available canvas instead of preserving desktop gutters/padding. */
+@media(max-width:430px){
+  main,footer{margin-left:16px;margin-right:16px;max-width:calc(100% - 32px)}
+  .masthead{padding-left:16px;padding-right:16px}
+  .observatory-question h1{font-size:clamp(42px,13.2vw,56px);line-height:.98;letter-spacing:-.035em}
+  .observatory-question>p:not(.eyebrow){font-size:17px;line-height:1.62}
+  .home-motion .section-top h2,.home-landscape .section-top h2,.home-depth h2{font-size:clamp(32px,10vw,43px)}
+  .section-top{gap:16px}
+  .section-top .subtle{white-space:normal;max-width:42%;text-align:right}
+  .discovery-card,.topic-hub,.project-card,.notebook-card,.blog-card,.panel,.dashboard-panel{padding-left:16px;padding-right:16px}
+  .blog-reading,.notebook-reading{max-width:100%;padding-left:0;padding-right:0}
+  .blog-reading>h2,.notebook-reading h2{font-size:clamp(34px,10.5vw,43px);line-height:1.08;overflow-wrap:anywhere}
+  .blog-reading>p:not(.eyebrow):not(.blog-lede):not(.blog-disclosure),.notebook-reading>p{font-size:16px;line-height:1.72}
+  .blog-card h2,.project-card h3,.notebook-card h3{overflow-wrap:anywhere}
+  .blog-card{padding:20px 16px}
+  .blog-card h2{font-size:clamp(28px,8.8vw,36px)}
+  .home-wake-timeline{gap:4px}
+  .motion-numbers div{padding:12px 7px}
+  .observatory-topic{padding:18px 16px}
+}
