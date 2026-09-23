@@ -944,3 +944,15 @@ body{background:var(--paper)}
 @media(min-width:1351px) and (max-width:1750px){.observatory-topics{grid-template-columns:repeat(5,minmax(0,1fr))}.observatory-topic{padding:18px}.observatory-topic h3{font-size:clamp(20px,1.65vw,29px)}}
 :root[data-theme="dark"] .observatory-topic h3{color:var(--cyan)}
 :root[data-theme="dark"] .observatory-topic>p{color:#d8def8}
+
+/* Mobile viewport containment: intentional component scrollers stay local; the document itself never pans sideways. */
+html,body{max-width:100%;overflow-x:clip}
+.view,#home,.masthead,main,footer{min-width:0}
+@media(max-width:700px){
+  main,footer{width:auto;max-width:calc(100% - 40px)}
+  .masthead{width:100%;max-width:100%;overflow:hidden}
+  .masthead nav.compact-nav{width:100%;max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .observatory-hero,.home-lead-story,.home-motion,.home-landscape,.home-depth,.motion-grid,.observatory-topics,.home-depth nav{width:100%;max-width:100%;min-width:0}
+  .observatory-question,.observatory-now,.lead-story-label,.lead-story-copy,.lead-story-depth,.motion-pulse,.motion-numbers,.observatory-topic,.home-depth>div,.home-depth nav{min-width:0;max-width:100%}
+  .observatory-question h1,.lead-story-copy h2,.home-motion h2,.home-landscape h2,.home-depth h2{max-width:100%;overflow-wrap:anywhere}
+}
