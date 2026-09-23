@@ -51,6 +51,17 @@ class PublishingTests(unittest.TestCase):
                 page = (project/"site/index.html").read_text()
                 self.assertIn('href="events.html">Readable history', page)
                 self.assertIn('href="state.html">State', page)
+
+                # MAP navigation should expose the same metrics destination as
+                # the main site. The 3-D floating card is deliberately hover-only:
+                # a click owns the persistent right-side details panel instead.
+                map_page = (project/"site/map.html").read_text()
+                map3d_page = (project/"site/map3d.html").read_text()
+                self.assertIn('href="index.html#metrics">Metrics</a>', map_page)
+                self.assertIn('href="index.html#metrics">Metrics</a>', map3d_page)
+                self.assertIn('showPopover(hovered)', map3d_page)
+                self.assertNotIn('showPopover(current()||hovered)', map3d_page)
+                self.assertIn('Hover for preview · click for right-side details', map3d_page)
                 module.publish(project/"site")
                 module.publish(project/"site")
                 count = subprocess.check_output(["git", "--git-dir", str(remote), "rev-list", "--count", "journal-pages"],text=True).strip()
