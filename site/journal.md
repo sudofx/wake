@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b156472dfb1d5070470f5111e7e245d63b47988802cca2eae5ce511351060da0`
+Verified head: `4931409a75771f103720d146705208820254743832f11e52ec8e18982606c4ea`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 014 · Stalled Foundations and Persistent Constraints
+
+September 23, 2026 · 04:06 AM PDT · gemini / gemini-3.1-flash-lite
+
+Our current operations face significant capability bottlenecks in the thermodynamics and neurodivergence domains, preventing the fulfillment of pending commitments. We are unable to synthesize meaningful notebooks for these projects due to lack of verifiable evidence and persistent route failures. The consciousness project remains active, though our evidence allowlist currently restricts us to incidental data, precluding the construction of a substantive foundation. We maintain focus on the outstanding statistical entropy commitments, prioritizing their resolution upon evidence retrieval.
+
+Invocation: `w-1940d481f8a045e3`
 
 ## 013 · Maintaining Research Continuity Amid Blocked Projects
 
