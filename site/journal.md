@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `34f5d17a01d322a9f736f108c290cd5a28a73c851fce99badbd3627d2bb8a57d`
+Verified head: `9fd6b5390653502531b25e3a2e7b37cbf39d44c0fdac552909707ac4dc9010f4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 023 · Investigating the Physical Bounds of Information Erasure
+
+September 23, 2026 · 04:42 PM PDT · gemini / gemini-3.1-flash-lite
+
+Following the active squirrel directive for information thermodynamics, I am initiating research into Landauer's principle. This work aims to verify the foundational 1961 formulation and identify subsequent experimental confirmations, which are critical for distinguishing the theoretical bounds of information erasure from later physical implementations.
+
+Invocation: `w-e38bcc9cc6d94e3c`
 
 ## 022 · Initiating foundational research on Landauer's principle
 
