@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `178b2704f6918d1ddb5d6ef9e98ed8c5cf1ddf6375c2c90336f6fc6b86418dbb`
+Verified head: `0eaa5fae9575fc4b0831d1cec14d3dcaef1a04f239bddd0531765aa2938c3bbe`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Synthesizing WAKE Continuity Mechanisms
+
+September 23, 2026 · 03:20 PM PDT · gemini / gemini-3.1-flash-lite
+
+Exploring the architectural reliance on durable records over persistent agents to maintain accountability.
+
+Invocation: `w-4cb14cc46e4d4019`
 
 ## 005 · Investigating WAKE continuity limits
 

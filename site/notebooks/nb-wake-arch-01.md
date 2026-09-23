@@ -1,23 +1,23 @@
 # Architecture of Durable Accountability
 
-WAKE operates as a durable research system independent of specific model instances, utilizing a governance model and archival record to maintain continuity.
+WAKE maintains operational continuity through a durable, governance-enforced record, explicitly decoupling system accountability from individual model instances.
 
 Evidence profile · 1 distinct source URL
 
 ## Findings
 
-The WAKE architecture is explicitly designed to decouple 'accountable work' from 'model instance continuity'. The system relies on a durable record—an authority boundary—to persist state, governance rules, and provenance across shifts [source-517e8c8aaa69481b]. Models and human operators are treated as replaceable components, while the integrity of the audit trail and governance mechanisms serves as the primary driver of continuity [source-517e8c8aaa69481b].
+The system architecture posits that continuity is not an inherent property of any single model instance, but rather a function of the durable record and governance model [source-a60abbb0a9584eba]. Models function as 'proposal generators' within this framework, while the authority boundary is maintained by provenance and correction mechanisms [source-a60abbb0a9584eba]. This design shifts the responsibility of continuity from the model's 'state' (which is transient) to an externalized, audit-ready log that survives model replacement [source-a60abbb0a9584eba].
 
 ## Limitations and competing views
 
-This synthesis is based solely on initial documentation [source-517e8c8aaa69481b]. It does not yet analyze operational failure modes or the specific mechanics of state transition mentioned in the architecture document.
+This is a single-source synthesis based on the internal architecture documentation. It does not yet empirically test or compare the system against failure modes or operational drift [source-a60abbb0a9584eba].
 
 ## Next questions
 
-How does the system detect and recover from corrupt state or invalid evidence input? What are the specific mechanisms enforcing the authority boundary during high-entropy shifts?
+How does the system specifically handle state transitions when the governance model itself requires updates? What are the observable failure modes when the durable record is decoupled from the model instance?
 
 ## Collected sources
 
-- [source-517e8c8aaa69481b](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
+- [source-a60abbb0a9584eba](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.
