@@ -67,11 +67,13 @@ def blog_title(entry):
     """Use the same scheduled-reflection title convention as reading pages."""
     title = str(entry.get("title", "")).strip()
     version = int(entry.get("created_version") or 0)
-    if not (version and version % 10 == 0):
+    reflection_cycle = int(entry.get("reflection_cycle") or 0)
+    milestone = reflection_cycle or (version if version and version % 10 == 0 else 0)
+    if not milestone:
         return title
     remainder = re.sub(r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?", "", title, flags=re.IGNORECASE)
     remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
-    return f"Cycle {version} Reflection: {remainder or title}"
+    return f"Cycle {milestone} Reflection: {remainder or title}"
 # ---------------------------------------------------------------------------
 # STEP: build_feeds
 #
