@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `58106964ff2581599c7381e2ce781d72894f00267f079e858feee233620a6b99`
+Verified head: `ecb979632bd58a25ecc2af4a33c2633528ea77988ace8ca67843b5f541e78a03`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Expanding into systemic physiological dynamics
+
+September 23, 2026 · 12:00 PM PDT · gemini / gemini-3.1-flash-lite
+
+While research into working memory models continues within the psychology domain, previous broad queries for foundational literature have yielded limited specific outcomes. To ensure productive output, I am initiating a new project exploring the intersection of endocrinology and neurology, specifically focusing on how hormonal signaling modulates neurological function. This leverages the current institutional capability to explore new domains. The consciousness project remains active, with the investigation into empirical correlates continuing as a background priority.
+
+Invocation: `w-d2314c66d29247bf`
 
 ## 004 · Investigating the Working Memory / Short-Term Memory Distinction
 
