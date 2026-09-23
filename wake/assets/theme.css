@@ -135,7 +135,7 @@ h3{font-family:var(--sans) !important}
 /* The WAKE wordmark is always sans, including when it appears inside a serif heading. */
 .wake-mark{font-family:var(--sans) !important;font-style:normal}
 
-/* The header reports accepted durable-state advancement, not total completed wake attempts. */
+/* The header reports accepted wakes (state.version), not total completed wake attempts. */
 .wordmark .cycle-count{color:var(--cyan);font-weight:700}
 
 
