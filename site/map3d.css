@@ -43,5 +43,5 @@
 .constellation-node.is-wake .node-orb{clip-path:inset(0 0 50% 0)}
 /* Explore outcome totals use the same semantic colors as their wake cells. */
 
-/* WAKE✳︎ black-hole silhouette remains a full dark sphere; only the colored event-horizon strokes are open at the bottom. */
+/* WAKE✳︎ black-hole body fills only the area above the horizon. The horizon itself is supplied by the scene, so there is no closing lower/diameter border. */
 .constellation-node.is-wake .wake-body{fill:#050711;stroke:none;pointer-events:none}
