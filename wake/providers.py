@@ -87,7 +87,7 @@ revisit weak claims, and let your specialty emerge from the work. Avoid generic 
 You cannot browse directly. You may record focused follow-up searches as durable hypotheses; the trusted collector independently follows the configured neutral topic rotation. Some neutral routes use a discovery-only idea pool: those results are permanently leads, never qualifying notebook evidence. When any discovery result is promising, queue a NEW research action with its exact approved verification-host record URL (for example, a Crossref `/works/<encoded-DOI>` or OpenAlex work URL) so the collector can retrieve that individual source on a later wake.
 When context.observation_mode.active is true, prefer recording concrete candidate questions, search leads, limitations, and failed approaches over waiting for a polished result. This does not relax evidence, provenance, commitment, or publication rules.
 When context.acquisition marks a project capability_blocked, preserve its commitments and stop issuing materially equivalent searches. Treat the recorded blocker as settled operational context for this shift: do not spend actions or journal reasoning re-establishing that the same route is still blocked. Move to another eligible configured topic and do tractable work there. Return to the blocked project only when context contains a materially new supported retrieval route, new relevant evidence, or a genuinely different conceptual frame that implies a different next action. Persistent identifiers there are leads only: they may justify an exact retrieval from an approved verification host, never acceptance by themselves.
-When context.representation_recovery contains a parked or capability-blocked project, you may propose a reframe only when it changes the conceptual frame—not merely wording or a query. A frame is a strategy hypothesis, not evidence or a completed result; preserve its exact observations and pair it with a genuinely new next action.
+When context.representation_recovery contains a parked or capability-blocked project, you may propose a reframe only when it changes the conceptual frame—not merely wording or a query. A frame is a strategy hypothesis, not evidence or a completed result; preserve its exact observations and pair it with a genuinely new next action. In a reframe action, observations is an array of EXISTING evidence IDs from context.evidence, never prose sentences, summaries, inferred observations, or newly invented labels. Put explanatory prose in old_frame, new_frame, assumptions_changed, trigger, strategy, or reason instead.
 For a resolve, cite evidence recorded at or after that commitment's creation. Do not cite only older evidence in resolve.
 When an overdue commitment already has qualifying evidence, completing that work takes priority over starting another search: synthesize it into the relevant notebook and resolve the commitment. Do not treat "more sources would be nice" as a sufficient gap.
 Additional exact action shapes:
@@ -96,6 +96,11 @@ Additional exact action shapes:
 Project status may be active, parked, or completed. Completion requires a published notebook.
 {"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
  "domain":"<configured-topic-id>","reason":"What this search will resolve"}
+{"type":"reframe","project":"project-id","old_frame":"Current conceptual frame",
+ "new_frame":"Materially different conceptual frame","assumptions_changed":"What assumptions changed",
+ "observations":["existing-evidence-id"],"trigger":"Recorded reason to reframe",
+ "strategy":"Genuinely different next approach","reason":"Why this representation is useful"}
+For reframe, observations MUST contain only exact IDs already present in context.evidence. Never write prose observations in that array and never invent an evidence ID.
 Research IDs are immutable durable identities: NEVER reuse an ID already present in supplied research,
 even for a retry or a similar query. Give every genuinely new search request a new ID.
 At most four model-proposed follow-up searches may be recorded as hypotheses. The trusted collector's
@@ -307,6 +312,24 @@ def schema_for_context(context):
             constrained["properties"]["id"] = {"type": "string", "enum": [commitment["id"]]}
             constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
             choices.append(constrained)
+
+    # Reframes reference durable observations by ID. Constrain the provider to
+    # evidence that is actually visible in this invocation so prose cannot be
+    # mistaken for an evidence reference and invented IDs cannot pass preflight.
+    reframe = next(a for a in choices if a["properties"]["type"]["enum"] == ["reframe"])
+    visible_evidence_ids = sorted({
+        item["id"] for item in context.get("evidence", [])
+        if isinstance(item, dict) and item.get("id")
+    })
+    if visible_evidence_ids:
+        reframe["properties"]["observations"]["items"] = {
+            "type": "string", "enum": visible_evidence_ids
+        }
+        project_ids = sorted({project["id"] for project in context.get("projects", [])})
+        if project_ids:
+            reframe["properties"]["project"]["enum"] = project_ids
+    else:
+        choices.remove(reframe)
 
     # Existing projects receive project-specific notebook alternatives. This is
     # a preflight constraint, not a substitute for governance: a WAKE-analysis
