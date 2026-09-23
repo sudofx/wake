@@ -5,12 +5,13 @@ import unittest
 
 from wake.engine import DEFAULTS, Engine
 from wake.research import ALLOWED_ALT_HOSTS, allowed_discovery_url, allowed_url, collect, discovery_urls
+from support import charter_settings
 
 
 class AlternateHostTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.engine = Engine(Path(self.temp.name) / "data", {**DEFAULTS, "mission": "Test host tiers."})
+        self.engine = Engine(Path(self.temp.name) / "data", charter_settings("Test host tiers."))
         with self.engine.store.lock():
             self.engine.initialize()
 

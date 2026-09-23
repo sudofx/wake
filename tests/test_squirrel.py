@@ -6,14 +6,13 @@ import unittest
 from wake.engine import DEFAULTS, Engine
 from wake.providers import RESEARCH_SYSTEM
 from wake.squirrel import COOLDOWN_OTHER_ATTEMPTS, HARD_REJECTION_THRESHOLD, assessment, plan
+from support import charter_settings
 
 
 class SquirrelTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.engine = Engine(Path(self.temp.name) / "data", {
-            **DEFAULTS, "mission": "Test deterministic attention recovery.",
-        })
+        self.engine = Engine(Path(self.temp.name) / "data", charter_settings("Test deterministic attention recovery."))
         with self.engine.store.lock():
             self.engine.initialize()
 

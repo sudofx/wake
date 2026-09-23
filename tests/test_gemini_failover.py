@@ -29,6 +29,7 @@ from wake.governance import Rejected
 from wake.providers import Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID
 from wake.scheduling import wake_status
 from wake.report import export
+from support import charter_settings
 
 
 class Response:
@@ -49,9 +50,10 @@ def failure(status, quota=None):
 class FailoverTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.settings = {**DEFAULTS, "model": "gemini-3.8-flash", "free_tier_confirmed": True,
-                         "gemini_fallback_models": ["gemini-3.5-flash", "gemini-3.1-flash-lite"],
-                         "mission": "Explore big ideas through small useful projects."}
+        self.settings = charter_settings(
+                         "Explore big ideas through small useful projects.",
+                         model="gemini-3.8-flash", free_tier_confirmed=True,
+                         gemini_fallback_models=["gemini-3.5-flash", "gemini-3.1-flash-lite"])
         self.engine = Engine(Path(self.temp.name) / "data", self.settings)
         self.env = patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"})
         self.env.start()
@@ -268,4 +270,5 @@ class FailoverTests(unittest.TestCase):
         settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.assertEqual(settings["model"], "gemini-3.8-flash")
         self.assertEqual(settings["gemini_fallback_models"], ["gemini-3.5-flash", "gemini-3.1-flash-lite"])
-        self.assertIn("WAKE✳︎", [topic["label"] for topic in settings["research_topics"]])
+        self.assertTrue(settings["research_topics"])
+        self.assertEqual(len({topic["id"] for topic in settings["research_topics"]}), len(settings["research_topics"]))

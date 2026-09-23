@@ -480,10 +480,10 @@ def collect(engine, fetcher=fetch_source):
             pool = [topic for topic in topics
                     if not pending or topic["id"] != pending[0]["domain"]]
         selected = rng.sample(pool, min(remaining_slots, len(pool)))
-        # Keep the discovery-only idea-pool receipt first when it shares a
-        # bounded pass with WAKE's source-controlled self-analysis route.
-        # This makes the initial neutral-discovery boundary deterministic.
-        selected.sort(key=lambda topic: topic["id"] == "wake_analysis")
+        # Keep discovery-only web idea-pool receipts ahead of repository-analysis
+        # routes in a shared bounded pass. The capability flag, not a topic ID,
+        # defines repository analysis.
+        selected.sort(key=lambda topic: topic.get("source_kind") == "repository")
         for offset, topic in enumerate(selected, start=len(pending)):
             routes = discovery_urls(topic, attempts + offset)
             url = routes[0]

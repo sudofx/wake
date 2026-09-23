@@ -6,15 +6,17 @@ import unittest
 from wake.engine import DEFAULTS, Engine
 from wake.rejected import rejected_html
 from wake.research import collect
+from support import charter_settings
 
 
 class ObservationModeTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.engine = Engine(Path(self.temp.name) / "data", {
-            **DEFAULTS, "mission": "Gather a wider sample.",
-            "observation_mode": True, "research_collection_budget": 6,
-        })
+        self.engine = Engine(Path(self.temp.name) / "data", charter_settings(
+            "Gather a wider sample.",
+            observation_mode=True,
+            research_collection_budget=6,
+        ))
         with self.engine.store.lock():
             self.engine.initialize()
 

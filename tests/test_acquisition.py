@@ -5,12 +5,13 @@ import unittest
 
 from wake.engine import DEFAULTS, Engine
 from wake.research import persistent_identifiers
+from support import charter_settings
 
 
 class AcquisitionTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.engine = Engine(Path(self.temp.name) / "data", {**DEFAULTS, "mission": "Test acquisition receipts."})
+        self.engine = Engine(Path(self.temp.name) / "data", charter_settings("Test acquisition receipts."))
         with self.engine.store.lock():
             self.engine.initialize()
             invocation, request = self.engine.start("fixture", "test")
