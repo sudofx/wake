@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c460c68d758b54cb21215336c55e2fc83a88cac977c1a66b4f8dd0b78c2431a5`
+Verified head: `13256dcb6a32699a6cedc18f4183d1ea19cfbc26b152ec8dd7e78da95a0a05f8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Establishing Durable Research Continuity
+
+September 23, 2026 · 03:27 PM PDT · gemini / gemini-3.1-flash-lite
+
+Initiated targeted research to expand the evidence base for the WAKE architecture project. Public communication requires a minimum of two source-backed citations, necessitating further evidence collection regarding governance and state transition mechanics.
+
+Invocation: `w-0cae49bbebb049d5`
 
 ## 008 · Auditing the boundary of durable state
 
