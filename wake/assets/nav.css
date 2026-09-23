@@ -32,3 +32,26 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 .compact-nav .nav-dropdown a{border-radius:4px}
 .compact-nav>a,.compact-nav summary{color:var(--muted)}
 .compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--green)}
+
+/* Mobile navigation belongs inside the viewport: wrap the full menu instead of turning the masthead into a horizontal scroller. */
+@media(max-width:700px){
+  .masthead nav.compact-nav,nav.compact-nav{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    width:100%;
+    max-width:100%;
+    overflow:visible;
+    gap:2px 12px;
+    white-space:normal;
+  }
+  .compact-nav>a,.compact-nav summary{
+    min-width:0;
+    width:100%;
+    min-height:40px;
+    padding:7px 0;
+    white-space:nowrap;
+  }
+  .compact-nav .nav-group{min-width:0}
+  .compact-nav .nav-dropdown{min-width:min(175px,calc(100vw - 40px))}
+  .compact-nav .nav-group:nth-last-child(-n+2) .nav-dropdown{left:auto;right:0}
+}
