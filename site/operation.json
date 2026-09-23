@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-0a83d56b087748cd",
-  "cycle": 9,
+  "status": "rejected",
+  "id": "w-bcf50a07dd4e4018",
+  "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
   "wake_status": {
     "last_accepted": {
       "id": "w-0a83d56b087748cd",
@@ -36,16 +36,16 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-0a83d56b087748cd",
-      "time": "2026-09-23T10:25:29.306873+00:00",
-      "finished": "2026-09-23T10:26:15.649877+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-bcf50a07dd4e4018",
+      "time": "2026-09-23T10:27:48.592215+00:00",
+      "finished": "2026-09-23T10:28:50.552738+00:00",
+      "status": "rejected",
+      "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
       "provider_requests_sent": 2,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 6676,
+          "elapsed_ms": 15799,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -53,26 +53,26 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 53626,
+          "request_payload_bytes": 53578,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 30125,
+          "elapsed_ms": 37312,
           "http_status": 200,
           "model": "gemini-3.5-flash",
-          "request_payload_bytes": 53626,
+          "request_payload_bytes": 53578,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 9,
-    "next_eligible": "2026-09-23T10:30:29.306873+00:00",
+    "next_eligible": "2026-09-23T10:32:48.592215+00:00",
     "pending": false,
-    "attempts_today": 16,
-    "provider_requests_today": 36,
-    "provider_request_slots_today": 37,
+    "attempts_today": 17,
+    "provider_requests_today": 38,
+    "provider_request_slots_today": 39,
     "provider_request_counts_incomplete": true,
     "daily_call_limit": null
   }

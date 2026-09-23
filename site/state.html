@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>e21bead3d6f6d8ccb80e6f0caa8e0ff62694d2fa7cade33504e7551faf22e4f9</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 9<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>entropy_equivalence_analogy</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>a1c3f5d367a3a9b499cda9fe8a96d826298040544951a790645ef18c83eae812</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 9<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><details><summary>entropy_equivalence_analogy</summary><div class="inside"><pre>{
   &quot;confidence&quot;: 0.8,
   &quot;evidence&quot;: [
     &quot;source-68482e7469c24480&quot;
@@ -7752,6 +7752,388 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;successful_model&quot;: &quot;gemini-3.5-flash&quot;,
   &quot;finished&quot;: &quot;2026-09-23T10:26:15.649877+00:00&quot;,
   &quot;reason&quot;: &quot;&quot;
+}</pre></div></details><details><summary>w-bcf50a07dd4e4018</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 9,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 23265,
+    &quot;delivered_request_chars&quot;: 47983,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;omitted_categories&quot;: [],
+    &quot;provenance_policy&quot;: null,
+    &quot;rich_context_chars&quot;: 47983,
+    &quot;working_set_chars&quot;: 1819
+  },
+  &quot;experimental_regime&quot;: {
+    &quot;actor&quot;: &quot;operator&quot;,
+    &quot;adopted_at&quot;: &quot;2026-09-23T06:32:41.084913+00:00&quot;,
+    &quot;controls&quot;: {
+      &quot;time_dilation&quot;: {
+        &quot;affects&quot;: [
+          &quot;telemetry&quot;,
+          &quot;provider_context&quot;
+        ],
+        &quot;description&quot;: &quot;Records wall, cycle and intervening-event distance; effective time follows the selected mapping.&quot;,
+        &quot;enabled&quot;: true,
+        &quot;mode&quot;: &quot;real&quot;,
+        &quot;scale&quot;: 1.0
+      }
+    },
+    &quot;effective_from_version&quot;: 0,
+    &quot;effective_seconds&quot;: 0.0,
+    &quot;event_seq&quot;: 3,
+    &quot;id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;reason&quot;: &quot;Initialize the default experimental instrument regime.&quot;
+  },
+  &quot;id&quot;: &quot;w-bcf50a07dd4e4018&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 9,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 0.5,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 0.5,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;entropy_statistical_foundations&quot;,
+        &quot;score&quot;: 0.675,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 1,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Statistical Foundations and Formulations of Entropy&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 0.5,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 0.5,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;neurodivergence_theories&quot;,
+        &quot;score&quot;: 0.675,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 1,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Theories of Neurodivergence&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2243,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-23&quot;,
+  &quot;request_hash&quot;: &quot;e457054208eb73edad50e76fa9e02f1db11cacfb634a33942c475b6e38706156&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;review_statistical_entropy_notebook&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-d1bad4924ccb48fd&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-d1bad4924ccb48fd&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-8ba6874a49424328&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-8ba6874a49424328&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-d8da7fa2624a4d19&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-d8da7fa2624a4d19&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-d37f11cc8e1741bb&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-d37f11cc8e1741bb&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-df851de97353412a&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-df851de97353412a&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-2152eb024d3c428b&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-2152eb024d3c428b&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-d1bad4924ccb48fd&quot;,
+      &quot;source-8ba6874a49424328&quot;,
+      &quot;source-d8da7fa2624a4d19&quot;,
+      &quot;source-d37f11cc8e1741bb&quot;,
+      &quot;source-df851de97353412a&quot;,
+      &quot;source-2152eb024d3c428b&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;Shadow mode records what would be retrieved but does not change provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 7,
+      &quot;evidence_count&quot;: 6,
+      &quot;trigger_counts&quot;: {
+        &quot;commitment_near_due&quot;: 1,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {},
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;selected_topic&quot;: &quot;neurodivergence&quot;,
+    &quot;temporal&quot;: {
+      &quot;anchor_seq&quot;: 356,
+      &quot;anchor_time&quot;: &quot;2026-09-23T10:27:48.375932+00:00&quot;,
+      &quot;anchor_version&quot;: 9,
+      &quot;effective_seconds&quot;: 14107.291019
+    },
+    &quot;temporal_use&quot;: &quot;observational; no time signal changes Squirrel eligibility yet&quot;
+  },
+  &quot;temporal&quot;: {
+    &quot;cycle_distance&quot;: 1,
+    &quot;effective_elapsed_seconds&quot;: 139.26328,
+    &quot;effective_scale&quot;: 1.0,
+    &quot;effective_seconds_total&quot;: 14107.291019,
+    &quot;intervening_events&quot;: {
+      &quot;accepted&quot;: 1,
+      &quot;failed&quot;: 0,
+      &quot;observation&quot;: 7,
+      &quot;rejected&quot;: 0,
+      &quot;research_collected&quot;: 1,
+      &quot;squirrel_assessed&quot;: 1,
+      &quot;total&quot;: 16
+    },
+    &quot;observed_at&quot;: &quot;2026-09-23T10:27:48.375932+00:00&quot;,
+    &quot;previous_anchor_time&quot;: &quot;2026-09-23T10:25:29.112652+00:00&quot;,
+    &quot;regime_id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;wall_elapsed_seconds&quot;: 139.26328
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [
+      {
+        &quot;formation&quot;: {
+          &quot;criteria&quot;: {
+            &quot;minimum_confidence&quot;: 0.9,
+            &quot;minimum_evidence_roots&quot;: 2
+          },
+          &quot;derived_at_version&quot;: 9,
+          &quot;evidence_root_count&quot;: 1,
+          &quot;source_confidence&quot;: 0.8,
+          &quot;source_status&quot;: &quot;active&quot;
+        },
+        &quot;id&quot;: &quot;tc-e3ab9028034ff01c&quot;,
+        &quot;provenance&quot;: {
+          &quot;belief_id&quot;: &quot;entropy_equivalence_analogy&quot;,
+          &quot;evidence_root_hash&quot;: &quot;eff1dac884a8540baae8765eff5766c10a568f4bd5d9431637f9013fedbf8063&quot;,
+          &quot;evidence_roots&quot;: [
+            &quot;source-68482e7469c24480&quot;
+          ]
+        },
+        &quot;rehydration&quot;: {
+          &quot;evidence_ids&quot;: [
+            &quot;source-68482e7469c24480&quot;
+          ],
+          &quot;record&quot;: {
+            &quot;id&quot;: &quot;entropy_equivalence_analogy&quot;,
+            &quot;kind&quot;: &quot;belief&quot;
+          },
+          &quot;trigger&quot;: &quot;trust_compact_challenged&quot;
+        },
+        &quot;reopen_conditions&quot;: [
+          &quot;credible contradictory evidence is recorded against the belief&quot;,
+          &quot;a supporting evidence root is invalidated, superseded, or unavailable&quot;,
+          &quot;the governing scope or decision changes&quot;,
+          &quot;a human or a governed future retrieval request asks for justification&quot;
+        ],
+        &quot;rule&quot;: &quot;The mathematical formulations of Shannon entropy in information theory and entropy in statistical mechanics are directly analogous.&quot;,
+        &quot;scope&quot;: &quot;durable.belief:entropy_equivalence_analogy&quot;,
+        &quot;status&quot;: &quot;CANDIDATE&quot;,
+        &quot;strength&quot;: &quot;provisional&quot;
+      }
+    ],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 1,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 1,
+      &quot;provisional_count&quot;: 1,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {
+        &quot;CANDIDATE&quot;: 1
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 23265,
+    &quot;inquiry_drive_project_count&quot;: 2,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;retrieval_candidate_count&quot;: 7,
+    &quot;retrieval_evidence_count&quot;: 6,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;commitment_near_due&quot;: 1,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 1,
+    &quot;trust_compact_evidence_root_count&quot;: 1,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 1819,
+    &quot;working_to_delivered_ratio&quot;: 0.0782
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;entropy_statistical_foundations&quot;,
+        &quot;next_step&quot;: &quot;Conduct initial query into discrete and continuous formulations of Boltzmann and Shannon entropy.&quot;,
+        &quot;question&quot;: &quot;How do Boltzmann-Gibbs and Shannon entropy formulations compare across discrete and continuous physical probability spaces?&quot;,
+        &quot;title&quot;: &quot;Statistical Foundations and Formulations of Entropy&quot;
+      },
+      {
+        &quot;id&quot;: &quot;neurodivergence_theories&quot;,
+        &quot;next_step&quot;: &quot;Search for primary conceptual frameworks comparing neurodiversity and pathology models.&quot;,
+        &quot;question&quot;: &quot;How do neurodiversity paradigm models compare with clinical pathology models in cognitive science?&quot;,
+        &quot;title&quot;: &quot;Theories of Neurodivergence&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [
+      {
+        &quot;claim&quot;: &quot;The mathematical formulations of Shannon entropy in information theory and entropy in statistical mechanics are directly analogous.&quot;,
+        &quot;confidence&quot;: 0.8,
+        &quot;id&quot;: &quot;entropy_equivalence_analogy&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-68482e7469c24480&quot;
+        ],
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;why_retained&quot;: &quot;Wikipedia search metadata for &#x27;Entropy (information theory)&#x27; and &#x27;Entropy in thermodynamics and information theory&#x27; notes that the expressions are directly analogous mathematically.&quot;
+      }
+    ],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 7,
+        &quot;id&quot;: &quot;review_statistical_entropy_notebook&quot;,
+        &quot;reason&quot;: &quot;To synthesize the retrieved Crossref paper details and evaluate discrete versus continuous Shannon and Boltzmann entropy formulations.&quot;,
+        &quot;task&quot;: &quot;Review retrieved evidence and draft the initial comparative statistical foundations notebook.&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;time&quot;: &quot;2026-09-23T10:27:48.592215+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 15799,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 53578,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    },
+    {
+      &quot;elapsed_ms&quot;: 37312,
+      &quot;http_status&quot;: 200,
+      &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+      &quot;request_payload_bytes&quot;: 53578,
+      &quot;result&quot;: &quot;success&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 2,
+  &quot;successful_model&quot;: &quot;gemini-3.5-flash&quot;,
+  &quot;finished&quot;: &quot;2026-09-23T10:28:50.552738+00:00&quot;,
+  &quot;reason&quot;: &quot;Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first&quot;
 }</pre></div></details><h2>Evidence</h2><details><summary>source-2f2da8efa08f4b98</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40307},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T05:12:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Clouding of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7554116,\\\&quot;size\\\&quot;:78787,\\\&quot;wordcount\\\&quot;:7669,\\\&quot;snippet\\\&quot;:\\\&quot;Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T16:42:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Animal consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:13001588,\\\&quot;size\\\&quot;:135552,\\\&quot;wordcount\\\&quot;:14235,\\\&quot;snippet\\\&quot;:\\\&quot;Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T05:21:19Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;6bbe6c22ac6244520ae3f2a3409c53a6c459228cb7ccf6f80f67fc1a8ee5b9e5\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -8907,6 +9289,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 8,
   &quot;time&quot;: &quot;2026-09-23T10:25:29.248778+00:00&quot;
+}</pre></div></details><details><summary>source-d1bad4924ccb48fd</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works/10.1177/27546330241294138\&quot;, \&quot;error\&quot;: \&quot;ValueError\&quot;, \&quot;scope\&quot;: \&quot;fetch failed; no evidence obtained\&quot;}&quot;,
+  &quot;id&quot;: &quot;source-d1bad4924ccb48fd&quot;,
+  &quot;scope&quot;: &quot;failed&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works/10.1177/27546330241294138&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:46.406144+00:00&quot;
+}</pre></div></details><details><summary>source-8ba6874a49424328</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74319},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Somatic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:6774132,\\\&quot;size\\\&quot;:16405,\\\&quot;wordcount\\\&quot;:1855,\\\&quot;snippet\\\&quot;:\\\&quot;Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-03T20:37:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psyche (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:4880472,\\\&quot;size\\\&quot;:12752,\\\&quot;wordcount\\\&quot;:1458,\\\&quot;snippet\\\&quot;:\\\&quot;used synonymously.\\nPsychology\\nis the scientific or objective study of the psyche. The word has a long history of use in\\npsychology\\nand philosophy, dating\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-05T07:44:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Shadow (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:560394,\\\&quot;size\\\&quot;:34954,\\\&quot;wordcount\\\&quot;:4164,\\\&quot;snippet\\\&quot;:\\\&quot;In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T17:23:54Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;30320646ef842f90ba28788884397afe3070984f0704d963837d2964ca34f021\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-8ba6874a49424328&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:46.868090+00:00&quot;
+}</pre></div></details><details><summary>source-d8da7fa2624a4d19</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:4980},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Prime number\\\&quot;,\\\&quot;pageid\\\&quot;:23666,\\\&quot;size\\\&quot;:128021,\\\&quot;wordcount\\\&quot;:14786,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T15:01:53Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of Mersenne primes and perfect numbers\\\&quot;,\\\&quot;pageid\\\&quot;:68906231,\\\&quot;size\\\&quot;:52386,\\\&quot;wordcount\\\&quot;:2900,\\\&quot;snippet\\\&quot;:\\\&quot;Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-17T04:54:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of prime numbers\\\&quot;,\\\&quot;pageid\\\&quot;:442370,\\\&quot;size\\\&quot;:108090,\\\&quot;wordcount\\\&quot;:6019,\\\&quot;snippet\\\&quot;:\\\&quot;This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T20:55:26Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Perfect number\\\&quot;,\\\&quot;pageid\\\&quot;:23670,\\\&quot;size\\\&quot;:39840,\\\&quot;wordcount\\\&quot;:5531,\\\&quot;snippet\\\&quot;:\\\&quot;odd Perfect\\nPrime\\nNumbers\\n\\\&quot;.\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\&quot;Perfect\\nNumbers\\nand Aliquot\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T00:36:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Sexy primes\\\&quot;,\\\&quot;pageid\\\&quot;:343116,\\\&quot;size\\\&quot;:3815,\\\&quot;wordcount\\\&quot;:453,\\\&quot;snippet\\\&quot;:\\\&quot;sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T20:27:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Wieferich prime\\\&quot;,\\\&quot;pageid\\\&quot;:323631,\\\&quot;size\\\&quot;:43265,\\\&quot;wordcount\\\&quot;:4566,\\\&quot;snippet\\\&quot;:\\\&quot;\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T10:09:34Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fermat number\\\&quot;,\\\&quot;pageid\\\&quot;:91127,\\\&quot;size\\\&quot;:43237,\\\&quot;wordcount\\\&quot;:3868,\\\&quot;snippet\\\&quot;:\\\&quot;(2001), \\\&quot;Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\&quot;, Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T16:11:11Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Number\\\&quot;,\\\&quot;pageid\\\&quot;:21690,\\\&quot;size\\\&quot;:111928,\\\&quot;wordcount\\\&quot;:11702,\\\&quot;snippet\\\&quot;:\\\&quot;A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T13:55:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand Prime Numbers\\\&quot;,\\\&quot;pageid\\\&quot;:63087914,\\\&quot;size\\\&quot;:5974,\\\&quot;wordcount\\\&quot;:617,\\\&quot;snippet\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T00:17:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mersenne prime\\\&quot;,\\\&quot;pageid\\\&quot;:18908,\\\&quot;size\\\&quot;:78122,\\\&quot;wordcount\\\&quot;:6673,\\\&quot;snippet\\\&quot;:\\\&quot;In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T20:24:47Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;8463598d1f9461efe6f816c5835db056215a4f971041e810ccdf9a2bbc87b796\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;prime_numbers\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: [\&quot;doi:10.2307/2005530\&quot;, \&quot;doi:10.1007/s10012-001-0111-4\&quot;]}&quot;,
+  &quot;id&quot;: &quot;source-d8da7fa2624a4d19&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:47.246764+00:00&quot;
+}</pre></div></details><details><summary>source-d37f11cc8e1741bb</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=quantum+mechanics&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:7075},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:25202,\\\&quot;size\\\&quot;:101544,\\\&quot;wordcount\\\&quot;:12070,\\\&quot;snippet\\\&quot;:\\\&quot;\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T01:21:12Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;History of quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:9067941,\\\&quot;size\\\&quot;:78664,\\\&quot;wordcount\\\&quot;:9389,\\\&quot;snippet\\\&quot;:\\\&quot;of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-31T07:22:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Introduction to quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:2796131,\\\&quot;size\\\&quot;:67491,\\\&quot;wordcount\\\&quot;:7535,\\\&quot;snippet\\\&quot;:\\\&quot;\\nQuantum\\nmechanics\\nis the study of matter and matter&#x27;s interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-16T00:28:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Interpretations of quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:54738,\\\&quot;size\\\&quot;:70224,\\\&quot;wordcount\\\&quot;:7757,\\\&quot;snippet\\\&quot;:\\\&quot;interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T03:03:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Quantum superposition\\\&quot;,\\\&quot;pageid\\\&quot;:82728,\\\&quot;size\\\&quot;:19317,\\\&quot;wordcount\\\&quot;:2576,\\\&quot;snippet\\\&quot;:\\\&quot;\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-12T23:26:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mathematical formulation of quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:20728,\\\&quot;size\\\&quot;:58208,\\\&quot;wordcount\\\&quot;:7934,\\\&quot;snippet\\\&quot;:\\\&quot;mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T15:19:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Measurement in quantum mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:573875,\\\&quot;size\\\&quot;:68095,\\\&quot;wordcount\\\&quot;:8384,\\\&quot;snippet\\\&quot;:\\\&quot;different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-09T04:56:33Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Wave function\\\&quot;,\\\&quot;pageid\\\&quot;:145343,\\\&quot;size\\\&quot;:105363,\\\&quot;wordcount\\\&quot;:14058,\\\&quot;snippet\\\&quot;:\\\&quot;In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-11T05:48:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Modern Quantum Mechanics\\\&quot;,\\\&quot;pageid\\\&quot;:66026415,\\\&quot;size\\\&quot;:9197,\\\&quot;wordcount\\\&quot;:846,\\\&quot;snippet\\\&quot;:\\\&quot;Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-20T16:39:28Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Quantum mysticism\\\&quot;,\\\&quot;pageid\\\&quot;:4279149,\\\&quot;size\\\&quot;:19729,\\\&quot;wordcount\\\&quot;:1998,\\\&quot;snippet\\\&quot;:\\\&quot;the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-09T08:13:54Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c6ff58a2fb5afa54fefa4f3ef307efed958d45aab4a474bf78c74da695f6fc69\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;quantum_mechanics\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-d37f11cc8e1741bb&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=quantum+mechanics&amp;format=json&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:47.598538+00:00&quot;
+}</pre></div></details><details><summary>source-df851de97353412a</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:239480,\\\&quot;suggestion\\\&quot;:\\\&quot;religious\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;religious\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion\\\&quot;,\\\&quot;pageid\\\&quot;:25414,\\\&quot;size\\\&quot;:187367,\\\&quot;wordcount\\\&quot;:19574,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T06:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Civil religion\\\&quot;,\\\&quot;pageid\\\&quot;:185692,\\\&quot;size\\\&quot;:34053,\\\&quot;wordcount\\\&quot;:3846,\\\&quot;snippet\\\&quot;:\\\&quot;Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-25T16:06:42Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Abrahamic religions\\\&quot;,\\\&quot;pageid\\\&quot;:13906453,\\\&quot;size\\\&quot;:112861,\\\&quot;wordcount\\\&quot;:10868,\\\&quot;snippet\\\&quot;:\\\&quot;The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T17:21:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Bad Religion\\\&quot;,\\\&quot;pageid\\\&quot;:168409,\\\&quot;size\\\&quot;:101907,\\\&quot;wordcount\\\&quot;:10415,\\\&quot;snippet\\\&quot;:\\\&quot;Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band&#x27;s lyrics cover topics related to\\nreligion\\n, politics, society\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T23:14:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in China\\\&quot;,\\\&quot;pageid\\\&quot;:367843,\\\&quot;size\\\&quot;:300336,\\\&quot;wordcount\\\&quot;:34062,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T03:20:45Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in India\\\&quot;,\\\&quot;pageid\\\&quot;:10710364,\\\&quot;size\\\&quot;:125253,\\\&quot;wordcount\\\&quot;:11197,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T19:59:55Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;State religion\\\&quot;,\\\&quot;pageid\\\&quot;:292285,\\\&quot;size\\\&quot;:161900,\\\&quot;wordcount\\\&quot;:12907,\\\&quot;snippet\\\&quot;:\\\&quot;state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T01:30:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Yoruba religion\\\&quot;,\\\&quot;pageid\\\&quot;:682534,\\\&quot;size\\\&quot;:64332,\\\&quot;wordcount\\\&quot;:4734,\\\&quot;snippet\\\&quot;:\\\&quot;The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T17:38:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ethnic religion\\\&quot;,\\\&quot;pageid\\\&quot;:344406,\\\&quot;size\\\&quot;:8220,\\\&quot;wordcount\\\&quot;:792,\\\&quot;snippet\\\&quot;:\\\&quot;religious studies, an ethnic\\nreligion\\nor ethnoreligion is a\\nreligion\\nor belief associated with a particular ethnicity. Ethnic\\nreligions\\nare often distinguished\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T13:35:39Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Folk religion\\\&quot;,\\\&quot;pageid\\\&quot;:21920776,\\\&quot;size\\\&quot;:44106,\\\&quot;wordcount\\\&quot;:4958,\\\&quot;snippet\\\&quot;:\\\&quot;Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T10:35:40Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;32960334ade834d5068d4994645f7706d54ca4d22a82f6337be9f394c24600c5\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;religion\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-df851de97353412a&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:47.961406+00:00&quot;
+}</pre></div></details><details><summary>source-2152eb024d3c428b</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=information+thermodynamics&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:2199},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy in thermodynamics and information theory\\\&quot;,\\\&quot;pageid\\\&quot;:3325140,\\\&quot;size\\\&quot;:30221,\\\&quot;wordcount\\\&quot;:3734,\\\&quot;snippet\\\&quot;:\\\&quot;expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:42:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Laws of thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:778700,\\\&quot;size\\\&quot;:20658,\\\&quot;wordcount\\\&quot;:2896,\\\&quot;snippet\\\&quot;:\\\&quot;The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-20T00:17:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy\\\&quot;,\\\&quot;pageid\\\&quot;:9891,\\\&quot;size\\\&quot;:115933,\\\&quot;wordcount\\\&quot;:14396,\\\&quot;snippet\\\&quot;:\\\&quot;classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T14:49:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Second law of thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:133017,\\\&quot;size\\\&quot;:119048,\\\&quot;wordcount\\\&quot;:16416,\\\&quot;snippet\\\&quot;:\\\&quot;The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T12:26:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;History of thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:2281782,\\\&quot;size\\\&quot;:35022,\\\&quot;wordcount\\\&quot;:3780,\\\&quot;snippet\\\&quot;:\\\&quot;The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T23:05:41Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:29952,\\\&quot;size\\\&quot;:49113,\\\&quot;wordcount\\\&quot;:5808,\\\&quot;snippet\\\&quot;:\\\&quot;\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-01T03:12:21Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Entropy (information theory)\\\&quot;,\\\&quot;pageid\\\&quot;:15445,\\\&quot;size\\\&quot;:72351,\\\&quot;wordcount\\\&quot;:10078,\\\&quot;snippet\\\&quot;:\\\&quot;noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-01T11:28:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Nicole Yunger Halpern\\\&quot;,\\\&quot;pageid\\\&quot;:80018960,\\\&quot;size\\\&quot;:8512,\\\&quot;wordcount\\\&quot;:643,\\\&quot;snippet\\\&quot;:\\\&quot;quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-31T12:40:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Zeroth law of thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:262861,\\\&quot;size\\\&quot;:21045,\\\&quot;wordcount\\\&quot;:2665,\\\&quot;snippet\\\&quot;:\\\&quot;The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-17T14:08:55Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Maximum entropy thermodynamics\\\&quot;,\\\&quot;pageid\\\&quot;:3015758,\\\&quot;size\\\&quot;:28263,\\\&quot;wordcount\\\&quot;:3649,\\\&quot;snippet\\\&quot;:\\\&quot;In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-17T03:36:51Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;4cbf321d2f2827c36cf80ecf4831cfd5dd73669ffe503996ac95fd46a1233910\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;information_thermodynamics\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-2152eb024d3c428b&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=information+thermodynamics&amp;format=json&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:48.307978+00:00&quot;
+}</pre></div></details><details><summary>r-bcf50a07dd4e4018</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:9,\&quot;inherited_commitments\&quot;:[\&quot;review_statistical_entropy_notebook\&quot;],\&quot;invocation\&quot;:\&quot;w-bcf50a07dd4e4018\&quot;,\&quot;previous_head\&quot;:\&quot;14beb6d6ebaf0458d2d2ed2c06a2b0633697b634cf625955c67f80949560c32a\&quot;,\&quot;process_id\&quot;:2243,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-bcf50a07dd4e4018&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 9,
+  &quot;time&quot;: &quot;2026-09-23T10:27:48.530688+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Establishing Information Thermodynamics Project</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-16c4ac30ac534d8c&quot;,
@@ -9051,6 +9488,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;reason&quot;: &quot;Direct Crossref retrieval of a target article from our persistent identifiers list to acquire specific verifiable text.&quot;,
   &quot;type&quot;: &quot;research&quot;,
   &quot;url&quot;: &quot;https://api.crossref.org/works/10.1177/27546330241294138&quot;,
-  &quot;status&quot;: &quot;queued&quot;,
-  &quot;created_by&quot;: &quot;w-0a83d56b087748cd&quot;
+  &quot;status&quot;: &quot;failed&quot;,
+  &quot;created_by&quot;: &quot;w-0a83d56b087748cd&quot;,
+  &quot;evidence&quot;: &quot;source-d1bad4924ccb48fd&quot;
 }</pre></div></details><h2>Blog posts</h2><p class="meta">None recorded.</p></main><script>(()=>{const b=document.getElementById('theme-toggle');const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');b.setAttribute('aria-pressed',String(d))};sync();b.addEventListener('click',()=>{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme',d?'light':'dark')}catch{}sync()})})();</script><script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const icon=document.querySelector('.theme-icon');const saved=()=>{try{return localStorage.getItem('wake-theme')}catch{return null}};const sync=()=>{const d=document.documentElement.dataset.theme==='dark',manual=Boolean(saved());b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');if(icon)icon.textContent=manual?(d?'◑':'☼'):'◐';b.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${d?'dark':'light'} theme`:`Following system ${d?'dark':'light'} theme`)};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()});try{const media=matchMedia('(prefers-color-scheme:dark)');media.addEventListener('change',event=>{if(saved())return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;sync()})}catch{}})()</script></body></html>
