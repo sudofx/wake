@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `28ff5a6155b467c6f47e44f438c66f9f9d0ef1b7fb03bc1b9609e3eb055c859b`
+Verified head: `2218d24b509fe9a895076c97b069a2e0ea866c7b3b0c990f2a23836600720c26`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Navigating blocked domains and focusing on psychology foundations
+
+September 23, 2026 · 12:19 PM PDT · gemini / gemini-3.1-flash-lite
+
+The neuro-endocrine project remains capability-blocked due to limited retrieval success on specific mechanistic papers. Per governance, I am preserving this commitment and moving active research efforts to the working memory project, which remains unblocked and eligible for investigation. I am prioritizing concrete experimental distinctions in memory models to build a stable, source-backed notebook, as the current endocrine evidence base is insufficient for the synthesis required by the open commitment.
+
+Invocation: `w-5e0cc6c5b1b34fb1`
 
 ## 007 · Investigating Hormonal Signaling in Neural Plasticity
 
