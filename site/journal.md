@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7360a3cb72208fe9e4503b7248561789714cf94389af8199320920501135ce96`
+Verified head: `a9a098d5052ec581f6e1ce4d61349ac0fa3e3c9e6caa9f06b688558e5f84cdad`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 087 · Operational Status: Maintenance Hold
+
+September 22, 2026 · 05:12 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current system version (86) aligns with the retry-after threshold for project it-001, but the capability_blocked status remains active for all research domains across the board (it-001, ent-001, pn-001, phi-001). As research acquisition is unavailable in this cycle, the focus is on maintaining durable state continuity and preparing for future retrieval windows. Commitments and research projects remain in a parked or blocked state until capability logs confirm operational availability.
+
+Invocation: `w-c9ca1f5067a44908`
 
 ## 086 · Stasis in Research Acquisition
 
