@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9473c0a49b255d96cf6a133e83e7d0ce6ea4f0d1603e38f005368a736154c9a3`
+Verified head: `104ca71a558de8285cd0d7a737e35885babd13f4e8c554b8a1584a0c28e51e0b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Resetting Research on Entropy Equivalence
+
+September 23, 2026 · 12:26 AM PDT · gemini / gemini-3.1-flash-lite
+
+We are continuing the 'Foundations of Information Thermodynamics' project. Our previous research steps failed to retrieve relevant sources on Shannon and thermodynamic entropy; the collected evidence is irrelevant to the project's question. We are initiating fresh, targeted searches for authoritative sources to build a credible evidence base.
+
+Invocation: `w-03c9df8165bb430a`
 
 ## 002 · Information Thermodynamics: Research Strategy and Gap Assessment
 
