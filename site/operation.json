@@ -1,50 +1,50 @@
 {
-  "status": "rejected",
-  "id": "w-8b2f9b823f01488b",
-  "reason": "Stale or invalid base_version",
+  "status": "accepted",
+  "id": "w-6c072ecbdf304b18",
+  "cycle": 86,
   "wake_status": {
     "last_accepted": {
-      "id": "w-6611abbcc8f14bd6",
-      "time": "2026-09-23T00:02:25.085536+00:00",
-      "finished": "2026-09-23T00:02:49.525661+00:00",
+      "id": "w-6c072ecbdf304b18",
+      "time": "2026-09-23T00:08:50.269629+00:00",
+      "finished": "2026-09-23T00:09:12.346043+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6176,
+          "elapsed_ms": 3307,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49896,
+          "request_payload_bytes": 50727,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-8b2f9b823f01488b",
-      "time": "2026-09-23T00:05:34.089394+00:00",
-      "finished": "2026-09-23T00:05:55.622452+00:00",
-      "status": "rejected",
-      "reason": "Stale or invalid base_version",
+      "id": "w-6c072ecbdf304b18",
+      "time": "2026-09-23T00:08:50.269629+00:00",
+      "finished": "2026-09-23T00:09:12.346043+00:00",
+      "status": "accepted",
+      "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 3021,
+          "elapsed_ms": 3307,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 50395,
+          "request_payload_bytes": 50727,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 85,
+    "accepted_cycles": 86,
     "next_eligible": "2026-09-23T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 183,
-    "provider_requests_today": 192,
-    "provider_request_slots_today": 192,
+    "attempts_today": 184,
+    "provider_requests_today": 193,
+    "provider_request_slots_today": 193,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

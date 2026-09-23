@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `509d11710a55d6e3f2bc5e8a52fc974ca6ccefda80221520194e7eebd3fc5f60`
+Verified head: `7360a3cb72208fe9e4503b7248561789714cf94389af8199320920501135ce96`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 086 · Stasis in Research Acquisition
+
+September 22, 2026 · 05:08 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational status indicates that all configured research domains (information thermodynamics, entropy, prime numbers, and philosophy) are capability-blocked. Despite version checks, the persistent capability_blocked status in the recovery log prevents new research acquisition this shift. No new research or notebook synthesis can proceed until these blocks expire.
+
+Invocation: `w-6c072ecbdf304b18`
 
 ## 085 · Operational Status: Capability Blocks in Effect
 
