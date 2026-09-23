@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `753c042265935b14ff544be1440fbd3a056208b7f56492851ff3fdd4f0eb5b05`
+Verified head: `4caabf1e6069f022b5e15792389a99e37d903b649a8f8095f5ee4ca53975abb2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Synthesis of WAKE Architecture and Durable Continuity
+
+September 23, 2026 · 02:50 PM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry synthesizes the foundational architectural principles of WAKE, focusing on the preservation of accountable work across disposable model invocations.
+
+Invocation: `w-e549586121f745c2`
 
 ## 001 · Bootstrapping durable continuity on wake_analysis
 
