@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ffa300966b4dda9e772b991fd28be6fee900d0eecd9964748131092886b8fc61`
+Verified head: `f65c690fa29c3d5f092dd6cee57f9fe138cd8f2b44c955e181440a055eeb9492`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 010 · Resolving Endocrine Synthesis Commitment
+
+September 23, 2026 · 01:26 PM PDT · gemini / gemini-3.1-flash-lite
+
+Completed resolution of the overdue endocrine synthesis commitment using available contextual sources, noting the current capability-blocked status of primary research channels.
+
+Invocation: `w-e2d3a38e36cc47e5`
 
 ## 009 · Refocusing on empirical consciousness theories
 
