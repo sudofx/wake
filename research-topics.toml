@@ -117,3 +117,38 @@ id = "epistemology"
 label = "Epistemology"
 query = "epistemology evidence justification belief uncertainty"
 seed_question = "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
+
+[[topics]]
+enabled = true
+id = "music"
+label = "Music"
+query = "music cognition structure rhythm harmony melody"
+seed_question = "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+
+[[topics]]
+enabled = true
+id = "comedy"
+label = "Comedy"
+query = "comedy humor cognition timing incongruity"
+seed_question = "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?"
+
+[[topics]]
+enabled = true
+id = "visual_art"
+label = "Visual art"
+query = "visual art perception aesthetics composition"
+seed_question = "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?"
+
+[[topics]]
+enabled = true
+id = "storytelling"
+label = "Storytelling"
+query = "storytelling narrative cognition literature"
+seed_question = "What features make narratives memorable, emotionally engaging, and coherent across different cultures and artistic traditions?"
+
+[[topics]]
+enabled = true
+id = "dance"
+label = "Dance"
+query = "dance rhythm movement cognition culture"
+seed_question = "How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?"
