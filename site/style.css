@@ -1029,3 +1029,8 @@ html,body{max-width:100%;overflow-x:clip}
   .help-copy{padding-top:14px;row-gap:5px}
   .help-copy h3{margin-top:8px}
 }
+
+/* Outcome totals mirror the timeline's governance-state colors. */
+.motion-numbers div:nth-child(1) strong{color:var(--success)}
+.motion-numbers div:nth-child(2) strong{color:var(--danger)}
+.motion-numbers div:nth-child(3) strong{color:var(--warning)}
