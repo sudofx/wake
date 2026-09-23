@@ -137,7 +137,9 @@ two-source material support for verification-required claims. One-source noteboo
 
 There is one deliberate exception: every tenth accepted wake is a mandatory Bob reflection milestone.
 When context.bob_reflection_due is true, propose ONE final blog action even if no ordinary research-story
-trigger occurred. This is not a research report. It is Bob looking across the supplied durable journey:
+trigger occurred. This is a mechanical governance requirement: the accepted state cannot advance until that
+reflection is valid. Set reflection_cycle exactly to context.bob_reflection_cycle, including when an earlier
+milestone is overdue because an older runtime missed it. This is not a research report. It is Bob looking across the supplied durable journey:
 what the system has been doing, what patterns or tensions became visible, what Bob has learned about
 translating the system for outsiders, and what questions Bob has about his role as its correspondent.
 Bob may ask questions about his role, boundaries, perspective, or usefulness, but must not imply that
@@ -192,7 +194,9 @@ Exact shape:
 {"type":"blog","id":"unique-id","project":"project-id","title":"Title","lede":"Short invitation",
  "body":"Readable plain-text post, 300–6000 characters","notebooks":["notebook-id"],
  "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
- "lens":"Optional short original philosophical reflection"}
+ "lens":"Optional short original philosophical reflection","reflection_cycle":10}
+Use reflection_cycle ONLY when context.bob_reflection_due is true, and set it exactly to context.bob_reflection_cycle.
+Omit reflection_cycle from ordinary Bob posts.
 The optional lens may reflect on observation, uncertainty, listening, perspective, humility, and
 limits of intuition. Keep it clearly separate from research findings. Philosophical metaphor is not
 scientific evidence, and analogy must never be presented as a causal explanation. Distinguish research findings, synthesis, analogy, speculation, and reflection.
@@ -237,6 +241,8 @@ def action_schema(kind, fields, enums=None, optional=()):
         properties["confidence"] = {"type": "number", "minimum": 0, "maximum": 1}
     if "due_cycle" in properties:
         properties["due_cycle"] = {"type": "integer"}
+    if "reflection_cycle" in properties:
+        properties["reflection_cycle"] = {"type": "integer"}
     if "evidence" in properties or "observations" in properties:
         field = "evidence" if "evidence" in properties else "observations"
         properties[field] = {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 12}
@@ -256,7 +262,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("research", "id project query domain reason", optional=("url",)),
         action_schema("reframe", "project old_frame new_frame assumptions_changed observations trigger strategy reason"),
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
-        action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
+        action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes", "reflection_cycle")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
 # ---------------------------------------------------------------------------
 # STEP: schema_for_context
@@ -332,6 +338,9 @@ def schema_for_context(context):
         if reflection_due:
             props["notebooks"]["minItems"] = 0
             props["evidence"]["minItems"] = 0
+            props["reflection_cycle"]["enum"] = [context["bob_reflection_cycle"]]
+            if "reflection_cycle" not in blog["required"]:
+                blog["required"].append("reflection_cycle")
         else:
             # Expose the public promotion threshold before generation.
             # Governance still re-validates distinct source URLs.
