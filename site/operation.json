@@ -1,6 +1,6 @@
 {
   "status": "rejected",
-  "id": "w-bd51880bfb8549ab",
+  "id": "w-0c255ac2891a463a",
   "reason": "Notebook findings evidence must come from the same research topic as its project",
   "wake_status": {
     "last_accepted": {
@@ -36,38 +36,43 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-bd51880bfb8549ab",
-      "time": "2026-09-23T06:39:59.819655+00:00",
-      "finished": "2026-09-23T06:41:18.949775+00:00",
+      "id": "w-0c255ac2891a463a",
+      "time": "2026-09-23T06:43:42.431519+00:00",
+      "finished": "2026-09-23T06:44:12.285232+00:00",
       "status": "rejected",
       "reason": "Notebook findings evidence must come from the same research topic as its project",
       "provider_requests_sent": 2,
       "provider_attempts": [
         {
-          "category": "timeout",
-          "elapsed_ms": 60066,
-          "error_type": "TimeoutError",
-          "http_status": null,
+          "category": "server",
+          "elapsed_ms": 1271,
+          "http_status": 503,
           "model": "gemini-3.8-flash",
-          "request_payload_bytes": 40553,
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 41429,
+          "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 11645,
+          "elapsed_ms": 22571,
           "http_status": 200,
           "model": "gemini-3.5-flash",
-          "request_payload_bytes": 40553,
+          "request_payload_bytes": 41429,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 1,
-    "next_eligible": "2026-09-23T06:44:59.819655+00:00",
+    "next_eligible": "2026-09-23T06:48:42.431519+00:00",
     "pending": false,
-    "attempts_today": 2,
-    "provider_requests_today": 4,
-    "provider_request_slots_today": 4,
+    "attempts_today": 3,
+    "provider_requests_today": 6,
+    "provider_request_slots_today": 6,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
