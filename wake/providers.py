@@ -245,7 +245,6 @@ def action_schema(kind, fields, enums=None, optional=()):
     return {"type": "object", "properties": properties, "required": required, "additionalProperties": False}
 
 
-_DOMAINS = ["cellular_automata", "symmetry", "error_correction", "ant_colonies", "compression", "entropy", "wake_analysis"]
 SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
     "base_version": {"type": "integer"}, "title": {"type": "string"}, "summary": {"type": "string"},
     "actions": {"type": "array", "maxItems": 12, "items": {"anyOf": [
@@ -253,8 +252,8 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("commit", "id task due_cycle reason"),
         action_schema("resolve", "id status evidence reason", {"status": ["fulfilled"]}),
         action_schema("project", "id title question domain status next_step reason",
-                      {"domain": _DOMAINS, "status": ["active", "parked", "completed"]}),
-        action_schema("research", "id project query domain reason", {"domain": _DOMAINS}, optional=("url",)),
+                      {"status": ["active", "parked", "completed"]}),
+        action_schema("research", "id project query domain reason", optional=("url",)),
         action_schema("reframe", "project old_frame new_frame assumptions_changed observations trigger strategy reason"),
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes")),
@@ -316,9 +315,6 @@ def schema_for_context(context):
         project_evidence = context.get("project_evidence", {})
         for project in projects:
             allowed = project_evidence.get(project["id"])
-            if allowed is None and project.get("domain") == "wake_analysis":
-                allowed = [item["id"] for item in collector_evidence.values()
-                           if item.get("source", "").startswith(("https://raw.githubusercontent.com/sudofx/wake/", "https://api.github.com/repos/sudofx/wake/"))]
             allowed = sorted(allowed if allowed is not None else collector_evidence)
             if not allowed:
                 continue
