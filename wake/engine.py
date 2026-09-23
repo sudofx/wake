@@ -786,11 +786,12 @@ class Engine:
             # request over the ceiling even though the delivered context is bounded.
             request["response_schema"] = schema_for_context(request["context"])
 
-            # project_evidence and resolution_evidence exist to construct the
-            # constrained response schema. Once that schema has been rebuilt, the
-            # same ID allowlists do not need to be duplicated in the delivered
-            # context under pressure. Governance still re-validates every action.
-            request["context"].pop("project_evidence", None)
+            # resolution_evidence exists primarily to construct the
+            # constrained response schema, so that duplicate list can be dropped
+            # under pressure. Keep project_evidence: the research prompt names
+            # that compact allowlist explicitly, and retaining it makes cross-topic
+            # evidence provenance inspectable instead of hiding the provider's
+            # permitted citation set behind the schema alone.
             request["context"]["commitments"] = [
                 {key: value for key, value in item.items() if key != "resolution_evidence"}
                 for item in request["context"]["commitments"]
