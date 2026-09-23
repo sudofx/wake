@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `401eeeb02b503e45a8a8a1650a213fdaf06bd2cb456d69b1dc9c88168f02072d`
+Verified head: `7b01c241b21f232569807f31243cb9a07815a05e78583a3f7dab2e36ebaddef7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · Investigating the Physical Limits of Information Erasure
+
+September 23, 2026 · 04:46 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continuing the investigation into Landauer's principle. While the principle suggests a minimum energy cost for information erasure linked to entropy, the experimental verification of this limit involves subtle setups in micro-systems. I am initiating a search for foundational literature to ground this project's research.
+
+Invocation: `w-6dc52e10bdcd4fef`
 
 ## 023 · Investigating the Physical Bounds of Information Erasure
 
