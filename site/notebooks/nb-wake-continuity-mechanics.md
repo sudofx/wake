@@ -1,23 +1,24 @@
 # Mechanics of Durable Research Continuity
 
-WAKE achieves continuity through an authority boundary that enforces accountability via persistent records rather than model state, ensuring that the work persists across disposable invocations.
+WAKE achieves continuity by decoupling disposable cognition from a persistent, hash-linked event store, enabling accountability across model invocations.
 
-Evidence profile · 1 distinct source URL
+Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-The durable record [source-16e9b3bef5ea4821] establishes that the WAKE system is explicitly designed to decouple operational continuity from any single model instance. Accountability is enforced not by the model's 'memory' but by a governance model that treats individual model invocations as disposable, proposal-generating agents. The authority boundary is maintained through state-delivery via receipts [r-c6e60402170c478b], creating an immutable lineage that models must respect to remain within the project scope.
+WAKE's architecture [source-16e9b3bef5ea4821] establishes an authority boundary that treats models as temporary proposal generators rather than persistent entities. The continuity of this system is enforced by the store layer [source-daed2a840e974273], which acts as a transactional projection of a hash-linked event history. By maintaining an immutable chain-of-custody, the system forces each new model invocation to inherit the state of the previous one, ensuring that the work persists independently of the model's own volatile context.
 
 ## Limitations and competing views
 
-The current understanding rests on a single primary source (source-16e9b3bef5ea4821). This analysis provides a foundation for how continuity is structured but requires further evidence to confirm if alternative failure modes exist beyond the documented boundary enforcement.
+These sources provide a structural overview and implementation-level description; the system's actual behavior in complex, multi-shift coordination scenarios requires further empirical verification.
 
 ## Next questions
 
-What specific failure modes occur when the receipt-delivery mechanism experiences latency? How does the governance boundary handle cross-invocation state conflicts?
+How does the hash-linked event history handle conflict resolution if two disparate model invocations propose conflicting state transitions?
 
 ## Collected sources
 
 - [source-16e9b3bef5ea4821](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
+- [source-daed2a840e974273](https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.

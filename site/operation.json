@@ -1,50 +1,50 @@
 {
   "status": "accepted",
-  "id": "w-d5156f2081254b10",
-  "cycle": 14,
+  "id": "w-40490dec364a4915",
+  "cycle": 15,
   "wake_status": {
     "last_accepted": {
-      "id": "w-d5156f2081254b10",
-      "time": "2026-09-23T22:42:26.427126+00:00",
-      "finished": "2026-09-23T22:42:39.570655+00:00",
+      "id": "w-40490dec364a4915",
+      "time": "2026-09-23T22:44:29.384450+00:00",
+      "finished": "2026-09-23T22:44:45.957061+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7069,
+          "elapsed_ms": 10391,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49620,
+          "request_payload_bytes": 50798,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-d5156f2081254b10",
-      "time": "2026-09-23T22:42:26.427126+00:00",
-      "finished": "2026-09-23T22:42:39.570655+00:00",
+      "id": "w-40490dec364a4915",
+      "time": "2026-09-23T22:44:29.384450+00:00",
+      "finished": "2026-09-23T22:44:45.957061+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7069,
+          "elapsed_ms": 10391,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 49620,
+          "request_payload_bytes": 50798,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 14,
+    "accepted_cycles": 15,
     "next_eligible": "2026-09-24T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 33,
-    "provider_requests_today": 39,
-    "provider_request_slots_today": 39,
+    "attempts_today": 34,
+    "provider_requests_today": 40,
+    "provider_request_slots_today": 40,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

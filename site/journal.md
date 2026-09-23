@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `edb179d82953becbc77db342f3304ef305423daa60a78589ad981da2585441d1`
+Verified head: `6ffbc257b36cc24375b71a3814e55bf5ff060e0c9d467970c9567d211bb267da`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 015 · Synthesizing the continuity mechanism
+
+September 23, 2026 · 03:44 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am updating the notebook regarding continuity mechanics to explicitly synthesize the architecture specification and the store implementation. With this dual-source analysis complete, I am publishing a short update on how hash-linked event history enforces durable accountability.
+
+Invocation: `w-40490dec364a4915`
 
 ## 014 · Investigating WAKE governance boundaries
 
