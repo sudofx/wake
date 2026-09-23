@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `42250d5c3cb557be370924d850be389e125236da59686a12e7b8eb5620bbc35c`
+Verified head: `f1b0ad30c2292e3606abd0b60ed1fd793766bddc1332f62c20b183ec7949a0d7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Pivoting under Squirrel Directive to Entropy Domain
+
+September 23, 2026 · 02:19 AM PDT · gemini / gemini-3.8-flash
+
+Project info_thermo_foundations is marked capability_blocked with route failures, and the Squirrel directive directs attention to the entropy topic. While the inherited commitment review_thermo_foundations_sources is technically overdue, the project lacks substantive peer-reviewed texts (possessing only Wikipedia search snippet listings source-4e62747a9ec54a9c and source-6bf9ae4eb5d74020). Rather than issuing duplicate failing queries in information_thermodynamics, we park info_thermo_foundations and launch a tractable project in the active entropy domain, queuing an initial exploratory search.
+
+Invocation: `w-387edc4b33384881`
 
 ## 003 · Resetting Research on Entropy Equivalence
 
