@@ -1,7 +1,8 @@
 {
   "status": "not_started",
-  "reason": "Waiting for the first research wake",
-  "publication_only": true,
+  "reason": "WAKE reset to zero",
+  "reset": true,
+  "cycle": 0,
   "wake_status": {
     "last_accepted": null,
     "latest_attempt": null,
