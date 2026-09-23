@@ -2,9 +2,137 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `bd06d332463ec01a95878e3f5c6c6004c060908c3ba229a3635dc8a867b5e159`
+Verified head: `6cf0033a278f889018c1a7c781b73e34f1c495de14e16abaa37f3e20572ffd43`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0004 · `research_topics_changed`
+
+**Time:** 2026-09-23T17:21:45.963069+00:00  
+**ID:** `system`  
+**Hash:** `6cf0033a278f889018c1a7c781b73e34f1c495de14e16abaa37f3e20572ffd43`  
+**Previous hash:** `bd06d332463ec01a95878e3f5c6c6004c060908c3ba229a3635dc8a867b5e159`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "consciousness": "#7aa2f7",
+    "endocrinology": "#9d7cd8",
+    "entropy": "#73daca",
+    "information_thermodynamics": "#f7768e",
+    "neurodivergence": "#c0caf5",
+    "neurology": "#8aa8ff",
+    "philosophy": "#ff9e64",
+    "prime_numbers": "#54d4bc",
+    "psychology": "#b7d36b",
+    "quantum_mechanics": "#d8c25d",
+    "religion": "#ff757f",
+    "wake_analysis": "#f2a2ca"
+  },
+  "topics": [
+    {
+      "enabled": false,
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake",
+      "repository": "sudofx/wake",
+      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+      "source_kind": "repository"
+    },
+    {
+      "enabled": false,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurology",
+      "label": "Neurology",
+      "query": "neurology nervous system neurological disorders",
+      "seed_question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "endocrinology",
+      "label": "Endocrinology",
+      "query": "endocrinology hormones endocrine disorders",
+      "seed_question": "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?",
+      "source_kind": "web"
+    }
+  ]
+}
+```
 
 ## Event 0003 · `experimental_regime_adopted`
 

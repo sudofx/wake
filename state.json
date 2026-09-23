@@ -22,23 +22,7 @@
   "research": {},
   "research_topics": [
     {
-      "enabled": true,
-      "id": "information_thermodynamics",
-      "label": "Information thermodynamics",
-      "query": "information thermodynamics",
-      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
-      "id": "entropy",
-      "label": "Entropy",
-      "query": "entropy",
-      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": true,
+      "enabled": false,
       "id": "wake_analysis",
       "label": "WAKE✳︎",
       "query": "WAKE✳︎ sudofx/wake",
@@ -47,7 +31,23 @@
       "source_kind": "repository"
     },
     {
-      "enabled": true,
+      "enabled": false,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": false,
       "id": "neurodivergence",
       "label": "Neurodivergence",
       "query": "neurodivergence",
@@ -71,7 +71,7 @@
       "source_kind": "web"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "quantum_mechanics",
       "label": "Quantum mechanics",
       "query": "quantum mechanics",
@@ -95,25 +95,43 @@
       "source_kind": "web"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "id": "prime_numbers",
       "label": "Prime numbers",
       "query": "prime numbers mathematics",
       "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
       "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurology",
+      "label": "Neurology",
+      "query": "neurology nervous system neurological disorders",
+      "seed_question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "endocrinology",
+      "label": "Endocrinology",
+      "query": "endocrinology hormones endocrine disorders",
+      "seed_question": "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?",
+      "source_kind": "web"
     }
   ],
   "topic_colors": {
-    "consciousness": "#d8c25d",
-    "entropy": "#46b5ff",
-    "information_thermodynamics": "#f68c65",
-    "neurodivergence": "#8aa8ff",
-    "philosophy": "#e0af68",
-    "prime_numbers": "#f2a2ca",
-    "psychology": "#ff757f",
-    "quantum_mechanics": "#b7d36b",
-    "religion": "#b25dff",
-    "wake_analysis": "#5fcf8d"
+    "consciousness": "#7aa2f7",
+    "endocrinology": "#9d7cd8",
+    "entropy": "#73daca",
+    "information_thermodynamics": "#f7768e",
+    "neurodivergence": "#c0caf5",
+    "neurology": "#8aa8ff",
+    "philosophy": "#ff9e64",
+    "prime_numbers": "#54d4bc",
+    "psychology": "#b7d36b",
+    "quantum_mechanics": "#d8c25d",
+    "religion": "#ff757f",
+    "wake_analysis": "#f2a2ca"
   },
   "experimental": {
     "id": "reg-df573bb03399f050",
