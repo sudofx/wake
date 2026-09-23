@@ -1,7 +1,7 @@
 {
   "status": "rejected",
-  "id": "w-7b9fe913cfd241d8",
-  "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
+  "id": "w-9b40924afebd4b2e",
+  "reason": "Extra data: line 28 column 1 (char 3586)",
   "wake_status": {
     "last_accepted": {
       "id": "w-0a83d56b087748cd",
@@ -36,29 +36,29 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-7b9fe913cfd241d8",
-      "time": "2026-09-23T10:46:25.880141+00:00",
-      "finished": "2026-09-23T10:46:40.422025+00:00",
+      "id": "w-9b40924afebd4b2e",
+      "time": "2026-09-23T10:48:05.222679+00:00",
+      "finished": "2026-09-23T10:48:17.571410+00:00",
       "status": "rejected",
-      "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
+      "reason": "Extra data: line 28 column 1 (char 3586)",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 8891,
+          "elapsed_ms": 6806,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 44152,
+          "request_payload_bytes": 43620,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 9,
-    "next_eligible": "2026-09-23T10:51:25.880141+00:00",
+    "next_eligible": "2026-09-23T10:53:05.222679+00:00",
     "pending": false,
-    "attempts_today": 25,
-    "provider_requests_today": 54,
-    "provider_request_slots_today": 55,
+    "attempts_today": 26,
+    "provider_requests_today": 55,
+    "provider_request_slots_today": 56,
     "provider_request_counts_incomplete": true,
     "daily_call_limit": null
   }
