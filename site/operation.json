@@ -1,6 +1,6 @@
 {
   "status": "rejected",
-  "id": "w-a955927d8b024761",
+  "id": "w-77d37aefbab14edd",
   "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
   "wake_status": {
     "last_accepted": {
@@ -36,16 +36,16 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-a955927d8b024761",
-      "time": "2026-09-23T10:30:13.541469+00:00",
-      "finished": "2026-09-23T10:30:50.058588+00:00",
+      "id": "w-77d37aefbab14edd",
+      "time": "2026-09-23T10:32:07.590818+00:00",
+      "finished": "2026-09-23T10:33:13.367865+00:00",
       "status": "rejected",
       "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first",
       "provider_requests_sent": 3,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 13461,
+          "elapsed_ms": 12172,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -59,7 +59,7 @@
         },
         {
           "category": "server",
-          "elapsed_ms": 1275,
+          "elapsed_ms": 25338,
           "http_status": 503,
           "model": "gemini-3.5-flash",
           "provider_error": {
@@ -72,7 +72,7 @@
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 8950,
+          "elapsed_ms": 15730,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 43204,
@@ -82,11 +82,11 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 9,
-    "next_eligible": "2026-09-23T10:35:13.541469+00:00",
+    "next_eligible": "2026-09-23T10:37:07.590818+00:00",
     "pending": false,
-    "attempts_today": 18,
-    "provider_requests_today": 41,
-    "provider_request_slots_today": 42,
+    "attempts_today": 19,
+    "provider_requests_today": 44,
+    "provider_request_slots_today": 45,
     "provider_request_counts_incomplete": true,
     "daily_call_limit": null
   }
