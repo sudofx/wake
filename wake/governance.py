@@ -620,6 +620,27 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
         )
 
 
+def bob_reflection_due_cycle(state):
+    """Return the earliest ten-cycle Bob reflection milestone still owed."""
+    next_cycle = int(state.get("version", 0)) + 1
+    fulfilled = set()
+    for post in state.get("posts", {}).values():
+        declared = post.get("reflection_cycle")
+        if type(declared) is int and declared > 0:
+            fulfilled.add(declared)
+            continue
+        # Backwards compatibility: before reflection_cycle was recorded
+        # explicitly, a post created exactly on a ten-cycle boundary was the
+        # durable signal that the milestone had been fulfilled.
+        created = post.get("created_version")
+        if type(created) is int and created > 0 and created % 10 == 0:
+            fulfilled.add(created)
+    for milestone in range(10, next_cycle + 1, 10):
+        if milestone not in fulfilled:
+            return milestone
+    return None
+
+
 # ===========================================================================
 # STATE TRANSITION
 # ===========================================================================
@@ -724,6 +745,12 @@ def transition(state, proposal, invocation, historical=False):
     if state.get("charter"):
         for collection in ("projects", "notebooks", "research"):
             result[collection] = deepcopy(state.get(collection, {}))
+
+    # Bob's reflection cadence is a durable governance obligation, not merely
+    # a provider instruction. If an older runtime missed a milestone, the
+    # earliest unfulfilled ten-cycle reflection remains due until a valid Bob
+    # post records that exact milestone.
+    required_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
@@ -1421,6 +1448,7 @@ def transition(state, proposal, invocation, historical=False):
                 "type id project title lede body notebooks evidence reason"
                 + (" lens" if "lens" in action else "")
                 + (" supersedes" if "supersedes" in action else "")
+                + (" reflection_cycle" if "reflection_cycle" in action else "")
             )
 
             keys(
@@ -1449,9 +1477,26 @@ def transition(state, proposal, invocation, historical=False):
             # That is why Bob's milestone follows accepted cycles rather than
             # raw model invocations.
 
-            reflection_due = (
-                (state["version"] + 1) % 10 == 0
+            declared_reflection_cycle = action.get("reflection_cycle")
+            legacy_reflection_cycle = (
+                state["version"] + 1
+                if historical and (state["version"] + 1) % 10 == 0
+                else None
             )
+            reflection_cycle = declared_reflection_cycle or legacy_reflection_cycle
+            reflection_due = reflection_cycle is not None
+
+            if not historical:
+                if required_reflection_cycle is not None:
+                    require(
+                        declared_reflection_cycle == required_reflection_cycle,
+                        f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory and must be the final blog action",
+                    )
+                else:
+                    require(
+                        "reflection_cycle" not in action,
+                        "reflection_cycle is reserved for a due Bob reflection milestone",
+                    )
 
             require(
                 action["project"] in result["projects"],
@@ -1517,7 +1562,7 @@ def transition(state, proposal, invocation, historical=False):
                     else 1 <= len(action["notebooks"]) <= 3
                 ),
                 "Blog posts must reference 1–3 distinct notebooks, "
-                "except twenty-cycle reflections may use none",
+                "except ten-cycle reflections may use none",
             )
 
             notebooks = [
@@ -1693,6 +1738,17 @@ def transition(state, proposal, invocation, historical=False):
             raise Rejected(
                 f"Action is not allowed: {kind!r}"
             )
+
+    if not historical and required_reflection_cycle is not None:
+        require(
+            any(
+                isinstance(action, dict)
+                and action.get("type") == "blog"
+                and action.get("reflection_cycle") == required_reflection_cycle
+                for action in proposal["actions"]
+            ),
+            f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory before state may advance",
+        )
 
     # =======================================================================
     # ACCEPTANCE
