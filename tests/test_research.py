@@ -446,7 +446,9 @@ class ResearchTests(unittest.TestCase):
 
     def test_wake_topic_is_a_rotating_breadcrumb_not_a_system_instruction(self):
         settings = {**DEFAULTS, "mission": "Follow useful questions.",
-                    "research_topics": [{"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"}]}
+                    "research_topics": [{"id": "self_study", "label": "Self study", "query": "runtime",
+                                         "enabled": True, "source_kind": "repository",
+                                         "repository": "sudofx/wake"}]}
         engine = Engine(self.root/"breadcrumb", settings)
         calls = []
         try:
@@ -528,6 +530,10 @@ class ResearchTests(unittest.TestCase):
                 {"id": "external-source", "actor": "collector",
                  "source": "https://api.crossref.org/works?query=wake"},
             ],
+            "project_evidence": {
+                "wake": ["wake-source"],
+                "other": ["wake-source", "external-source"],
+            },
         }
         alternatives = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         notebooks = [item for item in alternatives if item["properties"]["type"]["enum"] == ["notebook"]]
