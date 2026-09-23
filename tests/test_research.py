@@ -164,15 +164,31 @@ class ResearchTests(unittest.TestCase):
         tenth_cycle = self.engine.context(state, "test-receipt")
         self.assertEqual(tenth_cycle["bob_reflection_cycle"], 10)
         self.assertTrue(tenth_cycle["bob_reflection_due"])
+        schema = schema_for_context(tenth_cycle)
+        blog_schema = next(item for item in schema["properties"]["actions"]["items"]["anyOf"]
+                           if item["properties"]["type"]["enum"] == ["blog"])
+        self.assertIn("reflection_cycle", blog_schema["required"])
+        self.assertEqual(blog_schema["properties"]["reflection_cycle"]["enum"], [10])
+
+        # Legacy reflection posts created exactly on the milestone still count
+        # as fulfilled, so historical records replay without migration.
+        state["posts"] = {"cycle-10": {"created_version": 10}}
+        state["version"] = 10
+        eleventh_cycle = self.engine.context(state, "test-receipt")
+        self.assertFalse(eleventh_cycle["bob_reflection_due"])
 
         state["version"] = 19
         twentieth_cycle = self.engine.context(state, "test-receipt")
         self.assertEqual(twentieth_cycle["bob_reflection_cycle"], 20)
         self.assertTrue(twentieth_cycle["bob_reflection_due"])
 
-        state["version"] = 10
-        eleventh_cycle = self.engine.context(state, "test-receipt")
-        self.assertFalse(eleventh_cycle["bob_reflection_due"])
+    def test_missed_bob_reflection_remains_due_until_valid_post_is_accepted(self):
+        state = self.engine.store.load()
+        state["version"] = 11
+        state["posts"] = {}
+        context = self.engine.context(state, "overdue-reflection")
+        self.assertTrue(context["bob_reflection_due"])
+        self.assertEqual(context["bob_reflection_cycle"], 10)
 
     def test_context_compaction_deduplicates_schema_allowlists(self):
         self.engine.config["max_context_chars"] = 30000
@@ -621,6 +637,41 @@ class ResearchTests(unittest.TestCase):
     def test_boring_wake_produces_no_blog_post(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.assertEqual(self.engine.store.load()["posts"], {})
+
+    def test_tenth_accepted_wake_cannot_advance_without_valid_bob_reflection(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        for _ in range(8):
+            self.assertEqual(self.propose([])["status"], "accepted")
+        self.assertEqual(self.engine.store.load()["version"], 9)
+
+        missing = self.propose([])
+        self.assertEqual(missing["status"], "rejected")
+        self.assertIn("Bob reflection for accepted wake 10 is mandatory", missing["reason"])
+        self.assertEqual(self.engine.store.load()["version"], 9)
+
+        body = (
+            "I'm Bob, the public correspondent for WAKE✳. WAKE✳ carries durable research state "
+            "across disposable model invocations, and I will write here when the record produces "
+            "something worth sharing. This is the first public reflection. Across the first ten "
+            "accepted wakes, the useful pattern is not a claim of consciousness or hidden memory; "
+            "it is the visible tension between persistent obligations, evidence gates, provider "
+            "availability, and disposable model calls. The record shows what survived each handoff "
+            "and where the process remained blocked. My job is to translate those receipts without "
+            "turning continuity into a stronger claim than the evidence supports."
+        )
+        reflection = self.blog(
+            id="bob-cycle-10", notebooks=[], evidence=[], reflection_cycle=10,
+            title="What survived the first ten wakes",
+            lede="A first look at the durable journey rather than a research result.",
+            body=body,
+            reason="The mandatory ten-cycle milestone calls for a public reflection on the durable journey.",
+            lens="The interesting part is the boundary between continuity of record and continuity of mind."
+        )
+        accepted = self.propose([reflection])
+        self.assertEqual(accepted["status"], "accepted")
+        post = self.engine.store.load()["posts"]["bob-cycle-10"]
+        self.assertEqual(post["reflection_cycle"], 10)
+        self.assertEqual(post["created_version"], 10)
 
     def test_significant_notebook_can_create_a_durable_blog_post(self):
         self.source("s1")
