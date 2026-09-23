@@ -32,6 +32,8 @@ class ObserverTests(unittest.TestCase):
         self.assertIn("governance rejection are different event classes", prompt)
         self.assertIn("Do not infer that request payload size", prompt)
         self.assertIn("compare recent successful and failed provider attempts", prompt)
+        self.assertIn("Prefer passive, non-invasive checks", prompt)
+        self.assertIn("Do not recommend synthetic probe requests", prompt)
 
 
 if __name__ == "__main__":
