@@ -41,6 +41,35 @@ $('#opinion').onclick=async()=>{
     $('#opinion-text').textContent=d.opinion;
   }catch(e){$('#opinion-text').textContent=e.message}
 };
+const copyOpinion=$('#copy-opinion');
+if(copyOpinion){
+  copyOpinion.onclick=async()=>{
+    const text=$('#opinion-text').innerText.trim();
+    if(!text)return;
+    const original=copyOpinion.textContent;
+    try{
+      await navigator.clipboard.writeText(text);
+      copyOpinion.textContent='Copied';
+      copyOpinion.classList.add('is-copied');
+    }catch{
+      const area=document.createElement('textarea');
+      area.value=text;
+      area.setAttribute('readonly','');
+      area.style.position='fixed';
+      area.style.opacity='0';
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+      copyOpinion.textContent='Copied';
+      copyOpinion.classList.add('is-copied');
+    }
+    setTimeout(()=>{
+      copyOpinion.textContent=original;
+      copyOpinion.classList.remove('is-copied');
+    },1600);
+  };
+}
 const themeToggle=$('#theme-toggle');
 if(themeToggle){
   themeToggle.checked=document.documentElement.dataset.theme==='dark';
