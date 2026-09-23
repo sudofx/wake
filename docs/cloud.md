@@ -10,21 +10,21 @@ The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is 
 
 The `WAKE✳︎ — research & journal` workflow is the only Pages publisher. Do not add the generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
-The `WAKE✳︎ — research & journal` GitHub Actions workflow requests GitHub's five-minute schedule cadence, runs on relevant source pushes to the default branch, and supports **Actions → WAKE✳︎ — research & journal → Run workflow**. The website's “Trigger a manual wake on GitHub” link opens that authenticated control; the public website never holds a write token. Reading requires no GitHub login.
+The `WAKE✳︎ — research & journal` GitHub Actions workflow runs on relevant source pushes and supports **Actions → WAKE✳︎ — research & journal → Run workflow**. **Automatic GitHub scheduled wakes are currently disabled in the workflow; manual dispatch is the active path for live cycle batches.** The commented schedule documents the intended high-frequency delivery experiment without activating it. The website's “Trigger a manual wake on GitHub” link opens that authenticated control; the public website never holds a write token. Reading requires no GitHub login.
 
-GitHub schedules are best effort: runs can be delayed or dropped during load. Scheduled delivery is best effort. Before contacting Gemini, a scheduled tick checks durable state and exits quietly when the durable eligibility window says another charged wake is too recent. Manual wakes bypass that eligibility check, but their durable invocation prevents a near-immediate scheduled duplicate. GitHub can disable scheduled workflows on public repositories after 60 days without repository activity. See [GitHub's schedule documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+If automatic scheduling is re-enabled, GitHub schedules are best effort and can be delayed or dropped. A scheduled tick checks durable state before contacting Gemini and exits quietly when another charged wake is too recent. Manual dispatches bypass that schedule-eligibility check while still using the same durable invocation/quota ledger.
 
 ## One-time repository setup
 
 1. Keep `GEMINI_API_KEY` in repository **Settings → Secrets and variables → Actions**. Use an API project with billing disabled. `free_tier_confirmed` in `wake.toml` is an operator attestation; the application cannot inspect Google billing.
 2. In **Settings → Pages**, select **GitHub Actions** as the build source. The workflow attempts automatic enablement; if repository permissions prevent that, this setting is required once.
-3. Run the workflow, or push a relevant source change. Future scheduled wakes need no open desktop app or Mac.
+3. Run the workflow manually from Actions, or push a relevant source change to refresh publication. The current repository does not run automatic scheduled wakes.
 
 The workflow uses the existing public repository and GitHub Pages. No paid fallback, paid search, or subscription is introduced. The local Pacific-day budget is enforced against durable provider-request reservations. A wake may reserve more than one slot only when an eligible transient failure advances to the next configured Gemini model; interrupted unknown attempts remain conservatively reserved. Manual wakes share the same ledger.
 
 ## A wake's work
 
-A small trusted collector retrieves at most two approved public sources before inference. Randomized attention across `research-topics.toml` is authoritative for collection, with a periodic under-attended-topic nudge that preserves active projects. Model-authored follow-up searches remain auditable hypotheses but do not consume collector bandwidth; they are deterministically retired so they cannot recursively monopolize collection or exhaust the bounded queue. The **WAKE✳︎** topic can use the public repository as a source-controlled breadcrumb. Collection remains separate from model authority. Collection is bounded to HTTPS on an allowlist, 25 seconds and one megabyte per source. Redirects must remain on the allowlist. PDFs are not parsed.
+A trusted collector retrieves a bounded sample before inference. Normal mode uses two requests; the current `observation_mode = true` configuration uses `research_collection_budget = 6`. When queued follow-up work is available, one slot may continue that project while the remaining slots preserve randomized discovery across configured topics, preferring domains away from active projects where possible. Neutral discovery can use a discovery-only Wikipedia route; broad Crossref/OpenAlex searches are lead-generating discovery, while later exact approved records/pages can become qualifying source evidence. Repository-capable topics use source-controlled repository routes. Collection remains separate from model authority and is bounded by HTTPS allowlists, redirect validation, a 25-second timeout and one-megabyte response limit. PDFs are not parsed.
 
 ## Changing research topics
 
