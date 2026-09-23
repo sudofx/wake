@@ -797,11 +797,28 @@ class Engine:
             ),
         )
 
+        visible_wake_urls = {
+            item.get("source")
+            for item in context.get("evidence", [])
+            if item.get("actor") == "collector"
+            and item.get("source", "").startswith("https://raw.githubusercontent.com/sudofx/wake/")
+        }
+
         for evidence_id in requested:
             payload = self.durable_notebook_source_payload(state, evidence_id)
             if payload is None:
                 continue
             evidence = state["evidence"][evidence_id]
+
+            # Preserve the existing WAKE self-analysis source budget. Retrieval
+            # may replace missing attention, but it must not silently widen the
+            # provider envelope beyond the four distinct repository sources that
+            # context() deliberately exposes.
+            source = evidence.get("source", "")
+            is_wake_source = source.startswith("https://raw.githubusercontent.com/sudofx/wake/")
+            if evidence_id not in existing and is_wake_source:
+                if source in visible_wake_urls or len(visible_wake_urls) >= 4:
+                    continue
 
             rehydrated.append(evidence_id)
             if evidence_id not in existing:
@@ -812,6 +829,8 @@ class Engine:
                     "context_excerpt": len(content) > content_limit,
                 })
                 existing.add(evidence_id)
+                if is_wake_source:
+                    visible_wake_urls.add(source)
 
             # One provisional notebook needs only one qualifying source; allow a
             # small second/third record for comparison or commitment resolution
