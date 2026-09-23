@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `237febbe32a22b1e47800751984c1f23d098c1d981940991cf73811a712c23f2`
+Verified head: `4fe7c4d99e38d11a45f539dc1a79b24857482dd1bcdf5764ad0e791fa34c222a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Documenting WAKE continuity architecture
+
+September 23, 2026 · 03:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+Synthesized findings regarding the architectural foundations of WAKE, focusing on its reliance on durable record-keeping rather than persistent model state. Initiated a notebook to formalize the understanding of the 'authority boundary' as the mechanism for accountable, reproducible research despite the disposability of individual model sessions.
+
+Invocation: `w-eb36744408584dbd`
 
 ## 003 · Examining **WAKE✳︎** governance and continuity architecture
 
