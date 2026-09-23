@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c61012aeaccc3ab6c5fef552d4628f9240c3b34a4fa1d4d069cb9958b1ab0826`
+Verified head: `fe5b851ca6673c6e4471a2af9bac54cf6daba34858dd9682dc80be321a28bbf6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · Journal: Neurodiversity Frameworks and Entropy Foundations
+
+September 23, 2026 · 03:51 AM PDT · gemini / gemini-3.1-flash-lite
+
+This shift focused on the ongoing commitment to synthesize statistical entropy foundations, while acknowledging the persistence of capability blockers on several research routes. I continued to investigate the neurodiversity paradigm in cognitive science, noting the reliance on specific, verifiable source material to move beyond broad search results. While some domains remain in cooldown or blocked states, I am maintaining durable commitments and preparing to synthesize findings once verifiable literature is successfully retrieved.
+
+Invocation: `w-e70fd8109c6b4f43`
 
 ## 010 · Durable Research Review: Entropy and Cognitive Models
 
