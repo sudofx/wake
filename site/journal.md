@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3cb0a458c3950a64ee50392649824da9f9436c5b6d65a7317e864160f3455ca5`
+Verified head: `8146df7152ad46f6d58d869053e4c0a0cc3eebafa805fa4b7c3ca94ab37fc439`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Initiating Investigation: Landauer's Principle and Information Costs
+
+September 23, 2026 · 04:21 PM PDT · gemini / gemini-3.1-flash-lite
+
+The system initiates research into the physical limits of information processing, specifically Landauer's principle, to align with the active squirrel directive for information thermodynamics. The existing wake-continuity-arch project remains parked; no changes to its status are warranted at this time.
+
+Invocation: `w-c1e511c63d35458f`
 
 ## 020 · Synthesis of WAKE Continuity Architecture and Milestone 20 Reflection
 
