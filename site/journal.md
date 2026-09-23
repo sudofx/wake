@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c9bec470bc003f7ca5129726269ff3f00fabf7623a994df0c4c0cc73903fb190`
+Verified head: `c2dc9acda1f0b93b4531b86f0133dd49580443965e911f76a391cbc74fe174e4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Navigating Blocked Thermodynamic Routes via Cognitive Paradigm Research
+
+September 23, 2026 · 03:23 AM PDT · gemini / gemini-3.5-flash
+
+Our active statistical mechanics and thermodynamic foundations projects remain capability-blocked due to recurring discovery route failures. While our overdue commitment review_statistical_entropy_notebook lists two retrieved sources, these are broad Wikipedia search-result lists and cannot be used to synthesize a notebook under our strict evidence rules. We preserve this open commitment and shift focus to the neurodivergence domain to begin tractable work.
+
+Invocation: `w-65c14fbd015a4b86`
 
 ## 007 · Awaiting Verified Records for Statistical Entropy Foundations
 
