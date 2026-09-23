@@ -452,6 +452,45 @@ class ResearchTests(unittest.TestCase):
             ["new-1", "new-2"],
         )
 
+    def test_schema_constrains_reframe_observations_to_visible_evidence_ids(self):
+        context = {
+            "research_topics": [],
+            "projects": [{"id": "p", "domain": "entropy"}],
+            "evidence": [
+                {"id": "source-a", "actor": "collector"},
+                {"id": "runtime-b", "actor": "runtime"},
+            ],
+            "blog_notebooks": {},
+            "commitments": [],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        reframe = next(item for item in choices if item["properties"]["type"]["enum"] == ["reframe"])
+        self.assertEqual(
+            reframe["properties"]["observations"]["items"]["enum"],
+            ["runtime-b", "source-a"],
+        )
+        self.assertEqual(reframe["properties"]["project"]["enum"], ["p"])
+
+    def test_schema_omits_reframe_when_no_visible_evidence_exists(self):
+        context = {
+            "research_topics": [],
+            "projects": [{"id": "p", "domain": "entropy"}],
+            "evidence": [],
+            "blog_notebooks": {},
+            "commitments": [],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(
+            item["properties"]["type"]["enum"] == ["reframe"]
+            for item in choices
+        ))
+
+    def test_reframe_prompt_defines_observations_as_existing_evidence_ids(self):
+        self.assertIn("observations is an array of EXISTING evidence IDs", RESEARCH_SYSTEM)
+        self.assertIn("observations MUST contain only exact IDs already present in context.evidence", RESEARCH_SYSTEM)
+
     def test_overdue_resolution_requires_post_commitment_evidence_instruction(self):
         self.assertIn("recorded at or after that commitment's", RESEARCH_SYSTEM)
         self.assertIn("Do not cite only older evidence in resolve", RESEARCH_SYSTEM)
