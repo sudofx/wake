@@ -557,8 +557,12 @@ class Engine:
                 "https://raw.githubusercontent.com/sudofx/wake/"
             ):
                 continue
-            if same_domain and payload.get("topic_domain") != project.get("domain"):
-                continue
+            if same_domain:
+                # WAKE repository files are intrinsically domain-scoped by their
+                # source boundary, including legacy records that predate an
+                # explicit topic_domain stamp.
+                if project.get("domain") != "wake_analysis" and payload.get("topic_domain") != project.get("domain"):
+                    continue
             eligible.append(evidence_id)
         return eligible
 
