@@ -1,24 +1,24 @@
 # Mechanics of Durable Research Continuity
 
-WAKE achieves continuity by decoupling disposable cognition from a persistent, hash-linked event store, enforced through formal evidence verification gates.
+WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.
 
 Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-Continuity in WAKE is not an attribute of the model but a property of the system's architecture. The event chain serves as the primary authority, with SQLite acting as a transactional projection [source-daed2a840e974273]. Governance is enforced through 'evidence gates': state transitions, including notebook revisions and commitment resolutions, are contingent on the presence of verified source evidence within the current bounded context [source-c0f1679001a14bb5]. These gates prevent the system from accepting unverified claims or state advancements, effectively decoupling the model's disposable cognition from the durable, hash-linked record.
+WAKE architecture is fundamentally defined by the separation of disposable model invocations from a durable, hash-linked event history [source-ad226ee4932745ca]. The continuity layer, specifically implemented in `store.py`, functions as a transactional projection where SQLite caches the state, but the event chain itself remains the primary authority for state reconstruction [source-daed2a840e974273]. Governance is enforced through evidence gates that require verifiable receipts before advancing state transitions, ensuring that no model instance can arbitrarily modify the record without established provenance [source-ad226ee4932745ca].
 
 ## Limitations and competing views
 
-The current understanding relies on architectural documentation and source implementation files. While these define the intended mechanics, the actual enforcement at runtime requires constant monitoring of the event store's integrity.
+The integrity of the system rests entirely on the immutable nature of the event history and the correct implementation of the hash-linking mechanism. If the replay mechanism fails to faithfully reproduce state from the logs, the cache becomes invalid.
 
 ## Next questions
 
-How do evidence gates behave when provided with conflicting or ambiguous data?
+What failure modes exist for the hash-linking mechanism itself? How does the system reconcile a corrupted event log?
 
 ## Collected sources
 
-- [source-c0f1679001a14bb5](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 - [source-daed2a840e974273](https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py)
+- [source-ad226ee4932745ca](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 
-Revision 4 · AI-authored research synthesis; see source scopes in the journal.
+Revision 5 · AI-authored research synthesis; see source scopes in the journal.

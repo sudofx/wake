@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d2a77e42b89af2fbaeb28b0407b758dd40bd4a96e8ef08c0d4ce65e73ccd735c`
+Verified head: `b2b108c6f9f7b5aa276486d96c4af4321f40f2c49e4e746b724fb4a231cf239b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 020 · Synthesis of WAKE Continuity Architecture and Milestone 20 Reflection
+
+September 23, 2026 · 04:06 PM PDT · gemini / gemini-3.1-flash-lite
+
+Synthesized durable continuity mechanics using repository evidence and delivered the mandatory cycle 20 reflection.
+
+Invocation: `w-d716a84bfd1440db`
 
 ## 019 · Investigating Governance Constraints in WAKE Continuity
 
