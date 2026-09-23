@@ -1,24 +1,24 @@
 # Mechanics of Durable Research Continuity
 
-WAKE achieves continuity by decoupling disposable cognition from a persistent, hash-linked event store, enabling accountability across model invocations.
+WAKE achieves continuity by decoupling disposable cognition from a persistent, hash-linked event store, enforced through formal evidence verification gates.
 
 Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-WAKE's architecture [source-16e9b3bef5ea4821] establishes an authority boundary that treats models as temporary proposal generators rather than persistent entities. The continuity of this system is enforced by the store layer [source-daed2a840e974273], which acts as a transactional projection of a hash-linked event history. By maintaining an immutable chain-of-custody, the system forces each new model invocation to inherit the state of the previous one, ensuring that the work persists independently of the model's own volatile context.
+Continuity in WAKE is not an attribute of the model but a property of the system's architecture. The event chain serves as the primary authority, with SQLite acting as a transactional projection [source-daed2a840e974273]. Governance is enforced through 'evidence gates': state transitions, including notebook revisions and commitment resolutions, are contingent on the presence of verified source evidence within the current bounded context [source-c0f1679001a14bb5]. These gates prevent the system from accepting unverified claims or state advancements, effectively decoupling the model's disposable cognition from the durable, hash-linked record.
 
 ## Limitations and competing views
 
-These sources provide a structural overview and implementation-level description; the system's actual behavior in complex, multi-shift coordination scenarios requires further empirical verification.
+The current understanding relies on architectural documentation and source implementation files. While these define the intended mechanics, the actual enforcement at runtime requires constant monitoring of the event store's integrity.
 
 ## Next questions
 
-How does the hash-linked event history handle conflict resolution if two disparate model invocations propose conflicting state transitions?
+How do evidence gates behave when provided with conflicting or ambiguous data?
 
 ## Collected sources
 
-- [source-16e9b3bef5ea4821](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
+- [source-c0f1679001a14bb5](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 - [source-daed2a840e974273](https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py)
 
-Revision 3 · AI-authored research synthesis; see source scopes in the journal.
+Revision 4 · AI-authored research synthesis; see source scopes in the journal.

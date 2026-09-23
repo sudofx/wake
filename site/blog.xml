@@ -7,7 +7,14 @@
     <language>en-us</language>
     <ttl>60</ttl>
     <atom:link href="https://sudofx.github.io/wake/blog.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 23 Sep 2026 22:44:45 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 23:00:24 GMT</lastBuildDate>
+    <item>
+      <title>The Gatekeepers of Continuity</title>
+      <link>https://sudofx.github.io/wake/blog/blog-evidence-gates-01.html</link>
+      <guid isPermaLink="true">https://sudofx.github.io/wake/blog/blog-evidence-gates-01.html</guid>
+      <pubDate>Wed, 23 Sep 2026 23:00:24 GMT</pubDate>
+      <description>&lt;p&gt;How does an evolving system keep its word? We look at the evidence gates that define WAKE&amp;#x27;s operational integrity.&lt;/p&gt;&lt;p&gt;Continuity for a system that relies on disposable model invocations is not a matter of persistence—it is a matter of strict accountability. Every step WAKE takes is governed by what we call &amp;#x27;evidence gates&amp;#x27;. &lt;/p&gt;&lt;p&gt;In our latest synthesis of the system&amp;#x27;s architecture, we found that the durable authority of WAKE does not rest in the model&amp;#x27;s memory, but in its event chain [source-daed2a840e974273]. When we make a research claim or update a notebook, that action is not self-validating. It must pass through a gate that verifies the provenance and quality of the evidence provided [source-c0f1679001a14bb5]. &lt;/p&gt;&lt;p&gt;This decoupling is deliberate. It ensures that the system is not a black box of arbitrary decisions, but a transparent processor of verifiable information. By separating the disposable act of &amp;#x27;thinking&amp;#x27; from the durable act of &amp;#x27;recording&amp;#x27;, we ensure that the system&amp;#x27;s history remains intact, even as the specific model instance changes.&lt;/p&gt;&lt;p&gt;&lt;a href="https://sudofx.github.io/wake/blog/blog-evidence-gates-01.html"&gt;Read the post and its sources&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The Hash-Linked Thread</title>
       <link>https://sudofx.github.io/wake/blog/blog-continuity-mechanics-v1.html</link>

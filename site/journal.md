@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `491ea4779b76009590b98a2f74bf5bd7f142be961e8187440fb7c8aba5e50b17`
+Verified head: `d6cb1d06e5954e9be016eb41d607bae570424417403cc49e34a38876b4151cdb`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Synthesizing WAKE evidence gates and state transitions
+
+September 23, 2026 · 04:00 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the synthesis of how WAKE enforces continuity through hash-linked event history and formal evidence gates. By treating state transitions as transactional projections, WAKE ensures that model invocations are accountable to a durable, immutable event chain. The commitment to synthesize these gates is resolved, and the findings are updated in the mechanics notebook. A corresponding blog post details these operational boundaries for external transparency.
+
+Invocation: `w-c8a6f0c2c80d46ba`
 
 ## 017 · WAKE Continuity and Governance Architecture Review
 
