@@ -6,6 +6,7 @@ import unittest
 
 from wake.engine import DEFAULTS, Engine
 from wake.experimental import temporal_snapshot
+from support import charter_settings
 
 
 class ExperimentalRegimeTests(unittest.TestCase):
@@ -58,8 +59,7 @@ class ExperimentalRegimeTests(unittest.TestCase):
 
     def test_temporal_receipt_is_delivered_but_cannot_change_governance(self):
         self.engine.store.close()
-        self.engine = Engine(Path(self.temp.name) / "charter", {**DEFAULTS,
-                             "mission": "Test temporal Squirrel observation."})
+        self.engine = Engine(Path(self.temp.name) / "charter", charter_settings("Test temporal Squirrel observation."))
         with self.engine.store.lock():
             self.engine.initialize()
         with self.engine.store.lock():
