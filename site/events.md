@@ -2,9 +2,98 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `1788e838094ec68ae0c070872783e9461eff80acd96d71e13471758c40895359`
+Verified head: `6bd0772b8df462d45469a6cecafecb594a668ec2a29ee7fd1ad645c608a5b4f6`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0778 · `research_topics_changed`
+
+**Time:** 2026-09-23T11:31:21.949517+00:00  
+**ID:** `system`  
+**Hash:** `6bd0772b8df462d45469a6cecafecb594a668ec2a29ee7fd1ad645c608a5b4f6`  
+**Previous hash:** `1788e838094ec68ae0c070872783e9461eff80acd96d71e13471758c40895359`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "consciousness": "#c0caf5",
+    "entropy": "#2ac3de",
+    "information_thermodynamics": "#b25dff",
+    "neurodivergence": "#54d4bc",
+    "philosophy": "#f7768e",
+    "prime_numbers": "#c099ff",
+    "psychology": "#ff9e64",
+    "quantum_mechanics": "#8aa8ff",
+    "religion": "#f2a2ca",
+    "wake_analysis": "#d8c25d"
+  },
+  "topics": [
+    {
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+    },
+    {
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake",
+      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+    },
+    {
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+    },
+    {
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+    },
+    {
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?"
+    },
+    {
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?"
+    },
+    {
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?"
+    },
+    {
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+    },
+    {
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+    }
+  ]
+}
+```
 
 ## Event 0777 · `squirrel_assessed`
 
