@@ -54,42 +54,48 @@ def persistent_identifiers(observation):
     values += ["openalex:" + item.rsplit("/", 1)[-1] for item in re.findall(r"https?://openalex\.org/[Ww]\d+", text)]
     values += ["arxiv:" + item for item in re.findall(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", text)]
     return list(dict.fromkeys(values))[:12]
-# WAKE self-analysis is intentionally allowed to inspect the implementation,
-# not merely prose documentation. These are all source-controlled files from
-# the same repository, so WAKE✳︎ can compare stated design with executable
-# mechanics when it selects itself as a research topic.
-WAKE_SOURCES = {
-    # The recursive tree is the discovery index for self-analysis. It exposes
-    # repository paths, not file contents, so a disposable model can discover
-    # code/tests/assets/configuration that are not named in this hand-curated
-    # convenience map and then request the corresponding raw file on a later
-    # collector pass.
-    "tree": "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
-    "default": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
-    "architecture": "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md",
-    "experiment": "https://raw.githubusercontent.com/sudofx/wake/master/docs/experiment.md",
-    "governance": "https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py",
-    "engine": "https://raw.githubusercontent.com/sudofx/wake/master/wake/engine.py",
-    "providers": "https://raw.githubusercontent.com/sudofx/wake/master/wake/providers.py",
-    "research": "https://raw.githubusercontent.com/sudofx/wake/master/wake/research.py",
-    "store": "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py",
-    "retrieval": "https://raw.githubusercontent.com/sudofx/wake/master/wake/retrieval.py",
-    "provenance": "https://raw.githubusercontent.com/sudofx/wake/master/wake/provenance.py",
-    "rejected": "https://raw.githubusercontent.com/sudofx/wake/master/wake/rejected.py",
-    "scheduling": "https://raw.githubusercontent.com/sudofx/wake/master/wake/scheduling.py",
-    "report": "https://raw.githubusercontent.com/sudofx/wake/master/wake/report.py",
-    "feeds": "https://raw.githubusercontent.com/sudofx/wake/master/wake/feeds.py",
-    "experiment_code": "https://raw.githubusercontent.com/sudofx/wake/master/wake/experiment.py",
-    "cli": "https://raw.githubusercontent.com/sudofx/wake/master/wake/__main__.py",
-    "config": "https://raw.githubusercontent.com/sudofx/wake/master/wake.toml",
-    "topics": "https://raw.githubusercontent.com/sudofx/wake/master/research-topics.toml",
-    "workflow": "https://raw.githubusercontent.com/sudofx/wake/master/.github/workflows/wake.yml",
-    "github_runner": "https://raw.githubusercontent.com/sudofx/wake/master/scripts/github_wake.py",
-    "cycle_runner": "https://raw.githubusercontent.com/sudofx/wake/master/scripts/run-wake-cycles.sh",
-    "site_app": "https://raw.githubusercontent.com/sudofx/wake/master/wake/assets/app.js",
-    "site_map": "https://raw.githubusercontent.com/sudofx/wake/master/wake/assets/map.js",
+# Repository-analysis topics may inspect source-controlled implementation,
+# not merely prose documentation. The capability is generic; activation and
+# repository identity come from research-topics.toml rather than a hardcoded
+# topic ID.
+REPOSITORY_SOURCE_PATHS = {
+    "tree": None,
+    "default": "README.md",
+    "architecture": "docs/architecture.md",
+    "experiment": "docs/experiment.md",
+    "governance": "wake/governance.py",
+    "engine": "wake/engine.py",
+    "providers": "wake/providers.py",
+    "research": "wake/research.py",
+    "store": "wake/store.py",
+    "retrieval": "wake/retrieval.py",
+    "provenance": "wake/provenance.py",
+    "rejected": "wake/rejected.py",
+    "scheduling": "wake/scheduling.py",
+    "report": "wake/report.py",
+    "feeds": "wake/feeds.py",
+    "experiment_code": "wake/experiment.py",
+    "cli": "wake/__main__.py",
+    "config": "wake.toml",
+    "topics": "research-topics.toml",
+    "workflow": ".github/workflows/wake.yml",
+    "github_runner": "scripts/github_wake.py",
+    "cycle_runner": "scripts/run-wake-cycles.sh",
+    "site_app": "wake/assets/app.js",
+    "site_map": "wake/assets/map.js",
 }
 
+
+def repository_sources(repository):
+    """Build the bounded source map for one configured repository topic."""
+    base = "https://raw.githubusercontent.com/" + repository + "/master/"
+    return {
+        key: (
+            "https://api.github.com/repos/" + repository + "/git/trees/master?recursive=1"
+            if key == "tree" else base + path
+        )
+        for key, path in REPOSITORY_SOURCE_PATHS.items()
+    }
 
 # ---------------------------------------------------------------------------
 # STEP: allowed_url
@@ -100,16 +106,17 @@ WAKE_SOURCES = {
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def allowed_url(url):
+def allowed_url(url, repository="sudofx/wake"):
     if not isinstance(url, str) or len(url) > 2000:
         raise ValueError("Source URL must be text, at most 2000 characters")
     parsed = urllib.parse.urlsplit(url)
     if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None, 443):
         raise ValueError("Source must use HTTPS on an approved research host")
-    if parsed.hostname == "raw.githubusercontent.com" and not parsed.path.startswith("/sudofx/wake/"):
-        raise ValueError("Repository research must stay within sudofx/wake")
-    if parsed.hostname == "api.github.com" and parsed.path != "/repos/sudofx/wake/git/trees/master":
-        raise ValueError("GitHub API research is limited to the sudofx/wake master tree")
+    repo_path = "/" + repository + "/"
+    if parsed.hostname == "raw.githubusercontent.com" and not parsed.path.startswith(repo_path):
+        raise ValueError("Repository research must stay within " + repository)
+    if parsed.hostname == "api.github.com" and parsed.path != "/repos/" + repository + "/git/trees/master":
+        raise ValueError("GitHub API research is limited to the configured repository master tree")
     return url
 
 
@@ -290,9 +297,10 @@ def fetch_source(url, discovery_only=False):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def query_url(query, domain):
-    if domain == "wake_analysis":
+def query_url(query, domain, topic=None):
+    if topic and topic.get("source_kind") == "repository":
         q = query.lower()
+        sources = repository_sources(topic["repository"])
         choices = [
             (("architecture", "design"), "architecture"),
             (("hypothesis", "experiment document"), "experiment"),
@@ -319,11 +327,11 @@ def query_url(query, domain):
         ]
         for needles, source in choices:
             if any(needle in q for needle in needles):
-                return WAKE_SOURCES[source]
+                return sources[source]
         # Unknown self-analysis questions begin with the repository index rather
         # than README. This prevents the curated map from becoming an accidental
         # boundary on what future disposable workers are able to discover.
-        return WAKE_SOURCES["tree"]
+        return sources["tree"]
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
 
@@ -336,20 +344,20 @@ def query_url(query, domain):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def research_urls(query, domain, attempts=0):
+def research_urls(query, domain, attempts=0, topic=None):
     """Return bounded routes for a neutral topic or a queued follow-up query."""
-    if domain == "wake_analysis":
-        primary = query_url(query, domain)
+    if topic and topic.get("source_kind") == "repository":
+        primary = query_url(query, domain, topic)
         # A WAKE✳︎ follow-up gets two distinct repository views when the fixed
         # collector budget permits it. The first follows the query; the second
         # rotates across implementation/config/workflow/UI files so self-study
         # is not trapped in README/docs or a single favored module.
-        repo_routes = list(dict.fromkeys(WAKE_SOURCES.values()))
+        repo_routes = list(dict.fromkeys(repository_sources(topic["repository"]).values()))
         alternate = repo_routes[attempts % len(repo_routes)]
         if alternate == primary:
             alternate = repo_routes[(attempts + 1) % len(repo_routes)]
         return [primary, alternate]
-    crossref = query_url(query, domain)
+    crossref = query_url(query, domain, topic)
     openalex = "https://api.openalex.org/works?" + urllib.parse.urlencode({
         "search": query, "per-page": 4,
         "select": "id,doi,title,publication_year,type,cited_by_count,open_access,primary_location,abstract_inverted_index",
@@ -391,11 +399,11 @@ def discovery_urls(topic, attempts=0):
     # Self-analysis is a special, source-controlled domain: its repository tree
     # is already a safe discovery index and remains more useful than a generic
     # third-party idea pool.
-    if topic["id"] == "wake_analysis":
-        return research_urls(topic["query"], topic["id"], attempts)
+    if topic.get("source_kind") == "repository":
+        return research_urls(topic["query"], topic["id"], attempts, topic)
     query = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": topic["query"], "format": "json"})
     return ["https://en.wikipedia.org/w/api.php?" + query,
-            research_urls(topic["query"], topic["id"], attempts)[0]]
+            research_urls(topic["query"], topic["id"], attempts, topic)[0]]
 
 
 # ---------------------------------------------------------------------------
@@ -426,7 +434,8 @@ def collect(engine, fetcher=fetch_source):
     if not state.get("charter"):
         return
     attempts = len(state["invocations"])
-    topics = state.get("research_topics", [])
+    topics = [topic for topic in state.get("research_topics", []) if topic.get("enabled", True)]
+    topic_by_id = {topic["id"]: topic for topic in state.get("research_topics", [])}
     def awaiting_capability_retry(request):
         summary = state.get("acquisition", {}).get(request["project"], {})
         return (summary.get("capability_blocked")
@@ -453,7 +462,7 @@ def collect(engine, fetcher=fetch_source):
 
     if queued and discovery_count:
         followup = rng.choice(queued)
-        routes = research_urls(followup["query"], followup["domain"], attempts)
+        routes = research_urls(followup["query"], followup["domain"], attempts, topic_by_id.get(followup["domain"]))
         # A model may turn a promising discovery result into an approved exact
         # record URL.  Preserve that choice; replacing it with another broad
         # search is what previously trapped projects in discovery loops.
@@ -493,7 +502,8 @@ def collect(engine, fetcher=fetch_source):
     for item in pending:
         url = item.get("url") or query_url(item["query"], item["domain"])
         try:
-            (allowed_discovery_url(url) if item.get("discovery_only") else allowed_url(url))
+            topic = topic_by_id.get(item["domain"], {})
+            (allowed_discovery_url(url) if item.get("discovery_only") else allowed_url(url, topic.get("repository", "sudofx/wake")))
             observation = (fetch_source(url, discovery_only=True) if fetcher is fetch_source and item.get("discovery_only")
                            else fetcher(url))
             # Trusted collector metadata activates forward-only verification and
