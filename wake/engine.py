@@ -516,6 +516,52 @@ class Engine:
     # until the next boundary validates or records them. Callers may rely on this contract.
     # ---------------------------------------------------------------------------
 
+    def durable_notebook_source_payload(self, state, evidence_id):
+        """Return full durable source metadata only when a notebook may consider it.
+
+        Provider-context evidence may be excerpted, so eligibility must never be
+        inferred by reparsing the delivered copy. The durable record is the
+        authoritative source for role/scope metadata.
+        """
+        evidence = state.get("evidence", {}).get(evidence_id)
+        if not evidence or evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+            return None
+        try:
+            payload = json.loads(evidence.get("content", ""))
+        except (ValueError, TypeError):
+            return None
+        if not isinstance(payload, dict):
+            return None
+        if payload.get("evidence_role") == "discovery":
+            return None
+        if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
+            return None
+        return payload
+
+    def project_notebook_evidence_ids(self, state, evidence_ids, project, *, same_domain=False):
+        """Filter evidence IDs using authoritative durable metadata.
+
+        Cross-topic source evidence remains available to the model because
+        governance can accept materially relevant cross-topic support. The
+        same_domain switch is only an attention/retrieval signal: an active
+        project should not be considered serviced merely because some unrelated
+        source happens to be visible.
+        """
+        eligible = []
+        for evidence_id in evidence_ids:
+            payload = self.durable_notebook_source_payload(state, evidence_id)
+            if payload is None:
+                continue
+            evidence = state["evidence"][evidence_id]
+            if project.get("domain") == "wake_analysis" and not evidence.get("source", "").startswith(
+                "https://raw.githubusercontent.com/sudofx/wake/"
+            ):
+                continue
+            if same_domain and payload.get("topic_domain") != project.get("domain"):
+                continue
+            eligible.append(evidence_id)
+        return eligible
+
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
@@ -676,28 +722,13 @@ class Engine:
             # evidence IDs that are eligible for each visible project so the
             # disposable model does not accidentally cross-wire domains.
             context["project_evidence"] = {}
+            visible_evidence_ids = list(visible_evidence)
             for project in context["projects"]:
-                eligible = []
-                for evidence_id, evidence in visible_evidence.items():
-                    if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
-                        continue
-                    try:
-                        payload = json.loads(evidence.get("content", ""))
-                    except (ValueError, TypeError):
-                        payload = {}
-                    if payload.get("verification_required") is True:
-                        # Topic stamps remain provenance, not a semantic
-                        # relevance verdict. Cross-topic source records can be
-                        # considered by a project; governance still checks
-                        # source role and material claim overlap.
-                        if payload.get("evidence_role", "source") != "source":
-                            continue
-                    if project["domain"] == "wake_analysis" and not evidence.get("source", "").startswith(
-                        "https://raw.githubusercontent.com/sudofx/wake/"
-                    ):
-                        continue
-                    eligible.append(evidence_id)
-                context["project_evidence"][project["id"]] = eligible
+                # Eligibility is derived from the full durable record, not the
+                # possibly truncated provider copy in visible_evidence.
+                context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
+                    state, visible_evidence_ids, project
+                )
         return context
 
     def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000):
@@ -716,46 +747,57 @@ class Engine:
         existing = {item["id"] for item in context.get("evidence", [])}
         rehydrated = []
 
-        # Rehydrate only when the bounded working view is actually missing a
-        # usable notebook source, or a near-due commitment has no temporally
-        # eligible resolution evidence. This keeps retrieval corrective rather
-        # than turning it into a second broad recent-evidence feed.
-        project_evidence = context.get("project_evidence", {})
-        projects_need_source = any(
-            not project_evidence.get(project.get("id"), [])
-            for project in context.get("projects", [])
+        active_projects = [
+            project for project in context.get("projects", [])
             if project.get("status") == "active"
-        )
-        commitments_need_evidence = any(
+        ]
+        visible_ids = list(existing)
+        missing_domains = {
+            project.get("domain")
+            for project in active_projects
+            if not self.project_notebook_evidence_ids(
+                state, visible_ids, project, same_domain=True
+            )
+        }
+        projects_need_source = bool(missing_domains)
+
+        # A near-due commitment is also an attention trigger when retrieval has
+        # qualifying source records that are not presently visible. Do not let a
+        # random human observation or unrelated source make that obligation look
+        # serviced.
+        hidden_requested_sources = [
+            evidence_id for evidence_id in requested
+            if evidence_id not in existing
+            and self.durable_notebook_source_payload(state, evidence_id) is not None
+        ]
+        commitments_need_evidence = bool(hidden_requested_sources) and any(
             commitment.get("due_cycle", 10**9) <= state.get("version", 0) + 2
-            and not commitment.get("resolution_evidence", [])
             for commitment in context.get("commitments", [])
         )
         if not projects_need_source and not commitments_need_evidence:
             context["retrieval_rehydration"] = {
                 "evidence_ids": [],
-                "boundary": "No visible active project or near-due commitment required exact-record recovery.",
+                "boundary": "Visible active projects already have same-domain source evidence and no near-due commitment requires hidden source recovery.",
             }
             return context
 
-        for evidence_id in requested:
-            evidence = state.get("evidence", {}).get(evidence_id)
-            if not evidence:
-                continue
-            if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
-                continue
-            try:
-                payload = json.loads(evidence.get("content", ""))
-            except (ValueError, TypeError):
-                payload = {}
+        # Prefer sources from domains that are absent for active projects while
+        # preserving deterministic retrieval order inside each priority class.
+        requested = sorted(
+            requested,
+            key=lambda evidence_id: (
+                0 if (
+                    (payload := self.durable_notebook_source_payload(state, evidence_id))
+                    and payload.get("topic_domain") in missing_domains
+                ) else 1
+            ),
+        )
 
-            # Discovery payloads are leads, never notebook evidence. Keep the
-            # distinction here as well as in governance so context does not
-            # suggest that an ineligible record may be cited.
-            if payload.get("evidence_role") == "discovery":
+        for evidence_id in requested:
+            payload = self.durable_notebook_source_payload(state, evidence_id)
+            if payload is None:
                 continue
-            if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
-                continue
+            evidence = state["evidence"][evidence_id]
 
             rehydrated.append(evidence_id)
             if evidence_id not in existing:
@@ -803,25 +845,11 @@ class Engine:
         # projects may inspect cross-topic sources; WAKE self-analysis keeps its
         # stricter repository-source boundary.
         context["project_evidence"] = {}
+        visible_evidence_ids = list(visible_evidence)
         for project in context.get("projects", []):
-            eligible = []
-            for evidence_id, evidence in visible_evidence.items():
-                if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
-                    continue
-                try:
-                    payload = json.loads(evidence.get("content", ""))
-                except (ValueError, TypeError):
-                    payload = {}
-                if payload.get("evidence_role") == "discovery":
-                    continue
-                if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
-                    continue
-                if project.get("domain") == "wake_analysis" and not evidence.get("source", "").startswith(
-                    "https://raw.githubusercontent.com/sudofx/wake/"
-                ):
-                    continue
-                eligible.append(evidence_id)
-            context["project_evidence"][project["id"]] = eligible
+            context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
+                state, visible_evidence_ids, project
+            )
 
         return context
     # ---------------------------------------------------------------------------
