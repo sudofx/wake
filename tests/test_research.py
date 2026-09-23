@@ -26,7 +26,7 @@ from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
-from wake.research import WAKE_SOURCES, allowed_url, collect, discovery_urls
+from wake.research import allowed_url, collect, discovery_urls, repository_sources
 from wake.report import export
 
 
@@ -102,6 +102,34 @@ class ResearchTests(unittest.TestCase):
         variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
+
+    def test_disabled_topic_is_not_exposed_for_new_work(self):
+        disabled = {
+            "id": "disabled_topic", "label": "Disabled", "query": "disabled",
+            "seed_question": "Should not be offered.", "enabled": False, "source_kind": "web",
+        }
+        self.engine.config["research_topics"] = [*self.engine.config["research_topics"], disabled]
+        with self.engine.store.lock():
+            state = self.engine.initialize()
+            invocation, request = self.engine.start("fixture", "disabled-topic-test")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+        self.assertIn("disabled_topic", [topic["id"] for topic in state["research_topics"]])
+        self.assertNotIn("disabled_topic", [topic["id"] for topic in request["context"]["research_topics"]])
+        variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
+        project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
+        self.assertNotIn("disabled_topic", project_schema["properties"]["domain"]["enum"])
+
+    def test_project_name_is_configuration_driven(self):
+        renamed = Engine(self.root/"renamed", {**DEFAULTS, "mission":"Explore.", "project_name":"Project Star"})
+        try:
+            with renamed.store.lock():
+                state = renamed.initialize()
+                invocation, request = renamed.start("fixture", "identity-test")
+                renamed.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+            self.assertEqual(state["pet_name"], "Project Star")
+            self.assertEqual(request["context"]["project_name"], "Project Star")
+        finally:
+            renamed.store.close()
 
     def test_seed_question_is_initial_condition_not_repeated_instruction(self):
         topic = next(item for item in self.engine.config["research_topics"] if item["id"] == "entropy")
@@ -418,7 +446,9 @@ class ResearchTests(unittest.TestCase):
 
     def test_wake_topic_is_a_rotating_breadcrumb_not_a_system_instruction(self):
         settings = {**DEFAULTS, "mission": "Follow useful questions.",
-                    "research_topics": [{"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE"}]}
+                    "research_topics": [{"id": "self_study", "label": "Self study", "query": "runtime",
+                                         "enabled": True, "source_kind": "repository",
+                                         "repository": "sudofx/wake"}]}
         engine = Engine(self.root/"breadcrumb", settings)
         calls = []
         try:
@@ -500,6 +530,10 @@ class ResearchTests(unittest.TestCase):
                 {"id": "external-source", "actor": "collector",
                  "source": "https://api.crossref.org/works?query=wake"},
             ],
+            "project_evidence": {
+                "wake": ["wake-source"],
+                "other": ["wake-source", "external-source"],
+            },
         }
         alternatives = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         notebooks = [item for item in alternatives if item["properties"]["type"]["enum"] == ["notebook"]]
@@ -944,8 +978,9 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(odd[0], even[0])
         self.assertIn("api.openalex.org", odd[1])
 
-    def test_wake_discovery_stays_repository_scoped_and_can_discover_unlisted_files(self):
-        topic = {"id": "wake_analysis", "label": "WAKE✳︎", "query": "WAKE✳︎ sudofx/wake"}
+    def test_repository_topic_capability_is_configured_not_name_bound(self):
+        topic = {"id": "self_study", "label": "Self study", "query": "runtime architecture",
+                 "enabled": True, "source_kind": "repository", "repository": "sudofx/wake"}
         routes = discovery_urls(topic, 7)
         self.assertEqual(len(routes), 2)
         self.assertTrue(all(
@@ -955,7 +990,7 @@ class ResearchTests(unittest.TestCase):
         ))
         self.assertIn(
             "https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1",
-            list(WAKE_SOURCES.values()),
+            list(repository_sources("sudofx/wake").values()),
         )
         self.assertEqual(
             allowed_url("https://raw.githubusercontent.com/sudofx/wake/master/tests/unlisted_future_test.py"),

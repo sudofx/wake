@@ -83,17 +83,32 @@ def _topics(settings, config_path=None):
         # A seed question is an operator-supplied starting coordinate, not a
         # permanent mission.  It is stored with the audited topic configuration
         # so old cycles remain truthful about whether a seed existed yet.
-        allowed = {"id", "label", "query", "seed_question"}
+        allowed = {"id", "label", "query", "seed_question", "enabled", "source_kind", "repository"}
         require(isinstance(item, dict) and {"id", "label", "query"} <= set(item) <= allowed,
-                "Each research topic needs id, label, query, and may include seed_question")
+                "Each research topic needs id, label, query, and may include seed_question, enabled, source_kind, repository")
         require(isinstance(item["id"], str) and re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", item["id"]),
                 "Research topic IDs must use letters, digits, underscores or hyphens")
         text(item["label"], "Research topic label", 120)
         text(item["query"], "Research topic query", 200)
         if "seed_question" in item:
             text(item["seed_question"], "Research topic seed question", 600)
-        normalized.append({key: item[key] for key in ("id", "label", "query", "seed_question") if key in item})
+        enabled = item.get("enabled", True)
+        require(type(enabled) is bool, "Research topic enabled must be true or false")
+        source_kind = item.get("source_kind", "web")
+        require(source_kind in ("web", "repository"), "Research topic source_kind must be web or repository")
+        if source_kind == "repository":
+            repository = item.get("repository")
+            require(isinstance(repository, str) and re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository),
+                    "Repository research topics require repository = owner/name")
+        elif "repository" in item:
+            require(False, "Only repository research topics may set repository")
+        normalized.append({
+            **{key: item[key] for key in ("id", "label", "query", "seed_question", "repository") if key in item},
+            "enabled": enabled,
+            "source_kind": source_kind,
+        })
     require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
+    require(any(item["enabled"] for item in normalized), "At least one research topic must be enabled")
     return normalized
 # ---------------------------------------------------------------------------
 # STEP: config
@@ -127,7 +142,9 @@ def config(path="wake.toml"):
     text(result["objective"], "Objective", 2000)
     if result.get("mission"):
         text(result["mission"], "Research mission", 3000)
-        text(result.get("pet_name", "WAKE✳"), "Pet name", 80)
+        project_name = result.get("project_name", result.get("pet_name", "WAKE✳"))
+        text(project_name, "Project name", 80)
+        result["project_name"] = project_name
         notes = result.get("editorial_notes", [])
         require(isinstance(notes, list) and len(notes) <= 8,
                 "editorial_notes must be a list of at most 8 notes")
@@ -182,12 +199,12 @@ class Engine:
             state = self.store.append("initialized", {"objective": self.config["objective"], "governance": 1})
         if self.config.get("mission") and not state.get("charter"):
             state = self.store.append("charter_adopted", {"mission": self.config["mission"],
-                                     "pet_name": self.config.get("pet_name", "WAKE✳"),
+                                     "pet_name": self.config.get("project_name", self.config.get("pet_name", "WAKE✳")),
                                      "topics": self.config["research_topics"],
                                      "topic_colors": _topic_colors(self.config["research_topics"]), "actor": "operator"})
         # A branding change is part of the durable identity. Record it as an
         # auditable event instead of rewriting the original charter or history.
-        desired_name = self.config.get("pet_name", "WAKE✳")
+        desired_name = self.config.get("project_name", self.config.get("pet_name", "WAKE✳"))
         if state.get("charter") and state.get("pet_name") != desired_name:
             state = self.store.append("pet_renamed", {"pet_name": desired_name, "actor": "operator"})
         desired_topics = self.config.get("research_topics", [])
@@ -516,6 +533,19 @@ class Engine:
     # until the next boundary validates or records them. Callers may rely on this contract.
     # ---------------------------------------------------------------------------
 
+    def topic_definition(self, state, domain):
+        return next((topic for topic in state.get("research_topics", []) if topic.get("id") == domain), None)
+
+    def repository_topic(self, state, domain):
+        topic = self.topic_definition(state, domain)
+        return topic if topic and topic.get("source_kind") == "repository" else None
+
+    def repository_raw_prefix(self, state, domain):
+        topic = self.repository_topic(state, domain)
+        if not topic:
+            return None
+        return "https://raw.githubusercontent.com/" + topic["repository"] + "/"
+
     def durable_notebook_source_payload(self, state, evidence_id):
         """Return full durable source metadata only when a notebook may consider it.
 
@@ -553,15 +583,14 @@ class Engine:
             if payload is None:
                 continue
             evidence = state["evidence"][evidence_id]
-            if project.get("domain") == "wake_analysis" and not evidence.get("source", "").startswith(
-                "https://raw.githubusercontent.com/sudofx/wake/"
-            ):
+            repository_prefix = self.repository_raw_prefix(state, project.get("domain"))
+            if repository_prefix and not evidence.get("source", "").startswith(repository_prefix):
                 continue
             if same_domain:
                 # WAKE repository files are intrinsically domain-scoped by their
                 # source boundary, including legacy records that predate an
                 # explicit topic_domain stamp.
-                if project.get("domain") != "wake_analysis" and payload.get("topic_domain") != project.get("domain"):
+                if not self.repository_topic(state, project.get("domain")) and payload.get("topic_domain") != project.get("domain"):
                     continue
             eligible.append(evidence_id)
         return eligible
@@ -622,7 +651,9 @@ class Engine:
             context["squirrel"] = {**squirrel_plan(state), "temporal": state.get("temporal", {}),
                                    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"}
             context["pet_name"] = state["pet_name"]
+            context["project_name"] = state["pet_name"]
             topics = state.get("research_topics") or self.config.get("research_topics", [])
+            topics = [topic for topic in topics if topic.get("enabled", True)]
             projects = list(state["projects"].values())
             # Seeds are consumed by circumstance rather than mutated away.  Once
             # a topic owns any project, the seed disappears from provider context;
@@ -682,20 +713,24 @@ class Engine:
             # at least two usable repository files, but carrying every repeated
             # README/source snapshot makes the response schema itself exceed the
             # context ceiling before a model can correct its citation choice.
+            repository_prefixes = tuple(
+                "https://raw.githubusercontent.com/" + topic["repository"] + "/"
+                for topic in state.get("research_topics", [])
+                if topic.get("source_kind") == "repository"
+            )
             recent_sources = [v for v in collector_sources
-                              if not v.get("source", "").startswith(
-                                  "https://raw.githubusercontent.com/sudofx/wake/")][-2:]
-            wake_sources, seen_wake_urls = [], set()
+                              if not repository_prefixes or not v.get("source", "").startswith(repository_prefixes)][-2:]
+            repository_sources, seen_repository_urls = [], set()
             for item in reversed(collector_sources):
                 source = item.get("source", "")
-                if (not source.startswith("https://raw.githubusercontent.com/sudofx/wake/")
-                        or source in seen_wake_urls):
+                if (not repository_prefixes or not source.startswith(repository_prefixes)
+                        or source in seen_repository_urls):
                     continue
-                wake_sources.append(item)
-                seen_wake_urls.add(source)
-                if len(wake_sources) == 4:
+                repository_sources.append(item)
+                seen_repository_urls.add(source)
+                if len(repository_sources) == 4:
                     break
-            sources = recent_sources + list(reversed(wake_sources))
+            sources = recent_sources + list(reversed(repository_sources))
             context["evidence"] = [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000}
                                    for e in context["evidence"] if e.get("actor") != "collector"][-3:]
             context["evidence"] += [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000} for e in sources]
@@ -797,11 +832,17 @@ class Engine:
             ),
         )
 
-        visible_wake_urls = {
+        repository_prefixes = tuple(
+            "https://raw.githubusercontent.com/" + topic["repository"] + "/"
+            for topic in state.get("research_topics", [])
+            if topic.get("source_kind") == "repository"
+        )
+        visible_repository_urls = {
             item.get("source")
             for item in context.get("evidence", [])
             if item.get("actor") == "collector"
-            and item.get("source", "").startswith("https://raw.githubusercontent.com/sudofx/wake/")
+            and repository_prefixes
+            and item.get("source", "").startswith(repository_prefixes)
         }
 
         for evidence_id in requested:
@@ -815,9 +856,9 @@ class Engine:
             # provider envelope beyond the four distinct repository sources that
             # context() deliberately exposes.
             source = evidence.get("source", "")
-            is_wake_source = source.startswith("https://raw.githubusercontent.com/sudofx/wake/")
-            if evidence_id not in existing and is_wake_source:
-                if source in visible_wake_urls or len(visible_wake_urls) >= 4:
+            is_repository_source = bool(repository_prefixes) and source.startswith(repository_prefixes)
+            if evidence_id not in existing and is_repository_source:
+                if source in visible_repository_urls or len(visible_repository_urls) >= 4:
                     continue
 
             rehydrated.append(evidence_id)
@@ -829,8 +870,8 @@ class Engine:
                     "context_excerpt": len(content) > content_limit,
                 })
                 existing.add(evidence_id)
-                if is_wake_source:
-                    visible_wake_urls.add(source)
+                if is_repository_source:
+                    visible_repository_urls.add(source)
 
             # One provisional notebook needs only one qualifying source; allow a
             # small second/third record for comparison or commitment resolution

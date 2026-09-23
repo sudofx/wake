@@ -3,66 +3,80 @@
 # Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
 # WAKE✳︎ research topics
 #
-# Edit this file to add, rename, remove, or reorder research topics. Changes are
-# adopted as an audited configuration event the next time WAKE starts. IDs must
-# remain stable if existing projects already use them. `query` is the neutral
-# discovery phrase used when no project has queued a more focused search.
+# Edit this file to add, rename, enable/disable, remove, or reorder research topics.
+# Changes are adopted as an audited configuration event the next time the runtime
+# starts. IDs must remain stable if existing projects already use them. `query`
+# is the neutral discovery phrase used when no project has queued a more focused
+# search. `source_kind = "repository"` is an optional capability flag for a
+# topic that studies a configured source repository; ordinary topics use "web".
 
 [[topics]]
+enabled = true
 id = "information_thermodynamics"
 label = "Information thermodynamics"
 query = "information thermodynamics"
 seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
 
 [[topics]]
+enabled = true
 id = "entropy"
 label = "Entropy"
 query = "entropy"
 seed_question = "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
 
 [[topics]]
+enabled = true
 id = "wake_analysis"
 label = "WAKE✳︎"
 query = "WAKE✳︎ sudofx/wake"
+source_kind = "repository"
+repository = "sudofx/wake"
 seed_question = "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
 
 [[topics]]
+enabled = true
 id = "neurodivergence"
 label = "Neurodivergence"
 query = "neurodivergence"
 seed_question = "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
 
 [[topics]]
+enabled = true
 id = "consciousness"
 label = "Consciousness"
 query = "consciousness"
 seed_question = "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
 
 [[topics]]
+enabled = true
 id = "psychology"
 label = "Psychology"
 query = "psychology"
 seed_question = "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?"
 
 [[topics]]
+enabled = true
 id = "quantum_mechanics"
 label = "Quantum mechanics"
 query = "quantum mechanics"
 seed_question = "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?"
 
 [[topics]]
+enabled = true
 id = "philosophy"
 label = "Philosophy"
 query = "philosophy"
 seed_question = "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?"
 
 [[topics]]
+enabled = true
 id = "religion"
 label = "Religion"
 query = "religion"
 seed_question = "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
 
 [[topics]]
+enabled = true
 id = "prime_numbers"
 label = "Prime numbers"
 query = "prime numbers mathematics"

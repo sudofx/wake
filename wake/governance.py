@@ -1011,6 +1011,7 @@ def transition(state, proposal, invocation, historical=False):
             domains = {
                 topic["id"]
                 for topic in state["research_topics"]
+                if topic.get("enabled", True)
             }
 
             require(
@@ -1134,7 +1135,11 @@ def transition(state, proposal, invocation, historical=False):
                 # time and to keep URL policy owned by the retrieval layer.
                 from .research import allowed_url
 
-                allowed_url(action["url"])
+                topic_config = next(
+                    (topic for topic in state.get("research_topics", []) if topic.get("id") == action["domain"]),
+                    {},
+                )
+                allowed_url(action["url"], topic_config.get("repository", "sudofx/wake"))
 
             require(
                 action["project"] in result["projects"],
@@ -1150,6 +1155,7 @@ def transition(state, proposal, invocation, historical=False):
             domains = {
                 topic["id"]
                 for topic in state["research_topics"]
+                if topic.get("enabled", True)
             }
 
             project_domain = (
@@ -1318,25 +1324,26 @@ def transition(state, proposal, invocation, historical=False):
                         minimum_sources=1,
                     )
 
-            # WAKE-analysis is deliberately special.
-            #
-            # Claims about WAKE✳︎'s own implementation should be grounded in
-            # source-controlled files from sudofx/wake rather than generic web
-            # commentary about the project.
-
-            if (
-                result["projects"][action["project"]]["domain"]
-                == "wake_analysis"
-            ):
+            # Repository-analysis is a configured topic capability, not a
+            # special hardcoded topic identity. When enabled, its notebooks
+            # must stay grounded in source-controlled files from that topic's
+            # configured repository.
+            project_domain = result["projects"][action["project"]]["domain"]
+            topic_config = next(
+                (topic for topic in state.get("research_topics", []) if topic.get("id") == project_domain),
+                None,
+            )
+            if topic_config and topic_config.get("source_kind") == "repository":
+                repository = topic_config["repository"]
                 require(
                     all(
                         evidence["source"].startswith(
-                            "https://raw.githubusercontent.com/sudofx/wake/"
+                            "https://raw.githubusercontent.com/" + repository + "/"
                         )
                         for evidence in cited
                     ),
-                    "WAKE analysis notebooks must cite only "
-                    "source-controlled sudofx/wake files",
+                    "Repository-analysis notebooks must cite only "
+                    "source-controlled files from " + repository,
                 )
 
             old = result["notebooks"].get(action["id"])
