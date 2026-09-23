@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f95a26ad9a236b0206faa3a55250541f77b2226f8674e82b5733a7c2a2e28084`
+Verified head: `c9bec470bc003f7ca5129726269ff3f00fabf7623a994df0c4c0cc73903fb190`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Awaiting Verified Records for Statistical Entropy Foundations
+
+September 23, 2026 · 03:21 AM PDT · gemini / gemini-3.8-flash
+
+We reviewed inherited commitment review_statistical_entropy_notebook. While resolution_evidence contains source-12cfa0f567c94601 and source-bac104a4feea4d0f, these are broad Wikipedia API search snippet listings. Recent operator feedback and governance rules explicitly state: 'Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first.' Therefore, we cannot synthesize a valid notebook or legitimately fulfill the commitment with snippet listings alone. Given the failure of the direct Crossref query for doi:10.3390/e21070696, we queue an alternate targeted search in the active entropy domain to acquire specific source text.
+
+Invocation: `w-5629c19816424d26`
 
 ## 006 · Querying Statistical Entropy Formulations via Crossref Verification
 
