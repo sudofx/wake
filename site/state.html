@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>11e4ff2b2987c6c41f36955386eb0e2bec82b492083f95940b05da6578779b74</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 1<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>17be5c1aeb56333cea6290af98415724008ef9e992556abafb60f466a7dd0331</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 1<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 5,
   &quot;id&quot;: &quot;c-review-wake-arch-01&quot;,
   &quot;reason&quot;: &quot;Ensure findings from initial wake_analysis query are systematically evaluated and synthesized into project notebook.&quot;,
@@ -200,6 +200,309 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;successful_model&quot;: &quot;gemini-3.8-flash&quot;,
   &quot;finished&quot;: &quot;2026-09-23T21:29:35.512414+00:00&quot;,
   &quot;reason&quot;: &quot;&quot;
+}</pre></div></details><details><summary>w-13bd03dd5cbb4876</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 1,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 17133,
+    &quot;delivered_request_chars&quot;: 42190,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;omitted_categories&quot;: [],
+    &quot;provenance_policy&quot;: null,
+    &quot;rich_context_chars&quot;: 49968,
+    &quot;working_set_chars&quot;: 1061
+  },
+  &quot;experimental_regime&quot;: {
+    &quot;actor&quot;: &quot;operator&quot;,
+    &quot;adopted_at&quot;: &quot;2026-09-23T21:25:25.789831+00:00&quot;,
+    &quot;controls&quot;: {
+      &quot;time_dilation&quot;: {
+        &quot;affects&quot;: [
+          &quot;telemetry&quot;,
+          &quot;provider_context&quot;
+        ],
+        &quot;description&quot;: &quot;Records wall, cycle and intervening-event distance; effective time follows the selected mapping.&quot;,
+        &quot;enabled&quot;: true,
+        &quot;mode&quot;: &quot;real&quot;,
+        &quot;scale&quot;: 1.0
+      }
+    },
+    &quot;effective_from_version&quot;: 0,
+    &quot;effective_seconds&quot;: 0.0,
+    &quot;event_seq&quot;: 3,
+    &quot;id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;reason&quot;: &quot;Initialize the default experimental instrument regime.&quot;
+  },
+  &quot;id&quot;: &quot;w-13bd03dd5cbb4876&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 1,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 0.5,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 0.5,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;score&quot;: 0.675,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 1,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2246,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-23&quot;,
+  &quot;request_hash&quot;: &quot;a90f726c3ea793695e0aab91ec117708c3e1f0078875b54d90ad14a69d57b531&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-517e8c8aaa69481b&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-517e8c8aaa69481b&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-517e8c8aaa69481b&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;The engine may explicitly rehydrate qualifying selected IDs into provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 1,
+      &quot;evidence_count&quot;: 1,
+      &quot;trigger_counts&quot;: {
+        &quot;unincorporated_evidence&quot;: 1
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {},
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;selected_topic&quot;: &quot;wake_analysis&quot;,
+    &quot;temporal&quot;: {
+      &quot;anchor_seq&quot;: 25,
+      &quot;anchor_time&quot;: &quot;2026-09-23T21:31:26.116667+00:00&quot;,
+      &quot;anchor_version&quot;: 1,
+      &quot;effective_seconds&quot;: 360.326836
+    },
+    &quot;temporal_use&quot;: &quot;observational; no time signal changes Squirrel eligibility yet&quot;
+  },
+  &quot;temporal&quot;: {
+    &quot;cycle_distance&quot;: 1,
+    &quot;effective_elapsed_seconds&quot;: 116.622726,
+    &quot;effective_scale&quot;: 1.0,
+    &quot;effective_seconds_total&quot;: 360.326836,
+    &quot;intervening_events&quot;: {
+      &quot;accepted&quot;: 1,
+      &quot;failed&quot;: 0,
+      &quot;observation&quot;: 7,
+      &quot;rejected&quot;: 0,
+      &quot;research_collected&quot;: 1,
+      &quot;squirrel_assessed&quot;: 1,
+      &quot;total&quot;: 14
+    },
+    &quot;observed_at&quot;: &quot;2026-09-23T21:31:26.116667+00:00&quot;,
+    &quot;previous_anchor_time&quot;: &quot;2026-09-23T21:29:29.493941+00:00&quot;,
+    &quot;regime_id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;wall_elapsed_seconds&quot;: 116.622726
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 17133,
+    &quot;inquiry_drive_project_count&quot;: 1,
+    &quot;mode&quot;: &quot;rich&quot;,
+    &quot;retrieval_candidate_count&quot;: 1,
+    &quot;retrieval_evidence_count&quot;: 1,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;unincorporated_evidence&quot;: 1
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 1061,
+    &quot;working_to_delivered_ratio&quot;: 0.0619
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;next_step&quot;: &quot;Examine repository documentation and runtime governance contracts regarding state transition and evidence gates.&quot;,
+        &quot;question&quot;: &quot;How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;,
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 5,
+        &quot;id&quot;: &quot;c-review-wake-arch-01&quot;,
+        &quot;reason&quot;: &quot;Ensure findings from initial wake_analysis query are systematically evaluated and synthesized into project notebook.&quot;,
+        &quot;task&quot;: &quot;Review collected evidence on WAKE architecture state handling and failure modes to draft an initial synthesis notebook.&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-23T21:31:26.136378+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 3217,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 45910,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    },
+    {
+      &quot;category&quot;: &quot;timeout&quot;,
+      &quot;elapsed_ms&quot;: 60098,
+      &quot;error_type&quot;: &quot;TimeoutError&quot;,
+      &quot;http_status&quot;: null,
+      &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+      &quot;request_payload_bytes&quot;: 45910,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    },
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 834,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 45910,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 3,
+  &quot;finished&quot;: &quot;2026-09-23T21:32:40.352691+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 834,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 3217,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 45910,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      },
+      {
+        &quot;category&quot;: &quot;timeout&quot;,
+        &quot;elapsed_ms&quot;: 60098,
+        &quot;error_type&quot;: &quot;TimeoutError&quot;,
+        &quot;http_status&quot;: null,
+        &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+        &quot;request_payload_bytes&quot;: 45910,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      },
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 834,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 45910,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 3,
+    &quot;request_payload_bytes&quot;: 45910,
+    &quot;response_bytes_captured&quot;: 198,
+    &quot;result&quot;: &quot;transient_failure&quot;
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-a81ebc834d80497e</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=storytelling+narrative+cognition+literature&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:86,\\\&quot;suggestion\\\&quot;:\\\&quot;storytelling narrative coalition literature\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;storytelling narrative\\ncoalition\\nliterature\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fiction\\\&quot;,\\\&quot;pageid\\\&quot;:18949461,\\\&quot;size\\\&quot;:35712,\\\&quot;wordcount\\\&quot;:3771,\\\&quot;snippet\\\&quot;:\\\&quot;non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T19:11:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narrative identity\\\&quot;,\\\&quot;pageid\\\&quot;:35716364,\\\&quot;size\\\&quot;:60455,\\\&quot;wordcount\\\&quot;:7308,\\\&quot;snippet\\\&quot;:\\\&quot;on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\&quot;. Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:09:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narratology\\\&quot;,\\\&quot;pageid\\\&quot;:718763,\\\&quot;size\\\&quot;:23172,\\\&quot;wordcount\\\&quot;:2691,\\\&quot;snippet\\\&quot;:\\\&quot;Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-21T07:57:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ancient literature\\\&quot;,\\\&quot;pageid\\\&quot;:3709305,\\\&quot;size\\\&quot;:49644,\\\&quot;wordcount\\\&quot;:4634,\\\&quot;snippet\\\&quot;:\\\&quot;Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-29T20:43:46Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Role-playing game\\\&quot;,\\\&quot;pageid\\\&quot;:25475,\\\&quot;size\\\&quot;:38009,\\\&quot;wordcount\\\&quot;:4559,\\\&quot;snippet\\\&quot;:\\\&quot;form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T05:14:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Children&#x27;s literature\\\&quot;,\\\&quot;pageid\\\&quot;:52847,\\\&quot;size\\\&quot;:167603,\\\&quot;wordcount\\\&quot;:18216,\\\&quot;snippet\\\&quot;:\\\&quot;Machine Children&#x27;s\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children&#x27;s\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T04:25:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Soma (video game)\\\&quot;,\\\&quot;pageid\\\&quot;:5649586,\\\&quot;size\\\&quot;:41063,\\\&quot;wordcount\\\&quot;:3882,\\\&quot;snippet\\\&quot;:\\\&quot;Cody (22 June 2023). \\\&quot;Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\&quot;. In Ghosal, Torsa\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-09T19:08:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Suspense\\\&quot;,\\\&quot;pageid\\\&quot;:4450450,\\\&quot;size\\\&quot;:10990,\\\&quot;wordcount\\\&quot;:1207,\\\&quot;snippet\\\&quot;:\\\&quot;audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T05:31:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Immersive learning\\\&quot;,\\\&quot;pageid\\\&quot;:64345811,\\\&quot;size\\\&quot;:22110,\\\&quot;wordcount\\\&quot;:2264,\\\&quot;snippet\\\&quot;:\\\&quot;structured by the audience&#x27;s own\\ncognition\\n. Also, within Ryan&#x27;s book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-11-26T22:52:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dramatization\\\&quot;,\\\&quot;pageid\\\&quot;:57618166,\\\&quot;size\\\&quot;:5558,\\\&quot;wordcount\\\&quot;:732,\\\&quot;snippet\\\&quot;:\\\&quot;emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-12T01:42:08Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;7caf720e30f7c63658455c518b7c8438618652e1da589c93ec50c5cc2e23a35f\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;storytelling\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -255,6 +558,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 0,
   &quot;time&quot;: &quot;2026-09-23T21:29:29.497912+00:00&quot;
+}</pre></div></details><details><summary>source-517e8c8aaa69481b</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md\&quot;, \&quot;scope\&quot;: \&quot;raw source-controlled WAKE repository text\&quot;, \&quot;excerpt\&quot;: \&quot;# Architecture and limits\\n\\n&gt; **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Operational procedures belong in `cloud.md` and `operations.md`; dated implementation history belongs in archival snapshots.\\n\\n**WAKE✳︎** is designed around continuity of accountable work, not continuity of a model instance. Models, vendors and eventually human operators may change; the durable record, authority boundary, provenance and correction mechanisms are what carry the work forward.\\n\\n\\n## The authority boundary\\n\\nModels are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by **WAKE✳︎**. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once. With the research charter enabled, a separate trusted collector retrieves a bounded public sample from explicit HTTPS allowlists before inference. Normal mode budgets two requests. The current configured `observation_mode = true` profile raises that bounded sample to `research_collection_budget = 6` (the implementation caps observation budgets at eight). Models can record bounded follow-up searches and approved URLs as durable hypotheses; when queued follow-up work is available, the collector may spend one slot servicing it while preserving the remaining sample for randomized configured-topic discovery. The model never performs network requests itself. Operator-supplied evidence and earlier journal prose are data, not executable instructions.\\n\\nThe fixed objective is written at initialization. Models cannot alter it or the governance code. Humans can record a focus change, add an observation, or cancel an open commitment with a reason. Those actions are events, not edits to previous events. Local operators control the code and database; this is a single-host accountability system, not a hostile-administrator security boundary.\\n\\n## Durable record\\n\\n`data/wake.sqlite3` contains an append-only-by-convention `events` table and a disposable `snapshot` projection. Each event has a sequential number, UTC timestamp, kind, payload, previous hash, and SHA-256 hash of canonical JSON. Accepted events also carry a hash of the resulting cycle, beliefs, commitments and journal, plus projects, notebooks, research requests and selective blog posts when a charter is enabled. Historical events without a charter retain their original hash fields. Every read reconstructs state by replaying both events and governance, then compares it to the cache.\\n\\nSQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing **WAKE✳︎** writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.\\n\\nThe record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.\\n\\n## **WAKE✳︎** lifecycle\\n\\n1. Acquire the writer lock and verify history and projection.\\n2. If a prior automatic invocation is unfinished, record recovery. A manual request requires explicit recovery.\\n3. Check the Pacific-day call budget, before any paid-capable provider call.\\n4. Record a runtime receipt stating the prior valid head, state version and inherited obligations.\\n5. Build a request from durable state. Reject before inference if it exceeds the context ceiling.\\n6. Persist `invocation_started`, its exact request, provider identity and quota reservation.\\n7. Make a provider request, or leave a durable manual request for the operator. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.\\n8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.\\n9. The scheduled wrapper generates reports and a consistent backup.\\n\\nA runtime receipt attests delivery of durable state to the provider boundary. It does **not** attest that the remote model understood it. Prose in a journal is the provider&#x27;s narrative; accepted means governance checks passed, not that every sentence is true.\\n\\n## Governed transitions\\n\\n| Action | Enforced constraint |\\n| --- | --- |\\n| Entire proposal | Exact fields; current integer base version; bounded text; at most 12 actions; all-or-nothing |\\n| New belief | Existing evidence; nonempty statement/reason; finite confidence in [0,1]; active status |\\n| Review belief | At least one new observation cited; previous citations retained; reason required |\\n| Retract belief | Existing belief, new evidence, zero confidence; old history retained |\\n| Create commitment | Unique ID; future deadline within 100 cycles; no more than 20 open |\\n| Fulfill commitment | Already open; created by an earlier invocation; existing evidence recorded after creation; reason required |\\n| Cancel commitment | Human-only event with a reason |\\n| Publish a blog post | Existing project; one to three linked notebooks; at least two distinct collected source URLs; evidence traceable through those notebooks; current verification-required claims materially supported across at least two URLs; last action in the proposal |\\n| Correct a blog post | All blog rules above; existing current post retained and marked as superseded |\\n| Change rules, objective, delete data, run commands | Not in the model action allowlist; proposal rejected |\\n\\nThere are at most 40 belief identities. Capacity exhaustion pauses new identities, not existing reviews. Unfulfilled commitments remain visible even when overdue; deadlines are accepted-cycle numbers, not promises that the computer will run at a particular wall time.\\n\\nEvidence sources and contents are immutable through the model interface. The model can interpret or challenge evidence but cannot mint an observation. Runtime receipts are generated by trusted application code; `observe` imports human attestations. Source labels are provenance labels, not independent authentication of a measurement. `ALLOWED_ALT_HOSTS` is a discovery-only idea pool used for neutral initial searches; its material is stamped `evidence_role = discovery` and can never qualify a notebook, commitment resolution, belief, or blog claim. `ALLOWED_HOSTS` remains the verification tier: a later retrieval of an exact approved record or page is required before acceptance. Broad Crossref/OpenAlex searches are likewise explicitly recorded as discovery leads. The system checks evidence references, chronology and revision discipline. Current acceptance uses a progressive evidence gate: a working notebook may preserve a materially matched synthesis from one qualifying collected source, while ordinary public Bob prose retains the stronger requirement for at least two distinct collected source URLs with material claim overlap. Collector `topic_domain` remains provenance, not a semantic relevance verdict; qualifying cross-topic evidence may therefore be used when it materially bears on the project. Discovery-role evidence remains ineligible. These rules guard against unrelated-source garbage and false promotion, **not proof of empirical truth or full semantic entailment**.\\n\\nResearch topics have no hardcoded governance fallback: the audited topic configuration loaded from `research-topics.toml` is authoritative. Topics may include a `seed_question`, which is a forward-only operator intervention and starting coordinate rather than evidence or a conclusion. A seed remains visible to the provider only until its topic has any durable project; after that, the project&#x27;s recorded question and evidence govern continuation. Derived context exposes counts for configured, available, and already-started seeds so the intervention is measurable without inventing historical backfill. The collector host boundary is separate from topic configuration and intentionally remains an explicit allowlist to preserve SSRF/network safety while permitting a broad set of scholarly indexes, journals, universities, public-data institutions, and source-controlled WAKE files.\\n\\n### Experimental regimes and Time Dilation\\n\\nWAKE✳︎ now has a small operator-only experimental-instrument layer. The first initialization under this feature appends an `experimental_regime_adopted` event; later changes append another one through `python -m wake time-dilation --mode … --reason …`. A regime has a stable content-derived ID, typed Time Dilation controls (`enabled`, `mode`, and bounded `scale`), provenance, and an effective-from accepted-cycle boundary. A provider response has no action that can change controls or governance.\\n\\nAt each invocation boundary, a `temporal_observed` receipt records the active regime, UTC wall-clock elapsed seco\&quot;, \&quot;excerpt_truncated\&quot;: true, \&quot;source_sha256\&quot;: \&quot;7b201e9dcb5d406db84aededb1d634c996084cdbf93f4aac01073985bc182ecf\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;wake_analysis\&quot;, \&quot;evidence_role\&quot;: \&quot;source\&quot;, \&quot;host_tier\&quot;: \&quot;verification\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-517e8c8aaa69481b&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:22.202598+00:00&quot;
+}</pre></div></details><details><summary>source-0ab4a60deb1a4d04</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=endocrinology+hormones+endocrine+disorders&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:911},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrinology\\\&quot;,\\\&quot;pageid\\\&quot;:9311,\\\&quot;size\\\&quot;:28626,\\\&quot;wordcount\\\&quot;:3056,\\\&quot;snippet\\\&quot;:\\\&quot;hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-22T17:29:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine system\\\&quot;,\\\&quot;pageid\\\&quot;:9312,\\\&quot;size\\\&quot;:40983,\\\&quot;wordcount\\\&quot;:4852,\\\&quot;snippet\\\&quot;:\\\&quot;endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-30T18:34:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine disease\\\&quot;,\\\&quot;pageid\\\&quot;:8500076,\\\&quot;size\\\&quot;:11397,\\\&quot;wordcount\\\&quot;:862,\\\&quot;snippet\\\&quot;:\\\&quot;\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-04T06:52:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gender-affirming hormone therapy\\\&quot;,\\\&quot;pageid\\\&quot;:36792950,\\\&quot;size\\\&quot;:64335,\\\&quot;wordcount\\\&quot;:5099,\\\&quot;snippet\\\&quot;:\\\&quot;transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T03:30:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Thyroid-stimulating hormone\\\&quot;,\\\&quot;pageid\\\&quot;:330361,\\\&quot;size\\\&quot;:29201,\\\&quot;wordcount\\\&quot;:2790,\\\&quot;snippet\\\&quot;:\\\&quot;body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-22T04:01:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hormones (endocrinology journal)\\\&quot;,\\\&quot;pageid\\\&quot;:76017572,\\\&quot;size\\\&quot;:3457,\\\&quot;wordcount\\\&quot;:234,\\\&quot;snippet\\\&quot;:\\\&quot;metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-10-20T08:31:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hormone\\\&quot;,\\\&quot;pageid\\\&quot;:13311,\\\&quot;size\\\&quot;:42654,\\\&quot;wordcount\\\&quot;:4370,\\\&quot;snippet\\\&quot;:\\\&quot;Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T05:55:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Endocrine gland\\\&quot;,\\\&quot;pageid\\\&quot;:1223446,\\\&quot;size\\\&quot;:18558,\\\&quot;wordcount\\\&quot;:2107,\\\&quot;snippet\\\&quot;:\\\&quot;anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-01-25T17:12:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Multiple endocrine neoplasia type 1\\\&quot;,\\\&quot;pageid\\\&quot;:2574340,\\\&quot;size\\\&quot;:15344,\\\&quot;wordcount\\\&quot;:1736,\\\&quot;snippet\\\&quot;:\\\&quot;Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-23T18:16:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Growth hormone\\\&quot;,\\\&quot;pageid\\\&quot;:173072,\\\&quot;size\\\&quot;:61715,\\\&quot;wordcount\\\&quot;:6968,\\\&quot;snippet\\\&quot;:\\\&quot;treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\&quot;. The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T06:53:19Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;5752f6ef18f140f93f04a72c4e1801ef978a9349798efcf56d99b39af55cef18\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;endocrinology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-0ab4a60deb1a4d04&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=endocrinology+hormones+endocrine+disorders&amp;format=json&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:22.795784+00:00&quot;
+}</pre></div></details><details><summary>source-e721a38348244568</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:149370},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13692155,\\\&quot;size\\\&quot;:202268,\\\&quot;wordcount\\\&quot;:17550,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009&#x27;love of wisdom&#x27;) is a systematic study of general and fundamental questions concerning topics like existence\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T18:10:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Doctor of Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:21031297,\\\&quot;size\\\&quot;:152425,\\\&quot;wordcount\\\&quot;:16312,\\\&quot;snippet\\\&quot;:\\\&quot;A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T15:35:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:9247,\\\&quot;size\\\&quot;:211582,\\\&quot;wordcount\\\&quot;:19966,\\\&quot;snippet\\\&quot;:\\\&quot;Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T14:29:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fish! Philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:8770844,\\\&quot;size\\\&quot;:8284,\\\&quot;wordcount\\\&quot;:1071,\\\&quot;snippet\\\&quot;:\\\&quot;The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-07T07:04:15Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Aesthetics\\\&quot;,\\\&quot;pageid\\\&quot;:2130,\\\&quot;size\\\&quot;:149323,\\\&quot;wordcount\\\&quot;:16275,\\\&quot;snippet\\\&quot;:\\\&quot;Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Desert (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:10791397,\\\&quot;size\\\&quot;:23606,\\\&quot;wordcount\\\&quot;:3102,\\\&quot;snippet\\\&quot;:\\\&quot;Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-01-20T20:30:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Western philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:13704154,\\\&quot;size\\\&quot;:96464,\\\&quot;wordcount\\\&quot;:11377,\\\&quot;snippet\\\&quot;:\\\&quot;Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T05:16:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cynicism (philosophy)\\\&quot;,\\\&quot;pageid\\\&quot;:19187131,\\\&quot;size\\\&quot;:40942,\\\&quot;wordcount\\\&quot;:4715,\\\&quot;snippet\\\&quot;:\\\&quot;Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-27T04:15:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ethics\\\&quot;,\\\&quot;pageid\\\&quot;:9258,\\\&quot;size\\\&quot;:207219,\\\&quot;wordcount\\\&quot;:19811,\\\&quot;snippet\\\&quot;:\\\&quot;Ethics is the philosophical study of moral phenomena. Also called moral\\nphilosophy\\n, it investigates normative questions about what people ought to do or\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T16:47:20Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Political philosophy\\\&quot;,\\\&quot;pageid\\\&quot;:23040,\\\&quot;size\\\&quot;:129861,\\\&quot;wordcount\\\&quot;:13401,\\\&quot;snippet\\\&quot;:\\\&quot;Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T10:21:49Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;2ecb612c538e9ef9ef6586760768e2e0df26826b2a83886ef0caff0d6cc12970\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;philosophy\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-e721a38348244568&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=philosophy&amp;format=json&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:23.284152+00:00&quot;
+}</pre></div></details><details><summary>source-2eb15a5741b54a5a</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:74322},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology\\\&quot;,\\\&quot;pageid\\\&quot;:22921,\\\&quot;size\\\&quot;:247095,\\\&quot;wordcount\\\&quot;:26594,\\\&quot;snippet\\\&quot;:\\\&quot;\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-05T20:21:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Social psychology\\\&quot;,\\\&quot;pageid\\\&quot;:26990,\\\&quot;size\\\&quot;:69606,\\\&quot;wordcount\\\&quot;:7452,\\\&quot;snippet\\\&quot;:\\\&quot;Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T09:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Filipino psychology\\\&quot;,\\\&quot;pageid\\\&quot;:1465014,\\\&quot;size\\\&quot;:20921,\\\&quot;wordcount\\\&quot;:2815,\\\&quot;snippet\\\&quot;:\\\&quot;Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-25T13:24:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cognitive psychology\\\&quot;,\\\&quot;pageid\\\&quot;:5961,\\\&quot;size\\\&quot;:53010,\\\&quot;wordcount\\\&quot;:6002,\\\&quot;snippet\\\&quot;:\\\&quot;Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:47:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Association (psychology)\\\&quot;,\\\&quot;pageid\\\&quot;:62176483,\\\&quot;size\\\&quot;:18373,\\\&quot;wordcount\\\&quot;:2485,\\\&quot;snippet\\\&quot;:\\\&quot;Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-14T14:11:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gestalt psychology\\\&quot;,\\\&quot;pageid\\\&quot;:70402,\\\&quot;size\\\&quot;:56035,\\\&quot;wordcount\\\&quot;:6227,\\\&quot;snippet\\\&quot;:\\\&quot;Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-06T02:55:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Humanistic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:324180,\\\&quot;size\\\&quot;:58187,\\\&quot;wordcount\\\&quot;:6990,\\\&quot;snippet\\\&quot;:\\\&quot;Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud&#x27;s psychoanalytic theory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T17:40:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Reverse psychology\\\&quot;,\\\&quot;pageid\\\&quot;:702761,\\\&quot;size\\\&quot;:8278,\\\&quot;wordcount\\\&quot;:959,\\\&quot;snippet\\\&quot;:\\\&quot;Reverse\\npsychology\\nis a technique involving the assertion of a belief or behavior that is opposite to the one desired, with the expectation that this approach\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-23T01:39:41Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Somatic psychology\\\&quot;,\\\&quot;pageid\\\&quot;:6774132,\\\&quot;size\\\&quot;:16405,\\\&quot;wordcount\\\&quot;:1855,\\\&quot;snippet\\\&quot;:\\\&quot;Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-03T20:37:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Individual psychology\\\&quot;,\\\&quot;pageid\\\&quot;:3959877,\\\&quot;size\\\&quot;:15651,\\\&quot;wordcount\\\&quot;:1631,\\\&quot;snippet\\\&quot;:\\\&quot;Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-04T05:18:04Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;0b3cb0a7726fccfa3a1aa11c3922e6e45c41664b9358ed577a256cfd6140fedb\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;psychology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-2eb15a5741b54a5a&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=psychology&amp;format=json&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:23.712002+00:00&quot;
+}</pre></div></details><details><summary>source-dbe91acd6ebb4bf7</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurology+nervous+system+neurological+disorders&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:3371},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurological disorder\\\&quot;,\\\&quot;pageid\\\&quot;:19572333,\\\&quot;size\\\&quot;:21181,\\\&quot;wordcount\\\&quot;:2085,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-13T18:36:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Functional neurological symptom disorder\\\&quot;,\\\&quot;pageid\\\&quot;:49594540,\\\&quot;size\\\&quot;:23378,\\\&quot;wordcount\\\&quot;:2498,\\\&quot;snippet\\\&quot;:\\\&quot;\\\&quot;Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\&quot;. Mayo Clinic. Retrieved 2022-01-04. \\\&quot;Functional\\nneurological\\nsymptom\\ndisorder\\n\\\&quot;. Medicalnewstoday\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-13T17:05:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of neurological conditions and disorders\\\&quot;,\\\&quot;pageid\\\&quot;:56335,\\\&quot;size\\\&quot;:13517,\\\&quot;wordcount\\\&quot;:1152,\\\&quot;snippet\\\&quot;:\\\&quot;This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer&#x27;s disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-20T20:53:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurology\\\&quot;,\\\&quot;pageid\\\&quot;:21226,\\\&quot;size\\\&quot;:28620,\\\&quot;wordcount\\\&quot;:2752,\\\&quot;snippet\\\&quot;:\\\&quot;and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-04T16:44:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Central nervous system disease\\\&quot;,\\\&quot;pageid\\\&quot;:17681122,\\\&quot;size\\\&quot;:31068,\\\&quot;wordcount\\\&quot;:3102,\\\&quot;snippet\\\&quot;:\\\&quot;Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T09:05:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Paraneoplastic syndrome\\\&quot;,\\\&quot;pageid\\\&quot;:11520228,\\\&quot;size\\\&quot;:29092,\\\&quot;wordcount\\\&quot;:2366,\\\&quot;snippet\\\&quot;:\\\&quot;to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-07T21:14:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dysautonomia\\\&quot;,\\\&quot;pageid\\\&quot;:410746,\\\&quot;size\\\&quot;:32867,\\\&quot;wordcount\\\&quot;:2908,\\\&quot;snippet\\\&quot;:\\\&quot;inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-12T22:17:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Multiple system atrophy\\\&quot;,\\\&quot;pageid\\\&quot;:861802,\\\&quot;size\\\&quot;:57832,\\\&quot;wordcount\\\&quot;:5875,\\\&quot;snippet\\\&quot;:\\\&quot;Many people affected by MSA experience dysfunction of the autonomic\\nnervous\\nsystem\\n, which commonly manifests as orthostatic hypotension, impotence, loss\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T19:21:28Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurological examination\\\&quot;,\\\&quot;pageid\\\&quot;:3893700,\\\&quot;size\\\&quot;:11559,\\\&quot;wordcount\\\&quot;:956,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T23:18:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Nervous system disease\\\&quot;,\\\&quot;pageid\\\&quot;:18881907,\\\&quot;size\\\&quot;:11932,\\\&quot;wordcount\\\&quot;:1141,\\\&quot;snippet\\\&quot;:\\\&quot;\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-10-20T08:53:25Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;61ac48d8037cd249c617f22f290f98601c29e5b72620a14ed8ea3acb2ade68eb\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-dbe91acd6ebb4bf7&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurology+nervous+system+neurological+disorders&amp;format=json&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:24.203559+00:00&quot;
+}</pre></div></details><details><summary>source-4a4ff4912b4242c4</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=epistemology+evidence+justification+belief+uncertainty&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:179},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Justification (epistemology)\\\&quot;,\\\&quot;pageid\\\&quot;:30248,\\\&quot;size\\\&quot;:11199,\\\&quot;wordcount\\\&quot;:1195,\\\&quot;snippet\\\&quot;:\\\&quot;current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-22T20:08:09Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:9247,\\\&quot;size\\\&quot;:211582,\\\&quot;wordcount\\\&quot;:19966,\\\&quot;snippet\\\&quot;:\\\&quot;Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T14:29:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Formal epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:3660078,\\\&quot;size\\\&quot;:11434,\\\&quot;wordcount\\\&quot;:1321,\\\&quot;snippet\\\&quot;:\\\&quot;formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-28T03:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Empirical evidence\\\&quot;,\\\&quot;pageid\\\&quot;:307139,\\\&quot;size\\\&quot;:39043,\\\&quot;wordcount\\\&quot;:3955,\\\&quot;snippet\\\&quot;:\\\&quot;methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T15:50:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gettier problem\\\&quot;,\\\&quot;pageid\\\&quot;:246176,\\\&quot;size\\\&quot;:44511,\\\&quot;wordcount\\\&quot;:5956,\\\&quot;snippet\\\&quot;:\\\&quot;\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T13:24:11Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Outline of epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:6556377,\\\&quot;size\\\&quot;:16004,\\\&quot;wordcount\\\&quot;:1658,\\\&quot;snippet\\\&quot;:\\\&quot;\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-24T15:07:39Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Belief\\\&quot;,\\\&quot;pageid\\\&quot;:102883,\\\&quot;size\\\&quot;:105449,\\\&quot;wordcount\\\&quot;:12166,\\\&quot;snippet\\\&quot;:\\\&quot;having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-13T03:42:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Declarative knowledge\\\&quot;,\\\&quot;pageid\\\&quot;:23369987,\\\&quot;size\\\&quot;:97599,\\\&quot;wordcount\\\&quot;:10444,\\\&quot;snippet\\\&quot;:\\\&quot;A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Evidence\\\&quot;,\\\&quot;pageid\\\&quot;:20550772,\\\&quot;size\\\&quot;:46664,\\\&quot;wordcount\\\&quot;:5455,\\\&quot;snippet\\\&quot;:\\\&quot;exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-09T01:29:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Bayesian probability\\\&quot;,\\\&quot;pageid\\\&quot;:4890,\\\&quot;size\\\&quot;:33893,\\\&quot;wordcount\\\&quot;:3450,\\\&quot;snippet\\\&quot;:\\\&quot;expectation representing a state of knowledge or as quantification of a personal\\nbelief\\n. The Bayesian interpretation of probability can be seen as an extension\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-22T06:31:12Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;bcbb7b52ffea3930e7441d2eaf87f4a021b5986cc76f18373d1df0df64c39b02\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;epistemology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-4a4ff4912b4242c4&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=epistemology+evidence+justification+belief+uncertainty&amp;format=json&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:26.110890+00:00&quot;
+}</pre></div></details><details><summary>r-13bd03dd5cbb4876</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:1,\&quot;inherited_commitments\&quot;:[\&quot;c-review-wake-arch-01\&quot;],\&quot;invocation\&quot;:\&quot;w-13bd03dd5cbb4876\&quot;,\&quot;previous_head\&quot;:\&quot;4e12fd8a81a6d32a90c66ebf2f0c7cdb35a10978a07aaced692fe37fe5063452\&quot;,\&quot;process_id\&quot;:2246,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-13bd03dd5cbb4876&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 1,
+  &quot;time&quot;: &quot;2026-09-23T21:31:26.127788+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Bootstrapping durable continuity on wake_analysis</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-e16c6b187cd14818&quot;,
@@ -267,6 +625,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;query&quot;: &quot;WAKE architecture state transition governance disposable invocation continuity&quot;,
   &quot;reason&quot;: &quot;Identify specific architectural mechanics and failure points in durable state preservation across cycles.&quot;,
   &quot;type&quot;: &quot;research&quot;,
-  &quot;status&quot;: &quot;queued&quot;,
-  &quot;created_by&quot;: &quot;w-e16c6b187cd14818&quot;
+  &quot;status&quot;: &quot;collected&quot;,
+  &quot;created_by&quot;: &quot;w-e16c6b187cd14818&quot;,
+  &quot;evidence&quot;: &quot;source-517e8c8aaa69481b&quot;
 }</pre></div></details><h2>Blog posts</h2><p class="meta">None recorded.</p></main><script>(()=>{const b=document.getElementById('theme-toggle');const sync=()=>{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');b.setAttribute('aria-pressed',String(d))};sync();b.addEventListener('click',()=>{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme',d?'light':'dark')}catch{}sync()})})();</script><script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const icon=document.querySelector('.theme-icon');const saved=()=>{try{return localStorage.getItem('wake-theme')}catch{return null}};const sync=()=>{const d=document.documentElement.dataset.theme==='dark',manual=Boolean(saved());b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');if(icon)icon.textContent=manual?(d?'◑':'☼'):'◐';b.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${d?'dark':'light'} theme`:`Following system ${d?'dark':'light'} theme`)};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()});try{const media=matchMedia('(prefers-color-scheme:dark)');media.addEventListener('change',event=>{if(saved())return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;sync()})}catch{}})()</script></body></html>
