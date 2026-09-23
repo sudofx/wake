@@ -83,6 +83,8 @@ def _paragraphs(value):
 
 def rejected_html(state, events):
     cards = []
+    topic_names = {item.get("id"): item.get("label") for item in state.get("research_topics", [])}
+    topic_colors = state.get("topic_colors", {})
     for event in reversed(events):
         payload = event['payload']
         withheld = event['kind'] == 'accepted' and isinstance(payload.get('editorial'), dict)
@@ -106,6 +108,19 @@ def rejected_html(state, events):
         if not isinstance(actions, list):
             actions = []
         label = 'Blog withheld · research accepted' if withheld else 'Rejected · not accepted research'
+        domains = []
+        for action in actions:
+            if not isinstance(action, dict):
+                continue
+            domain = action.get('domain') or state.get('projects', {}).get(action.get('project'), {}).get('domain')
+            if domain and domain not in domains:
+                domains.append(domain)
+        topic_html = ''.join(
+            '<a class="topic-tag" href="index.html#projects/topic:' + quote(str(domain), safe='') + '" '
+            'style="--topic-color:' + html.escape(str(topic_colors.get(domain, 'var(--cyan)'))) + '">' +
+            html.escape(str(topic_names.get(domain) or str(domain).replace('_', ' ')).lower()) + '</a>'
+            for domain in domains
+        )
         consequence = ('The other research actions were accepted. This blog draft was withheld and was not published as a blog post.'
                        if withheld else 'No research changes or journal entry from this proposal were accepted. Its claims are unapproved model output.')
         draft = ''
@@ -143,8 +158,8 @@ def rejected_html(state, events):
                 + '</li>' for a in attempts) + '</ul>'
         ident = payload['id']
         cards.append(
-            '<article id="' + _text(ident) + '"><p class="eyebrow">' + label + '</p><h2>' + _text(title) + '</h2>'
-            + '<p class="meta">' + _text(event['time']) + ' · ' + _text(calls) + '</p>'
+            '<article class="rejected-card record-panel" id="' + _text(ident) + '"><div class="record-panel-meta rejected-meta"><span class="record-type">' + ('BLOG DRAFT' if withheld else 'PROPOSAL') + '</span><span class="record-status"><span class="badge ' + ('withheld' if withheld else 'rejected') + '">' + ('WITHHELD' if withheld else 'REJECTED') + '</span></span><span class="record-topics">' + topic_html + '</span><time>' + _text(event['time']) + '</time></div><h2>' + _text(title) + '</h2>'
+            + '<p class="meta">' + _text(calls) + ' · ' + _text(label) + '</p>'
             + '<p><strong>' + consequence + '</strong></p><h3>Why it stopped</h3><p>' + _text(explanation(reason)) + '</p>'
             + '<p><strong>Exact recorded reason:</strong> ' + _text(reason or 'No reason recorded') + '</p>'
             + '<p class="meta">This is the recorded first failing check, not an exhaustive review of every claim.</p>'
