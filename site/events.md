@@ -2,9 +2,119 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e`
+Verified head: `9b0d798d519661c26343e3d98f3309ffbf2f965d84c5f0846f79084ea448a955`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 1679 · `research_topics_changed`
+
+**Time:** 2026-09-23T16:23:13.026163+00:00  
+**ID:** `system`  
+**Hash:** `9b0d798d519661c26343e3d98f3309ffbf2f965d84c5f0846f79084ea448a955`  
+**Previous hash:** `4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "consciousness": "#d8c25d",
+    "entropy": "#f0bd75",
+    "information_thermodynamics": "#f2a2ca",
+    "neurodivergence": "#ff5bb9",
+    "philosophy": "#73daca",
+    "prime_numbers": "#e0af68",
+    "psychology": "#2ac3de",
+    "quantum_mechanics": "#9ece6a",
+    "religion": "#f68c65",
+    "wake_analysis": "#9d7cd8"
+  },
+  "topics": [
+    {
+      "enabled": true,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "wake_analysis",
+      "label": "WAKE✳︎",
+      "query": "WAKE✳︎ sudofx/wake",
+      "repository": "sudofx/wake",
+      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+      "source_kind": "repository"
+    },
+    {
+      "enabled": true,
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+      "source_kind": "web"
+    }
+  ]
+}
+```
 
 ## Event 1678 · `deferred`
 

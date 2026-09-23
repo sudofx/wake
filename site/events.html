@@ -9,7 +9,104 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable event history</h1><p>Every recorded event, including exact model requests and replies, without changing the canonical JSONL.</p><p class="meta">Verified head: <code>4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="events.md">Markdown source</a><a href="events.jsonl">Raw data</a></nav></header><p class="event-links">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p><details id="event-1678"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #1678</span><span class="record-status"><span class="badge deferred">deferred</span></span><span class="record-key">w-6083225b478b4432</span><time>Sep 23, 2026 · 8:15 AM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e</code><br>Previous hash: <code>6ffbd122f0259eb0d95d0e5efce7d5f8e9a7739b8fe8768b18efde3b0807fac0</code></p><h3>Payload</h3><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable event history</h1><p>Every recorded event, including exact model requests and replies, without changing the canonical JSONL.</p><p class="meta">Verified head: <code>9b0d798d519661c26343e3d98f3309ffbf2f965d84c5f0846f79084ea448a955</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="events.md">Markdown source</a><a href="events.jsonl">Raw data</a></nav></header><p class="event-links">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p><details id="event-1679"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #1679</span><span class="record-status"><span class="badge research_topics_changed">research_topics_changed</span></span><span class="record-key">system</span><time>Sep 23, 2026 · 9:23 AM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>9b0d798d519661c26343e3d98f3309ffbf2f965d84c5f0846f79084ea448a955</code><br>Previous hash: <code>4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e</code></p><h3>Payload</h3><pre>{
+  &quot;actor&quot;: &quot;operator&quot;,
+  &quot;topic_colors&quot;: {
+    &quot;consciousness&quot;: &quot;#d8c25d&quot;,
+    &quot;entropy&quot;: &quot;#f0bd75&quot;,
+    &quot;information_thermodynamics&quot;: &quot;#f2a2ca&quot;,
+    &quot;neurodivergence&quot;: &quot;#ff5bb9&quot;,
+    &quot;philosophy&quot;: &quot;#73daca&quot;,
+    &quot;prime_numbers&quot;: &quot;#e0af68&quot;,
+    &quot;psychology&quot;: &quot;#2ac3de&quot;,
+    &quot;quantum_mechanics&quot;: &quot;#9ece6a&quot;,
+    &quot;religion&quot;: &quot;#f68c65&quot;,
+    &quot;wake_analysis&quot;: &quot;#9d7cd8&quot;
+  },
+  &quot;topics&quot;: [
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;information_thermodynamics&quot;,
+      &quot;label&quot;: &quot;Information thermodynamics&quot;,
+      &quot;query&quot;: &quot;information thermodynamics&quot;,
+      &quot;seed_question&quot;: &quot;What does Landauer&#x27;s principle claim about the physical cost of erasing information, and what evidence supports its interpretation?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;entropy&quot;,
+      &quot;label&quot;: &quot;Entropy&quot;,
+      &quot;query&quot;: &quot;entropy&quot;,
+      &quot;seed_question&quot;: &quot;How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;wake_analysis&quot;,
+      &quot;label&quot;: &quot;WAKE✳︎&quot;,
+      &quot;query&quot;: &quot;WAKE✳︎ sudofx/wake&quot;,
+      &quot;repository&quot;: &quot;sudofx/wake&quot;,
+      &quot;seed_question&quot;: &quot;How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;,
+      &quot;source_kind&quot;: &quot;repository&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;neurodivergence&quot;,
+      &quot;label&quot;: &quot;Neurodivergence&quot;,
+      &quot;query&quot;: &quot;neurodivergence&quot;,
+      &quot;seed_question&quot;: &quot;How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;consciousness&quot;,
+      &quot;label&quot;: &quot;Consciousness&quot;,
+      &quot;query&quot;: &quot;consciousness&quot;,
+      &quot;seed_question&quot;: &quot;What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;psychology&quot;,
+      &quot;label&quot;: &quot;Psychology&quot;,
+      &quot;query&quot;: &quot;psychology&quot;,
+      &quot;seed_question&quot;: &quot;How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;quantum_mechanics&quot;,
+      &quot;label&quot;: &quot;Quantum mechanics&quot;,
+      &quot;query&quot;: &quot;quantum mechanics&quot;,
+      &quot;seed_question&quot;: &quot;What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;philosophy&quot;,
+      &quot;label&quot;: &quot;Philosophy&quot;,
+      &quot;query&quot;: &quot;philosophy&quot;,
+      &quot;seed_question&quot;: &quot;How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;religion&quot;,
+      &quot;label&quot;: &quot;Religion&quot;,
+      &quot;query&quot;: &quot;religion&quot;,
+      &quot;seed_question&quot;: &quot;What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;prime_numbers&quot;,
+      &quot;label&quot;: &quot;Prime numbers&quot;,
+      &quot;query&quot;: &quot;prime numbers mathematics&quot;,
+      &quot;seed_question&quot;: &quot;What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    }
+  ]
+}</pre></div></details><details id="event-1678"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #1678</span><span class="record-status"><span class="badge deferred">deferred</span></span><span class="record-key">w-6083225b478b4432</span><time>Sep 23, 2026 · 8:15 AM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>4411f34fe87c555bde91b8f9e44222a5fa21ca2dc7992a05aab771fc5f9a7e8e</code><br>Previous hash: <code>6ffbd122f0259eb0d95d0e5efce7d5f8e9a7739b8fe8768b18efde3b0807fac0</code></p><h3>Payload</h3><pre>{
   &quot;id&quot;: &quot;w-6083225b478b4432&quot;,
   &quot;provider_attempts&quot;: [
     {
