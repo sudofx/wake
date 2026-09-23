@@ -9,7 +9,194 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable event history</h1><p>Every recorded event, including exact model requests and replies, without changing the canonical JSONL.</p><p class="meta">Verified head: <code>fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="events.md">Markdown source</a><a href="events.jsonl">Raw data</a></nav></header><p class="event-links">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p><details id="event-688"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #0688</span><span class="record-status"><span class="badge research_topics_changed">research_topics_changed</span></span><span class="record-key">system</span><time>Sep 23, 2026 · 2:07 PM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151</code><br>Previous hash: <code>d07a7e98060b5d7fb9175e36e575ae7ca323e17e8342aae01767dd0de811aa5a</code></p><h3>Payload</h3><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable event history</h1><p>Every recorded event, including exact model requests and replies, without changing the canonical JSONL.</p><p class="meta">Verified head: <code>70e13d1ab93fab4917a4859f2683c7381aa5a5b7bbba7b64e58890063c676d85</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="events.md">Markdown source</a><a href="events.jsonl">Raw data</a></nav></header><p class="event-links">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p><details id="event-689"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #0689</span><span class="record-status"><span class="badge research_topics_changed">research_topics_changed</span></span><span class="record-key">system</span><time>Sep 23, 2026 · 2:10 PM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>70e13d1ab93fab4917a4859f2683c7381aa5a5b7bbba7b64e58890063c676d85</code><br>Previous hash: <code>fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151</code></p><h3>Payload</h3><pre>{
+  &quot;actor&quot;: &quot;operator&quot;,
+  &quot;topic_colors&quot;: {
+    &quot;comedy&quot;: &quot;#c0caf5&quot;,
+    &quot;complex_systems&quot;: &quot;#f68c65&quot;,
+    &quot;consciousness&quot;: &quot;#93ff74&quot;,
+    &quot;dance&quot;: &quot;#b25dff&quot;,
+    &quot;endocrinology&quot;: &quot;#d8c25d&quot;,
+    &quot;entropy&quot;: &quot;#ff5bb9&quot;,
+    &quot;epistemology&quot;: &quot;#ff9e64&quot;,
+    &quot;evolutionary_biology&quot;: &quot;#9ece6a&quot;,
+    &quot;information_thermodynamics&quot;: &quot;#2ac3de&quot;,
+    &quot;music&quot;: &quot;#f7768e&quot;,
+    &quot;neurodivergence&quot;: &quot;#8aa8ff&quot;,
+    &quot;neurology&quot;: &quot;#5fcf8d&quot;,
+    &quot;philosophy&quot;: &quot;#54d4bc&quot;,
+    &quot;prime_numbers&quot;: &quot;#e0af68&quot;,
+    &quot;psychology&quot;: &quot;#f2a2ca&quot;,
+    &quot;quantum_mechanics&quot;: &quot;#f0bd75&quot;,
+    &quot;religion&quot;: &quot;#ffe574&quot;,
+    &quot;storytelling&quot;: &quot;#c099ff&quot;,
+    &quot;visual_art&quot;: &quot;#46b5ff&quot;,
+    &quot;wake_analysis&quot;: &quot;#7aa2f7&quot;
+  },
+  &quot;topics&quot;: [
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;wake_analysis&quot;,
+      &quot;label&quot;: &quot;WAKE✳︎&quot;,
+      &quot;query&quot;: &quot;WAKE✳︎ sudofx/wake&quot;,
+      &quot;repository&quot;: &quot;sudofx/wake&quot;,
+      &quot;seed_question&quot;: &quot;How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;,
+      &quot;source_kind&quot;: &quot;repository&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;information_thermodynamics&quot;,
+      &quot;label&quot;: &quot;Information thermodynamics&quot;,
+      &quot;query&quot;: &quot;information thermodynamics&quot;,
+      &quot;seed_question&quot;: &quot;What does Landauer&#x27;s principle claim about the physical cost of erasing information, and what evidence supports its interpretation?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;entropy&quot;,
+      &quot;label&quot;: &quot;Entropy&quot;,
+      &quot;query&quot;: &quot;entropy&quot;,
+      &quot;seed_question&quot;: &quot;How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;neurodivergence&quot;,
+      &quot;label&quot;: &quot;Neurodivergence&quot;,
+      &quot;query&quot;: &quot;neurodivergence&quot;,
+      &quot;seed_question&quot;: &quot;How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;consciousness&quot;,
+      &quot;label&quot;: &quot;Consciousness&quot;,
+      &quot;query&quot;: &quot;consciousness&quot;,
+      &quot;seed_question&quot;: &quot;What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;psychology&quot;,
+      &quot;label&quot;: &quot;Psychology&quot;,
+      &quot;query&quot;: &quot;psychology&quot;,
+      &quot;seed_question&quot;: &quot;How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;quantum_mechanics&quot;,
+      &quot;label&quot;: &quot;Quantum mechanics&quot;,
+      &quot;query&quot;: &quot;quantum mechanics&quot;,
+      &quot;seed_question&quot;: &quot;What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;philosophy&quot;,
+      &quot;label&quot;: &quot;Philosophy&quot;,
+      &quot;query&quot;: &quot;philosophy&quot;,
+      &quot;seed_question&quot;: &quot;How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;religion&quot;,
+      &quot;label&quot;: &quot;Religion&quot;,
+      &quot;query&quot;: &quot;religion&quot;,
+      &quot;seed_question&quot;: &quot;What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;prime_numbers&quot;,
+      &quot;label&quot;: &quot;Prime numbers&quot;,
+      &quot;query&quot;: &quot;prime numbers mathematics&quot;,
+      &quot;seed_question&quot;: &quot;What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;neurology&quot;,
+      &quot;label&quot;: &quot;Neurology&quot;,
+      &quot;query&quot;: &quot;neurology nervous system neurological disorders&quot;,
+      &quot;seed_question&quot;: &quot;How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;endocrinology&quot;,
+      &quot;label&quot;: &quot;Endocrinology&quot;,
+      &quot;query&quot;: &quot;endocrinology hormones endocrine disorders&quot;,
+      &quot;seed_question&quot;: &quot;How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;complex_systems&quot;,
+      &quot;label&quot;: &quot;Complex systems&quot;,
+      &quot;query&quot;: &quot;complex systems emergence self-organization&quot;,
+      &quot;seed_question&quot;: &quot;How do simple local interactions produce stable large-scale patterns in complex systems, and what distinguishes genuine emergence from a useful descriptive abstraction?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;evolutionary_biology&quot;,
+      &quot;label&quot;: &quot;Evolutionary biology&quot;,
+      &quot;query&quot;: &quot;evolutionary biology adaptation byproduct drift constraint&quot;,
+      &quot;seed_question&quot;: &quot;How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;epistemology&quot;,
+      &quot;label&quot;: &quot;Epistemology&quot;,
+      &quot;query&quot;: &quot;epistemology evidence justification belief uncertainty&quot;,
+      &quot;seed_question&quot;: &quot;What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;music&quot;,
+      &quot;label&quot;: &quot;Music&quot;,
+      &quot;query&quot;: &quot;music cognition structure rhythm harmony melody&quot;,
+      &quot;seed_question&quot;: &quot;Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;comedy&quot;,
+      &quot;label&quot;: &quot;Comedy&quot;,
+      &quot;query&quot;: &quot;comedy humor cognition timing incongruity&quot;,
+      &quot;seed_question&quot;: &quot;What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;visual_art&quot;,
+      &quot;label&quot;: &quot;Visual art&quot;,
+      &quot;query&quot;: &quot;visual art perception aesthetics composition&quot;,
+      &quot;seed_question&quot;: &quot;How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;storytelling&quot;,
+      &quot;label&quot;: &quot;Storytelling&quot;,
+      &quot;query&quot;: &quot;storytelling narrative cognition literature&quot;,
+      &quot;seed_question&quot;: &quot;What features make narratives memorable, emotionally engaging, and coherent across different cultures and artistic traditions?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    },
+    {
+      &quot;enabled&quot;: true,
+      &quot;id&quot;: &quot;dance&quot;,
+      &quot;label&quot;: &quot;Dance&quot;,
+      &quot;query&quot;: &quot;dance rhythm movement cognition culture&quot;,
+      &quot;seed_question&quot;: &quot;How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?&quot;,
+      &quot;source_kind&quot;: &quot;web&quot;
+    }
+  ]
+}</pre></div></details><details id="event-688"><summary class="record-panel-meta event-meta"><span class="record-type">EVENT #0688</span><span class="record-status"><span class="badge research_topics_changed">research_topics_changed</span></span><span class="record-key">system</span><time>Sep 23, 2026 · 2:07 PM PDT</time></summary><div class="inside"><p class="meta">Hash: <code>fad7d33f9eea3343d58cd3464477e48ca14dc7a2dabb9c18bbb0270bcb11d151</code><br>Previous hash: <code>d07a7e98060b5d7fb9175e36e575ae7ca323e17e8342aae01767dd0de811aa5a</code></p><h3>Payload</h3><pre>{
   &quot;actor&quot;: &quot;operator&quot;,
   &quot;topic_colors&quot;: {
     &quot;complex_systems&quot;: &quot;#46b5ff&quot;,

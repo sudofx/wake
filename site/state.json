@@ -17653,24 +17653,69 @@
       "query": "epistemology evidence justification belief uncertainty",
       "seed_question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
       "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "music",
+      "label": "Music",
+      "query": "music cognition structure rhythm harmony melody",
+      "seed_question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy humor cognition timing incongruity",
+      "seed_question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "visual_art",
+      "label": "Visual art",
+      "query": "visual art perception aesthetics composition",
+      "seed_question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "storytelling",
+      "label": "Storytelling",
+      "query": "storytelling narrative cognition literature",
+      "seed_question": "What features make narratives memorable, emotionally engaging, and coherent across different cultures and artistic traditions?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "dance",
+      "label": "Dance",
+      "query": "dance rhythm movement cognition culture",
+      "seed_question": "How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?",
+      "source_kind": "web"
     }
   ],
   "topic_colors": {
-    "complex_systems": "#46b5ff",
-    "consciousness": "#73daca",
+    "comedy": "#c0caf5",
+    "complex_systems": "#f68c65",
+    "consciousness": "#93ff74",
+    "dance": "#b25dff",
     "endocrinology": "#d8c25d",
-    "entropy": "#9ece6a",
-    "epistemology": "#b25dff",
-    "evolutionary_biology": "#ffe574",
-    "information_thermodynamics": "#f2a2ca",
-    "neurodivergence": "#f7768e",
+    "entropy": "#ff5bb9",
+    "epistemology": "#ff9e64",
+    "evolutionary_biology": "#9ece6a",
+    "information_thermodynamics": "#2ac3de",
+    "music": "#f7768e",
+    "neurodivergence": "#8aa8ff",
     "neurology": "#5fcf8d",
-    "philosophy": "#7aa2f7",
-    "prime_numbers": "#b7d36b",
-    "psychology": "#f68c65",
-    "quantum_mechanics": "#ff757f",
-    "religion": "#2ac3de",
-    "wake_analysis": "#9d7cd8"
+    "philosophy": "#54d4bc",
+    "prime_numbers": "#e0af68",
+    "psychology": "#f2a2ca",
+    "quantum_mechanics": "#f0bd75",
+    "religion": "#ffe574",
+    "storytelling": "#c099ff",
+    "visual_art": "#46b5ff",
+    "wake_analysis": "#7aa2f7"
   },
   "experimental": {
     "id": "reg-df573bb03399f050",
