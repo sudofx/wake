@@ -1499,8 +1499,9 @@ def transition(state, proposal, invocation, historical=False):
                     )
 
             require(
-                action["project"] in result["projects"],
-                "Blog post needs an existing project",
+                action["project"] in result["projects"]
+                or (reflection_due and action["project"] == ""),
+                "Blog post needs an existing project; a system-wide Bob reflection may use an empty project",
             )
 
             for key, limit in (
