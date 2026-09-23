@@ -98,7 +98,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(new_topic["seed_question"], "What concrete question should start this topic?")
         self.assertIn({"topic": "new_topic", "question": "What concrete question should start this topic?"},
                       request["context"]["seed_questions"])
-        self.assertEqual(request["context"]["seed_question_metrics"]["available"], 1)
+        self.assertEqual(request["context"]["seed_question_metrics"]["available"], len(changed))
         variants = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
         project_schema = next(item for item in variants if item["properties"]["type"]["enum"] == ["project"])
         self.assertIn("new_topic", project_schema["properties"]["domain"]["enum"])
