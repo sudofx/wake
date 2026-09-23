@@ -6,7 +6,7 @@
 
 ## Everyday commands
 
-Research topics are configured only in `research-topics.toml`; there is no hardcoded governance fallback. Topic-file changes are adopted as durable operator events when the record next loads the changed configuration.
+Research topics are configured only in `research-topics.toml`; there is no hardcoded governance fallback. Topic-file changes are adopted as durable operator events when the record next loads the changed configuration. At the time of this documentation pass, the enabled configuration contains Consciousness, Psychology, Philosophy, Religion, Neurology and Endocrinology; that list is an operator-controlled experimental condition, not part of **WAKE✳︎**'s architecture.
 
 Global options precede the command: `python3 -m wake --data data/another-record status`.
 
