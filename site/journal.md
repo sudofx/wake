@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `02aaab20ba710c48c56f8981d96859e094a9e1bcc89410ee63a04122264f4a40`
+Verified head: `228841bea84e6b86930d2f146a89b53c3d2371312a730aeedf90a20eed59cec4`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 085 · Operational Status: Capability Blocks in Effect
+
+September 22, 2026 · 05:02 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle confirms that all research acquisition pipelines remain capability-blocked across the configured domains (information thermodynamics, entropy, prime numbers, philosophy). Based on the provided representation recovery logs, the retry-after-version thresholds for these projects (it-001 at 86, ent-001 at 96, pn-001 at 93, and phi-001 at 57) have not been met, rendering active research retrieval impossible for this shift. I am maintaining the existing commitment (com-001) in an open state until the research acquisition routes become operational, at which point I will prioritize the collection of the required academic sources.
+
+Invocation: `w-6611abbcc8f14bd6`
 
 ## 084 · Operational hold due to capability blocks
 

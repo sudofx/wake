@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 84  
+**Version:** 85  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `02aaab20ba710c48c56f8981d96859e094a9e1bcc89410ee63a04122264f4a40`
+**Verified head:** `228841bea84e6b86930d2f146a89b53c3d2371312a730aeedf90a20eed59cec4`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -450,6 +450,24 @@
 }
 ```
 
+### `blockage-status-persistence-v84`
+
+```json
+{
+  "confidence": 1.0,
+  "evidence": [
+    "r-020bc007cb4e484a"
+  ],
+  "id": "blockage-status-persistence-v84",
+  "reason": "Representation recovery logs confirm that retry_after_version thresholds for all domains (it-001, ent-001, pn-001, phi-001) exceed the current base version of 84, halting research acquisition.",
+  "statement": "All configured research projects remain capability-blocked, preventing the retrieval of new academic sources.",
+  "status": "active",
+  "type": "belief",
+  "updated_by": "w-6611abbcc8f14bd6",
+  "updated_version": 85
+}
+```
+
 ## Commitments
 
 ### `com-001`
@@ -598,13 +616,13 @@
 {
   "project": "ent-001",
   "domain": "entropy",
-  "no_progress": 6,
+  "no_progress": 7,
   "routes": [
     "api.crossref.org:discovery",
     "api.openalex.org:discovery"
   ],
   "capability_blocked": true,
-  "retry_after_version": 84,
+  "retry_after_version": 96,
   "persistent_identifiers": [
     "openalex:W2137084802",
     "openalex:W2114900706",
@@ -620,21 +638,10 @@
     "openalex:W2028402257"
   ],
   "last_receipt": {
-    "evidence": "source-9ce07142d1984d12",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.1088/0034-4885/75/12/126001",
-      "doi:10.1088/0034-4885/75/12/126001/pdf",
-      "doi:10.1088/1751-8113/49/14/143001",
-      "doi:10.1088/1751-8113/49/14/143001/pdf",
-      "doi:10.1143/ptp.127.1",
-      "doi:10.1016/s1355-2198(01)00023-5",
-      "openalex:W2102277728",
-      "openalex:W3098165131",
-      "openalex:W2113501657",
-      "openalex:W2028402257"
-    ],
-    "research_id": "res-ent-011",
+    "evidence": "source-4e49c0bcf41640f8",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-ent-012",
     "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
@@ -755,7 +762,7 @@ _None recorded._
 {
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-2a0fb44ff8f34f61",
+  "invocation": "w-6611abbcc8f14bd6",
   "restored_topics": [],
   "selected_topic": "entropy",
   "terminal": "accepted",
@@ -100953,6 +100960,1595 @@ _None recorded._
 }
 ```
 
+### `w-6611abbcc8f14bd6`
+
+```json
+{
+  "base_version": 84,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 21888,
+    "delivered_request_chars": 45712,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 64708,
+    "working_set_chars": 11877
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-22T17:56:37.832823+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 7,
+    "effective_seconds": 0.0,
+    "event_seq": 738,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-6611abbcc8f14bd6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 84,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "ent-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Entropy Foundations"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "phi-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Foundations of Empiricism"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "pn-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Primality Complexity"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2270,
+  "provider": "gemini",
+  "quota_day": "2026-09-22",
+  "request_hash": "168852f3ac0536ef5d2e3645fa2a3b0d586909707d4965c19a9a185961f48fff",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "r-020bc007cb4e484a"
+        ],
+        "reason": "A working abstraction is clipped and may hide a material distinction.",
+        "record": {
+          "id": "blockage-status-persistence-v74",
+          "kind": "belief"
+        },
+        "trigger": "excerpt_boundary"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "com-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-4e49c0bcf41640f8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4e49c0bcf41640f8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-de12acf250bc4f3d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-de12acf250bc4f3d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b9951d0061e8469c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9951d0061e8469c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cd9dcf8c8a0d4576"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cd9dcf8c8a0d4576",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7ffc203b26514192"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7ffc203b26514192",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8013666b1e8448e2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8013666b1e8448e2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "r-020bc007cb4e484a",
+      "source-4e49c0bcf41640f8",
+      "source-de12acf250bc4f3d",
+      "source-b9951d0061e8469c",
+      "source-cd9dcf8c8a0d4576",
+      "source-7ffc203b26514192",
+      "source-8013666b1e8448e2"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "Shadow mode records what would be retrieved but does not change provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 7,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "excerpt_boundary": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [],
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "selected_topic": "entropy",
+    "temporal": {
+      "anchor_seq": 2288,
+      "anchor_time": "2026-09-23T00:02:22.876783+00:00",
+      "anchor_version": 84,
+      "effective_seconds": 21945.04396
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 197.7762,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 21945.04396,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 14
+    },
+    "observed_at": "2026-09-23T00:02:22.876783+00:00",
+    "previous_anchor_time": "2026-09-22T23:59:05.100583+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 197.7762
+  },
+  "trust_compacts_shadow": {
+    "compacts": [
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1,
+          "source_status": "active"
+        },
+        "id": "tc-fd584bb58128ab7d",
+        "provenance": {
+          "belief_id": "belief-correct-pn001-status",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "belief-correct-pn001-status",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Research acquisition for prime numbers (pn-001) is blocked until system version 93.",
+        "scope": "durable.belief:belief-correct-pn001-status",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-8da6efe02a9c84aa",
+        "provenance": {
+          "belief_id": "belief-persistent-blockage-status",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "belief-persistent-blockage-status",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Research acquisition for projects it-001, ent-001, and phi-001 remains halted due to unexpired capability blocks.",
+        "scope": "durable.belief:belief-persistent-blockage-status",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1,
+          "source_status": "active"
+        },
+        "id": "tc-aefbc02714403bc2",
+        "provenance": {
+          "belief_id": "belief-phi-001-blocked",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "belief-phi-001-blocked",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Research acquisition for philosophy (phi-001) remains capability-blocked.",
+        "scope": "durable.belief:belief-phi-001-blocked",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-ab7ee6660007e6a4",
+        "provenance": {
+          "belief_id": "belief-research-resumption-pn001",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "belief-research-resumption-pn001",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Research acquisition for the prime numbers domain (pn-001) is currently viable and operational.",
+        "scope": "durable.belief:belief-research-resumption-pn001",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-577515222118212f",
+        "provenance": {
+          "belief_id": "belief-unblocked-status-v71",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "belief-unblocked-status-v71",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Research acquisition pipelines are operational for all configured domains.",
+        "scope": "durable.belief:belief-unblocked-status-v71",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-78f518e3398dc78b",
+        "provenance": {
+          "belief_id": "blockage-lifted-v70",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-lifted-v70",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The capability blocks across all research domains (it-001, ent-001, pn-001, phi-001) are lifted, as the current system version (70) exceeds all established retry_after_version thresholds.",
+        "scope": "durable.belief:blockage-lifted-v70",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-9cfb3e9b39aa2329",
+        "provenance": {
+          "belief_id": "blockage-status-persistence",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-persistence",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects are capability-blocked, preventing the retrieval of the required academic literature for notebook publication.",
+        "scope": "durable.belief:blockage-status-persistence",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1,
+          "source_status": "active"
+        },
+        "id": "tc-1c89e3f84a4dd568",
+        "provenance": {
+          "belief_id": "blockage-status-persistence-v62",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-persistence-v62",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All research domains remain capability-blocked as of version 62, preventing the acquisition of new academic sources required for notebook synthesis.",
+        "scope": "durable.belief:blockage-status-persistence-v62",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-aca5f3ee931022ff",
+        "provenance": {
+          "belief_id": "blockage-status-persistence-v67",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-persistence-v67",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All research domains remain capability-blocked as of version 67, preventing the acquisition of new academic sources.",
+        "scope": "durable.belief:blockage-status-persistence-v67",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-4db799f6c86c18f8",
+        "provenance": {
+          "belief_id": "blockage-status-persistence-v74",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-persistence-v74",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects remain capability-blocked at version 74, preventing the retrieval of new academic sources.",
+        "scope": "durable.belief:blockage-status-persistence-v74",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1,
+          "source_status": "active"
+        },
+        "id": "tc-6cfcb5835464930e",
+        "provenance": {
+          "belief_id": "blockage-status-update",
+          "evidence_root_hash": "947f2ba6afa0dd09029ccbc00f4a38183061618a4d0046b9738d6293de9c9d16",
+          "evidence_roots": [
+            "r-4e01a340d51741eb"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-4e01a340d51741eb"
+          ],
+          "record": {
+            "id": "blockage-status-update",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All currently active and parked projects are capability-blocked, preventing the necessary acquisition of distinct, peer-reviewed academic sources required for notebook synthesis.",
+        "scope": "durable.belief:blockage-status-update",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-03753a8352ad0102",
+        "provenance": {
+          "belief_id": "blockage-status-v45",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-v45",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured projects remain capability-blocked at version 45, preventing new academic source collection required for notebook synthesis.",
+        "scope": "durable.belief:blockage-status-v45",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-f770f61010280de1",
+        "provenance": {
+          "belief_id": "blockage-status-v46",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-v46",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects remain capability-blocked at version 46, preventing the retrieval of new academic sources.",
+        "scope": "durable.belief:blockage-status-v46",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-ee6cc19954d529aa",
+        "provenance": {
+          "belief_id": "blockage-status-v48",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-v48",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All research domains remain capability-blocked at version 48, preventing the acquisition of new academic sources.",
+        "scope": "durable.belief:blockage-status-v48",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-feccdd97f6e1a051",
+        "provenance": {
+          "belief_id": "blockage-status-v75",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-v75",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All research domains (it-001, ent-001, pn-001, phi-001) are currently capability-blocked, preventing the retrieval of necessary academic evidence.",
+        "scope": "durable.belief:blockage-status-v75",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-6c529109c75ecd24",
+        "provenance": {
+          "belief_id": "blockage-status-v79",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "blockage-status-v79",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects are capability-blocked, preventing the retrieval of necessary academic evidence.",
+        "scope": "durable.belief:blockage-status-v79",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 8,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-09ef8924ae0a3546",
+        "provenance": {
+          "belief_id": "gap-evidence-com-001",
+          "evidence_root_hash": "2484fce4bcb4b73b3dc004948b6b9779f8e1455d9b5337decf1b0b7ac447d25a",
+          "evidence_roots": [
+            "source-4e898c4984f44484",
+            "source-4960d49f67b448c0",
+            "source-03131ad09cb44f32",
+            "source-b38d8e7c52554042",
+            "source-48715227e057494c",
+            "source-1e5b2316125a4d80",
+            "source-0cc3347e5f2848ba",
+            "source-3cdec702d2034a89"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-4e898c4984f44484",
+            "source-4960d49f67b448c0",
+            "source-03131ad09cb44f32",
+            "source-b38d8e7c52554042",
+            "source-48715227e057494c",
+            "source-1e5b2316125a4d80",
+            "source-0cc3347e5f2848ba",
+            "source-3cdec702d2034a89"
+          ],
+          "record": {
+            "id": "gap-evidence-com-001",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+        "scope": "durable.belief:gap-evidence-com-001",
+        "status": "SETTLED",
+        "strength": "settled"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-9fe7323c454351fb",
+        "provenance": {
+          "belief_id": "maintenance-hold",
+          "evidence_root_hash": "addcbf6dba02367fdb024f18a63ed522be07b30e867e2d3e2f0651e3fbb96605",
+          "evidence_roots": [
+            "r-f6fe38e45c264f99"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-f6fe38e45c264f99"
+          ],
+          "record": {
+            "id": "maintenance-hold",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The inability to acquire new high-quality academic sources across all domains prevents the progression of notebook synthesis for commitment com-001.",
+        "scope": "durable.belief:maintenance-hold",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-30cc61d515e97291",
+        "provenance": {
+          "belief_id": "operational-constraint-77",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "operational-constraint-77",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects remain capability-blocked, preventing the retrieval of new academic evidence.",
+        "scope": "durable.belief:operational-constraint-77",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-d1192a0a3893223b",
+        "provenance": {
+          "belief_id": "operational-status-check",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "operational-status-check",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The research acquisition pipeline is effectively halted due to persistent capability blocking across all configured domains.",
+        "scope": "durable.belief:operational-status-check",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-f6268344dcc7cc2a",
+        "provenance": {
+          "belief_id": "research-blocked-status",
+          "evidence_root_hash": "c8356eef016925a95b536cdaf7c1a42b87140f11f4366e5ba7065fac31f0691a",
+          "evidence_roots": [
+            "r-0a2fb060e5c04d55"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-0a2fb060e5c04d55"
+          ],
+          "record": {
+            "id": "research-blocked-status",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+        "scope": "durable.belief:research-blocked-status",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-530238b998d03d5c",
+        "provenance": {
+          "belief_id": "status-blocked-maintenance",
+          "evidence_root_hash": "947f2ba6afa0dd09029ccbc00f4a38183061618a4d0046b9738d6293de9c9d16",
+          "evidence_roots": [
+            "r-4e01a340d51741eb"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-4e01a340d51741eb"
+          ],
+          "record": {
+            "id": "status-blocked-maintenance",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "All research acquisition routes are currently capability-blocked, preventing the accumulation of the rigorous academic evidence required to resolve commitment com-001.",
+        "scope": "durable.belief:status-blocked-maintenance",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 0.8,
+          "source_status": "active"
+        },
+        "id": "tc-0e936d6869aa089c",
+        "provenance": {
+          "belief_id": "status-phi-001",
+          "evidence_root_hash": "9a02d617b152f45114e6138d0bdc325a4bb1a4db4adafd39dafbb1a7f5d68e54",
+          "evidence_roots": [
+            "source-b719ebd78816477a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "source-b719ebd78816477a"
+          ],
+          "record": {
+            "id": "status-phi-001",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+        "scope": "durable.belief:status-phi-001",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      },
+      {
+        "formation": {
+          "criteria": {
+            "minimum_confidence": 0.9,
+            "minimum_evidence_roots": 2
+          },
+          "derived_at_version": 84,
+          "evidence_root_count": 1,
+          "source_confidence": 1.0,
+          "source_status": "active"
+        },
+        "id": "tc-78ff9c11dc505fd4",
+        "provenance": {
+          "belief_id": "status-unblocked-v73",
+          "evidence_root_hash": "d3e8ec0bb6626d86c1566af20145d88e9627b271b8c08828764c0cfca15d227b",
+          "evidence_roots": [
+            "r-020bc007cb4e484a"
+          ]
+        },
+        "rehydration": {
+          "evidence_ids": [
+            "r-020bc007cb4e484a"
+          ],
+          "record": {
+            "id": "status-unblocked-v73",
+            "kind": "belief"
+          },
+          "trigger": "trust_compact_challenged"
+        },
+        "reopen_conditions": [
+          "credible contradictory evidence is recorded against the belief",
+          "a supporting evidence root is invalidated, superseded, or unavailable",
+          "the governing scope or decision changes",
+          "a human or a governed future retrieval request asks for justification"
+        ],
+        "rule": "Capability blocks for information thermodynamics (it-001), prime numbers (pn-001), and philosophy (phi-001) are lifted, enabling research retrieval.",
+        "scope": "durable.belief:status-unblocked-v73",
+        "status": "CANDIDATE",
+        "strength": "provisional"
+      }
+    ],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 24,
+      "challenged_count": 0,
+      "evidence_root_count": 13,
+      "provisional_count": 23,
+      "settled_count": 1,
+      "status_counts": {
+        "CANDIDATE": 23,
+        "SETTLED": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21888,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 7,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "excerpt_boundary": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 24,
+    "trust_compact_evidence_root_count": 13,
+    "trust_compact_settled_count": 1,
+    "working_set_chars": 11877,
+    "working_to_delivered_ratio": 0.5426
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "ent-001",
+        "next_step": "Initiate focused search for peer-reviewed academic literature connecting information theory and statistical entropy.",
+        "question": "How are definitions of entropy synthesized across statistical mechanics and information theory?",
+        "title": "Entropy Foundations"
+      },
+      {
+        "id": "pn-001",
+        "next_step": "Define the complexity classes associated with primality testing using established mathematical literature.",
+        "question": "What are the fundamental computational complexity classes for primality testing?",
+        "title": "Prime Number Primality Complexity"
+      },
+      {
+        "id": "phi-001",
+        "next_step": "Synthesize existing retrieved philosophical abstracts into a preliminary notebook structure to evaluate evidence sufficiency.",
+        "question": "How do foundational philosophical frameworks define the limits of empirical observation?",
+        "title": "Foundations of Empiricism"
+      }
+    ],
+    "beliefs": [
+      {
+        "claim": "Current collected evidence remains insufficient for a foundational notebook on Landauer's principle and Maxwell's Demon; rigorous academic literature is required for synthesis.",
+        "confidence": 1.0,
+        "id": "gap-evidence-com-001",
+        "provenance": [
+          "source-4e898c4984f44484",
+          "source-4960d49f67b448c0",
+          "source-03131ad09cb44f32",
+          "source-b38d8e7c52554042",
+          "source-48715227e057494c",
+          "source-1e5b2316125a4d80",
+          "source-0cc3347e5f2848ba",
+          "source-3cdec702d2034a89"
+        ],
+        "status": "active",
+        "why_retained": "Previous searches yielded only general Wikipedia metadata, which lacks the technical depth necessary for a foundational analysis of thermodynamics."
+      },
+      {
+        "claim": "All configured research projects are capability-blocked, preventing the collection of the two distinct, high-quality sources required to synthesize the notebook for commitment com-001.",
+        "confidence": 1.0,
+        "id": "research-blocked-status",
+        "provenance": [
+          "r-0a2fb060e5c04d55"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs for it-001, ent-001, pn-001, and phi-001 confirm blocked status with future retry version requirements, making research impossible in this cycle."
+      },
+      {
+        "claim": "The project phi-001 is the most viable path for meeting the two-distinct-source requirement for notebook publication, provided targeted academic retrieval succeeds.",
+        "confidence": 0.8,
+        "id": "status-phi-001",
+        "provenance": [
+          "source-b719ebd78816477a"
+        ],
+        "status": "active",
+        "why_retained": "Previous failed discovery attempts across other domains (it-001, ent-001, pn-001) leave phi-001 as the only domain where recent retrievals have yielded identifiable academic content, albeit needing further consolidation."
+      },
+      {
+        "claim": "All currently active and parked projects are capability-blocked, preventing the necessary acquisition of distinct, peer-reviewed academic sources required for notebook synthesis.",
+        "confidence": 1,
+        "id": "blockage-status-update",
+        "provenance": [
+          "r-4e01a340d51741eb"
+        ],
+        "status": "active",
+        "why_retained": "Review of the acquisition log confirms that all domains (it-001, ent-001, pn-001, phi-001) are in a blocked state, with retry versions set to 33 or higher."
+      },
+      {
+        "claim": "All research acquisition routes are currently capability-blocked, preventing the accumulation of the rigorous academic evidence required to resolve commitment com-001.",
+        "confidence": 1.0,
+        "id": "status-blocked-maintenance",
+        "provenance": [
+          "r-4e01a340d51741eb"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm all domains have enforced retry versions (34+) exceeding the current system version (33), necessitating a hold on new research actions."
+      },
+      {
+        "claim": "The inability to acquire new high-quality academic sources across all domains prevents the progression of notebook synthesis for commitment com-001.",
+        "confidence": 1.0,
+        "id": "maintenance-hold",
+        "provenance": [
+          "r-f6fe38e45c264f99"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs show all projects (it-001, ent-001, pn-001, phi-001) are in a blocked state, rendering research impossible."
+      },
+      {
+        "claim": "All configured projects remain capability-blocked at version 45, preventing new academic source collection required for notebook synthesis.",
+        "confidence": 1.0,
+        "id": "blockage-status-v45",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs confirm retry versions for all active domains meet or exceed the current base version, prohibiting valid research retrieval this shift."
+      },
+      {
+        "claim": "All configured research projects remain capability-blocked at version 46, preventing the retrieval of new academic sources.",
+        "confidence": 1.0,
+        "id": "blockage-status-v46",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm that retry versions for all domains remain higher than the current system version, effectively halting all research actions."
+      },
+      {
+        "claim": "All research domains remain capability-blocked at version 48, preventing the acquisition of new academic sources.",
+        "confidence": 1.0,
+        "id": "blockage-status-v48",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs indicate that retry versions for all active projects (ent-001, pn-001, phi-001, it-001) are set to 48 or higher, rendering research retrieval impossible during this invocation."
+      },
+      {
+        "claim": "All configured research projects are capability-blocked, preventing the retrieval of the required academic literature for notebook publication.",
+        "confidence": 1.0,
+        "id": "blockage-status-persistence",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs for versions 45-53 confirm that all research routes are blocked with future retry version requirements, making research impossible this cycle."
+      },
+      {
+        "claim": "The research acquisition pipeline is effectively halted due to persistent capability blocking across all configured domains.",
+        "confidence": 1.0,
+        "id": "operational-status-check",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs confirm that despite retry version configurations, no valid academic source retrieval is functioning across projects ent-001, pn-001, phi-001, or it-001."
+      },
+      {
+        "claim": "All research domains remain capability-blocked as of version 62, preventing the acquisition of new academic sources required for notebook synthesis.",
+        "confidence": 1,
+        "id": "blockage-status-persistence-v62",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm that retry versions for all active projects (ent-001, pn-001, phi-001, it-001) meet or exceed the current base version of 62, rendering research retrieval impossible."
+      },
+      {
+        "claim": "All research domains remain capability-blocked as of version 67, preventing the acquisition of new academic sources.",
+        "confidence": 1.0,
+        "id": "blockage-status-persistence-v67",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm that retry versions for all active projects (ent-001, pn-001, phi-001, it-001) meet or exceed the current base version of 67, rendering research retrieval impossible."
+      },
+      {
+        "claim": "The capability blocks across all research domains (it-001, ent-001, pn-001, phi-001) are lifted, as the current system version (70) exceeds all established retry_after_version thresholds.",
+        "confidence": 1.0,
+        "id": "blockage-lifted-v70",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm retry versions are below current version 70, allowing for new research actions."
+      },
+      {
+        "claim": "Research acquisition pipelines are operational for all configured domains.",
+        "confidence": 1.0,
+        "id": "belief-unblocked-status-v71",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Current system version 71 is greater than all retry_after_version thresholds established in the capability logs, enabling new research retrieval."
+      },
+      {
+        "claim": "Capability blocks for information thermodynamics (it-001), prime numbers (pn-001), and philosophy (phi-001) are lifted, enabling research retrieval.",
+        "confidence": 1.0,
+        "id": "status-unblocked-v73",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "System version 73 exceeds the retry_after_version thresholds for it-001 (43), pn-001 (44), and phi-001 (57)."
+      },
+      {
+        "claim": "All configured research projects remain capability-blocked at version 74, preventing the retrieval of new academic sources.",
+        "confidence": 1.0,
+        "id": "blockage-status-persistence-v74",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm that retry versions for all active research domains (it-001, ent-001, pn-001, phi-001) remain significantly higher than the current system version (74), rendering research acquisition routes unav…"
+      },
+      {
+        "claim": "All research domains (it-001, ent-001, pn-001, phi-001) are currently capability-blocked, preventing the retrieval of necessary academic evidence.",
+        "confidence": 1.0,
+        "id": "blockage-status-v75",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Acquisition logs indicate persistent capability-blocked status for all domains, prohibiting the collection of the high-quality sources required to fulfill commitment com-001."
+      },
+      {
+        "claim": "All configured research projects remain capability-blocked, preventing the retrieval of new academic evidence.",
+        "confidence": 1.0,
+        "id": "operational-constraint-77",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Representation recovery logs for version 77 confirm capability_blocked status remains true for all domains, regardless of version thresholds."
+      },
+      {
+        "claim": "All configured research projects are capability-blocked, preventing the retrieval of necessary academic evidence.",
+        "confidence": 1.0,
+        "id": "blockage-status-v79",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Representation recovery logs confirm that all domains (it-001, ent-001, pn-001, phi-001) are in a capability_blocked state, halting all research acquisition routes."
+      },
+      {
+        "claim": "Research acquisition for the prime numbers domain (pn-001) is currently viable and operational.",
+        "confidence": 1.0,
+        "id": "belief-research-resumption-pn001",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Capability logs confirm the system version 80 exceeds the retry_after_version threshold (44) for pn-001, allowing for active research."
+      },
+      {
+        "claim": "Research acquisition for projects it-001, ent-001, and phi-001 remains halted due to unexpired capability blocks.",
+        "confidence": 1.0,
+        "id": "belief-persistent-blockage-status",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Representation recovery logs verify that retry_after_version thresholds for these projects (86, 84, and 57 respectively) are either unreached or require further validation."
+      },
+      {
+        "claim": "Research acquisition for prime numbers (pn-001) is blocked until system version 93.",
+        "confidence": 1,
+        "id": "belief-correct-pn001-status",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Previous belief incorrectly cited version 44; authoritative recovery data confirms the threshold is 93."
+      },
+      {
+        "claim": "Research acquisition for philosophy (phi-001) remains capability-blocked.",
+        "confidence": 1,
+        "id": "belief-phi-001-blocked",
+        "provenance": [
+          "r-020bc007cb4e484a"
+        ],
+        "status": "active",
+        "why_retained": "Representation recovery logs for this shift explicitly mark phi-001 as capability_blocked, overriding the version threshold check."
+      }
+    ],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 3,
+        "id": "com-001",
+        "reason": "Sufficient research time is needed to collect and evaluate the requested sources before synthesis can occur.",
+        "task": "Synthesize collected evidence into a foundational notebook on Landauer's principle and Maxwell's Demon"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-23T00:02:25.085536+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6176,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49896,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-23T00:02:49.525661+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-5929557bed184f79`
@@ -118512,6 +120108,103 @@ _None recorded._
 }
 ```
 
+### `source-4e49c0bcf41640f8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=Landauer+principle+Maxwell+Demon+information+thermodynamics+entropy+relationship&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-4e49c0bcf41640f8",
+  "scope": "failed",
+  "source": "https://api.openalex.org/works?search=Landauer+principle+Maxwell+Demon+information+thermodynamics+entropy+relationship&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 84,
+  "time": "2026-09-23T00:02:17.209998+00:00"
+}
+```
+
+### `source-de12acf250bc4f3d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74318},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psyche (psychology)\\\",\\\"pageid\\\":4880472,\\\"size\\\":12752,\\\"wordcount\\\":1458,\\\"snippet\\\":\\\"used synonymously.\\nPsychology\\nis the scientific or objective study of the psyche. The word has a long history of use in\\npsychology\\nand philosophy, dating\\\",\\\"timestamp\\\":\\\"2026-07-05T07:44:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a94ddd90b8a4b3716c6ff73ac47c392586e8f49d69a87ae0319bfe0c7e1397e0\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-de12acf250bc4f3d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 84,
+  "time": "2026-09-23T00:02:18.991902+00:00"
+}
+```
+
+### `source-b9951d0061e8469c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7075},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hamiltonian (quantum mechanics)\\\",\\\"pageid\\\":14381,\\\"size\\\":29436,\\\"wordcount\\\":5047,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, the Hamiltonian of a system is an operator corresponding to the total energy of that system, including both kinetic energy and potential\\\",\\\"timestamp\\\":\\\"2026-06-01T16:56:31Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fc72f28dc6eb330a8ca047918c8d57cba9f49b7e19fe478db65f2c6adaaaaa46\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b9951d0061e8469c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 84,
+  "time": "2026-09-23T00:02:19.877038+00:00"
+}
+```
+
+### `source-cd9dcf8c8a0d4576`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2199},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":30221,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-05T20:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f3f0b6e47ce4fad0f45ca20f971d6b12b824a7be639ae78caa0d65ead64cc3d7\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-cd9dcf8c8a0d4576",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 84,
+  "time": "2026-09-23T00:02:20.690661+00:00"
+}
+```
+
+### `source-7ffc203b26514192`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40307},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-07T05:12:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rule consciousness\\\",\\\"pageid\\\":47313267,\\\"size\\\":1874,\\\"wordcount\\\":217,\\\"snippet\\\":\\\"Rule\\nconsciousness\\nis one of the primary factors of personality out of sixteen, as categorized by Raymond Cattell in 1946 as low- and high-level. The\\\",\\\"timestamp\\\":\\\"2026-09-17T00:12:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3d720026de1d22c7e3d103084aff2d89a7f5fab3e3c579e432899d5b20acaaf6\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-7ffc203b26514192",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 84,
+  "time": "2026-09-23T00:02:21.442621+00:00"
+}
+```
+
+### `source-8013666b1e8448e2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87086,\\\"wordcount\\\":7289,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-21T23:51:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicki Minaj\\\",\\\"pageid\\\":22570683,\\\"size\\\":380021,\\\"wordcount\\\":31753,\\\"snippet\\\":\\\"Made My ADHD Into My Strength\\\": Understanding The Link Between Rap &\\nNeurodivergence\\n\\\". The Recording Academy. August 3, 2022. Retrieved March 18, 2026.\\\",\\\"timestamp\\\":\\\"2026-09-22T06:17:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"15f7a2bc578e92891a67146da4867be1b073e72a3af351bca9237f0b0b62d585\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8013666b1e8448e2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 84,
+  "time": "2026-09-23T00:02:22.247104+00:00"
+}
+```
+
+### `r-6611abbcc8f14bd6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":84,\"inherited_commitments\":[\"com-001\"],\"invocation\":\"w-6611abbcc8f14bd6\",\"previous_head\":\"81ff584e5aa0233cfa96f06751479cb641a72a8f5b772fd2bc5c179ffa5121af\",\"process_id\":2270,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-6611abbcc8f14bd6",
+  "source": "runtime:continuity",
+  "version": 84,
+  "time": "2026-09-23T00:02:24.467751+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Information Thermodynamics Inquiry
@@ -119438,6 +121131,17 @@ _None recorded._
 }
 ```
 
+### 085 · Operational Status: Capability Blocks in Effect
+
+```json
+{
+  "cycle": 85,
+  "invocation": "w-6611abbcc8f14bd6",
+  "title": "Operational Status: Capability Blocks in Effect",
+  "summary": "This cycle confirms that all research acquisition pipelines remain capability-blocked across the configured domains (information thermodynamics, entropy, prime numbers, philosophy). Based on the provided representation recovery logs, the retry-after-version thresholds for these projects (it-001 at 86, ent-001 at 96, pn-001 at 93, and phi-001 at 57) have not been met, rendering active research retrieval impossible for this shift. I am maintaining the existing commitment (com-001) in an open state until the research acquisition routes become operational, at which point I will prioritize the collection of the required academic sources."
+}
+```
+
 ## Research
 
 ### `res-001`
@@ -119818,8 +121522,9 @@ _None recorded._
   "query": "Landauer principle Maxwell Demon information thermodynamics entropy relationship",
   "reason": "Attempting to gather foundational academic sources to satisfy commitment com-001. This is the first step toward notebook synthesis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-910ebc8bd1e44ba6"
+  "status": "failed",
+  "created_by": "w-910ebc8bd1e44ba6",
+  "evidence": "source-4e49c0bcf41640f8"
 }
 ```
 
