@@ -236,6 +236,86 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
 
+    def test_truncated_discovery_never_becomes_project_evidence(self):
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "status": "active", "next_step": "Collect source evidence",
+                "reason": "Exercise durable metadata filtering", "actor": "operator"
+            })
+            self.engine.store.append("observation", {
+                "id": "discovery-long",
+                "source": "https://api.crossref.org/works?query=entropy",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "discovery",
+                    "scope": "search metadata",
+                    "excerpt": "x" * 5000,
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            invocation, request = self.engine.start("fixture", "truncated-discovery-test")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        delivered = next(item for item in request["context"]["evidence"] if item["id"] == "discovery-long")
+        self.assertTrue(delivered["context_excerpt"])
+        self.assertNotIn("discovery-long", request["context"]["project_evidence"]["p"])
+
+    def test_retrieval_ignores_unrelated_visible_source_when_project_domain_is_missing(self):
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "status": "active", "next_step": "Synthesize entropy evidence",
+                "reason": "Exercise project-aware retrieval", "actor": "operator"
+            })
+            self.engine.store.append("observation", {
+                "id": "entropy-old",
+                "source": "https://api.crossref.org/works/10.1000/entropy",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "source",
+                    "scope": "abstract metadata",
+                    "excerpt": "entropy statistical mechanics Shannon comparison",
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            # Newer source evidence from another domain makes project_evidence
+            # non-empty under the cross-topic allowance, but must not suppress
+            # recovery of the project's own older source.
+            self.engine.store.append("observation", {
+                "id": "neuro-new",
+                "source": "https://api.crossref.org/works/10.1000/neuro",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "neurodivergence",
+                    "evidence_role": "source",
+                    "scope": "abstract metadata",
+                    "excerpt": "neurodiversity clinical model comparison",
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            self.engine.store.append("observation", {
+                "id": "discovery-new",
+                "source": "https://api.crossref.org/works?query=entropy",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "discovery",
+                    "scope": "search metadata",
+                    "excerpt": "entropy search result",
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            invocation, request = self.engine.start("fixture", "project-aware-rehydrate-test")
+            self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
+
+        self.assertIn("neuro-new", request["context"]["project_evidence"]["p"])
+        self.assertIn("entropy-old", request["context"]["project_evidence"]["p"])
+        self.assertIn("entropy-old", request["context"]["retrieval_rehydration"]["evidence_ids"])
+        self.assertNotIn("discovery-new", request["context"]["project_evidence"]["p"])
+
     def test_retrieval_rehydrates_older_qualifying_notebook_source(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
