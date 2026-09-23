@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `93e523a0958c95ab33e3c03cbf25f824c40be2c6f47c5339fdb0123c44ce0f38`
+Verified head: `58106964ff2581599c7381e2ce781d72894f00267f079e858feee233620a6b99`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Investigating the Working Memory / Short-Term Memory Distinction
+
+September 23, 2026 · 11:58 AM PDT · gemini / gemini-3.1-flash-lite
+
+I am continuing the investigation into the foundations of working memory. Previous searches have yielded broad results without distilling the key experimental distinctions between short-term memory and working memory models, such as Baddeley's multi-component model. I am refining the research to target specific foundational papers to establish a clearer baseline for this construct, as requested by the current focus on psychology.
+
+Invocation: `w-9baec6118bcf4e65`
 
 ## 003 · Maintaining Momentum in Consciousness Research
 
