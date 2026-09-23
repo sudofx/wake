@@ -22,39 +22,6 @@
   "research": {},
   "research_topics": [
     {
-      "enabled": false,
-      "id": "wake_analysis",
-      "label": "WAKE✳︎",
-      "query": "WAKE✳︎ sudofx/wake",
-      "repository": "sudofx/wake",
-      "seed_question": "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?",
-      "source_kind": "repository"
-    },
-    {
-      "enabled": false,
-      "id": "information_thermodynamics",
-      "label": "Information thermodynamics",
-      "query": "information thermodynamics",
-      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": false,
-      "id": "entropy",
-      "label": "Entropy",
-      "query": "entropy",
-      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": false,
-      "id": "neurodivergence",
-      "label": "Neurodivergence",
-      "query": "neurodivergence",
-      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
-      "source_kind": "web"
-    },
-    {
       "enabled": true,
       "id": "consciousness",
       "label": "Consciousness",
@@ -71,14 +38,6 @@
       "source_kind": "web"
     },
     {
-      "enabled": false,
-      "id": "quantum_mechanics",
-      "label": "Quantum mechanics",
-      "query": "quantum mechanics",
-      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
-      "source_kind": "web"
-    },
-    {
       "enabled": true,
       "id": "philosophy",
       "label": "Philosophy",
@@ -92,14 +51,6 @@
       "label": "Religion",
       "query": "religion",
       "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
-      "source_kind": "web"
-    },
-    {
-      "enabled": false,
-      "id": "prime_numbers",
-      "label": "Prime numbers",
-      "query": "prime numbers mathematics",
-      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
       "source_kind": "web"
     },
     {
@@ -120,18 +71,12 @@
     }
   ],
   "topic_colors": {
-    "consciousness": "#ff9e64",
-    "endocrinology": "#ff757f",
-    "entropy": "#e0af68",
-    "information_thermodynamics": "#8aa8ff",
-    "neurodivergence": "#46b5ff",
-    "neurology": "#c099ff",
-    "philosophy": "#9ece6a",
-    "prime_numbers": "#b25dff",
-    "psychology": "#2ac3de",
-    "quantum_mechanics": "#93ff74",
-    "religion": "#d8c25d",
-    "wake_analysis": "#54d4bc"
+    "consciousness": "#73daca",
+    "endocrinology": "#93ff74",
+    "neurology": "#46b5ff",
+    "philosophy": "#9d7cd8",
+    "psychology": "#c0caf5",
+    "religion": "#c099ff"
   },
   "experimental": {
     "id": "reg-df573bb03399f050",

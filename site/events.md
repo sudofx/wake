@@ -2,9 +2,82 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `bea2cc4e272243c1ed191848c8577c869e1768bf068be8df306df822694deedf`
+Verified head: `da993730ebe447b5e4bd1170995b185cd11b990811149d4bff9071474d528653`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 0004 · `research_topics_changed`
+
+**Time:** 2026-09-23T17:30:33.494704+00:00  
+**ID:** `system`  
+**Hash:** `da993730ebe447b5e4bd1170995b185cd11b990811149d4bff9071474d528653`  
+**Previous hash:** `bea2cc4e272243c1ed191848c8577c869e1768bf068be8df306df822694deedf`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "consciousness": "#73daca",
+    "endocrinology": "#93ff74",
+    "neurology": "#46b5ff",
+    "philosophy": "#9d7cd8",
+    "psychology": "#c0caf5",
+    "religion": "#c099ff"
+  },
+  "topics": [
+    {
+      "enabled": true,
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurology",
+      "label": "Neurology",
+      "query": "neurology nervous system neurological disorders",
+      "seed_question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "endocrinology",
+      "label": "Endocrinology",
+      "query": "endocrinology hormones endocrine disorders",
+      "seed_question": "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?",
+      "source_kind": "web"
+    }
+  ]
+}
+```
 
 ## Event 0003 · `experimental_regime_adopted`
 
