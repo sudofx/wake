@@ -11,35 +11,35 @@
 # topic that studies a configured source repository; ordinary topics use "web".
 
 # WAKE✳︎ as a topic to study it's own mechanics.
-[[topics]]
-enabled = false
-id = "wake_analysis"
-label = "WAKE✳︎"
-query = "WAKE✳︎ sudofx/wake"
-source_kind = "repository"
-repository = "sudofx/wake"
-seed_question = "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+# [[topics]]
+# enabled = true
+# id = "wake_analysis"
+# label = "WAKE✳︎"
+# query = "WAKE✳︎ sudofx/wake"
+# source_kind = "repository"
+# repository = "sudofx/wake"
+# seed_question = "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
 
-[[topics]]
-enabled = false
-id = "information_thermodynamics"
-label = "Information thermodynamics"
-query = "information thermodynamics"
-seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+# [[topics]]
+# enabled = true
+# id = "information_thermodynamics"
+# label = "Information thermodynamics"
+# query = "information thermodynamics"
+# seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
 
-[[topics]]
-enabled = false
-id = "entropy"
-label = "Entropy"
-query = "entropy"
-seed_question = "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+# [[topics]]
+# enabled = true
+# id = "entropy"
+# label = "Entropy"
+# query = "entropy"
+# seed_question = "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
 
-[[topics]]
-enabled = false
-id = "neurodivergence"
-label = "Neurodivergence"
-query = "neurodivergence"
-seed_question = "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+# [[topics]]
+# enabled = true
+# id = "neurodivergence"
+# label = "Neurodivergence"
+# query = "neurodivergence"
+# seed_question = "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
 
 [[topics]]
 enabled = true
@@ -55,12 +55,12 @@ label = "Psychology"
 query = "psychology"
 seed_question = "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?"
 
-[[topics]]
-enabled = false
-id = "quantum_mechanics"
-label = "Quantum mechanics"
-query = "quantum mechanics"
-seed_question = "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?"
+# [[topics]]
+# enabled = true
+# id = "quantum_mechanics"
+# label = "Quantum mechanics"
+# query = "quantum mechanics"
+# seed_question = "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?"
 
 [[topics]]
 enabled = true
@@ -76,12 +76,12 @@ label = "Religion"
 query = "religion"
 seed_question = "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
 
-[[topics]]
-enabled = false
-id = "prime_numbers"
-label = "Prime numbers"
-query = "prime numbers mathematics"
-seed_question = "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+# [[topics]]
+# enabled = true
+# id = "prime_numbers"
+# label = "Prime numbers"
+# query = "prime numbers mathematics"
+# seed_question = "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
 
 [[topics]]
 enabled = true
