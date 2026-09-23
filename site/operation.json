@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-49693b9d0a5e40d2",
   "reason": "Repository-analysis notebooks must cite only source-controlled files from sudofx/wake",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-c2f2c01b65b548ff",
