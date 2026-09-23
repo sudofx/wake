@@ -180,6 +180,10 @@ def analyst_prompt(report: dict) -> str:
         "For 503/high-demand responses, describe provider availability as the supported cause unless stronger record evidence exists. "
         "Do not propose bypassing governance. Do not turn correlation into causation. "
         "End with one practical next check that follows from the evidence actually present. "
+        "Prefer passive, non-invasive checks that do not consume provider quota or alter the experimental environment, "
+        "such as inspecting an external provider status page when available or observing the next normally scheduled request. "
+        "Do not recommend synthetic probe requests, manual resubmissions, or small-scale test calls solely to test provider availability "
+        "unless the record gives a specific reason that an active probe is necessary. "
         "Use plain-text paragraphs only: no Markdown, no headings, and no escaped punctuation.\n\n"
     )
     return rules + json.dumps(report, ensure_ascii=False)
