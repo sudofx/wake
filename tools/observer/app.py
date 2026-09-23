@@ -129,10 +129,27 @@ def analyse(state: dict, events: list[dict], head: str) -> dict:
     recommendation = "Inspect the receipt before choosing a next action."
     if outcome == "rejected":
         recommendation = "Do not retry blindly: repair the cited proposal or its governance mismatch first."
-    if len(same_reason) >= 2:
+    if outcome == "rejected" and len(same_reason) >= 2:
         recommendation = "This is a repeating rejection. Change the proposal inputs or constraint, not just the timing."
+    if outcome == "deferred" and len(same_reason) >= 2:
+        recommendation = "Provider availability is repeatedly deferring wakes. Treat this separately from governance rejection and retry later rather than changing proposal content without evidence."
     if outcome == "accepted":
         recommendation = "The state advanced. Review the new durable changes and any remaining open commitments."
+    provider_history = []
+    for invocation_id, item in recent:
+        attempts = item.get("provider_attempts", [])
+        attempt = attempts[-1] if attempts else {}
+        provider_history.append({
+            "id": invocation_id,
+            "status": item.get("status"),
+            "reason": item.get("reason", ""),
+            "model": item.get("successful_model") or attempt.get("model") or item.get("model"),
+            "http_status": attempt.get("http_status"),
+            "result": attempt.get("result"),
+            "request_payload_bytes": attempt.get("request_payload_bytes"),
+            "provider_category": attempt.get("category"),
+            "provider_message": (attempt.get("provider_error") or {}).get("message"),
+        })
     return {
         "record": {"version": state.get("version"), "head": head, "event_count": len(events),
                    "integrity": "hash head supplied by wake-state; local reader is read-only"},
@@ -142,9 +159,30 @@ def analyse(state: dict, events: list[dict], head: str) -> dict:
                    "trust_compacts": compact, "retrieval": retrieval},
         "pattern": {"recent_attempts": len(recent), "same_reason_count": len(same_reason),
                     "recent_outcomes": [item.get("status") for _, item in recent]},
+        "recent_provider_attempts": provider_history,
         "open_commitments": commitments,
         "recommendation": recommendation,
     }
+
+
+def analyst_prompt(report: dict) -> str:
+    """Build a deliberately conservative prompt for the optional outside analyst."""
+    rules = (
+        "You are a careful outside analyst of WAKE's append-only research record. "
+        "Give a concise, non-authoritative opinion about the latest wake. "
+        "Separate recorded facts from inference explicitly. Do not invent causal links between independent signals. "
+        "A provider deferral (for example HTTP 503/high demand) and a governance rejection are different event classes; "
+        "do not combine them into a claim of general system instability unless the supplied record directly supports that link. "
+        "Do not infer that request payload size, token count, or model input limits caused a provider error unless the provider "
+        "explicitly reports an input-size, token-limit, context-length, or equivalent request-validation error. "
+        "When discussing payload size or model behavior, compare recent successful and failed provider attempts from the report "
+        "when those observations are available. A successful request of similar magnitude is counterevidence to a simple size claim. "
+        "For 503/high-demand responses, describe provider availability as the supported cause unless stronger record evidence exists. "
+        "Do not propose bypassing governance. Do not turn correlation into causation. "
+        "End with one practical next check that follows from the evidence actually present. "
+        "Use plain-text paragraphs only: no Markdown, no headings, and no escaped punctuation.\n\n"
+    )
+    return rules + json.dumps(report, ensure_ascii=False)
 
 
 def gemini_opinion(report: dict) -> dict:
@@ -152,11 +190,7 @@ def gemini_opinion(report: dict) -> dict:
     if not key:
         raise RuntimeError("Set GEMINI_API_KEY to enable optional AI opinion.")
     model = os.environ.get("WAKE_OBSERVER_GEMINI_MODEL", "gemini-3.1-flash-lite")
-    prompt = ("You are a careful analyst of WAKE's append-only research record. Give a concise, "
-              "non-authoritative opinion about the latest wake. Distinguish recorded fact from inference, "
-              "do not propose bypassing governance, and end with one practical next check. Use plain-text "
-              "paragraphs only: no Markdown, no headings, and no escaped punctuation.\n\n" +
-              json.dumps(report, ensure_ascii=False))
+    prompt = analyst_prompt(report)
     request = urllib.request.Request(
         f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
         data=json.dumps({"contents": [{"parts": [{"text": prompt}]}],
