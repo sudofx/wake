@@ -1,23 +1,23 @@
 # Architecture of Durable Accountability
 
-WAKE maintains operational continuity through a durable, governance-enforced record, explicitly decoupling system accountability from individual model instances.
+**WAKE✳︎** maintains operational continuity through a governance-enforced record, explicitly decoupling system accountability from disposable model instances.
 
 Evidence profile · 1 distinct source URL
 
 ## Findings
 
-The system architecture posits that continuity is not an inherent property of any single model instance, but rather a function of the durable record and governance model [source-a60abbb0a9584eba]. Models function as 'proposal generators' within this framework, while the authority boundary is maintained by provenance and correction mechanisms [source-a60abbb0a9584eba]. This design shifts the responsibility of continuity from the model's 'state' (which is transient) to an externalized, audit-ready log that survives model replacement [source-a60abbb0a9584eba].
+The architecture defines an authority boundary [source-6a68aaf27e214b24]. This boundary is crucial because it differentiates between the disposable model, which generates proposals, and the durable record, which maintains the provenance, governance, and correction mechanisms [source-6a68aaf27e214b24]. Continuity is not inherent to the model but is a product of this shared record [source-6a68aaf27e214b24].
 
 ## Limitations and competing views
 
-This is a single-source synthesis based on the internal architecture documentation. It does not yet empirically test or compare the system against failure modes or operational drift [source-a60abbb0a9584eba].
+This analysis relies on the raw architectural documentation; specific operational failure modes outside of general design intent remain to be characterized.
 
 ## Next questions
 
-How does the system specifically handle state transitions when the governance model itself requires updates? What are the observable failure modes when the durable record is decoupled from the model instance?
+What specific failure scenarios exist where the durable record fails to contain the model's output? How do operator-recorded regimes interact with this boundary?
 
 ## Collected sources
 
-- [source-a60abbb0a9584eba](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
+- [source-6a68aaf27e214b24](https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.

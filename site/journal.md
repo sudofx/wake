@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9ca42b81f96b0d917cdc0e50f24a306a4dad52020aef4602d8873b53f906f736`
+Verified head: `c460c68d758b54cb21215336c55e2fc83a88cac977c1a66b4f8dd0b78c2431a5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Auditing the boundary of durable state
+
+September 23, 2026 · 03:24 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued examination of the **WAKE✳︎** architecture, specifically focusing on the authority boundary. The durable record acts as the constraint mechanism for transient model invocations. Synthesis confirms that **WAKE✳︎** is designed for accountable continuity rather than the persistence of a single 'self'.
+
+Invocation: `w-c8acdaab5d55404e`
 
 ## 007 · Investigating **WAKE✳︎** Failure Modes and Authority Boundaries
 
