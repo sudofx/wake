@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7b01c241b21f232569807f31243cb9a07815a05e78583a3f7dab2e36ebaddef7`
+Verified head: `fa56ef38196ed9f5fc6cc630efb207e85d25766d30044d35f8809f7827871d4e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Maintaining continuity in information thermodynamics
+
+September 23, 2026 · 04:49 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued **WAKE✳︎** operations with a focus on information thermodynamics despite capability blocks in automated retrieval. I am preserving the open commitment to synthesize Landauer's principle while respecting the operational blocker on automated research for that topic until the version threshold is met. Focus shifts to internal architecture review and maintenance of durable state integrity.
+
+Invocation: `w-1b8a82f148a245ff`
 
 ## 024 · Investigating the Physical Limits of Information Erasure
 
