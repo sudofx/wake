@@ -1,55 +1,7 @@
 {
-  "status": "deferred",
-  "id": "w-82a3e4d398f545d3",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 50315,
-    "http_status": 503,
-    "result": "transient_failure",
-    "elapsed_ms": 446,
-    "response_bytes_captured": 198,
-    "provider_error": {
-      "code": 503,
-      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-      "status": "UNAVAILABLE"
-    },
-    "category": "server",
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 50315,
-        "http_status": 503,
-        "result": "transient_failure",
-        "elapsed_ms": 446,
-        "response_bytes_captured": 198,
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "category": "server"
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 50315,
-      "http_status": 503,
-      "result": "transient_failure",
-      "elapsed_ms": 446,
-      "response_bytes_captured": 198,
-      "provider_error": {
-        "code": 503,
-        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "status": "UNAVAILABLE"
-      },
-      "category": "server"
-    }
-  ],
+  "status": "rejected",
+  "id": "w-49693b9d0a5e40d2",
+  "reason": "Repository-analysis notebooks must cite only source-controlled files from sudofx/wake",
   "wake_status": {
     "last_accepted": {
       "id": "w-c2f2c01b65b548ff",
@@ -70,66 +22,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-82a3e4d398f545d3",
-      "time": "2026-09-23T20:49:57.272730+00:00",
-      "finished": "2026-09-23T20:50:06.385729+00:00",
-      "status": "deferred",
-      "reason": "Gemini temporarily unavailable; wake deferred",
-      "provider_error": {
-        "category": "server",
-        "elapsed_ms": 446,
-        "http_status": 503,
-        "model": "gemini-3.1-flash-lite",
-        "provider_attempts": [
-          {
-            "category": "server",
-            "elapsed_ms": 446,
-            "http_status": 503,
-            "model": "gemini-3.1-flash-lite",
-            "provider_error": {
-              "code": 503,
-              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-              "status": "UNAVAILABLE"
-            },
-            "request_payload_bytes": 50315,
-            "response_bytes_captured": 198,
-            "result": "transient_failure"
-          }
-        ],
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "provider_requests_sent": 1,
-        "request_payload_bytes": 50315,
-        "response_bytes_captured": 198,
-        "result": "transient_failure"
-      },
+      "id": "w-49693b9d0a5e40d2",
+      "time": "2026-09-23T20:58:38.580650+00:00",
+      "finished": "2026-09-23T20:58:56.195340+00:00",
+      "status": "rejected",
+      "reason": "Repository-analysis notebooks must cite only source-controlled files from sudofx/wake",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 446,
-          "http_status": 503,
+          "elapsed_ms": 9320,
+          "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
-          "request_payload_bytes": 50315,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
+          "request_payload_bytes": 52132,
+          "result": "success"
         }
-      ]
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 11,
     "next_eligible": "2026-09-24T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 50,
-    "provider_requests_today": 55,
-    "provider_request_slots_today": 55,
+    "attempts_today": 51,
+    "provider_requests_today": 56,
+    "provider_request_slots_today": 56,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
