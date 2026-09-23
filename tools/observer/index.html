@@ -1,1 +1,77 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WAKE Observer</title><link rel="stylesheet" href="style.css"><body><main><header><p>LOCAL / READ-ONLY</p><h1>WAKE Observer</h1><div><button id="refresh">Refresh record</button> <button id="opinion">Ask Gemini</button></div></header><p id="status">Loading live wake-state…</p><section id="setup" hidden><h2>Connect a WAKE record</h2><p>Choose a local checkout or a public GitHub repository. This choice stays only in this app’s local config file.</p><label><input type="radio" name="source" value="local" checked> Local WAKE folder</label><label><input type="radio" name="source" value="github"> GitHub repository</label><p><input id="wake-path" placeholder="/absolute/path/to/wake"><input id="github-repo" placeholder="sudofx/wake"><input id="github-branch" value="wake-state"><button id="save-path">Connect WAKE</button></p></section><section id="brief"></section><section><h2>Optional analyst opinion</h2><p id="opinion-text">Uses your local <code>GEMINI_API_KEY</code>. It receives the generated report, never writes to WAKE.</p></section></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#e8ecf4">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#24283b">
+<title>WAKE✳︎ Observer</title>
+<script>try{const saved=localStorage.getItem("wake-theme");const dark=saved?saved==="dark":matchMedia("(prefers-color-scheme:dark)").matches;if(dark)document.documentElement.dataset.theme="dark"}catch{}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to observer</a>
+<header class="masthead">
+  <div class="brand-block">
+    <a class="wordmark" href="#" aria-label="WAKE Observer home">WAKE<span class="asterisk">✳︎</span><small>OBSERVER / LOCAL ANALYSIS</small></a>
+    <span class="read-only"><i></i> READ-ONLY</span>
+  </div>
+  <div class="header-tools">
+    <button id="refresh" class="quiet-action" type="button">Refresh record</button>
+    <button id="opinion" class="primary-action" type="button">Ask Gemini</button>
+    <label class="theme-switch" title="Toggle light or dark theme">
+      <input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme">
+      <span class="theme-icon" aria-hidden="true">◐</span>
+      <span class="switch-track" aria-hidden="true"><i></i></span>
+    </label>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="intro">
+    <p class="eyebrow">EXTERNAL INSTRUMENT / NO WRITE AUTHORITY</p>
+    <h1>Observe the record.<br><em>Don’t alter it.</em></h1>
+    <p>Read the published durable state, surface pressure and failure patterns, and keep analyst interpretation outside WAKE✳︎ governance.</p>
+  </section>
+
+  <div class="status-bar">
+    <span class="status-dot" aria-hidden="true"></span>
+    <p id="status">Loading live wake-state…</p>
+  </div>
+
+  <section id="setup" class="panel setup-panel" hidden>
+    <div class="section-heading">
+      <p class="eyebrow">CONNECT A RECORD</p>
+      <h2>Choose what to observe.</h2>
+    </div>
+    <p>Use a local checkout or a public GitHub repository. The selection stays only in Observer’s local config file.</p>
+    <div class="source-choices">
+      <label><input type="radio" name="source" value="local" checked><span>Local WAKE folder</span></label>
+      <label><input type="radio" name="source" value="github"><span>GitHub repository</span></label>
+    </div>
+    <div class="connect-grid">
+      <label><span>Local path</span><input id="wake-path" placeholder="/absolute/path/to/wake"></label>
+      <label><span>Repository</span><input id="github-repo" placeholder="sudofx/wake"></label>
+      <label><span>State branch</span><input id="github-branch" value="wake-state"></label>
+      <button id="save-path" class="primary-action" type="button">Connect WAKE✳︎</button>
+    </div>
+  </section>
+
+  <section id="brief" aria-live="polite"></section>
+
+  <section class="panel opinion-panel">
+    <div class="section-heading">
+      <p class="eyebrow">OPTIONAL ANALYST OPINION</p>
+      <h2>Interpretation stays outside the record.</h2>
+    </div>
+    <p id="opinion-text">Uses your local <code>GEMINI_API_KEY</code>. Gemini receives the generated Observer report only and never writes to WAKE✳︎.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>WAKE✳︎ OBSERVER</strong>
+  <span>READ THE RECEIPTS. KEEP THE BOUNDARY.</span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
