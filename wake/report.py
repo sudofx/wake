@@ -569,15 +569,16 @@ def _blog_display_title(post):
     """Keep scheduled Bob reflections recognisable in every public export."""
     title = str(post.get("title", "")).strip()
     version = int(post.get("created_version") or 0)
-    is_reflection = version and version % 10 == 0
-    if not is_reflection:
+    reflection_cycle = int(post.get("reflection_cycle") or 0)
+    milestone = reflection_cycle or (version if version and version % 10 == 0 else 0)
+    if not milestone:
         return title
     remainder = re.sub(
         r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?",
         "", title, flags=re.IGNORECASE,
     )
     remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
-    return f"Cycle {version} Reflection: {remainder or title}"
+    return f"Cycle {milestone} Reflection: {remainder or title}"
 
 
 def _blog_html(post, state):
@@ -601,7 +602,8 @@ def _blog_html(post, state):
     )
     body += '<p><a href="../blog.xml">Subscribe to Bob’s blog via RSS</a></p>'
     version = int(post.get("created_version") or 0)
-    is_reflection = bool(version and version % 10 == 0)
+    reflection_cycle = int(post.get("reflection_cycle") or 0)
+    is_reflection = bool(reflection_cycle or (version and version % 10 == 0))
     domain = state.get("projects", {}).get(post.get("project"), {}).get("domain")
     invocation = state.get("invocations", {}).get(post.get("created_by"), {})
     status = str(post.get("status") or "published").upper()
