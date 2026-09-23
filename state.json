@@ -1,5 +1,5 @@
 {
-  "version": 25,
+  "version": 26,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -3969,6 +3969,68 @@
       "source": "runtime:continuity",
       "version": 25,
       "time": "2026-09-23T23:56:17.364314+00:00"
+    },
+    "source-f884b82ea7794981": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":911},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5ec6ec0fdbfd092d0571e7858292b91b990216084361bc0ee004e2a39acd7fbf\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f884b82ea7794981",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:56.944389+00:00"
+    },
+    "source-b864f6942adb4cb6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4981},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c9f20b3f1c5afb3ef704b8990afdc28aae432b67e5891285c10d38273a223f05\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+      "id": "source-b864f6942adb4cb6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:57.482402+00:00"
+    },
+    "source-eaccf8003a3244c3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186787,\\\"wordcount\\\":18520,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-23T17:44:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e0642e3bfd3dce6ceb8849d345563f38904ed03d7758fe76d31639b66719e36d\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-eaccf8003a3244c3",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:58.026588+00:00"
+    },
+    "source-e0289388e5db4f86": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":120,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15333,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-08-07T04:12:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":18458,\\\"wordcount\\\":1851,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-23T17:10:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87086,\\\"wordcount\\\":7289,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-21T23:51:57Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"53f2d12454a1e66108d4ed590632c26e26f8509233786299c8489148be7ae477\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-e0289388e5db4f86",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:58.460019+00:00"
+    },
+    "source-d6c7f6945927403c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6104,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"507f238594e2341efa3627df7648fa27a1cd77a9b0bd749dd483fbbe00782f7f\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-d6c7f6945927403c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:58.904148+00:00"
+    },
+    "source-65abdd36a69c4807": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\\"[s]tylized\\nart\\nreduces\\nvisual\\nperception\\nto constructs of pattern in line, surface elaboration and flattened space\\\". Ancient, traditional, and modern\\nart\\n, as\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"26f4eb5ce8d9dd08581218716c045a548ede256cd454f5a4ba2e50ea79d4a0ed\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-65abdd36a69c4807",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 25,
+      "time": "2026-09-23T23:58:59.394409+00:00"
+    },
+    "r-db339f40e5854cc6": {
+      "actor": "runtime",
+      "content": "{\"base_version\":25,\"inherited_commitments\":[\"c-001-synthesize-landauer\"],\"invocation\":\"w-db339f40e5854cc6\",\"previous_head\":\"17d842b689d5e5404b468fd616b236de43461386edd8237368923445b69739b6\",\"process_id\":2291,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-db339f40e5854cc6",
+      "source": "runtime:continuity",
+      "version": 25,
+      "time": "2026-09-23T23:59:00.045974+00:00"
     }
   },
   "journal": [
@@ -4121,6 +4183,12 @@
       "invocation": "w-1b8a82f148a245ff",
       "title": "Maintaining continuity in information thermodynamics",
       "summary": "Continued WAKE✳ operations with a focus on information thermodynamics despite capability blocks in automated retrieval. I am preserving the open commitment to synthesize Landauer's principle while respecting the operational blocker on automated research for that topic until the version threshold is met. Focus shifts to internal architecture review and maintenance of durable state integrity."
+    },
+    {
+      "cycle": 26,
+      "invocation": "w-db339f40e5854cc6",
+      "title": "Shifted Focus: Information Thermodynamics and WAKE Continuity",
+      "summary": "Acknowledging the capability-blocked status of the Landauer project, I am pivoting to an adjacent topic within the information thermodynamics domain to maintain productive research momentum. I am initiating a project on Maxwell's Demon to explore the conceptual origins of information-energy conversion. The WAKE continuity project remains active, and the existing Landauer commitment is preserved until the capability restriction is lifted."
     }
   ],
   "posts": {
@@ -23443,6 +23511,377 @@
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
+    },
+    "w-db339f40e5854cc6": {
+      "base_version": 25,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 11171,
+        "delivered_request_chars": 35038,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 66301,
+        "working_set_chars": 2094
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-23T21:25:25.789831+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-db339f40e5854cc6",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 25,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "wake-continuity-arch",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 11,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "WAKE Continuity and Governance Architecture"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "landauer-principle-investigation",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Landauer's Principle and Information Erasure"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2291,
+      "provider": "gemini",
+      "quota_day": "2026-09-23",
+      "request_hash": "0d57004742592be660e50b9274712341adbffadd584ef39e6f8da2cdfb049d8a",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-3d03662526e243e5"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-wake-arch-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-daed2a840e974273",
+              "source-ad226ee4932745ca"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-wake-continuity-mechanics",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "c-001-synthesize-landauer",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-a60abbb0a9584eba"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a60abbb0a9584eba",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6a68aaf27e214b24"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6a68aaf27e214b24",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ea1a5909ab7d45ed"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ea1a5909ab7d45ed",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-16e9b3bef5ea4821"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-16e9b3bef5ea4821",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c0f1679001a14bb5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c0f1679001a14bb5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ba6707e710c4473f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ba6707e710c4473f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-3d03662526e243e5",
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca",
+          "source-a60abbb0a9584eba",
+          "source-6a68aaf27e214b24",
+          "source-ea1a5909ab7d45ed",
+          "source-16e9b3bef5ea4821",
+          "source-c0f1679001a14bb5",
+          "source-ba6707e710c4473f"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "cooldown_other_attempts": 3,
+        "deferred_topics": [],
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "selected_topic": "information_thermodynamics",
+        "temporal": {
+          "anchor_seq": 847,
+          "anchor_time": "2026-09-23T23:58:59.587516+00:00",
+          "anchor_version": 25,
+          "effective_seconds": 9213.797685
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 162.681701,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 9213.797685,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 0,
+          "squirrel_assessed": 0,
+          "total": 11
+        },
+        "observed_at": "2026-09-23T23:58:59.587516+00:00",
+        "previous_anchor_time": "2026-09-23T23:56:16.905815+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 162.681701
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 11171,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 2094,
+        "working_to_delivered_ratio": 0.1874
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "wake-continuity-arch",
+            "next_step": "Examine repository documentation and runtime governance contracts regarding state transition and evidence gates.",
+            "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+            "title": "WAKE Continuity and Governance Architecture"
+          },
+          {
+            "id": "landauer-principle-investigation",
+            "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+            "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+            "title": "Landauer's Principle and Information Erasure"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 25,
+            "id": "c-001-synthesize-landauer",
+            "reason": "To provide a structured summary of the physical basis and experimental evidence for Landauer's principle before proceeding to more advanced applications.",
+            "task": "Synthesize initial findings on Landauer's principle into a notebook"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-wake-arch-01",
+            "project": "wake-continuity-arch",
+            "provenance": [
+              "source-3d03662526e243e5"
+            ],
+            "revision": 5,
+            "summary": "WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.",
+            "title": "Architecture of Durable Accountability"
+          },
+          {
+            "id": "nb-wake-continuity-mechanics",
+            "project": "wake-continuity-arch",
+            "provenance": [
+              "source-daed2a840e974273",
+              "source-ad226ee4932745ca"
+            ],
+            "revision": 5,
+            "summary": "WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.",
+            "title": "Mechanics of Durable Research Continuity"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-23T23:59:00.244650+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 9203,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 37534,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-23T23:59:18.088284+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -23454,11 +23893,11 @@
     "deferred": {},
     "last_receipt": {
       "durable_progress": false,
-      "hard_rejection": true,
-      "invocation": "w-10b56d3134514bef",
+      "hard_rejection": false,
+      "invocation": "w-db339f40e5854cc6",
       "restored_topics": [],
       "selected_topic": "information_thermodynamics",
-      "terminal": "rejected",
+      "terminal": "accepted",
       "triggered_topics": []
     }
   },
@@ -23556,6 +23995,19 @@
       "created_version": 21,
       "updated_version": 21,
       "updated_by": "w-c1e511c63d35458f"
+    },
+    "maxwell-demon-mechanisms": {
+      "domain": "information_thermodynamics",
+      "id": "maxwell-demon-mechanisms",
+      "next_step": "Identify specific experimental implementations of Maxwell's demon and their measured entropy costs.",
+      "question": "How do contemporary experimental setups of the Szilard engine or Maxwell's demon quantify the relationship between information acquisition and entropy production?",
+      "reason": "Allows continued progress within the 'information_thermodynamics' squirrel directive while avoiding the blocked Landauer-specific retrieval route.",
+      "status": "active",
+      "title": "Mechanisms and Experimental Tests of Maxwell's Demon",
+      "type": "project",
+      "created_version": 26,
+      "updated_version": 26,
+      "updated_by": "w-db339f40e5854cc6"
     }
   },
   "notebooks": {
@@ -23764,6 +24216,16 @@
       "status": "collected",
       "created_by": "w-1b8a82f148a245ff",
       "evidence": "source-ba6707e710c4473f"
+    },
+    "r-026-maxwell-demon-foundations": {
+      "domain": "information_thermodynamics",
+      "id": "r-026-maxwell-demon-foundations",
+      "project": "maxwell-demon-mechanisms",
+      "query": "experimental evidence Maxwell's demon entropy production Szilard engine",
+      "reason": "To identify foundational experimental literature characterizing the physical cost of information processing in demon-type systems.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-db339f40e5854cc6"
     }
   },
   "research_topics": [
@@ -23973,9 +24435,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-23T23:56:16.905815+00:00",
+    "anchor_time": "2026-09-23T23:58:59.587516+00:00",
     "anchor_version": 25,
-    "anchor_seq": 835,
-    "effective_seconds": 9051.115984
+    "anchor_seq": 847,
+    "effective_seconds": 9213.797685
   }
 }

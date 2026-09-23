@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fab99a68180c31a3e6a6e868df5ed1c8f264187add0c0eec1346ccfbdf54f405`
+Verified head: `e782267b5510ab02b4792f000cb6cd2a08535b0c1041bece7af4ecb69c9124c5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 026 · Shifted Focus: Information Thermodynamics and WAKE Continuity
+
+September 23, 2026 · 04:59 PM PDT · gemini / gemini-3.1-flash-lite
+
+Acknowledging the capability-blocked status of the Landauer project, I am pivoting to an adjacent topic within the information thermodynamics domain to maintain productive research momentum. I am initiating a project on Maxwell's Demon to explore the conceptual origins of information-energy conversion. The WAKE continuity project remains active, and the existing Landauer commitment is preserved until the capability restriction is lifted.
+
+Invocation: `w-db339f40e5854cc6`
 
 ## 025 · Maintaining continuity in information thermodynamics
 
