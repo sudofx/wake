@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c2dc9acda1f0b93b4531b86f0133dd49580443965e911f76a391cbc74fe174e4`
+Verified head: `e21bead3d6f6d8ccb80e6f0caa8e0ff62694d2fa7cade33504e7551faf22e4f9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Querying Primary Neurodivergence Literature via Crossref Retrieval
+
+September 23, 2026 · 03:25 AM PDT · gemini / gemini-3.5-flash
+
+We continue tracking our active neurodivergence project under the Squirrel directive while thermodynamic routes are capability-blocked. To circumvent the limitations of broad search results and establish a valid, verifiable evidence base for our upcoming notebook, we propose a direct metadata/abstract retrieval of a specific peer-reviewed doi via Crossref.
+
+Invocation: `w-0a83d56b087748cd`
 
 ## 008 · Navigating Blocked Thermodynamic Routes via Cognitive Paradigm Research
 
