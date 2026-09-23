@@ -251,7 +251,7 @@ def _evidence_payload(item):
     return payload if isinstance(payload, dict) else {}
 
 
-def _verification_evidence(evidence, project_domain, label):
+def _verification_evidence(evidence, project_domain, label, minimum_sources=1):
     """
     Apply the newer verification contract when evidence says that contract is
     required.
@@ -268,12 +268,17 @@ def _verification_evidence(evidence, project_domain, label):
 
     Verification-required evidence must also:
 
-        - belong to the same topic as the project
         - be individually selected sources, not broad search-result lists
-        - contain at least two independently retrieved URLs
+        - retain collector-stamped topic provenance
+        - meet the caller's minimum number of distinct retrieved URLs
 
-    This is a provenance rule, NOT a declaration that two URLs make something
-    true.
+    Topic provenance records where evidence entered the experiment; it is not
+    a semantic relevance verdict. Materially relevant cross-topic evidence may
+    qualify, while public promotion can still demand stronger multi-source
+    support.
+
+    This is a provenance rule, NOT a declaration that one or more URLs make
+    something true.
     """
     marked = [
         item
@@ -293,15 +298,6 @@ def _verification_evidence(evidence, project_domain, label):
 
     require(
         all(
-            _evidence_payload(item).get("topic_domain") == project_domain
-            for item in marked
-        ),
-        f"{label} evidence must come from the same research topic "
-        "as its project",
-    )
-
-    require(
-        all(
             _evidence_payload(item).get("evidence_role", "source") == "source"
             for item in marked
         ),
@@ -310,9 +306,9 @@ def _verification_evidence(evidence, project_domain, label):
     )
 
     require(
-        len({item.get("source") for item in marked}) >= 2,
-        f"{label} requires two independently retrieved source URLs "
-        "from its project topic",
+        len({item.get("source") for item in marked}) >= minimum_sources,
+        f"{label} requires at least {minimum_sources} distinct "
+        "independently retrieved source URL(s)",
     )
 
     return marked
@@ -353,9 +349,9 @@ def _claim_tokens(value):
     }
 
 
-def _verify_claim_support(claim, evidence, label):
+def _verify_claim_support(claim, evidence, label, minimum_sources=2):
     """
-    Require two independent collected sources to materially overlap the claim.
+    Require a caller-selected number of collected sources to materially overlap the claim.
 
     IMPORTANT:
     ----------
@@ -377,7 +373,9 @@ def _verify_claim_support(claim, evidence, label):
     Then we require at least two meaningful lexical tokens from the claim to
     overlap that material.
 
-    Finally, at least two DISTINCT source URLs must pass that test.
+    Finally, the caller's minimum number of DISTINCT source URLs must pass that
+    test. Working notebooks use one; public-facing promotion keeps the stronger
+    multi-source threshold.
 
     This is intentionally conservative and simple enough to audit.
     """
@@ -408,9 +406,9 @@ def _verify_claim_support(claim, evidence, label):
             supporting.append(item.get("source"))
 
     require(
-        len(set(supporting)) >= 2,
-        f"{label} requires corroboration from two distinct collected "
-        "sources that materially match the claim",
+        len(set(supporting)) >= minimum_sources,
+        f"{label} requires material support from at least "
+        f"{minimum_sources} distinct collected source URL(s)",
     )
 # ---------------------------------------------------------------------------
 # BLOG CORRECTION / LANGUAGE CALIBRATION
@@ -1286,15 +1284,16 @@ def transition(state, proposal, invocation, historical=False):
                 "retrieved external sources",
             )
 
-            # Two IDs pointing to one URL are not independent corroboration.
-
+            # Notebooks are working artifacts. One successfully collected
+            # source may support a provisional synthesis; later revisions can
+            # add independent evidence without rewriting the earlier record.
             require(
                 len({
                     evidence["source"]
                     for evidence in cited
-                }) >= 2,
-                "Research notebooks need at least two distinct "
-                "retrieved source URLs",
+                }) >= 1,
+                "Research notebooks need at least one "
+                "retrieved source URL",
             )
 
             # New verification semantics apply only to current acceptance.
@@ -1308,6 +1307,7 @@ def transition(state, proposal, invocation, historical=False):
                     cited,
                     result["projects"][action["project"]]["domain"],
                     "Notebook findings",
+                    minimum_sources=1,
                 )
 
                 if verification:
@@ -1315,6 +1315,7 @@ def transition(state, proposal, invocation, historical=False):
                         action["findings"],
                         verification,
                         "Notebook findings",
+                        minimum_sources=1,
                     )
 
             # WAKE-analysis is deliberately special.
@@ -1585,6 +1586,7 @@ def transition(state, proposal, invocation, historical=False):
                             action["project"]
                         ]["domain"],
                         "Blog body",
+                        minimum_sources=2,
                     )
 
                     if verification:
@@ -1592,6 +1594,7 @@ def transition(state, proposal, invocation, historical=False):
                             action["body"],
                             verification,
                             "Blog body",
+                            minimum_sources=2,
                         )
 
                 # Blog evidence cannot bypass the notebooks.

@@ -204,7 +204,7 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-wake"])
         self.assertNotIn("neuro-src", request["context"]["project_evidence"]["p-wake"])
         self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
-        self.assertNotIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
+        self.assertIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
 
     def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
         with self.engine.store.lock():
@@ -372,11 +372,23 @@ class ResearchTests(unittest.TestCase):
         self.assertLessEqual(len(json.dumps(request, sort_keys=True, separators=(",", ":"))),
                              self.engine.config["max_context_chars"])
 
-    def test_two_fetches_of_same_url_are_not_two_sources(self):
+    def test_provisional_notebook_can_use_one_collected_source(self):
         self.propose([project()])
         self.source("s1", "https://plato.stanford.edu/entries/consciousness/")
-        self.source("s2", "https://plato.stanford.edu/entries/consciousness/")
-        self.assertEqual(self.propose([notebook(["s1", "s2"])])["status"], "rejected")
+        result = self.propose([notebook(["s1"], "A bounded comparison follows the collected source [s1].")])
+        self.assertEqual(result["status"], "accepted")
+        export(self.engine.store, self.root/"site")
+        rendered = (self.root/"site/notebooks/n.md").read_text()
+        self.assertIn("Evidence profile · 1 distinct source URL", rendered)
+
+    def test_single_source_notebook_does_not_lower_blog_promotion_gate(self):
+        self.source("s1")
+        result = self.propose([project(), notebook(["s1"], "A bounded comparison follows [s1]."),
+                               self.blog(evidence=["s1"])])
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["editorial"]["status"], "withheld")
+        self.assertIn("n", self.engine.store.load()["notebooks"])
+        self.assertEqual(self.engine.store.load()["posts"], {})
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1")
@@ -740,28 +752,28 @@ class ResearchTests(unittest.TestCase):
         proposal = [project(), notebook(["s1", "s2"], "Volcanic aerosols measurably cool global surface temperatures.")]
         self.assertEqual(self.propose(proposal)["status"], "rejected")
 
-    def test_verified_notebook_requires_same_topic_corroboration(self):
+    def test_verified_notebook_accepts_single_same_topic_source(self):
         with self.engine.store.lock():
-            for identifier in ("s1", "s2"):
-                self.engine.store.append("observation", dict(
-                    id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
-                    content=json.dumps({"scope":"synthetic test fixture",
-                                        "excerpt":"bounded comparison cellular automata explanations",
-                                        "verification_required":True,
-                                        "topic_domain":"entropy"}),
-                    actor="collector", scope="collected"))
-        self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
+            self.engine.store.append("observation", dict(
+                id="s1", source="https://plato.stanford.edu/entries/s1",
+                content=json.dumps({"scope":"synthetic test fixture",
+                                    "excerpt":"bounded comparison cellular automata explanations",
+                                    "verification_required":True,
+                                    "topic_domain":"entropy"}),
+                actor="collector", scope="collected"))
+        findings = "A bounded comparison of cellular automata explanations follows [s1]."
+        self.assertEqual(self.propose([project(), notebook(["s1"], findings)])["status"], "accepted")
 
-    def test_verified_notebook_rejects_cross_topic_evidence(self):
+    def test_verified_notebook_accepts_material_cross_topic_evidence(self):
         with self.engine.store.lock():
-            for identifier, domain in (("s1", "entropy"), ("s2", "music")):
-                self.engine.store.append("observation", dict(
-                    id=identifier, source="https://plato.stanford.edu/entries/"+identifier,
-                    content=json.dumps({"scope":"synthetic test fixture",
-                                        "excerpt":"bounded comparison cellular automata explanations",
-                                        "verification_required":True, "topic_domain":domain}),
-                    actor="collector", scope="collected"))
-        self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "rejected")
+            self.engine.store.append("observation", dict(
+                id="s1", source="https://plato.stanford.edu/entries/s1",
+                content=json.dumps({"scope":"synthetic test fixture",
+                                    "excerpt":"bounded comparison cellular automata explanations",
+                                    "verification_required":True, "topic_domain":"music"}),
+                actor="collector", scope="collected"))
+        findings = "A bounded comparison of cellular automata explanations follows [s1]."
+        self.assertEqual(self.propose([project(), notebook(["s1"], findings)])["status"], "accepted")
 
     def test_topic_discovery_rotates_between_independent_indexes(self):
         topic = {"id": "music", "label": "Music", "query": "music"}

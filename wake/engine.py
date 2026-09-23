@@ -658,8 +658,10 @@ class Engine:
                     except (ValueError, TypeError):
                         payload = {}
                     if payload.get("verification_required") is True:
-                        if payload.get("topic_domain") != project["domain"]:
-                            continue
+                        # Topic stamps remain provenance, not a semantic
+                        # relevance verdict. Cross-topic source records can be
+                        # considered by a project; governance still checks
+                        # source role and material claim overlap.
                         if payload.get("evidence_role", "source") != "source":
                             continue
                     if project["domain"] == "wake_analysis" and not evidence.get("source", "").startswith(

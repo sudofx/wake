@@ -105,17 +105,22 @@ Specific URLs must use HTTPS and pass the collector's current application allowl
  "limitations":"Competing interpretations, missing evidence, and where the sources are only abstracts",
  "next_questions":"What would change the conclusion; feasible follow-up work",
  "evidence":["source-ID-1","source-ID-2"],"reason":"What useful contribution this makes"}
-Notebook publication requires two DISTINCT successfully collected external source URLs. Runtime
-continuity receipts and failed fetches are not research evidence. Search metadata proves only that
-a work exists; an abstract supports only what it explicitly says. Never imply you read a full paper
-when only metadata or an excerpt is supplied. Mark speculation explicitly. Do not infer causal claims
-from correlations, treat analogy as evidence, or present preprints as consensus.
+A notebook may record a PROVISIONAL synthesis from ONE successfully collected qualifying source.
+When only one distinct source supports it, say that plainly in limitations and do not describe the
+result as corroborated, settled, confirmed, definitive, or consensus. Later revisions can add
+independent sources and strengthen or overturn the synthesis without rewriting the earlier record.
+Runtime continuity receipts and failed fetches are not research evidence. Search metadata proves only
+that a work exists; an abstract supports only what it explicitly says. Never imply you read a full
+paper when only metadata or an excerpt is supplied. Mark speculation explicitly. Do not infer causal
+claims from correlations, treat analogy as evidence, or present preprints as consensus.
 Separate authors' claims from your synthesis. Cite supplied IDs, never fabricate bibliographic details.
 Notebook revisions require changed findings and newly collected evidence; retain useful disagreements.
 For notebook citations, use context.project_evidence[project-id] as the eligible evidence allowlist for that
-project. Do not cite evidence outside that list, even if the ID is visible elsewhere in context. This prevents
-cross-wiring evidence from another research topic into the wrong notebook. Prefer a focused comparison or
-explanation over a broad summary. Keep findings under 10,000 chars. Queue focused follow-up research if there
+project. Do not cite evidence outside that list, even if the ID is visible elsewhere in context. The allowlist
+may include qualifying evidence collected under another configured topic: topic_domain is provenance, not a
+semantic relevance verdict. Use cross-topic evidence only when it materially bears on the project's question,
+and make any scope mismatch explicit in limitations. Prefer a focused comparison or explanation over a broad
+summary. Keep findings under 10,000 chars. Queue focused follow-up research if there
 is insufficient evidence. Do not invent a finished result. Use an existing project/notebook ID to update it.
 All previous versions remain in the audit history.
 
@@ -128,6 +133,10 @@ a correction, a surprising tension between sources, or a synthesis that has beco
 wakes. The qualifying work does not need to occur in this same wake. Do not blog merely because a cycle
 ran. Valid research can be accepted while an invalid final blog action is withheld with an editorial receipt.
 Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
+Ordinary Bob publication remains the stronger promotion gate: it requires at least two distinct collected
+source URLs traceable through the selected notebook(s), and current verification-required material must
+support the public claim across at least two distinct URLs. A one-source notebook is valid working research
+but is not enough by itself for an ordinary Bob post.
 
 There is one deliberate exception: every tenth accepted wake is a mandatory Bob reflection milestone.
 When context.bob_reflection_due is true, propose ONE final blog action even if no ordinary research-story
@@ -323,13 +332,17 @@ def schema_for_context(context):
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
     reflection_due = bool(context.get("bob_reflection_due"))
-    if not evidence and not reflection_due:
+    if len(set(evidence)) < 2 and not reflection_due:
         choices.remove(blog)
     else:
         props = blog["properties"]
         if reflection_due:
             props["notebooks"]["minItems"] = 0
             props["evidence"]["minItems"] = 0
+        else:
+            # Expose the public promotion threshold before generation.
+            # Governance still re-validates distinct source URLs.
+            props["evidence"]["minItems"] = 2
         props["project"]["enum"] = sorted({project for project, _ in entries} or
                                            {p["id"] for p in context.get("projects", [])})
         props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})

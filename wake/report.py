@@ -468,13 +468,48 @@ h2 a{{color:var(--cyan, var(--green))}}h2 a:hover,h2 a:active{{color:var(--green
 # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
 # ---------------------------------------------------------------------------
 
+def _notebook_evidence_profile(notebook, state):
+    """Derive visible evidence-depth telemetry without mutating durable state.
+
+    One qualifying source may now support a provisional notebook. The public
+    report therefore exposes source depth so progressive acceptance cannot be
+    mistaken for corroboration.
+    """
+    urls = set()
+    cross_topic_urls = set()
+    project_domain = notebook.get("domain") or state.get("projects", {}).get(
+        notebook.get("project"), {}
+    ).get("domain")
+    for evidence_id in notebook.get("evidence", []):
+        evidence = state.get("evidence", {}).get(evidence_id, {})
+        source = evidence.get("source")
+        if source:
+            urls.add(source)
+        try:
+            payload = json.loads(evidence.get("content", ""))
+        except (ValueError, TypeError):
+            payload = {}
+        topic = payload.get("topic_domain")
+        if source and topic and project_domain and topic != project_domain:
+            cross_topic_urls.add(source)
+    return len(urls), len(cross_topic_urls)
+
+
 def _notebook_html(notebook, state):
     source_items = []
     for eid in notebook["evidence"]:
         evidence = state["evidence"][eid]
         source_items.append(f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a></li>')
+    source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
+    source_word = "URL" if source_count == 1 else "URLs"
+    cross_note = (
+        f" · {cross_topic_count} cross-topic source URL"
+        + ("" if cross_topic_count == 1 else "s")
+        if cross_topic_count else ""
+    )
     body = (
         f'<p class="lede">{_html_text(notebook["summary"])}</p>'
+        f'<p class="meta">Evidence profile · {source_count} distinct source {source_word}{cross_note}</p>'
         f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
         f'<h2>Limitations and competing views</h2><p>{_html_text(notebook["limitations"])}</p>'
         f'<h2>Next questions</h2><p>{_html_text(notebook["next_questions"])}</p>'
@@ -612,7 +647,15 @@ def export(store, destination="site", experiment=None, operation=None):
         atomic_write(target / "head.txt", head + "\n")
         for notebook in state.get("notebooks", {}).values():
             sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
-            markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
+            source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
+            source_word = "URL" if source_count == 1 else "URLs"
+            cross_note = (
+                f" · {cross_topic_count} cross-topic source URL"
+                + ("" if cross_topic_count == 1 else "s")
+                if cross_topic_count else ""
+            )
+            profile = f"Evidence profile · {source_count} distinct source {source_word}{cross_note}"
+            markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n{profile}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
                         f"## Limitations and competing views\n\n{_md_text(notebook['limitations'])}\n\n"
                         f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
                         f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
