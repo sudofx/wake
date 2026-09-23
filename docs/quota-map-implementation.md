@@ -2,8 +2,6 @@
 
 > **ARCHIVAL — historical implementation snapshot.** Preserve this as engineering history for the provider-accounting/MAP rollout. Do not use it as the current setup or operating specification.
 
-> **Historical implementation note.** This records the design and validation state when provider accounting and MAP were introduced. Current behavior is defined by `master`, the primary documentation, and current tests; later governance, collector, topic, and UI changes are not retroactively claimed by this snapshot.
-
 ## Delivered
 
 A charged Gemini invocation now attempts each configured model at most once. Eligible
