@@ -55,3 +55,28 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .compact-nav .nav-dropdown{min-width:min(175px,calc(100vw - 40px))}
   .compact-nav .nav-group:nth-last-child(-n+2) .nav-dropdown{left:auto;right:0}
 }
+
+/* Mobile menu polish: balanced columns and dropdowns above the page content. */
+@media(max-width:700px){
+  .masthead{position:relative;z-index:100;overflow:visible}
+  .masthead nav.compact-nav,nav.compact-nav{
+    position:relative;
+    z-index:110;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    column-gap:18px;
+    row-gap:4px;
+  }
+  .compact-nav>a,.compact-nav .nav-group{justify-self:stretch}
+  .compact-nav>a,.compact-nav summary{justify-content:flex-start}
+  .compact-nav>a:nth-child(3n+2),.compact-nav .nav-group:nth-child(3n+2) summary{justify-content:center}
+  .compact-nav>a:nth-child(3n),.compact-nav .nav-group:nth-child(3n) summary{justify-content:flex-end}
+  .compact-nav .nav-group{position:relative;z-index:120}
+  .compact-nav .nav-group[open]{z-index:1000}
+  .compact-nav .nav-dropdown{
+    z-index:1100;
+    top:calc(100% + 4px);
+    box-shadow:0 18px 42px rgb(0 0 0 / .38);
+  }
+  .compact-nav .nav-group:nth-child(3n+2) .nav-dropdown{left:50%;right:auto;transform:translateX(-50%)}
+  .compact-nav .nav-group:nth-child(3n) .nav-dropdown{left:auto;right:0;transform:none}
+}
