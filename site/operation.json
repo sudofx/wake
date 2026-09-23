@@ -1,7 +1,6 @@
 {
-  "status": "accepted",
-  "id": "w-08c1d440649b493e",
-  "cycle": 89,
+  "status": "paused",
+  "reason": "Context ceiling reached; human review required, no model call made",
   "wake_status": {
     "last_accepted": {
       "id": "w-08c1d440649b493e",
