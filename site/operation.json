@@ -1,13 +1,13 @@
 {
   "status": "deferred",
-  "id": "w-76db929d18894d37",
+  "id": "w-45efbc174da8439e",
   "reason": "Gemini temporarily unavailable; wake deferred",
   "provider_error": {
     "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 39746,
+    "request_payload_bytes": 39803,
     "http_status": 503,
     "result": "transient_failure",
-    "elapsed_ms": 1713,
+    "elapsed_ms": 14907,
     "response_bytes_captured": 198,
     "provider_error": {
       "code": 503,
@@ -19,24 +19,53 @@
     "provider_attempts": [
       {
         "model": "gemini-3.8-flash",
-        "request_payload_bytes": 39746,
-        "http_status": 503,
-        "result": "transient_failure",
-        "elapsed_ms": 751,
-        "response_bytes_captured": 198,
+        "request_payload_bytes": 39803,
+        "http_status": 429,
+        "result": "daily_quota",
+        "elapsed_ms": 225,
+        "response_bytes_captured": 1363,
         "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
+          "code": 429,
+          "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21.419189961s.",
+          "status": "RESOURCE_EXHAUSTED",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.Help",
+              "links": [
+                {
+                  "description": "Learn more about Gemini API quotas",
+                  "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                }
+              ]
+            },
+            {
+              "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+              "violations": [
+                {
+                  "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                  "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                  "quotaDimensions": {
+                    "location": "[truncated]",
+                    "model": "[truncated]"
+                  },
+                  "quotaValue": "20"
+                }
+              ]
+            },
+            {
+              "@type": "type.googleapis.com/google.rpc.RetryInfo",
+              "retryDelay": "21s"
+            }
+          ]
         },
-        "category": "server"
+        "category": "http"
       },
       {
         "model": "gemini-3.5-flash",
-        "request_payload_bytes": 39746,
+        "request_payload_bytes": 39803,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 9495,
+        "elapsed_ms": 6318,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -47,10 +76,10 @@
       },
       {
         "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 39746,
+        "request_payload_bytes": 39803,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 1713,
+        "elapsed_ms": 14907,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -65,24 +94,53 @@
   "provider_attempts": [
     {
       "model": "gemini-3.8-flash",
-      "request_payload_bytes": 39746,
-      "http_status": 503,
-      "result": "transient_failure",
-      "elapsed_ms": 751,
-      "response_bytes_captured": 198,
+      "request_payload_bytes": 39803,
+      "http_status": 429,
+      "result": "daily_quota",
+      "elapsed_ms": 225,
+      "response_bytes_captured": 1363,
       "provider_error": {
-        "code": 503,
-        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "status": "UNAVAILABLE"
+        "code": 429,
+        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21.419189961s.",
+        "status": "RESOURCE_EXHAUSTED",
+        "details": [
+          {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+              {
+                "description": "Learn more about Gemini API quotas",
+                "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+            "violations": [
+              {
+                "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                "quotaDimensions": {
+                  "location": "[truncated]",
+                  "model": "[truncated]"
+                },
+                "quotaValue": "20"
+              }
+            ]
+          },
+          {
+            "@type": "type.googleapis.com/google.rpc.RetryInfo",
+            "retryDelay": "21s"
+          }
+        ]
       },
-      "category": "server"
+      "category": "http"
     },
     {
       "model": "gemini-3.5-flash",
-      "request_payload_bytes": 39746,
+      "request_payload_bytes": 39803,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 9495,
+      "elapsed_ms": 6318,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -93,10 +151,10 @@
     },
     {
       "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 39746,
+      "request_payload_bytes": 39803,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 1713,
+      "elapsed_ms": 14907,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -109,34 +167,63 @@
   "wake_status": {
     "last_accepted": null,
     "latest_attempt": {
-      "id": "w-76db929d18894d37",
-      "time": "2026-09-23T18:00:28.920415+00:00",
-      "finished": "2026-09-23T18:00:57.654111+00:00",
+      "id": "w-45efbc174da8439e",
+      "time": "2026-09-23T18:03:33.596666+00:00",
+      "finished": "2026-09-23T18:04:08.195612+00:00",
       "status": "deferred",
       "reason": "Gemini temporarily unavailable; wake deferred",
       "provider_error": {
         "category": "server",
-        "elapsed_ms": 1713,
+        "elapsed_ms": 14907,
         "http_status": 503,
         "model": "gemini-3.1-flash-lite",
         "provider_attempts": [
           {
-            "category": "server",
-            "elapsed_ms": 751,
-            "http_status": 503,
+            "category": "http",
+            "elapsed_ms": 225,
+            "http_status": 429,
             "model": "gemini-3.8-flash",
             "provider_error": {
-              "code": 503,
-              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-              "status": "UNAVAILABLE"
+              "code": 429,
+              "details": [
+                {
+                  "@type": "type.googleapis.com/google.rpc.Help",
+                  "links": [
+                    {
+                      "description": "Learn more about Gemini API quotas",
+                      "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                    }
+                  ]
+                },
+                {
+                  "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                  "violations": [
+                    {
+                      "quotaDimensions": {
+                        "location": "[truncated]",
+                        "model": "[truncated]"
+                      },
+                      "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                      "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                      "quotaValue": "20"
+                    }
+                  ]
+                },
+                {
+                  "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                  "retryDelay": "21s"
+                }
+              ],
+              "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21.419189961s.",
+              "status": "RESOURCE_EXHAUSTED"
             },
-            "request_payload_bytes": 39746,
-            "response_bytes_captured": 198,
-            "result": "transient_failure"
+            "request_payload_bytes": 39803,
+            "response_bytes_captured": 1363,
+            "result": "daily_quota"
           },
           {
             "category": "server",
-            "elapsed_ms": 9495,
+            "elapsed_ms": 6318,
             "http_status": 503,
             "model": "gemini-3.5-flash",
             "provider_error": {
@@ -144,13 +231,13 @@
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 39746,
+            "request_payload_bytes": 39803,
             "response_bytes_captured": 198,
             "result": "transient_failure"
           },
           {
             "category": "server",
-            "elapsed_ms": 1713,
+            "elapsed_ms": 14907,
             "http_status": 503,
             "model": "gemini-3.1-flash-lite",
             "provider_error": {
@@ -158,7 +245,7 @@
               "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
               "status": "UNAVAILABLE"
             },
-            "request_payload_bytes": 39746,
+            "request_payload_bytes": 39803,
             "response_bytes_captured": 198,
             "result": "transient_failure"
           }
@@ -169,29 +256,58 @@
           "status": "UNAVAILABLE"
         },
         "provider_requests_sent": 3,
-        "request_payload_bytes": 39746,
+        "request_payload_bytes": 39803,
         "response_bytes_captured": 198,
         "result": "transient_failure"
       },
       "provider_requests_sent": 3,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 751,
-          "http_status": 503,
+          "category": "http",
+          "elapsed_ms": 225,
+          "http_status": 429,
           "model": "gemini-3.8-flash",
           "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
+            "code": 429,
+            "details": [
+              {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                  {
+                    "description": "Learn more about Gemini API quotas",
+                    "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+                "violations": [
+                  {
+                    "quotaDimensions": {
+                      "location": "[truncated]",
+                      "model": "[truncated]"
+                    },
+                    "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
+                    "quotaMetric": "generativelanguage.googleapis.com/generate_content_free_tier_requests",
+                    "quotaValue": "20"
+                  }
+                ]
+              },
+              {
+                "@type": "type.googleapis.com/google.rpc.RetryInfo",
+                "retryDelay": "21s"
+              }
+            ],
+            "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.8-flash\nPlease retry in 21.419189961s.",
+            "status": "RESOURCE_EXHAUSTED"
           },
-          "request_payload_bytes": 39746,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
+          "request_payload_bytes": 39803,
+          "response_bytes_captured": 1363,
+          "result": "daily_quota"
         },
         {
           "category": "server",
-          "elapsed_ms": 9495,
+          "elapsed_ms": 6318,
           "http_status": 503,
           "model": "gemini-3.5-flash",
           "provider_error": {
@@ -199,13 +315,13 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 39746,
+          "request_payload_bytes": 39803,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         },
         {
           "category": "server",
-          "elapsed_ms": 1713,
+          "elapsed_ms": 14907,
           "http_status": 503,
           "model": "gemini-3.1-flash-lite",
           "provider_error": {
@@ -213,18 +329,18 @@
             "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
             "status": "UNAVAILABLE"
           },
-          "request_payload_bytes": 39746,
+          "request_payload_bytes": 39803,
           "response_bytes_captured": 198,
           "result": "transient_failure"
         }
       ]
     },
     "accepted_cycles": 0,
-    "next_eligible": "2026-09-23T18:05:28.920415+00:00",
+    "next_eligible": "2026-09-24T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 1,
-    "provider_requests_today": 3,
-    "provider_request_slots_today": 3,
+    "attempts_today": 2,
+    "provider_requests_today": 6,
+    "provider_request_slots_today": 6,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
