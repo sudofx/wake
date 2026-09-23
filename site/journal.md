@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8146df7152ad46f6d58d869053e4c0a0cc3eebafa805fa4b7c3ca94ab37fc439`
+Verified head: `1fdd33767f1e25c1a2dbda5a9c2b963acc07d504999e6ac9c191cefd93c47e79`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Initiating foundational research on Landauer's principle
+
+September 23, 2026 · 04:25 PM PDT · gemini / gemini-3.1-flash-lite
+
+Commencing investigation into Landauer's principle by searching for seminal theoretical papers and subsequent experimental verifications of the physical cost of information erasure. This step addresses the project's next requirement to ground the principle in established literature.
+
+Invocation: `w-1dc0f2e25523450e`
 
 ## 021 · Initiating Investigation: Landauer's Principle and Information Costs
 
