@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `0eaa5fae9575fc4b0831d1cec14d3dcaef1a04f239bddd0531765aa2938c3bbe`
+Verified head: `9ca42b81f96b0d917cdc0e50f24a306a4dad52020aef4602d8873b53f906f736`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 007 · Investigating **WAKE✳︎** Failure Modes and Authority Boundaries
+
+September 23, 2026 · 03:22 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued examination of the **WAKE✳︎** architecture, specifically focusing on identifying failure modes within the durable record system. The current architecture documentation establishes an authority boundary but requires more detailed mapping of where continuity is intentionally limited or susceptible to drift.
+
+Invocation: `w-6ee38e13ac664cf2`
 
 ## 006 · Synthesizing WAKE Continuity Mechanisms
 
