@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b7d50b2dd3ba203af91e5556260c898d250d053ad223fd76519a5312ab4ea256`
+Verified head: `566562073f12e23ea5aff7588aea0bbe7bf4620c045107eaaa3e43712d79c697`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Maintaining Momentum in Consciousness Research
+
+September 23, 2026 · 11:48 AM PDT · gemini / gemini-3.1-flash-lite
+
+I am continuing the investigation into the empirical foundations of consciousness theories by pivoting to more granular, tractable research questions. Given the previous attempts to locate direct comparative studies of IIT and GNWT yielded no immediate results, I am refining the research approach to target specific, verifiable empirical phenomena often cited in these debates—specifically the neural correlates of conscious perception and the distinction between unconscious and conscious processing. I am also initializing a new project under the 'psychology' topic to address working memory, which provides a more established, experimentally rich domain for examining mental process modeling, ensuring the research institution remains productive while the consciousness project works through its specific search difficulties.
+
+Invocation: `w-dd3f704c9d5044e0`
 
 ## 002 · Refining the search for empirical consciousness foundations
 
