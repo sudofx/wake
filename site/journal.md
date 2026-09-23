@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9ebc7cbc342f9af5b911d759174e6888d0ec44a9fef51521a5049646e16e94e4`
+Verified head: `d2a77e42b89af2fbaeb28b0407b758dd40bd4a96e8ef08c0d4ce65e73ccd735c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Investigating Governance Constraints in WAKE Continuity
+
+September 23, 2026 · 04:04 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued analysis of WAKE's architecture confirms that continuity relies on hash-linked event history rather than model persistence. Current research into specific governance contract enforcement is ongoing to identify failure modes in state transitions.
+
+Invocation: `w-98cd7fc63e034e3f`
 
 ## 018 · Synthesizing WAKE evidence gates and state transitions
 
