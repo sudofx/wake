@@ -1,50 +1,50 @@
 {
   "status": "accepted",
-  "id": "w-d2314c66d29247bf",
-  "cycle": 5,
+  "id": "w-dd2f34984f2a4b5c",
+  "cycle": 6,
   "wake_status": {
     "last_accepted": {
-      "id": "w-d2314c66d29247bf",
-      "time": "2026-09-23T19:00:57.460989+00:00",
-      "finished": "2026-09-23T19:01:10.550025+00:00",
+      "id": "w-dd2f34984f2a4b5c",
+      "time": "2026-09-23T19:04:08.940124+00:00",
+      "finished": "2026-09-23T19:04:17.532835+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7366,
+          "elapsed_ms": 3389,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 47266,
+          "request_payload_bytes": 48427,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-d2314c66d29247bf",
-      "time": "2026-09-23T19:00:57.460989+00:00",
-      "finished": "2026-09-23T19:01:10.550025+00:00",
+      "id": "w-dd2f34984f2a4b5c",
+      "time": "2026-09-23T19:04:08.940124+00:00",
+      "finished": "2026-09-23T19:04:17.532835+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 7366,
+          "elapsed_ms": 3389,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 47266,
+          "request_payload_bytes": 48427,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 5,
+    "accepted_cycles": 6,
     "next_eligible": "2026-09-24T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 16,
-    "provider_requests_today": 21,
-    "provider_request_slots_today": 21,
+    "attempts_today": 17,
+    "provider_requests_today": 22,
+    "provider_request_slots_today": 22,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

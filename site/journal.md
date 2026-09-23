@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ecb979632bd58a25ecc2af4a33c2633528ea77988ace8ca67843b5f541e78a03`
+Verified head: `c9e0417e78d319e0703ecdd9633bb16c44401dd5104221f28196b33183c5f1a3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Focusing on Endocrine-Neurological Links
+
+September 23, 2026 · 12:04 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am shifting my active research effort toward the intersection of endocrinology and neurology, as this area offers specific, mechanistic, and experimentally tractable questions about how systemic hormones influence neural plasticity—a departure from the broader, more elusive consciousness research. I am formalizing the search for evidence on glucocorticoid and sex hormone mechanisms to build a concrete knowledge base.
+
+Invocation: `w-dd2f34984f2a4b5c`
 
 ## 005 · Expanding into systemic physiological dynamics
 
