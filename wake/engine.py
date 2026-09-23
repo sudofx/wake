@@ -699,6 +699,103 @@ class Engine:
                     eligible.append(evidence_id)
                 context["project_evidence"][project["id"]] = eligible
         return context
+
+    def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000):
+        """Materialize qualifying durable evidence selected by retrieval into provider context.
+
+        The retrieval planner remains deterministic and ID-based. This step is the
+        explicit boundary where selected durable records become visible again to a
+        disposable model. It does not broaden governance: only successfully collected
+        source records are rehydrated, discovery/search-result records stay excluded,
+        and project-specific restrictions are rebuilt before schema generation.
+        """
+        if not state.get("charter"):
+            return context
+
+        requested = list(dict.fromkeys(retrieval_plan.get("evidence_ids", [])))
+        existing = {item["id"] for item in context.get("evidence", [])}
+        rehydrated = []
+
+        for evidence_id in requested:
+            evidence = state.get("evidence", {}).get(evidence_id)
+            if not evidence:
+                continue
+            if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+                continue
+            try:
+                payload = json.loads(evidence.get("content", ""))
+            except (ValueError, TypeError):
+                payload = {}
+
+            # Discovery payloads are leads, never notebook evidence. Keep the
+            # distinction here as well as in governance so context does not
+            # suggest that an ineligible record may be cited.
+            if payload.get("evidence_role") == "discovery":
+                continue
+            if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
+                continue
+
+            rehydrated.append(evidence_id)
+            if evidence_id not in existing:
+                content = evidence.get("content", "")
+                context.setdefault("evidence", []).append({
+                    **evidence,
+                    "content": content[:content_limit],
+                    "context_excerpt": len(content) > content_limit,
+                })
+                existing.add(evidence_id)
+
+        context["retrieval_rehydration"] = {
+            "evidence_ids": rehydrated,
+            "boundary": (
+                "Exact durable collector records selected by retrieval were reintroduced "
+                "for this invocation; governance still decides whether any citation qualifies."
+            ),
+        }
+
+        visible_evidence = {item["id"]: item for item in context.get("evidence", [])}
+
+        # Rebuild the temporal resolution allowlist after rehydration. A near-due
+        # commitment can now see qualifying post-commitment evidence that happened
+        # to fall outside the ordinary recent-context slice.
+        context["commitments"] = [
+            {
+                **commitment,
+                "resolution_evidence": [
+                    evidence_id for evidence_id, evidence in visible_evidence.items()
+                    if evidence.get("actor") != "runtime"
+                    and evidence.get("version", -1) >= commitment.get("created_version", 0)
+                ],
+            }
+            for commitment in context.get("commitments", [])
+        ]
+
+        # Rebuild the notebook allowlist from the now-visible evidence. Topic
+        # stamps are provenance rather than semantic relevance, so ordinary
+        # projects may inspect cross-topic sources; WAKE self-analysis keeps its
+        # stricter repository-source boundary.
+        context["project_evidence"] = {}
+        for project in context.get("projects", []):
+            eligible = []
+            for evidence_id, evidence in visible_evidence.items():
+                if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+                    continue
+                try:
+                    payload = json.loads(evidence.get("content", ""))
+                except (ValueError, TypeError):
+                    payload = {}
+                if payload.get("evidence_role") == "discovery":
+                    continue
+                if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
+                    continue
+                if project.get("domain") == "wake_analysis" and not evidence.get("source", "").startswith(
+                    "https://raw.githubusercontent.com/sudofx/wake/"
+                ):
+                    continue
+                eligible.append(evidence_id)
+            context["project_evidence"][project["id"]] = eligible
+
+        return context
     # ---------------------------------------------------------------------------
     # STEP: start
     #
@@ -749,6 +846,9 @@ class Engine:
         working_set_shadow = self.working_set(state)
         trust_compacts_shadow = build_trust_compacts_shadow(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow, trust_compacts_shadow)
+        delivered_context = self.rehydrate_retrieval_context(
+            state, delivered_context, retrieval_shadow
+        )
         inquiry_drive_shadow = self.inquiry_drive_shadow(state)
         if inquiry_drive_shadow["activation"]["active"]:
             delivered_context["inquiry_drive"] = {
@@ -831,6 +931,9 @@ class Engine:
             # ordinary rejections.
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
+            )
+            request["context"] = self.rehydrate_retrieval_context(
+                state, request["context"], retrieval_shadow, content_limit=800
             )
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
