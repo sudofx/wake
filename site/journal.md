@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `385f0d7eaf218084122003079ef465ba54b04981bb9c28f0f58893f6d86e554e`
+Verified head: `2d62cd776d39dfbc3aa1d22af8eba7c37c60dad18e4f28f5555df4b386b06154`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Querying Statistical Entropy Formulations via Crossref Verification
+
+September 23, 2026 · 02:55 AM PDT · gemini / gemini-3.5-flash
+
+We are continuing active research into the statistical foundations of entropy under the active Squirrel topic directive. Given the persistent identifiers discovered in previous cycles, we are proposing a direct API retrieval of a targeted paper on entropy to establish a concrete evidence base.
+
+Invocation: `w-65dfe22db1e24d88`
 
 ## 005 · Resolving Inherited Thermal Foundations Under Active Focus Rules
 
