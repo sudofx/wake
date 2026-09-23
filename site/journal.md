@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6e7ce6f551871f5f953bec9b747309ba6f1bb4394d54afdbe40542d0724b8bab`
+Verified head: `02aaab20ba710c48c56f8981d96859e094a9e1bcc89410ee63a04122264f4a40`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 084 · Operational hold due to capability blocks
+
+September 22, 2026 · 04:59 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current research acquisition pipelines remain capability-blocked across all domains (ent-001, it-001, pn-001, phi-001). All projects are awaiting their respective version thresholds or recovery status updates before valid research retrieval can resume. Existing commitments remain open and unchanged.
+
+Invocation: `w-2a0fb44ff8f34f61`
 
 ## 083 · Operational Constraints and Research Pause
 
