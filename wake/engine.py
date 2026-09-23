@@ -960,9 +960,9 @@ class Engine:
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
-            request["context"] = self.rehydrate_retrieval_context(
-                state, request["context"], retrieval_shadow, content_limit=800
-            )
+            # The emergency bounded view is already the final context-pressure
+            # fallback. Do not re-expand it here; ordinary rich/compacted views
+            # perform retrieval rehydration before this threshold is reached.
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
         require(len(canonical(request)) <= self.config["max_context_chars"],
