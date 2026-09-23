@@ -28,7 +28,7 @@ and carries compact active-project and recent-notebook pointers. Raw evidence co
 authoritative record and the richer provider context. `working_set_metrics` records shadow size versus the
 context actually delivered.
 
-This phase is observational. The model does not receive the shadow as a substitute for its current context,
+Under normal-size requests this measurement is observational and the model receives rich context. The engine now also has a controlled size-triggered fallback in which the deterministic bounded working representation can be delivered when the rich request cannot fit; that fallback is recorded explicitly and should be analyzed as a separate context-delivery condition,
 so changes in behavior cannot yet be attributed to compression.
 
 ### Inquiry-drive shadow phase
@@ -80,7 +80,7 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 
 ## Live-model protocol — deliberately separate
 
-Start a separate live database using `python3 -m wake init`, or use the GitHub-hosted record described in `cloud.md`. Do not count fixture cycles as live evidence. Define the intended batch size before the run (100 attempted wakes is the current experimental unit), preserve the starting configuration, and count accepted, rejected, deferred and failed attempts separately. Do not retry or discard an unfavorable result to make the metrics prettier. When comparing reset runs, preserve the configuration unless the intervention itself is the variable being tested.
+Start a separate live database using `python3 -m wake init`, or use the GitHub-hosted record described in `cloud.md`. Do not count fixture cycles as live evidence. Define the intended batch size before the run (100 attempted wakes is the current experimental unit), preserve the starting configuration—including enabled topics, seed questions, observation mode, collection budget, provider chain and experimental regime—and count accepted, rejected, deferred and failed attempts separately. Do not retry or discard an unfavorable result to make the metrics prettier. When comparing reset runs, preserve the configuration unless the intervention itself is the variable being tested.
 
 1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.
 2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.
