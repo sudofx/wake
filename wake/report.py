@@ -357,7 +357,7 @@ def _human_events_html(events, head):
         payload = event.get("payload", {})
         event_id = payload.get("id", "system")
         blocks = [
-            f"<p class=\"meta\">Time: {html.escape(event['time'])}<br>ID: <code>{html.escape(str(event_id))}</code><br>Hash: <code>{html.escape(event['hash'])}</code><br>Previous hash: <code>{html.escape(event['prev_hash'])}</code></p>"
+            f"<p class=\"meta\">Hash: <code>{html.escape(event['hash'])}</code><br>Previous hash: <code>{html.escape(event['prev_hash'])}</code></p>"
         ]
         kind = event["kind"]
         if kind == "invocation_started":
@@ -391,7 +391,7 @@ def _human_events_html(events, head):
         else:
             blocks += ["<h3>Payload</h3>" + _html_pre(payload)]
         cards.append(
-            f"<details id=\"event-{event['seq']}\"><summary><span class=\"tag\">#{event['seq']:04d}</span><span class=\"event-kind {html.escape(kind)}\">{html.escape(kind)}</span> · {html.escape(str(event_id))}</summary><div class=\"inside\">{''.join(blocks)}</div></details>"
+            f"<details id=\"event-{event['seq']}\"><summary class=\"record-panel-meta event-meta\"><span class=\"record-type\">EVENT #{event['seq']:04d}</span><span class=\"record-status\"><span class=\"badge {html.escape(kind)}\">{html.escape(kind)}</span></span><span class=\"record-key\">{html.escape(str(event_id))}</span><time>{html.escape(_reading_time(event['time']))}</time></summary><div class=\"inside\">{''.join(blocks)}</div></details>"
         )
     body = "<p class=\"event-links\">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p>" + "".join(cards)
     return _human_page("Human-readable event history", "Every recorded event, including exact model requests and replies, without changing the canonical JSONL.", body, head, "events.jsonl", "events.md")
@@ -443,8 +443,38 @@ def _human_state_html(state, head):
 # ---------------------------------------------------------------------------
 
 
+def _reading_time(value):
+    """Format record chronology consistently across generated reading pages."""
+    if not value:
+        return ""
+    try:
+        stamp = datetime.fromisoformat(str(value)).astimezone(ZoneInfo("America/Los_Angeles"))
+        return stamp.strftime("%b %d, %Y · %I:%M %p %Z").replace(" 0", " ").replace("· 0", "· ")
+    except (ValueError, TypeError):
+        return str(value)
+
+
+def _topic_meta(state, domain, page="projects"):
+    if not domain:
+        return ""
+    label = next((item.get("label") for item in state.get("research_topics", []) if item.get("id") == domain), None) or str(domain).replace("_", " ")
+    color = state.get("topic_colors", {}).get(domain, "var(--cyan)")
+    return (f'<a class="topic-tag" href="../index.html#{html.escape(page)}/topic:{html.escape(str(domain))}" '
+            f'style="--topic-color:{html.escape(str(color))}">{html.escape(str(label).lower())}</a>')
+
+
+def _reading_meta(type_label, status_label="", topic_html="", timestamp="", status_class=""):
+    status = ""
+    if status_label:
+        css = re.sub(r"[^a-z0-9_-]+", "-", str(status_class or status_label).lower()).strip("-")
+        status = f'<span class="record-status"><span class="badge {html.escape(css)}">{html.escape(str(status_label))}</span></span>'
+    topics = f'<span class="record-topics">{topic_html}</span>' if topic_html else '<span class="record-topics"></span>'
+    time = f'<time>{html.escape(_reading_time(timestamp))}</time>' if timestamp else ""
+    return f'<div class="record-panel-meta reading-meta"><span class="record-type">{html.escape(str(type_label))}</span>{status}{topics}{time}</div>'
+
+
 @_with_shared_theme_switch
-def _reading_page(title, eyebrow, body, source_href, back_href="../index.html"):
+def _reading_page(title, eyebrow, body, source_href, back_href="../index.html", meta_html=""):
     """Standalone browser reading page; Markdown remains a secondary flat artifact."""
     favicon = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23f7f3ea%27/%3E%3Cpath d=%27M32 9v46M9 32h46M15.7 15.7l32.6 32.6M48.3 15.7L15.7 48.3%27 stroke=%27%23286d72%27 stroke-width=%276%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
     return f"""<!doctype html>
@@ -457,7 +487,7 @@ h2 a{{color:var(--cyan, var(--green))}}h2 a:hover,h2 a:active{{color:var(--green
 :root{{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}}
 :root[data-theme=dark]{{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:17px/1.72 var(--sans);font-variant-emoji:text}}main{{max-width:840px;margin:auto;padding:34px 22px 90px}}header{{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:34px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font:900 29px/1 var(--sans);letter-spacing:-1.7px;color:inherit;text-decoration:none}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em;cursor:pointer}}h1{{font:400 clamp(2.4rem,7vw,4.8rem)/1.02 var(--serif);letter-spacing:-.035em;margin:.18em 0 .3em}}h2{{font:400 1.8rem/1.2 var(--serif);margin-top:2.2em}}h3{{font:700 14px var(--sans);margin-top:2em}}a{{color:var(--green);text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}}}nav{{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;font:10px var(--mono)}}.eyebrow,.meta{{font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}}.eyebrow{{color:var(--green);margin-top:24px}}.lede{{font-size:1.25rem;line-height:1.55}}.note{{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:28px 0}}.sources{{font-family:var(--sans);font-size:.95rem}}code{{font-family:var(--mono)}}hr{{border:0;border-top:1px solid var(--line);margin:34px 0}}small{{color:var(--muted)}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}}}
-</style><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Bob’s Blog\" href=\"https://sudofx.github.io/wake/blog.xml\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"WAKE Journal\" href=\"https://sudofx.github.io/wake/journal.xml\"></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"https://sudofx.github.io/wake/\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\">DARK</button></div><div class=\"eyebrow\">{html.escape(eyebrow)}</div><h1>{html.escape(title)}</h1><nav><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(source_href)}\">Markdown source</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
+</style><link rel=\"alternate\" type=\"application/rss+xml\" title=\"Bob’s Blog\" href=\"https://sudofx.github.io/wake/blog.xml\"><link rel=\"alternate\" type=\"application/rss+xml\" title=\"WAKE Journal\" href=\"https://sudofx.github.io/wake/journal.xml\"></head><body><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"https://sudofx.github.io/wake/\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\">DARK</button></div><div class=\"eyebrow\">{html.escape(eyebrow)}</div>{meta_html}<h1>{html.escape(title)}</h1><nav><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(source_href)}\">Markdown source</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme')}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
 
 # ---------------------------------------------------------------------------
 # STEP: _notebook_html
@@ -516,7 +546,11 @@ def _notebook_html(notebook, state):
         f'<h2>Collected sources</h2><ul class="sources">{"".join(source_items)}</ul>'
         f'<hr><p class="meta">Revision {notebook["revision"]} · AI-authored research synthesis; see source scopes in the journal.</p>'
     )
-    return _reading_page(notebook["title"], "WAKE✳︎ / RESEARCH NOTEBOOK", body, notebook["id"] + ".md")
+    domain = notebook.get("domain") or state.get("projects", {}).get(notebook.get("project"), {}).get("domain")
+    iid = notebook.get("updated_by") or notebook.get("created_by")
+    invocation = state.get("invocations", {}).get(iid, {})
+    meta = _reading_meta("NOTEBOOK", f"REVISION {notebook['revision']}", _topic_meta(state, domain), invocation.get("time"), "revision")
+    return _reading_page(notebook["title"], "WAKE✳︎ / RESEARCH NOTEBOOK", body, notebook["id"] + ".md", meta_html=meta)
 
 
 # ---------------------------------------------------------------------------
@@ -566,7 +600,13 @@ def _blog_html(post, state):
         '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
     )
     body += '<p><a href="../blog.xml">Subscribe to Bob’s blog via RSS</a></p>'
-    return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, post["id"] + ".md")
+    version = int(post.get("created_version") or 0)
+    is_reflection = bool(version and version % 10 == 0)
+    domain = state.get("projects", {}).get(post.get("project"), {}).get("domain")
+    invocation = state.get("invocations", {}).get(post.get("created_by"), {})
+    status = str(post.get("status") or "published").upper()
+    meta = _reading_meta("REFLECTION" if is_reflection else "BLOG", status, _topic_meta(state, domain, "blog"), invocation.get("time"), post.get("status") or "published")
+    return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, post["id"] + ".md", meta_html=meta)
 
 
 # ---------------------------------------------------------------------------
@@ -626,17 +666,26 @@ def export(store, destination="site", experiment=None, operation=None):
         from .feeds import build_feeds
         for filename, content in build_feeds(state).items():
             atomic_write(target / filename, content)
+        accepted_by_invocation = {event.get("payload", {}).get("id"): event for event in events if event.get("kind") == "accepted"}
         for entry in state["journal"]:
             invocation = state["invocations"][entry["invocation"]]
-            body = (f'<p class="meta">Cycle {entry["cycle"]} · {_html_text(invocation["time"])} · '
-                    f'{_html_text(invocation["provider"])} / {_html_text(invocation.get("successful_model") or invocation["model"])}</p>'
+            event = accepted_by_invocation.get(entry["invocation"], {})
+            domains = []
+            for action in event.get("payload", {}).get("proposal", {}).get("actions", []):
+                domain = action.get("domain") or state.get("projects", {}).get(action.get("project"), {}).get("domain")
+                if domain and domain not in domains:
+                    domains.append(domain)
+            topics = "".join(_topic_meta(state, domain, "journal") for domain in domains)
+            status = "SIMULATED" if invocation.get("provider") == "fixture" else str(invocation.get("status") or "accepted").upper()
+            meta = _reading_meta(f"JOURNAL · WAKE✳︎ {int(entry['cycle']):03d}", status, topics, invocation.get("time"), "simulated" if invocation.get("provider") == "fixture" else invocation.get("status") or "accepted")
+            body = (f'<p class="meta">{_html_text(invocation["provider"])} / {_html_text(invocation.get("successful_model") or invocation["model"])}</p>'
                     + "".join(f"<p>{_html_text(part)}</p>" for part in entry["summary"].split("\n\n") if part.strip())
                     + ('<p class="note">Deterministic simulation, not a live model result.</p>'
                        if invocation["provider"] == "fixture" else "")
                     + f'<p><a href="../index.html#history/{html.escape(entry["invocation"])}">Exact wake and decision →</a></p>'
                     + '<p><a href="../journal.xml">Subscribe to the journal via RSS</a></p>')
             atomic_write(target / "journal" / (entry["invocation"] + ".html"),
-                         _reading_page(entry["title"], "WAKE✳︎ / JOURNAL", body, "../journal.md"))
+                         _reading_page(entry["title"], "WAKE✳︎ / JOURNAL", body, "../journal.md", meta_html=meta))
         atomic_write(target / "journal.md", "\n".join(lines))
         atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
         atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
