@@ -167,4 +167,12 @@ h3{font-family:var(--sans) !important}
 #node-popover .record-panel-meta .record-type{font-size:8px}
 #node-popover .record-panel-meta .badge,#node-popover .record-panel-meta .topic-tag{min-height:0;padding:2px 4px;font-size:7px}
 #node-popover .record-panel-meta time{margin-left:auto !important;font-size:7px}
-@media(max-width:700px){.record-panel-meta{display:flex !important;align-items:center;gap:6px;flex-wrap:wrap}.record-panel-meta time{margin-left:auto !important;font-size:9px}.record-type{font-size:9px}.record-topics{display:flex}}
+/* Mobile reads chronology first: timestamp gets its own first row, then
+   TYPE / STATUS → TOPIC beneath it. Desktop keeps the compact single-row order. */
+@media(max-width:700px){
+  .record-panel-meta{display:flex !important;align-items:center;gap:6px;flex-wrap:wrap}
+  .record-panel-meta time{order:-1;flex:0 0 100%;width:100%;margin-left:0 !important;justify-self:start;text-align:left;font-size:9px}
+  .record-type{font-size:9px}
+  .record-topics{display:flex}
+  #node-popover .record-panel-meta time{order:-1;flex-basis:100%;width:100%;margin-left:0 !important;text-align:left}
+}
