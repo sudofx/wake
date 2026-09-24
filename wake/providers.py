@@ -328,7 +328,16 @@ def schema_for_context(context):
                 # First park one existing project; the next wake can create or
                 # reactivate the selected-topic project without a doomed fourth
                 # active project proposal.
-                for project in active_projects:
+                configured_domains = {t["id"] for t in context.get("research_topics", [])}
+                blocked_domains = set(directive.get("capability_blocked_topics", []))
+                parking_candidates = [
+                    p for p in active_projects if p.get("domain") not in configured_domains
+                ] or [
+                    p for p in active_projects if p.get("domain") in blocked_domains
+                ] or [
+                    p for p in active_projects if p.get("domain") != enforced_topic
+                ]
+                for project in parking_candidates:
                     constrained = deepcopy(project_action)
                     constrained["properties"]["id"] = {"type": "string", "enum": [project["id"]]}
                     constrained["properties"]["title"] = {"type": "string", "enum": [project["title"]]}
@@ -339,6 +348,8 @@ def schema_for_context(context):
                 choices.remove(research_action)
             else:
                 project_action["properties"]["domain"]["enum"] = [enforced_topic]
+                if not selected_project_ids:
+                    project_action["properties"]["status"]["enum"] = ["active"]
                 choices.append(project_action)
                 research_action["properties"]["domain"]["enum"] = [enforced_topic]
                 if selected_project_ids:
