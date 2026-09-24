@@ -125,7 +125,11 @@ Specific URLs must use HTTPS and pass the collector's current application allowl
  "evidence":["source-ID-1","source-ID-2"],"reason":"What useful contribution this makes"}
 A notebook may use ONE qualifying collected source as a provisional synthesis. With one source,
 say so in limitations and do not call the result corroborated, settled, confirmed, definitive, or
-consensus. Revisions can add sources later. Runtime receipts and failed fetches are not research
+consensus. context.synthesis_ready_projects lists active projects that already have at least one
+qualifying visible source and no notebook. When a project appears there, prefer creating the honest
+provisional notebook over issuing another broad search unless the visible source plainly cannot address
+the project's question; if it cannot, state the specific missing evidence rather than searching generically.
+Revisions can add sources later. Runtime receipts and failed fetches are not research
 evidence. Search metadata proves only that a work exists; an abstract supports only what it says.
 Never imply full-paper access from metadata/excerpts. Mark speculation. Do not infer causation from
 correlation, treat analogy as evidence, or present preprints as consensus.

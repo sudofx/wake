@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from wake.engine import DEFAULTS, Engine
-from wake.research import persistent_identifiers
+from wake.research import collect, exact_identifier_url, persistent_identifiers
 from support import charter_settings
 
 
@@ -43,6 +43,40 @@ class AcquisitionTests(unittest.TestCase):
         ids = persistent_identifiers({"excerpt": "DOI 10.1000/example.1; https://openalex.org/W12345"})
         self.assertIn("doi:10.1000/example.1", ids)
         self.assertIn("openalex:W12345", ids)
+
+    def test_persistent_identifiers_map_to_exact_approved_records(self):
+        self.assertEqual(
+            exact_identifier_url("doi:10.1000/example.1"),
+            "https://api.crossref.org/works/10.1000%2Fexample.1",
+        )
+        self.assertEqual(
+            exact_identifier_url("openalex:W12345"),
+            "https://api.openalex.org/works/W12345",
+        )
+        self.assertIn("id_list=2512.02221", exact_identifier_url("arxiv:2512.02221"))
+        self.assertIsNone(exact_identifier_url("unknown:value"))
+
+    def test_collector_promotes_discovery_identifier_without_model_translation(self):
+        calls = []
+        def fetcher(url):
+            calls.append(url)
+            return {"url": url, "scope": "test fixture", "excerpt": "usable source material " * 20}
+
+        with self.engine.store.lock():
+            receipt = self.receipt("crossref:discovery", "no_progress")
+            receipt["persistent_identifiers"] = ["doi:10.1000/example.1"]
+            self.engine.store.append("acquisition_assessed", receipt)
+            collect(self.engine, fetcher=fetcher)
+
+        exact = "https://api.crossref.org/works/10.1000%2Fexample.1"
+        self.assertIn(exact, calls)
+        state = self.engine.store.load()
+        self.assertEqual(state["acquisition"]["p"]["no_progress"], 0)
+        promoted = [e for e in state["evidence"].values() if e.get("source") == exact]
+        self.assertEqual(len(promoted), 1)
+        payload = json.loads(promoted[0]["content"])
+        self.assertEqual(payload["evidence_role"], "source")
+        self.assertEqual(payload["topic_domain"], "entropy")
 
     def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
         with self.engine.store.lock():
