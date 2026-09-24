@@ -125,12 +125,14 @@ def plan(state):
     # A capability block is itself a reason to leave the current attractor.
     # Prefer the current topic only while it is both eligible and productive.
     selected = current if current in eligible else (eligible[0] if eligible else current)
-    rotation_required = bool(deferred) or current in blocked
+    current_unconfigured = bool(current) and current not in topics
+    rotation_required = bool(deferred) or current in blocked or current_unconfigured
     return {
         "active": True,
         "selected_topic": selected,
         "deferred_topics": sorted(deferred),
         "capability_blocked_topics": sorted(blocked),
+        "current_topic_unconfigured": current_unconfigured,
         "rotation_required": rotation_required,
         "enforce_selected_topic": rotation_required and bool(selected),
         "parked": {topic: deferred[topic].get("parked_projects", []) for topic in sorted(deferred)},
@@ -139,8 +141,13 @@ def plan(state):
         "attention": squirrel.get("attention", {}),
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
         "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
-        "reason": ("alternate configured topic selected during Squirrel cooldown or capability block"
-                   if selected != current else "current durable project topic remains eligible"),
+        "reason": (
+            "active project topic is no longer configured; rotate to configured topic"
+            if current_unconfigured else
+            "alternate configured topic selected during Squirrel cooldown or capability block"
+            if selected != current else
+            "current durable project topic remains eligible"
+        ),
     }
 
 
