@@ -1,13 +1,13 @@
 {
   "status": "deferred",
-  "id": "w-ec0aa2a5628348eb",
+  "id": "w-92f1da32f6b14221",
   "reason": "Gemini temporarily unavailable; wake deferred",
   "provider_error": {
     "model": "gemini-3.1-flash-lite",
     "request_payload_bytes": 43007,
     "http_status": 503,
     "result": "transient_failure",
-    "elapsed_ms": 16127,
+    "elapsed_ms": 1571,
     "response_bytes_captured": 198,
     "provider_error": {
       "code": 503,
@@ -22,7 +22,7 @@
         "request_payload_bytes": 43007,
         "http_status": 503,
         "result": "transient_failure",
-        "elapsed_ms": 16127,
+        "elapsed_ms": 1571,
         "response_bytes_captured": 198,
         "provider_error": {
           "code": 503,
@@ -40,7 +40,7 @@
       "request_payload_bytes": 43007,
       "http_status": 503,
       "result": "transient_failure",
-      "elapsed_ms": 16127,
+      "elapsed_ms": 1571,
       "response_bytes_captured": 198,
       "provider_error": {
         "code": 503,
@@ -70,20 +70,20 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-ec0aa2a5628348eb",
-      "time": "2026-09-24T10:48:50.913694+00:00",
-      "finished": "2026-09-24T10:49:27.294377+00:00",
+      "id": "w-92f1da32f6b14221",
+      "time": "2026-09-24T10:54:27.518865+00:00",
+      "finished": "2026-09-24T10:54:48.325574+00:00",
       "status": "deferred",
       "reason": "Gemini temporarily unavailable; wake deferred",
       "provider_error": {
         "category": "server",
-        "elapsed_ms": 16127,
+        "elapsed_ms": 1571,
         "http_status": 503,
         "model": "gemini-3.1-flash-lite",
         "provider_attempts": [
           {
             "category": "server",
-            "elapsed_ms": 16127,
+            "elapsed_ms": 1571,
             "http_status": 503,
             "model": "gemini-3.1-flash-lite",
             "provider_error": {
@@ -110,7 +110,7 @@
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 16127,
+          "elapsed_ms": 1571,
           "http_status": 503,
           "model": "gemini-3.1-flash-lite",
           "provider_error": {
@@ -125,11 +125,11 @@
       ]
     },
     "accepted_cycles": 56,
-    "next_eligible": "2026-09-24T10:53:50.913694+00:00",
+    "next_eligible": "2026-09-24T10:59:27.518865+00:00",
     "pending": false,
-    "attempts_today": 41,
-    "provider_requests_today": 77,
-    "provider_request_slots_today": 77,
+    "attempts_today": 42,
+    "provider_requests_today": 78,
+    "provider_request_slots_today": 78,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
