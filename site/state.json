@@ -7079,6 +7079,68 @@
       "source": "runtime:continuity",
       "version": 41,
       "time": "2026-09-24T02:17:43.874606+00:00"
+    },
+    "source-02b099c7bd864a20": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7075},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4cc6a65249fa3677b840c3e720b95bf6f961536f29f64e2c2b70da80588967ed\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-02b099c7bd864a20",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:29.101562+00:00"
+    },
+    "source-fed215f2b7734426": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122953,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-15T06:53:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"73a441d0ddca7ec8caeb0308bfc0f74d80c4d0a9c98bb1adea6bd4ffb504d922\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-fed215f2b7734426",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:29.832327+00:00"
+    },
+    "source-c5c9f384b2664c80": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149367},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202268,\\\"wordcount\\\":17550,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-23T18:10:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethics\\\",\\\"pageid\\\":9258,\\\"size\\\":207219,\\\"wordcount\\\":19811,\\\"snippet\\\":\\\"Ethics is the philosophical study of moral phenomena. Also called moral\\nphilosophy\\n, it investigates normative questions about what people ought to do or\\\",\\\"timestamp\\\":\\\"2026-09-10T16:47:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0879e6a01c978511927d4321904020baa7328f9900089e77fd899b6aef19e584\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c5c9f384b2664c80",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:30.445333+00:00"
+    },
+    "source-5327fbbbbc514552": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186787,\\\"wordcount\\\":18520,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-23T17:44:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music preference\\\",\\\"pageid\\\":37523519,\\\"size\\\":39407,\\\"wordcount\\\":4679,\\\"snippet\\\":\\\"familiarity and liking of music. Big Five personality traits\\nCulture\\nin music\\ncognition\\nMusic psychology Sch\\\\u00e4fer, Thomas; Sedlmeier, Peter; St\\\\u00e4dtler,\\\",\\\"timestamp\\\":\\\"2025-10-02T16:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8cdfc0f0e2dc9e3a5f4cbab8ecce373178c8707e14d8f4a176e6041e940f6b7c\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+      "id": "source-5327fbbbbc514552",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:31.280748+00:00"
+    },
+    "source-952bb93636d040de": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2768},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e73f7b9a985fd68921889f0c65150f2430393c50498fa39c5c7dc733fefc8203\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-952bb93636d040de",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:32.767562+00:00"
+    },
+    "source-10da1cabc8f149e9": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40309},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"64d3bf3c53d5fcf7144ed17f008d8a9c5d0e2843932e5083130690c6d1f081c9\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-10da1cabc8f149e9",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 41,
+      "time": "2026-09-24T02:20:33.565621+00:00"
+    },
+    "r-c40d660bd4864728": {
+      "actor": "runtime",
+      "content": "{\"base_version\":41,\"inherited_commitments\":[\"c-001-synthesize-landauer\",\"c-002-synthesize-governance\"],\"invocation\":\"w-c40d660bd4864728\",\"previous_head\":\"635f0a010ef8380a7c8b44701885f375beb6e64e6c65b7916e55bbc976bfedcb\",\"process_id\":2048,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-c40d660bd4864728",
+      "source": "runtime:continuity",
+      "version": 41,
+      "time": "2026-09-24T02:20:34.816001+00:00"
     }
   },
   "journal": [
@@ -48127,6 +48189,443 @@
         "response_bytes_captured": 198,
         "result": "transient_failure"
       }
+    },
+    "w-c40d660bd4864728": {
+      "base_version": 41,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 14775,
+        "delivered_request_chars": 38642,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 76276,
+        "working_set_chars": 2648
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-23T21:25:25.789831+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-c40d660bd4864728",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 41,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "wake-continuity-arch",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 20,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "WAKE Continuity and Governance Architecture"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "landauer-principle-investigation",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Landauer's Principle and Information Erasure"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "maxwell-demon-mechanisms",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Mechanisms and Experimental Tests of Maxwell's Demon"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2048,
+      "provider": "gemini",
+      "quota_day": "2026-09-23",
+      "request_hash": "817a6e7f034be48f0c25dbc6413cbcbaa114b8a49ba631e9954fd56654a78a10",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-3d03662526e243e5"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-wake-arch-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-daed2a840e974273",
+              "source-ad226ee4932745ca"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-wake-continuity-mechanics",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "c-001-synthesize-landauer",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "c-002-synthesize-governance",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-6e417376bafc46e4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6e417376bafc46e4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-40b3664b4b2c4e38"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-40b3664b4b2c4e38",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-230219ada7ba4309"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-230219ada7ba4309",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fc29e156a65a41e5"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fc29e156a65a41e5",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b66b462846d04c40"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b66b462846d04c40",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-bfad50e1bbba4415"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-bfad50e1bbba4415",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-3d03662526e243e5",
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca",
+          "source-6e417376bafc46e4",
+          "source-40b3664b4b2c4e38",
+          "source-230219ada7ba4309",
+          "source-fc29e156a65a41e5",
+          "source-b66b462846d04c40",
+          "source-bfad50e1bbba4415"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 10,
+          "evidence_count": 9,
+          "trigger_counts": {
+            "commitment_near_due": 2,
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 5,
+          "topic": "wake_analysis"
+        },
+        "attention_saturation_threshold": 5,
+        "cooldown_other_attempts": 3,
+        "deferred_topics": [
+          "information_thermodynamics",
+          "wake_analysis"
+        ],
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "information_thermodynamics": [
+            {
+              "id": "landauer-principle-investigation",
+              "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+              "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+            },
+            {
+              "id": "maxwell-demon-mechanisms",
+              "next_step": "Identify specific experimental implementations of Maxwell's demon and their measured entropy costs.",
+              "question": "How do contemporary experimental setups of the Szilard engine or Maxwell's demon quantify the relationship between information acquisition and entropy production?"
+            }
+          ],
+          "wake_analysis": [
+            {
+              "id": "wake-continuity-arch",
+              "next_step": "Synthesize repository governance rules into a notebook.",
+              "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "selected_topic": "wake_analysis",
+        "temporal": {
+          "anchor_seq": 1503,
+          "anchor_time": "2026-09-24T02:20:34.152731+00:00",
+          "anchor_version": 41,
+          "effective_seconds": 17708.3629
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 171.154946,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 17708.3629,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 0,
+          "squirrel_assessed": 0,
+          "total": 11
+        },
+        "observed_at": "2026-09-24T02:20:34.152731+00:00",
+        "previous_anchor_time": "2026-09-24T02:17:42.997785+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 171.154946
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 14775,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 10,
+        "retrieval_evidence_count": 9,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 2,
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 2648,
+        "working_to_delivered_ratio": 0.1792
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "wake-continuity-arch",
+            "next_step": "Synthesize repository governance rules into a notebook.",
+            "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+            "title": "WAKE Continuity and Governance Architecture"
+          },
+          {
+            "id": "landauer-principle-investigation",
+            "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+            "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+            "title": "Landauer's Principle and Information Erasure"
+          },
+          {
+            "id": "maxwell-demon-mechanisms",
+            "next_step": "Identify specific experimental implementations of Maxwell's demon and their measured entropy costs.",
+            "question": "How do contemporary experimental setups of the Szilard engine or Maxwell's demon quantify the relationship between information acquisition and entropy production?",
+            "title": "Mechanisms and Experimental Tests of Maxwell's Demon"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 25,
+            "id": "c-001-synthesize-landauer",
+            "reason": "To provide a structured summary of the physical basis and experimental evidence for Landauer's principle before proceeding to more advanced applications.",
+            "task": "Synthesize initial findings on Landauer's principle into a notebook"
+          },
+          {
+            "due_cycle": 37,
+            "id": "c-002-synthesize-governance",
+            "reason": "To finalize the project 'wake-continuity-arch' after collecting relevant governance information.",
+            "task": "Synthesize repository governance rules into a notebook"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-wake-arch-01",
+            "project": "wake-continuity-arch",
+            "provenance": [
+              "source-3d03662526e243e5"
+            ],
+            "revision": 5,
+            "summary": "WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.",
+            "title": "Architecture of Durable Accountability"
+          },
+          {
+            "id": "nb-wake-continuity-mechanics",
+            "project": "wake-continuity-arch",
+            "provenance": [
+              "source-daed2a840e974273",
+              "source-ad226ee4932745ca"
+            ],
+            "revision": 5,
+            "summary": "WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.",
+            "title": "Mechanics of Durable Research Continuity"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-24T02:20:35.136091+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 13659,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 41528,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-24T02:21:00.593416+00:00",
+      "reason": "Notebook findings cannot use broad search-result lists as qualifying evidence; retrieve specific source records first"
     }
   },
   "pending": null,
@@ -48134,14 +48633,14 @@
     "counters": {
       "entropy": 4,
       "information_thermodynamics": 8,
-      "wake_analysis": 9
+      "wake_analysis": 10
     },
     "deferred": {
       "information_thermodynamics": {
         "cause": "hard_rejection",
         "deferred_by": "w-72bde327df7c4677",
         "eligible_after_other_attempts": 3,
-        "other_topic_attempts": 1,
+        "other_topic_attempts": 2,
         "parked_projects": [
           {
             "id": "landauer-principle-investigation",
@@ -48158,9 +48657,9 @@
       },
       "wake_analysis": {
         "cause": "hard_rejection",
-        "deferred_by": "w-7f20327395cc4608",
+        "deferred_by": "w-c40d660bd4864728",
         "eligible_after_other_attempts": 3,
-        "other_topic_attempts": 1,
+        "other_topic_attempts": 0,
         "parked_projects": [
           {
             "id": "wake-continuity-arch",
@@ -48175,12 +48674,16 @@
       "attention_saturation_triggered": false,
       "attention_topic": "wake_analysis",
       "durable_progress": false,
-      "hard_rejection": false,
-      "invocation": "w-f5fc2572bc3f48ff",
-      "restored_topics": [],
-      "selected_topic": "entropy",
-      "terminal": "accepted",
-      "triggered_topics": []
+      "hard_rejection": true,
+      "invocation": "w-c40d660bd4864728",
+      "restored_topics": [
+        "wake_analysis"
+      ],
+      "selected_topic": "wake_analysis",
+      "terminal": "rejected",
+      "triggered_topics": [
+        "wake_analysis"
+      ]
     },
     "attention": {
       "accepted_streak": 5,
@@ -48898,9 +49401,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-24T02:17:42.997785+00:00",
+    "anchor_time": "2026-09-24T02:20:34.152731+00:00",
     "anchor_version": 41,
-    "anchor_seq": 1491,
-    "effective_seconds": 17537.207954
+    "anchor_seq": 1503,
+    "effective_seconds": 17708.3629
   }
 }
