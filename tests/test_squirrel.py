@@ -328,8 +328,9 @@ class SquirrelTests(unittest.TestCase):
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         projects = [a for a in choices if a["properties"]["type"]["enum"] == ["project"]]
-        self.assertEqual(len(projects), 3)
-        self.assertTrue(all(a["properties"]["status"]["enum"] == ["parked"] for a in projects))
+        self.assertEqual(len(projects), 1)
+        self.assertEqual(projects[0]["properties"]["id"]["enum"], ["wake"])
+        self.assertEqual(projects[0]["properties"]["status"]["enum"], ["parked"])
         self.assertFalse(any(a["properties"]["type"]["enum"] == ["research"] for a in choices))
         self.assertFalse(any(a["properties"]["type"]["enum"] == ["notebook"] for a in choices))
 
