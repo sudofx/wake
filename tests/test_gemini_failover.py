@@ -231,6 +231,40 @@ class FailoverTests(unittest.TestCase):
         )
         self.assertEqual(item["provider_attempts"][0]["model"], "gemini-3.1-flash-lite")
 
+    def test_engine_reconstructs_daily_exhaustion_and_goes_straight_to_lite(self):
+        self.settings["model_daily_call_limits"] = {
+            "gemini-3.8-flash": 1,
+            "gemini-3.5-flash": 1,
+            "gemini-3.1-flash-lite": 500,
+        }
+
+        first, _, first_item, first_network = self.run_chain(["valid"])
+        self.assertEqual(first["status"], "accepted")
+        self.assertEqual(first_network.call_count, 1)
+        self.assertEqual(first_item["successful_model"], "gemini-3.8-flash")
+
+        second, _, second_item, second_network = self.run_chain(["valid"])
+        self.assertEqual(second["status"], "accepted")
+        self.assertEqual(second_network.call_count, 1)
+        self.assertEqual(second_item["successful_model"], "gemini-3.5-flash")
+        self.assertEqual(
+            second_item.get("skipped_models"),
+            [{"model": "gemini-3.8-flash", "reason": "configured_daily_limit"}],
+        )
+
+        third, _, third_item, third_network = self.run_chain(["valid"])
+        self.assertEqual(third["status"], "accepted")
+        self.assertEqual(third_network.call_count, 1)
+        self.assertEqual(third_item["successful_model"], "gemini-3.1-flash-lite")
+        self.assertEqual(
+            third_item.get("skipped_models"),
+            [
+                {"model": "gemini-3.8-flash", "reason": "configured_daily_limit"},
+                {"model": "gemini-3.5-flash", "reason": "configured_daily_limit"},
+            ],
+        )
+        self.assertIn("gemini-3.1-flash-lite:generateContent", self.requests[-1].full_url)
+
     def test_checkpoint_failure_cannot_trigger_fallback(self):
         def checkpoint():
             if len(self.requests) == 1:
