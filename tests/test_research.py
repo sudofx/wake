@@ -637,29 +637,38 @@ class ResearchTests(unittest.TestCase):
         rendered = (self.root/"site/notebooks/n.md").read_text()
         self.assertIn("Evidence profile · 1 distinct source URL", rendered)
 
-    def test_debug_publication_gate_allows_one_source_blog(self):
-        self.assertEqual(PUBLICATION_MIN_SOURCES, 1)
+    def test_publication_requires_two_sources_even_when_notebook_is_provisional(self):
+        self.assertEqual(PUBLICATION_MIN_SOURCES, 2)
         self.source("s1")
         result = self.propose([project(), notebook(["s1"], "A bounded comparison follows [s1]."),
                                self.blog(evidence=["s1"])])
-        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("at least 2 distinct", result["reason"])
+        state = self.engine.store.load()
+        self.assertNotIn("n", state["notebooks"])
+        self.assertNotIn("post-one", state["posts"])
+
+        self.source("s2")
+        accepted = self.propose([project(), notebook(["s1", "s2"], "A bounded comparison follows [s1] [s2]."),
+                                 self.blog(evidence=["s1", "s2"])])
+        self.assertEqual(accepted["status"], "accepted")
         self.assertIn("n", self.engine.store.load()["notebooks"])
         self.assertIn("post-one", self.engine.store.load()["posts"])
 
-    def test_debug_one_source_gate_is_exposed_in_provider_schema(self):
+    def test_publication_threshold_is_exposed_in_provider_schema(self):
         context = {
             "research_topics": [{"id": "entropy"}],
             "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
             "commitments": [],
-            "evidence": [{"id": "s1", "actor": "collector"}],
-            "project_evidence": {"p": ["s1"]},
-            "blog_notebooks": {"p": [{"id": "n", "evidence": ["s1"]}]},
+            "evidence": [{"id": "s1", "actor": "collector"}, {"id": "s2", "actor": "collector"}],
+            "project_evidence": {"p": ["s1", "s2"]},
+            "blog_notebooks": {"p": [{"id": "n", "evidence": ["s1", "s2"]}]},
             "bob_reflection_due": False,
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
         self.assertEqual(blog["properties"]["evidence"]["minItems"], PUBLICATION_MIN_SOURCES)
-        self.assertEqual(blog["properties"]["evidence"]["items"]["enum"], ["s1"])
+        self.assertEqual(set(blog["properties"]["evidence"]["items"]["enum"]), {"s1", "s2"})
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1")
