@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 53  
+**Version:** 54  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `358e318f1356e091d2c57a43ed2d82ecce0b00c999b800fd8a2023eb7eefade6`
+**Verified head:** `9d6bb13d34c0acc24f5e3945bd9e5e7e21c3ebfc4716ad9e7b811cdb8b8bd70c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -198,10 +198,10 @@ _None recorded._
   "retry_after_version": null,
   "persistent_identifiers": [],
   "last_receipt": {
-    "evidence": "source-0cb47d7c9bcd4930",
+    "evidence": "source-a463ef1dcea548f2",
     "outcome": "progress",
     "persistent_identifiers": [],
-    "research_id": "r-wake-gov-rules-01",
+    "research_id": "r-gov-synthesis-01",
     "route": "raw.githubusercontent.com:source",
     "stage": "substantive_source"
   }
@@ -370,16 +370,7 @@ _None recorded._
 ### `deferred`
 
 ```json
-{
-  "consciousness": {
-    "cause": "hard_rejection",
-    "deferred_by": "w-b786deb8c09e423e",
-    "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 2,
-    "parked_projects": [],
-    "reason": "five consecutive hard rejections without durable progress"
-  }
-}
+{}
 ```
 
 ### `last_receipt`
@@ -390,9 +381,9 @@ _None recorded._
   "attention_topic": "wake_analysis",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-2867f7c703e54991",
+  "invocation": "w-00eb4a646be54821",
   "restored_topics": [
-    "entropy"
+    "consciousness"
   ],
   "selected_topic": "wake_analysis",
   "terminal": "accepted",
@@ -404,7 +395,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
+  "accepted_streak": 3,
   "topic": "wake_analysis"
 }
 ```
@@ -87300,6 +87291,436 @@ _None recorded._
 }
 ```
 
+### `w-00eb4a646be54821`
+
+```json
+{
+  "base_version": 53,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 14527,
+    "delivered_request_chars": 38683,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 73745,
+    "working_set_chars": 2638
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-23T21:25:25.789831+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-00eb4a646be54821",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 53,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "wake-continuity-arch",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 29,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "landauer-principle-investigation",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "neurodiversity-framework-models",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs Pathology Models"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2249,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "6de2a7e7427fa67e7b7790a87b934745cc24f99d1d01abd0534f93e05e46ac79",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-3d03662526e243e5"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-arch-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-continuity-mechanics",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-001-synthesize-landauer",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-002-synthesize-governance",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-ad6ff368b8b144bf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ad6ff368b8b144bf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c1a55a260c72495f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c1a55a260c72495f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d868138d6f354820"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d868138d6f354820",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-625528077e5845fe"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-625528077e5845fe",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0cb47d7c9bcd4930"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0cb47d7c9bcd4930",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a463ef1dcea548f2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a463ef1dcea548f2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-3d03662526e243e5",
+      "source-daed2a840e974273",
+      "source-ad226ee4932745ca",
+      "source-ad6ff368b8b144bf",
+      "source-c1a55a260c72495f",
+      "source-d868138d6f354820",
+      "source-625528077e5845fe",
+      "source-0cb47d7c9bcd4930",
+      "source-a463ef1dcea548f2"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "wake_analysis"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "information_thermodynamics",
+      "neurodivergence"
+    ],
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [
+      "consciousness"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "consciousness": []
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "wake_analysis",
+    "temporal": {
+      "anchor_seq": 2846,
+      "anchor_time": "2026-09-24T09:17:17.008470+00:00",
+      "anchor_version": 53,
+      "effective_seconds": 42711.218639
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 318.372425,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 42711.218639,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 16
+    },
+    "observed_at": "2026-09-24T09:17:17.008470+00:00",
+    "previous_anchor_time": "2026-09-24T09:11:58.636045+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 318.372425
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 14527,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 2638,
+    "working_to_delivered_ratio": 0.1816
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "wake-continuity-arch",
+        "next_step": "Synthesize repository governance rules into a notebook.",
+        "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "id": "landauer-principle-investigation",
+        "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "id": "neurodiversity-framework-models",
+        "next_step": "Search for foundational academic comparisons between neurodiversity paradigm formulations and clinical psychiatric diagnostic frameworks.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+        "title": "Neurodiversity Paradigm vs Pathology Models"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 25,
+        "id": "c-001-synthesize-landauer",
+        "reason": "To provide a structured summary of the physical basis and experimental evidence for Landauer's principle before proceeding to more advanced applications.",
+        "task": "Synthesize initial findings on Landauer's principle into a notebook"
+      },
+      {
+        "due_cycle": 37,
+        "id": "c-002-synthesize-governance",
+        "reason": "To finalize the project 'wake-continuity-arch' after collecting relevant governance information.",
+        "task": "Synthesize repository governance rules into a notebook"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-arch-01",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-3d03662526e243e5"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.",
+        "title": "Architecture of Durable Accountability"
+      },
+      {
+        "id": "nb-wake-continuity-mechanics",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.",
+        "title": "Mechanics of Durable Research Continuity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-24T09:17:19.456126+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5193,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41554,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-24T09:17:45.100365+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-a81ebc834d80497e`
@@ -107866,6 +108287,103 @@ _None recorded._
 }
 ```
 
+### `source-a463ef1dcea548f2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"\\\"\\\"\\\"\\nWAKE✳︎ GOVERNANCE\\n================\\n\\nThis module is the mechanical rulebook for WAKE✳︎.\\n\\nThe model is allowed to PROPOSE changes to durable state.\\nIt is never allowed to decide whether those changes are valid.\\n\\nThat distinction is central to the experiment:\\n\\n    model output = proposal\\n    governance = authority\\n    durable state = accepted history\\n\\nThe functions in this file are deliberately deterministic. Given the same\\nstate and the same proposal, governance should reach the same decision\\nregardless of which model produced the proposal.\\n\\nA model cannot persuade this module, reinterpret its instructions, waive a\\nrequirement, or edit the rules during an invocation.\\n\\nIf any part of a proposal violates governance, the ENTIRE proposal is rejected.\\nThere are no partial writes.\\n\\nThis gives WAKE✳︎ an important property:\\n\\n    failure can become durable information\\n    without failure becoming durable state.\\n\\\"\\\"\\\"\\n\\nfrom copy import deepcopy\\nimport json\\nimport math\\nimport re\\n# ---------------------------------------------------------------------------\\n# REJECTION\\n# ---------------------------------------------------------------------------\\n\\nclass Rejected(ValueError):\\n    \\\"\\\"\\\"\\n    A proposal violated a mechanical governance rule.\\n\\n    Rejection is not necessarily a software error.\\n\\n    In WAKE✳︎, rejected proposals are useful experimental artifacts. They show\\n    where a disposable model attempted something the durable system refused\\n    to accept.\\n\\n    The caller can preserve the rejected proposal and reason in the event log\\n    while leaving the accepted state unchanged.\\n    \\\"\\\"\\\"\\n    pass\\n\\n\\ndef require(condition, message):\\n    \\\"\\\"\\\"\\n    Small assertion primitive used throughout governance.\\n\\n    We intentionally raise Rejected rather than AssertionError because a\\n    governance violation is part of normal WAKE✳︎ operation.\\n\\n    Example:\\n\\n        require(project_exists, \\\"Notebook needs an existing project\\\")\\n\\n    The important idea is that governance failures have explicit human-readable\\n    reasons. Those reasons can later become part of the durable record and can\\n    influence a future invocation without modifying accepted state.\\n    \\\"\\\"\\\"\\n    if not condition:\\n        raise Rejected(message)\\n# ---------------------------------------------------------------------------\\n# BASIC STRUCTURAL VALIDATION\\n# ---------------------------------------------------------------------------\\n\\ndef text(value, label, maximum=2000):\\n    \\\"\\\"\\\"\\n    Require bounded, non-empty text.\\n\\n    Length limits serve several purposes:\\n\\n    1. Prevent accidental/unbounded state growth.\\n    2. Keep the durable record inspectable.\\n    3. Prevent a model from smuggling arbitrarily large payloads into fields\\n       that are supposed to have narrow semantic purposes.\\n    4. Keep later model context construction manageable.\\n\\n    We return the original value so this helper can also be used inline.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, str) and 0 < len(value.strip()) <= maximum,\\n        f\\\"{label} must be nonempty text, at most {maximum} characters\\\",\\n    )\\n    return value\\n\\n\\ndef keys(value, expected, label):\\n    \\\"\\\"\\\"\\n    Require an object to contain EXACTLY the expected fields.\\n\\n    This is intentionally stricter than merely checking required fields.\\n\\n    Why?\\n\\n    Because accepting arbitrary extra keys would allow the model to invent\\n    unofficial state or semantics that governance never approved.\\n\\n    Example:\\n\\n        expected:\\n            type id task due_cycle reason\\n\\n        rejected:\\n            type id task due_cycle reason secret_instruction\\n\\n    Unknown state has no authority merely because a model emitted it.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, dict) and set(value) == set(expected.split()),\\n        f\\\"{label} fields must be exactly: {expected}\\\",\\n    )\\n\\n\\ndef identifier(value):\\n    \\\"\\\"\\\"\\n    Validate durable IDs.\\n\\n    IDs are intentionally boring.\\n\\n    They may contain only:\\n        letters\\n        digits\\n        underscores\\n        hyphens\\n\\n    This keeps identifiers predictable for storage, URLs, maps, references,\\n    exports, and later deterministic comparisons.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, str)\\n        and re.fullmatch(r\\\"[a-zA-Z0-9_-]{1,80}\\\", value),\\n        \\\"IDs must use 1–80 letters, digits, underscores or hyphens\\\",\\n    )\\n\\n\\ndef references(value, state):\\n    \\\"\\\"\\\"\\n    Validate a list of evidence IDs.\\n\\n    Evidence citations must point to evidence that ALREADY EXISTS in the\\n    durable state being evaluated.\\n\\n    This prevents an important class of hallucination:\\n\\n        model invents evidence ID\\n        model cites invented ID\\n        claim appears \\\"supported\\\"\\n\\n    That cannot pass this gate.\\n\\n    The 1–12 bound also prevents empty provenance where evidence is required\\n    and prevents a proposal from dumping an unreasonable number of references\\n    into one change.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, list) and 1 <= len(value) <= 12,\\n        \\\"Changes require 1–12 evidence references\\\",\\n    )\\n\\n    require(\\n        all(\\n            isinstance(v, str) and v in state[\\\"evidence\\\"]\\n            for v in value\\n        ),\\n        \\\"Evidence reference does not exist\\\",\\n    )\\n\\n    require(\\n        len(set(value)) == len(value),\\n        \\\"Duplicate evidence reference\\\",\\n    )\\n# ---------------------------------------------------------------------------\\n# EVIDENCE QUALITY / SCOPE\\n# ---------------------------------------------------------------------------\\n\\ndef _limited_sources(evidence):\\n    \\\"\\\"\\\"\\n    Determine whether ALL supplied evidence is explicitly limited in scope.\\n\\n    Examples of limited evidence:\\n        abstract\\n        preprint\\n        metadata-only record\\n        incomplete document\\n        truncated document\\n\\n    This does NOT mean the evidence is useless.\\n\\n    It means downstream prose should not pretend that weak/partial source\\n    material supports strong certainty.\\n\\n    Notice that the limitation is read from the stored evidence payload rather\\n    than guessed from the URL or source name.\\n    \\\"\\\"\\\"\\n    limited = (\\n        \\\"abstract\\\",\\n        \\\"preprint\\\",\\n        \\\"metadata\\\",\\n        \\\"incomplete\\\",\\n        \\\"truncated\\\",\\n    )\\n\\n    scopes = []\\n\\n    for item in evidence:\\n        try:\\n            scopes.append(\\n                str(\\n                    json.loads(item[\\\"content\\\"]).get(\\\"scope\\\", \\\"\\\")\\n                ).lower()\\n            )\\n        except (ValueError, TypeError):\\n            # Old or non-JSON evidence cannot provide a structured scope.\\n            scopes.append(\\\"\\\")\\n\\n    return (\\n        bool(scopes)\\n        and all(\\n            any(word in scope for word in limited)\\n            for scope in scopes\\n        )\\n    )\\n\\n\\ndef _evidence_payload(item):\\n    \\\"\\\"\\\"\\n    Safely recover the structured JSON payload stored inside an evidence item.\\n\\n    Evidence content is not assumed to be valid JSON forever. Historical or\\n    manually-created records may differ.\\n\\n    Governance therefore fails conservatively to an empty dictionary rather\\n    than crashing the transition engine.\\n    \\\"\\\"\\\"\\n    try:\\n        payload = json.loads(item.get(\\\"content\\\", \\\"\\\"))\\n    except (ValueError, TypeError):\\n        return {}\\n\\n    return payload if isinstance(payload, dict) else {}\\n\\n\\ndef _verification_evidence(evidence, project_domain, label, minimum_sources=1):\\n    \\\"\\\"\\\"\\n    Apply the newer verification contract when evidence says that contract is\\n    required.\\n\\n    Some collector-produced evidence is marked:\\n\\n        verification_required = true\\n\\n    Once evidence participates in that regime, governance refuses to mix it\\n    with older evidence that lacks the same verification semantics.\\n\\n    This avoids creating a misleading hybrid where one source obeys the new\\n    provenance rules and another source silently bypasses them.\\n\\n    Verification-required evidence must also:\\n\\n        - be individually selected sources, not broad search-result lists\\n        - retain collector-stamped topic provenance\\n        - meet the caller's minimum number of distinct retrieved URLs\\n\\n    Topic provenance records where evidence entered the experiment; it is not\\n    a semantic relevance verdict. Materially relevant cross-topic evidence may\\n    qualify, while public promotion can still demand stronger multi-source\\n    support.\\n\\n    This is a provenance rule, NOT a declaration that one or more URLs make\\n    something true.\\n    \\\"\\\"\\\"\\n    marked = [\\n        item\\n        for item in evidence\\n        if _evidence_payload(item).get(\\\"verification_required\\\") is True\\n    ]\\n\\n    # No evidence opted into this verification regime.\\n    if not marked:\\n        return []\\n\\n    require(\\n        len(marked) == len(evidence),\\n        f\\\"{label} cannot mix legacy unverified evidence \\\"\\n        \\\"with verification-required evidence\\\",\\n    )\\n\\n    require(\\n        all(\\n            _evidence_payload(item).get(\\\"evidence_role\\\", \\\"source\\\") == \\\"source\\\"\\n            for item in marked\\n        ),\\n        f\\\"{label} cannot use broad search-result lists as qualifying evidence; \\\"\\n        \\\"retrieve specific source records first\\\",\\n    )\\n\\n    require(\\n        len({item.get(\\\"source\\\") for item in marked}) >= minimum_sources,\\n        f\\\"{label} requires at least {minimum_sources} distinct \\\"\\n        \\\"independently retrieved source URL(s)\\\",\\n    )\\n\\n    return marked\\n# ---------------------------------------------------------------------------\\n# DETERMINISTIC CLAIM / SOURCE MATCHING\\n# ---------------------------------------------------------------------------\\n\\ndef _claim_tokens(value):\\n    \\\"\\\"\\\"\\n    Convert prose into a crude deterministic set of meaningful lexical tokens.\\n\\n    This is NOT semantic understanding.\\n\\n    It deliberately avoids pretending governance understands whether a source\\n    truly proves a claim.\\n\\n    Instead, it asks a much narrower mechanical question:\\n\\n        \\\"Does the evidence even appear to discuss materially similar things?\\\"\\n\\n    Common connective words are removed so trivial overlap such as \\\"these\\\",\\n    \\\"source\\\", or \\\"because\\\" cannot satisfy the check.\\n    \\\"\\\"\\\"\\n    stop = {\\n        \\\"about\\\", \\\"after\\\", \\\"a\", \"excerpt_truncated\": true, \"source_sha256\": \"f998f0a87d192b71bed25c3d5d4d36da7e255bda34382a52b948dab0511129db\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\", \"evidence_role\": \"source\", \"host_tier\": \"source-controlled\", \"persistent_identifiers\": []}",
+  "id": "source-a463ef1dcea548f2",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py",
+  "version": 53,
+  "time": "2026-09-24T09:17:10.021134+00:00"
+}
+```
+
+### `source-f2d63f5bc37643c2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74322},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Forensic psychology\\\",\\\"pageid\\\":475037,\\\"size\\\":95452,\\\"wordcount\\\":10992,\\\"snippet\\\":\\\"Forensic\\npsychology\\nis the application of scientific knowledge and methods (in relation to\\npsychology\\n) to assist in answering legal questions that may\\\",\\\"timestamp\\\":\\\"2026-09-15T14:30:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (psychology)\\\",\\\"pageid\\\":7802146,\\\"size\\\":15698,\\\"wordcount\\\":1744,\\\"snippet\\\":\\\"Phenomenology or phenomenological\\npsychology\\n, a sub-discipline of\\npsychology\\n, is the scientific study of subjective experiences. It is an approach to psychological\\\",\\\"timestamp\\\":\\\"2026-09-02T13:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clinical psychology\\\",\\\"pageid\\\":492271,\\\"size\\\":86163,\\\"wordcount\\\":9645,\\\"snippet\\\":\\\"Clinical\\npsychology\\nis an integration of human science, behavioral science, theory, and clinical knowledge aimed at understanding, preventing, and relieving\\\",\\\"timestamp\\\":\\\"2026-08-30T16:15:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Somatic psychology\\\",\\\"pageid\\\":6774132,\\\"size\\\":16405,\\\"wordcount\\\":1855,\\\"snippet\\\":\\\"Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\",\\\"timestamp\\\":\\\"2026-09-03T20:37:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8bee7ebcf4adae81788fd865cf5f82f84cb339e79659e4d0230b1287050f77be\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-f2d63f5bc37643c2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 53,
+  "time": "2026-09-24T09:17:12.207757+00:00"
+}
+```
+
+### `source-97135ef20eb74119`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":911},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"98cb5dcc09d4b9a0e40f8a18e616b068018d23b0667ce762702386d90c465751\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-97135ef20eb74119",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 53,
+  "time": "2026-09-24T09:17:13.312407+00:00"
+}
+```
+
+### `source-c4c17b1ed3514ada`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40307},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"99bd3345315292bfc4572765381cee8af6c0d715d58a3a3ccd54df42e3c9f56f\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-c4c17b1ed3514ada",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 53,
+  "time": "2026-09-24T09:17:14.116803+00:00"
+}
+```
+
+### `source-fe41e958266d463d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fe41e958266d463d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 53,
+  "time": "2026-09-24T09:17:15.262753+00:00"
+}
+```
+
+### `source-b361247553894f4e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2768},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e73f7b9a985fd68921889f0c65150f2430393c50498fa39c5c7dc733fefc8203\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b361247553894f4e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 53,
+  "time": "2026-09-24T09:17:16.299297+00:00"
+}
+```
+
+### `r-00eb4a646be54821`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":53,\"inherited_commitments\":[\"c-001-synthesize-landauer\",\"c-002-synthesize-governance\"],\"invocation\":\"w-00eb4a646be54821\",\"previous_head\":\"b77ded6f9a444d5be3c54fd702202d9b7dc952de226f5ae6cb1b3c34d60b1859\",\"process_id\":2249,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-00eb4a646be54821",
+  "source": "runtime:continuity",
+  "version": 53,
+  "time": "2026-09-24T09:17:18.727099+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping durable continuity on wake_analysis
@@ -108448,6 +108966,17 @@ _None recorded._
   "invocation": "w-2867f7c703e54991",
   "title": "Maintaining Governance Continuity in WAKE✳︎",
   "summary": "This cycle prioritizes the maintenance of WAKE✳︎'s governance architecture under the current enforcement directive. Research focus is restricted to the 'wake-continuity-arch' project. Work is underway to synthesize existing governance rules into a durable notebook, ensuring that the repository's operational standards are clearly defined and preserved. Efforts to resume capability-blocked topics are deferred in favor of this focused continuity work."
+}
+```
+
+### 054 · Addressing Governance Commitments for WAKE Continuity
+
+```json
+{
+  "cycle": 54,
+  "invocation": "w-00eb4a646be54821",
+  "title": "Addressing Governance Commitments for WAKE Continuity",
+  "summary": "This cycle prioritizes the overdue commitment to synthesize repository governance for WAKE, in alignment with the enforced 'wake_analysis' focus. The 'information_thermodynamics' and 'neurodivergence' domains remain capability-blocked, so attention is maintained on refining the internal institutional architecture and governance model."
 }
 ```
 
@@ -109119,8 +109648,24 @@ _None recorded._
   "query": "WAKE repository governance contribution guidelines structure",
   "reason": "Identify existing repository governance patterns to facilitate the required synthesis notebook.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-2867f7c703e54991",
+  "evidence": "source-a463ef1dcea548f2"
+}
+```
+
+### `r-wake-governance-001`
+
+```json
+{
+  "domain": "wake_analysis",
+  "id": "r-wake-governance-001",
+  "project": "wake-continuity-arch",
+  "query": "WAKE sudofx/wake governance model institutional structure",
+  "reason": "Required to gather information for the overdue commitment c-002-synthesize-governance to synthesize repository governance rules.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-2867f7c703e54991"
+  "created_by": "w-00eb4a646be54821"
 }
 ```
 
