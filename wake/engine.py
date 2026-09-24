@@ -35,6 +35,141 @@ from .trust import build_trust_compacts_shadow
 from .squirrel import assessment as squirrel_assessment, plan as squirrel_plan
 
 
+def _rotation_preflight(state, invocation, proposal):
+    """Salvage the selected-topic subset of a mixed Squirrel proposal.
+
+    Gemini sometimes returns valid work for the enforced topic *plus* stale
+    actions for deferred/unconfigured topics. Rejecting the whole response
+    wastes the selected-topic work. During an enforced rotation, admit only
+    substantive actions on the selected topic, mandatory milestone reflection,
+    and project parking needed to recover capacity. Preserve the exact raw
+    provider response separately so nothing is hidden or rewritten in history.
+    """
+    if not isinstance(proposal, dict) or not isinstance(proposal.get("actions"), list):
+        return proposal, None
+    directive = state.get("invocations", {}).get(invocation, {}).get("squirrel", {})
+    if not directive.get("enforce_selected_topic") or not directive.get("selected_topic"):
+        return proposal, None
+
+    selected = directive["selected_topic"]
+    projects = state.get("projects", {})
+    project_domains = {pid: item.get("domain") for pid, item in projects.items()}
+    for action in proposal["actions"]:
+        if isinstance(action, dict) and action.get("type") == "project":
+            if action.get("id") and action.get("domain"):
+                project_domains[action["id"]] = action["domain"]
+
+    kept, withheld = [], []
+    for action in proposal["actions"]:
+        if not isinstance(action, dict):
+            kept.append(action)
+            continue
+        kind = action.get("type")
+        keep = True
+        if kind == "project":
+            old = projects.get(action.get("id"))
+            keep = bool(
+                (old and action.get("status") in ("parked", "completed"))
+                or action.get("domain") == selected
+            )
+        elif kind == "research":
+            keep = action.get("domain") == selected
+        elif kind in ("notebook", "reframe"):
+            keep = project_domains.get(action.get("project")) == selected
+        elif kind == "blog":
+            keep = bool(action.get("reflection_cycle")) or (
+                project_domains.get(action.get("project")) == selected
+            )
+        elif kind in ("belief", "commit", "resolve"):
+            # Administrative mutations are intentionally deferred during a
+            # forced research rotation. They have repeatedly poisoned otherwise
+            # valid selected-topic proposals through duplicate/stale IDs.
+            keep = False
+        if keep:
+            kept.append(action)
+        else:
+            withheld.append(action)
+
+    # If a selected-topic project is being activated while all three active
+    # slots are occupied, insert one deterministic parking action *before* the
+    # new project. Prefer a project whose topic was removed, then one whose
+    # acquisition is blocked, then the oldest non-selected active project.
+    active = [p for p in projects.values() if p.get("status") == "active"]
+    selected_activation = any(
+        isinstance(a, dict) and a.get("type") == "project"
+        and a.get("status") == "active" and a.get("domain") == selected
+        and not (projects.get(a.get("id")) or {}).get("status") == "active"
+        for a in kept
+    )
+    already_parking = {
+        a.get("id") for a in kept
+        if isinstance(a, dict) and a.get("type") == "project"
+        and a.get("status") == "parked" and a.get("id") in projects
+    }
+    if selected_activation and len(active) >= 3 and not already_parking:
+        configured = {
+            t["id"] for t in state.get("research_topics", [])
+            if t.get("enabled", True)
+        }
+        blocked = set(directive.get("capability_blocked_topics", []))
+        candidates = [p for p in active if p.get("domain") != selected]
+        candidates.sort(key=lambda p: (
+            0 if p.get("domain") not in configured else
+            1 if p.get("domain") in blocked else 2,
+            p.get("updated_version", 0),
+            p.get("id", ""),
+        ))
+        if candidates:
+            old = candidates[0]
+            kept.insert(0, {
+                "type": "project",
+                "id": old["id"],
+                "title": old["title"],
+                "question": old["question"],
+                "domain": old["domain"],
+                "status": "parked",
+                "next_step": old["next_step"],
+                "reason": (
+                    f"Deterministic Squirrel capacity recovery: park this "
+                    f"non-selected project so {selected} work can proceed."
+                ),
+            })
+
+    if not withheld and kept == proposal["actions"]:
+        return proposal, None
+    if not kept:
+        # Do not turn a completely off-topic response into an empty accepted
+        # cycle. Let ordinary governance reject it so the failure remains loud.
+        return proposal, None
+
+    label = next(
+        (t.get("label") for t in state.get("research_topics", [])
+         if t.get("id") == selected),
+        selected,
+    )
+    normalized = {
+        **proposal,
+        "title": f"Advancing {label} under enforced rotation",
+        "summary": (
+            f"Squirrel accepted the valid {selected} subset of a mixed provider "
+            f"proposal and withheld {len(withheld)} off-topic or administrative "
+            f"action(s). The exact provider response remains preserved in history."
+        ),
+        "actions": kept,
+    }
+    return normalized, {
+        "selected_topic": selected,
+        "withheld_count": len(withheld),
+        "withheld_actions": withheld,
+        "inserted_capacity_park": bool(
+            kept and isinstance(kept[0], dict)
+            and kept[0].get("type") == "project"
+            and kept[0].get("status") == "parked"
+            and kept[0] not in proposal["actions"]
+        ),
+    }
+
+
 INQUIRY_DRIVE_MIN_CYCLES = 20
 TOPIC_COLORS = (
     "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
@@ -1108,6 +1243,7 @@ class Engine:
         try:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
+            proposal, rotation_filter = _rotation_preflight(state, invocation, proposal)
             editorial = None
             try:
                 result = transition(state, proposal, invocation)
@@ -1148,12 +1284,18 @@ class Engine:
                                        "metadata": metadata or {},
                                        **({"provider_requests_sent": metadata["provider_requests_sent"]}
                                           if metadata and "provider_requests_sent" in metadata else {}), "result_hash": result_hash, "hash_fields": fields,
-                                       **({"editorial": editorial} if editorial else {})}, crash=crash)
+                                       **({"editorial": editorial} if editorial else {}),
+                                       **({"rotation_filter": rotation_filter} if rotation_filter else {})}, crash=crash)
         if state.get("charter"):
             self.store.append("squirrel_assessed", squirrel_assessment(
                 state, invocation, "accepted", proposal))
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
-                **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {})}
+                **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {}),
+                **({"rotation_filter": {
+                    "selected_topic": rotation_filter["selected_topic"],
+                    "withheld_count": rotation_filter["withheld_count"],
+                    "inserted_capacity_park": rotation_filter["inserted_capacity_park"],
+                }} if rotation_filter else {})}
 
     @staticmethod
     # ---------------------------------------------------------------------------
