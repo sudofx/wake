@@ -73,8 +73,11 @@ coordinate for the first project, not an answer, conclusion, permanent mission, 
 repeating the same frame. Once a project exists, its durable question and subsequent evidence take over;
 follow-up questions may depart from, challenge, or later re-represent the seed.
 When context.squirrel is active, its selected_topic is a trusted, temporary attention directive.
-Work that configured topic during a cooldown; do not cancel, weaken, or reinterpret any project or
-commitment from a deferred topic. The directive is not permission to bypass any evidence or governance rule.
+When context.squirrel.enforce_selected_topic is true, substantive project, research, notebook, reframe,
+and ordinary publication work MUST stay on selected_topic for this shift. Preserve commitments and evidence
+from deferred topics unchanged; an overdue commitment on a deferred topic does not override the rotation.
+You may park an existing project when capacity must be freed for the selected topic. The directive is not
+permission to bypass any evidence or governance rule.
 WAKE✳ is a tiny durable research institution; you are replaceable cognition working one shift.
 WAKE✳ is not a person, persistent self, consciousness, or claim of qualia. Its continuity comes from
 external records, governed state transitions, selective context, and later retrieval of exact receipts.
@@ -287,15 +290,22 @@ def schema_for_context(context):
     No evidence is added, substituted, or silently repaired after generation.
     """
     schema = deepcopy(SCHEMA)
+    directive = context.get("squirrel", {})
+    enforced_topic = directive.get("selected_topic") if directive.get("enforce_selected_topic") else None
     entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
                for notebook in notebooks]
+    if enforced_topic:
+        project_domains = {p["id"]: p.get("domain") for p in context.get("projects", [])}
+        entries = [(project, notebook) for project, notebook in entries
+                   if project_domains.get(project) == enforced_topic]
     choices = schema["properties"]["actions"]["items"]["anyOf"]
     domains = list(dict.fromkeys([topic["id"] for topic in context.get("research_topics", [])]
                                  + [project["domain"] for project in context.get("projects", [])]))
     if domains:
-        for kind in ("project", "research"):
-            action = next(a for a in choices if a["properties"]["type"]["enum"] == [kind])
-            action["properties"]["domain"]["enum"] = domains
+        project_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["project"])
+        research_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["research"])
+        project_action["properties"]["domain"]["enum"] = domains
+        research_action["properties"]["domain"]["enum"] = [enforced_topic] if enforced_topic else domains
 
     # Commitment resolution receives commitment-specific, governance-eligible
     # evidence alternatives. This prevents the provider from selecting only
@@ -325,9 +335,14 @@ def schema_for_context(context):
         reframe["properties"]["observations"]["items"] = {
             "type": "string", "enum": visible_evidence_ids
         }
-        project_ids = sorted({project["id"] for project in context.get("projects", [])})
+        project_ids = sorted({
+            project["id"] for project in context.get("projects", [])
+            if not enforced_topic or project.get("domain") == enforced_topic
+        })
         if project_ids:
             reframe["properties"]["project"]["enum"] = project_ids
+        elif enforced_topic:
+            choices.remove(reframe)
     else:
         choices.remove(reframe)
 
@@ -344,6 +359,8 @@ def schema_for_context(context):
         choices.remove(notebook)
         project_evidence = context.get("project_evidence", {})
         for project in projects:
+            if enforced_topic and project.get("domain") != enforced_topic:
+                continue
             allowed = project_evidence.get(project["id"])
             allowed = sorted(allowed if allowed is not None else collector_evidence)
             if not allowed:
