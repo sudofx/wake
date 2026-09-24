@@ -691,6 +691,10 @@ class Gemini:
                 "Gemini fallback chain requires verified low-thinking request compatibility")
         self.request_limit = len(self.models)
         self.model_request_limits = None
+        # Models whose durable Pacific-day allowance is already exhausted are
+        # skipped before transport. Keep the skip visible in diagnostics so an
+        # operator can distinguish "not called" from another provider failure.
+        self.skipped_models = []
         self.record_attempt = None
         require(config["free_tier_confirmed"] is True,
                 "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled")
@@ -708,11 +712,18 @@ class Gemini:
         self.provider_requests_sent = 0
         self.provider_attempts = []
         self.successful_model = None
-        if (self.model_request_limits is not None
-                and not any(self.model_request_limits.get(model, 0) > 0 for model in self.models)):
+        self.skipped_models = []
+        if self.model_request_limits is not None:
+            self.skipped_models = [
+                {"model": model, "reason": "configured_daily_limit"}
+                for model in self.models
+                if self.model_request_limits.get(model, 0) <= 0
+            ]
+        if self.model_request_limits is not None and len(self.skipped_models) == len(self.models):
             raise ConfiguredDailyLimitReached(
                 "Configured daily request limits reached for all available Gemini models; wake deferred until Pacific midnight",
-                {"models": list(self.models), "quota_source": "configured_model_daily_limits"},
+                {"models": list(self.models), "quota_source": "configured_model_daily_limits",
+                 "skipped_models": list(self.skipped_models)},
             )
         system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(request.get("response_schema", SCHEMA))
         body = {"systemInstruction": {"parts": [{"text": system}]},
@@ -727,6 +738,9 @@ class Gemini:
             if attempted >= self.request_limit:
                 break
             if self.model_request_limits is not None and self.model_request_limits.get(model, 0) <= 0:
+                # Engine reconstructed this model's allowance from durable
+                # provider-attempt receipts for the current Pacific quota day.
+                # Never probe it again before the reset boundary.
                 continue
             attempted += 1
             req = urllib.request.Request(
@@ -814,6 +828,7 @@ class Gemini:
     def diagnostics(self):
         return {"provider_requests_sent": self.provider_requests_sent,
                 "provider_attempts": list(self.provider_attempts),
+                **({"skipped_models": list(self.skipped_models)} if self.skipped_models else {}),
                 **({"successful_model": self.successful_model} if self.successful_model else {})}
 # ---------------------------------------------------------------------------
 # OBJECT: Fixture
