@@ -200,6 +200,38 @@ class FailoverTests(unittest.TestCase):
                 provider.propose({"system": "rules", "context": {}})
         network.assert_not_called()
 
+    def test_exhausted_models_are_skipped_without_http_until_reset(self):
+        provider = Gemini(self.settings)
+        provider.model_request_limits = {
+            "gemini-3.8-flash": 0,
+            "gemini-3.5-flash": 0,
+            "gemini-3.1-flash-lite": 500,
+        }
+
+        def send(req, **kwargs):
+            self.assertIn("gemini-3.1-flash-lite:generateContent", req.full_url)
+            body = json.loads(req.data)
+            context = json.loads(body["contents"][0]["parts"][0]["text"])
+            raw, _ = Fixture().propose({"context": context})
+            return Response(raw)
+
+        with patch("urllib.request.urlopen", side_effect=send) as network:
+            result = self.engine.run(provider)
+
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(network.call_count, 1)
+        state = self.engine.store.load()
+        item = state["invocations"][result["id"]]
+        metadata = item.get("metadata", {})
+        self.assertEqual(
+            metadata.get("skipped_models"),
+            [
+                {"model": "gemini-3.8-flash", "reason": "configured_daily_limit"},
+                {"model": "gemini-3.5-flash", "reason": "configured_daily_limit"},
+            ],
+        )
+        self.assertEqual(item["provider_attempts"][0]["model"], "gemini-3.1-flash-lite")
+
     def test_checkpoint_failure_cannot_trigger_fallback(self):
         def checkpoint():
             if len(self.requests) == 1:
