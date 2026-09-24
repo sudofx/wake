@@ -532,15 +532,19 @@ class ResearchTests(unittest.TestCase):
                       domain="entropy", reason="Test a cross-topic relationship")
         self.assertEqual(self.propose([project(), action])["status"], "accepted")
 
-    def test_project_can_research_its_retired_original_topic(self):
+    def test_removed_topic_preserves_project_but_blocks_new_substantive_research(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
             topic for topic in self.engine.config["research_topics"] if topic["id"] != "entropy"]
         with self.engine.store.lock():
             self.engine.initialize()
+        self.assertIn("p", self.engine.store.load()["projects"])
         action = dict(type="research", id="q", project="p", query="cellular automata",
                       domain="entropy", reason="Continue the existing investigation")
-        self.assertEqual(self.propose([action])["status"], "accepted")
+        result = self.propose([action])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("Squirrel rotation requires substantive work on", result["reason"])
+        self.assertIn("p", self.engine.store.load()["projects"])
 
     def test_completion_requires_a_notebook(self):
         self.propose([project()])
