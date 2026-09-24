@@ -87,6 +87,7 @@ accepted=0
 rejected=0
 deferred=0
 waiting=0
+transient_streak=0
 
 while true; do
   if (( max_wakes > 0 && i >= max_wakes )); then
@@ -210,10 +211,16 @@ while true; do
   echo "[wake $i] ${operation_status} (accepted: $accepted; rejected: $rejected; deferred: $deferred; waiting: $waiting)."
 
   if [[ "$operation_status" == "deferred" ]] && jq -e '.reason | startswith("Gemini temporarily unavailable")' >/dev/null 2>&1 <<<"$operation"; then
-    echo "[wake $i] Temporary provider outage; waiting 30 seconds before retrying."
+    transient_streak=$((transient_streak + 1))
+    retry_delay=$(( TRANSIENT_RETRY_SECONDS * (1 << (transient_streak - 1)) ))
+    (( retry_delay > 300 )) && retry_delay=300
+    echo "[wake $i] Temporary provider outage; cooldown ${retry_delay}s before retrying (streak: $transient_streak)."
     # A transient outage produced no research result. Do not let it consume
-    # one of the operator-requested cycles before the next dispatch.
+    # one of the operator-requested cycles before the next dispatch, but back
+    # off enough to avoid turning provider demand spikes into dispatch churn.
     i=$((i - 1))
-    sleep "$TRANSIENT_RETRY_SECONDS"
+    sleep "$retry_delay"
+  else
+    transient_streak=0
   fi
 done
