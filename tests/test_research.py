@@ -26,7 +26,10 @@ from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
-from wake.research import allowed_url, collect, discovery_urls, repository_sources
+from wake.research import (
+    allowed_url, collect, discovery_urls, evidence_role, host_tier,
+    repository_sources, research_urls,
+)
 from wake.report import export
 from support import charter_settings
 
@@ -1092,6 +1095,46 @@ class ResearchTests(unittest.TestCase):
         for url in ("http://arxiv.org/", "https://127.0.0.1/", "https://arxiv.org.evil.example/", "https://a@arxiv.org/", "https://arxiv.org:444/", {}, None):
             with self.subTest(url=url), self.assertRaises(ValueError): allowed_url(url)
         self.assertEqual(allowed_url("https://arxiv.org/abs/1234.56789"), "https://arxiv.org/abs/1234.56789")
+
+    def test_broader_trusted_source_hosts_are_allowed(self):
+        urls = [
+            "https://api.datacite.org/dois/10.1234/example",
+            "https://www.frontiersin.org/journals/neuroscience/articles/10.3389/example/full",
+            "https://eric.ed.gov/?id=EJ123456",
+            "https://academic.oup.com/example",
+            "https://www.cambridge.org/core/journals/example",
+            "https://royalsocietypublishing.org/doi/10.1098/example",
+            "https://www.biomedcentral.com/articles/example",
+            "https://www.bmj.com/content/example",
+            "https://jamanetwork.com/journals/example/fullarticle/example",
+        ]
+        for url in urls:
+            with self.subTest(url=url):
+                self.assertEqual(allowed_url(url), url)
+
+    def test_index_rotation_includes_semantic_scholar_and_datacite(self):
+        routes = research_urls("neurodiversity paradigm", "neurodivergence", attempts=0)
+        self.assertEqual(len(routes), 4)
+        self.assertTrue(any("api.crossref.org" in url for url in routes))
+        self.assertTrue(any("api.openalex.org" in url for url in routes))
+        self.assertTrue(any("api.semanticscholar.org" in url for url in routes))
+        self.assertTrue(any("api.datacite.org" in url for url in routes))
+        rotated = research_urls("neurodiversity paradigm", "neurodivergence", attempts=1)
+        self.assertNotEqual(routes[0], rotated[0])
+
+    def test_broad_index_queries_remain_discovery_only(self):
+        routes = research_urls("working memory", "psychology", attempts=0)
+        self.assertTrue(all(evidence_role(url) == "discovery" for url in routes))
+        self.assertEqual(
+            evidence_role("https://api.datacite.org/dois/10.1234/example"),
+            "source",
+        )
+
+    def test_host_tiers_distinguish_fulltext_metadata_preprint_and_publishers(self):
+        self.assertEqual(host_tier("https://www.frontiersin.org/articles/example"), "verification-fulltext")
+        self.assertEqual(host_tier("https://api.datacite.org/dois/10.1234/example"), "verification-metadata")
+        self.assertEqual(host_tier("https://arxiv.org/abs/1234.56789"), "preprint")
+        self.assertEqual(host_tier("https://academic.oup.com/example"), "verification-publisher")
 
     def test_failed_remote_checkpoint_prevents_model_request(self):
         class NeverCall(Fixture):
