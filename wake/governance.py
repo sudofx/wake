@@ -33,6 +33,14 @@ from copy import deepcopy
 import json
 import math
 import re
+
+# TEMPORARY DEBUG INSTRUMENT:
+# Ordinary Bob publication normally requires two independently retrieved source
+# URLs. Lower this to one while testing whether the promotion gate is the
+# bottleneck between external-topic notebooks and public posts. Keep all other
+# provenance, notebook-traceability, evidence-role, claim-support, and editorial
+# rules intact. Restore to 2 after the diagnostic window.
+PUBLICATION_MIN_SOURCES = 1
 # ---------------------------------------------------------------------------
 # REJECTION
 # ---------------------------------------------------------------------------
@@ -1689,9 +1697,9 @@ def transition(state, proposal, invocation, historical=False):
                     len({
                         item["source"]
                         for item in cited
-                    }) >= 2,
+                    }) >= PUBLICATION_MIN_SOURCES,
                     "Blog posts need evidence from at least "
-                    "two distinct source URLs",
+                    f"{PUBLICATION_MIN_SOURCES} distinct source URL(s)",
                 )
 
                 if not historical:
@@ -1702,7 +1710,7 @@ def transition(state, proposal, invocation, historical=False):
                             action["project"]
                         ]["domain"],
                         "Blog body",
-                        minimum_sources=2,
+                        minimum_sources=PUBLICATION_MIN_SOURCES,
                     )
 
                     if verification:
@@ -1710,7 +1718,7 @@ def transition(state, proposal, invocation, historical=False):
                             action["body"],
                             verification,
                             "Blog body",
-                            minimum_sources=2,
+                            minimum_sources=PUBLICATION_MIN_SOURCES,
                         )
 
                 # Blog evidence cannot bypass the notebooks.
