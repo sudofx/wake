@@ -295,7 +295,10 @@ class SquirrelTests(unittest.TestCase):
     def test_schema_preflights_research_to_enforced_topic(self):
         context = {
             "research_topics": [{"id": "wake_analysis"}, {"id": "entropy"}],
-            "projects": [],
+            "projects": [
+                {"id": "e", "title": "Entropy", "question": "q",
+                 "domain": "entropy", "status": "active", "next_step": "n"}
+            ],
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
@@ -305,6 +308,45 @@ class SquirrelTests(unittest.TestCase):
         choices = schema["properties"]["actions"]["items"]["anyOf"]
         research = next(a for a in choices if a["properties"]["type"]["enum"] == ["research"])
         self.assertEqual(research["properties"]["domain"]["enum"], ["entropy"])
+        self.assertEqual(research["properties"]["project"]["enum"], ["e"])
+
+    def test_full_capacity_rotation_schema_requires_parking_first(self):
+        context = {
+            "research_topics": [{"id": "quantum_mechanics"}, {"id": "psychology"}],
+            "projects": [
+                {"id": "wake", "title": "Wake", "question": "q1",
+                 "domain": "wake_analysis", "status": "active", "next_step": "n1"},
+                {"id": "thermo", "title": "Thermo", "question": "q2",
+                 "domain": "information_thermodynamics", "status": "active", "next_step": "n2"},
+                {"id": "neuro", "title": "Neuro", "question": "q3",
+                 "domain": "neurodivergence", "status": "active", "next_step": "n3"},
+            ],
+            "commitments": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "squirrel": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        projects = [a for a in choices if a["properties"]["type"]["enum"] == ["project"]]
+        self.assertEqual(len(projects), 3)
+        self.assertTrue(all(a["properties"]["status"]["enum"] == ["parked"] for a in projects))
+        self.assertFalse(any(a["properties"]["type"]["enum"] == ["research"] for a in choices))
+        self.assertFalse(any(a["properties"]["type"]["enum"] == ["notebook"] for a in choices))
+
+    def test_rotation_without_selected_project_waits_before_research(self):
+        context = {
+            "research_topics": [{"id": "quantum_mechanics"}],
+            "projects": [],
+            "commitments": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "squirrel": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        project_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["project"])
+        self.assertEqual(project_action["properties"]["domain"]["enum"], ["quantum_mechanics"])
+        self.assertFalse(any(a["properties"]["type"]["enum"] == ["research"] for a in choices))
+        self.assertFalse(any(a["properties"]["type"]["enum"] == ["notebook"] for a in choices))
 
 
     def test_removed_active_topic_forces_rotation_without_reset(self):
