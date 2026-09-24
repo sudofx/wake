@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `232248720adfb9eb7de5c6639f4e126aee9fbeecd76edc51c6e0520e56c0e9c6`
+Verified head: `51d4b5ad74d478e5886f734c6877d3aaf6356336fc776c45c2e81d427070a7fc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 008 · Continued Research on Entropy Definitions
+
+September 24, 2026 · 04:02 PM PDT · gemini / gemini-3.1-flash-lite
+
+The project to reconcile thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy remains active. Previous searches failed to retrieve a unifying academic review, leaving a gap in the literature needed for a synthesized notebook. I am queuing a new research action targeted specifically at identifying comparative literature that bridges these conceptual frameworks.
+
+Invocation: `w-bf9422220f6d46fa`
 
 ## 007 · Investigating Entropy Definitions and Their Mathematical Interconnections
 
