@@ -1,7 +1,55 @@
 {
-  "status": "rejected",
-  "id": "w-e96079e29e2a4193",
-  "reason": "next_questions must be nonempty text, at most 1600 characters",
+  "status": "deferred",
+  "id": "w-90d0ac7980954ed8",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "provider_error": {
+    "model": "gemini-3.1-flash-lite",
+    "request_payload_bytes": 41574,
+    "http_status": 503,
+    "result": "transient_failure",
+    "elapsed_ms": 695,
+    "response_bytes_captured": 122,
+    "provider_error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    },
+    "category": "server",
+    "provider_requests_sent": 1,
+    "provider_attempts": [
+      {
+        "model": "gemini-3.1-flash-lite",
+        "request_payload_bytes": 41574,
+        "http_status": 503,
+        "result": "transient_failure",
+        "elapsed_ms": 695,
+        "response_bytes_captured": 122,
+        "provider_error": {
+          "code": 503,
+          "message": "The service is currently unavailable.",
+          "status": "UNAVAILABLE"
+        },
+        "category": "server"
+      }
+    ]
+  },
+  "provider_requests_sent": 1,
+  "provider_attempts": [
+    {
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41574,
+      "http_status": 503,
+      "result": "transient_failure",
+      "elapsed_ms": 695,
+      "response_bytes_captured": 122,
+      "provider_error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      },
+      "category": "server"
+    }
+  ],
   "wake_status": {
     "last_accepted": {
       "id": "w-f5fc2572bc3f48ff",
@@ -22,29 +70,66 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-e96079e29e2a4193",
-      "time": "2026-09-24T03:06:25.123567+00:00",
-      "finished": "2026-09-24T03:06:40.826942+00:00",
-      "status": "rejected",
-      "reason": "next_questions must be nonempty text, at most 1600 characters",
+      "id": "w-90d0ac7980954ed8",
+      "time": "2026-09-24T03:09:59.830974+00:00",
+      "finished": "2026-09-24T03:10:14.050882+00:00",
+      "status": "deferred",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 695,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 695,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "The service is currently unavailable.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 41574,
+            "response_bytes_captured": 122,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "The service is currently unavailable.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 41574,
+        "response_bytes_captured": 122,
+        "result": "transient_failure"
+      },
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 4125,
-          "http_status": 200,
+          "category": "server",
+          "elapsed_ms": 695,
+          "http_status": 503,
           "model": "gemini-3.1-flash-lite",
-          "request_payload_bytes": 40856,
-          "result": "success"
+          "provider_error": {
+            "code": 503,
+            "message": "The service is currently unavailable.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 41574,
+          "response_bytes_captured": 122,
+          "result": "transient_failure"
         }
-      ],
-      "successful_model": "gemini-3.1-flash-lite"
+      ]
     },
     "accepted_cycles": 41,
     "next_eligible": "2026-09-24T07:00:00+00:00",
     "pending": false,
-    "attempts_today": 129,
-    "provider_requests_today": 135,
-    "provider_request_slots_today": 135,
+    "attempts_today": 130,
+    "provider_requests_today": 136,
+    "provider_request_slots_today": 136,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

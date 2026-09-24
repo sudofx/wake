@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>78f5bdb1d33311b6cedffebbc6b9632ba1710724b13c2ca29fc90767b8acc1ba</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 41<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>deeac5ae791294dbb22772da9140765978a334deb99fdd87406734cbdb5f9069</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 41<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>c-review-wake-arch-01</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 5,
   &quot;id&quot;: &quot;c-review-wake-arch-01&quot;,
   &quot;reason&quot;: &quot;Ensure findings from initial wake_analysis query are systematically evaluated and synthesized into project notebook.&quot;,
@@ -47946,6 +47946,481 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;successful_model&quot;: &quot;gemini-3.1-flash-lite&quot;,
   &quot;finished&quot;: &quot;2026-09-24T03:06:40.826942+00:00&quot;,
   &quot;reason&quot;: &quot;next_questions must be nonempty text, at most 1600 characters&quot;
+}</pre></div></details><details><summary>w-90d0ac7980954ed8</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 41,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 14814,
+    &quot;delivered_request_chars&quot;: 38681,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;omitted_categories&quot;: [
+      &quot;full durable evidence content&quot;,
+      &quot;recent journal bodies&quot;,
+      &quot;completed-project archive&quot;,
+      &quot;full notebook bodies&quot;,
+      &quot;research and blog history outside the bounded working set&quot;
+    ],
+    &quot;provenance_policy&quot;: &quot;All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.&quot;,
+    &quot;rich_context_chars&quot;: 76361,
+    &quot;working_set_chars&quot;: 2648
+  },
+  &quot;experimental_regime&quot;: {
+    &quot;actor&quot;: &quot;operator&quot;,
+    &quot;adopted_at&quot;: &quot;2026-09-23T21:25:25.789831+00:00&quot;,
+    &quot;controls&quot;: {
+      &quot;time_dilation&quot;: {
+        &quot;affects&quot;: [
+          &quot;telemetry&quot;,
+          &quot;provider_context&quot;
+        ],
+        &quot;description&quot;: &quot;Records wall, cycle and intervening-event distance; effective time follows the selected mapping.&quot;,
+        &quot;enabled&quot;: true,
+        &quot;mode&quot;: &quot;real&quot;,
+        &quot;scale&quot;: 1.0
+      }
+    },
+    &quot;effective_from_version&quot;: 0,
+    &quot;effective_seconds&quot;: 0.0,
+    &quot;event_seq&quot;: 3,
+    &quot;id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;reason&quot;: &quot;Initialize the default experimental instrument regime.&quot;
+  },
+  &quot;id&quot;: &quot;w-90d0ac7980954ed8&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 41,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 1.0
+        },
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;score&quot;: 1.0,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 20,
+          &quot;notebooks&quot;: 2,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;landauer-principle-investigation&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 4,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Landauer&#x27;s Principle and Information Erasure&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;maxwell-demon-mechanisms&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 4,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Mechanisms and Experimental Tests of Maxwell&#x27;s Demon&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2336,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-23&quot;,
+  &quot;request_hash&quot;: &quot;b681a0540f79349ad5a283bf84ab646dd185de92455c77974c17babd49d6aedf&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-3d03662526e243e5&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-wake-arch-01&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-daed2a840e974273&quot;,
+          &quot;source-ad226ee4932745ca&quot;
+        ],
+        &quot;reason&quot;: &quot;A revised notebook has changed under new evidence and may require exact comparison.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;nb-wake-continuity-mechanics&quot;,
+          &quot;kind&quot;: &quot;notebook&quot;
+        },
+        &quot;trigger&quot;: &quot;notebook_revised&quot;
+      },
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;c-001-synthesize-landauer&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [],
+        &quot;reason&quot;: &quot;An open commitment is approaching its due cycle.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;c-002-synthesize-governance&quot;,
+          &quot;kind&quot;: &quot;commitment&quot;
+        },
+        &quot;trigger&quot;: &quot;commitment_near_due&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-6e417376bafc46e4&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-6e417376bafc46e4&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-40b3664b4b2c4e38&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-40b3664b4b2c4e38&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-230219ada7ba4309&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-230219ada7ba4309&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-fc29e156a65a41e5&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-fc29e156a65a41e5&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-b66b462846d04c40&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-b66b462846d04c40&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-bfad50e1bbba4415&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-bfad50e1bbba4415&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-3d03662526e243e5&quot;,
+      &quot;source-daed2a840e974273&quot;,
+      &quot;source-ad226ee4932745ca&quot;,
+      &quot;source-6e417376bafc46e4&quot;,
+      &quot;source-40b3664b4b2c4e38&quot;,
+      &quot;source-230219ada7ba4309&quot;,
+      &quot;source-fc29e156a65a41e5&quot;,
+      &quot;source-b66b462846d04c40&quot;,
+      &quot;source-bfad50e1bbba4415&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;The engine may explicitly rehydrate qualifying selected IDs into provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 10,
+      &quot;evidence_count&quot;: 9,
+      &quot;trigger_counts&quot;: {
+        &quot;commitment_near_due&quot;: 2,
+        &quot;notebook_revised&quot;: 2,
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;attention&quot;: {
+      &quot;accepted_streak&quot;: 5,
+      &quot;topic&quot;: &quot;wake_analysis&quot;
+    },
+    &quot;attention_saturation_threshold&quot;: 5,
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;deferred_topics&quot;: [
+      &quot;entropy&quot;,
+      &quot;information_thermodynamics&quot;,
+      &quot;wake_analysis&quot;
+    ],
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {
+      &quot;entropy&quot;: [],
+      &quot;information_thermodynamics&quot;: [
+        {
+          &quot;id&quot;: &quot;landauer-principle-investigation&quot;,
+          &quot;next_step&quot;: &quot;Identify foundational papers defining Landauer&#x27;s principle and subsequent experimental verifications.&quot;,
+          &quot;question&quot;: &quot;What does Landauer&#x27;s principle claim about the physical cost of erasing information, and what evidence supports its interpretation?&quot;
+        },
+        {
+          &quot;id&quot;: &quot;maxwell-demon-mechanisms&quot;,
+          &quot;next_step&quot;: &quot;Identify specific experimental implementations of Maxwell&#x27;s demon and their measured entropy costs.&quot;,
+          &quot;question&quot;: &quot;How do contemporary experimental setups of the Szilard engine or Maxwell&#x27;s demon quantify the relationship between information acquisition and entropy production?&quot;
+        }
+      ],
+      &quot;wake_analysis&quot;: [
+        {
+          &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+          &quot;next_step&quot;: &quot;Synthesize repository governance rules into a notebook.&quot;,
+          &quot;question&quot;: &quot;How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;
+        }
+      ]
+    },
+    &quot;reason&quot;: &quot;alternate configured topic selected during Squirrel cooldown&quot;,
+    &quot;selected_topic&quot;: &quot;neurodivergence&quot;,
+    &quot;temporal&quot;: {
+      &quot;anchor_seq&quot;: 1702,
+      &quot;anchor_time&quot;: &quot;2026-09-24T03:09:58.337825+00:00&quot;,
+      &quot;anchor_version&quot;: 41,
+      &quot;effective_seconds&quot;: 20672.547994
+    },
+    &quot;temporal_use&quot;: &quot;observational; no time signal changes Squirrel eligibility yet&quot;
+  },
+  &quot;temporal&quot;: {
+    &quot;cycle_distance&quot;: 0,
+    &quot;effective_elapsed_seconds&quot;: 214.088071,
+    &quot;effective_scale&quot;: 1.0,
+    &quot;effective_seconds_total&quot;: 20672.547994,
+    &quot;intervening_events&quot;: {
+      &quot;accepted&quot;: 0,
+      &quot;failed&quot;: 0,
+      &quot;observation&quot;: 7,
+      &quot;rejected&quot;: 1,
+      &quot;research_collected&quot;: 0,
+      &quot;squirrel_assessed&quot;: 1,
+      &quot;total&quot;: 12
+    },
+    &quot;observed_at&quot;: &quot;2026-09-24T03:09:58.337825+00:00&quot;,
+    &quot;previous_anchor_time&quot;: &quot;2026-09-24T03:06:24.249754+00:00&quot;,
+    &quot;regime_id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;wall_elapsed_seconds&quot;: 214.088071
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 14814,
+    &quot;inquiry_drive_project_count&quot;: 3,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;retrieval_candidate_count&quot;: 10,
+    &quot;retrieval_evidence_count&quot;: 9,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;commitment_near_due&quot;: 2,
+      &quot;notebook_revised&quot;: 2,
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 2648,
+    &quot;working_to_delivered_ratio&quot;: 0.1787
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;next_step&quot;: &quot;Synthesize repository governance rules into a notebook.&quot;,
+        &quot;question&quot;: &quot;How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?&quot;,
+        &quot;title&quot;: &quot;WAKE Continuity and Governance Architecture&quot;
+      },
+      {
+        &quot;id&quot;: &quot;landauer-principle-investigation&quot;,
+        &quot;next_step&quot;: &quot;Identify foundational papers defining Landauer&#x27;s principle and subsequent experimental verifications.&quot;,
+        &quot;question&quot;: &quot;What does Landauer&#x27;s principle claim about the physical cost of erasing information, and what evidence supports its interpretation?&quot;,
+        &quot;title&quot;: &quot;Landauer&#x27;s Principle and Information Erasure&quot;
+      },
+      {
+        &quot;id&quot;: &quot;maxwell-demon-mechanisms&quot;,
+        &quot;next_step&quot;: &quot;Identify specific experimental implementations of Maxwell&#x27;s demon and their measured entropy costs.&quot;,
+        &quot;question&quot;: &quot;How do contemporary experimental setups of the Szilard engine or Maxwell&#x27;s demon quantify the relationship between information acquisition and entropy production?&quot;,
+        &quot;title&quot;: &quot;Mechanisms and Experimental Tests of Maxwell&#x27;s Demon&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [
+      {
+        &quot;due_cycle&quot;: 25,
+        &quot;id&quot;: &quot;c-001-synthesize-landauer&quot;,
+        &quot;reason&quot;: &quot;To provide a structured summary of the physical basis and experimental evidence for Landauer&#x27;s principle before proceeding to more advanced applications.&quot;,
+        &quot;task&quot;: &quot;Synthesize initial findings on Landauer&#x27;s principle into a notebook&quot;
+      },
+      {
+        &quot;due_cycle&quot;: 37,
+        &quot;id&quot;: &quot;c-002-synthesize-governance&quot;,
+        &quot;reason&quot;: &quot;To finalize the project &#x27;wake-continuity-arch&#x27; after collecting relevant governance information.&quot;,
+        &quot;task&quot;: &quot;Synthesize repository governance rules into a notebook&quot;
+      }
+    ],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;nb-wake-arch-01&quot;,
+        &quot;project&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-3d03662526e243e5&quot;
+        ],
+        &quot;revision&quot;: 5,
+        &quot;summary&quot;: &quot;WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.&quot;,
+        &quot;title&quot;: &quot;Architecture of Durable Accountability&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nb-wake-continuity-mechanics&quot;,
+        &quot;project&quot;: &quot;wake-continuity-arch&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-daed2a840e974273&quot;,
+          &quot;source-ad226ee4932745ca&quot;
+        ],
+        &quot;revision&quot;: 5,
+        &quot;summary&quot;: &quot;WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.&quot;,
+        &quot;title&quot;: &quot;Mechanics of Durable Research Continuity&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-24T03:09:59.830974+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 695,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;The service is currently unavailable.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 41574,
+      &quot;response_bytes_captured&quot;: 122,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;finished&quot;: &quot;2026-09-24T03:10:14.050882+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 695,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 695,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;The service is currently unavailable.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 41574,
+        &quot;response_bytes_captured&quot;: 122,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;The service is currently unavailable.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 1,
+    &quot;request_payload_bytes&quot;: 41574,
+    &quot;response_bytes_captured&quot;: 122,
+    &quot;result&quot;: &quot;transient_failure&quot;
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-a81ebc834d80497e</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=storytelling+narrative+cognition+literature&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:86,\\\&quot;suggestion\\\&quot;:\\\&quot;storytelling narrative coalition literature\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;storytelling narrative\\ncoalition\\nliterature\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fiction\\\&quot;,\\\&quot;pageid\\\&quot;:18949461,\\\&quot;size\\\&quot;:35712,\\\&quot;wordcount\\\&quot;:3771,\\\&quot;snippet\\\&quot;:\\\&quot;non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T19:11:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narrative identity\\\&quot;,\\\&quot;pageid\\\&quot;:35716364,\\\&quot;size\\\&quot;:60455,\\\&quot;wordcount\\\&quot;:7308,\\\&quot;snippet\\\&quot;:\\\&quot;on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\&quot;. Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:09:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narratology\\\&quot;,\\\&quot;pageid\\\&quot;:718763,\\\&quot;size\\\&quot;:23172,\\\&quot;wordcount\\\&quot;:2691,\\\&quot;snippet\\\&quot;:\\\&quot;Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-21T07:57:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ancient literature\\\&quot;,\\\&quot;pageid\\\&quot;:3709305,\\\&quot;size\\\&quot;:49644,\\\&quot;wordcount\\\&quot;:4634,\\\&quot;snippet\\\&quot;:\\\&quot;Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-29T20:43:46Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Role-playing game\\\&quot;,\\\&quot;pageid\\\&quot;:25475,\\\&quot;size\\\&quot;:38009,\\\&quot;wordcount\\\&quot;:4559,\\\&quot;snippet\\\&quot;:\\\&quot;form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T05:14:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Children&#x27;s literature\\\&quot;,\\\&quot;pageid\\\&quot;:52847,\\\&quot;size\\\&quot;:167603,\\\&quot;wordcount\\\&quot;:18216,\\\&quot;snippet\\\&quot;:\\\&quot;Machine Children&#x27;s\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children&#x27;s\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T04:25:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Soma (video game)\\\&quot;,\\\&quot;pageid\\\&quot;:5649586,\\\&quot;size\\\&quot;:41063,\\\&quot;wordcount\\\&quot;:3882,\\\&quot;snippet\\\&quot;:\\\&quot;Cody (22 June 2023). \\\&quot;Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\&quot;. In Ghosal, Torsa\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-09T19:08:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Suspense\\\&quot;,\\\&quot;pageid\\\&quot;:4450450,\\\&quot;size\\\&quot;:10990,\\\&quot;wordcount\\\&quot;:1207,\\\&quot;snippet\\\&quot;:\\\&quot;audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T05:31:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Immersive learning\\\&quot;,\\\&quot;pageid\\\&quot;:64345811,\\\&quot;size\\\&quot;:22110,\\\&quot;wordcount\\\&quot;:2264,\\\&quot;snippet\\\&quot;:\\\&quot;structured by the audience&#x27;s own\\ncognition\\n. Also, within Ryan&#x27;s book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-11-26T22:52:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Dramatization\\\&quot;,\\\&quot;pageid\\\&quot;:57618166,\\\&quot;size\\\&quot;:5558,\\\&quot;wordcount\\\&quot;:732,\\\&quot;snippet\\\&quot;:\\\&quot;emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-12T01:42:08Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;7caf720e30f7c63658455c518b7c8438618652e1da589c93ec50c5cc2e23a35f\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;storytelling\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -55041,6 +55516,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 41,
   &quot;time&quot;: &quot;2026-09-24T03:06:24.847258+00:00&quot;
+}</pre></div></details><details><summary>source-199edd9945f14648</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:11,\\\&quot;suggestion\\\&quot;:\\\&quot;evolutionary biology adaptation byproduct draft constant\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;evolutionary biology adaptation byproduct\\ndraft constant\\n\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Criticism of evolutionary psychology\\\&quot;,\\\&quot;pageid\\\&quot;:12102147,\\\&quot;size\\\&quot;:106794,\\\&quot;wordcount\\\&quot;:12675,\\\&quot;snippet\\\&quot;:\\\&quot;genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T02:42:16Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Glossary of genetics and evolutionary biology\\\&quot;,\\\&quot;pageid\\\&quot;:56807771,\\\&quot;size\\\&quot;:153020,\\\&quot;wordcount\\\&quot;:15946,\\\&quot;snippet\\\&quot;:\\\&quot;of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-21T14:42:08Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;History of evolutionary thought\\\&quot;,\\\&quot;pageid\\\&quot;:21501970,\\\&quot;size\\\&quot;:146995,\\\&quot;wordcount\\\&quot;:16660,\\\&quot;snippet\\\&quot;:\\\&quot;topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T16:46:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Evolutionary medicine\\\&quot;,\\\&quot;pageid\\\&quot;:1157333,\\\&quot;size\\\&quot;:51578,\\\&quot;wordcount\\\&quot;:4580,\\\&quot;snippet\\\&quot;:\\\&quot;vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T20:38:41Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Alternatives to Darwinian evolution\\\&quot;,\\\&quot;pageid\\\&quot;:53955838,\\\&quot;size\\\&quot;:56086,\\\&quot;wordcount\\\&quot;:5870,\\\&quot;snippet\\\&quot;:\\\&quot;Lewontin proposed biological \\\&quot;spandrels\\\&quot;, features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T05:33:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Evidence of common descent\\\&quot;,\\\&quot;pageid\\\&quot;:2339577,\\\&quot;size\\\&quot;:251597,\\\&quot;wordcount\\\&quot;:27811,\\\&quot;snippet\\\&quot;:\\\&quot;\\\&quot;reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\&quot;. Speciation occurs\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-18T19:52:03Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Robustness (evolution)\\\&quot;,\\\&quot;pageid\\\&quot;:31066305,\\\&quot;size\\\&quot;:45795,\\\&quot;wordcount\\\&quot;:4804,\\\&quot;snippet\\\&quot;:\\\&quot;In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T12:32:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Methanogen\\\&quot;,\\\&quot;pageid\\\&quot;:563456,\\\&quot;size\\\&quot;:72781,\\\&quot;wordcount\\\&quot;:8010,\\\&quot;snippet\\\&quot;:\\\&quot;Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T07:54:42Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Boring Billion\\\&quot;,\\\&quot;pageid\\\&quot;:26127259,\\\&quot;size\\\&quot;:76571,\\\&quot;wordcount\\\&quot;:8396,\\\&quot;snippet\\\&quot;:\\\&quot;sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-18T09:50:46Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Cephalopod\\\&quot;,\\\&quot;pageid\\\&quot;:42726,\\\&quot;size\\\&quot;:145252,\\\&quot;wordcount\\\&quot;:15903,\\\&quot;snippet\\\&quot;:\\\&quot;evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T05:53:44Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;62be7f469f307005888c94f7198ec555cf7d3f9283af96c01c8fc89f45665f4c\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;evolutionary_biology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-199edd9945f14648&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:54.164452+00:00&quot;
+}</pre></div></details><details><summary>source-3a914aaa75e546db</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:4980},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Prime number\\\&quot;,\\\&quot;pageid\\\&quot;:23666,\\\&quot;size\\\&quot;:128021,\\\&quot;wordcount\\\&quot;:14786,\\\&quot;snippet\\\&quot;:\\\&quot;A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T15:01:53Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of Mersenne primes and perfect numbers\\\&quot;,\\\&quot;pageid\\\&quot;:68906231,\\\&quot;size\\\&quot;:52386,\\\&quot;wordcount\\\&quot;:2900,\\\&quot;snippet\\\&quot;:\\\&quot;Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-17T04:54:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;List of prime numbers\\\&quot;,\\\&quot;pageid\\\&quot;:442370,\\\&quot;size\\\&quot;:108090,\\\&quot;wordcount\\\&quot;:6019,\\\&quot;snippet\\\&quot;:\\\&quot;This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T20:55:26Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Perfect number\\\&quot;,\\\&quot;pageid\\\&quot;:23670,\\\&quot;size\\\&quot;:39840,\\\&quot;wordcount\\\&quot;:5531,\\\&quot;snippet\\\&quot;:\\\&quot;odd Perfect\\nPrime\\nNumbers\\n\\\&quot;.\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\&quot;Perfect\\nNumbers\\nand Aliquot\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T00:36:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Sexy primes\\\&quot;,\\\&quot;pageid\\\&quot;:343116,\\\&quot;size\\\&quot;:3815,\\\&quot;wordcount\\\&quot;:453,\\\&quot;snippet\\\&quot;:\\\&quot;sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T20:27:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Wieferich prime\\\&quot;,\\\&quot;pageid\\\&quot;:323631,\\\&quot;size\\\&quot;:43265,\\\&quot;wordcount\\\&quot;:4566,\\\&quot;snippet\\\&quot;:\\\&quot;\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T10:09:34Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand Prime Numbers\\\&quot;,\\\&quot;pageid\\\&quot;:63087914,\\\&quot;size\\\&quot;:5974,\\\&quot;wordcount\\\&quot;:617,\\\&quot;snippet\\\&quot;:\\\&quot;Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T00:17:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Number\\\&quot;,\\\&quot;pageid\\\&quot;:21690,\\\&quot;size\\\&quot;:111928,\\\&quot;wordcount\\\&quot;:11702,\\\&quot;snippet\\\&quot;:\\\&quot;A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T13:55:05Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mersenne prime\\\&quot;,\\\&quot;pageid\\\&quot;:18908,\\\&quot;size\\\&quot;:78122,\\\&quot;wordcount\\\&quot;:6673,\\\&quot;snippet\\\&quot;:\\\&quot;In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T20:24:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fermat number\\\&quot;,\\\&quot;pageid\\\&quot;:91127,\\\&quot;size\\\&quot;:43237,\\\&quot;wordcount\\\&quot;:3868,\\\&quot;snippet\\\&quot;:\\\&quot;(2001), \\\&quot;Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\&quot;, Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T16:11:11Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;de425bde198f8b1481c1da2e790466e0d9da380c68b75bd6746825846dd192bf\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;prime_numbers\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: [\&quot;doi:10.2307/2005530\&quot;, \&quot;doi:10.1007/s10012-001-0111-4\&quot;]}&quot;,
+  &quot;id&quot;: &quot;source-3a914aaa75e546db&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=prime+numbers+mathematics&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:54.975791+00:00&quot;
+}</pre></div></details><details><summary>source-c4e76a994e424d81</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40309},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T13:46:33Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Animal consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:13001588,\\\&quot;size\\\&quot;:135552,\\\&quot;wordcount\\\&quot;:14235,\\\&quot;snippet\\\&quot;:\\\&quot;Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-24T01:05:51Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The Science of Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:42114583,\\\&quot;size\\\&quot;:7071,\\\&quot;wordcount\\\&quot;:712,\\\&quot;snippet\\\&quot;:\\\&quot;The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-06-20T10:35:32Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c9acb5eb2bdfa44e5110adc038d9ccb81668ae4303094c5296f75b3782b6a2e8\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-c4e76a994e424d81&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:55.649758+00:00&quot;
+}</pre></div></details><details><summary>source-d3dc2aab48ad4d44</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:121,\\\&quot;suggestion\\\&quot;:\\\&quot;neurodivergent\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;neurodivergent\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurodiversity\\\&quot;,\\\&quot;pageid\\\&quot;:1073739,\\\&quot;size\\\&quot;:142665,\\\&quot;wordcount\\\&quot;:13881,\\\&quot;snippet\\\&quot;:\\\&quot;and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\&quot;difference[s]\\\&quot;.\\nNeurodivergences\\ninclude autism\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T23:26:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neuroqueer theory\\\&quot;,\\\&quot;pageid\\\&quot;:76016274,\\\&quot;size\\\&quot;:31724,\\\&quot;wordcount\\\&quot;:3380,\\\&quot;snippet\\\&quot;:\\\&quot;have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T18:08:37Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Neurofibromatosis type I\\\&quot;,\\\&quot;pageid\\\&quot;:1712548,\\\&quot;size\\\&quot;:63138,\\\&quot;wordcount\\\&quot;:7236,\\\&quot;snippet\\\&quot;:\\\&quot;Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T22:12:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Kassiane Asasumasu\\\&quot;,\\\&quot;pageid\\\&quot;:76250908,\\\&quot;size\\\&quot;:14907,\\\&quot;wordcount\\\&quot;:1302,\\\&quot;snippet\\\&quot;:\\\&quot;related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T15:58:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Mel King (The Pitt)\\\&quot;,\\\&quot;pageid\\\&quot;:82753144,\\\&quot;size\\\&quot;:15333,\\\&quot;wordcount\\\&quot;:1322,\\\&quot;snippet\\\&quot;:\\\&quot;and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca&#x27;s\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-07T04:12:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fern Brady\\\&quot;,\\\&quot;pageid\\\&quot;:43399498,\\\&quot;size\\\&quot;:15262,\\\&quot;wordcount\\\&quot;:1330,\\\&quot;snippet\\\&quot;:\\\&quot;active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T00:11:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Taylor Dearden\\\&quot;,\\\&quot;pageid\\\&quot;:55290719,\\\&quot;size\\\&quot;:19195,\\\&quot;wordcount\\\&quot;:1387,\\\&quot;snippet\\\&quot;:\\\&quot;com/watch?v=bqFkDmto2OM \\\&quot;Actress Taylor Dearden talks about portraying\\nneurodivergence\\non &#x27;The Pitt&#x27;\\\&quot;. NPR. April 9, 2025. Retrieved June 18, 2025. \\\&quot;&#x27;The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T00:35:48Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Swan Song (memoir)\\\&quot;,\\\&quot;pageid\\\&quot;:84007061,\\\&quot;size\\\&quot;:18458,\\\&quot;wordcount\\\&quot;:1851,\\\&quot;snippet\\\&quot;:\\\&quot;Diana&#x27;s brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\&quot;. People. Retrieved 21 September 2026. \\\&quot;Earl Spencer\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T17:10:23Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The Devil Wears Prada 2\\\&quot;,\\\&quot;pageid\\\&quot;:77315100,\\\&quot;size\\\&quot;:87086,\\\&quot;wordcount\\\&quot;:7289,\\\&quot;snippet\\\&quot;:\\\&quot;as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\&quot; Although all the Italian actors who had provided the voices for the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T23:51:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Otherkin\\\&quot;,\\\&quot;pageid\\\&quot;:21702085,\\\&quot;size\\\&quot;:37075,\\\&quot;wordcount\\\&quot;:3341,\\\&quot;snippet\\\&quot;:\\\&quot;non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T04:15:48Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;73a68f801eaabbe6f1131ce18a63bdf1908a41eb944332dcd69beaa22768d1b1\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;neurodivergence\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-d3dc2aab48ad4d44&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=neurodivergence&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:56.305829+00:00&quot;
+}</pre></div></details><details><summary>source-592b02754bec482c</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=complex+systems+emergence+self-organization&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:2768},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Emergence\\\&quot;,\\\&quot;pageid\\\&quot;:37436,\\\&quot;size\\\&quot;:60324,\\\&quot;wordcount\\\&quot;:6551,\\\&quot;snippet\\\&quot;:\\\&quot;In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T03:04:12Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-organization\\\&quot;,\\\&quot;pageid\\\&quot;:286947,\\\&quot;size\\\&quot;:64814,\\\&quot;wordcount\\\&quot;:6861,\\\&quot;snippet\\\&quot;:\\\&quot;justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-20T00:23:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems theory\\\&quot;,\\\&quot;pageid\\\&quot;:29238,\\\&quot;size\\\&quot;:56628,\\\&quot;wordcount\\\&quot;:6135,\\\&quot;snippet\\\&quot;:\\\&quot;how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-18T16:09:09Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex system\\\&quot;,\\\&quot;pageid\\\&quot;:37438,\\\&quot;size\\\&quot;:47316,\\\&quot;wordcount\\\&quot;:4875,\\\&quot;snippet\\\&quot;:\\\&quot;\\nsystem\\nand its environment.\\nSystems\\nthat are \\\&quot;\\ncomplex\\n\\\&quot; have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T23:23:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-assembly\\\&quot;,\\\&quot;pageid\\\&quot;:351914,\\\&quot;size\\\&quot;:40999,\\\&quot;wordcount\\\&quot;:4440,\\\&quot;snippet\\\&quot;:\\\&quot;Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-10T18:14:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex adaptive system\\\&quot;,\\\&quot;pageid\\\&quot;:1428810,\\\&quot;size\\\&quot;:35927,\\\&quot;wordcount\\\&quot;:3790,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-06T14:02:23Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems thinking\\\&quot;,\\\&quot;pageid\\\&quot;:227985,\\\&quot;size\\\&quot;:20900,\\\&quot;wordcount\\\&quot;:2126,\\\&quot;snippet\\\&quot;:\\\&quot;action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-23T19:07:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The purpose of a system is what it does\\\&quot;,\\\&quot;pageid\\\&quot;:17404830,\\\&quot;size\\\&quot;:6777,\\\&quot;wordcount\\\&quot;:754,\\\&quot;snippet\\\&quot;:\\\&quot;applying POSIWID shows that the\\norganization&#x27;s\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T17:25:20Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complexity theory and organizations\\\&quot;,\\\&quot;pageid\\\&quot;:5938019,\\\&quot;size\\\&quot;:24442,\\\&quot;wordcount\\\&quot;:2009,\\\&quot;snippet\\\&quot;:\\\&quot;differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-25T04:34:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-organized criticality\\\&quot;,\\\&quot;pageid\\\&quot;:718855,\\\&quot;size\\\&quot;:29252,\\\&quot;wordcount\\\&quot;:3184,\\\&quot;snippet\\\&quot;:\\\&quot;\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-29T14:23:20Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;884d6e573d4c412f14624f4dde22c670bb32bad420bb0e55e93dabe3c5ed7ea5\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;complex_systems\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-592b02754bec482c&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=complex+systems+emergence+self-organization&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:57.186255+00:00&quot;
+}</pre></div></details><details><summary>source-eae2df92934940e4</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:239479,\\\&quot;suggestion\\\&quot;:\\\&quot;religious\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;religious\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion\\\&quot;,\\\&quot;pageid\\\&quot;:25414,\\\&quot;size\\\&quot;:187367,\\\&quot;wordcount\\\&quot;:19574,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T06:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Civil religion\\\&quot;,\\\&quot;pageid\\\&quot;:185692,\\\&quot;size\\\&quot;:34053,\\\&quot;wordcount\\\&quot;:3846,\\\&quot;snippet\\\&quot;:\\\&quot;Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-25T16:06:42Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Abrahamic religions\\\&quot;,\\\&quot;pageid\\\&quot;:13906453,\\\&quot;size\\\&quot;:112861,\\\&quot;wordcount\\\&quot;:10868,\\\&quot;snippet\\\&quot;:\\\&quot;The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T17:21:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Bad Religion\\\&quot;,\\\&quot;pageid\\\&quot;:168409,\\\&quot;size\\\&quot;:101907,\\\&quot;wordcount\\\&quot;:10415,\\\&quot;snippet\\\&quot;:\\\&quot;Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band&#x27;s lyrics cover topics related to\\nreligion\\n, politics, society\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T23:14:56Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in China\\\&quot;,\\\&quot;pageid\\\&quot;:367843,\\\&quot;size\\\&quot;:300336,\\\&quot;wordcount\\\&quot;:34062,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T03:20:45Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Canaanite religion\\\&quot;,\\\&quot;pageid\\\&quot;:2375688,\\\&quot;size\\\&quot;:38557,\\\&quot;wordcount\\\&quot;:4353,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-08T21:35:17Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in India\\\&quot;,\\\&quot;pageid\\\&quot;:10710364,\\\&quot;size\\\&quot;:125253,\\\&quot;wordcount\\\&quot;:11197,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T19:59:55Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;State religion\\\&quot;,\\\&quot;pageid\\\&quot;:292285,\\\&quot;size\\\&quot;:161900,\\\&quot;wordcount\\\&quot;:12907,\\\&quot;snippet\\\&quot;:\\\&quot;state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T01:30:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Folk religion\\\&quot;,\\\&quot;pageid\\\&quot;:21920776,\\\&quot;size\\\&quot;:44106,\\\&quot;wordcount\\\&quot;:4958,\\\&quot;snippet\\\&quot;:\\\&quot;Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T10:35:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hellenistic religion\\\&quot;,\\\&quot;pageid\\\&quot;:7491899,\\\&quot;size\\\&quot;:17856,\\\&quot;wordcount\\\&quot;:2083,\\\&quot;snippet\\\&quot;:\\\&quot;The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-19T12:26:28Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;e0cd30c72002d306357c9520f2cf4bad2d9d2693bac3d1b0dc967cd89f92a679\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;religion\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-eae2df92934940e4&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:57.921950+00:00&quot;
+}</pre></div></details><details><summary>r-90d0ac7980954ed8</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:41,\&quot;inherited_commitments\&quot;:[\&quot;c-001-synthesize-landauer\&quot;,\&quot;c-002-synthesize-governance\&quot;],\&quot;invocation\&quot;:\&quot;w-90d0ac7980954ed8\&quot;,\&quot;previous_head\&quot;:\&quot;e692aa300412a0920f1451c3450973d1120041a756c3e0c36555c8a1bf11bf23\&quot;,\&quot;process_id\&quot;:2336,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-90d0ac7980954ed8&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 41,
+  &quot;time&quot;: &quot;2026-09-24T03:09:59.404136+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Bootstrapping durable continuity on wake_analysis</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-e16c6b187cd14818&quot;,
