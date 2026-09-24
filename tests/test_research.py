@@ -642,14 +642,15 @@ class ResearchTests(unittest.TestCase):
         self.source("s1")
         result = self.propose([project(), notebook(["s1"], "A bounded comparison follows [s1]."),
                                self.blog(evidence=["s1"])])
-        self.assertEqual(result["status"], "rejected")
-        self.assertIn("at least 2 distinct", result["reason"])
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["editorial"]["status"], "withheld")
+        self.assertIn("at least 2 distinct", result["editorial"]["reason"])
         state = self.engine.store.load()
-        self.assertNotIn("n", state["notebooks"])
+        self.assertIn("n", state["notebooks"])
         self.assertNotIn("post-one", state["posts"])
 
         self.source("s2")
-        accepted = self.propose([project(), notebook(["s1", "s2"], "A bounded comparison follows [s1] [s2]."),
+        accepted = self.propose([notebook(["s1", "s2"], "A revised bounded comparison follows [s1] [s2]."),
                                  self.blog(evidence=["s1", "s2"])])
         self.assertEqual(accepted["status"], "accepted")
         self.assertIn("n", self.engine.store.load()["notebooks"])
