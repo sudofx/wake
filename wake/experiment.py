@@ -72,10 +72,23 @@ def run_experiment(directory, cycles=100, output="site"):
     starts = [e for e in engine.store.events() if e["kind"] == "invocation_started"]
     checks["fresh_sessions"] = {"passed": all(e["payload"]["request"]["context"]["version"] == i for i,e in enumerate(starts)),
                                 "detail": "Each cycle launches and exits a separate interpreter; durable context version increases by one."}
-    fulfilled = [c for c in s["commitments"].values() if c["status"] == "fulfilled"]
-    checks["commitment_handoff"] = {"passed": len(fulfilled) == cycles - 1 and all(
-        s["invocations"][c["created_by"]]["model"] != s["invocations"][c["resolved_by"]]["model"] for c in fulfilled),
-        "count": len(fulfilled), "detail": "Alternating fixture-a and fixture-b inherit obligations with no additional human reminder."}
+    commitments = list(s["commitments"].values())
+    fulfilled = [c for c in commitments if c["status"] == "fulfilled"]
+    open_handoffs = [c for c in commitments if c["status"] == "open"]
+    checks["commitment_handoff"] = {
+        "passed": (
+            len(open_handoffs) == 1
+            and len(fulfilled) == len(commitments) - 1
+            and all(c["created_by"] != c["resolved_by"] for c in fulfilled)
+        ),
+        "count": len(fulfilled),
+        "total_created": len(commitments),
+        "open_count": len(open_handoffs),
+        "detail": (
+            "Fresh invocations inherit obligations without another human reminder; "
+            "forced Squirrel shifts preserve them unchanged until an eligible later shift."
+        ),
+    }
     beliefs = [e["payload"]["proposal"]["actions"] for e in engine.store.events() if e["kind"] == "accepted"]
     lifecycle = [a for actions in beliefs for a in actions if a["type"] == "belief"]
     checks["evidence_lifecycle"] = {"passed": [a["status"] for a in lifecycle] == ["active", "active", "retracted"] and len(s["beliefs"]["sensor"]["evidence"]) == 3,

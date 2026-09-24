@@ -593,10 +593,18 @@ def _blog_html(post, state):
     correction = ""
     if post.get("superseded_by"):
         correction = f'<p class="note">Superseded by <a href="{html.escape(post["superseded_by"])}.html">{html.escape(post["superseded_by"])}</a>.</p>'
+    research_receipts = ""
+    if notebooks or sources:
+        research_receipts = (
+            '<h2>Follow the receipts</h2>'
+            + (f'<h3>Research notebooks</h3><ul class="sources">{notebooks}</ul>' if notebooks else "")
+            + (f'<h3>Collected sources</h3><ul class="sources">{sources}</ul>' if sources else "")
+        )
+    elif post.get("reflection_cycle"):
+        research_receipts = '<p class="meta">System-wide reflection · no project-specific research receipts attached.</p>'
     body = (
         f'<p class="lede">{_html_text(post["lede"])}</p>{correction}{paragraphs}{lens}'
-        f'<h2>Follow the receipts</h2><h3>Research notebooks</h3><ul class="sources">{notebooks}</ul>'
-        f'<h3>Collected sources</h3><ul class="sources">{sources}</ul>'
+        f'{research_receipts}'
         f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>'
         '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
     )

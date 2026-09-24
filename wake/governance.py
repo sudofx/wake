@@ -1676,7 +1676,7 @@ def transition(state, proposal, invocation, historical=False):
             #
             # Research-oriented posts require strong traceability.
             #
-            # Twenty-cycle reflections intentionally bypass these particular
+            # Ten-cycle reflections intentionally bypass these particular
             # research-source requirements because they are reflections on the
             # durable journey rather than ordinary research publications.
 

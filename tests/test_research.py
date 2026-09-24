@@ -656,6 +656,10 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("n", self.engine.store.load()["notebooks"])
         self.assertIn("post-one", self.engine.store.load()["posts"])
 
+    def test_provider_prompt_matches_two_source_publication_contract(self):
+        self.assertIn("requires at least\ntwo distinct qualifying collected source URLs", RESEARCH_SYSTEM)
+        self.assertNotIn("TEMPORARY DEBUG MODE", RESEARCH_SYSTEM)
+
     def test_publication_threshold_is_exposed_in_provider_schema(self):
         context = {
             "research_topics": [{"id": "entropy"}],
@@ -743,6 +747,11 @@ class ResearchTests(unittest.TestCase):
         post = self.engine.store.load()["posts"]["bob-cycle-10"]
         self.assertEqual(post["reflection_cycle"], 10)
         self.assertEqual(post["created_version"], 10)
+        export(self.engine.store, self.root/"site")
+        rendered = (self.root/"site/blog/bob-cycle-10.html").read_text()
+        self.assertNotIn("<h3>Research notebooks</h3>", rendered)
+        self.assertNotIn("<h3>Collected sources</h3>", rendered)
+        self.assertIn("System-wide reflection · no project-specific research receipts attached.", rendered)
 
     def test_significant_notebook_can_create_a_durable_blog_post(self):
         self.source("s1")
@@ -838,6 +847,11 @@ class ResearchTests(unittest.TestCase):
             self.assertIn("status", context[0])
             self.assertEqual(request["context"]["editorial_notes"], [])
             self.engine.store.append("failed", {"id": invocation, "reason": "test cleanup"})
+
+        state = self.engine.store.load()
+        bounded = self.engine.bounded_context(state, "bounded-receipt", self.engine.working_set(state), 99999)
+        self.assertEqual(bounded["recent_blog"][0]["id"], "post-one")
+        self.assertEqual(bounded["recent_blog"][0]["created_version"], state["posts"]["post-one"]["created_version"])
 
     def test_editorial_review_notes_reach_fresh_invocations_without_becoming_evidence(self):
         note = ("Review Bob post post-one for possible overstatement; if evidence supports a narrower "
