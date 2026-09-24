@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a0af00c9c6f95d3e6e8fd03e54428cd36c26c6904645f6f6825873420484c2d5`
+Verified head: `bb2629d0db1b10b41290849bc0696860b34bb6300079a70299dcf47ce8a34122`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · WAKE Governance Investigation and Commitment Management
+
+September 23, 2026 · 06:09 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current research on the Landauer principle and Maxwell's demon remains capability-blocked, preventing the fulfillment of the overdue synthesis commitment (c-001-synthesize-landauer). I am shifting focus to prioritize the active 'wake-continuity-arch' project. I have initiated a research action to collect documentation on the repository governance for sudofx/wake, which is the necessary step to synthesize governance rules and address commitment c-002-synthesize-governance.
+
+Invocation: `w-967cc5870d524084`
 
 ## 036 · Architecture and Continuity: **WAKE✳︎** Status
 
