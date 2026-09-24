@@ -23,7 +23,7 @@ import time
 import urllib.error
 import urllib.request
 
-from .governance import Rejected, require
+from .governance import PUBLICATION_MIN_SOURCES, Rejected, require
 
 
 SYSTEM = """You are one disposable invocation of WAKE✳. Continue solely from the supplied durable state.
@@ -309,8 +309,49 @@ def schema_for_context(context):
     if domains:
         project_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["project"])
         research_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["research"])
-        project_action["properties"]["domain"]["enum"] = domains
-        research_action["properties"]["domain"]["enum"] = [enforced_topic] if enforced_topic else domains
+        if enforced_topic:
+            # A forced rotation must be valid before generation, not merely
+            # rejected afterward. Constrain substantive project/research work
+            # to the selected topic and expose explicit parking actions when
+            # all three active slots are occupied.
+            active_projects = [p for p in context.get("projects", []) if p.get("status") == "active"]
+            selected_projects = [
+                p for p in context.get("projects", [])
+                if p.get("domain") == enforced_topic
+            ]
+            selected_project_ids = sorted(p["id"] for p in selected_projects)
+
+            choices.remove(project_action)
+            if len(active_projects) >= 3 and not any(
+                    p.get("domain") == enforced_topic for p in active_projects):
+                # Capacity recovery is deliberately a separate accepted shift.
+                # First park one existing project; the next wake can create or
+                # reactivate the selected-topic project without a doomed fourth
+                # active project proposal.
+                for project in active_projects:
+                    constrained = deepcopy(project_action)
+                    constrained["properties"]["id"] = {"type": "string", "enum": [project["id"]]}
+                    constrained["properties"]["title"] = {"type": "string", "enum": [project["title"]]}
+                    constrained["properties"]["question"] = {"type": "string", "enum": [project["question"]]}
+                    constrained["properties"]["domain"] = {"type": "string", "enum": [project["domain"]]}
+                    constrained["properties"]["status"] = {"type": "string", "enum": ["parked"]}
+                    choices.append(constrained)
+                choices.remove(research_action)
+            else:
+                project_action["properties"]["domain"]["enum"] = [enforced_topic]
+                choices.append(project_action)
+                research_action["properties"]["domain"]["enum"] = [enforced_topic]
+                if selected_project_ids:
+                    research_action["properties"]["project"]["enum"] = selected_project_ids
+                else:
+                    # New projects need one accepted state transition before a
+                    # research request can reference them. This prevents a model
+                    # from inventing a same-response project ID that later fails
+                    # another mechanical constraint.
+                    choices.remove(research_action)
+        else:
+            project_action["properties"]["domain"]["enum"] = domains
+            research_action["properties"]["domain"]["enum"] = domains
 
     # Commitment resolution receives commitment-specific, governance-eligible
     # evidence alternatives. This prevents the provider from selecting only
@@ -356,11 +397,11 @@ def schema_for_context(context):
     # notebook can only select source-controlled repository evidence that is
     # actually present in this invocation's context. New projects may still be
     # proposed, but need a later wake to write a notebook after collection.
-    notebook = next(a for a in choices if a["properties"]["type"]["enum"] == ["notebook"])
+    notebook = next((a for a in choices if a["properties"]["type"]["enum"] == ["notebook"]), None)
     projects = context.get("projects", [])
     collector_evidence = {item["id"]: item for item in context.get("evidence", [])
                           if item.get("actor") == "collector"}
-    if projects and collector_evidence:
+    if notebook and (enforced_topic or (projects and collector_evidence)):
         choices.remove(notebook)
         project_evidence = context.get("project_evidence", {})
         for project in projects:
@@ -377,7 +418,7 @@ def schema_for_context(context):
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
     reflection_due = bool(context.get("bob_reflection_due"))
-    if len(set(evidence)) < 2 and not reflection_due:
+    if len(set(evidence)) < PUBLICATION_MIN_SOURCES and not reflection_due:
         choices.remove(blog)
     else:
         props = blog["properties"]
@@ -390,7 +431,7 @@ def schema_for_context(context):
         else:
             # Expose the public promotion threshold before generation.
             # Governance still re-validates distinct source URLs.
-            props["evidence"]["minItems"] = 2
+            props["evidence"]["minItems"] = PUBLICATION_MIN_SOURCES
         project_choices = sorted({project for project, _ in entries} or
                                  {p["id"] for p in context.get("projects", [])})
         if reflection_due and "" not in project_choices:
