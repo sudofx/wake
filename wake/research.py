@@ -68,6 +68,28 @@ def persistent_identifiers(observation):
     values += ["openalex:" + item.rsplit("/", 1)[-1] for item in re.findall(r"https?://openalex\.org/[Ww]\d+", text)]
     values += ["arxiv:" + item for item in re.findall(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", text)]
     return list(dict.fromkeys(values))[:12]
+
+
+def exact_identifier_url(identifier):
+    """Convert a collector-discovered persistent ID into one exact approved record URL.
+
+    Discovery indexes are lead generators, not notebook evidence. This trusted,
+    deterministic promotion step removes the disposable model from the mechanical
+    job of translating a DOI/OpenAlex/arXiv identifier into an exact verification
+    request. It does not choose claims or relax governance.
+    """
+    if not isinstance(identifier, str):
+        return None
+    if identifier.startswith("doi:"):
+        doi = identifier[4:].strip()
+        return ("https://api.crossref.org/works/" + urllib.parse.quote(doi, safe="")) if doi else None
+    if identifier.startswith("openalex:"):
+        work = identifier.split(":", 1)[1].strip()
+        return ("https://api.openalex.org/works/" + urllib.parse.quote(work, safe="")) if re.fullmatch(r"[Ww]\d+", work) else None
+    if identifier.startswith("arxiv:"):
+        arxiv_id = identifier.split(":", 1)[1].strip()
+        return ("https://export.arxiv.org/api/query?" + urllib.parse.urlencode({"id_list": arxiv_id})) if re.fullmatch(r"\d{4}\.\d{4,5}(?:v\d+)?", arxiv_id) else None
+    return None
 # Repository-analysis topics may inspect source-controlled implementation,
 # not merely prose documentation. The capability is generic; activation and
 # repository identity come from research-topics.toml rather than a hardcoded
@@ -545,17 +567,52 @@ def collect(engine, fetcher=fetch_source):
     used_urls = set()
     used_queue_ids = set()
 
-    if queued and discovery_count:
+    # Discovery receipts already contain durable DOI/OpenAlex/arXiv leads. Spend
+    # one continuation slot promoting the strongest untried lead to an exact
+    # verification record before asking a disposable model to rediscover or
+    # manually translate it. This is retrieval plumbing, not research judgment.
+    existing_sources = {e.get("source") for e in state.get("evidence", {}).values() if e.get("source")}
+    projects = state.get("projects", {})
+    identifier_candidates = []
+    for project_id, summary in state.get("acquisition", {}).items():
+        project = projects.get(project_id, {})
+        if project.get("status") != "active":
+            continue
+        for identifier in reversed(summary.get("persistent_identifiers", [])):
+            url = exact_identifier_url(identifier)
+            if url and url not in existing_sources:
+                identifier_candidates.append({
+                    "id": summary.get("last_receipt", {}).get("research_id") or f"collector-{project_id}",
+                    "project": project_id,
+                    "url": url,
+                    "domain": project.get("domain") or summary.get("domain"),
+                    "queued_followup": False,
+                    "acquisition_followup": True,
+                    "identifier": identifier,
+                    "blocked": bool(summary.get("capability_blocked")),
+                    "no_progress": int(summary.get("no_progress", 0)),
+                })
+                break
+    identifier_candidates.sort(key=lambda item: (
+        0 if item["blocked"] else 1, -item["no_progress"], item["project"], item["identifier"]
+    ))
+    if identifier_candidates and discovery_count:
+        exact = identifier_candidates[0]
+        pending.append(exact)
+        used_urls.add(exact["url"])
+
+    if queued and len(pending) < discovery_count:
         followup = rng.choice(queued)
         routes = research_urls(followup["query"], followup["domain"], attempts, topic_by_id.get(followup["domain"]))
-        # A model may turn a promising discovery result into an approved exact
-        # record URL.  Preserve that choice; replacing it with another broad
-        # search is what previously trapped projects in discovery loops.
+        # A model may still request a specific approved record URL. Preserve it;
+        # otherwise use the next bounded discovery route.
         url = followup.get("url") or routes[0]
-        pending.append({"id": followup["id"], "url": url, "domain": followup["domain"],
-                        "queued_followup": True})
-        used_urls.add(url)
-        used_queue_ids.add(followup["id"])
+        if url not in used_urls:
+            pending.append({"id": followup["id"], "project": followup["project"],
+                            "url": url, "domain": followup["domain"],
+                            "queued_followup": True})
+            used_urls.add(url)
+            used_queue_ids.add(followup["id"])
 
     remaining_slots = discovery_count - len(pending)
     if remaining_slots:
@@ -612,11 +669,12 @@ def collect(engine, fetcher=fetch_source):
                             "content": content, "actor": "collector", "scope": status})
         if item.get("queued_followup"):
             engine.store.append("research_collected", {"id": item["id"], "status": status, "evidence": evidence_id})
+        if item.get("queued_followup") or item.get("acquisition_followup"):
             payload = json.loads(content)
-            role = payload.get("evidence_role", "discovery")
+            role = payload.get("evidence_role", evidence_role(url))
             outcome = "progress" if status == "collected" and role == "source" else (
                 "route_failure" if status == "failed" else "no_progress")
-            engine.store.append("acquisition_assessed", {"project": followup["project"],
+            engine.store.append("acquisition_assessed", {"project": item["project"],
                 "domain": item["domain"], "research_id": item["id"],
                 "route": urllib.parse.urlsplit(url).hostname + ":" + role,
                 "stage": "substantive_source" if role == "source" else "discovery",
