@@ -376,12 +376,44 @@ class SquirrelTests(unittest.TestCase):
             "squirrel": {"counters": {}, "deferred": {}},
         }
         directive = plan(state)
-        self.assertEqual(directive["selected_topic"], "entropy")
+        self.assertIn(directive["selected_topic"], {"entropy", "comedy"})
         self.assertTrue(directive["current_topic_unconfigured"])
         self.assertTrue(directive["rotation_required"])
         self.assertTrue(directive["enforce_selected_topic"])
         self.assertIn("no longer configured", directive["reason"])
 
+
+
+    def test_initial_topic_selection_is_order_independent_and_receipt_driven(self):
+        topics = [
+            {"id": "entropy", "enabled": True},
+            {"id": "comedy", "enabled": True},
+            {"id": "music", "enabled": True},
+        ]
+        base = {
+            "charter": "test", "version": 0, "projects": {}, "acquisition": {},
+            "invocations": {}, "squirrel": {"counters": {}, "deferred": {}},
+        }
+        state_a = {**base, "research_topics": topics, "evidence": {
+            "receipt": {"id": "r-randomized", "actor": "runtime", "source": "runtime:continuity"}
+        }}
+        state_b = {**base, "research_topics": list(reversed(topics)), "evidence": {
+            "receipt": {"id": "r-randomized", "actor": "runtime", "source": "runtime:continuity"}
+        }}
+        first = plan(state_a)
+        reordered = plan(state_b)
+        self.assertEqual(first["selected_topic"], reordered["selected_topic"])
+        self.assertEqual(first["topic_selection_method"], "receipt_hash_uniform_index")
+        self.assertEqual(first["topic_selection_candidates"], ["comedy", "entropy", "music"])
+        self.assertTrue(first["enforce_selected_topic"])
+
+        selections = set()
+        for index in range(32):
+            varied = {**base, "research_topics": topics, "evidence": {
+                "receipt": {"id": f"r-{index}", "actor": "runtime", "source": "runtime:continuity"}
+            }}
+            selections.add(plan(varied)["selected_topic"])
+        self.assertGreater(len(selections), 1)
 
     def test_rotation_preflight_salvages_selected_topic_from_mixed_proposal(self):
         state = {
