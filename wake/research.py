@@ -50,6 +50,13 @@ ALLOWED_HOSTS = {
 # Idea-pool hosts are deliberately not evidence hosts. Their observations are
 # permanently stamped as discovery leads and cannot satisfy governance.
 ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co"}
+ALLOWED_HOST_SUFFIXES = (".biomedcentral.com", ".springeropen.com")
+
+
+def _approved_host(hostname):
+    return hostname in ALLOWED_HOSTS or any(
+        hostname and hostname.endswith(suffix) for suffix in ALLOWED_HOST_SUFFIXES
+    )
 
 
 def persistent_identifiers(observation):
@@ -117,7 +124,7 @@ def allowed_url(url, repository="sudofx/wake"):
     if not isinstance(url, str) or len(url) > 2000:
         raise ValueError("Source URL must be text, at most 2000 characters")
     parsed = urllib.parse.urlsplit(url)
-    if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.password or parsed.port not in (None, 443):
+    if parsed.scheme != "https" or not _approved_host(parsed.hostname) or parsed.username or parsed.password or parsed.port not in (None, 443):
         raise ValueError("Source must use HTTPS on an approved research host")
     repo_path = "/" + repository + "/"
     if parsed.hostname == "raw.githubusercontent.com" and not parsed.path.startswith(repo_path):
@@ -254,6 +261,8 @@ def fetch_source(url, discovery_only=False):
     elif "api.datacite.org" in url:
         payload = json.loads(decoded)
         records = payload.get("data", [])
+        if isinstance(records, dict):
+            records = [records]
         compact = []
         for record in records:
             attrs = record.get("attributes", {})
@@ -454,6 +463,8 @@ def host_tier(url, discovery_only=False):
                 "frontiersin.org", "www.frontiersin.org", "journals.plos.org",
                 "elifesciences.org", "quantum-journal.org"}:
         return "verification-fulltext"
+    if host and (host.endswith(".biomedcentral.com") or host.endswith(".springeropen.com")):
+        return "verification-publisher"
     if host in {"raw.githubusercontent.com", "api.github.com"}:
         return "source-controlled"
     return "verification-publisher"
