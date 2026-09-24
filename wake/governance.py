@@ -670,7 +670,10 @@ def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=
     elif kind == "research":
         domain = action.get("domain")
     elif kind in ("notebook", "reframe", "blog"):
-        if kind == "blog" and action.get("project") == "" and action.get("reflection_cycle"):
+        if kind == "blog" and action.get("reflection_cycle"):
+            # Mandatory milestone reflection is system-wide editorial work.
+            # It may be anchored to an existing project without consuming the
+            # selected research topic's substantive rotation.
             return
         project = candidate.get("projects", {}).get(action.get("project"), {})
         if (kind == "reframe" and project
