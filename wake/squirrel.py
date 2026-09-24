@@ -70,27 +70,50 @@ def _parked_projects(state, topic):
             if p.get("domain") == topic and p.get("status") == "active"]
 
 
+def _capability_blocked_topics(state):
+    """Return domains whose active projects are all currently acquisition-blocked."""
+    by_topic = {}
+    for project in state.get("projects", {}).values():
+        if project.get("status") != "active":
+            continue
+        by_topic.setdefault(project.get("domain"), []).append(project["id"])
+    blocked = set()
+    acquisition = state.get("acquisition", {})
+    for topic, project_ids in by_topic.items():
+        if project_ids and all(acquisition.get(pid, {}).get("capability_blocked") for pid in project_ids):
+            blocked.add(topic)
+    return blocked
+
+
 def plan(state):
     """Return the deterministic attention directive for the next provider request."""
     if not state.get("charter"):
         return {"active": False}
     squirrel = state.get("squirrel", {})
     deferred = squirrel.get("deferred", {})
-    topics = [t["id"] for t in state.get("research_topics", [])]
+    topics = [t["id"] for t in state.get("research_topics", []) if t.get("enabled", True)]
     current = _active_topic(state)
+    blocked = _capability_blocked_topics(state)
     eligible = [topic for topic in topics
-                if topic not in deferred or _has_new_topic_evidence(state, topic, deferred[topic])]
+                if (topic not in deferred or _has_new_topic_evidence(state, topic, deferred[topic]))
+                and topic not in blocked]
+    # A capability block is itself a reason to leave the current attractor.
+    # Prefer the current topic only while it is both eligible and productive.
     selected = current if current in eligible else (eligible[0] if eligible else current)
+    rotation_required = bool(deferred) or current in blocked
     return {
         "active": True,
         "selected_topic": selected,
         "deferred_topics": sorted(deferred),
+        "capability_blocked_topics": sorted(blocked),
+        "rotation_required": rotation_required,
+        "enforce_selected_topic": rotation_required and bool(selected),
         "parked": {topic: deferred[topic].get("parked_projects", []) for topic in sorted(deferred)},
         "hard_rejection_threshold": HARD_REJECTION_THRESHOLD,
         "attention_saturation_threshold": ATTENTION_SATURATION_THRESHOLD,
         "attention": squirrel.get("attention", {}),
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
-        "reason": ("alternate configured topic selected during Squirrel cooldown"
+        "reason": ("alternate configured topic selected during Squirrel cooldown or capability block"
                    if selected != current else "current durable project topic remains eligible"),
     }
 
