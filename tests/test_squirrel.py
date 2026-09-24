@@ -4,7 +4,8 @@ import tempfile
 import unittest
 
 from wake.engine import DEFAULTS, Engine
-from wake.providers import RESEARCH_SYSTEM
+from wake.governance import Rejected, _enforce_squirrel_rotation
+from wake.providers import RESEARCH_SYSTEM, schema_for_context
 from wake.squirrel import (
     ATTENTION_SATURATION_THRESHOLD, COOLDOWN_OTHER_ATTEMPTS,
     HARD_REJECTION_THRESHOLD, assessment, plan,
@@ -149,6 +150,91 @@ class SquirrelTests(unittest.TestCase):
             },
         }
         self.assertEqual(plan(state)["selected_topic"], "comedy")
+
+    def test_rotation_skips_fully_capability_blocked_domain(self):
+        state = {
+            "charter": "test",
+            "research_topics": [
+                {"id": "wake_analysis", "enabled": True},
+                {"id": "information_thermodynamics", "enabled": True},
+                {"id": "entropy", "enabled": True},
+            ],
+            "projects": {
+                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active", "updated_version": 5},
+                "landauer": {"id": "landauer", "domain": "information_thermodynamics", "status": "active", "updated_version": 4},
+            },
+            "acquisition": {"landauer": {"capability_blocked": True}},
+            "evidence": {},
+            "invocations": {},
+            "squirrel": {
+                "counters": {},
+                "deferred": {
+                    "wake_analysis": {
+                        "deferred_by": "old",
+                        "cause": "attention_saturation",
+                        "other_topic_attempts": 0,
+                    }
+                },
+            },
+        }
+        directive = plan(state)
+        self.assertEqual(directive["selected_topic"], "entropy")
+        self.assertTrue(directive["enforce_selected_topic"])
+        self.assertIn("information_thermodynamics", directive["capability_blocked_topics"])
+
+    def test_governance_rotation_rejects_substantive_work_on_deferred_topic(self):
+        state = {
+            "charter": "test",
+            "invocations": {
+                "w": {"squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+            },
+        }
+        candidate = {
+            "projects": {
+                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
+            }
+        }
+        with self.assertRaisesRegex(Rejected, "Squirrel rotation requires substantive work on entropy"):
+            _enforce_squirrel_rotation(
+                state, "w",
+                {"type": "research", "id": "r", "project": "wake",
+                 "query": "q", "domain": "wake_analysis", "reason": "r"},
+                candidate,
+            )
+
+    def test_rotation_allows_parking_old_project_to_free_capacity(self):
+        state = {
+            "charter": "test",
+            "invocations": {
+                "w": {"squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+            },
+        }
+        candidate = {
+            "projects": {
+                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
+            }
+        }
+        _enforce_squirrel_rotation(
+            state, "w",
+            {"type": "project", "id": "wake", "title": "Wake", "question": "q",
+             "domain": "wake_analysis", "status": "parked", "next_step": "later", "reason": "rotate"},
+            candidate,
+        )
+
+    def test_schema_preflights_research_to_enforced_topic(self):
+        context = {
+            "research_topics": [{"id": "wake_analysis"}, {"id": "entropy"}],
+            "projects": [],
+            "commitments": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True},
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        research = next(a for a in choices if a["properties"]["type"]["enum"] == ["research"])
+        self.assertEqual(research["properties"]["domain"]["enum"], ["entropy"])
+
 
 
 if __name__ == "__main__":
