@@ -44,6 +44,31 @@ def _has_new_topic_evidence(state, topic, item):
     return False
 
 
+def _proposal_project_domains(state, proposal):
+    """Resolve project domains visible in the current state or created in this proposal."""
+    domains = {pid: project.get("domain") for pid, project in state.get("projects", {}).items()}
+    for action in (proposal or {}).get("actions", []):
+        if action.get("type") == "project" and action.get("id") and action.get("domain"):
+            domains[action["id"]] = action["domain"]
+    return domains
+
+
+def _proposal_milestone_topics(state, proposal):
+    """Return domains that reached a durable synthesis/publication milestone."""
+    domains = _proposal_project_domains(state, proposal)
+    milestone_topics = set()
+    for action in (proposal or {}).get("actions", []):
+        if action.get("type") == "notebook":
+            topic = domains.get(action.get("project"))
+            if topic:
+                milestone_topics.add(topic)
+        elif action.get("type") == "blog" and action.get("project"):
+            topic = domains.get(action.get("project"))
+            if topic:
+                milestone_topics.add(topic)
+    return milestone_topics
+
+
 def _proposal_attention_topic(state, selected, proposal):
     """Infer the topic actually advanced by an accepted proposal.
 
@@ -113,6 +138,7 @@ def plan(state):
         "attention_saturation_threshold": ATTENTION_SATURATION_THRESHOLD,
         "attention": squirrel.get("attention", {}),
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
         "reason": ("alternate configured topic selected during Squirrel cooldown or capability block"
                    if selected != current else "current durable project topic remains eligible"),
     }
@@ -128,13 +154,26 @@ def assessment(state, invocation, terminal, proposal=None):
     attempt_topic = attention_topic or selected
     restored = []
 
-    # Every terminal attempt on another topic advances a deferred topic's
-    # cooldown. Eligibility is restored as a receipt, never by deleting work.
+    milestone_topics = (
+        _proposal_milestone_topics(state, proposal)
+        if terminal == "accepted" and proposal else set()
+    )
+
+    # Failure-based deferrals remain short recovery cooldowns. Productive
+    # saturation is different: the old topic stays deferred until another
+    # topic reaches a durable synthesis milestone. Mere attempts, queue churn,
+    # and discovery do not earn the saturated attractor back.
     for topic, item in list(deferred.items()):
         if attempt_topic and attempt_topic != topic:
             item["other_topic_attempts"] = item.get("other_topic_attempts", 0) + 1
         early_evidence = _has_new_topic_evidence(state, topic, item)
-        if item.get("other_topic_attempts", 0) >= COOLDOWN_OTHER_ATTEMPTS or early_evidence:
+        if item.get("cause") == "attention_saturation":
+            external_milestones = sorted(t for t in milestone_topics if t != topic)
+            if external_milestones:
+                item["milestone_topics"] = external_milestones
+                restored.append(topic)
+                del deferred[topic]
+        elif item.get("other_topic_attempts", 0) >= COOLDOWN_OTHER_ATTEMPTS or early_evidence:
             restored.append(topic)
             del deferred[topic]
 
@@ -182,9 +221,9 @@ def assessment(state, invocation, terminal, proposal=None):
             deferred[attention_topic] = {
                 "deferred_by": invocation,
                 "cause": "attention_saturation",
-                "reason": "five accepted wakes concentrated on one topic; rotate attention despite progress",
+                "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
                 "other_topic_attempts": 0,
-                "eligible_after_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
+                "release_condition": "accepted notebook or ordinary publication on another topic",
                 "parked_projects": _parked_projects(state, attention_topic),
             }
             saturation_triggered = True
