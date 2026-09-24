@@ -2,23 +2,23 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `c43c82dc81389262c41524a1fcdb7859f050358bb59b9324751a96aa6a52751d`
+Verified head: `e97d7ebe988e93e32f65e52f7e38d873625039d65e623625d38bfb3afccc747f`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
 
 ## Event 0003 · `experimental_regime_adopted`
 
-**Time:** 2026-09-24T23:44:02.698520+00:00  
+**Time:** 2026-09-24T23:47:22.475161+00:00  
 **ID:** `reg-df573bb03399f050`  
-**Hash:** `c43c82dc81389262c41524a1fcdb7859f050358bb59b9324751a96aa6a52751d`  
-**Previous hash:** `28e7f7f0bbd59d2bea7480036e5443132ff5e2ef31a360e0d4766e3ca45a6f7d`
+**Hash:** `e97d7ebe988e93e32f65e52f7e38d873625039d65e623625d38bfb3afccc747f`  
+**Previous hash:** `0d1a5788d4fe5aa5c47617f88c3b19190c490e327079e8fc407412b53db5c2a3`
 
 ### Payload
 
 ```json
 {
   "actor": "operator",
-  "adopted_at": "2026-09-24T23:44:02.698340+00:00",
+  "adopted_at": "2026-09-24T23:47:22.474938+00:00",
   "controls": {
     "time_dilation": {
       "affects": [
@@ -41,10 +41,10 @@ Verified head: `c43c82dc81389262c41524a1fcdb7859f050358bb59b9324751a96aa6a52751d
 
 ## Event 0002 · `charter_adopted`
 
-**Time:** 2026-09-24T23:44:02.696841+00:00  
+**Time:** 2026-09-24T23:47:22.473429+00:00  
 **ID:** `system`  
-**Hash:** `28e7f7f0bbd59d2bea7480036e5443132ff5e2ef31a360e0d4766e3ca45a6f7d`  
-**Previous hash:** `7fba9fa4a1dcfb9caad739141c49871846e4ce69f7d16c55d4d870097ca6be34`
+**Hash:** `0d1a5788d4fe5aa5c47617f88c3b19190c490e327079e8fc407412b53db5c2a3`  
+**Previous hash:** `6fa9c6c31e25532a9b0c192a8d52a98c637fdf20efd462eab04585fe83793be4`
 
 ### Payload
 
@@ -54,25 +54,25 @@ Verified head: `c43c82dc81389262c41524a1fcdb7859f050358bb59b9324751a96aa6a52751d
   "mission": "Independently choose small, useful research projects from the configured topics. Look for structural relationships without assuming they exist. Develop source-backed notebooks, compare explanations, preserve uncertainty, revise weak claims, finish useful work, and choose the next step without waiting for human assignments. Distinguish findings, interpretation, analogy, and speculation.",
   "pet_name": "WAKE✳︎",
   "topic_colors": {
-    "comedy": "#5fcf8d",
-    "complex_systems": "#7aa2f7",
-    "consciousness": "#b7d36b",
-    "dance": "#8aa8ff",
-    "endocrinology": "#f68c65",
-    "entropy": "#b25dff",
-    "epistemology": "#73daca",
-    "evolutionary_biology": "#46b5ff",
-    "information_thermodynamics": "#e0af68",
-    "music": "#ff5bb9",
-    "neurodivergence": "#ff9e64",
-    "neurology": "#2ac3de",
-    "philosophy": "#54d4bc",
-    "prime_numbers": "#ffe574",
-    "psychology": "#ff757f",
-    "quantum_mechanics": "#d8c25d",
-    "religion": "#f0bd75",
-    "storytelling": "#9d7cd8",
-    "visual_art": "#c0caf5"
+    "comedy": "#2ac3de",
+    "complex_systems": "#d8c25d",
+    "consciousness": "#7aa2f7",
+    "dance": "#ffe574",
+    "endocrinology": "#f7768e",
+    "entropy": "#c0caf5",
+    "epistemology": "#c099ff",
+    "evolutionary_biology": "#ff757f",
+    "information_thermodynamics": "#54d4bc",
+    "music": "#9ece6a",
+    "neurodivergence": "#8aa8ff",
+    "neurology": "#5fcf8d",
+    "philosophy": "#ff9e64",
+    "prime_numbers": "#9d7cd8",
+    "psychology": "#e0af68",
+    "quantum_mechanics": "#46b5ff",
+    "religion": "#f2a2ca",
+    "storytelling": "#f68c65",
+    "visual_art": "#b7d36b"
   },
   "topics": [
     {
@@ -233,9 +233,9 @@ Verified head: `c43c82dc81389262c41524a1fcdb7859f050358bb59b9324751a96aa6a52751d
 
 ## Event 0001 · `initialized`
 
-**Time:** 2026-09-24T23:44:02.695850+00:00  
+**Time:** 2026-09-24T23:47:22.472502+00:00  
 **ID:** `system`  
-**Hash:** `7fba9fa4a1dcfb9caad739141c49871846e4ce69f7d16c55d4d870097ca6be34`  
+**Hash:** `6fa9c6c31e25532a9b0c192a8d52a98c637fdf20efd462eab04585fe83793be4`  
 **Previous hash:** `0000000000000000000000000000000000000000000000000000000000000000`
 
 ### Payload
