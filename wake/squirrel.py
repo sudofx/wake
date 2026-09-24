@@ -16,11 +16,11 @@ COOLDOWN_OTHER_ATTEMPTS = 3
 
 
 def _active_topic(state):
-    """Select the current topic from durable project state, never model prose."""
+    """Select current attention from durable projects or the last recorded choice."""
     active = [p for p in state.get("projects", {}).values() if p.get("status") == "active"]
     if active:
         return sorted(active, key=lambda p: (-p.get("updated_version", 0), p["id"]))[0]["domain"]
-    return None
+    return state.get("squirrel", {}).get("last_receipt", {}).get("selected_topic")
 
 
 def _selection_basis(state):
@@ -157,7 +157,7 @@ def plan(state):
         selected, selection_method, selection_basis = current, "fallback_current", None
     current_unconfigured = bool(current) and current not in topics
     selection_required = current not in eligible and bool(selected)
-    rotation_required = bool(deferred) or current in blocked or current_unconfigured or current is None
+    rotation_required = bool(deferred) or current in blocked or current_unconfigured
     return {
         "active": True,
         "selected_topic": selected,
