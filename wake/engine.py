@@ -913,6 +913,13 @@ class Engine:
                 context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
                     state, visible_evidence_ids, project
                 )
+            notebook_projects = {n.get("project") for n in state.get("notebooks", {}).values()}
+            context["synthesis_ready_projects"] = [
+                project["id"] for project in context["projects"]
+                if project.get("status") == "active"
+                and context["project_evidence"].get(project["id"])
+                and project["id"] not in notebook_projects
+            ]
         return context
 
     def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000):
@@ -1059,6 +1066,13 @@ class Engine:
             context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
                 state, visible_evidence_ids, project
             )
+        notebook_projects = {n.get("project") for n in state.get("notebooks", {}).values()}
+        context["synthesis_ready_projects"] = [
+            project["id"] for project in context.get("projects", [])
+            if project.get("status") == "active"
+            and context["project_evidence"].get(project["id"])
+            and project["id"] not in notebook_projects
+        ]
 
         return context
     # ---------------------------------------------------------------------------
