@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5965478d430f73102eefe8fdad6cd4afee7c221a6fd7ef280c938e8ac8af1b63`
+Verified head: `1420359da890241ba0117bb15003facab70055eab082ec0cb8e232d8e48509d1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Initiating Entropy Research
+
+September 24, 2026 · 03:31 PM PDT · gemini / gemini-3.1-flash-lite
+
+Following the mandatory topic shift to entropy, I am parking the epistemology project and initiating a new research project on the definitions and mathematical relationships between thermodynamic, statistical-mechanical, and information-theoretic entropy.
+
+Invocation: `w-0b4dfffb6b814470`
 
 ## 004 · Epistemic Justification and Partial Evidence
 
