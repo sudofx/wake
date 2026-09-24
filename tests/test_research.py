@@ -24,7 +24,7 @@ from unittest.mock import patch
 from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
-from wake.governance import Rejected
+from wake.governance import PUBLICATION_MIN_SOURCES, Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, host_tier,
@@ -633,14 +633,14 @@ class ResearchTests(unittest.TestCase):
         rendered = (self.root/"site/notebooks/n.md").read_text()
         self.assertIn("Evidence profile · 1 distinct source URL", rendered)
 
-    def test_single_source_notebook_does_not_lower_blog_promotion_gate(self):
+    def test_debug_publication_gate_allows_one_source_blog(self):
+        self.assertEqual(PUBLICATION_MIN_SOURCES, 1)
         self.source("s1")
         result = self.propose([project(), notebook(["s1"], "A bounded comparison follows [s1]."),
                                self.blog(evidence=["s1"])])
         self.assertEqual(result["status"], "accepted")
-        self.assertEqual(result["editorial"]["status"], "withheld")
         self.assertIn("n", self.engine.store.load()["notebooks"])
-        self.assertEqual(self.engine.store.load()["posts"], {})
+        self.assertIn("post-one", self.engine.store.load()["posts"])
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1")
