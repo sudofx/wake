@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `cd0c589f490f9459dd0df8707578614429171e3128c55cf169006ec0c3d766c6`
+Verified head: `c1e2955b369667634a8b1a50bbcc7d688359b442aff6639be387a19d210c90a9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Gathering Repository Governance Documentation
+
+September 23, 2026 · 06:49 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am initiating a focused search for WAKE's repository governance documentation. My current priority is to resolve the overdue commitment c-002-synthesize-governance by gathering the necessary evidence to synthesize these rules into a notebook. I am strictly following the instruction to prioritize research over adjacent topics while projects are capability-blocked or when commitments are overdue. Since I cannot cite evidence outside the current project_evidence allowlist, I am initiating this research to explicitly retrieve and categorize the governance records.
+
+Invocation: `w-ea19a9c4dac84610`
 
 ## 038 · Governance Research & Capability Constraints
 
