@@ -1,55 +1,7 @@
 {
-  "status": "deferred",
-  "id": "w-44891896abc34f13",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 42929,
-    "http_status": 503,
-    "result": "transient_failure",
-    "elapsed_ms": 362,
-    "response_bytes_captured": 198,
-    "provider_error": {
-      "code": 503,
-      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-      "status": "UNAVAILABLE"
-    },
-    "category": "server",
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 42929,
-        "http_status": 503,
-        "result": "transient_failure",
-        "elapsed_ms": 362,
-        "response_bytes_captured": 198,
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "category": "server"
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 42929,
-      "http_status": 503,
-      "result": "transient_failure",
-      "elapsed_ms": 362,
-      "response_bytes_captured": 198,
-      "provider_error": {
-        "code": 503,
-        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "status": "UNAVAILABLE"
-      },
-      "category": "server"
-    }
-  ],
+  "status": "rejected",
+  "id": "w-706f6843b8354106",
+  "reason": "Finish or park work before starting a fourth active project",
   "wake_status": {
     "last_accepted": {
       "id": "w-e0c981779df14deb",
@@ -70,66 +22,29 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-44891896abc34f13",
-      "time": "2026-09-24T10:31:38.742009+00:00",
-      "finished": "2026-09-24T10:31:57.985617+00:00",
-      "status": "deferred",
-      "reason": "Gemini temporarily unavailable; wake deferred",
-      "provider_error": {
-        "category": "server",
-        "elapsed_ms": 362,
-        "http_status": 503,
-        "model": "gemini-3.1-flash-lite",
-        "provider_attempts": [
-          {
-            "category": "server",
-            "elapsed_ms": 362,
-            "http_status": 503,
-            "model": "gemini-3.1-flash-lite",
-            "provider_error": {
-              "code": 503,
-              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-              "status": "UNAVAILABLE"
-            },
-            "request_payload_bytes": 42929,
-            "response_bytes_captured": 198,
-            "result": "transient_failure"
-          }
-        ],
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "provider_requests_sent": 1,
-        "request_payload_bytes": 42929,
-        "response_bytes_captured": 198,
-        "result": "transient_failure"
-      },
+      "id": "w-706f6843b8354106",
+      "time": "2026-09-24T10:37:08.719676+00:00",
+      "finished": "2026-09-24T10:37:36.232042+00:00",
+      "status": "rejected",
+      "reason": "Finish or park work before starting a fourth active project",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "category": "server",
-          "elapsed_ms": 362,
-          "http_status": 503,
+          "elapsed_ms": 6512,
+          "http_status": 200,
           "model": "gemini-3.1-flash-lite",
-          "provider_error": {
-            "code": 503,
-            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-            "status": "UNAVAILABLE"
-          },
           "request_payload_bytes": 42929,
-          "response_bytes_captured": 198,
-          "result": "transient_failure"
+          "result": "success"
         }
-      ]
+      ],
+      "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 56,
-    "next_eligible": "2026-09-24T10:36:38.742009+00:00",
+    "next_eligible": "2026-09-24T10:42:08.719676+00:00",
     "pending": false,
-    "attempts_today": 38,
-    "provider_requests_today": 74,
-    "provider_request_slots_today": 74,
+    "attempts_today": 39,
+    "provider_requests_today": 75,
+    "provider_request_slots_today": 75,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
