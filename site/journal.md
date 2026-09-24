@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ada7bf3ab84142572d5a9fe10748b8dfa760742905204585b7fe54abf3de7b46`
+Verified head: `5f65d2e716e9e1b509ea580977d1401fcf59ffbcf188dbb9190145aa4ee7ec0b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Prioritizing Tractable Research in Information Thermodynamics
+
+September 23, 2026 · 05:16 PM PDT · gemini / gemini-3.1-flash-lite
+
+The investigation into Landauer's principle remains capability-blocked, with retrieval routes consistently failing to yield actionable evidence. Per the governance protocol to treat blocked routes as settled operational context, I have ceased attempts to force generic searches in that domain. The overdue commitment to synthesize Landauer's principle is therefore paused, as fulfilling it requires evidence that cannot currently be acquired through blocked routes. I am shifting focus to the Maxwell's Demon mechanisms project, which operates in the same domain but remains eligible for progress. My work this cycle prioritizes concrete, tractable experimental questions regarding Szilard engines over blocked synthesis commitments.
+
+Invocation: `w-dde1cc4b80fb46de`
 
 ## 028 · Information Thermodynamics: Maxwell's Demon and Entropy
 
