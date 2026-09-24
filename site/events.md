@@ -2,9 +2,199 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `c903eb4d58d4ec8061fd1d619c6ef593e51820afa3b8b2fced27892148d58558`
+Verified head: `26d5067584fcbad230cd55245970f307062bdb90848cb767ee03003e0038a39d`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 3146 · `research_topics_changed`
+
+**Time:** 2026-09-24T11:32:11.197139+00:00  
+**ID:** `system`  
+**Hash:** `26d5067584fcbad230cd55245970f307062bdb90848cb767ee03003e0038a39d`  
+**Previous hash:** `c903eb4d58d4ec8061fd1d619c6ef593e51820afa3b8b2fced27892148d58558`
+
+### Payload
+
+```json
+{
+  "actor": "operator",
+  "topic_colors": {
+    "comedy": "#9d7cd8",
+    "complex_systems": "#8aa8ff",
+    "consciousness": "#9ece6a",
+    "dance": "#ffe574",
+    "endocrinology": "#ff5bb9",
+    "entropy": "#54d4bc",
+    "epistemology": "#c099ff",
+    "evolutionary_biology": "#b25dff",
+    "information_thermodynamics": "#f7768e",
+    "music": "#5fcf8d",
+    "neurodivergence": "#f68c65",
+    "neurology": "#46b5ff",
+    "philosophy": "#e0af68",
+    "prime_numbers": "#93ff74",
+    "psychology": "#7aa2f7",
+    "quantum_mechanics": "#b7d36b",
+    "religion": "#d8c25d",
+    "storytelling": "#2ac3de",
+    "visual_art": "#73daca"
+  },
+  "topics": [
+    {
+      "enabled": true,
+      "id": "information_thermodynamics",
+      "label": "Information thermodynamics",
+      "query": "information thermodynamics",
+      "seed_question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "entropy",
+      "label": "Entropy",
+      "query": "entropy",
+      "seed_question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurodivergence",
+      "label": "Neurodivergence",
+      "query": "neurodivergence",
+      "seed_question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "consciousness",
+      "label": "Consciousness",
+      "query": "consciousness",
+      "seed_question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "psychology",
+      "label": "Psychology",
+      "query": "psychology",
+      "seed_question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "quantum_mechanics",
+      "label": "Quantum mechanics",
+      "query": "quantum mechanics",
+      "seed_question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "philosophy",
+      "label": "Philosophy",
+      "query": "philosophy",
+      "seed_question": "How do falsifiability, verification, and inference to the best explanation differ as approaches to evaluating claims?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "religion",
+      "label": "Religion",
+      "query": "religion",
+      "seed_question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "prime_numbers",
+      "label": "Prime numbers",
+      "query": "prime numbers mathematics",
+      "seed_question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "neurology",
+      "label": "Neurology",
+      "query": "neurology nervous system neurological disorders",
+      "seed_question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "endocrinology",
+      "label": "Endocrinology",
+      "query": "endocrinology hormones endocrine disorders",
+      "seed_question": "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "complex_systems",
+      "label": "Complex systems",
+      "query": "complex systems emergence self-organization",
+      "seed_question": "How do simple local interactions produce stable large-scale patterns in complex systems, and what distinguishes genuine emergence from a useful descriptive abstraction?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "evolutionary_biology",
+      "label": "Evolutionary biology",
+      "query": "evolutionary biology adaptation byproduct drift constraint",
+      "seed_question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "epistemology",
+      "label": "Epistemology",
+      "query": "epistemology evidence justification belief uncertainty",
+      "seed_question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "music",
+      "label": "Music",
+      "query": "music cognition structure rhythm harmony melody",
+      "seed_question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "comedy",
+      "label": "Comedy",
+      "query": "comedy humor cognition timing incongruity",
+      "seed_question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "visual_art",
+      "label": "Visual art",
+      "query": "visual art perception aesthetics composition",
+      "seed_question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "storytelling",
+      "label": "Storytelling",
+      "query": "storytelling narrative cognition literature",
+      "seed_question": "What features make narratives memorable, emotionally engaging, and coherent across different cultures and artistic traditions?",
+      "source_kind": "web"
+    },
+    {
+      "enabled": true,
+      "id": "dance",
+      "label": "Dance",
+      "query": "dance rhythm movement cognition culture",
+      "seed_question": "How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?",
+      "source_kind": "web"
+    }
+  ]
+}
+```
 
 ## Event 3145 · `deferred`
 
