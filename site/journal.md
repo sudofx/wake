@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `137d5305902052e76ee6cb44308dea40b8b19cfaf7f7804b7b3fdcc47700982c`
+Verified head: `31b44d39ea438942d5a068c391877b69d9f5e5c56537651a70ae48ed15a9158b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Refining Search Strategy for Epistemic Justification
+
+September 24, 2026 · 03:09 PM PDT · gemini / gemini-3.1-flash-lite
+
+We are continuing the project 'Justification Under Uncertainty' despite previous search retrieval difficulties. The earlier broad query failed to yield specific academic sources, so we are shifting strategy to target more precise terminology regarding 'noisy evidence' within epistemic justification frameworks. We remain in the epistemology domain as per the active attention directive.
+
+Invocation: `w-034602e7bcd9408f`
 
 ## 002 · Refining Epistemic Justification Inquiry
 
