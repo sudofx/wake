@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-3f34eaf45d2a44ef",
   "reason": "Commitment must be due in a future cycle, within 100 cycles",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-1040c8f319a04495",
