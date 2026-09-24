@@ -5,7 +5,10 @@ import unittest
 
 from wake.engine import DEFAULTS, Engine
 from wake.providers import RESEARCH_SYSTEM
-from wake.squirrel import COOLDOWN_OTHER_ATTEMPTS, HARD_REJECTION_THRESHOLD, assessment, plan
+from wake.squirrel import (
+    ATTENTION_SATURATION_THRESHOLD, COOLDOWN_OTHER_ATTEMPTS,
+    HARD_REJECTION_THRESHOLD, assessment, plan,
+)
 from support import charter_settings
 
 
@@ -90,6 +93,62 @@ class SquirrelTests(unittest.TestCase):
         }
         self.assertEqual(plan(state)["selected_topic"], "entropy")
         self.assertIn("entropy", assessment(state, "w", "accepted", {"actions": []})["restored_topics"])
+
+    def test_productive_attention_saturates_without_erasing_progress(self):
+        state = {
+            "charter": "test",
+            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "projects": {
+                "p": {"id": "p", "domain": "entropy", "status": "active",
+                      "updated_version": 1, "question": "q", "next_step": "n"}
+            },
+            "invocations": {},
+            "squirrel": {"counters": {}, "deferred": {}},
+            "evidence": {},
+        }
+        for index in range(ATTENTION_SATURATION_THRESHOLD):
+            invocation = f"w-{index}"
+            state["invocations"][invocation] = {"squirrel": {"selected_topic": "entropy"}}
+            receipt = assessment(state, invocation, "accepted", {
+                "actions": [{"type": "notebook", "project": "p"}],
+            })
+            state["squirrel"] = {
+                "counters": receipt["counters"],
+                "deferred": receipt["deferred"],
+                "attention": receipt["attention"],
+            }
+
+        self.assertTrue(receipt["durable_progress"])
+        self.assertTrue(receipt["attention_saturation_triggered"])
+        self.assertEqual(receipt["attention"]["accepted_streak"], ATTENTION_SATURATION_THRESHOLD)
+        self.assertEqual(receipt["deferred"]["entropy"]["cause"], "attention_saturation")
+        self.assertEqual(plan(state)["selected_topic"], "comedy")
+
+    def test_new_evidence_does_not_cancel_attention_saturation_cooldown(self):
+        state = {
+            "charter": "test",
+            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "projects": {"p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 1}},
+            "invocations": {"old": {"base_version": 5}},
+            "squirrel": {
+                "counters": {},
+                "deferred": {
+                    "entropy": {
+                        "deferred_by": "old",
+                        "cause": "attention_saturation",
+                        "other_topic_attempts": 0,
+                    }
+                },
+                "attention": {"topic": "entropy", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
+            },
+            "evidence": {
+                "new": {
+                    "actor": "collector", "scope": "collected", "version": 6,
+                    "content": json.dumps({"topic_domain": "entropy"}),
+                }
+            },
+        }
+        self.assertEqual(plan(state)["selected_topic"], "comedy")
 
 
 if __name__ == "__main__":
