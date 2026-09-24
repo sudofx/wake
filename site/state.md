@@ -5,7 +5,7 @@
 **Version:** 42  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `ffd74d1ec565c6ec354540b45e6b612c0e2ad8059906439875ab1b18aed509e0`
+**Verified head:** `5776ec9f92805c6c40f081cbd5835de796cf478165a3cf2e0eb7572748354d8c`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -180,10 +180,10 @@ _None recorded._
   "retry_after_version": null,
   "persistent_identifiers": [],
   "last_receipt": {
-    "evidence": "source-bfad50e1bbba4415",
+    "evidence": "source-ef0ff3a02cee4521",
     "outcome": "progress",
     "persistent_identifiers": [],
-    "research_id": "r-40-governance-research-01",
+    "research_id": "r-governance-001",
     "route": "raw.githubusercontent.com:source",
     "stage": "substantive_source"
   }
@@ -301,7 +301,7 @@ _None recorded._
   "entropy": 8,
   "information_thermodynamics": 12,
   "neurodivergence": 3,
-  "wake_analysis": 13
+  "wake_analysis": 14
 }
 ```
 
@@ -309,19 +309,11 @@ _None recorded._
 
 ```json
 {
-  "entropy": {
-    "cause": "hard_rejection",
-    "deferred_by": "w-99c9ecb4bfda483c",
-    "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 2,
-    "parked_projects": [],
-    "reason": "five consecutive hard rejections without durable progress"
-  },
   "information_thermodynamics": {
     "cause": "hard_rejection",
     "deferred_by": "w-38cd4756d87c464d",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 1,
+    "other_topic_attempts": 2,
     "parked_projects": [
       {
         "id": "landauer-principle-investigation",
@@ -338,9 +330,9 @@ _None recorded._
   },
   "wake_analysis": {
     "cause": "hard_rejection",
-    "deferred_by": "w-34b30f707f7a4260",
+    "deferred_by": "w-a58f440ba0d647ca",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 2,
+    "other_topic_attempts": 0,
     "parked_projects": [
       {
         "id": "wake-continuity-arch",
@@ -360,12 +352,17 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "wake_analysis",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-b4320443549c41a3",
-  "restored_topics": [],
-  "selected_topic": "neurodivergence",
-  "terminal": "accepted",
-  "triggered_topics": []
+  "hard_rejection": true,
+  "invocation": "w-a58f440ba0d647ca",
+  "restored_topics": [
+    "entropy",
+    "wake_analysis"
+  ],
+  "selected_topic": "wake_analysis",
+  "terminal": "rejected",
+  "triggered_topics": [
+    "wake_analysis"
+  ]
 }
 ```
 
@@ -54399,6 +54396,450 @@ _None recorded._
 }
 ```
 
+### `w-a58f440ba0d647ca`
+
+```json
+{
+  "base_version": 42,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 14798,
+    "delivered_request_chars": 38665,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 76135,
+    "working_set_chars": 2648
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-23T21:25:25.789831+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-a58f440ba0d647ca",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 42,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "wake-continuity-arch",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 21,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "landauer-principle-investigation",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "maxwell-demon-mechanisms",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Mechanisms and Experimental Tests of Maxwell's Demon"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2286,
+  "provider": "gemini",
+  "quota_day": "2026-09-23",
+  "request_hash": "0b97ac10a1f2e35b228d8d66d5e57dd5d3a1f6058d9aae5a9c5fd268fbdc4068",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-3d03662526e243e5"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-arch-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-continuity-mechanics",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-001-synthesize-landauer",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-002-synthesize-governance",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-40b3664b4b2c4e38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-40b3664b4b2c4e38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-230219ada7ba4309"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-230219ada7ba4309",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fc29e156a65a41e5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fc29e156a65a41e5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b66b462846d04c40"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b66b462846d04c40",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-bfad50e1bbba4415"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bfad50e1bbba4415",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ef0ff3a02cee4521"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ef0ff3a02cee4521",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-3d03662526e243e5",
+      "source-daed2a840e974273",
+      "source-ad226ee4932745ca",
+      "source-40b3664b4b2c4e38",
+      "source-230219ada7ba4309",
+      "source-fc29e156a65a41e5",
+      "source-b66b462846d04c40",
+      "source-bfad50e1bbba4415",
+      "source-ef0ff3a02cee4521"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 6,
+      "topic": "wake_analysis"
+    },
+    "attention_saturation_threshold": 5,
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [
+      "entropy",
+      "information_thermodynamics",
+      "wake_analysis"
+    ],
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "entropy": [],
+      "information_thermodynamics": [
+        {
+          "id": "landauer-principle-investigation",
+          "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+          "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+        },
+        {
+          "id": "maxwell-demon-mechanisms",
+          "next_step": "Identify specific experimental implementations of Maxwell's demon and their measured entropy costs.",
+          "question": "How do contemporary experimental setups of the Szilard engine or Maxwell's demon quantify the relationship between information acquisition and entropy production?"
+        }
+      ],
+      "wake_analysis": [
+        {
+          "id": "wake-continuity-arch",
+          "next_step": "Synthesize repository governance rules into a notebook.",
+          "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "selected_topic": "wake_analysis",
+    "temporal": {
+      "anchor_seq": 1857,
+      "anchor_time": "2026-09-24T03:50:21.113792+00:00",
+      "anchor_version": 42,
+      "effective_seconds": 23095.323961
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 195.673285,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 23095.323961,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 14
+    },
+    "observed_at": "2026-09-24T03:50:21.113792+00:00",
+    "previous_anchor_time": "2026-09-24T03:47:05.440507+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 195.673285
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 14798,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 2648,
+    "working_to_delivered_ratio": 0.1789
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "wake-continuity-arch",
+        "next_step": "Synthesize repository governance rules into a notebook.",
+        "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "id": "landauer-principle-investigation",
+        "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "id": "maxwell-demon-mechanisms",
+        "next_step": "Identify specific experimental implementations of Maxwell's demon and their measured entropy costs.",
+        "question": "How do contemporary experimental setups of the Szilard engine or Maxwell's demon quantify the relationship between information acquisition and entropy production?",
+        "title": "Mechanisms and Experimental Tests of Maxwell's Demon"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 25,
+        "id": "c-001-synthesize-landauer",
+        "reason": "To provide a structured summary of the physical basis and experimental evidence for Landauer's principle before proceeding to more advanced applications.",
+        "task": "Synthesize initial findings on Landauer's principle into a notebook"
+      },
+      {
+        "due_cycle": 37,
+        "id": "c-002-synthesize-governance",
+        "reason": "To finalize the project 'wake-continuity-arch' after collecting relevant governance information.",
+        "task": "Synthesize repository governance rules into a notebook"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-arch-01",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-3d03662526e243e5"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.",
+        "title": "Architecture of Durable Accountability"
+      },
+      {
+        "id": "nb-wake-continuity-mechanics",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.",
+        "title": "Mechanics of Durable Research Continuity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-24T03:50:22.602862+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7757,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41558,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-24T03:50:44.386610+00:00",
+  "reason": "Commitment ID already exists"
+}
+```
+
 ## Evidence
 
 ### `source-a81ebc834d80497e`
@@ -68078,6 +68519,103 @@ _None recorded._
 }
 ```
 
+### `source-ef0ff3a02cee4521`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py\", \"scope\": \"raw source-controlled WAKE repository text\", \"excerpt\": \"\\\"\\\"\\\"\\nWAKE✳︎ GOVERNANCE\\n================\\n\\nThis module is the mechanical rulebook for WAKE✳︎.\\n\\nThe model is allowed to PROPOSE changes to durable state.\\nIt is never allowed to decide whether those changes are valid.\\n\\nThat distinction is central to the experiment:\\n\\n    model output = proposal\\n    governance = authority\\n    durable state = accepted history\\n\\nThe functions in this file are deliberately deterministic. Given the same\\nstate and the same proposal, governance should reach the same decision\\nregardless of which model produced the proposal.\\n\\nA model cannot persuade this module, reinterpret its instructions, waive a\\nrequirement, or edit the rules during an invocation.\\n\\nIf any part of a proposal violates governance, the ENTIRE proposal is rejected.\\nThere are no partial writes.\\n\\nThis gives WAKE✳︎ an important property:\\n\\n    failure can become durable information\\n    without failure becoming durable state.\\n\\\"\\\"\\\"\\n\\nfrom copy import deepcopy\\nimport json\\nimport math\\nimport re\\n# ---------------------------------------------------------------------------\\n# REJECTION\\n# ---------------------------------------------------------------------------\\n\\nclass Rejected(ValueError):\\n    \\\"\\\"\\\"\\n    A proposal violated a mechanical governance rule.\\n\\n    Rejection is not necessarily a software error.\\n\\n    In WAKE✳︎, rejected proposals are useful experimental artifacts. They show\\n    where a disposable model attempted something the durable system refused\\n    to accept.\\n\\n    The caller can preserve the rejected proposal and reason in the event log\\n    while leaving the accepted state unchanged.\\n    \\\"\\\"\\\"\\n    pass\\n\\n\\ndef require(condition, message):\\n    \\\"\\\"\\\"\\n    Small assertion primitive used throughout governance.\\n\\n    We intentionally raise Rejected rather than AssertionError because a\\n    governance violation is part of normal WAKE✳︎ operation.\\n\\n    Example:\\n\\n        require(project_exists, \\\"Notebook needs an existing project\\\")\\n\\n    The important idea is that governance failures have explicit human-readable\\n    reasons. Those reasons can later become part of the durable record and can\\n    influence a future invocation without modifying accepted state.\\n    \\\"\\\"\\\"\\n    if not condition:\\n        raise Rejected(message)\\n# ---------------------------------------------------------------------------\\n# BASIC STRUCTURAL VALIDATION\\n# ---------------------------------------------------------------------------\\n\\ndef text(value, label, maximum=2000):\\n    \\\"\\\"\\\"\\n    Require bounded, non-empty text.\\n\\n    Length limits serve several purposes:\\n\\n    1. Prevent accidental/unbounded state growth.\\n    2. Keep the durable record inspectable.\\n    3. Prevent a model from smuggling arbitrarily large payloads into fields\\n       that are supposed to have narrow semantic purposes.\\n    4. Keep later model context construction manageable.\\n\\n    We return the original value so this helper can also be used inline.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, str) and 0 < len(value.strip()) <= maximum,\\n        f\\\"{label} must be nonempty text, at most {maximum} characters\\\",\\n    )\\n    return value\\n\\n\\ndef keys(value, expected, label):\\n    \\\"\\\"\\\"\\n    Require an object to contain EXACTLY the expected fields.\\n\\n    This is intentionally stricter than merely checking required fields.\\n\\n    Why?\\n\\n    Because accepting arbitrary extra keys would allow the model to invent\\n    unofficial state or semantics that governance never approved.\\n\\n    Example:\\n\\n        expected:\\n            type id task due_cycle reason\\n\\n        rejected:\\n            type id task due_cycle reason secret_instruction\\n\\n    Unknown state has no authority merely because a model emitted it.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, dict) and set(value) == set(expected.split()),\\n        f\\\"{label} fields must be exactly: {expected}\\\",\\n    )\\n\\n\\ndef identifier(value):\\n    \\\"\\\"\\\"\\n    Validate durable IDs.\\n\\n    IDs are intentionally boring.\\n\\n    They may contain only:\\n        letters\\n        digits\\n        underscores\\n        hyphens\\n\\n    This keeps identifiers predictable for storage, URLs, maps, references,\\n    exports, and later deterministic comparisons.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, str)\\n        and re.fullmatch(r\\\"[a-zA-Z0-9_-]{1,80}\\\", value),\\n        \\\"IDs must use 1–80 letters, digits, underscores or hyphens\\\",\\n    )\\n\\n\\ndef references(value, state):\\n    \\\"\\\"\\\"\\n    Validate a list of evidence IDs.\\n\\n    Evidence citations must point to evidence that ALREADY EXISTS in the\\n    durable state being evaluated.\\n\\n    This prevents an important class of hallucination:\\n\\n        model invents evidence ID\\n        model cites invented ID\\n        claim appears \\\"supported\\\"\\n\\n    That cannot pass this gate.\\n\\n    The 1–12 bound also prevents empty provenance where evidence is required\\n    and prevents a proposal from dumping an unreasonable number of references\\n    into one change.\\n    \\\"\\\"\\\"\\n    require(\\n        isinstance(value, list) and 1 <= len(value) <= 12,\\n        \\\"Changes require 1–12 evidence references\\\",\\n    )\\n\\n    require(\\n        all(\\n            isinstance(v, str) and v in state[\\\"evidence\\\"]\\n            for v in value\\n        ),\\n        \\\"Evidence reference does not exist\\\",\\n    )\\n\\n    require(\\n        len(set(value)) == len(value),\\n        \\\"Duplicate evidence reference\\\",\\n    )\\n# ---------------------------------------------------------------------------\\n# EVIDENCE QUALITY / SCOPE\\n# ---------------------------------------------------------------------------\\n\\ndef _limited_sources(evidence):\\n    \\\"\\\"\\\"\\n    Determine whether ALL supplied evidence is explicitly limited in scope.\\n\\n    Examples of limited evidence:\\n        abstract\\n        preprint\\n        metadata-only record\\n        incomplete document\\n        truncated document\\n\\n    This does NOT mean the evidence is useless.\\n\\n    It means downstream prose should not pretend that weak/partial source\\n    material supports strong certainty.\\n\\n    Notice that the limitation is read from the stored evidence payload rather\\n    than guessed from the URL or source name.\\n    \\\"\\\"\\\"\\n    limited = (\\n        \\\"abstract\\\",\\n        \\\"preprint\\\",\\n        \\\"metadata\\\",\\n        \\\"incomplete\\\",\\n        \\\"truncated\\\",\\n    )\\n\\n    scopes = []\\n\\n    for item in evidence:\\n        try:\\n            scopes.append(\\n                str(\\n                    json.loads(item[\\\"content\\\"]).get(\\\"scope\\\", \\\"\\\")\\n                ).lower()\\n            )\\n        except (ValueError, TypeError):\\n            # Old or non-JSON evidence cannot provide a structured scope.\\n            scopes.append(\\\"\\\")\\n\\n    return (\\n        bool(scopes)\\n        and all(\\n            any(word in scope for word in limited)\\n            for scope in scopes\\n        )\\n    )\\n\\n\\ndef _evidence_payload(item):\\n    \\\"\\\"\\\"\\n    Safely recover the structured JSON payload stored inside an evidence item.\\n\\n    Evidence content is not assumed to be valid JSON forever. Historical or\\n    manually-created records may differ.\\n\\n    Governance therefore fails conservatively to an empty dictionary rather\\n    than crashing the transition engine.\\n    \\\"\\\"\\\"\\n    try:\\n        payload = json.loads(item.get(\\\"content\\\", \\\"\\\"))\\n    except (ValueError, TypeError):\\n        return {}\\n\\n    return payload if isinstance(payload, dict) else {}\\n\\n\\ndef _verification_evidence(evidence, project_domain, label, minimum_sources=1):\\n    \\\"\\\"\\\"\\n    Apply the newer verification contract when evidence says that contract is\\n    required.\\n\\n    Some collector-produced evidence is marked:\\n\\n        verification_required = true\\n\\n    Once evidence participates in that regime, governance refuses to mix it\\n    with older evidence that lacks the same verification semantics.\\n\\n    This avoids creating a misleading hybrid where one source obeys the new\\n    provenance rules and another source silently bypasses them.\\n\\n    Verification-required evidence must also:\\n\\n        - be individually selected sources, not broad search-result lists\\n        - retain collector-stamped topic provenance\\n        - meet the caller's minimum number of distinct retrieved URLs\\n\\n    Topic provenance records where evidence entered the experiment; it is not\\n    a semantic relevance verdict. Materially relevant cross-topic evidence may\\n    qualify, while public promotion can still demand stronger multi-source\\n    support.\\n\\n    This is a provenance rule, NOT a declaration that one or more URLs make\\n    something true.\\n    \\\"\\\"\\\"\\n    marked = [\\n        item\\n        for item in evidence\\n        if _evidence_payload(item).get(\\\"verification_required\\\") is True\\n    ]\\n\\n    # No evidence opted into this verification regime.\\n    if not marked:\\n        return []\\n\\n    require(\\n        len(marked) == len(evidence),\\n        f\\\"{label} cannot mix legacy unverified evidence \\\"\\n        \\\"with verification-required evidence\\\",\\n    )\\n\\n    require(\\n        all(\\n            _evidence_payload(item).get(\\\"evidence_role\\\", \\\"source\\\") == \\\"source\\\"\\n            for item in marked\\n        ),\\n        f\\\"{label} cannot use broad search-result lists as qualifying evidence; \\\"\\n        \\\"retrieve specific source records first\\\",\\n    )\\n\\n    require(\\n        len({item.get(\\\"source\\\") for item in marked}) >= minimum_sources,\\n        f\\\"{label} requires at least {minimum_sources} distinct \\\"\\n        \\\"independently retrieved source URL(s)\\\",\\n    )\\n\\n    return marked\\n# ---------------------------------------------------------------------------\\n# DETERMINISTIC CLAIM / SOURCE MATCHING\\n# ---------------------------------------------------------------------------\\n\\ndef _claim_tokens(value):\\n    \\\"\\\"\\\"\\n    Convert prose into a crude deterministic set of meaningful lexical tokens.\\n\\n    This is NOT semantic understanding.\\n\\n    It deliberately avoids pretending governance understands whether a source\\n    truly proves a claim.\\n\\n    Instead, it asks a much narrower mechanical question:\\n\\n        \\\"Does the evidence even appear to discuss materially similar things?\\\"\\n\\n    Common connective words are removed so trivial overlap such as \\\"these\\\",\\n    \\\"source\\\", or \\\"because\\\" cannot satisfy the check.\\n    \\\"\\\"\\\"\\n    stop = {\\n        \\\"about\\\", \\\"after\\\", \\\"a\", \"excerpt_truncated\": true, \"source_sha256\": \"7209ecb403248672e57f8aa342124a11361cff72cdf932e82dbe6f1a734937e2\", \"verification_required\": true, \"topic_domain\": \"wake_analysis\", \"evidence_role\": \"source\", \"host_tier\": \"verification\", \"persistent_identifiers\": []}",
+  "id": "source-ef0ff3a02cee4521",
+  "scope": "collected",
+  "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/governance.py",
+  "version": 42,
+  "time": "2026-09-24T03:50:16.937380+00:00"
+}
+```
+
+### `source-3de82ea7bb084318`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28620,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-07-04T16:44:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vitamin D and neurology\\\",\\\"pageid\\\":37130699,\\\"size\\\":21444,\\\"wordcount\\\":2646,\\\"snippet\\\":\\\"been associated with many other conditions, including both\\nneurological\\nand non\\nneurological\\nconditions. These include but are not limited to autism, diabetes\\\",\\\"timestamp\\\":\\\"2025-09-15T21:51:23Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"da4e32d05699e6a24ad8c9eeae82461c17c007b57ea159b4563180859ab20473\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3de82ea7bb084318",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 42,
+  "time": "2026-09-24T03:50:18.215740+00:00"
+}
+```
+
+### `source-9ca1634a49054c27`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74320},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Reverse psychology\\\",\\\"pageid\\\":702761,\\\"size\\\":8278,\\\"wordcount\\\":959,\\\"snippet\\\":\\\"Reverse\\npsychology\\nis a technique involving the assertion of a belief or behavior that is opposite to the one desired, with the expectation that this approach\\\",\\\"timestamp\\\":\\\"2026-07-23T01:39:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"deba5727a175023a1d32e5f81a0edde39eff880f975d23627b37de0eb7c3c32a\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9ca1634a49054c27",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 42,
+  "time": "2026-09-24T03:50:18.768609+00:00"
+}
+```
+
+### `source-f3f3e40b7c464847`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186787,\\\"wordcount\\\":18520,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-23T17:44:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music preference\\\",\\\"pageid\\\":37523519,\\\"size\\\":39407,\\\"wordcount\\\":4679,\\\"snippet\\\":\\\"familiarity and liking of music. Big Five personality traits\\nCulture\\nin music\\ncognition\\nMusic psychology Sch\\\\u00e4fer, Thomas; Sedlmeier, Peter; St\\\\u00e4dtler,\\\",\\\"timestamp\\\":\\\"2025-10-02T16:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ae74c07ba7b2f892133adc7ad0e42b98dc9ce27becafb22d7a38f66e14497fbb\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+  "id": "source-f3f3e40b7c464847",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 42,
+  "time": "2026-09-24T03:50:19.459271+00:00"
+}
+```
+
+### `source-b5978fef6f0c4bc9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6d0dc2b97d56b06104a96b7b248d7287bac4819ea7fff7a230dbbf7d2ae19c25\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b5978fef6f0c4bc9",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 42,
+  "time": "2026-09-24T03:50:20.112549+00:00"
+}
+```
+
+### `source-48ff42967dc24111`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7075},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4cc6a65249fa3677b840c3e720b95bf6f961536f29f64e2c2b70da80588967ed\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-48ff42967dc24111",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 42,
+  "time": "2026-09-24T03:50:20.689256+00:00"
+}
+```
+
+### `r-a58f440ba0d647ca`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":42,\"inherited_commitments\":[\"c-001-synthesize-landauer\",\"c-002-synthesize-governance\"],\"invocation\":\"w-a58f440ba0d647ca\",\"previous_head\":\"5428cab43873dc297644f48bc6c9bc38a1806983a0dc2ab6a9f17ae4384cbde9\",\"process_id\":2286,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a58f440ba0d647ca",
+  "source": "runtime:continuity",
+  "version": 42,
+  "time": "2026-09-24T03:50:22.166504+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Bootstrapping durable continuity on wake_analysis
@@ -69002,8 +69540,9 @@ _None recorded._
   "query": "WAKE repository governance rules accountability documentation",
   "reason": "Required to collect evidence for resolving commitment c-002, which currently lacks sufficient resolution evidence for notebook synthesis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-b4320443549c41a3"
+  "status": "collected",
+  "created_by": "w-b4320443549c41a3",
+  "evidence": "source-ef0ff3a02cee4521"
 }
 ```
 
