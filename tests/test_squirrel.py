@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from wake.engine import DEFAULTS, Engine
+from wake.engine import DEFAULTS, Engine, _rotation_preflight
 from wake.governance import Rejected, _enforce_squirrel_rotation
 from wake.providers import RESEARCH_SYSTEM, schema_for_context
 from wake.squirrel import (
@@ -381,6 +381,97 @@ class SquirrelTests(unittest.TestCase):
         self.assertTrue(directive["rotation_required"])
         self.assertTrue(directive["enforce_selected_topic"])
         self.assertIn("no longer configured", directive["reason"])
+
+
+    def test_rotation_preflight_salvages_selected_topic_from_mixed_proposal(self):
+        state = {
+            "research_topics": [{"id": "entropy", "label": "Entropy", "enabled": True}],
+            "projects": {
+                "wake": {
+                    "id": "wake", "title": "Wake", "question": "q",
+                    "domain": "wake_analysis", "status": "active",
+                    "next_step": "n", "updated_version": 10,
+                },
+                "thermo": {
+                    "id": "thermo", "title": "Thermo", "question": "q2",
+                    "domain": "information_thermodynamics", "status": "active",
+                    "next_step": "n2", "updated_version": 9,
+                },
+            },
+            "invocations": {
+                "w": {"squirrel": {
+                    "selected_topic": "entropy",
+                    "enforce_selected_topic": True,
+                    "capability_blocked_topics": ["information_thermodynamics"],
+                }}
+            },
+        }
+        proposal = {
+            "base_version": 56,
+            "title": "Mixed",
+            "summary": "mixed",
+            "actions": [
+                {"type": "notebook", "id": "nb-wake", "project": "wake"},
+                {"type": "resolve", "id": "old", "status": "fulfilled",
+                 "evidence": ["e"], "reason": "old"},
+                {"type": "research", "id": "r-entropy", "project": "thermo",
+                 "query": "entropy", "domain": "entropy", "reason": "selected"},
+            ],
+        }
+        normalized, receipt = _rotation_preflight(state, "w", proposal)
+        self.assertEqual([a["type"] for a in normalized["actions"]], ["research"])
+        self.assertEqual(normalized["actions"][0]["domain"], "entropy")
+        self.assertEqual(receipt["withheld_count"], 2)
+        self.assertEqual(receipt["selected_topic"], "entropy")
+
+    def test_rotation_preflight_inserts_capacity_park_before_new_project(self):
+        state = {
+            "research_topics": [
+                {"id": "entropy", "label": "Entropy", "enabled": True},
+                {"id": "neurodivergence", "label": "Neurodivergence", "enabled": True},
+            ],
+            "projects": {
+                "wake": {
+                    "id": "wake", "title": "Wake", "question": "q1",
+                    "domain": "wake_analysis", "status": "active",
+                    "next_step": "n1", "updated_version": 10,
+                },
+                "thermo": {
+                    "id": "thermo", "title": "Thermo", "question": "q2",
+                    "domain": "information_thermodynamics", "status": "active",
+                    "next_step": "n2", "updated_version": 11,
+                },
+                "neuro": {
+                    "id": "neuro", "title": "Neuro", "question": "q3",
+                    "domain": "neurodivergence", "status": "active",
+                    "next_step": "n3", "updated_version": 12,
+                },
+            },
+            "invocations": {
+                "w": {"squirrel": {
+                    "selected_topic": "entropy",
+                    "enforce_selected_topic": True,
+                    "capability_blocked_topics": ["information_thermodynamics"],
+                }}
+            },
+        }
+        proposal = {
+            "base_version": 56,
+            "title": "Entropy",
+            "summary": "start",
+            "actions": [
+                {"type": "project", "id": "entropy-p", "title": "Entropy",
+                 "question": "q", "domain": "entropy", "status": "active",
+                 "next_step": "research", "reason": "selected"},
+                {"type": "research", "id": "entropy-r", "project": "entropy-p",
+                 "query": "entropy definitions", "domain": "entropy", "reason": "selected"},
+            ],
+        }
+        normalized, receipt = _rotation_preflight(state, "w", proposal)
+        self.assertEqual(normalized["actions"][0]["id"], "wake")
+        self.assertEqual(normalized["actions"][0]["status"], "parked")
+        self.assertEqual(normalized["actions"][1]["id"], "entropy-p")
+        self.assertTrue(receipt["inserted_capacity_park"])
 
 
 
