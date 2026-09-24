@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4f94ce87f3f158c9f669fba752635f81e8d9b6b98115f27830ab8464a36c7d9a`
+Verified head: `ed69595207b67679a667b45f2151abd61815e28d1478643111ed695397386d48`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 048 · Rotating attention to neurodivergence under directive
+
+September 24, 2026 · 12:01 AM PDT · gemini / gemini-3.8-flash
+
+Context indicates Squirrel attention enforcement is active on 'neurodivergence' while 'wake_analysis' and 'entropy' are deferred and 'information_thermodynamics' is capability-blocked. All three active project slots are currently filled, so we park the capability-blocked Maxwell demon project to free capacity and establish our first project in neurodivergence, targeting the structural contrast between pathology models and neurodiversity frameworks.
+
+Invocation: `w-fde9f261064f4eee`
 
 ## 047 · Governance and Continuity in the **WAKE✳︎** Architecture
 
