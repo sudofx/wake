@@ -298,7 +298,7 @@
     if(!hypotheses.length)hypotheses.push({title:'Not enough separation yet',text:'The current record does not show a strong simple pattern worth elevating. Keep collecting data rather than manufacturing a story.'});
     const outcomeTotal=Math.max(1,acceptedCount+rejectedCount+deferredCount+failedCount+recoveredCount);
     const outcomePie=[
-      ['accepted',acceptedCount,'var(--green)'],['rejected',rejectedCount,'var(--hot)'],['deferred',deferredCount,'var(--orange)'],['failed',failedCount,'var(--muted)'],['recovered',recoveredCount,'var(--cyan)']
+      ['accepted',acceptedCount,'var(--success)'],['rejected',rejectedCount,'var(--danger)'],['deferred',deferredCount,'var(--warning)'],['failed',failedCount,'var(--failure)'],['recovered',recoveredCount,'var(--info)']
     ].filter(x=>x[1]>0);
     let pieCursor=0;
     const pieStops=outcomePie.map(([name,value,color])=>{const start=pieCursor,end=pieCursor+=100*value/outcomeTotal;return `${color} ${start.toFixed(2)}% ${end.toFixed(2)}%`;}).join(',');
