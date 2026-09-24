@@ -6,6 +6,7 @@ when accepted attention stays on one topic for too many accepted wakes. Either
 condition temporarily defers that topic while preserving its durable work.
 """
 
+import hashlib
 import json
 
 
@@ -19,8 +20,28 @@ def _active_topic(state):
     active = [p for p in state.get("projects", {}).values() if p.get("status") == "active"]
     if active:
         return sorted(active, key=lambda p: (-p.get("updated_version", 0), p["id"]))[0]["domain"]
-    topics = state.get("research_topics", [])
-    return topics[0]["id"] if topics else None
+    return None
+
+
+def _selection_basis(state):
+    """Return durable per-invocation entropy when the runtime has recorded it."""
+    for evidence in reversed(list(state.get("evidence", {}).values())):
+        if evidence.get("actor") == "runtime" and evidence.get("source") == "runtime:continuity":
+            return evidence.get("id") or evidence.get("content")
+    return f'version:{state.get("version", 0)}'
+
+
+def _choose_topic(state, candidates):
+    """Choose without TOML-order bias while remaining replayable from the receipt."""
+    ordered = sorted(set(candidates))
+    if not ordered:
+        return None, "none", None
+    if len(ordered) == 1:
+        return ordered[0], "only_eligible", _selection_basis(state)
+    basis = _selection_basis(state)
+    payload = f'{basis}|{"|".join(ordered)}'.encode("utf-8")
+    index = int.from_bytes(hashlib.sha256(payload).digest()[:8], "big") % len(ordered)
+    return ordered[index], "receipt_hash_uniform_index", basis
 
 
 def _has_new_topic_evidence(state, topic, item):
@@ -124,12 +145,25 @@ def plan(state):
                 and topic not in blocked]
     # A capability block is itself a reason to leave the current attractor.
     # Prefer the current topic only while it is both eligible and productive.
-    selected = current if current in eligible else (eligible[0] if eligible else current)
+    # Whenever WAKE must actually choose, remove TOML-order bias. The continuity
+    # receipt is UUID-backed and durable, so separate invocations vary while a
+    # replay (or a bounded-context rebuild in the same invocation) chooses the
+    # same topic again.
+    if current in eligible:
+        selected, selection_method, selection_basis = current, "active_topic", None
+    elif eligible:
+        selected, selection_method, selection_basis = _choose_topic(state, eligible)
+    else:
+        selected, selection_method, selection_basis = current, "fallback_current", None
     current_unconfigured = bool(current) and current not in topics
-    rotation_required = bool(deferred) or current in blocked or current_unconfigured
+    selection_required = current not in eligible and bool(selected)
+    rotation_required = bool(deferred) or current in blocked or current_unconfigured or current is None
     return {
         "active": True,
         "selected_topic": selected,
+        "topic_selection_method": selection_method,
+        "topic_selection_basis": selection_basis,
+        "topic_selection_candidates": sorted(eligible) if selection_required else [],
         "deferred_topics": sorted(deferred),
         "capability_blocked_topics": sorted(blocked),
         "current_topic_unconfigured": current_unconfigured,
@@ -142,6 +176,8 @@ def plan(state):
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
         "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
         "reason": (
+            "no durable active topic exists; choose from configured eligible topics"
+            if current is None and selected else
             "active project topic is no longer configured; rotate to configured topic"
             if current_unconfigured else
             "alternate configured topic selected during Squirrel cooldown or capability block"
