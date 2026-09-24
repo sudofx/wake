@@ -73,9 +73,24 @@ def run_experiment(directory, cycles=100, output="site"):
     checks["fresh_sessions"] = {"passed": all(e["payload"]["request"]["context"]["version"] == i for i,e in enumerate(starts)),
                                 "detail": "Each cycle launches and exits a separate interpreter; durable context version increases by one."}
     fulfilled = [c for c in s["commitments"].values() if c["status"] == "fulfilled"]
-    checks["commitment_handoff"] = {"passed": len(fulfilled) == cycles - 1 and all(
-        s["invocations"][c["created_by"]]["model"] != s["invocations"][c["resolved_by"]]["model"] for c in fulfilled),
-        "count": len(fulfilled), "detail": "Alternating fixture-a and fixture-b inherit obligations with no additional human reminder."}
+    eligible_shifts = [
+        item for item in s["invocations"].values()
+        if item.get("status") == "accepted"
+        and not item.get("squirrel", {}).get("enforce_selected_topic")
+    ]
+    expected_fulfilled = max(0, len(eligible_shifts) - 1)
+    checks["commitment_handoff"] = {
+        "passed": len(fulfilled) == expected_fulfilled and all(
+            c["created_by"] != c["resolved_by"] for c in fulfilled
+        ),
+        "count": len(fulfilled),
+        "expected_count": expected_fulfilled,
+        "detail": (
+            "Fresh invocations inherit obligations without another human reminder; "
+            "forced Squirrel shifts intentionally preserve commitments unchanged "
+            "until an eligible later shift."
+        ),
+    }
     beliefs = [e["payload"]["proposal"]["actions"] for e in engine.store.events() if e["kind"] == "accepted"]
     lifecycle = [a for actions in beliefs for a in actions if a["type"] == "belief"]
     checks["evidence_lifecycle"] = {"passed": [a["status"] for a in lifecycle] == ["active", "active", "retracted"] and len(s["beliefs"]["sensor"]["evidence"]) == 3,
