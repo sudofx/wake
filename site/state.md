@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 3  
+**Version:** 4  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `31b44d39ea438942d5a068c391877b69d9f5e5c56537651a70ae48ed15a9158b`
+**Verified head:** `5965478d430f73102eefe8fdad6cd4afee7c221a6fd7ef280c938e8ac8af1b63`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -45,30 +45,44 @@ _None recorded._
 {
   "project": "proj-justification-01",
   "domain": "epistemology",
-  "no_progress": 2,
+  "no_progress": 3,
   "routes": [
     "api.datacite.org:discovery",
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.4324/9781315882390-7",
     "doi:10.4324/9781315882390-12",
     "doi:10.4324/9781315882390",
-    "doi:10.4324/9781315882390-10"
+    "doi:10.4324/9781315882390-10",
+    "doi:10.1007/s10994-021-05946-3",
+    "doi:10.1007/s10994-021-05946-3.pdf",
+    "doi:10.1080/00461520.2011.538647",
+    "doi:10.4324/9781315212043-7",
+    "doi:10.1075/lal.17",
+    "openalex:W3014596384",
+    "openalex:W2085114967",
+    "openalex:W2677802670",
+    "openalex:W3122282414"
   ],
   "last_receipt": {
-    "evidence": "source-13feaf2ef56642c3",
+    "evidence": "source-01fd98e73fc74e22",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.4324/9781315882390-7",
-      "doi:10.4324/9781315882390-12",
-      "doi:10.4324/9781315882390",
-      "doi:10.4324/9781315882390-10"
+      "doi:10.1007/s10994-021-05946-3",
+      "doi:10.1007/s10994-021-05946-3.pdf",
+      "doi:10.1080/00461520.2011.538647",
+      "doi:10.4324/9781315212043-7",
+      "doi:10.1075/lal.17",
+      "openalex:W3014596384",
+      "openalex:W2085114967",
+      "openalex:W2677802670",
+      "openalex:W3122282414"
     ],
-    "research_id": "res-epistemology-uncertainty-02",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-epistemology-uncertainty-03",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -100,7 +114,7 @@ _None recorded._
   "attention_topic": "epistemology",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-034602e7bcd9408f",
+  "invocation": "w-83f5793becb046f3",
   "restored_topics": [],
   "selected_topic": "epistemology",
   "terminal": "accepted",
@@ -112,7 +126,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 3,
+  "accepted_streak": 4,
   "topic": "epistemology"
 }
 ```
@@ -4288,6 +4302,217 @@ _None recorded._
 }
 ```
 
+### `w-83f5793becb046f3`
+
+```json
+{
+  "base_version": 3,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 17153,
+    "delivered_request_chars": 42570,
+    "mode": "rich",
+    "omitted_categories": [],
+    "provenance_policy": null,
+    "rich_context_chars": 49144,
+    "working_set_chars": 722
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T16:31:28.319996+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-83f5793becb046f3",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 3,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "proj-justification-01",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Justification Under Uncertainty"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2113,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "6dbd8cb3437799a4b0caf768d095727177298eac73f8572b92b84287ebf4992e",
+  "retrieval_shadow": {
+    "candidates": [],
+    "evidence_ids": [],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "evidence_count": 0,
+      "trigger_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "epistemology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "epistemology",
+    "temporal": {
+      "anchor_seq": 242,
+      "anchor_time": "2026-09-24T22:19:48.822695+00:00",
+      "anchor_version": 3,
+      "effective_seconds": 20900.502699
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 607.438099,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 20900.502699,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 14
+    },
+    "observed_at": "2026-09-24T22:19:48.822695+00:00",
+    "previous_anchor_time": "2026-09-24T22:09:41.384596+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 607.438099
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 17153,
+    "inquiry_drive_project_count": 1,
+    "mode": "rich",
+    "retrieval_candidate_count": 0,
+    "retrieval_evidence_count": 0,
+    "retrieval_trigger_counts": {},
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 722,
+    "working_to_delivered_ratio": 0.0421
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "proj-justification-01",
+        "next_step": "Search for academic overviews of epistemic justification theories regarding uncertainty.",
+        "question": "How do different epistemological frameworks account for belief justification when evidence is noisy or partial?",
+        "title": "Justification Under Uncertainty"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-24T22:19:48.914185+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 8827,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46031,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-24T22:20:03.361057+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-2278e38353394608`
@@ -5939,6 +6164,103 @@ _None recorded._
 }
 ```
 
+### `source-01fd98e73fc74e22`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=epistemic+justification+noisy+evidence+literature&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W3014596384\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s10994-021-05946-3\\\", \\\"title\\\": \\\"Aleatoric and epistemic uncertainty in machine learning: an introduction to concepts and methods\\\", \\\"publication_year\\\": 2021, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1640, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10994-021-05946-3.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s10994-021-05946-3\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s10994-021-05946-3\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10994-021-05946-3.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S62148650\\\", \\\"display_name\\\": \\\"Machine Learning\\\", \\\"issn_l\\\": \\\"0885-6125\\\", \\\"issn\\\": [\\\"0885-6125\\\", \\\"1573-0565\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Machine Learning\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract The notion of uncertainty is of major importance in machine learning and constitutes a key element of machine learning methodology. In line with the statistical tradition, uncertainty has long been perceived as almost synonymous with standard probability and probabilistic predictions. Yet, due to the steadily increasing relevance of machine learning for practical applications and related issues such as safety requirements, new problems and challenges have recently been identified by machine learning scholars, and these problems may call for new methodological developments. In particular, this includes the importance of distinguishing between (at least) two different types of uncertainty, often referred to as aleatoric and epistemic . In this paper, we provide an introduction to the topic of uncertainty in machine learning as well as an overview of attempts so far at handling uncertainty in general and formalizing this distinction in particular.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2085114967\\\", \\\"doi\\\": \\\"https://doi.org/10.1080/00461520.2011.538647\\\", \\\"title\\\": \\\"The Role of Epistemic Beliefs in the Comprehension of Multiple Expository Texts: Toward an Integrated Model\\\", \\\"publication_year\\\": 2011, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 347, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://www.tandfonline.com/doi/pdf/10.1080/00461520.2011.538647?needAccess=true&role=button\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1080/00461520.2011.538647\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1080/00461520.2011.538647\\\", \\\"pdf_url\\\": \\\"https://www.tandfonline.com/doi/pdf/10.1080/00461520.2011.538647?needAccess=true&role=button\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S168863630\\\", \\\"display_name\\\": \\\"Educational Psychologist\\\", \\\"issn_l\\\": \\\"0046-1520\\\", \\\"issn\\\": [\\\"0046-1520\\\", \\\"1532-6985\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"ki-jl-2\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319847\\\", \\\"host_organization_name\\\": \\\"Routledge\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319847\\\", \\\"https://openalex.org/P4310320547\\\"], \\\"host_organization_lineage_names\\\": [\\\"Routledge\\\", \\\"Taylor & Francis\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Educational Psychologist\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"In present-day knowledge societies, competent reading involves the integration of information from multiple sources into a coherent, meaningful representation of a topic, issue, or situation. This article reviews research and theory concerning the comprehension of multiple textual resources, focusing especially on linkages recently established between dimensions of epistemic beliefs and multiple-text comprehension. Moreover, a proposed model incorporates epistemic beliefs into a theoretical framework for explaining multiple-text comprehension, specifying how and why different epistemic belief dimensions may be linked to the comprehension and integration of multiple texts. Also discussed is the need for further research concerning mediational mechanisms, causality, and generalizability.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2677802670\\\", \\\"doi\\\": \\\"https://doi.org/10.4324/9781315212043-7\\\", \\\"title\\\": \\\"Trust, Distrust, and Epistemic Injustice\\\", \\\"publication_year\\\": 2017, \\\"type\\\": \\\"book-chapter\\\", \\\"cited_by_count\\\": 67, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://api.taylorfrancis.com/content/chapters/edit/download?identifierName=doi&identifierValue=10.4324/9781315212043-7&type=chapterpdf\\\", \\\"any_repository_has_fulltext\\\": null}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.4324/9781315212043-7\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.4324/9781315212043-7\\\", \\\"pdf_url\\\": \\\"https://api.taylorfrancis.com/content/chapters/edit/download?identifierName=doi&identifierValue=10.4324/9781315212043-7&type=chapterpdf\\\", \\\"source\\\": null, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"The Routledge Handbook of Epistemic Injustice\\\", \\\"raw_type\\\": \\\"book-chapter\\\"}, \\\"abstract\\\": \\\"This chapter focuses on issues of trust and distrust, which seem especially relevant to epistemic injustice, and in particular on issues where thinking about trust and distrust may help us crystallise questions that we might have missed otherwise. It discusses injustice first in the context of trust and distrust in testimony, and then in the context of trust and distrust in action more generally. In ordinary language, the term &s;testimony&s; is reserved for significant first-person reports of witnessing, often in religious, legal, or journalistic contexts. However, for philosophers, &s;testimony&s; encompasses the multitudinous ways in which we purport to provide information to one another, taking in idle gossip, scientific papers, encyclopaedia articles, and kindergarten teaching, amongst much else. Gerald Marsh explores the centrality of trust to social life, arguing that we owe one another a baseline level of trust, simply as fellow human beings, and that we harm one another when we do not offer this baseline trust.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3122282414\\\", \\\"doi\\\": \\\"https://doi.org/10.1075/lal.17\\\", \\\"title\\\": \\\"Cognitive Grammar in Literature\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 145, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://publications.aston.ac.uk/id/eprint/37071/1/Cognitive_Grammar_in_Literature_Final.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1075/lal.17\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1075/lal.17\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210211643\\\", \\\"display_name\\\": \\\"Linguistic approaches to literature\\\", \\\"issn_l\\\": \\\"1569-3112\\\", \\\"issn\\\": [\\\"1569-3112\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320402\\\", \\\"host_organization_name\\\": \\\"John Benjamins Publishing Company\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320402\\\"], \\\"host_organization_lineage_names\\\": [\\\"John Benjamins Publishing Company\\\"], \\\"type\\\": \\\"book series\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Linguistic Approaches to Literature\\\", \\\"raw_type\\\": \\\"edited-book\\\"}, \\\"abstract\\\": \\\"This is the first book to present an account of literary meaning and effects drawing on our best understanding of mind and language in the form of a Cognitive Grammar. The contributors provide exemplary analyses of a range of literature from science fiction, dystopia, absurdism and graphic novels to the poetry of Wordsworth, Hopkins, Sassoon, Balassi, and Dylan Thomas, as well as Shakespeare, Chaucer, Barrett Browning, Whitman, Owen and others. The application of Cognitive Grammar allows the discussion of meaning, translation, ambience, action, reflection, multimodality, empathy, experience and literariness itself to be conducted in newly valid ways. With a Foreword by the creator of Cognitive Grammar, Ronald Langacker, and an Afterword by the cognitive scientist Todd Oakley, the book represents the latest advance in literary linguistics, cognitive poetics and literary critical practice.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"00c70b9d016b98cb5e3771e6656b7c29b3d6a63f712d78021ef6d6705f276a92\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1007/s10994-021-05946-3\", \"doi:10.1007/s10994-021-05946-3.pdf\", \"doi:10.1080/00461520.2011.538647\", \"doi:10.4324/9781315212043-7\", \"doi:10.1075/lal.17\", \"openalex:W3014596384\", \"openalex:W2085114967\", \"openalex:W2677802670\", \"openalex:W3122282414\"]}",
+  "id": "source-01fd98e73fc74e22",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=epistemic+justification+noisy+evidence+literature&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 3,
+  "time": "2026-09-24T22:19:47.245449+00:00"
+}
+```
+
+### `source-4cc094db08644b53`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6d6338571513c6d5587d539238caa78d0068758a3e2293fa22725ab698452c19\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4cc094db08644b53",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 3,
+  "time": "2026-09-24T22:19:47.687344+00:00"
+}
+```
+
+### `source-a29ed14374cb4e90`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e445bac8f62e5d8b9c10f998519c342479bf004518674da0c826ab95ad44fd5b\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a29ed14374cb4e90",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 3,
+  "time": "2026-09-24T22:19:47.900477+00:00"
+}
+```
+
+### `source-97756bfb463a4244`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d12bfb46df9bcdf4fa3c7d9c572122035640aac5c91a62ed4fe4fd8d6b025f6b\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-97756bfb463a4244",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 3,
+  "time": "2026-09-24T22:19:48.210263+00:00"
+}
+```
+
+### `source-8a800ea214d04134`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"62be7f469f307005888c94f7198ec555cf7d3f9283af96c01c8fc89f45665f4c\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8a800ea214d04134",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 3,
+  "time": "2026-09-24T22:19:48.502139+00:00"
+}
+```
+
+### `source-4cfe57f9683b4831`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"Many people affected by MSA experience dysfunction of the autonomic\\nnervous\\nsystem\\n, which commonly manifests as orthostatic hypotension, impotence, loss\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"aa7651c4bb10284901bd555292c9d44d24de787d163e37fbffc3e09aae7b4298\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4cfe57f9683b4831",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 3,
+  "time": "2026-09-24T22:19:48.795882+00:00"
+}
+```
+
+### `r-83f5793becb046f3`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":3,\"inherited_commitments\":[],\"invocation\":\"w-83f5793becb046f3\",\"previous_head\":\"ec0d792c860559782696aba614ec6b3767833d9cbec35107e3d0e33aac631669\",\"process_id\":2113,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-83f5793becb046f3",
+  "source": "runtime:continuity",
+  "version": 3,
+  "time": "2026-09-24T22:19:48.886522+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Initiating Epistemological Inquiry on Belief Justification
@@ -5971,6 +6293,17 @@ _None recorded._
   "invocation": "w-034602e7bcd9408f",
   "title": "Refining Search Strategy for Epistemic Justification",
   "summary": "We are continuing the project 'Justification Under Uncertainty' despite previous search retrieval difficulties. The earlier broad query failed to yield specific academic sources, so we are shifting strategy to target more precise terminology regarding 'noisy evidence' within epistemic justification frameworks. We remain in the epistemology domain as per the active attention directive."
+}
+```
+
+### 004 · Epistemic Justification and Partial Evidence
+
+```json
+{
+  "cycle": 4,
+  "invocation": "w-83f5793becb046f3",
+  "title": "Epistemic Justification and Partial Evidence",
+  "summary": "Continuing to investigate how epistemological frameworks address belief justification given noisy or incomplete evidence. Previous research attempts have struggled with retrieval; I am focusing on shifting the search terms toward 'epistemic disagreement' and 'evidence interpretation,' which are structurally related to the problem of noisy evidence in epistemology."
 }
 ```
 
@@ -6018,8 +6351,24 @@ _None recorded._
   "query": "epistemic justification noisy evidence literature",
   "reason": "Previous attempts were too broad and failed to retrieve actionable sources; this query focuses on specific terms ('noisy evidence', 'literature') to increase retrieval probability.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-034602e7bcd9408f",
+  "evidence": "source-01fd98e73fc74e22"
+}
+```
+
+### `res-epistemology-uncertainty-04`
+
+```json
+{
+  "domain": "epistemology",
+  "id": "res-epistemology-uncertainty-04",
+  "project": "proj-justification-01",
+  "query": "epistemology of disagreement evidence interpretation",
+  "reason": "Previous queries focused on formal justification theories (Bayesianism/Reliabilism) which yielded no results; this query addresses the practical outcome of noisy evidence—disagreement—which may lead to more successful retrieval of literature.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-034602e7bcd9408f"
+  "created_by": "w-83f5793becb046f3"
 }
 ```
 
