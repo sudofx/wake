@@ -5,7 +5,7 @@
 **Version:** 54  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `fd90c23e52806a9db3dc66e3511cb74ac9969f20ada47a28b8facc92b69f449e`
+**Verified head:** `3d6346862c61c9d7199b99b43126895a35e8cfff701c60084a5577fbec83ca4e`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -363,14 +363,29 @@ _None recorded._
   "information_thermodynamics": 16,
   "neurodivergence": 7,
   "psychology": 1,
-  "wake_analysis": 18
+  "wake_analysis": 19
 }
 ```
 
 ### `deferred`
 
 ```json
-{}
+{
+  "wake_analysis": {
+    "cause": "hard_rejection",
+    "deferred_by": "w-9e44e228698a470d",
+    "eligible_after_other_attempts": 3,
+    "other_topic_attempts": 0,
+    "parked_projects": [
+      {
+        "id": "wake-continuity-arch",
+        "next_step": "Synthesize repository governance rules into a notebook.",
+        "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+      }
+    ],
+    "reason": "five consecutive hard rejections without durable progress"
+  }
+}
 ```
 
 ### `last_receipt`
@@ -380,14 +395,14 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "wake_analysis",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-00eb4a646be54821",
-  "restored_topics": [
-    "consciousness"
-  ],
+  "hard_rejection": true,
+  "invocation": "w-9e44e228698a470d",
+  "restored_topics": [],
   "selected_topic": "wake_analysis",
-  "terminal": "accepted",
-  "triggered_topics": []
+  "terminal": "rejected",
+  "triggered_topics": [
+    "wake_analysis"
+  ]
 }
 ```
 
@@ -88647,6 +88662,432 @@ _None recorded._
 }
 ```
 
+### `w-9e44e228698a470d`
+
+```json
+{
+  "base_version": 54,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 14494,
+    "delivered_request_chars": 38650,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 75552,
+    "working_set_chars": 2638
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-23T21:25:25.789831+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-9e44e228698a470d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 54,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "wake-continuity-arch",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 30,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "landauer-principle-investigation",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "neurodiversity-framework-models",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs Pathology Models"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2265,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "3f7f0f2a2bbfb1cfdb1feb371e0e29e67ce65d8a93351a20b5ac4a3e65835cdf",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-3d03662526e243e5"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-arch-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-wake-continuity-mechanics",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-001-synthesize-landauer",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "c-002-synthesize-governance",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-c1a55a260c72495f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c1a55a260c72495f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d868138d6f354820"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d868138d6f354820",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-625528077e5845fe"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-625528077e5845fe",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0cb47d7c9bcd4930"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0cb47d7c9bcd4930",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a463ef1dcea548f2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a463ef1dcea548f2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ee43860bc96c4596"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ee43860bc96c4596",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-3d03662526e243e5",
+      "source-daed2a840e974273",
+      "source-ad226ee4932745ca",
+      "source-c1a55a260c72495f",
+      "source-d868138d6f354820",
+      "source-625528077e5845fe",
+      "source-0cb47d7c9bcd4930",
+      "source-a463ef1dcea548f2",
+      "source-ee43860bc96c4596"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 9,
+      "trigger_counts": {
+        "commitment_near_due": 2,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "wake_analysis"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "information_thermodynamics",
+      "neurodivergence"
+    ],
+    "cooldown_other_attempts": 3,
+    "deferred_topics": [],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "wake_analysis",
+    "temporal": {
+      "anchor_seq": 2885,
+      "anchor_time": "2026-09-24T09:33:52.069825+00:00",
+      "anchor_version": 54,
+      "effective_seconds": 43706.279994
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 375.129618,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 43706.279994,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 0,
+      "total": 11
+    },
+    "observed_at": "2026-09-24T09:33:52.069825+00:00",
+    "previous_anchor_time": "2026-09-24T09:27:36.940207+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 375.129618
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 14494,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 9,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 2,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 2638,
+    "working_to_delivered_ratio": 0.182
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "wake-continuity-arch",
+        "next_step": "Synthesize repository governance rules into a notebook.",
+        "question": "How does WAKE preserve useful continuity across disposable model invocations, and where does that continuity fail?",
+        "title": "WAKE Continuity and Governance Architecture"
+      },
+      {
+        "id": "landauer-principle-investigation",
+        "next_step": "Identify foundational papers defining Landauer's principle and subsequent experimental verifications.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "id": "neurodiversity-framework-models",
+        "next_step": "Search for foundational academic comparisons between neurodiversity paradigm formulations and clinical psychiatric diagnostic frameworks.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+        "title": "Neurodiversity Paradigm vs Pathology Models"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 25,
+        "id": "c-001-synthesize-landauer",
+        "reason": "To provide a structured summary of the physical basis and experimental evidence for Landauer's principle before proceeding to more advanced applications.",
+        "task": "Synthesize initial findings on Landauer's principle into a notebook"
+      },
+      {
+        "due_cycle": 37,
+        "id": "c-002-synthesize-governance",
+        "reason": "To finalize the project 'wake-continuity-arch' after collecting relevant governance information.",
+        "task": "Synthesize repository governance rules into a notebook"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-wake-arch-01",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-3d03662526e243e5"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture ensures operational continuity through a durable record and governance model, decoupling system accountability from disposable model instances.",
+        "title": "Architecture of Durable Accountability"
+      },
+      {
+        "id": "nb-wake-continuity-mechanics",
+        "project": "wake-continuity-arch",
+        "provenance": [
+          "source-daed2a840e974273",
+          "source-ad226ee4932745ca"
+        ],
+        "revision": 5,
+        "summary": "WAKE architecture decouples disposable cognition from persistent authority by using a hash-linked event store to enforce accountability.",
+        "title": "Mechanics of Durable Research Continuity"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-24T09:33:54.488232+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3336,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 41516,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-24T09:34:18.190731+00:00",
+  "reason": "Commitment ID already exists"
+}
+```
+
 ## Evidence
 
 ### `source-a81ebc834d80497e`
@@ -109501,6 +109942,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 54,
   "time": "2026-09-24T09:27:38.571509+00:00"
+}
+```
+
+### `source-c0c35d0a2d404481`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122953,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-15T06:53:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"198a13ae1b4170ffc1b4d892319e6c7d40babd1c0fd1eb50f0208f5adf578d96\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-c0c35d0a2d404481",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:46.649518+00:00"
+}
+```
+
+### `source-a7d0dcda77f3497f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149372},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202268,\\\"wordcount\\\":17550,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-23T18:10:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethics\\\",\\\"pageid\\\":9258,\\\"size\\\":207219,\\\"wordcount\\\":19811,\\\"snippet\\\":\\\"Ethics is the philosophical study of moral phenomena. Also called moral\\nphilosophy\\n, it investigates normative questions about what people ought to do or\\\",\\\"timestamp\\\":\\\"2026-09-10T16:47:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b2e25040625c50ab945b102d33a3051fa4ed5f51f633edfec49c1cc0eafbd51e\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a7d0dcda77f3497f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:47.496617+00:00"
+}
+```
+
+### `source-585ffeffc5f244ba`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"77d0245a16f421abbb7c356ad7d530771d05f46ba7e970813f2c412d77ceac94\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-585ffeffc5f244ba",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:48.683296+00:00"
+}
+```
+
+### `source-3ea43d2678024b70`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy\\\",\\\"pageid\\\":1216879,\\\"size\\\":632,\\\"wordcount\\\":100,\\\"snippet\\\":\\\"Maximum\\nentropy\\nthermodynamics Maximum\\nentropy\\nspectral estimation Principle of maximum\\nentropy\\nMaximum\\nentropy\\nprobability distribution Maximum\\nentropy\\nclassifier\\\",\\\"timestamp\\\":\\\"2022-07-15T18:19:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c41bd5853ea84f7ebcfdf7c049dd225d348a7a260b9d431a6a789215786cb48a\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3ea43d2678024b70",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:49.496391+00:00"
+}
+```
+
+### `source-de4a09eb22f04d5d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dramatization\\\",\\\"pageid\\\":57618166,\\\"size\\\":5558,\\\"wordcount\\\":732,\\\"snippet\\\":\\\"emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\",\\\"timestamp\\\":\\\"2026-03-12T01:42:08Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c2faf4430f852c820b2f62d89753abc6a9bf74973f2d45d891e79a3817faf1a5\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-de4a09eb22f04d5d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:50.395282+00:00"
+}
+```
+
+### `source-9a52ea9e75d2486c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"62be7f469f307005888c94f7198ec555cf7d3f9283af96c01c8fc89f45665f4c\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9a52ea9e75d2486c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 54,
+  "time": "2026-09-24T09:33:51.411277+00:00"
+}
+```
+
+### `r-9e44e228698a470d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":54,\"inherited_commitments\":[\"c-001-synthesize-landauer\",\"c-002-synthesize-governance\"],\"invocation\":\"w-9e44e228698a470d\",\"previous_head\":\"fdbb5af54b0a4ccaecb11e9624e62737894839cf289b172b907cf9767ca1f4e6\",\"process_id\":2265,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9e44e228698a470d",
+  "source": "runtime:continuity",
+  "version": 54,
+  "time": "2026-09-24T09:33:53.788907+00:00"
 }
 ```
 
