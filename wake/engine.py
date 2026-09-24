@@ -570,7 +570,17 @@ class Engine:
                 } for item in active],
                 "notebooks": working_set.get("recent_notebooks", []),
                 "blog_notebooks": {}, "working_notebook": None, "research": [],
-                "recent_blog": [], "editorial_notes": [],
+                # Even under emergency compaction Bob must know whether a public
+                # record already exists. Otherwise a later milestone can falsely
+                # introduce him as if it were the first post.
+                "recent_blog": [
+                    {key: post.get(key) for key in (
+                        "id", "project", "title", "created_version",
+                        "reflection_cycle", "status", "supersedes", "superseded_by",
+                    )}
+                    for post in list(state.get("posts", {}).values())[-1:]
+                ],
+                "editorial_notes": [],
                 "bob_reflection_cycle": bob_reflection_due_cycle(state),
                 "bob_reflection_due": bob_reflection_due_cycle(state) is not None,
                 "project_evidence": {},
