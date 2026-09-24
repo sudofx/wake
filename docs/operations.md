@@ -48,7 +48,7 @@ For the **current GitHub-hosted deployment**, do not configure a separate branch
 
 The repository still contains `scripts/publish.py` for an **independent local-only record** that an operator explicitly chooses to publish to a `journal-pages` branch. Treat that as a legacy/alternate publishing path, not part of the hosted **WAKE✳︎** architecture, and never point it at the same live record as the GitHub workflow.
 
-The included `examples/journal/` is a shareable deterministic fixture report. Its simulated labels remain visible.
+The included `examples/offline-fixture-journal/` is a shareable deterministic fixture report. Its simulated labels remain visible.
 
 ## Crash, corruption and recovery
 

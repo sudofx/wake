@@ -28,11 +28,11 @@ Requires **Python 3.11 or later on macOS or Linux**. No runtime packages, Node, 
 
 ```sh
 # Read the included, fully executed 100-cycle experiment.
-python3 -m wake serve --directory examples/journal
+python3 -m wake serve --directory examples/offline-fixture-journal
 # Open http://127.0.0.1:8000
 ```
 
-The [included Markdown journal](examples/journal/journal.md) and [experiment results](examples/journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.
+The [included Markdown journal](examples/offline-fixture-journal/journal.md) and [experiment results](examples/offline-fixture-journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.
 
 To reproduce the experiment from scratch:
 
@@ -233,7 +233,7 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `wake/experiment.py`: executable 100–1000-cycle experiment.
 - `tests/`: failure, governance, provider-contract and audit checks.
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
-- `examples/journal/`: published evidence of the included offline experiment.
+- `examples/offline-fixture-journal/`: **deterministic fixture output only** — never live runtime state. The live cloud record is on `wake-state`.
 
 Read [architecture and limits](docs/architecture.md), [experiment protocol](docs/experiment.md), or [operations](docs/operations.md) for details.
 

@@ -19,7 +19,7 @@ This file preserves a dated validation snapshot from September 11, 2026. It is h
 | Publishing | Initial publication, unchanged publication and update tested against a disposable local Git remote; no public push |
 | Replacement ZIP | Extracted to a clean temporary folder; initialize, fixture wake, audit, export and included 100-cycle audit passed |
 
-The observed experiment is included in `examples/journal/experiment.json`. Its durable head is `4c5f205afe0060e30bf71b9b7e807c99001501dd21dbe16d1206995aa9cc1aad`.
+The observed experiment is included in `examples/offline-fixture-journal/experiment.json`. Its durable head is `4c5f205afe0060e30bf71b9b7e807c99001501dd21dbe16d1206995aa9cc1aad`.
 
 The GitHub workflow is configured to run on Python 3.11 and 3.13; those remote jobs have not been run as part of this local rebuild. Live Gemini inference, free-tier account eligibility, real desktop-model handoffs, cron installation and public hosting remain operator setup steps. The synthetic experiment does not establish live-model comprehension.
 
