@@ -28,15 +28,26 @@
 @media (max-width:700px){.constellation-workspace #constellation-stage{height:clamp(420px,calc(100svh - 230px),510px)}.constellation-workspace>#details.active{right:10px;left:10px;top:auto;bottom:10px;width:auto;max-height:45%;border-radius:10px}}
 
 /* Constellation interaction/theme polish. */
+:root:not([data-theme="dark"]) #constellation-stage{
+  background:
+    radial-gradient(circle at 14% 17%,color-mix(in srgb,var(--cyan) 30%,transparent) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 28% 28%,color-mix(in srgb,var(--purple) 24%,transparent) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 63% 25%,color-mix(in srgb,var(--purple) 24%,transparent) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 80% 14%,color-mix(in srgb,var(--cyan) 30%,transparent) 0 1px,transparent 1.8px),
+    radial-gradient(ellipse 72% 38% at 50% 38%,color-mix(in srgb,var(--cyan) 8%,transparent),transparent 72%),
+    linear-gradient(180deg,var(--paper) 0%,var(--surface-strong) 42%,var(--surface) 100%);
+}
+:root:not([data-theme="dark"]) #constellation-stage::before{opacity:.18}
+:root:not([data-theme="dark"]) #constellation-stage::after{opacity:.42}
 :root:not([data-theme="dark"]) .constellation-node text,
 :root:not([data-theme="dark"]) .constellation-labels .node-label{
-  fill:#f2f5ff;
-  stroke:#26304a;
+  fill:var(--ink);
+  stroke:var(--surface);
   stroke-width:4px;
 }
 :root:not([data-theme="dark"]) .constellation-node.is-wake .root-label{
-  fill:#f2f5ff;
-  stroke:#18223a;
+  fill:var(--ink);
+  stroke:var(--surface);
 }
 #node-popover{z-index:6}
 /* WAKE✳︎ sits behind the floor horizon: mask the lower half of its event-horizon orb. */
@@ -45,3 +56,4 @@
 
 /* WAKE✳︎ black-hole body fills only the area above the horizon. The horizon itself is supplied by the scene, so there is no closing lower/diameter border. */
 .constellation-node.is-wake .wake-body{fill:#050711;stroke:none;pointer-events:none}
+:root:not([data-theme="dark"]) .constellation-node.is-wake .wake-body{fill:color-mix(in srgb,var(--wake-core) 14%,var(--surface));}
