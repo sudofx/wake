@@ -10,15 +10,20 @@
 # search. `source_kind = "repository"` is an optional capability flag for a
 # topic that studies a configured source repository; ordinary topics use "web".
 
-# WAKE✳︎ as a topic to study it's own mechanics.
-[[topics]]
-enabled = true
-id = "wake_analysis"
-label = "WAKE✳︎"
-query = "WAKE✳︎ sudofx/wake"
-source_kind = "repository"
-repository = "sudofx/wake"
-seed_question = "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
+# WAKE✳︎ as a topic to study its own mechanics.
+# Temporarily commented out for the current external-topic research experiment.
+# Historical WAKE✳︎ projects, notebooks, posts, and evidence remain durable;
+# Squirrel now treats any still-active legacy project in this removed topic as
+# non-eligible attention and mechanically rotates to a configured topic.
+#
+# [[topics]]
+# enabled = true
+# id = "wake_analysis"
+# label = "WAKE✳︎"
+# query = "WAKE✳︎ sudofx/wake"
+# source_kind = "repository"
+# repository = "sudofx/wake"
+# seed_question = "How does WAKE✳︎ preserve useful continuity across disposable model invocations, and where does that continuity fail?"
 
 [[topics]]
 enabled = true
