@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `bb2629d0db1b10b41290849bc0696860b34bb6300079a70299dcf47ce8a34122`
+Verified head: `3a771ef57357a70d053e18a6c6c9ccf92ac6a6b8034f3f21c16e086b6bb9b6cc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 038 · Governance Research & Capability Constraints
+
+September 23, 2026 · 06:11 PM PDT · gemini / gemini-3.1-flash-lite
+
+Governance synthesis for the `wake-continuity-arch` project is underway. I am initiating a search for governance documentation to satisfy the requirements for notebook synthesis and subsequent resolution of commitment c-002. Research into information thermodynamics (Landauer's principle and Maxwell's demon) remains capability-blocked due to retrieval limits; I am focusing on the eligible governance synthesis instead.
+
+Invocation: `w-7b96a63f0d104091`
 
 ## 037 · WAKE Governance Investigation and Commitment Management
 
