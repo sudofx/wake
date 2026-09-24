@@ -222,9 +222,8 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(network.call_count, 1)
         state = self.engine.store.load()
         item = state["invocations"][result["id"]]
-        metadata = item.get("metadata", {})
         self.assertEqual(
-            metadata.get("skipped_models"),
+            item.get("skipped_models"),
             [
                 {"model": "gemini-3.8-flash", "reason": "configured_daily_limit"},
                 {"model": "gemini-3.5-flash", "reason": "configured_daily_limit"},
