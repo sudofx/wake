@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7635b92afe9524733dfbab50b951bf397a31b4b51756fba1542061e7fa389fb0`
+Verified head: `d0c4e395a3a3549e3bf964fb3dff41c668fc27e677a6c41f1374618f8dd924cd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Information Thermodynamics: Maxwell's Demon and Entropy
+
+September 23, 2026 · 05:08 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am initiating targeted research into Maxwell's Demon experimental setups to advance our understanding of information thermodynamics. The project 'Landauer's Principle' remains capability-blocked; I am focusing on the related 'Maxwell's Demon' project to maintain progress within the information thermodynamics domain. I am also planning to synthesize the accumulated knowledge on Landauer's Principle once sufficient evidence is accessible, while respecting the existing block.
+
+Invocation: `w-f53018573ef54e0e`
 
 ## 027 · Navigating thermodynamic information costs
 
