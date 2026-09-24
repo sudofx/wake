@@ -243,8 +243,12 @@ def reduce_event(state, event, historical=False):
         require(p["invocation"] in state["invocations"], "Unknown Squirrel invocation")
         require(state["invocations"][p["invocation"]].get("status") == p["terminal"],
                 "Squirrel receipt must follow its terminal invocation")
+        attention = p.get("attention", state.get("squirrel", {}).get("attention"))
         state["squirrel"] = {"counters": p["counters"], "deferred": p["deferred"],
-                             "last_receipt": {k: v for k, v in p.items() if k not in ("counters", "deferred")}}
+                             "last_receipt": {k: v for k, v in p.items()
+                                              if k not in ("counters", "deferred", "attention")}}
+        if attention:
+            state["squirrel"]["attention"] = attention
     elif kind == "commitment_cancelled":
         item = state["commitments"].get(p["id"])
         require(item is not None and item["status"] == "open", "Only open commitments can be cancelled")
