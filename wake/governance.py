@@ -34,13 +34,12 @@ import json
 import math
 import re
 
-# TEMPORARY DEBUG INSTRUMENT:
-# Ordinary Bob publication normally requires two independently retrieved source
-# URLs. Lower this to one while testing whether the promotion gate is the
-# bottleneck between external-topic notebooks and public posts. Keep all other
-# provenance, notebook-traceability, evidence-role, claim-support, and editorial
-# rules intact. Restore to 2 after the diagnostic window.
-PUBLICATION_MIN_SOURCES = 1
+# Working notebooks and public publication intentionally have different
+# evidence thresholds. One qualifying source may enter a provisional notebook,
+# while ordinary Bob publication requires corroboration across at least two
+# distinct retrieved source URLs. This keeps provenance strict without forcing
+# exploratory synthesis to pretend it is already publication-ready.
+PUBLICATION_MIN_SOURCES = 2
 # ---------------------------------------------------------------------------
 # REJECTION
 # ---------------------------------------------------------------------------
