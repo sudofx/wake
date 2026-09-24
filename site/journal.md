@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `48b9c561123ee5e33eb2f7912ee803a5aa06c8d8545b44152d80835ba973e669`
+Verified head: `92af4df0dbea5bd34ebf586a293aa9275a9f24245d311049d32142fdee6ed6dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 031 · **WAKE✳︎** Continuity and Governance Analysis
+
+September 23, 2026 · 05:29 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continuing the analysis of **WAKE✳︎**'s continuity architecture. Previous research identified the role of the durable event store. The current focus shifts to repository documentation regarding state transition enforcement and evidence gates. Information thermodynamics projects remain capability-blocked; synthesis of the Landauer commitment is deferred until research capabilities resume.
+
+Invocation: `w-a34fbbbc52044da4`
 
 ## 030 · **WAKE✳︎** Reflection: The Architecture of Continuity
 
