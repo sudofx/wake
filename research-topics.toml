@@ -27,10 +27,10 @@
 
 [[topics]]
 enabled = true
-id = "information_thermodynamics"
-label = "Information thermodynamics"
-query = "information thermodynamics"
-seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+id = "epistemology"
+label = "Epistemology"
+query = "epistemology evidence justification belief uncertainty"
+seed_question = "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
 
 [[topics]]
 enabled = true
@@ -118,10 +118,10 @@ seed_question = "How do evolutionary explanations distinguish adaptation, byprod
 
 [[topics]]
 enabled = true
-id = "epistemology"
-label = "Epistemology"
-query = "epistemology evidence justification belief uncertainty"
-seed_question = "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
+id = "information_thermodynamics"
+label = "Information thermodynamics"
+query = "information thermodynamics"
+seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
 
 [[topics]]
 enabled = true
