@@ -646,6 +646,21 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("n", self.engine.store.load()["notebooks"])
         self.assertIn("post-one", self.engine.store.load()["posts"])
 
+    def test_debug_one_source_gate_is_exposed_in_provider_schema(self):
+        context = {
+            "research_topics": [{"id": "entropy"}],
+            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "commitments": [],
+            "evidence": [{"id": "s1", "actor": "collector"}],
+            "project_evidence": {"p": ["s1"]},
+            "blog_notebooks": {"p": [{"id": "n", "evidence": ["s1"]}]},
+            "bob_reflection_due": False,
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
+        self.assertEqual(blog["properties"]["evidence"]["minItems"], PUBLICATION_MIN_SOURCES)
+        self.assertEqual(blog["properties"]["evidence"]["items"]["enum"], ["s1"])
+
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1")
         self.source("s2")
