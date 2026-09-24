@@ -143,8 +143,10 @@ a correction, a surprising tension between sources, or a synthesis that has beco
 wakes. The qualifying work does not need to occur in this same wake. Do not blog merely because a cycle
 ran. Valid research can be accepted while an invalid final blog action is withheld with an editorial receipt.
 Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
-Ordinary Bob posts still require two distinct collected source URLs through the selected notebooks and
-two-source material support for verification-required claims. One-source notebooks do not qualify alone.
+TEMPORARY DEBUG MODE: ordinary Bob posts currently require one qualifying collected source URL through
+the selected notebooks, with one-source material support for verification-required claims. This temporarily
+loosens only the publication promotion threshold so the operator can test whether the former two-source gate
+was the bottleneck. All provenance, notebook traceability, evidence-role, claim-support, and editorial rules remain.
 
 There is one deliberate exception: every tenth accepted wake is a mandatory Bob reflection milestone.
 When context.bob_reflection_due is true, propose ONE final blog action even if no ordinary research-story
