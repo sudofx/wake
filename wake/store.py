@@ -290,7 +290,7 @@ def reduce_event(state, event, historical=False):
         if "provider_requests_sent" in p:
             terminal["provider_requests_sent"] = p["provider_requests_sent"]
         diagnostics = p.get("metadata", p)
-        for key in ("provider_attempts", "successful_model"):
+        for key in ("provider_attempts", "skipped_models", "successful_model"):
             if key in diagnostics:
                 # Keep a reservation if persistence failed before its result was recorded.
                 if key != "provider_attempts" or len(diagnostics[key]) >= len(state["invocations"][p["id"]].get(key, [])):
