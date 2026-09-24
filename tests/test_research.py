@@ -1096,6 +1096,50 @@ class ResearchTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError): allowed_url(url)
         self.assertEqual(allowed_url("https://arxiv.org/abs/1234.56789"), "https://arxiv.org/abs/1234.56789")
 
+        for url in (
+            "https://api.datacite.org/dois/10.1234/example",
+            "https://www.frontiersin.org/journals/neuroscience/articles/example/full",
+            "https://eric.ed.gov/?id=EJ1234567",
+            "https://academic.oup.com/example",
+            "https://www.cambridge.org/core/journals/example",
+            "https://royalsocietypublishing.org/doi/10.1098/example",
+            "https://www.bmj.com/content/example",
+            "https://jamanetwork.com/journals/example",
+        ):
+            with self.subTest(url=url):
+                self.assertEqual(allowed_url(url), url)
+
+    def test_scholarly_discovery_rotates_across_four_independent_indexes(self):
+        routes0 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=0)
+        routes1 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=1)
+        routes2 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=2)
+        routes3 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=3)
+        hosts = [__import__("urllib.parse").parse.urlsplit(routes[0]).hostname
+                 for routes in (routes0, routes1, routes2, routes3)]
+        self.assertEqual(hosts, [
+            "api.crossref.org", "api.openalex.org",
+            "api.semanticscholar.org", "api.datacite.org",
+        ])
+        self.assertTrue(all(len(routes) == 4 for routes in (routes0, routes1, routes2, routes3)))
+
+    def test_broad_index_searches_remain_discovery_only(self):
+        urls = research_urls("working memory", "psychology", attempts=0)
+        self.assertTrue(all(evidence_role(url) == "discovery" for url in urls))
+        self.assertEqual(
+            evidence_role("https://api.datacite.org/dois/10.1234/example"),
+            "source",
+        )
+
+    def test_host_tiers_describe_retrieval_without_promoting_truth(self):
+        self.assertEqual(host_tier("https://www.frontiersin.org/journals/test/articles/x/full"),
+                         "verification-fulltext")
+        self.assertEqual(host_tier("https://api.datacite.org/dois/10.1234/example"),
+                         "verification-metadata")
+        self.assertEqual(host_tier("https://academic.oup.com/example"),
+                         "verification-publisher")
+        self.assertEqual(host_tier("https://osf.io/abcd1/"),
+                         "preprint")
+
     def test_broader_trusted_source_hosts_are_allowed(self):
         urls = [
             "https://api.datacite.org/dois/10.1234/example",
