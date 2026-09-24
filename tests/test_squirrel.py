@@ -151,6 +151,77 @@ class SquirrelTests(unittest.TestCase):
         }
         self.assertEqual(plan(state)["selected_topic"], "comedy")
 
+    def test_saturation_does_not_expire_after_three_other_topic_attempts(self):
+        state = {
+            "charter": "test",
+            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "projects": {
+                "p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 5},
+                "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
+            },
+            "invocations": {},
+            "squirrel": {
+                "counters": {},
+                "deferred": {
+                    "entropy": {
+                        "deferred_by": "old",
+                        "cause": "attention_saturation",
+                        "other_topic_attempts": 0,
+                    }
+                },
+                "attention": {"topic": "entropy", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
+            },
+            "evidence": {},
+        }
+        for index in range(COOLDOWN_OTHER_ATTEMPTS):
+            invocation = f"other-{index}"
+            state["invocations"][invocation] = {"squirrel": {"selected_topic": "comedy"}}
+            receipt = assessment(state, invocation, "accepted", {
+                "actions": [{"type": "research", "id": f"r-{index}", "project": "c",
+                             "query": "q", "domain": "comedy", "reason": "r"}],
+            })
+            state["squirrel"] = {
+                "counters": receipt["counters"],
+                "deferred": receipt["deferred"],
+                "attention": receipt["attention"],
+            }
+
+        self.assertIn("entropy", state["squirrel"]["deferred"])
+        self.assertEqual(state["squirrel"]["deferred"]["entropy"]["other_topic_attempts"],
+                         COOLDOWN_OTHER_ATTEMPTS)
+        self.assertEqual(plan(state)["selected_topic"], "comedy")
+
+    def test_external_notebook_releases_saturated_topic(self):
+        state = {
+            "charter": "test",
+            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "projects": {
+                "p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 5},
+                "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
+            },
+            "invocations": {
+                "w": {"squirrel": {"selected_topic": "comedy"}},
+            },
+            "squirrel": {
+                "counters": {},
+                "deferred": {
+                    "entropy": {
+                        "deferred_by": "old",
+                        "cause": "attention_saturation",
+                        "other_topic_attempts": 7,
+                    }
+                },
+                "attention": {"topic": "comedy", "accepted_streak": 2},
+            },
+            "evidence": {},
+        }
+        receipt = assessment(state, "w", "accepted", {
+            "actions": [{"type": "notebook", "id": "nb-c", "project": "c"}],
+        })
+        self.assertIn("entropy", receipt["restored_topics"])
+        self.assertNotIn("entropy", receipt["deferred"])
+
+
     def test_rotation_skips_fully_capability_blocked_domain(self):
         state = {
             "charter": "test",
