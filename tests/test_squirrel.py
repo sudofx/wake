@@ -312,7 +312,12 @@ class SquirrelTests(unittest.TestCase):
 
     def test_full_capacity_rotation_schema_requires_parking_first(self):
         context = {
-            "research_topics": [{"id": "quantum_mechanics"}, {"id": "psychology"}],
+            "research_topics": [
+                {"id": "information_thermodynamics"},
+                {"id": "neurodivergence"},
+                {"id": "quantum_mechanics"},
+                {"id": "psychology"},
+            ],
             "projects": [
                 {"id": "wake", "title": "Wake", "question": "q1",
                  "domain": "wake_analysis", "status": "active", "next_step": "n1"},
