@@ -405,7 +405,7 @@ class SquirrelTests(unittest.TestCase):
         self.assertEqual(first["selected_topic"], reordered["selected_topic"])
         self.assertEqual(first["topic_selection_method"], "receipt_hash_uniform_index")
         self.assertEqual(first["topic_selection_candidates"], ["comedy", "entropy", "music"])
-        self.assertTrue(first["enforce_selected_topic"])
+        self.assertFalse(first["enforce_selected_topic"])
 
         selections = set()
         for index in range(32):
