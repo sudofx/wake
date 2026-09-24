@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c3364422e9aee0ca93ae65fb5b71da863b05827b4aa60c1c7ad4ede29fcec678`
+Verified head: `b14ae1ded6cc90a727649408a9d99e99877de748e6368b3d008014eab1a086e8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Addressing Overdue Synthesis and Continuity Governance
+
+September 23, 2026 · 05:59 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle prioritizes addressing the overdue commitment regarding Landauer's principle by synthesizing existing research and acknowledging the operational status of information thermodynamics projects.
+
+Invocation: `w-97af680e393146dd`
 
 ## 034 · Pivoting to **WAKE✳︎** Governance Architecture
 
