@@ -72,23 +72,21 @@ def run_experiment(directory, cycles=100, output="site"):
     starts = [e for e in engine.store.events() if e["kind"] == "invocation_started"]
     checks["fresh_sessions"] = {"passed": all(e["payload"]["request"]["context"]["version"] == i for i,e in enumerate(starts)),
                                 "detail": "Each cycle launches and exits a separate interpreter; durable context version increases by one."}
-    fulfilled = [c for c in s["commitments"].values() if c["status"] == "fulfilled"]
-    eligible_shifts = [
-        item for item in s["invocations"].values()
-        if item.get("status") == "accepted"
-        and not item.get("squirrel", {}).get("enforce_selected_topic")
-    ]
-    expected_fulfilled = max(0, len(eligible_shifts) - 1)
+    commitments = list(s["commitments"].values())
+    fulfilled = [c for c in commitments if c["status"] == "fulfilled"]
+    open_handoffs = [c for c in commitments if c["status"] == "open"]
     checks["commitment_handoff"] = {
-        "passed": len(fulfilled) == expected_fulfilled and all(
-            c["created_by"] != c["resolved_by"] for c in fulfilled
+        "passed": (
+            len(open_handoffs) == 1
+            and len(fulfilled) == len(commitments) - 1
+            and all(c["created_by"] != c["resolved_by"] for c in fulfilled)
         ),
         "count": len(fulfilled),
-        "expected_count": expected_fulfilled,
+        "total_created": len(commitments),
+        "open_count": len(open_handoffs),
         "detail": (
             "Fresh invocations inherit obligations without another human reminder; "
-            "forced Squirrel shifts intentionally preserve commitments unchanged "
-            "until an eligible later shift."
+            "forced Squirrel shifts preserve them unchanged until an eligible later shift."
         ),
     }
     beliefs = [e["payload"]["proposal"]["actions"] for e in engine.store.events() if e["kind"] == "accepted"]
