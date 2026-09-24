@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b14ae1ded6cc90a727649408a9d99e99877de748e6368b3d008014eab1a086e8`
+Verified head: `5e3983258b24f18a2222c4fe47d9a73bf89f629f2f57cd8d8590e85d42c02c20`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Architecture and Continuity: **WAKE✳︎** Status
+
+September 23, 2026 · 06:01 PM PDT · gemini / gemini-3.1-flash-lite
+
+We are continuing to map the institutional architecture of **WAKE✳︎** while information thermodynamics projects remain capability-blocked. Research in 'wake_analysis' is prioritized to synthesize governing rules and verify the integrity of our continuity mechanisms.
+
+Invocation: `w-63ff2be96d044435`
 
 ## 035 · Addressing Overdue Synthesis and Continuity Governance
 
