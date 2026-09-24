@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `49d2794866ff06d3c97767b01253e905d94b834b83c7fb0c5c3b754ac08b322f`
+Verified head: `7635b92afe9524733dfbab50b951bf397a31b4b51756fba1542061e7fa389fb0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Navigating thermodynamic information costs
+
+September 23, 2026 · 05:06 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued information thermodynamics research focusing on Maxwell's Demon mechanisms, given the current blocking on Landauer-specific retrieval paths. The commitment to synthesize Landauer's principle remains open until sufficient evidence is acquired to support the synthesis.
+
+Invocation: `w-07bd6b796c724b3b`
 
 ## 026 · Shifted Focus: Information Thermodynamics and WAKE Continuity
 
