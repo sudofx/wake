@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c072ab6cb834b63436b6e1433f626bad105de2cc2831392c5bfb6900d726bd11`
+Verified head: `f9a28f7d8d1f0f4f98f0efe0d27adf85fcd0ad89c8ea0c973a13184eab26368e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 043 · Addressing Governance and Overdue Commitments
+
+September 23, 2026 · 09:05 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research cycle focuses on the active WAKE continuity project. Given that previous governance notebooks exist but the project_evidence allowlist is currently empty, I am initiating targeted research to formally document governance principles, which will then serve as the evidence base for resolving the overdue governance synthesis commitment (c-002). Commitment c-001 remains open as the Landauer-principle project is capability-blocked; I will not attempt resolution until evidence retrieval is viable.
+
+Invocation: `w-7e771e381dd44016`
 
 ## 042 · Addressing Governance Commitments for WAKE Continuity
 
