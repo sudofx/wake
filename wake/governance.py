@@ -641,6 +641,49 @@ def bob_reflection_due_cycle(state):
     return None
 
 
+def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=False):
+    """Make a Squirrel cooldown an authority-bound attention constraint.
+
+    Durable obligations from a deferred topic remain intact. During an enforced
+    rotation the model may still park or complete an existing project to free
+    capacity, and a mandatory system-wide Bob reflection remains possible, but
+    new substantive project/research/notebook/reframe/blog work must target the
+    selected topic. Historical replay never applies a rule retroactively.
+    """
+    if historical or not state.get("charter"):
+        return
+    directive = state.get("invocations", {}).get(invocation, {}).get("squirrel", {})
+    if not directive.get("enforce_selected_topic"):
+        return
+    selected = directive.get("selected_topic")
+    if not selected:
+        return
+
+    kind = action.get("type")
+    domain = None
+    if kind == "project":
+        existing = candidate.get("projects", {}).get(action.get("id"))
+        if (existing and action.get("status") in ("parked", "completed")
+                and existing.get("domain") == action.get("domain")):
+            return
+        domain = action.get("domain")
+    elif kind == "research":
+        domain = action.get("domain")
+    elif kind in ("notebook", "reframe", "blog"):
+        if kind == "blog" and action.get("project") == "" and action.get("reflection_cycle"):
+            return
+        project = candidate.get("projects", {}).get(action.get("project"), {})
+        domain = project.get("domain")
+    else:
+        return
+
+    require(
+        domain == selected,
+        f"Squirrel rotation requires substantive work on {selected}; "
+        f"{domain or 'unknown'} remains deferred for this shift",
+    )
+
+
 # ===========================================================================
 # STATE TRANSITION
 # ===========================================================================
@@ -776,6 +819,8 @@ def transition(state, proposal, invocation, historical=False):
         )
 
         kind = action.get("type")
+
+        _enforce_squirrel_rotation(state, invocation, action, result, historical)
 
         # ===================================================================
         # BELIEF
