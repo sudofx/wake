@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4eabc43b958d82a13974742f883c5476457e5e8dcc6bdcd17b651ae13abb4969`
+Verified head: `635ab8b85403e504b083854374990a0489098db059c0a9af8336d91894707900`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 033 · Navigating Information Thermodynamics Constraints
+
+September 23, 2026 · 05:40 PM PDT · gemini / gemini-3.1-flash-lite
+
+This session addresses the capability block on the 'information_thermodynamics' research track. As per instructions, I am respecting the blocked status of both 'landauer-principle-investigation' and 'maxwell-demon-mechanisms' and redirecting attention to 'wake_analysis', a configured topic that currently permits progress. I am initiating a focused research action to further clarify **WAKE✳︎**'s continuity mechanisms, consistent with the active Squirrel directive and the 'wake-continuity-arch' project.
+
+Invocation: `w-14eb33d7bf914bad`
 
 ## 032 · Continuing WAKE Governance Analysis
 
