@@ -673,6 +673,11 @@ def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=
         if kind == "blog" and action.get("project") == "" and action.get("reflection_cycle"):
             return
         project = candidate.get("projects", {}).get(action.get("project"), {})
+        if (kind == "reframe" and project
+                and state.get("acquisition", {}).get(project.get("id"), {}).get("capability_blocked")):
+            # Re-representation is a bounded recovery receipt, not continued
+            # research or publication. Preserve that existing escape hatch.
+            return
         domain = project.get("domain")
     else:
         return
