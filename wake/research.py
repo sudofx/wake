@@ -25,18 +25,25 @@ import xml.etree.ElementTree as ET
 ALLOWED_HOSTS = {
     # Scholarly indexes / open research
     "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
-    "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
+    "api.datacite.org", "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
     "pubmed.ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
-    "europepmc.org", "api.core.ac.uk", "doaj.org",
+    "europepmc.org", "api.core.ac.uk", "doaj.org", "eric.ed.gov",
     # Universities / public knowledge institutions
     "plato.stanford.edu", "ourworldindata.org", "www.ourworldindata.org",
     "data.worldbank.org", "api.worldbank.org", "www.imf.org",
     "www.oecd.org", "data.oecd.org", "www.un.org",
     "www.noaa.gov", "www.nasa.gov", "science.nasa.gov",
-    # Publishers / journals
+    # Open-access and scholarly publishers / journals
+    "frontiersin.org", "www.frontiersin.org",
     "quantum-journal.org", "journals.aps.org", "link.aps.org",
     "www.nature.com", "nature.com", "www.science.org",
     "journals.plos.org", "elifesciences.org", "www.pnas.org",
+    "royalsocietypublishing.org", "academic.oup.com", "www.cambridge.org",
+    "link.springer.com", "springeropen.com", "www.springeropen.com",
+    "biomedcentral.com", "www.biomedcentral.com",
+    "bmj.com", "www.bmj.com", "jamanetwork.com", "www.jamanetwork.com",
+    # Preprints remain source material but are explicitly tiered as preprints.
+    "osf.io", "psyarxiv.com", "www.psyarxiv.com",
     # WAKE source-controlled self-analysis
     "raw.githubusercontent.com", "api.github.com",
 }
@@ -240,9 +247,37 @@ def fetch_source(url, discovery_only=False):
         content_type = response.headers.get("Content-Type", "")
     decoded = raw.decode("utf-8", errors="replace")
     if "api.crossref.org" in url:
-        items = json.loads(decoded).get("message", {}).get("items", [])
+        message = json.loads(decoded).get("message", {})
+        items = message.get("items", [message] if isinstance(message, dict) else [])
         text = json.dumps(items, ensure_ascii=False)
-        scope = "bibliographic metadata and abstracts where supplied; not full papers"
+        scope = "Crossref bibliographic metadata and abstracts where supplied; not full papers"
+    elif "api.datacite.org" in url:
+        payload = json.loads(decoded)
+        records = payload.get("data", [])
+        compact = []
+        for record in records:
+            attrs = record.get("attributes", {})
+            compact.append({
+                "id": record.get("id"), "doi": attrs.get("doi"),
+                "titles": attrs.get("titles"), "publisher": attrs.get("publisher"),
+                "publicationYear": attrs.get("publicationYear"),
+                "types": attrs.get("types"), "subjects": attrs.get("subjects"),
+                "descriptions": attrs.get("descriptions"),
+                "url": attrs.get("url"),
+            })
+        text = json.dumps(compact, ensure_ascii=False)
+        scope = "DataCite DOI metadata and descriptions where supplied; not full papers"
+    elif "api.semanticscholar.org" in url:
+        payload = json.loads(decoded)
+        records = payload.get("data", [payload] if isinstance(payload, dict) else [])
+        compact = [{
+            "paperId": item.get("paperId"), "title": item.get("title"),
+            "year": item.get("year"), "abstract": item.get("abstract"),
+            "url": item.get("url"), "externalIds": item.get("externalIds"),
+            "openAccessPdf": item.get("openAccessPdf"),
+        } for item in records]
+        text = json.dumps(compact, ensure_ascii=False)
+        scope = "Semantic Scholar scholarly metadata and abstracts where supplied; not full papers"
     elif "api.openalex.org" in url:
         results = json.loads(decoded).get("results", [])
         compact = []
@@ -362,10 +397,20 @@ def research_urls(query, domain, attempts=0, topic=None):
         "search": query, "per-page": 4,
         "select": "id,doi,title,publication_year,type,cited_by_count,open_access,primary_location,abstract_inverted_index",
     })
-    routes = [crossref, openalex]
-    if attempts % 2:
-        routes.reverse()
-    return routes
+    semantic_scholar = "https://api.semanticscholar.org/graph/v1/paper/search?" + urllib.parse.urlencode({
+        "query": query, "limit": 4,
+        "fields": "paperId,title,year,abstract,url,externalIds,openAccessPdf",
+    })
+    datacite = "https://api.datacite.org/dois?" + urllib.parse.urlencode({
+        "query": query, "page[size]": 4,
+    })
+    # Rotate across independent indexes instead of treating Crossref/OpenAlex
+    # as the whole scholarly world. Search responses remain discovery leads;
+    # exact records or approved publisher/full-text pages are required for
+    # qualifying evidence.
+    indexes = [crossref, openalex, semantic_scholar, datacite]
+    start = attempts % len(indexes)
+    return indexes[start:] + indexes[:start]
 
 
 def evidence_role(url):
@@ -382,7 +427,36 @@ def evidence_role(url):
         return "discovery"
     if parsed.hostname == "api.openalex.org" and parsed.path == "/works" and "search" in query:
         return "discovery"
+    if parsed.hostname == "api.semanticscholar.org" and parsed.path.endswith("/paper/search") and "query" in query:
+        return "discovery"
+    if parsed.hostname == "api.datacite.org" and parsed.path == "/dois" and "query" in query:
+        return "discovery"
     return "source"
+
+
+def host_tier(url, discovery_only=False):
+    """Describe what kind of approved source was retrieved.
+
+    The tier is provenance metadata, not a truth score. Governance still uses
+    evidence_role plus project relevance and publication gates.
+    """
+    if discovery_only:
+        return "discovery"
+    host = urllib.parse.urlsplit(url).hostname
+    if host in {"arxiv.org", "export.arxiv.org", "rss.arxiv.org", "osf.io",
+                "psyarxiv.com", "www.psyarxiv.com"}:
+        return "preprint"
+    if host in {"api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
+                "api.datacite.org", "pubmed.ncbi.nlm.nih.gov", "europepmc.org",
+                "api.core.ac.uk", "doaj.org", "eric.ed.gov"}:
+        return "verification-metadata"
+    if host in {"pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
+                "frontiersin.org", "www.frontiersin.org", "journals.plos.org",
+                "elifesciences.org", "quantum-journal.org"}:
+        return "verification-fulltext"
+    if host in {"raw.githubusercontent.com", "api.github.com"}:
+        return "source-controlled"
+    return "verification-publisher"
 
 
 # ---------------------------------------------------------------------------
@@ -513,7 +587,7 @@ def collect(engine, fetcher=fetch_source):
                 "verification_required": True,
                 "topic_domain": item["domain"],
                 "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
-                "host_tier": "discovery" if item.get("discovery_only") else "verification",
+                "host_tier": host_tier(url, item.get("discovery_only", False)),
                 "persistent_identifiers": persistent_identifiers(observation),
             }
             content = json.dumps(observation, ensure_ascii=False)
