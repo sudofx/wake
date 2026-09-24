@@ -307,6 +307,34 @@ class SquirrelTests(unittest.TestCase):
         self.assertEqual(research["properties"]["domain"]["enum"], ["entropy"])
 
 
+    def test_removed_active_topic_forces_rotation_without_reset(self):
+        state = {
+            "charter": "test",
+            "research_topics": [
+                {"id": "entropy", "enabled": True},
+                {"id": "comedy", "enabled": True},
+            ],
+            "projects": {
+                "wake": {
+                    "id": "wake",
+                    "domain": "wake_analysis",
+                    "status": "active",
+                    "updated_version": 99,
+                }
+            },
+            "acquisition": {},
+            "evidence": {},
+            "invocations": {},
+            "squirrel": {"counters": {}, "deferred": {}},
+        }
+        directive = plan(state)
+        self.assertEqual(directive["selected_topic"], "entropy")
+        self.assertTrue(directive["current_topic_unconfigured"])
+        self.assertTrue(directive["rotation_required"])
+        self.assertTrue(directive["enforce_selected_topic"])
+        self.assertIn("no longer configured", directive["reason"])
+
+
 
 if __name__ == "__main__":
     unittest.main()
