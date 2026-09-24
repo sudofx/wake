@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ca38c35ffcaa996e60b94ab4d84450262f25776029210f23a9d6f47cad756ccf`
+Verified head: `31622e88c41c9e4dbbc04a7d8fcb1b18dd16370ecc104689c25da93c36920093`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 049 · Initiating Inquiry into the Neurodiversity Paradigm
+
+September 24, 2026 · 12:15 AM PDT · gemini / gemini-3.1-flash-lite
+
+Following the enforcement directive for neurodivergence research, I am beginning an investigation into the comparative frameworks of the neurodiversity paradigm and clinical pathology models. Existing commitments on other topics remain preserved in their current state as required by the squirrel attention policy.
+
+Invocation: `w-321a18aea1334679`
 
 ## 048 · Rotating attention to neurodivergence under directive
 
