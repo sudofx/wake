@@ -310,9 +310,19 @@ def fetch_source(url, discovery_only=False):
         text = json.dumps(compact, ensure_ascii=False)
         scope = "Semantic Scholar scholarly metadata and abstracts where supplied; not full papers"
     elif "api.openalex.org" in url:
-        results = json.loads(decoded).get("results", [])
+        payload = json.loads(decoded)
+        # OpenAlex search endpoints wrap works in `results`, while an exact
+        # /works/W... lookup returns the work object directly. Treat both shapes
+        # identically so a DOI/OpenAlex discovery lead can be mechanically
+        # promoted into one exact qualifying source record.
+        if isinstance(payload, dict) and isinstance(payload.get("results"), list):
+            works = payload["results"]
+        elif isinstance(payload, dict) and payload.get("id"):
+            works = [payload]
+        else:
+            works = []
         compact = []
-        for work in results:
+        for work in works:
             abstract = work.get("abstract_inverted_index") or {}
             ordered = sorted(((pos, word) for word, positions in abstract.items() for pos in positions))
             compact.append({
@@ -578,7 +588,10 @@ def collect(engine, fetcher=fetch_source):
         project = projects.get(project_id, {})
         if project.get("status") != "active":
             continue
-        for identifier in reversed(summary.get("persistent_identifiers", [])):
+        # persistent_identifiers() records DOI leads before provider-local IDs.
+        # Prefer those canonical identifiers first: Crossref exact DOI records are
+        # broadly interoperable, while OpenAlex IDs remain a deterministic fallback.
+        for identifier in summary.get("persistent_identifiers", []):
             url = exact_identifier_url(identifier)
             if url and url not in existing_sources:
                 identifier_candidates.append({
