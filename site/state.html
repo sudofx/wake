@@ -9,7 +9,7 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
 :root{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}
 :root[data-theme=dark]{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}a{color:inherit;text-decoration:none}.wake-mark{font-weight:900}@media(hover:hover) and (pointer:fine){a:hover{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}button,summary{font:inherit;color:inherit}button{cursor:pointer}main{max-width:1120px;margin:auto;padding:32px 28px 90px}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}.topline{display:flex;align-items:center;justify-content:space-between;gap:18px}.wordmark{font-size:30px;font-weight:900;letter-spacing:-1.7px}.wordmark b{color:var(--green);font-family:var(--serif);font-variant-emoji:text}.theme-toggle{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}h1{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}h2{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}h3{font-size:14px;margin:24px 0 10px}nav{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}.meta{color:var(--muted);font:12px/1.6 var(--mono)}details{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}summary{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}.inside{border-top:1px solid var(--line);padding:14px 0 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}code{font-family:var(--mono);overflow-wrap:anywhere}.tag,.event-kind{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}.tag{color:var(--accent)}.event-kind{text-transform:uppercase;letter-spacing:.06em}.event-kind.accepted{background:#dcebdd;color:#35623d;border-color:#bad2bd}.event-kind.rejected,.event-kind.failed{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}.event-kind.invocation_started{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}.event-kind.observation,.event-kind.research_collected{background:#ede3cf;color:#7e6030;border-color:#dfcda7}.event-kind.recovered{background:#e5e2ed;color:#635178;border-color:#cec4d9}.event-kind.deferred{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}.event-links{font-size:.9rem;color:var(--muted)}hr{border:0;border-top:1px solid var(--line);margin:28px 0}@media(max-width:680px){main{padding:24px 18px 70px}h1{font-size:2.7rem}.topline{align-items:flex-start}nav{gap:14px;font-size:12px}.meta,summary{font-size:12px}}
-</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>22352d8fc5087562a7e55891961d6398f3be5fd39550aa937b5b45cb5d89e995</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 22<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>commit-entropy-synthesis-001</summary><div class="inside"><pre>{
+</style><link rel="alternate" type="application/rss+xml" title="Bob’s Blog" href="https://sudofx.github.io/wake/blog.xml"><link rel="alternate" type="application/rss+xml" title="WAKE Journal" href="https://sudofx.github.io/wake/journal.xml"></head><body><main><header><div class="topline"><a class="wordmark" href="https://sudofx.github.io/wake/">WAKE<b>✳︎</b></a><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div><div class="eyebrow">READABLE EXPORT</div><h1>Human-readable durable state</h1><p>The current projected state, reorganized for reading without changing the canonical JSON.</p><p class="meta">Verified head: <code>ed019ba622608f789a3c3a3056ca497a1d9099aed82fcef1a50147ac20656963</code></p><nav><a href="index.html">Main journal</a><a href="map.html">MAP</a><a href="state.md">Markdown source</a><a href="state.json">Raw data</a></nav></header><p><strong>Version:</strong> 22<br><strong>Objective:</strong> Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.<br><strong>Focus:</strong> continuity</p><h2>Beliefs</h2><p class="meta">None recorded.</p><h2>Commitments</h2><details><summary>commit-entropy-synthesis-001</summary><div class="inside"><pre>{
   &quot;due_cycle&quot;: 4,
   &quot;id&quot;: &quot;commit-entropy-synthesis-001&quot;,
   &quot;reason&quot;: &quot;Allows adequate time to process the findings from the new search and move toward synthesis.&quot;,
@@ -10416,6 +10416,399 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
       }
     ]
   }
+}</pre></div></details><details><summary>w-e36cf20d4ecb4ee4</summary><div class="inside"><pre>{
+  &quot;base_version&quot;: 22,
+  &quot;charged&quot;: true,
+  &quot;context_delivery&quot;: {
+    &quot;delivered_context_chars&quot;: 11064,
+    &quot;delivered_request_chars&quot;: 35758,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;omitted_categories&quot;: [
+      &quot;full durable evidence content&quot;,
+      &quot;recent journal bodies&quot;,
+      &quot;completed-project archive&quot;,
+      &quot;full notebook bodies&quot;,
+      &quot;research and blog history outside the bounded working set&quot;
+    ],
+    &quot;provenance_policy&quot;: &quot;All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.&quot;,
+    &quot;rich_context_chars&quot;: 73219,
+    &quot;working_set_chars&quot;: 1375
+  },
+  &quot;experimental_regime&quot;: {
+    &quot;actor&quot;: &quot;operator&quot;,
+    &quot;adopted_at&quot;: &quot;2026-09-24T23:47:22.474938+00:00&quot;,
+    &quot;controls&quot;: {
+      &quot;time_dilation&quot;: {
+        &quot;affects&quot;: [
+          &quot;telemetry&quot;,
+          &quot;provider_context&quot;
+        ],
+        &quot;description&quot;: &quot;Records wall, cycle and intervening-event distance; effective time follows the selected mapping.&quot;,
+        &quot;enabled&quot;: true,
+        &quot;mode&quot;: &quot;real&quot;,
+        &quot;scale&quot;: 1.0
+      }
+    },
+    &quot;effective_from_version&quot;: 0,
+    &quot;effective_seconds&quot;: 0.0,
+    &quot;event_seq&quot;: 3,
+    &quot;id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;reason&quot;: &quot;Initialize the default experimental instrument regime.&quot;
+  },
+  &quot;id&quot;: &quot;w-e36cf20d4ecb4ee4&quot;,
+  &quot;inquiry_drive_shadow&quot;: {
+    &quot;activation&quot;: {
+      &quot;active&quot;: false,
+      &quot;completed_scored_cycles&quot;: 22,
+      &quot;minimum_completed_scored_cycles&quot;: 20,
+      &quot;operator_enabled&quot;: false
+    },
+    &quot;enabled&quot;: true,
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rank continuation of productive inquiry, not preservation of WAKE or its state.&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 1.0,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 1.0,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;evo-trait-explanation&quot;,
+        &quot;score&quot;: 0.85,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 2,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Distinguishing Evolutionary Explanations&quot;
+      },
+      {
+        &quot;components&quot;: {
+          &quot;coherence&quot;: 0.5,
+          &quot;continuity&quot;: 1.0,
+          &quot;generativity&quot;: 1.0,
+          &quot;novelty&quot;: 0.5,
+          &quot;self_correction&quot;: 0
+        },
+        &quot;id&quot;: &quot;psychology-memory-distinction&quot;,
+        &quot;score&quot;: 0.675,
+        &quot;signals&quot;: {
+          &quot;collected_research&quot;: 1,
+          &quot;notebooks&quot;: 0,
+          &quot;queued_research&quot;: 0
+        },
+        &quot;title&quot;: &quot;Working Memory vs Short-Term Memory&quot;
+      }
+    ],
+    &quot;weights&quot;: {
+      &quot;coherence&quot;: 0.2,
+      &quot;continuity&quot;: 0.3,
+      &quot;generativity&quot;: 0.2,
+      &quot;novelty&quot;: 0.15,
+      &quot;self_correction&quot;: 0.15
+    }
+  },
+  &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+  &quot;process_id&quot;: 2053,
+  &quot;provider&quot;: &quot;gemini&quot;,
+  &quot;quota_day&quot;: &quot;2026-09-24&quot;,
+  &quot;request_hash&quot;: &quot;5687c0db6df3f9c9f173d4f63abc31e5a80e7f2c3a9da65ab6e183674ca95ba1&quot;,
+  &quot;retrieval_shadow&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;evidence&quot;: [
+          &quot;source-1771bf5251a049f4&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-1771bf5251a049f4&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-50546adb25694d4a&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-50546adb25694d4a&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-72e6dd21f9d54912&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-72e6dd21f9d54912&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-a7c3b9eaebfa43dc&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-a7c3b9eaebfa43dc&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-1babe293127a4999&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-1babe293127a4999&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      },
+      {
+        &quot;evidence&quot;: [
+          &quot;source-13271c7139874cc5&quot;
+        ],
+        &quot;reason&quot;: &quot;Durable evidence exists that is not yet represented by a belief or notebook.&quot;,
+        &quot;record&quot;: {
+          &quot;id&quot;: &quot;source-13271c7139874cc5&quot;,
+          &quot;kind&quot;: &quot;evidence&quot;
+        },
+        &quot;trigger&quot;: &quot;unincorporated_evidence&quot;
+      }
+    ],
+    &quot;evidence_ids&quot;: [
+      &quot;source-1771bf5251a049f4&quot;,
+      &quot;source-50546adb25694d4a&quot;,
+      &quot;source-72e6dd21f9d54912&quot;,
+      &quot;source-a7c3b9eaebfa43dc&quot;,
+      &quot;source-1babe293127a4999&quot;,
+      &quot;source-13271c7139874cc5&quot;
+    ],
+    &quot;limitations&quot;: [
+      &quot;This plan is deterministic and ID-based; it does not claim semantic contradiction detection.&quot;,
+      &quot;No evidence content is copied into the working set by this planner.&quot;,
+      &quot;The engine may explicitly rehydrate qualifying selected IDs into provider context.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 6,
+      &quot;evidence_count&quot;: 6,
+      &quot;trigger_counts&quot;: {
+        &quot;unincorporated_evidence&quot;: 6
+      }
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Rehydrate exact records when an abstraction becomes expensive to trust.&quot;
+  },
+  &quot;squirrel&quot;: {
+    &quot;active&quot;: true,
+    &quot;attention&quot;: {
+      &quot;accepted_streak&quot;: 3,
+      &quot;topic&quot;: &quot;evolutionary_biology&quot;
+    },
+    &quot;attention_saturation_threshold&quot;: 5,
+    &quot;capability_blocked_topics&quot;: [],
+    &quot;cooldown_other_attempts&quot;: 3,
+    &quot;current_topic_unconfigured&quot;: false,
+    &quot;deferred_topics&quot;: [
+      &quot;prime_numbers&quot;
+    ],
+    &quot;enforce_selected_topic&quot;: true,
+    &quot;hard_rejection_threshold&quot;: 5,
+    &quot;parked&quot;: {
+      &quot;prime_numbers&quot;: [
+        {
+          &quot;id&quot;: &quot;prime_number_distribution&quot;,
+          &quot;next_step&quot;: &quot;Research the Prime Number Theorem and its implications for prime density.&quot;,
+          &quot;question&quot;: &quot;What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?&quot;
+        }
+      ]
+    },
+    &quot;reason&quot;: &quot;current durable project topic remains eligible&quot;,
+    &quot;rotation_required&quot;: true,
+    &quot;saturation_release_condition&quot;: &quot;accepted notebook or ordinary publication on another topic&quot;,
+    &quot;selected_topic&quot;: &quot;evolutionary_biology&quot;,
+    &quot;temporal&quot;: {
+      &quot;anchor_seq&quot;: 524,
+      &quot;anchor_time&quot;: &quot;2026-09-25T02:02:50.770938+00:00&quot;,
+      &quot;anchor_version&quot;: 22,
+      &quot;effective_seconds&quot;: 8128.296
+    },
+    &quot;temporal_use&quot;: &quot;observational; no time signal changes Squirrel eligibility yet&quot;,
+    &quot;topic_selection_basis&quot;: null,
+    &quot;topic_selection_candidates&quot;: [],
+    &quot;topic_selection_method&quot;: &quot;active_topic&quot;
+  },
+  &quot;temporal&quot;: {
+    &quot;cycle_distance&quot;: 0,
+    &quot;effective_elapsed_seconds&quot;: 166.89644,
+    &quot;effective_scale&quot;: 1.0,
+    &quot;effective_seconds_total&quot;: 8128.296,
+    &quot;intervening_events&quot;: {
+      &quot;accepted&quot;: 0,
+      &quot;failed&quot;: 0,
+      &quot;observation&quot;: 7,
+      &quot;rejected&quot;: 0,
+      &quot;research_collected&quot;: 0,
+      &quot;squirrel_assessed&quot;: 0,
+      &quot;total&quot;: 12
+    },
+    &quot;observed_at&quot;: &quot;2026-09-25T02:02:50.770938+00:00&quot;,
+    &quot;previous_anchor_time&quot;: &quot;2026-09-25T02:00:03.874498+00:00&quot;,
+    &quot;regime_id&quot;: &quot;reg-df573bb03399f050&quot;,
+    &quot;wall_elapsed_seconds&quot;: 166.89644
+  },
+  &quot;trust_compacts_shadow&quot;: {
+    &quot;compacts&quot;: [],
+    &quot;limitations&quot;: [
+      &quot;Compacts are deterministic receipt annotations, not authoritative durable state.&quot;,
+      &quot;They do not enter provider context in shadow mode.&quot;,
+      &quot;A compact never deletes, replaces, or proves its underlying evidence.&quot;
+    ],
+    &quot;metrics&quot;: {
+      &quot;candidate_count&quot;: 0,
+      &quot;challenged_count&quot;: 0,
+      &quot;evidence_root_count&quot;: 0,
+      &quot;provisional_count&quot;: 0,
+      &quot;settled_count&quot;: 0,
+      &quot;status_counts&quot;: {}
+    },
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;principle&quot;: &quot;Compress settled operational consequences without severing their evidence roots.&quot;
+  },
+  &quot;working_set_metrics&quot;: {
+    &quot;delivered_context_chars&quot;: 11064,
+    &quot;inquiry_drive_project_count&quot;: 2,
+    &quot;mode&quot;: &quot;bounded&quot;,
+    &quot;retrieval_candidate_count&quot;: 6,
+    &quot;retrieval_evidence_count&quot;: 6,
+    &quot;retrieval_trigger_counts&quot;: {
+      &quot;unincorporated_evidence&quot;: 6
+    },
+    &quot;trust_compact_candidate_count&quot;: 0,
+    &quot;trust_compact_evidence_root_count&quot;: 0,
+    &quot;trust_compact_settled_count&quot;: 0,
+    &quot;working_set_chars&quot;: 1375,
+    &quot;working_to_delivered_ratio&quot;: 0.1243
+  },
+  &quot;working_set_shadow&quot;: {
+    &quot;active_projects&quot;: [
+      {
+        &quot;id&quot;: &quot;psychology-memory-distinction&quot;,
+        &quot;next_step&quot;: &quot;Research psychological models distinguishing working memory and short-term memory.&quot;,
+        &quot;question&quot;: &quot;How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?&quot;,
+        &quot;title&quot;: &quot;Working Memory vs Short-Term Memory&quot;
+      },
+      {
+        &quot;id&quot;: &quot;evo-trait-explanation&quot;,
+        &quot;next_step&quot;: &quot;Search for reviews or seminal papers comparing these evolutionary mechanisms.&quot;,
+        &quot;question&quot;: &quot;How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?&quot;,
+        &quot;title&quot;: &quot;Distinguishing Evolutionary Explanations&quot;
+      }
+    ],
+    &quot;beliefs&quot;: [],
+    &quot;mode&quot;: &quot;shadow&quot;,
+    &quot;open_commitments&quot;: [],
+    &quot;principle&quot;: &quot;Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.&quot;,
+    &quot;recent_notebooks&quot;: [
+      {
+        &quot;id&quot;: &quot;notebook-entropy-provisional-01&quot;,
+        &quot;project&quot;: &quot;entropy_foundations&quot;,
+        &quot;provenance&quot;: [
+          &quot;source-37de73467bbc40e5&quot;
+        ],
+        &quot;revision&quot;: 1,
+        &quot;summary&quot;: &quot;This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.&quot;,
+        &quot;title&quot;: &quot;Provisional Review of Entropy Literature&quot;
+      }
+    ],
+    &quot;retrieval_triggers&quot;: [
+      &quot;material belief revision or retraction&quot;,
+      &quot;new contradiction or counterevidence&quot;,
+      &quot;high-consequence decision&quot;,
+      &quot;request for justification&quot;,
+      &quot;sign that an excerpt may hide a material distinction&quot;
+    ]
+  },
+  &quot;status&quot;: &quot;deferred&quot;,
+  &quot;time&quot;: &quot;2026-09-25T02:02:50.972320+00:00&quot;,
+  &quot;provider_attempts&quot;: [
+    {
+      &quot;category&quot;: &quot;server&quot;,
+      &quot;elapsed_ms&quot;: 877,
+      &quot;http_status&quot;: 503,
+      &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+      &quot;provider_error&quot;: {
+        &quot;code&quot;: 503,
+        &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+        &quot;status&quot;: &quot;UNAVAILABLE&quot;
+      },
+      &quot;request_payload_bytes&quot;: 38071,
+      &quot;response_bytes_captured&quot;: 198,
+      &quot;result&quot;: &quot;transient_failure&quot;
+    }
+  ],
+  &quot;provider_requests_sent&quot;: 1,
+  &quot;finished&quot;: &quot;2026-09-25T02:02:57.448993+00:00&quot;,
+  &quot;reason&quot;: &quot;Gemini temporarily unavailable; wake deferred&quot;,
+  &quot;skipped_models&quot;: [
+    {
+      &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+      &quot;reason&quot;: &quot;configured_daily_limit&quot;
+    },
+    {
+      &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+      &quot;reason&quot;: &quot;configured_daily_limit&quot;
+    }
+  ],
+  &quot;provider_error&quot;: {
+    &quot;category&quot;: &quot;server&quot;,
+    &quot;elapsed_ms&quot;: 877,
+    &quot;http_status&quot;: 503,
+    &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+    &quot;provider_attempts&quot;: [
+      {
+        &quot;category&quot;: &quot;server&quot;,
+        &quot;elapsed_ms&quot;: 877,
+        &quot;http_status&quot;: 503,
+        &quot;model&quot;: &quot;gemini-3.1-flash-lite&quot;,
+        &quot;provider_error&quot;: {
+          &quot;code&quot;: 503,
+          &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+          &quot;status&quot;: &quot;UNAVAILABLE&quot;
+        },
+        &quot;request_payload_bytes&quot;: 38071,
+        &quot;response_bytes_captured&quot;: 198,
+        &quot;result&quot;: &quot;transient_failure&quot;
+      }
+    ],
+    &quot;provider_error&quot;: {
+      &quot;code&quot;: 503,
+      &quot;message&quot;: &quot;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&quot;,
+      &quot;status&quot;: &quot;UNAVAILABLE&quot;
+    },
+    &quot;provider_requests_sent&quot;: 1,
+    &quot;request_payload_bytes&quot;: 38071,
+    &quot;response_bytes_captured&quot;: 198,
+    &quot;result&quot;: &quot;transient_failure&quot;,
+    &quot;skipped_models&quot;: [
+      {
+        &quot;model&quot;: &quot;gemini-3.8-flash&quot;,
+        &quot;reason&quot;: &quot;configured_daily_limit&quot;
+      },
+      {
+        &quot;model&quot;: &quot;gemini-3.5-flash&quot;,
+        &quot;reason&quot;: &quot;configured_daily_limit&quot;
+      }
+    ]
+  }
 }</pre></div></details><h2>Evidence</h2><details><summary>source-b22ec20ad2c34c88</summary><div class="inside"><pre>{
   &quot;actor&quot;: &quot;collector&quot;,
   &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=complex+systems+emergence+self-organization&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:2767},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-organization\\\&quot;,\\\&quot;pageid\\\&quot;:286947,\\\&quot;size\\\&quot;:64814,\\\&quot;wordcount\\\&quot;:6861,\\\&quot;snippet\\\&quot;:\\\&quot;justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-20T00:23:43Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Emergence\\\&quot;,\\\&quot;pageid\\\&quot;:37436,\\\&quot;size\\\&quot;:60324,\\\&quot;wordcount\\\&quot;:6551,\\\&quot;snippet\\\&quot;:\\\&quot;In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T03:04:12Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems theory\\\&quot;,\\\&quot;pageid\\\&quot;:29238,\\\&quot;size\\\&quot;:56628,\\\&quot;wordcount\\\&quot;:6135,\\\&quot;snippet\\\&quot;:\\\&quot;how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-18T16:09:09Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex system\\\&quot;,\\\&quot;pageid\\\&quot;:37438,\\\&quot;size\\\&quot;:47316,\\\&quot;wordcount\\\&quot;:4875,\\\&quot;snippet\\\&quot;:\\\&quot;\\nsystem\\nand its environment.\\nSystems\\nthat are \\\&quot;\\ncomplex\\n\\\&quot; have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T23:23:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-assembly\\\&quot;,\\\&quot;pageid\\\&quot;:351914,\\\&quot;size\\\&quot;:40999,\\\&quot;wordcount\\\&quot;:4440,\\\&quot;snippet\\\&quot;:\\\&quot;Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-10T18:14:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Systems thinking\\\&quot;,\\\&quot;pageid\\\&quot;:227985,\\\&quot;size\\\&quot;:20900,\\\&quot;wordcount\\\&quot;:2126,\\\&quot;snippet\\\&quot;:\\\&quot;action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-23T19:07:00Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complex adaptive system\\\&quot;,\\\&quot;pageid\\\&quot;:1428810,\\\&quot;size\\\&quot;:35927,\\\&quot;wordcount\\\&quot;:3790,\\\&quot;snippet\\\&quot;:\\\&quot;The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-04-06T14:02:23Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Complexity theory and organizations\\\&quot;,\\\&quot;pageid\\\&quot;:5938019,\\\&quot;size\\\&quot;:24442,\\\&quot;wordcount\\\&quot;:2009,\\\&quot;snippet\\\&quot;:\\\&quot;differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-05-25T04:34:59Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;The purpose of a system is what it does\\\&quot;,\\\&quot;pageid\\\&quot;:17404830,\\\&quot;size\\\&quot;:6777,\\\&quot;wordcount\\\&quot;:754,\\\&quot;snippet\\\&quot;:\\\&quot;applying POSIWID shows that the\\norganization&#x27;s\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T17:25:20Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Human resource management system\\\&quot;,\\\&quot;pageid\\\&quot;:48708998,\\\&quot;size\\\&quot;:14435,\\\&quot;wordcount\\\&quot;:1758,\\\&quot;snippet\\\&quot;:\\\&quot;processing\\nsystems\\n, which eventually evolved into the standardized routines and packages of enterprise resource planning (ERP) software. ERP\\nsystems\\noriginated\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T08:16:58Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;06adc02512d8defc8f0f4bd48d32b24b6bad20f173443adb99231f5920fdce18\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;complex_systems\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
@@ -12286,6 +12679,61 @@ h2 a{color:var(--cyan, var(--green))}h2 a:hover,h2 a:active{color:var(--green)}
   &quot;source&quot;: &quot;runtime:continuity&quot;,
   &quot;version&quot;: 22,
   &quot;time&quot;: &quot;2026-09-25T02:00:04.104177+00:00&quot;
+}</pre></div></details><details><summary>source-13271c7139874cc5</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://api.crossref.org/works/10.1086%2F343878\&quot;, \&quot;scope\&quot;: \&quot;Crossref bibliographic metadata and abstracts where supplied; not full papers\&quot;, \&quot;excerpt\&quot;: \&quot;[{\\\&quot;indexed\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2026, 9, 24]], \\\&quot;date-time\\\&quot;: \\\&quot;2026-09-24T14:16:55Z\\\&quot;, \\\&quot;timestamp\\\&quot;: 1790259415161, \\\&quot;version\\\&quot;: \\\&quot;4.1.0\\\&quot;}, \\\&quot;reference-count\\\&quot;: 220, \\\&quot;publisher\\\&quot;: \\\&quot;University of Chicago Press\\\&quot;, \\\&quot;issue\\\&quot;: \\\&quot;1\\\&quot;, \\\&quot;content-domain\\\&quot;: {\\\&quot;domain\\\&quot;: [], \\\&quot;crossmark-restriction\\\&quot;: false}, \\\&quot;short-container-title\\\&quot;: [\\\&quot;The American Naturalist\\\&quot;], \\\&quot;published-print\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 1]]}, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/343878\\\&quot;, \\\&quot;type\\\&quot;: \\\&quot;journal-article\\\&quot;, \\\&quot;created\\\&quot;: {\\\&quot;date-parts\\\&quot;: [[2003, 1, 17]], \\\&quot;date-time\\\&quot;: \\\&quot;2003-01-17T16:59:12Z\\\&quot;, \\\&quot;timestamp\\\&quot;: 1042822752000}, \\\&quot;page\\\&quot;: \\\&quot;1-28\\\&quot;, \\\&quot;source\\\&quot;: \\\&quot;Crossref\\\&quot;, \\\&quot;is-referenced-by-count\\\&quot;: 2417, \\\&quot;title\\\&quot;: [\\\&quot;The Ecology of Individuals: Incidence and Implications of Individual Specialization\\\&quot;], \\\&quot;prefix\\\&quot;: \\\&quot;10.1086\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;161\\\&quot;, \\\&quot;author\\\&quot;: [{\\\&quot;given\\\&quot;: \\\&quot;Daniel I.\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Bolnick\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;first\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;Richard\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Svanbäck\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;James A.\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Fordyce\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;Louie H.\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Yang\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;Jeremy M.\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Davis\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;C. Darrin\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Hulsey\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}, {\\\&quot;given\\\&quot;: \\\&quot;Matthew L.\\\&quot;, \\\&quot;family\\\&quot;: \\\&quot;Forister\\\&quot;, \\\&quot;sequence\\\&quot;: \\\&quot;additional\\\&quot;, \\\&quot;affiliation\\\&quot;: [], \\\&quot;role\\\&quot;: [{\\\&quot;vocabulary\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;role\\\&quot;: \\\&quot;author\\\&quot;}]}], \\\&quot;member\\\&quot;: \\\&quot;200\\\&quot;, \\\&quot;reference\\\&quot;: [{\\\&quot;key\\\&quot;: \\\&quot;rf1\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1937153\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf2\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF01237642\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf3\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/s002650000273\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf4\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1941699\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf5\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;150\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;71\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Amundsen P.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1995\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Nordic Journal of Freshwater Research\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf6\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00005860\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf7\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1038/280361a0\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf8\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00627734\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf9\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1890/0012-9658(1999)080[0288:LTROIW]2.0.CO;2\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf10\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00008159\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf11\\\&quot;, \\\&quot;volume-title\\\&quot;: \\\&quot;General biostatistics and biomechanics. Pages 58–83 in R\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Badoux D. M.\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf12\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/2388381\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf13\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/303332\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf14\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/2389352\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf15\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1080/08927014.1997.9522890\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf16\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/s004420050871\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf17\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1016/0040-5809(78)90007-2\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf18\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00005164\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf19\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/s004420050236\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf20\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/286132\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf21\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1098/rspb.1999.0615\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf22\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/283500\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf23\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/s004420050298\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf24\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1002/jmor.1051140102\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf25\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1038/35068555\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf26\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1890/0012-9658(2002)083[2936:MILRS]2.0.CO;2\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf27\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;311\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1093/genetics/111.2.311\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;111\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Borowsky R.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1985\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Genetics\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf28\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1095-8649.1997.tb01999.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf29\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1942570\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf30\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/f95-845\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf31\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/f72-248\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf32\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/5294\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf33\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.4319/lo.1983.28.2.0378\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf34\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1073/pnas.78.8.5021\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf35\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00004207\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf36\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1601-5223.1977.tb01240.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf37\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1098/rstb.1988.0067\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf38\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1071/BT99018\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf39\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF02424512\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf40\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1934144\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf41\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;crossref\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;2166\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.0014-3820.2000.tb00033.x\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;54\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Coyne J. A.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;2000\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Evolution\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf42\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/f95-526\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf44\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00317076\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf45\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1038/22521\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf46\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/2265626\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf47\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1046/j.1420-9101.1996.9060893.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf49\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1469-185X.2000.tb00053.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf50\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/283913\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf51\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1937360\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf52\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1073/pnas.85.6.1878\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf53\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/284359\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf54\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;108\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;5\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Ens B. J.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1980\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Watervogels\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf55\\\&quot;, \\\&quot;volume-title\\\&quot;: \\\&quot;Biochemical coevolution between plants and their insect herbivores. Pages 3–19 in L\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Feeny P.\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf56\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1938881\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf57\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1936664\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf58\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1744-7429.1998.tb00065.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf59\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;66\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;53\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Fermon Y.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1998\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Journal of Fish Biology\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf60\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1093/icb/42.2.265\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf61\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1095-8649.1989.tb03309.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf62\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1002/jmor.1051110306\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf63\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1558-5646.1969.tb03524.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf64\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1936580\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf65\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/f98-204\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf67\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1146/annurev.es.19.110188.001231\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf68\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1086/283519\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf69\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/z85-028\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf70\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1642/0004-8038(2000)117[0082:APCACG]2.0.CO;2\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf71\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1474-919X.1983.tb03096.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf72\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/4354\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf73\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1095-8312.1972.tb00690.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf75\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1093/icb/21.4.795\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf76\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1073/pnas.73.1.257\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf77\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/3546118\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf78\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1890/0012-9658(1997)078[2263:IFDIBT]2.0.CO;2\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf79\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1016/S0003-3472(88)80152-0\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf81\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;313\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;95\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Hamilton S.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1978\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Auk\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf82\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/z93-273\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf83\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1942246\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf85\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1139/f93-230\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf86\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1034/j.1600-0706.2001.950213.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf87\\\&quot;, \\\&quot;first-page\\\&quot;: \\\&quot;77\\\&quot;, \\\&quot;volume\\\&quot;: \\\&quot;53\\\&quot;, \\\&quot;author\\\&quot;: \\\&quot;Hódar J. A.\\\&quot;, \\\&quot;year\\\&quot;: \\\&quot;1998\\\&quot;, \\\&quot;journal-title\\\&quot;: \\\&quot;Ecologie la Terre et la Vie\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf88\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1016/S0003-3472(89)80111-3\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf89\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1940748\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf90\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF01049524\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf91\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1101/SQB.1957.022.01.039\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf92\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1016/S0003-3472(87)80086-6\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf93\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1558-5646.1985.tb05673.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf94\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1111/j.1558-5646.1983.tb05630.x\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf95\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1098/rspb.1998.0487\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf96\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1098/rspb.1997.0100\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf97\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.1007/BF00317093\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf98\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/1938511\\\&quot;}, {\\\&quot;key\\\&quot;: \\\&quot;rf99\\\&quot;, \\\&quot;doi-asserted-by\\\&quot;: \\\&quot;publisher\\\&quot;, \\\&quot;DOI\\\&quot;: \\\&quot;10.2307/4088270\\\&quot;\&quot;, \&quot;excerpt_truncated\&quot;: true, \&quot;source_sha256\&quot;: \&quot;b11f6c09a19e8cb1c6bac256baac0f2afce86f5771ab33a7a852f7db7f39a4e1\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;evolutionary_biology\&quot;, \&quot;evidence_role\&quot;: \&quot;source\&quot;, \&quot;host_tier\&quot;: \&quot;verification-metadata\&quot;, \&quot;persistent_identifiers\&quot;: [\&quot;doi:10.1086/343878\&quot;, \&quot;doi:10.2307/1937153\&quot;, \&quot;doi:10.1007/bf01237642\&quot;, \&quot;doi:10.1007/s002650000273\&quot;, \&quot;doi:10.2307/1941699\&quot;, \&quot;doi:10.1007/bf00005860\&quot;, \&quot;doi:10.1038/280361a0\&quot;, \&quot;doi:10.1007/bf00627734\&quot;, \&quot;doi:10.1890/0012-9658(1999)080\&quot;, \&quot;doi:10.1007/bf00008159\&quot;, \&quot;doi:10.2307/2388381\&quot;, \&quot;doi:10.1086/303332\&quot;]}&quot;,
+  &quot;id&quot;: &quot;source-13271c7139874cc5&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://api.crossref.org/works/10.1086%2F343878&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:48.971130+00:00&quot;
+}</pre></div></details><details><summary>source-92ddcfd1f4c74a0a</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=visual+art+perception+aesthetics+composition&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:393},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Art\\\&quot;,\\\&quot;pageid\\\&quot;:752,\\\&quot;size\\\&quot;:132424,\\\&quot;wordcount\\\&quot;:14439,\\\&quot;snippet\\\&quot;:\\\&quot;spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-09T08:09:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Psychology of art\\\&quot;,\\\&quot;pageid\\\&quot;:8165347,\\\&quot;size\\\&quot;:90900,\\\&quot;wordcount\\\&quot;:11467,\\\&quot;snippet\\\&quot;:\\\&quot;The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T20:46:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Aesthetics\\\&quot;,\\\&quot;pageid\\\&quot;:2130,\\\&quot;size\\\&quot;:149323,\\\&quot;wordcount\\\&quot;:16275,\\\&quot;snippet\\\&quot;:\\\&quot;\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:49Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Tribal art\\\&quot;,\\\&quot;pageid\\\&quot;:24811443,\\\&quot;size\\\&quot;:11752,\\\&quot;wordcount\\\&quot;:1204,\\\&quot;snippet\\\&quot;:\\\&quot;Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-12-21T03:03:57Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Rudolf Arnheim\\\&quot;,\\\&quot;pageid\\\&quot;:467254,\\\&quot;size\\\&quot;:17187,\\\&quot;wordcount\\\&quot;:2040,\\\&quot;snippet\\\&quot;:\\\&quot;have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-02T04:51:51Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Style (visual arts)\\\&quot;,\\\&quot;pageid\\\&quot;:147860,\\\&quot;size\\\&quot;:37916,\\\&quot;wordcount\\\&quot;:4617,\\\&quot;snippet\\\&quot;:\\\&quot;\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\&quot;school\\\&quot;,\\nart\\nmovement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T04:00:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;History of aesthetics\\\&quot;,\\\&quot;pageid\\\&quot;:3376041,\\\&quot;size\\\&quot;:78283,\\\&quot;wordcount\\\&quot;:10808,\\\&quot;snippet\\\&quot;:\\\&quot;This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T08:39:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ma (negative space)\\\&quot;,\\\&quot;pageid\\\&quot;:14904296,\\\&quot;size\\\&quot;:8650,\\\&quot;wordcount\\\&quot;:904,\\\&quot;snippet\\\&quot;:\\\&quot;space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T04:45:07Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;History of the nude in art\\\&quot;,\\\&quot;pageid\\\&quot;:71247922,\\\&quot;size\\\&quot;:337730,\\\&quot;wordcount\\\&quot;:43252,\\\&quot;snippet\\\&quot;:\\\&quot;academic classifications of works of\\nart\\n. Nudity in\\nart\\nhas generally reflected the social standards for\\naesthetics\\nand morality of the era in which the\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T06:09:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Visual thinking\\\&quot;,\\\&quot;pageid\\\&quot;:144904,\\\&quot;size\\\&quot;:21987,\\\&quot;wordcount\\\&quot;:2316,\\\&quot;snippet\\\&quot;:\\\&quot;and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-10T06:11:00Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;c7f3099118c8bdcc71248689f8c5acac4664eb840080c75bf08eb5cf082a5f85\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;visual_art\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-92ddcfd1f4c74a0a&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=visual+art+perception+aesthetics+composition&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:49.398399+00:00&quot;
+}</pre></div></details><details><summary>source-f49096228e4949e0</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:239497,\\\&quot;suggestion\\\&quot;:\\\&quot;religious\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;religious\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion\\\&quot;,\\\&quot;pageid\\\&quot;:25414,\\\&quot;size\\\&quot;:187367,\\\&quot;wordcount\\\&quot;:19574,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T06:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Civil religion\\\&quot;,\\\&quot;pageid\\\&quot;:185692,\\\&quot;size\\\&quot;:34053,\\\&quot;wordcount\\\&quot;:3846,\\\&quot;snippet\\\&quot;:\\\&quot;Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-25T16:06:42Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Abrahamic religions\\\&quot;,\\\&quot;pageid\\\&quot;:13906453,\\\&quot;size\\\&quot;:112861,\\\&quot;wordcount\\\&quot;:10868,\\\&quot;snippet\\\&quot;:\\\&quot;The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T17:21:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Yoruba religion\\\&quot;,\\\&quot;pageid\\\&quot;:682534,\\\&quot;size\\\&quot;:64332,\\\&quot;wordcount\\\&quot;:4734,\\\&quot;snippet\\\&quot;:\\\&quot;The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-15T17:38:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in China\\\&quot;,\\\&quot;pageid\\\&quot;:367843,\\\&quot;size\\\&quot;:300336,\\\&quot;wordcount\\\&quot;:34062,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T03:20:45Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Folk religion\\\&quot;,\\\&quot;pageid\\\&quot;:21920776,\\\&quot;size\\\&quot;:44106,\\\&quot;wordcount\\\&quot;:4958,\\\&quot;snippet\\\&quot;:\\\&quot;Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-14T10:35:40Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hellenistic religion\\\&quot;,\\\&quot;pageid\\\&quot;:7491899,\\\&quot;size\\\&quot;:17856,\\\&quot;wordcount\\\&quot;:2083,\\\&quot;snippet\\\&quot;:\\\&quot;The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-19T12:26:28Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in India\\\&quot;,\\\&quot;pageid\\\&quot;:10710364,\\\&quot;size\\\&quot;:125253,\\\&quot;wordcount\\\&quot;:11197,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-11T19:59:55Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Religion in Japan\\\&quot;,\\\&quot;pageid\\\&quot;:166254,\\\&quot;size\\\&quot;:79036,\\\&quot;wordcount\\\&quot;:7551,\\\&quot;snippet\\\&quot;:\\\&quot;\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-17T02:14:19Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;State religion\\\&quot;,\\\&quot;pageid\\\&quot;:292285,\\\&quot;size\\\&quot;:161900,\\\&quot;wordcount\\\&quot;:12907,\\\&quot;snippet\\\&quot;:\\\&quot;state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T01:30:06Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;be2abb09a4099b6333fdd97ad825a87d583bb7d4fda2e1c0059891298d292148\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;religion\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-f49096228e4949e0&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=religion&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:49.706074+00:00&quot;
+}</pre></div></details><details><summary>source-61d8f6bf9164425b</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:40315},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:5664,\\\&quot;size\\\&quot;:187364,\\\&quot;wordcount\\\&quot;:21233,\\\&quot;snippet\\\&quot;:\\\&quot;\\nConsciousness\\nis being aware of something internal to one&#x27;s self, or of states or objects in one&#x27;s external environment. It has been the topic of extensive\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-19T15:23:29Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Stream of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:101483,\\\&quot;size\\\&quot;:26790,\\\&quot;wordcount\\\&quot;:3226,\\\&quot;snippet\\\&quot;:\\\&quot;In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\&quot;to depict the multitudinous thoughts and feelings which pass\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-22T22:10:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Hard problem of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:634216,\\\&quot;size\\\&quot;:115556,\\\&quot;wordcount\\\&quot;:13247,\\\&quot;snippet\\\&quot;:\\\&quot;hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-27T00:59:04Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Artificial consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:195552,\\\&quot;size\\\&quot;:66143,\\\&quot;wordcount\\\&quot;:6941,\\\&quot;snippet\\\&quot;:\\\&quot;Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-23T13:46:33Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Consciousness (disambiguation)\\\&quot;,\\\&quot;pageid\\\&quot;:40457047,\\\&quot;size\\\&quot;:695,\\\&quot;wordcount\\\&quot;:97,\\\&quot;snippet\\\&quot;:\\\&quot;\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2022-05-26T00:46:22Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Double consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:3057990,\\\&quot;size\\\&quot;:20535,\\\&quot;wordcount\\\&quot;:2622,\\\&quot;snippet\\\&quot;:\\\&quot;Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T04:18:25Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Collective consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:1077491,\\\&quot;size\\\&quot;:15253,\\\&quot;wordcount\\\&quot;:1536,\\\&quot;snippet\\\&quot;:\\\&quot;Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-29T04:14:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Higher consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7582544,\\\&quot;size\\\&quot;:20747,\\\&quot;wordcount\\\&quot;:2329,\\\&quot;snippet\\\&quot;:\\\&quot;Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-15T05:53:47Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Clouding of consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:7554116,\\\&quot;size\\\&quot;:78787,\\\&quot;wordcount\\\&quot;:7669,\\\&quot;snippet\\\&quot;:\\\&quot;Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-12T16:42:14Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Self-consciousness\\\&quot;,\\\&quot;pageid\\\&quot;:2772118,\\\&quot;size\\\&quot;:5955,\\\&quot;wordcount\\\&quot;:683,\\\&quot;snippet\\\&quot;:\\\&quot;Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\&quot;self-\\nconsciousness\\n\\\&quot; was synonymous with \\\&quot;self-awareness\\\&quot;, referring to\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-23T22:59:29Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;3ffeeecd3e188ad95d95d94e0e877b6dc609130c43e0859177d042680fed06e3\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;consciousness\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-61d8f6bf9164425b&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=consciousness&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:49.985469+00:00&quot;
+}</pre></div></details><details><summary>source-70fd61fbd0214b1e</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=storytelling+narrative+cognition+literature&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:86,\\\&quot;suggestion\\\&quot;:\\\&quot;storytelling narrative coalition literature\\\&quot;,\\\&quot;suggestionsnippet\\\&quot;:\\\&quot;storytelling narrative\\ncoalition\\nliterature\\\&quot;},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Fiction\\\&quot;,\\\&quot;pageid\\\&quot;:18949461,\\\&quot;size\\\&quot;:35712,\\\&quot;wordcount\\\&quot;:3771,\\\&quot;snippet\\\&quot;:\\\&quot;non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-07T19:11:27Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narrative identity\\\&quot;,\\\&quot;pageid\\\&quot;:35716364,\\\&quot;size\\\&quot;:60455,\\\&quot;wordcount\\\&quot;:7308,\\\&quot;snippet\\\&quot;:\\\&quot;on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\&quot;. Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T15:09:54Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Narratology\\\&quot;,\\\&quot;pageid\\\&quot;:718763,\\\&quot;size\\\&quot;:23172,\\\&quot;wordcount\\\&quot;:2691,\\\&quot;snippet\\\&quot;:\\\&quot;Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-21T07:57:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Ancient literature\\\&quot;,\\\&quot;pageid\\\&quot;:3709305,\\\&quot;size\\\&quot;:49644,\\\&quot;wordcount\\\&quot;:4634,\\\&quot;snippet\\\&quot;:\\\&quot;Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-06-29T20:43:46Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Role-playing game\\\&quot;,\\\&quot;pageid\\\&quot;:25475,\\\&quot;size\\\&quot;:38009,\\\&quot;wordcount\\\&quot;:4559,\\\&quot;snippet\\\&quot;:\\\&quot;form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-20T05:14:32Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Children&#x27;s literature\\\&quot;,\\\&quot;pageid\\\&quot;:52847,\\\&quot;size\\\&quot;:167603,\\\&quot;wordcount\\\&quot;:18216,\\\&quot;snippet\\\&quot;:\\\&quot;Machine Children&#x27;s\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children&#x27;s\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-21T04:25:10Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Soma (video game)\\\&quot;,\\\&quot;pageid\\\&quot;:5649586,\\\&quot;size\\\&quot;:41063,\\\&quot;wordcount\\\&quot;:3882,\\\&quot;snippet\\\&quot;:\\\&quot;Cody (22 June 2023). \\\&quot;Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\&quot;. In Ghosal, Torsa\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-07-09T19:08:06Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Immersive learning\\\&quot;,\\\&quot;pageid\\\&quot;:64345811,\\\&quot;size\\\&quot;:22110,\\\&quot;wordcount\\\&quot;:2264,\\\&quot;snippet\\\&quot;:\\\&quot;structured by the audience&#x27;s own\\ncognition\\n. Also, within Ryan&#x27;s book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2025-11-26T22:52:24Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Suspense\\\&quot;,\\\&quot;pageid\\\&quot;:4450450,\\\&quot;size\\\&quot;:10990,\\\&quot;wordcount\\\&quot;:1207,\\\&quot;snippet\\\&quot;:\\\&quot;audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-10T05:31:31Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Comics\\\&quot;,\\\&quot;pageid\\\&quot;:145443,\\\&quot;size\\\&quot;:84218,\\\&quot;wordcount\\\&quot;:8734,\\\&quot;snippet\\\&quot;:\\\&quot;(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-16T05:00:24Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;0a6b67b85bc541fd76fb8dd59828e981e44606003fe7122189c4e0eb8e0dec63\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;storytelling\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-70fd61fbd0214b1e&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=storytelling+narrative+cognition+literature&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:50.374752+00:00&quot;
+}</pre></div></details><details><summary>source-4d9ab7298d6b47ea</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;collector&quot;,
+  &quot;content&quot;: &quot;{\&quot;url\&quot;: \&quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=epistemology+evidence+justification+belief+uncertainty&amp;format=json\&quot;, \&quot;scope\&quot;: \&quot;extracted web-page text; may be incomplete\&quot;, \&quot;excerpt\&quot;: \&quot;{\\\&quot;batchcomplete\\\&quot;:\\\&quot;\\\&quot;,\\\&quot;continue\\\&quot;:{\\\&quot;sroffset\\\&quot;:10,\\\&quot;continue\\\&quot;:\\\&quot;-||\\\&quot;},\\\&quot;query\\\&quot;:{\\\&quot;searchinfo\\\&quot;:{\\\&quot;totalhits\\\&quot;:179},\\\&quot;search\\\&quot;:[{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Justification (epistemology)\\\&quot;,\\\&quot;pageid\\\&quot;:30248,\\\&quot;size\\\&quot;:11199,\\\&quot;wordcount\\\&quot;:1195,\\\&quot;snippet\\\&quot;:\\\&quot;current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-22T20:08:09Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:9247,\\\&quot;size\\\&quot;:211582,\\\&quot;wordcount\\\&quot;:19966,\\\&quot;snippet\\\&quot;:\\\&quot;Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-21T14:29:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Empirical evidence\\\&quot;,\\\&quot;pageid\\\&quot;:307139,\\\&quot;size\\\&quot;:39043,\\\&quot;wordcount\\\&quot;:3955,\\\&quot;snippet\\\&quot;:\\\&quot;methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-08T15:50:44Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Formal epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:3660078,\\\&quot;size\\\&quot;:11434,\\\&quot;wordcount\\\&quot;:1321,\\\&quot;snippet\\\&quot;:\\\&quot;formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-03-28T03:41:38Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Gettier problem\\\&quot;,\\\&quot;pageid\\\&quot;:246176,\\\&quot;size\\\&quot;:44511,\\\&quot;wordcount\\\&quot;:5956,\\\&quot;snippet\\\&quot;:\\\&quot;\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-22T13:24:11Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Outline of epistemology\\\&quot;,\\\&quot;pageid\\\&quot;:6556377,\\\&quot;size\\\&quot;:16004,\\\&quot;wordcount\\\&quot;:1658,\\\&quot;snippet\\\&quot;:\\\&quot;\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-24T15:07:39Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Belief\\\&quot;,\\\&quot;pageid\\\&quot;:102883,\\\&quot;size\\\&quot;:105449,\\\&quot;wordcount\\\&quot;:12166,\\\&quot;snippet\\\&quot;:\\\&quot;having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-13T03:42:36Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Declarative knowledge\\\&quot;,\\\&quot;pageid\\\&quot;:23369987,\\\&quot;size\\\&quot;:97599,\\\&quot;wordcount\\\&quot;:10444,\\\&quot;snippet\\\&quot;:\\\&quot;A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-18T11:00:01Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Evidence\\\&quot;,\\\&quot;pageid\\\&quot;:20550772,\\\&quot;size\\\&quot;:46664,\\\&quot;wordcount\\\&quot;:5455,\\\&quot;snippet\\\&quot;:\\\&quot;exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-09-09T01:29:13Z\\\&quot;},{\\\&quot;ns\\\&quot;:0,\\\&quot;title\\\&quot;:\\\&quot;Knowledge\\\&quot;,\\\&quot;pageid\\\&quot;:243391,\\\&quot;size\\\&quot;:190334,\\\&quot;wordcount\\\&quot;:19010,\\\&quot;snippet\\\&quot;:\\\&quot;knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\&quot;,\\\&quot;timestamp\\\&quot;:\\\&quot;2026-08-23T18:49:22Z\\\&quot;}]}}\&quot;, \&quot;excerpt_truncated\&quot;: false, \&quot;source_sha256\&quot;: \&quot;90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28\&quot;, \&quot;verification_required\&quot;: true, \&quot;topic_domain\&quot;: \&quot;epistemology\&quot;, \&quot;evidence_role\&quot;: \&quot;discovery\&quot;, \&quot;host_tier\&quot;: \&quot;discovery\&quot;, \&quot;persistent_identifiers\&quot;: []}&quot;,
+  &quot;id&quot;: &quot;source-4d9ab7298d6b47ea&quot;,
+  &quot;scope&quot;: &quot;collected&quot;,
+  &quot;source&quot;: &quot;https://en.wikipedia.org/w/api.php?action=query&amp;list=search&amp;srsearch=epistemology+evidence+justification+belief+uncertainty&amp;format=json&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:50.713092+00:00&quot;
+}</pre></div></details><details><summary>r-e36cf20d4ecb4ee4</summary><div class="inside"><pre>{
+  &quot;actor&quot;: &quot;runtime&quot;,
+  &quot;content&quot;: &quot;{\&quot;base_version\&quot;:22,\&quot;inherited_commitments\&quot;:[],\&quot;invocation\&quot;:\&quot;w-e36cf20d4ecb4ee4\&quot;,\&quot;previous_head\&quot;:\&quot;a5fe4c2a3a34431e14dbe526a49ea552c7d5b811f0dae9e05270b9e33a31ecf9\&quot;,\&quot;process_id\&quot;:2053,\&quot;scope\&quot;:\&quot;Receipt proves state delivery to the provider boundary, not model comprehension.\&quot;}&quot;,
+  &quot;id&quot;: &quot;r-e36cf20d4ecb4ee4&quot;,
+  &quot;source&quot;: &quot;runtime:continuity&quot;,
+  &quot;version&quot;: 22,
+  &quot;time&quot;: &quot;2026-09-25T02:02:50.910511+00:00&quot;
 }</pre></div></details><h2>Journal</h2><details><summary>1 · Establishing the Entropy Project</summary><div class="inside"><pre>{
   &quot;cycle&quot;: 1,
   &quot;invocation&quot;: &quot;w-0fd69201256b4e7c&quot;,
