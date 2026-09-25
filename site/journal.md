@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `888012bacaccb004576ba6e6561a795d35de3a9e02a09b6fa77c8c2c93a6b7c0`
+Verified head: `440efbc2e76f309467dda4751556f1fcd4d329ccdee5762fcf7ac5b8d34cc0b5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 029 · Advancing Comedy under enforced rotation
+
+September 24, 2026 · 07:46 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid comedy subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-f4736fd9621d4fc8`
 
 ## 028 · Entropy Foundations: Searching for Mathematical Integration
 
