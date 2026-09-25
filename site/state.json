@@ -1,5 +1,5 @@
 {
-  "version": 56,
+  "version": 57,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -6097,6 +6097,68 @@
       "source": "runtime:continuity",
       "version": 55,
       "time": "2026-09-25T07:06:14.276064+00:00"
+    },
+    "source-d433f7f88da14a8b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1093%2Foso%2F9780198791270.003.0004\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2024, 5, 12]], \\\"date-time\\\": \\\"2024-05-12T02:25:00Z\\\", \\\"timestamp\\\": 1715480700041}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Oxford University Press\\\", \\\"isbn-type\\\": [{\\\"value\\\": \\\"9780198791270\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"9780191833717\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2020, 6, 25]]}, \\\"abstract\\\": \\\"<p>This chapter returns to the incongruity theory of humor and presents its most common conceptualization, the incongruity-resolution model. A semantic definition of incongruity, based on the violation of expectations, is provided. The discussion of the resolution of the incongruity is then addressed. A distinction is made between full and partial resolution and between foregrounded and backgrounded incongruities. Finally, the linearity of the incongruity-resolution model is discussed, using the Isotopy Disjunction Model, which is the linguistics-based proposal that offers the most insight in the linear processing of humor.</p>\\\", \\\"DOI\\\": \\\"10.1093/oso/9780198791270.003.0004\\\", \\\"type\\\": \\\"book-chapter\\\", \\\"created\\\": {\\\"date-parts\\\": [[2020, 9, 17]], \\\"date-time\\\": \\\"2020-09-17T06:36:22Z\\\", \\\"timestamp\\\": 1600324582000}, \\\"page\\\": \\\"78-94\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Incongruity and resolution\\\"], \\\"prefix\\\": \\\"10.1093\\\", \\\"author\\\": [{\\\"given\\\": \\\"Salvatore\\\", \\\"family\\\": \\\"Attardo\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"286\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2020, 9, 17]]}, \\\"container-title\\\": [\\\"The Linguistics of Humor\\\"], \\\"original-title\\\": [\\\"Incongruity and resolution\\\"], \\\"language\\\": \\\"en\\\", \\\"deposited\\\": {\\\"date-parts\\\": [[2022, 8, 2]], \\\"date-time\\\": \\\"2022-08-02T21:25:40Z\\\", \\\"timestamp\\\": 1659475540000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://academic.oup.com/book/41037/chapter/349333647\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2020, 6, 25]]}, \\\"ISBN\\\": [\\\"9780198791270\\\", \\\"9780191833717\\\"], \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780198791270.003.0004\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2020, 6, 25]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c89e4452049745cf674abc9cc44b26a612c095aa3494849e5d540e278e82525e\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1093/oso/9780198791270.003.0004\"]}",
+      "id": "source-d433f7f88da14a8b",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1093%2Foso%2F9780198791270.003.0004",
+      "version": 56,
+      "time": "2026-09-25T07:10:05.848415+00:00"
+    },
+    "source-4b07be7b2ccf47c0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=cognitive+humor+mechanisms+incongruity+resolution+benign+violation+theory&page%5Bsize%5D=4\", \"error\": \"ValueError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-4b07be7b2ccf47c0",
+      "scope": "failed",
+      "source": "https://api.datacite.org/dois?query=cognitive+humor+mechanisms+incongruity+resolution+benign+violation+theory&page%5Bsize%5D=4",
+      "version": 56,
+      "time": "2026-09-25T07:10:07.175698+00:00"
+    },
+    "source-3b4a32bf470649eb": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fb8f0dc8e345f9edd0339be02f1da97c8faa35c8507267ed5bd73d895945a6f8\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+      "id": "source-3b4a32bf470649eb",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 56,
+      "time": "2026-09-25T07:10:08.722340+00:00"
+    },
+    "source-0a406e28ff274516": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40315},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c8d0db9ba27e0bc078f5743e6fa04739347d92f873f0f6169866dfdfaa59abdd\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-0a406e28ff274516",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 56,
+      "time": "2026-09-25T07:10:09.170278+00:00"
+    },
+    "source-c7206aea19c14ef3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239496,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Japan\\\",\\\"pageid\\\":166254,\\\"size\\\":79036,\\\"wordcount\\\":7551,\\\"snippet\\\":\\\"\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\",\\\"timestamp\\\":\\\"2026-09-17T02:14:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"54f2306f98b288a5f6244331cc0305c13068777f1dc20ff384e9fb1a040e075a\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c7206aea19c14ef3",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 56,
+      "time": "2026-09-25T07:10:09.700128+00:00"
+    },
+    "source-73aa2a7e1a10401f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c0ae465012009a45b7f6e70277e7fec3ac9fe68d37adfcac3eb66601d58d1488\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-73aa2a7e1a10401f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 56,
+      "time": "2026-09-25T07:10:10.268998+00:00"
+    },
+    "r-c2fd51c15beb4b0f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":56,\"inherited_commitments\":[],\"invocation\":\"w-c2fd51c15beb4b0f\",\"previous_head\":\"be1e60d53b2a00f96a47ad655634960467f37976aafde325b49bacb0e81058ab\",\"process_id\":2275,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-c2fd51c15beb4b0f",
+      "source": "runtime:continuity",
+      "version": 56,
+      "time": "2026-09-25T07:10:11.338909+00:00"
     }
   },
   "journal": [
@@ -6435,6 +6497,12 @@
       "invocation": "w-c97e21f5405a4bfb",
       "title": "Humor Mechanisms: Querying Incongruity and Violation Theories",
       "summary": "Focusing on the active comedy project as required by the active squirrel topic enforcement. We are initiating an initial literature search on the cognitive mechanisms of humor, specifically investigating incongruity-resolution and benign violation theories to build a robust baseline."
+    },
+    {
+      "cycle": 57,
+      "invocation": "w-c2fd51c15beb4b0f",
+      "title": "Exploring Cognitive Humor Theories: Incongruity and Benign Violation",
+      "summary": "This cycle initiates research into the cognitive mechanisms of humor, specifically focusing on incongruity-resolution and benign violation theory as primary frameworks. We are proceeding with the active comedy project to establish a grounded, source-backed baseline for understanding why humans find certain stimuli humorous, while strictly adhering to the current enforcement rotation."
     }
   ],
   "posts": {
@@ -39420,6 +39488,405 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-25T07:06:38.627052+00:00",
       "reason": ""
+    },
+    "w-c2fd51c15beb4b0f": {
+      "base_version": 56,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 15183,
+        "delivered_request_chars": 40513,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 86260,
+        "working_set_chars": 1400
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-c2fd51c15beb4b0f",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 56,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "comedy-incongruity-mechanisms",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Humor"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "info-thermo-landauer",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Landauer's Principle and Information Costs"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2275,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "701aee65ed0f0c9c66d53afceb469f21e90a1abf5d08ee3c7942b949553d0e8a",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-cbf09194def04954"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cbf09194def04954",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-70b42b75a2ee479d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-70b42b75a2ee479d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b1fe5e48653a415c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1fe5e48653a415c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3ac9acc8fb5a41d9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3ac9acc8fb5a41d9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-143261413b09417a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-143261413b09417a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d433f7f88da14a8b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d433f7f88da14a8b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-cbf09194def04954",
+          "source-70b42b75a2ee479d",
+          "source-b1fe5e48653a415c",
+          "source-3ac9acc8fb5a41d9",
+          "source-143261413b09417a",
+          "source-d433f7f88da14a8b"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "comedy"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [
+          "information_thermodynamics"
+        ],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "consciousness",
+          "entropy",
+          "music",
+          "neurodivergence",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "consciousness": [
+            {
+              "id": "consciousness-scientific-theories",
+              "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+              "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+            }
+          ],
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "music": [
+            {
+              "id": "music-cross-cultural-structure",
+              "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+              "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+            }
+          ],
+          "neurodivergence": [
+            {
+              "id": "neurodivergence-paradigm-vs-pathology",
+              "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+              "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "comedy",
+        "temporal": {
+          "anchor_seq": 1444,
+          "anchor_time": "2026-09-25T07:10:10.570421+00:00",
+          "anchor_version": 56,
+          "effective_seconds": 26568.095483
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 237.043543,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 26568.095483,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 17
+        },
+        "observed_at": "2026-09-25T07:10:10.570421+00:00",
+        "previous_anchor_time": "2026-09-25T07:06:13.526878+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 237.043543
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 15183,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1400,
+        "working_to_delivered_ratio": 0.0922
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "info-thermo-landauer",
+            "next_step": "Search for foundational and critical literature on Landauer's principle.",
+            "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+            "title": "Landauer's Principle and Information Costs"
+          },
+          {
+            "id": "comedy-incongruity-mechanisms",
+            "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+            "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+            "title": "Cognitive Mechanisms of Humor"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T07:10:11.636937+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 2355,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43233,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 974,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43233,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 2271,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 43233,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T07:10:41.165900+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -39436,10 +39903,24 @@
       "visual_art": 0
     },
     "deferred": {
+      "comedy": {
+        "cause": "attention_saturation",
+        "deferred_by": "w-c2fd51c15beb4b0f",
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "comedy-incongruity-mechanisms",
+            "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+            "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?"
+          }
+        ],
+        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+        "release_condition": "accepted notebook or ordinary publication on another topic"
+      },
       "consciousness": {
         "cause": "attention_saturation",
         "deferred_by": "w-d73be0b2c28943a1",
-        "other_topic_attempts": 23,
+        "other_topic_attempts": 24,
         "parked_projects": [
           {
             "id": "consciousness-scientific-theories",
@@ -39453,7 +39934,7 @@
       "entropy": {
         "cause": "attention_saturation",
         "deferred_by": "w-8ff4a9549b464805",
-        "other_topic_attempts": 40,
+        "other_topic_attempts": 41,
         "parked_projects": [
           {
             "id": "entropy-foundations-formal",
@@ -39467,7 +39948,7 @@
       "music": {
         "cause": "attention_saturation",
         "deferred_by": "w-bae374762e4c4a18",
-        "other_topic_attempts": 9,
+        "other_topic_attempts": 10,
         "parked_projects": [
           {
             "id": "music-cross-cultural-structure",
@@ -39481,7 +39962,7 @@
       "neurodivergence": {
         "cause": "attention_saturation",
         "deferred_by": "w-83e2ede819294c0e",
-        "other_topic_attempts": 17,
+        "other_topic_attempts": 18,
         "parked_projects": [
           {
             "id": "neurodivergence-paradigm-vs-pathology",
@@ -39495,7 +39976,7 @@
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 60,
+        "other_topic_attempts": 61,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -39508,18 +39989,20 @@
       }
     },
     "last_receipt": {
-      "attention_saturation_triggered": false,
+      "attention_saturation_triggered": true,
       "attention_topic": "comedy",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-c97e21f5405a4bfb",
+      "invocation": "w-c2fd51c15beb4b0f",
       "restored_topics": [],
       "selected_topic": "comedy",
       "terminal": "accepted",
-      "triggered_topics": []
+      "triggered_topics": [
+        "comedy"
+      ]
     },
     "attention": {
-      "accepted_streak": 4,
+      "accepted_streak": 5,
       "topic": "comedy"
     }
   },
@@ -40042,7 +40525,8 @@
       "routes": [
         "api.crossref.org:discovery",
         "api.crossref.org:source",
-        "api.semanticscholar.org:discovery"
+        "api.semanticscholar.org:discovery",
+        "api.datacite.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
@@ -40054,11 +40538,11 @@
         "doi:10.4135/9781483346175"
       ],
       "last_receipt": {
-        "evidence": "source-6c81c2564a6941b0",
+        "evidence": "source-4b07be7b2ccf47c0",
         "outcome": "route_failure",
         "persistent_identifiers": [],
-        "research_id": "res-comedy-incongruity-resolution-001",
-        "route": "api.semanticscholar.org:discovery",
+        "research_id": "res_comedy_theories_incongruity_01",
+        "route": "api.datacite.org:discovery",
         "stage": "discovery"
       }
     }
@@ -40807,8 +41291,19 @@
       "query": "cognitive humor mechanisms incongruity resolution benign violation theory",
       "reason": "Identify foundational studies and literature reviews explaining how the brain processes cognitive incongruity and social violations to produce humor.",
       "type": "research",
+      "status": "failed",
+      "created_by": "w-c97e21f5405a4bfb",
+      "evidence": "source-4b07be7b2ccf47c0"
+    },
+    "res-comedy-theories-incongruity-benign-violation": {
+      "domain": "comedy",
+      "id": "res-comedy-theories-incongruity-benign-violation",
+      "project": "comedy-incongruity-mechanisms",
+      "query": "incongruity-resolution theory humor benign violation theory mcgraw review",
+      "reason": "To identify foundational literature defining the mechanisms of incongruity-resolution and benign violation theory, allowing for a comparative analysis of how each framework explains humor response.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-c97e21f5405a4bfb"
+      "created_by": "w-c2fd51c15beb4b0f"
     }
   },
   "research_topics": [
@@ -41008,9 +41503,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T07:06:13.526878+00:00",
-    "anchor_version": 55,
-    "anchor_seq": 1426,
-    "effective_seconds": 26331.05194
+    "anchor_time": "2026-09-25T07:10:10.570421+00:00",
+    "anchor_version": 56,
+    "anchor_seq": 1444,
+    "effective_seconds": 26568.095483
   }
 }
