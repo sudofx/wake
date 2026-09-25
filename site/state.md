@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 23  
+**Version:** 24  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d166109ab8d6b80b9ebeb5d1505d69ac41b08d05a3f5cb05045057bca5573a6a`
+**Verified head:** `bc9059f5699d597fd5e966934611a53f6037b7786071fa2bf392e0f261c2f1b6`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -143,6 +143,24 @@ _None recorded._
   "created_version": 20,
   "updated_version": 20,
   "updated_by": "w-cb3a26a7ccea460e"
+}
+```
+
+### `entropy-foundations-formal` · Formalizing Entropy Definitions
+
+```json
+{
+  "domain": "entropy",
+  "id": "entropy-foundations-formal",
+  "next_step": "Search for literature comparing these three frameworks.",
+  "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+  "reason": "To synthesize entropy definitions and relationships within the enforced topic.",
+  "status": "active",
+  "title": "Formalizing Entropy Definitions",
+  "type": "project",
+  "created_version": 24,
+  "updated_version": 24,
+  "updated_by": "w-3e65a887895f4f92"
 }
 ```
 
@@ -381,7 +399,7 @@ _None recorded._
 {
   "project": "evo-trait-explanation",
   "domain": "evolutionary_biology",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.semanticscholar.org:discovery",
     "api.crossref.org:source",
@@ -391,36 +409,39 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1111/j.1558-5646.1990.tb05936.x",
-    "doi:10.1086/285203",
-    "doi:10.1007/bf00276958",
-    "doi:10.1007/s11692-012-9162-y",
-    "doi:10.1007/s11692-012-9162-y.pdf",
-    "doi:10.1086/343878",
-    "doi:10.1111/mec.13378",
-    "doi:10.1016/s0169-5347(99)01762-0",
-    "openalex:W2137063713",
-    "openalex:W2132827427",
-    "openalex:W2119534042",
-    "openalex:W2098849090"
+    "openalex:W2098849090",
+    "doi:10.1002/tdm_license_1.1",
+    "doi:10.13039/100000001",
+    "doi:10.1111/j.1558-5646.1984.tb00290.x",
+    "doi:10.1111/j.1558-5646.1986.tb05758.x",
+    "doi:10.1146/annurev.es.18.110187.001321",
+    "doi:10.1038/hdy.1989.15",
+    "doi:10.1086/284686",
+    "doi:10.1101/sqb.1955.020.01.020",
+    "doi:10.1086/283926",
+    "doi:10.1017/s0016672300019145",
+    "doi:10.2307/2409916"
   ],
   "last_receipt": {
-    "evidence": "source-8042e72c46f54d9d",
-    "outcome": "no_progress",
+    "evidence": "source-66560cd30f05453d",
+    "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1007/s11692-012-9162-y",
-      "doi:10.1007/s11692-012-9162-y.pdf",
-      "doi:10.1086/343878",
-      "doi:10.1111/mec.13378",
-      "doi:10.1016/s0169-5347(99)01762-0",
-      "openalex:W2137063713",
-      "openalex:W2132827427",
-      "openalex:W2119534042",
-      "openalex:W2098849090"
+      "doi:10.1002/tdm_license_1.1",
+      "doi:10.13039/100000001",
+      "doi:10.1111/j.1558-5646.1990.tb05936.x",
+      "doi:10.1111/j.1558-5646.1984.tb00290.x",
+      "doi:10.1111/j.1558-5646.1986.tb05758.x",
+      "doi:10.1146/annurev.es.18.110187.001321",
+      "doi:10.1038/hdy.1989.15",
+      "doi:10.1086/284686",
+      "doi:10.1101/sqb.1955.020.01.020",
+      "doi:10.1086/283926",
+      "doi:10.1017/s0016672300019145",
+      "doi:10.2307/2409916"
     ],
     "research_id": "res-evo-methods-001",
-    "route": "api.openalex.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -450,7 +471,7 @@ _None recorded._
     "cause": "hard_rejection",
     "deferred_by": "w-25108fb3866e4d2e",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "evo-trait-explanation",
@@ -463,7 +484,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 13,
+    "other_topic_attempts": 14,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -482,16 +503,14 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "evolutionary_biology",
+  "attention_topic": "entropy",
   "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-25108fb3866e4d2e",
+  "hard_rejection": false,
+  "invocation": "w-3e65a887895f4f92",
   "restored_topics": [],
-  "selected_topic": "evolutionary_biology",
-  "terminal": "rejected",
-  "triggered_topics": [
-    "evolutionary_biology"
-  ]
+  "selected_topic": "entropy",
+  "terminal": "accepted",
+  "triggered_topics": []
 }
 ```
 
@@ -499,8 +518,8 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 4,
-  "topic": "evolutionary_biology"
+  "accepted_streak": 1,
+  "topic": "entropy"
 }
 ```
 
@@ -12493,6 +12512,384 @@ _None recorded._
 }
 ```
 
+### `w-3e65a887895f4f92`
+
+```json
+{
+  "base_version": 23,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 12127,
+    "delivered_request_chars": 36399,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 74703,
+    "working_set_chars": 1375
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-3e65a887895f4f92",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 23,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "evo-trait-explanation",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Distinguishing Evolutionary Explanations"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "psychology-memory-distinction",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Working Memory vs Short-Term Memory"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2036,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "cf31849dcf02a132d5626fdd98ebdb2ac1f96539e4656c29aad8f88f95ce1f45",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-a7c3b9eaebfa43dc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a7c3b9eaebfa43dc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1babe293127a4999"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1babe293127a4999",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-13271c7139874cc5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-13271c7139874cc5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-865157fcca494fc8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-865157fcca494fc8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c143770c42214822"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c143770c42214822",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-66560cd30f05453d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-66560cd30f05453d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-a7c3b9eaebfa43dc",
+      "source-1babe293127a4999",
+      "source-13271c7139874cc5",
+      "source-865157fcca494fc8",
+      "source-c143770c42214822",
+      "source-66560cd30f05453d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "evolutionary_biology",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "evolutionary_biology": [
+        {
+          "id": "evo-trait-explanation",
+          "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+          "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "entropy",
+    "temporal": {
+      "anchor_seq": 581,
+      "anchor_time": "2026-09-25T02:15:33.515507+00:00",
+      "anchor_version": 23,
+      "effective_seconds": 8891.040569
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-3e65a887895f4f92",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 171.016559,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 8891.040569,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T02:15:33.515507+00:00",
+    "previous_anchor_time": "2026-09-25T02:12:42.498948+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 171.016559
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 12127,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1375,
+    "working_to_delivered_ratio": 0.1134
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "psychology-memory-distinction",
+        "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+        "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+        "title": "Working Memory vs Short-Term Memory"
+      },
+      {
+        "id": "evo-trait-explanation",
+        "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+        "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+        "title": "Distinguishing Evolutionary Explanations"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T02:15:33.838028+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5576,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38719,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T02:15:45.394223+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -16181,6 +16578,103 @@ _None recorded._
 }
 ```
 
+### `source-66560cd30f05453d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1111%2Fj.1558-5646.1990.tb05936.x\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T17:40:35Z\\\", \\\"timestamp\\\": 1790271635697, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 47, \\\"publisher\\\": \\\"Oxford University Press (OUP)\\\", \\\"issue\\\": \\\"3\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2017, 5, 31]], \\\"date-time\\\": \\\"2017-05-31T00:00:00Z\\\", \\\"timestamp\\\": 1496188800000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 9892, \\\"URL\\\": \\\"http://onlinelibrary.wiley.com/termsAndConditions#vor\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[1990, 5, 1]], \\\"date-time\\\": \\\"1990-05-01T00:00:00Z\\\", \\\"timestamp\\\": 641520000000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://doi.wiley.com/10.1002/tdm_license_1.1\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/100000001\\\", \\\"name\\\": \\\"National Science Foundation\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"BSR‐8516629\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"BSR‐8516629\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/100000001\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Evolution\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1990, 5]]}, \\\"DOI\\\": \\\"10.1111/j.1558-5646.1990.tb05936.x\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2017, 5, 31]], \\\"date-time\\\": \\\"2017-05-31T21:43:22Z\\\", \\\"timestamp\\\": 1496267002000}, \\\"page\\\": \\\"520-538\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 161, \\\"title\\\": [\\\"OPTIMIZATION MODELS, QUANTITATIVE GENETICS, AND MUTATION\\\"], \\\"prefix\\\": \\\"10.1093\\\", \\\"volume\\\": \\\"44\\\", \\\"author\\\": [{\\\"given\\\": \\\"Brian\\\", \\\"family\\\": \\\"Charlesworth\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Ecology and Evolution University of Chicago  1103 E. 57th St. Chicago IL 60637\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"286\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2017, 5, 31]]}, \\\"reference\\\": [{\\\"key\\\": \\\"e_1_2_1_2_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1984.tb00290.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_3_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1986.tb05758.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_4_1\\\", \\\"first-page\\\": \\\"83\\\", \\\"article-title\\\": \\\"The cost of reproduction\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": \\\"Bell G.\\\", \\\"year\\\": \\\"1986\\\", \\\"journal-title\\\": \\\"Oxf. Surv. Evol. Biol.\\\"}, {\\\"key\\\": \\\"e_1_2_1_5_1\\\", \\\"volume-title\\\": \\\"Evolution in Age‐Structured Populations.\\\", \\\"author\\\": \\\"Charlesworth B.\\\", \\\"year\\\": \\\"1980\\\"}, {\\\"key\\\": \\\"e_1_2_1_6_1\\\", \\\"first-page\\\": \\\"117\\\", \\\"volume-title\\\": \\\"Evolutionary Ecology.\\\", \\\"author\\\": \\\"Charlesworth B.\\\", \\\"year\\\": \\\"1984\\\"}, {\\\"key\\\": \\\"e_1_2_1_7_1\\\", \\\"first-page\\\": \\\"21\\\", \\\"volume-title\\\": \\\"Sexual Selection: Testing the Alternatives.\\\", \\\"author\\\": \\\"Charlesworth B.\\\", \\\"year\\\": \\\"1987\\\"}, {\\\"key\\\": \\\"e_1_2_1_8_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1146/annurev.es.18.110187.001321\\\"}, {\\\"key\\\": \\\"e_1_2_1_9_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1989.15\\\"}, {\\\"key\\\": \\\"e_1_2_1_10_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/284686\\\"}, {\\\"key\\\": \\\"e_1_2_1_11_1\\\", \\\"volume-title\\\": \\\"The Biology of Senescence,\\\", \\\"author\\\": \\\"Comfort A.\\\", \\\"year\\\": \\\"1979\\\"}, {\\\"key\\\": \\\"e_1_2_1_12_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1101/SQB.1955.020.01.020\\\"}, {\\\"key\\\": \\\"e_1_2_1_13_1\\\", \\\"volume-title\\\": \\\"Introduction to Quantitative Genetics,\\\", \\\"author\\\": \\\"Falconer D. S.\\\", \\\"year\\\": \\\"1981\\\"}, {\\\"key\\\": \\\"e_1_2_1_14_1\\\", \\\"first-page\\\": \\\"52\\\", \\\"article-title\\\": \\\"Life history consequences of natural selection\\\", \\\"volume\\\": \\\"102\\\", \\\"author\\\": \\\"Gadgil M.\\\", \\\"year\\\": \\\"1970\\\", \\\"journal-title\\\": \\\"Am. Natur.\\\"}, {\\\"key\\\": \\\"e_1_2_1_15_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/283926\\\"}, {\\\"key\\\": \\\"e_1_2_1_16_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300019145\\\"}, {\\\"key\\\": \\\"e_1_2_1_17_1\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Houle D.1990.Genetic covariance of life history characters: What genetic correlations are made of and why it matters.Evolution(submitted).\\\", \\\"DOI\\\": \\\"10.2307/2409916\\\"}, {\\\"key\\\": \\\"e_1_2_1_18_1\\\", \\\"first-page\\\": \\\"297\\\", \\\"article-title\\\": \\\"The aging effect of male mating activity in Drosophila melanogaster. Behav\\\", \\\"volume\\\": \\\"15\\\", \\\"author\\\": \\\"Kosuda K.\\\", \\\"year\\\": \\\"1985\\\", \\\"journal-title\\\": \\\"Genet.\\\"}, {\\\"key\\\": \\\"e_1_2_1_19_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300016037\\\"}, {\\\"key\\\": \\\"e_1_2_1_20_1\\\", \\\"first-page\\\": \\\"402\\\", \\\"article-title\\\": \\\"Quantitative genetic analysis of multivariate evolution, applied to brain:body size allometry\\\", \\\"volume\\\": \\\"33\\\", \\\"author\\\": \\\"Lande R.\\\", \\\"year\\\": \\\"1979\\\", \\\"journal-title\\\": \\\"Evolution\\\"}, {\\\"key\\\": \\\"e_1_2_1_21_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1936778\\\"}, {\\\"key\\\": \\\"e_1_2_1_22_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1985.tb00422.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_23_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511806292\\\"}, {\\\"key\\\": \\\"e_1_2_1_24_1\\\", \\\"volume-title\\\": \\\"An Unsolved Problem of Biology.\\\", \\\"author\\\": \\\"Medawar P. B.\\\", \\\"year\\\": \\\"1952\\\"}, {\\\"key\\\": \\\"e_1_2_1_25_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1987.113\\\"}, {\\\"key\\\": \\\"e_1_2_1_26_1\\\", \\\"first-page\\\": \\\"583\\\", \\\"article-title\\\": \\\"The genetic structure of natural populations of Drosophila melanogaster. X. Developmental time and viability\\\", \\\"volume\\\": \\\"52\\\", \\\"author\\\": \\\"Mukai T.\\\", \\\"year\\\": \\\"1971\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"e_1_2_1_27_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1988.tb04138.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_28_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.241.4872.1449\\\"}, {\\\"key\\\": \\\"e_1_2_1_29_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1046/j.1420-9101.1988.1040293.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_30_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/3544698\\\"}, {\\\"key\\\": \\\"e_1_2_1_31_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1986.tb05757.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_32_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1101/SQB.1955.020.01.021\\\"}, {\\\"key\\\": \\\"e_1_2_1_33_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1987.15\\\"}, {\\\"key\\\": \\\"e_1_2_1_34_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1982.7\\\"}, {\\\"key\\\": \\\"e_1_2_1_35_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/284222\\\"}, {\\\"key\\\": \\\"e_1_2_1_36_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0040-5809(85)90034-6\\\"}, {\\\"key\\\": \\\"e_1_2_1_37_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/287141a0\\\"}, {\\\"key\\\": \\\"e_1_2_1_38_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/genetics/97.1.173\\\"}, {\\\"key\\\": \\\"e_1_2_1_39_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1935217\\\"}, {\\\"key\\\": \\\"e_1_2_1_40_1\\\", \\\"volume-title\\\": \\\"Physiological Ecology of Animals: An Evolutionary Approach.\\\", \\\"author\\\": \\\"Sibly R. M.\\\", \\\"year\\\": \\\"1986\\\"}, {\\\"key\\\": \\\"e_1_2_1_41_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1146/annurev.ge.11.120177.000405\\\"}, {\\\"key\\\": \\\"e_1_2_1_42_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/genetics/94.2.467\\\"}, {\\\"key\\\": \\\"e_1_2_1_43_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1987.tb05854.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_44_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/genetics/53.1.27\\\"}, {\\\"key\\\": \\\"e_1_2_1_45_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0040-5809(84)90017-0\\\"}, {\\\"key\\\": \\\"e_1_2_1_46_1\\\", \\\"first-page\\\": \\\"601\\\", \\\"volume-title\\\": \\\"Proceedings of the Second International Conference on Quantitative Genetics.\\\", \\\"author\\\": \\\"Turelli M.\\\", \\\"year\\\": \\\"1988\\\"}, {\\\"key\\\": \\\"e_1_2_1_47_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1985.tb00391.x\\\"}, {\\\"key\\\": \\\"e_1_2_1_48_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1988.tb04139.x\\\"}], \\\"container-title\\\": [\\\"Evolution\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1558-5646.1990.tb05936.x\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1558-5646.1990.tb05936.x\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"http://api.wiley.com/onlinelibrary/chorus/v1/articles/10.1111%2Fj.1558-5646.1990.tb05936.x\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"am\\\", \\\"intended-application\\\": \\\"syndication\\\"}, {\\\"URL\\\": \\\"https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1558-5646.1990.tb05936.x\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 10, 3]], \\\"date-time\\\": \\\"2025-10-03T20:39:30Z\\\", \\\"timestamp\\\": 1759523970000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://academic.oup.com/evolut/article/44/3/520/6869739\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1990, 5]]}, \\\"references-count\\\": 47, \\\"journal-issue\\\": {\\\"issue\\\": \\\"3\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1990, 5]]}}, \\\"alternative-id\\\": [\\\"10.1111/j.1558-5646.1990.tb05936.x\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/j.1558-5646.1990.tb05936.x\\\", \\\"archive\\\": [\\\"Portico\\\"], \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0014-3820\\\", \\\"1558-5646\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0014-3820\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1558-5646\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1990, 5]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"7f3473ec45b00b1aaad5f9bcdba269ceba29f5c20efea75a1057eee1e0206e0e\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1002/tdm_license_1.1\", \"doi:10.13039/100000001\", \"doi:10.1111/j.1558-5646.1990.tb05936.x\", \"doi:10.1111/j.1558-5646.1984.tb00290.x\", \"doi:10.1111/j.1558-5646.1986.tb05758.x\", \"doi:10.1146/annurev.es.18.110187.001321\", \"doi:10.1038/hdy.1989.15\", \"doi:10.1086/284686\", \"doi:10.1101/sqb.1955.020.01.020\", \"doi:10.1086/283926\", \"doi:10.1017/s0016672300019145\", \"doi:10.2307/2409916\"]}",
+  "id": "source-66560cd30f05453d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1111%2Fj.1558-5646.1990.tb05936.x",
+  "version": 23,
+  "time": "2026-09-25T02:15:31.218179+00:00"
+}
+```
+
+### `source-371e6270ac8f49a6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8ef76e03c4371ce4cf06ba75f8a378b4b9a08da9dd3c67f5ade20c2c1608f099\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-371e6270ac8f49a6",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 23,
+  "time": "2026-09-25T02:15:31.803788+00:00"
+}
+```
+
+### `source-fc86fe81c6f34bf1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"78528b70c2db3003c7c7e87a11c3efa7e9d285e1a24734128940a89d921a92a3\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fc86fe81c6f34bf1",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 23,
+  "time": "2026-09-25T02:15:32.196341+00:00"
+}
+```
+
+### `source-2ef51e7c3f774a5e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1e3dad2e179a208d4a309489fdf9bc69c2853f5bbdf03929dccadfa6c010d718\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2ef51e7c3f774a5e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 23,
+  "time": "2026-09-25T02:15:32.564976+00:00"
+}
+```
+
+### `source-1e0d637571774a22`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"12abba08a4f232c4da0ef626d351e599b1ddd4d2f690c97343256bc5c118d429\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1e0d637571774a22",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 23,
+  "time": "2026-09-25T02:15:33.027599+00:00"
+}
+```
+
+### `source-fc0a28b6a8c64fd4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fc0a28b6a8c64fd4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 23,
+  "time": "2026-09-25T02:15:33.412497+00:00"
+}
+```
+
+### `r-3e65a887895f4f92`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":23,\"inherited_commitments\":[],\"invocation\":\"w-3e65a887895f4f92\",\"previous_head\":\"a5ad3059f5abae112ec650af8f7ff7ecd3975257165d5a7e3b2c44604e5022f4\",\"process_id\":2036,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-3e65a887895f4f92",
+  "source": "runtime:continuity",
+  "version": 23,
+  "time": "2026-09-25T02:15:33.738325+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -16433,6 +16927,17 @@ _None recorded._
   "invocation": "w-f97710e90ee94d06",
   "title": "Researching Evolutionary Explanations",
   "summary": "Maintaining focus on the evolutionary biology topic. I am initiating a search for empirical research methods that differentiate between adaptation, byproduct, drift, and constraint, aiming to establish a foundation for the current project, evo-trait-explanation."
+}
+```
+
+### 024 · Advancing Entropy under enforced rotation
+
+```json
+{
+  "cycle": 24,
+  "invocation": "w-3e65a887895f4f92",
+  "title": "Advancing Entropy under enforced rotation",
+  "summary": "Squirrel accepted the valid entropy subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history."
 }
 ```
 

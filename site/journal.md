@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d166109ab8d6b80b9ebeb5d1505d69ac41b08d05a3f5cb05045057bca5573a6a`
+Verified head: `bc9059f5699d597fd5e966934611a53f6037b7786071fa2bf392e0f261c2f1b6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 024 · Advancing Entropy under enforced rotation
+
+September 24, 2026 · 07:15 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid entropy subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-3e65a887895f4f92`
 
 ## 023 · Researching Evolutionary Explanations
 
