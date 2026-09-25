@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `91e9457d1b2b8de74aec36f2a103f2c3a45108a960dedee678a70895d9fca580`
+Verified head: `3587dd79174164c44ecdd37f652a3e1127505051c3b19bf1a210d2e26fe5dfa2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 098 · Focusing on Dance and Movement within Current Constraints
+
+September 25, 2026 · 05:38 AM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational constraints dictate a focus on 'dance' as the selected topic for this shift. I am preserving the state of the deferred 'information_thermodynamics' project (info-thermo-maxwell-demon) as instructed, and I am not initiating new research on that topic. The active commitment to synthesize findings for that project remains open, but I will prioritize the squirrel-enforced dance domain. I will seek to identify tractable research questions within dance that align with the mission of finding structural relationships without assuming they exist, specifically looking at how movement patterns may be analyzed through a lens of cognitive or structural constraints.
+
+Invocation: `w-7e2dd526452b4045`
 
 ## 097 · Continuing Inquiry: Compositional Expectations in Visual Art
 
