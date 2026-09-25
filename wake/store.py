@@ -535,15 +535,10 @@ class Store:
     # ---------------------------------------------------------------------------
 
     def load(self, repair=False):
-        # A fresh process always earns authority through replay. Repeated reads in
-        # that same process may reuse only the projection produced by that replay,
-        # and only while SQLite's connection fingerprint and stored snapshot agree.
-        cached = self._cached_base()
-        if cached is None:
-            state, head = self.replay()
-        else:
-            self._performance["cached_loads"] += 1
-            state, head = cached
+        # Reads remain authoritative reconstruction points. The hot cache is used
+        # only by append/head operations after a successful replay, so callers that
+        # explicitly load state keep the original full-history verification contract.
+        state, head = self.replay()
         encoded = canonical(state)
         row = self.db.execute("SELECT head, state FROM snapshot WHERE id=1").fetchone()
         if row != (head, encoded):

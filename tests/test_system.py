@@ -175,17 +175,19 @@ class SystemTests(unittest.TestCase):
         with self.assertRaises(IntegrityError):
             self.engine.recover()
 
-    def test_verified_projection_cache_avoids_replaying_unchanged_history(self):
+    def test_verified_projection_cache_avoids_duplicate_replay_on_append(self):
         self.engine.store.load()
         before = self.engine.store.performance_snapshot()
-        self.engine.store.load()
-        after = self.engine.store.performance_snapshot()
-        self.assertEqual(after["full_replays"], before["full_replays"])
-        self.assertGreater(after["cached_loads"], before["cached_loads"])
         with self.engine.store.lock():
             self.engine.store.append("focus_changed", {"focus": "cache-test"})
+        after = self.engine.store.performance_snapshot()
+        self.assertEqual(after["full_replays"], before["full_replays"])
+        self.assertGreater(after["append_cache_hits"], before["append_cache_hits"])
+        # Explicit state reads still perform full reconstruction and therefore
+        # retain the original corruption-detection boundary.
+        self.engine.store.load()
         final = self.engine.store.performance_snapshot()
-        self.assertGreater(final["append_cache_hits"], after["append_cache_hits"])
+        self.assertGreater(final["full_replays"], after["full_replays"])
 
     def test_invocation_records_hot_path_and_compression_metrics(self):
         with self.engine.store.lock():
