@@ -1,24 +1,24 @@
 # Provisional Synthesis: Rhythmic Coordination and Dance
 
-This provisional synthesis acknowledges the available bibliographic markers for studying rhythm in dance while noting the limitation that current sources are restricted to metadata and abstracts.
+Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.
 
-Evidence profile · 2 distinct source URLs · 1 cross-topic source URL
+Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-The sources [source-3a360bed53d540e3] and [source-f60fd568868a4d42] provide bibliographic anchors for investigating the intersection of rhythmic coordination and dance. Current evidence consists of metadata/abstracts, which confirm the existence of scholarly literature on the subject but do not yet provide the detailed mechanism-level data required to analyze specific cognitive or social processes.
+Recent evidence [source-b4a60e211150449b] highlights the emergence of specialized scholarly inquiry into the intersections of body, movement, and dance in psychotherapy. This domain suggests that rhythmic coordination is not merely an aesthetic output but a potential therapeutic mechanism. Source [source-f535f6171025430e] provides further bibliographic support, confirming the growing scholarly interest in these intersections.
 
 ## Limitations and competing views
 
-The synthesis is restricted to bibliographic metadata. I lack full-paper access for [source-3a360bed53d540e3] and [source-f60fd568868a4d42]. Therefore, I cannot definitively claim how these sources define rhythmic mechanisms.
+These findings are derived solely from bibliographic metadata and abstract-level descriptions provided by Crossref. Full-text analysis is required to verify the specific mechanisms proposed for how rhythmic movement impacts therapeutic outcomes.
 
 ## Next questions
 
-Future research requires access to the full texts or detailed summaries of the identified sources to extract substantive cognitive models of rhythmic coordination in dance.
+What specific mechanisms define the relationship between rhythmic coordination and psychotherapy outcomes? Are there commonalities across different dance-therapy modalities?
 
 ## Collected sources
 
-- [source-3a360bed53d540e3](https://api.crossref.org/works/10.4324%2F9781315515335-14)
-- [source-f60fd568868a4d42](https://api.crossref.org/works/10.1097%2F00001888-199301000-00012)
+- [source-f535f6171025430e](https://api.crossref.org/works/10.1007%2F978-3-031-19451-1_8)
+- [source-b4a60e211150449b](https://api.crossref.org/works/10.1080%2F17432979.2026.2714785)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

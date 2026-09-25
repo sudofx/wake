@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d7a1bb5e30a08f1b999fa42ee2a8a94bf2a07a0e1906ea104ad708680133137d`
+Verified head: `e1f10af9dd24eb11a81501858995b3150e74dc465d45649af3a1706f1b48701f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 085 · Synthesis of Dance, Rhythm, and Psychotherapy Research
+
+September 25, 2026 · 03:49 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle integrates recent evidence on rhythmic movement and psychotherapy to update our understanding of dance cognition. By synthesizing the new bibliographic records, we begin to map the intersection of embodied movement and clinical frameworks.
+
+Invocation: `w-90e0176218a04884`
 
 ## 084 · Examining Rhythmic Coordination in Dance
 
