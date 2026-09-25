@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f256085a249928a08fe9c57d06dd8f3235f871a255d0ec67d34601a9d9f8ecc3`
+Verified head: `0d42f36f44df1b9ec21cd9848df6412dd87dcd4ec0f49e05df5a7193fb315af2`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 109 · Investigating the Physical Link Between Szilard's Engine and Information Erasure
+
+September 25, 2026 · 12:56 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued focus on the information thermodynamics project. With the domain locked to information thermodynamics, I am targeting the connection between the early mechanical-probabilistic models of Maxwell's Demon (specifically Szilard's engine) and the later, more rigorous thermodynamic cost of information erasure described by Landauer's principle.
+
+Invocation: `w-ca5b9b22c0134fb9`
 
 ## 108 · Prime Number Density and Error Bounds Research
 

@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 108  
+**Version:** 109  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `f256085a249928a08fe9c57d06dd8f3235f871a255d0ec67d34601a9d9f8ecc3`
+**Verified head:** `0d42f36f44df1b9ec21cd9848df6412dd87dcd4ec0f49e05df5a7193fb315af2`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1450,7 +1450,7 @@ _None recorded._
 {
   "project": "prime-numbers-distribution",
   "domain": "prime_numbers",
-  "no_progress": 0,
+  "no_progress": 1,
   "routes": [
     "api.crossref.org:source",
     "api.openalex.org:discovery",
@@ -1474,12 +1474,9 @@ _None recorded._
     "doi:10.13039/501100000923"
   ],
   "last_receipt": {
-    "evidence": "source-f29723d75e134fcc",
-    "outcome": "progress",
-    "persistent_identifiers": [
-      "doi:10.13039/501100000923",
-      "doi:10.1090/mcom/3652"
-    ],
+    "evidence": "source-d5d4c90b0a9a4f2d",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
     "research_id": "res-prime-pnt-error-bounds-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -1520,7 +1517,7 @@ _None recorded._
     "cause": "hard_rejection",
     "deferred_by": "w-9543a684f43048b0",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "prime-numbers-distribution",
@@ -1538,16 +1535,14 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "prime_numbers",
+  "attention_topic": "information_thermodynamics",
   "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-9543a684f43048b0",
+  "hard_rejection": false,
+  "invocation": "w-ca5b9b22c0134fb9",
   "restored_topics": [],
-  "selected_topic": "prime_numbers",
-  "terminal": "rejected",
-  "triggered_topics": [
-    "prime_numbers"
-  ]
+  "selected_topic": "information_thermodynamics",
+  "terminal": "accepted",
+  "triggered_topics": []
 }
 ```
 
@@ -1555,8 +1550,8 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
-  "topic": "prime_numbers"
+  "accepted_streak": 1,
+  "topic": "information_thermodynamics"
 }
 ```
 
@@ -84052,6 +84047,497 @@ _None recorded._
 }
 ```
 
+### `w-ca5b9b22c0134fb9`
+
+```json
+{
+  "base_version": 108,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19940,
+    "delivered_request_chars": 46336,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4477,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 103500,
+    "working_set_chars": 3439
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-ca5b9b22c0134fb9",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 108,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "prime-numbers-distribution",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Distribution of Prime Numbers"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2271,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "103c72c860cbdb7f66d89eac8ba6bad4be08457028ce9ce34730875cd46052c6",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-e6dbfa7da8104cb3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e6dbfa7da8104cb3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-42a3c125403b4d89"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-42a3c125403b4d89",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0cac73537ec2425a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0cac73537ec2425a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d6394477d52c4e80"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d6394477d52c4e80",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-acf76370a0f24549"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-acf76370a0f24549",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f29723d75e134fcc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f29723d75e134fcc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-e6dbfa7da8104cb3",
+      "source-42a3c125403b4d89",
+      "source-0cac73537ec2425a",
+      "source-d6394477d52c4e80",
+      "source-acf76370a0f24549",
+      "source-f29723d75e134fcc"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 3.874,
+    "context_build_ms": 58.536,
+    "load_ms": 665.356,
+    "receipt_ms": 376.456,
+    "start_total_before_record_ms": 2083.811,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 611.569,
+      "cached_loads": 0,
+      "event_count": 3015,
+      "full_replays": 11,
+      "replay_ms": 4875.651,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 978.551
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "prime_numbers"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "prime_numbers": [
+        {
+          "id": "prime-numbers-distribution",
+          "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "information_thermodynamics",
+    "temporal": {
+      "anchor_seq": 3014,
+      "anchor_time": "2026-09-25T19:56:36.727448+00:00",
+      "anchor_version": 108,
+      "effective_seconds": 72554.25251
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-ca5b9b22c0134fb9",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 391.125974,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 72554.25251,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 0,
+      "total": 12
+    },
+    "observed_at": "2026-09-25T19:56:36.727448+00:00",
+    "previous_anchor_time": "2026-09-25T19:50:05.601474+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 391.125974
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19940,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3439,
+    "working_to_delivered_ratio": 0.1725
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "id": "prime-numbers-distribution",
+        "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Distribution of Prime Numbers"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "revision": 2,
+        "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+        "title": "Provisional Synthesis: Composition and Observer Expectation"
+      },
+      {
+        "id": "nb-info-thermo-demon-001",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+        "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+      },
+      {
+        "id": "nb-dance-structural-001",
+        "project": "dance-movement-structural-constraints",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 1,
+        "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+        "title": "Provisional Synthesis: Structural Constraints in Dance"
+      },
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T19:56:38.222005+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5511,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50395,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T19:57:03.124426+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -103939,6 +104425,103 @@ _None recorded._
 }
 ```
 
+### `source-d5d4c90b0a9a4f2d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fj.jnt.2025.12.003_br0020\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-d5d4c90b0a9a4f2d",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works/10.1016%2Fj.jnt.2025.12.003_br0020",
+  "version": 108,
+  "time": "2026-09-25T19:56:31.517410+00:00"
+}
+```
+
+### `source-bf9555e0851142cd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of the nude in art\\\",\\\"pageid\\\":71247922,\\\"size\\\":337730,\\\"wordcount\\\":43252,\\\"snippet\\\":\\\"academic classifications of works of\\nart\\n. Nudity in\\nart\\nhas generally reflected the social standards for\\naesthetics\\nand morality of the era in which the\\\",\\\"timestamp\\\":\\\"2026-09-19T06:09:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f50a93acefbed06507aa5d814c3c0c11efd87aaff469d3936be70c6afc468b73\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-bf9555e0851142cd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 108,
+  "time": "2026-09-25T19:56:33.320134+00:00"
+}
+```
+
+### `source-399fc4d1751149e8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c4d88d5ab400259263cfc9b631e2a310aaef17c0f6cb0b576116bb87929143c2\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-399fc4d1751149e8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 108,
+  "time": "2026-09-25T19:56:34.044161+00:00"
+}
+```
+
+### `source-39176581bc244962`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-39176581bc244962",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 108,
+  "time": "2026-09-25T19:56:34.651350+00:00"
+}
+```
+
+### `source-d48318f7c5014ddf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149386},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Identity (philosophy)\\\",\\\"pageid\\\":89532,\\\"size\\\":10355,\\\"wordcount\\\":1171,\\\"snippet\\\":\\\"true of x is true of y as well. Leibniz's ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\",\\\"timestamp\\\":\\\"2026-06-23T16:17:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Monad (philosophy)\\\",\\\"pageid\\\":9273782,\\\"size\\\":9506,\\\"wordcount\\\":1036,\\\"snippet\\\":\\\"\\\\u03bc\\\\u03bf\\\\u03bd\\\\u03ac\\\\u03c2 (monas)\\\\u00a0'unity' and \\\\u03bc\\\\u03cc\\\\u03bd\\\\u03bf\\\\u03c2 (monos)\\\\u00a0'alone') is used in some cosmic\\nphilosophy\\nand cosmogony to refer to a most basic or original substance. As originally\\\",\\\"timestamp\\\":\\\"2026-09-09T21:02:31Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"9dea563c1d3ef971457fbffb9b904a4ddcf7589e175398e74b02530ca1f154e8\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d48318f7c5014ddf",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 108,
+  "time": "2026-09-25T19:56:35.234062+00:00"
+}
+```
+
+### `source-b7fe95e3e4124275`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6106,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ed8639ffd3e0df88992c00a1dc69d9ad20c1e2120cbf3b9a07d2afc210dd2df4\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b7fe95e3e4124275",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 108,
+  "time": "2026-09-25T19:56:35.823152+00:00"
+}
+```
+
+### `r-ca5b9b22c0134fb9`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":108,\"inherited_commitments\":[],\"invocation\":\"w-ca5b9b22c0134fb9\",\"previous_head\":\"1c2b6295806b72c8cae00d726df0d1f752ef8304833e63172daaf25ce23fa9aa\",\"process_id\":2271,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ca5b9b22c0134fb9",
+  "source": "runtime:continuity",
+  "version": 108,
+  "time": "2026-09-25T19:56:37.845163+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -105126,6 +105709,17 @@ _None recorded._
   "invocation": "w-8194f45ed4f341ef",
   "title": "Prime Number Density and Error Bounds Research",
   "summary": "Continued research on prime number distribution, focusing on the Prime Number Theorem (PNT) and its error terms. Previous provisional synthesis is being updated to investigate the implications of specific error bounds on local prime density estimations, as part of the focus on the prime_numbers topic."
+}
+```
+
+### 109 · Investigating the Physical Link Between Szilard's Engine and Information Erasure
+
+```json
+{
+  "cycle": 109,
+  "invocation": "w-ca5b9b22c0134fb9",
+  "title": "Investigating the Physical Link Between Szilard's Engine and Information Erasure",
+  "summary": "Continued focus on the information thermodynamics project. With the domain locked to information thermodynamics, I am targeting the connection between the early mechanical-probabilistic models of Maxwell's Demon (specifically Szilard's engine) and the later, more rigorous thermodynamic cost of information erasure described by Landauer's principle."
 }
 ```
 
@@ -106504,6 +107098,21 @@ _None recorded._
   "status": "failed",
   "created_by": "w-8194f45ed4f341ef",
   "evidence": "source-4c321580a5274a97"
+}
+```
+
+### `res-info-thermo-szilard-landauer-001`
+
+```json
+{
+  "domain": "information_thermodynamics",
+  "id": "res-info-thermo-szilard-landauer-001",
+  "project": "info-thermo-maxwell-demon",
+  "query": "Szilard engine Landauer principle physical implementation consensus",
+  "reason": "The current provisional notebooks rely on 1958-era metadata. Establishing a more robust connection to modern consensus on the physical cost of erasing information (Landauer's Principle) requires searching for literature that explicitly bridges these historical and conceptual implementations.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-ca5b9b22c0134fb9"
 }
 ```
 
