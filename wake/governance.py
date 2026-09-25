@@ -1605,7 +1605,10 @@ def transition(state, proposal, invocation, historical=False):
                 len(action["body"].strip()) >= 300,
                 "Blog posts must contain at least 300 characters",
             )
-            if reflection_due:
+            # Rich milestone requirements govern new proposals only.
+            # Historical accepted reflections must replay under the rules that
+            # existed when they entered the durable record.
+            if reflection_due and not historical:
                 require(
                     len(action["body"].strip()) >= 900,
                     "Bob milestone reflections must contain at least 900 characters",
