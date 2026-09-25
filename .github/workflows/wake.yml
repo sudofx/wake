@@ -15,8 +15,6 @@ on:
     # Ask at the platform's five-minute cadence; durable state remains the
     # authority, so queued/delayed deliveries cannot create concurrent writers.
     - cron: '2-57/5 * * * *'
-  issues:
-    types: [opened]
   workflow_dispatch:
     inputs:
       publish_only:
@@ -47,7 +45,7 @@ jobs:
   wake:
     # Set the repository variable WAKE_SCHEDULE_PAUSED=true to hold cron wakes
     # while preserving push refreshes and explicit workflow_dispatch batches.
-    if: (github.event_name == 'issues' || github.ref_name == github.event.repository.default_branch) && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true') && (github.event_name != 'issues' || github.event.issue.title == 'WAKE✳︎ publish refresh')
+    if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
@@ -72,7 +70,7 @@ jobs:
             python scripts/github_wake.py --reset --confirm-reset
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python scripts/github_wake.py --scheduled
-          elif [[ "${{ github.event_name }}" == "push" || "${{ github.event_name }}" == "issues" || "${{ inputs.publish_only }}" == "true" ]]; then
+          elif [[ "${{ github.event_name }}" == "push" || "${{ inputs.publish_only }}" == "true" ]]; then
             python scripts/github_wake.py --publish-only
           else
             python scripts/github_wake.py
