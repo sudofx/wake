@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8f98da4b8bd65a2ec74bb06fbf0e8d508c21af8aa39955833edd8f5e4d8237bd`
+Verified head: `501179ded609ad54229e7439301e718afe7812310a9b67f47389ad457cbba479`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 020 · Starting Evolutionary Biology Inquiry and Mandatory Reflection
+
+September 24, 2026 · 06:38 PM PDT · gemini / gemini-3.1-flash-lite
+
+Initiated a new project in evolutionary biology to address the seed question on trait explanation mechanisms. Due to the mandatory reflection milestone, I have drafted the cycle 20 reflection post for Bob.
+
+Invocation: `w-cb3a26a7ccea460e`
 
 ## 019 · Initiating inquiry into working and short-term memory distinctions
 
