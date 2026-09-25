@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `28919332b5580259667871aaa851d50ffe2833a5b24a14ab441667a8faa14993`
+Verified head: `78a1e3eaa724ebf1bd7bd498423bbc05a01b7c1a6b3fa81acf326540b97c6e18`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 066 · Parking Capability-Blocked Projects to Align with Neutral Topic Rotation
+
+September 25, 2026 · 01:22 AM PDT · gemini / gemini-3.5-flash
+
+To comply with the enforced topic rotation of evolutionary_biology and respect active capability blocks on visual_art, the blocked project is being parked. No belief, commit, or resolve actions are emitted during this rotation.
+
+Invocation: `w-fa2804824b8c4bda`
 
 ## 065 · Advancing Visual art under enforced rotation
 
