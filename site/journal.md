@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3aa82d856fdbdf4f94a6c7739bb13d526ecbb4868e46af2c28d0af120724631d`
+Verified head: `5a81726fa2180727828530254430bce56f9f05fa1613a045682832094816d7c8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 018 · Investigating the distinction between working and short-term memory
+
+September 24, 2026 · 06:32 PM PDT · gemini / gemini-3.1-flash-lite
+
+The current rotation enforces a focus on psychology. I am parking the prime number distribution project to free capacity and starting a research query into the foundational psychological models that differentiate working memory from short-term memory, as per the active project plan.
+
+Invocation: `w-1addb776f1264a78`
 
 ## 017 · Investigating Memory Architecture Distinctions
 
