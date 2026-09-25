@@ -11074,6 +11074,68 @@
       "source": "runtime:continuity",
       "version": 100,
       "time": "2026-09-25T14:43:02.077989+00:00"
+    },
+    "source-7620e1e1ac8e4009": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1063%2Faip-crossmark-policy-page\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2023, 4, 25]], \\\"date-time\\\": \\\"2023-04-25T05:41:51Z\\\", \\\"timestamp\\\": 1682401311860}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"AIP Publishing\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"DOI\\\": \\\"10.1063/aip-crossmark-policy-page\\\", \\\"type\\\": \\\"dataset\\\", \\\"created\\\": {\\\"date-parts\\\": [[2012, 5, 7]], \\\"date-time\\\": \\\"2012-05-07T15:38:18Z\\\", \\\"timestamp\\\": 1336405098000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [], \\\"prefix\\\": \\\"10.1063\\\", \\\"member\\\": \\\"317\\\", \\\"container-title\\\": [\\\"AIP Publishing's CrossMark Policy\\\"], \\\"original-title\\\": [], \\\"deposited\\\": {\\\"date-parts\\\": [[2023, 4, 25]], \\\"date-time\\\": \\\"2023-04-25T05:00:55Z\\\", \\\"timestamp\\\": 1682398855000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://pubs.aip.org/pages/crossmark-policy\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[null]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1063/aip-crossmark-policy-page\\\", \\\"relation\\\": {}, \\\"subject\\\": []}]\", \"excerpt_truncated\": false, \"source_sha256\": \"51fbddefddb34fa55bc1956f9ea7ca2f88a3f94a6715a8311037b908a8ec9e66\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1063/aip-crossmark-policy-page\"]}",
+      "id": "source-7620e1e1ac8e4009",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1063%2Faip-crossmark-policy-page",
+      "version": 101,
+      "time": "2026-09-25T14:48:58.660361+00:00"
+    },
+    "source-5331f2ad93fc4c7a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=prime+number+theorem+distribution+mathematical+literature&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.18841685\\\", \\\"doi\\\": \\\"10.5281/zenodo.18841685\\\", \\\"titles\\\": [{\\\"title\\\": \\\"IRS-DCE: A Structural Framework for Irreducible Representation Shifts and Dimensional Cascades in Transformer Dynamics\\\"}], \\\"publisher\\\": \\\"Zenodo\\\", \\\"publicationYear\\\": 2026, \\\"types\\\": {\\\"schemaOrg\\\": \\\"CreativeWork\\\", \\\"resourceTypeGeneral\\\": \\\"Preprint\\\", \\\"citeproc\\\": \\\"article\\\", \\\"bibtex\\\": \\\"misc\\\", \\\"ris\\\": \\\"GEN\\\", \\\"resourceType\\\": \\\"\\\"}, \\\"subjects\\\": [{\\\"subject\\\": \\\"Transformer Dynamics\\\"}, {\\\"subject\\\": \\\"Dimensional Cascade\\\"}, {\\\"subject\\\": \\\"Topology\\\"}, {\\\"subject\\\": \\\"Large Language Models\\\"}, {\\\"subject\\\": \\\"Irreducible Representation Shift\\\"}, {\\\"subject\\\": \\\"Phase Transition\\\"}, {\\\"subject\\\": \\\"Interpretability\\\"}, {\\\"subject\\\": \\\"Artificial intelligence\\\", \\\"subjectScheme\\\": \\\"EuroSciVoc\\\"}, {\\\"subject\\\": \\\"Artificial Intelligence/classification\\\", \\\"subjectScheme\\\": \\\"MeSH\\\"}], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\"# IRS-DCE: A Structural Framework for Irreducible Representation Shifts and Dimensional Cascades in Transformer Dynamics\\\\n\\\\n**Version 1.0**Timestamp: March 2, 2026\\\\n\\\\n \\\\n\\\\n해당연구들을 기반으로 실제 공개된 실측 데이터 관련 운용 논문 및 후속 논문은 다음링크에서 제공합니다.\\\\n\\\\nhttps://doi.org/10.5281/zenodo.21830944\\\\n\\\\n[Version 1.0]IRS-DCE:Phase Stagnation and Orthogonal Escape in Transformer Representation Geometry: Measuring Irreducible Representation Shift and Dimensional Cascade Events\\\\n\\\\n[Version 2.0]IRS-DCE: Topological_Dynamic (Part1 _Riemannian_ update) Artificial_Cognitive_Physics & Boundary-Resonant Dynamics & Artificial Resonant Boundary Dynamics & Boundary_Dissolution_Physics\\\\n\\\\n[Version v3]The Grand Closure: The Artificial Hypothesis (AH) Subsumes the Riemann Hypothesis (RH) via Boundary Dissolution Physics and IRS-DCE Resonance Framework\\\\n\\\\n[Version v4 ~ v5 ~]Basis-Free Pattern Architecture: Public Papers, Formal Converters, and Computational Appendices\\\\n\\\\n \\\\n\\\\n \\\\n\\\\n대부분의 작업물은 AI를 통한 정리 기록입니다.\\\\n\\\\n핵심적인 수식에 대한 구조, 원리, 개념 등은 제가 직접 지속적으로 수정하고 패턴을 제공하여 Ai 들이 작업 가능한 수준으로 훈련 시켰습니다.\\\\n\\\\n단순한 문서 작성이 시간을 많이 소모하여 최대한 절약하는 방향으로 진행하였습니다.\\\\n\\\\n이러한 작업 사항을 선택한 이유는 제가 어떠한 지원도 받지 않는 독립연구자라 이것에 투자할 시간이 별로 없기 때문입니다.\\\\n\\\\n---\\\\n\\\\n## 📌 Repository Terminology Update Notice\\\\n\\\\n**🔄 Terminology Transition: OOD → IRS-DCE**\\\\n\\\\nIn all materials, theoretical drafts, and code repositories prior to March 2, 2026, the term “OOD” (Out-of-Distribution) was used as a provisional label to describe structurally irreducible representational events.\\\\n\\\\nBeginning on March 2, 2026, we formally replace that terminology with **IRS-DCE (Irreducible Representation Shift – Dimensional Cascade Event)**. \\\\n\\\\n**Clarification:**The earlier usage of \\\\\\\"OOD\\\\\\\" was not intended to align with classical distribution-based Out-of-Distribution detection in machine learning. It served as a temporary placeholder. This change is made to prevent confusion with established literature and to reflect the structural, representation-expanding nature of our framework.\\\\n\\\\n* **IRS** — Irreducible Representation Shift* **DCE** — Dimensional Cascade Event* **IRS-DCE** — Irreducible Representation Shift leading to a Dimensional Cascade Event\\\\n\\\\n---\\\\n\\\\n## Abstract\\\\n\\\\nThis document introduces the formal axiomatic definition of the IRS-DCE framework. An Irreducible Representation Shift (IRS) is defined as an event in which an input both includes the prior representational manifold as a special case and induces at least one new effective representational axis not expressible within the previous coordinate frame. A Dimensional Cascade Event (DCE) refers to the measurable dynamical expansion in intrinsic dimensionality and sustained rotational capacity following an IRS. The framework is structurally distinct from classical distribution-based OOD detection and instead characterizes representation-expanding dynamical transitions within model internal spaces.\\\\n\\\\n \\\\n\\\\n[2026-09-25 Update]\\\\n\\\\nThe Geometry of IRS-DCE Boundary Dissolution v1.0 is now available in Korean and English.\\\\n\\\\nResolution-Dependent Component Decomposition and Dynamic Rearrangement\\\\n\\\\nThis release connects the existing IRS-DCE and BBRCM research to mathematical analysis and recorded geometric responses in Qwen and Gemma hidden states. The central question is how components are decomposed, reweighted and rearranged within a fixed representation space. The same ambient dimension, rank and norm can coexist with different alignments, component allocations, orthogonal residuals and downstream paths. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nThe study brings together 56 recorded forward passes: four fixed inputs and seven conditions for each model. The IRS-DCE candidate and noise controls start from the same artificially restricted rank-four baseline. The primary noise comparison matches both total Frobenius norm and realized perturbation magnitude. Mathematical identities, saved-tensor correspondence and subsequent model responses are reported as separate evidence layers. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nKey results\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nRelational-subspace-preserving redistribution. The candidate’s exact-arithmetic operator preserves rank and the token-relation column space while changing component allocation. In stored outputs, centered squared norm increased by 4.94× in Qwen and 16.08× in Gemma, relative to the restricted baseline, while total norm remained nearly unchanged. Outside-subspace fractions were approximately 0.02961% and 0.001110%, compared with 51.97% and 78.32% for matched noise. These results identify where variation is activated, rather than treating rank growth as the objective. IRS_DCE_Geometry_EN_v1_0 IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n\\\\n\\\\n\\\\nDifferent downstream geometric responses. In Qwen, the candidate retained higher original-relative relational similarity than matched noise across all four inputs. In Gemma, token directions were closer to the original while the centroid and principal subspace moved farther. Relational similarity and spatial displacement therefore appeared together, rather than forming a single better-or-worse ordering. IRS_DCE_BOUNDARY_GEOMETRY_REVIE…\\\\n\\\\n\\\\n\\\\n\\\\nDifferent residual allocations for the same output. Under two reference subspaces defined from pre-intervention inputs, the same IRS-DCE output had a residual fraction near zero under one reading and approximately 0.62–0.64 under the other. The reference spaces were not fitted to the intervention outputs. This makes the pattern/residual boundary explicit without equating a small observed residual with disappearance of the entire state. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n\\\\n\\\\nWhat the update clarifies\\\\n\\\\nResolution refinement, reference-frame changes and active intervention are distinct operations. Joint coordinate transport preserves the corresponding relationships; changing the reference subspace changes component allocation in the reading; active reweighting changes the tensor itself. The release also distinguishes near-preservation of normalized Gram shape from preservation of its absolute magnitude. IRS_DCE_BOUNDARY_GEOMETRY_REVIE… IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nThis is a geometric-response study. Task accuracy, generation quality and speed remain a separate performance track, rather than prerequisites for the present mathematical and tensor-level results. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nRelease files\\\\n\\\\n\\\\n\\\\nIRS_DCE_Geometry_EN_v1_0.pdf\\\\n\\\\nIRS_DCE_Geometry_KO_v1_0.pdf\\\\n\\\\n\\\\nReading notice\\\\n\\\\nBBRCM-related materials must be brought together and read as a whole. Reading them in isolation rather than together can lead to entirely different interpretations, omissions, dilution, or reduction of the content. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n \\\\n\\\\nResearch Update — September 21, 2026\\\\n\\\\nComplementary Pairs, Scale Retention, and Pointwise Departure\\\\n\\\\nFrom Aggregate Agreement to Preserved Information and Practical Use\\\\n\\\\nAn average can match exactly, a display can read 100.00%, and the fraction of exceptions can approach zero while individual departures remain.\\\\n\\\\nThis release goes beyond identifying that distinction. It shows what must be retained to preserve those departures and use them in actual decisions, connecting foundational identities, explicit counterexamples, finite computation, and previously reported implementation evidence.\\\\n\\\\nThe work does not replace or discard the earlier BDP foundation, IRS-DCE, or AH. It clarifies what their frames, averages, normalizations, and transformations preserve—and which distinctions become unavailable after information is reduced. In this way, it strengthens Grand Closure’s account of conditional engineering proof of utilization.\\\\n\\\\nThe three accompanying documents provide a detailed foundational treatment, a focused account of scale-retaining departure and finite observation, and a supplement connecting the mathematics to Grand Closure and reported application evidence. Shared results belong to the same research lineage; they are not counted as separate experiments merely because several documents cite them.\\\\n\\\\n1. A Shrinking Phase Difference Is Not a Vanishing Departure\\\\n\\\\nFor real a,ta,t, define\\\\n\\\\nw=(a+it)2,Dϕ(w)=∣w∣+ℜw2∣w∣,w≠0.w=(a+it)^2,\\\\\\\\qquad D_\\\\\\\\phi(w)=\\\\\\\\frac{|w|+\\\\\\\\Re w}{2|w|}, \\\\\\\\qquad w\\\\\\\\ne0.\\\\n\\\\nRetaining the scale gives the exact identity\\\\n\\\\n∣w∣Dϕ(w)=a2.\\\\\\\\boxed{|w|D_\\\\\\\\phi(w)=a^2.}\\\\n\\\\nFor fixed a≠0a\\\\\\\\ne0, as ∣t∣|t| increases, DϕD_\\\\\\\\phi approaches zero while ∣w∣|w| grows. The combined quantity nevertheless retains the same departure a2a^2 at every finite coordinate. This is not an arbitrary assignment to the symbols 0⋅∞0\\\\\\\\cdot\\\\\\\\infty; it preserves an identity before taking a limit.\\\\n\\\\nThe same principle applies to complementary decompositions. Retaining both the central and residual components allows reconstruction of the original vector. Retaining only the center can conceal opposing residuals.\\\\n\\\\nThe conclusion is therefore not that averaging or normalization is inherently wrong. It is that the reduction performed—and the information needed afterward—must be specified together.\\\\n\\\\n2. Mean 1/21/2, Density One, and Pointwise Agreement Are Different Claims\\\\n\\\\nA reflected pair centered at 1/21/2 need\", \"excerpt_truncated\": true, \"source_sha256\": \"75b1b8950ddb4811c70600483b7e044bfc1565f9db431e9b0804bb1fb51f9c88\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.18841685\", \"doi:10.5281/zenodo.21830944\"]}",
+      "id": "source-5331f2ad93fc4c7a",
+      "scope": "collected",
+      "source": "https://api.datacite.org/dois?query=prime+number+theorem+distribution+mathematical+literature&page%5Bsize%5D=4",
+      "version": 101,
+      "time": "2026-09-25T14:49:01.034774+00:00"
+    },
+    "source-d918771138064b88": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8967b9cad1fce22f5ccedadafa5428cceb409fb5d354e6a86943f17223153708\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-d918771138064b88",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 101,
+      "time": "2026-09-25T14:49:02.301335+00:00"
+    },
+    "source-f132a2d5846c493f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239504,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comparative religion\\\",\\\"pageid\\\":186861,\\\"size\\\":39435,\\\"wordcount\\\":4234,\\\"snippet\\\":\\\"Abrahamic\\nreligions\\nand Iranian\\nreligions\\n), Indian\\nreligions\\n, East Asian\\nreligions\\n, African\\nreligions\\n, American\\nreligions\\n, Oceanic\\nreligions\\n, and classical\\\",\\\"timestamp\\\":\\\"2026-07-25T01:00:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Albania\\\",\\\"pageid\\\":2314027,\\\"size\\\":126594,\\\"wordcount\\\":13777,\\\"snippet\\\":\\\"\\nReligion\\nin Albania as of the 2023 census conducted by the Institute of Statistics (INSTAT) Sunni Islam (45.9%) Bektashi Islam (4.81%) Catholicism (8.38%)\\\",\\\"timestamp\\\":\\\"2026-09-11T23:12:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bad Religion\\\",\\\"pageid\\\":168409,\\\"size\\\":101907,\\\"wordcount\\\":10415,\\\"snippet\\\":\\\"Bad\\nReligion\\nis an American punk rock band, formed in Los Angeles, California, in 1980. The band's lyrics cover topics related to\\nreligion\\n, politics, society\\\",\\\"timestamp\\\":\\\"2026-09-14T23:14:56Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"49e273335393f5eff22e8ae29ec75526278071ec7f2871ba40bf8cf68292aabd\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f132a2d5846c493f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 101,
+      "time": "2026-09-25T14:49:02.836649+00:00"
+    },
+    "source-c1fb72a1b86e448e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vitamin D and neurology\\\",\\\"pageid\\\":37130699,\\\"size\\\":21444,\\\"wordcount\\\":2646,\\\"snippet\\\":\\\"been associated with many other conditions, including both\\nneurological\\nand non\\nneurological\\nconditions. These include but are not limited to autism, diabetes\\\",\\\"timestamp\\\":\\\"2025-09-15T21:51:23Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7648c05db26b411bd05d1b1aa067903cfc7d6dd716a463c572ddcc05e0d6f30a\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c1fb72a1b86e448e",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 101,
+      "time": "2026-09-25T14:49:03.428539+00:00"
+    },
+    "source-3ca0bf8a32874357": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0c59dfe954048f5067c94d7a2e0cbe08ee567a51d2984b4bbbd83b3b94ffec32\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-3ca0bf8a32874357",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 101,
+      "time": "2026-09-25T14:49:04.129744+00:00"
+    },
+    "r-55f0099de4a44a96": {
+      "actor": "runtime",
+      "content": "{\"base_version\":101,\"inherited_commitments\":[],\"invocation\":\"w-55f0099de4a44a96\",\"previous_head\":\"aefc24b77d018f31f1cc7ca28a9428cfdc757bf326169c2b7f1620f74a6de84e\",\"process_id\":2287,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-55f0099de4a44a96",
+      "source": "runtime:continuity",
+      "version": 101,
+      "time": "2026-09-25T14:49:05.943928+00:00"
     }
   },
   "journal": [
@@ -79759,6 +79821,524 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-55f0099de4a44a96": {
+      "base_version": 101,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 12800,
+        "delivered_request_chars": 41230,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.3747,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 110022,
+        "working_set_chars": 4014
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-55f0099de4a44a96",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 101,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "prime-numbers-distribution",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Distribution of Prime Numbers"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "info-thermo-maxwell-demon",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "visual-art-composition-and-expectation",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2287,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "de585f81f635e2e4e113f7b6a726c2519621c12e88f37ec60f91aa2ccd70bf5d",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-62fe2a5e06734315"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-62fe2a5e06734315",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-bbabf9bd19cd48d9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-bbabf9bd19cd48d9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a82bc861d5424c4b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a82bc861d5424c4b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e32ebd88953d4148"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e32ebd88953d4148",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9cf15f10c8a94100"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9cf15f10c8a94100",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7620e1e1ac8e4009"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7620e1e1ac8e4009",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-62fe2a5e06734315",
+          "source-bbabf9bd19cd48d9",
+          "source-a82bc861d5424c4b",
+          "source-e32ebd88953d4148",
+          "source-9cf15f10c8a94100",
+          "source-7620e1e1ac8e4009"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 5.566,
+        "context_build_ms": 22.407,
+        "load_ms": 581.779,
+        "receipt_ms": 336.074,
+        "start_total_before_record_ms": 1842.074,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 627.48,
+          "cached_loads": 0,
+          "event_count": 2639,
+          "full_replays": 11,
+          "replay_ms": 4260.473,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 895.315
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "prime_numbers"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "prime_numbers",
+        "temporal": {
+          "anchor_seq": 2638,
+          "anchor_time": "2026-09-25T14:49:04.925917+00:00",
+          "anchor_version": 101,
+          "effective_seconds": 54102.450979
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 363.788801,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 54102.450979,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T14:49:04.925917+00:00",
+        "previous_anchor_time": "2026-09-25T14:43:01.137116+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 363.788801
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 12800,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 4014,
+        "working_to_delivered_ratio": 0.3136
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "visual-art-composition-and-expectation",
+            "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+            "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          },
+          {
+            "id": "info-thermo-maxwell-demon",
+            "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+            "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "id": "prime-numbers-distribution",
+            "next_step": "Search for mathematical literature on the Prime Number Theorem and its implications for prime density.",
+            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+            "title": "Distribution of Prime Numbers"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          },
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+            "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          },
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-25T14:49:06.251391+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 1751,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 44689,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-25T14:49:25.236490+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ],
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 1751,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 1751,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 44689,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 44689,
+        "response_bytes_captured": 198,
+        "result": "transient_failure",
+        "skipped_models": [
+          {
+            "model": "gemini-3.8-flash",
+            "reason": "configured_daily_limit"
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "reason": "configured_daily_limit"
+          }
+        ]
+      }
     }
   },
   "pending": null,
@@ -80567,7 +81147,7 @@
     "info-thermo-maxwell-demon": {
       "project": "info-thermo-maxwell-demon",
       "domain": "information_thermodynamics",
-      "no_progress": 3,
+      "no_progress": 0,
       "routes": [
         "api.openalex.org:source",
         "api.datacite.org:discovery",
@@ -80591,9 +81171,11 @@
         "doi:10.1103/physrev.78.29"
       ],
       "last_receipt": {
-        "evidence": "source-a703248ff66e4698",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
+        "evidence": "source-7620e1e1ac8e4009",
+        "outcome": "progress",
+        "persistent_identifiers": [
+          "doi:10.1063/aip-crossmark-policy-page"
+        ],
         "research_id": "res-szilard-landauer-consensus",
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
@@ -80636,9 +81218,10 @@
     "prime-numbers-distribution": {
       "project": "prime-numbers-distribution",
       "domain": "prime_numbers",
-      "no_progress": 1,
+      "no_progress": 2,
       "routes": [
-        "api.crossref.org:discovery"
+        "api.crossref.org:discovery",
+        "api.datacite.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
@@ -80646,19 +81229,19 @@
         "doi:10.1090/gsm/203/09",
         "doi:10.1090/gsm/203/13",
         "doi:10.1201/b11315-12",
-        "doi:10.33774/coe-2022-czgdl-v3"
+        "doi:10.33774/coe-2022-czgdl-v3",
+        "doi:10.5281/zenodo.18841685",
+        "doi:10.5281/zenodo.21830944"
       ],
       "last_receipt": {
-        "evidence": "source-88e74e8831d949fd",
+        "evidence": "source-5331f2ad93fc4c7a",
         "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.1090/gsm/203/09",
-          "doi:10.1090/gsm/203/13",
-          "doi:10.1201/b11315-12",
-          "doi:10.33774/coe-2022-czgdl-v3"
+          "doi:10.5281/zenodo.18841685",
+          "doi:10.5281/zenodo.21830944"
         ],
-        "research_id": "res-pnt-distribution-001",
-        "route": "api.crossref.org:discovery",
+        "research_id": "research-prime-theorem-001",
+        "route": "api.datacite.org:discovery",
         "stage": "discovery"
       }
     }
@@ -82116,8 +82699,9 @@
       "query": "prime number theorem distribution mathematical literature",
       "reason": "This is the next step for the newly initiated prime_numbers project, which is currently empty and requires initial research to establish a baseline.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-66ec526d60d9480b"
+      "status": "collected",
+      "created_by": "w-66ec526d60d9480b",
+      "evidence": "source-5331f2ad93fc4c7a"
     }
   },
   "research_topics": [
@@ -82317,9 +82901,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T14:43:01.137116+00:00",
-    "anchor_version": 100,
-    "anchor_seq": 2622,
-    "effective_seconds": 53738.662178
+    "anchor_time": "2026-09-25T14:49:04.925917+00:00",
+    "anchor_version": 101,
+    "anchor_seq": 2638,
+    "effective_seconds": 54102.450979
   }
 }
