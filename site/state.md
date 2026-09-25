@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 26  
+**Version:** 27  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `39f25f6bc6c40021fa5db5d29e4af72638577000364c568d52559546307a904e`
+**Verified head:** `38beb1319f12bc8b8855e654431f5216e455ece336258bddbe53106140b399dd`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -443,27 +443,41 @@ _None recorded._
   "domain": "entropy",
   "no_progress": 1,
   "routes": [
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.crossref.org:source",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.3390/e17053352",
-    "doi:10.3390/e24040553",
-    "doi:10.3390/e24050712",
-    "doi:10.2174/9781681083353116010010"
+    "doi:10.1007/978-3-642-14394-6",
+    "doi:10.1109/cdc.2012.6426381",
+    "doi:10.1007/bf01211853",
+    "doi:10.1137/s0363012901393894",
+    "doi:10.3133/pp500a",
+    "doi:10.1103/revmodphys.77.259",
+    "doi:10.1016/j.actamat.2018.08.053",
+    "doi:10.1002/jcc.21287",
+    "openalex:W1550798515",
+    "openalex:W2154815292",
+    "openalex:W2889241664",
+    "openalex:W2132262459"
   ],
   "last_receipt": {
-    "evidence": "source-0462be17a984431c",
+    "evidence": "source-bc076b6dfc81442c",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.3390/e17053352",
-      "doi:10.3390/e24040553",
-      "doi:10.3390/e24050712",
-      "doi:10.2174/9781681083353116010010"
+      "doi:10.3133/pp500a",
+      "doi:10.1103/revmodphys.77.259",
+      "doi:10.1016/j.actamat.2018.08.053",
+      "doi:10.1002/jcc.21287",
+      "openalex:W1550798515",
+      "openalex:W2154815292",
+      "openalex:W2889241664",
+      "openalex:W2132262459"
     ],
-    "research_id": "res-entropy-definitions-comparison",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-entropy-comparison-001",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -493,7 +507,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 16,
+    "other_topic_attempts": 17,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -515,7 +529,7 @@ _None recorded._
   "attention_topic": "entropy",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-1d1ac3da6cfd4281",
+  "invocation": "w-a4ccb615c97b4540",
   "restored_topics": [],
   "selected_topic": "entropy",
   "terminal": "accepted",
@@ -527,7 +541,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 3,
+  "accepted_streak": 4,
   "topic": "entropy"
 }
 ```
@@ -13657,6 +13671,381 @@ _None recorded._
 }
 ```
 
+### `w-a4ccb615c97b4540`
+
+```json
+{
+  "base_version": 26,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 11588,
+    "delivered_request_chars": 36261,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 74755,
+    "working_set_chars": 1682
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-a4ccb615c97b4540",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 26,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "entropy-foundations-formal",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Formalizing Entropy Definitions"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "evo-trait-explanation",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Distinguishing Evolutionary Explanations"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "psychology-memory-distinction",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Working Memory vs Short-Term Memory"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2361,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "a4617449e6358a2ac7da7b761b13a71c18b7228e5954cfcfa39fd3d6651ced4f",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-865157fcca494fc8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-865157fcca494fc8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c143770c42214822"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c143770c42214822",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-66560cd30f05453d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-66560cd30f05453d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b2560bee4a1546b8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b2560bee4a1546b8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-813a711d94a84320"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-813a711d94a84320",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-441b6f5c905f44f4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-441b6f5c905f44f4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-865157fcca494fc8",
+      "source-c143770c42214822",
+      "source-66560cd30f05453d",
+      "source-b2560bee4a1546b8",
+      "source-813a711d94a84320",
+      "source-441b6f5c905f44f4"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "entropy"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "entropy",
+    "temporal": {
+      "anchor_seq": 627,
+      "anchor_time": "2026-09-25T02:24:55.104302+00:00",
+      "anchor_version": 26,
+      "effective_seconds": 9452.629364
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 196.573785,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 9452.629364,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T02:24:55.104302+00:00",
+    "previous_anchor_time": "2026-09-25T02:21:38.530517+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 196.573785
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 11588,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1682,
+    "working_to_delivered_ratio": 0.1452
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "psychology-memory-distinction",
+        "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+        "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+        "title": "Working Memory vs Short-Term Memory"
+      },
+      {
+        "id": "evo-trait-explanation",
+        "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+        "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+        "title": "Distinguishing Evolutionary Explanations"
+      },
+      {
+        "id": "entropy-foundations-formal",
+        "next_step": "Search for literature comparing these three frameworks.",
+        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+        "title": "Formalizing Entropy Definitions"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T02:24:55.539085+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3071,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38640,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T02:25:05.681482+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -17636,6 +18025,103 @@ _None recorded._
 }
 ```
 
+### `source-441b6f5c905f44f4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.3390%2Fe17053352\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 7, 16]], \\\"date-time\\\": \\\"2026-07-16T14:53:34Z\\\", \\\"timestamp\\\": 1784213614134, \\\"version\\\": \\\"3.55.0\\\"}, \\\"reference-count\\\": 21, \\\"publisher\\\": \\\"MDPI AG\\\", \\\"issue\\\": \\\"5\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2015, 5, 15]], \\\"date-time\\\": \\\"2015-05-15T00:00:00Z\\\", \\\"timestamp\\\": 1431648000000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://creativecommons.org/licenses/by/4.0/\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Entropy\\\"], \\\"abstract\\\": \\\"<jats:p>In this paper, we present connections between recent developments on the linearly-solvable stochastic optimal control framework with early work in control theory based on the fundamental dualities between free energy and relative entropy. We extend these connections to nonlinear stochastic systems with non-affine controls by using the generalized version of the Feynman–Kac lemma. We present alternative formulations of the linearly-solvable stochastic optimal control framework and discuss information theoretic and thermodynamic interpretations. On the algorithmic side, we present iterative stochastic optimal control algorithms and applications to nonlinear stochastic systems. We conclude with an overview of the frameworks presented and discuss limitations, differences and future directions.</jats:p>\\\", \\\"DOI\\\": \\\"10.3390/e17053352\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2015, 5, 15]], \\\"date-time\\\": \\\"2015-05-15T07:57:02Z\\\", \\\"timestamp\\\": 1431676622000}, \\\"page\\\": \\\"3352-3375\\\", \\\"update-policy\\\": \\\"https://doi.org/10.3390/mdpi_crossmark_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 39, \\\"title\\\": [\\\"Nonlinear Stochastic Control and Information Theoretic Dualities: Connections, Interdependencies and Thermodynamic Interpretations\\\"], \\\"prefix\\\": \\\"10.3390\\\", \\\"volume\\\": \\\"17\\\", \\\"author\\\": [{\\\"given\\\": \\\"Evangelos\\\", \\\"family\\\": \\\"Theodorou\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"The Daniel Guggenheim School of Aerospace Engineering, Georgia Institute of Technology, Atlanta,GA 30332-0150, USA\\\"}, {\\\"name\\\": \\\"Institute of Robotics and intelligent Machines, Georgia Institute of Technology, Atlanta, GA30332-0150, USA \\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"1968\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2015, 5, 15]]}, \\\"reference\\\": [{\\\"key\\\": \\\"ref_1\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"149\\\", \\\"DOI\\\": \\\"10.1063/1.2709596\\\", \\\"article-title\\\": \\\"An introduction to stochastic control theory, path integrals and reinforcement learning\\\", \\\"volume\\\": \\\"887\\\", \\\"author\\\": \\\"Marro\\\", \\\"year\\\": \\\"2007\\\", \\\"journal-title\\\": \\\"Cooperative Behavior in Neural Systems\\\"}, {\\\"key\\\": \\\"ref_2\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"P11011\\\", \\\"DOI\\\": \\\"10.1088/1742-5468/2005/11/P11011\\\", \\\"article-title\\\": \\\"Path integrals and symmetry breaking for optimal control theory\\\", \\\"volume\\\": \\\"11\\\", \\\"author\\\": \\\"Kappen\\\", \\\"year\\\": \\\"2005\\\", \\\"journal-title\\\": \\\"J. Stat. Mech. Theory Exp.\\\"}, {\\\"key\\\": \\\"ref_3\\\", \\\"unstructured\\\": \\\"Theodorou, E., Buchli, J., and Schaal, S. (2010). A Generalized Path Integral Approach to Reinforcement Learning. J. Mach. Learn. Res., 3137–3181.\\\"}, {\\\"key\\\": \\\"ref_4\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"11478\\\", \\\"DOI\\\": \\\"10.1073/pnas.0710743106\\\", \\\"article-title\\\": \\\"Efficient computation of optimal actions\\\", \\\"volume\\\": \\\"106\\\", \\\"author\\\": \\\"Todorov\\\", \\\"year\\\": \\\"2009\\\", \\\"journal-title\\\": \\\"Proc. Natl. Acad. Sci. USA\\\"}, {\\\"key\\\": \\\"ref_5\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Scholkopf, B., Platt, J., and Hoffman, T. (2007). Advances in Neural Information Processing Systems 19, MIT Press.\\\", \\\"DOI\\\": \\\"10.7551/mitpress/7503.001.0001\\\"}, {\\\"key\\\": \\\"ref_6\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Pan, Y., and Theodorou, E. (2014, January 9–12). Nonparametric infinite horizon Kullback-Leibler stochastic control, Orlando, USA.\\\", \\\"DOI\\\": \\\"10.1109/ADPRL.2014.7010616\\\"}, {\\\"key\\\": \\\"ref_7\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Friedman, A. (1975). Stochastic Differential Equations And Applications, Academic Press.\\\", \\\"DOI\\\": \\\"10.1016/B978-0-12-268201-8.50010-4\\\"}, {\\\"key\\\": \\\"ref_8\\\", \\\"unstructured\\\": \\\"Karatzas, I., and Shreve, S.E. (1991). Brownian Motion and Stochastic Calculus (Graduate Texts in Mathematics), Springer. [2].\\\"}, {\\\"key\\\": \\\"ref_9\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Øksendal, B.K. (2003). Stochastic differential equations: An Introduction with Applications, Springer. [6].\\\", \\\"DOI\\\": \\\"10.1007/978-3-642-14394-6\\\"}, {\\\"key\\\": \\\"ref_10\\\", \\\"unstructured\\\": \\\"Horowitz, M.B., Damle, A., and Burdick, J.W. Linear Hamilton Jacobi Bellman Equations in High Dimensions, arXiv:1404.1089.\\\"}, {\\\"key\\\": \\\"ref_11\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Theodorou, E., and Todorov, E. (2012, January 10–13). Relative entropy and free energy dualities: Connections to Path Integral and KL control, Maui, HI, USA.\\\", \\\"DOI\\\": \\\"10.1109/CDC.2012.6426381\\\"}, {\\\"key\\\": \\\"ref_12\\\", \\\"first-page\\\": \\\"329\\\", \\\"article-title\\\": \\\"Exit probabilities and optimal stochastic control\\\", \\\"volume\\\": \\\"9\\\", \\\"author\\\": \\\"Fleming\\\", \\\"year\\\": \\\"1971\\\", \\\"journal-title\\\": \\\"Appl. Math. Optim.\\\"}, {\\\"key\\\": \\\"ref_13\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"303\\\", \\\"DOI\\\": \\\"10.1007/BF01211853\\\", \\\"article-title\\\": \\\"Connections between stochastic control and dynamic games\\\", \\\"volume\\\": \\\"9\\\", \\\"author\\\": \\\"Meneghini\\\", \\\"year\\\": \\\"1996\\\", \\\"journal-title\\\": \\\"Math. Control Signals Syst. (MCSS)\\\"}, {\\\"key\\\": \\\"ref_14\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1813\\\", \\\"DOI\\\": \\\"10.1137/S0363012901393894\\\", \\\"article-title\\\": \\\"A Variational Approach to Nonlinear Estimation\\\", \\\"volume\\\": \\\"42\\\", \\\"author\\\": \\\"Mitter\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"SIAM J. Control Optim.\\\"}, {\\\"key\\\": \\\"ref_15\\\", \\\"unstructured\\\": \\\"Fleming, W.H., and Soner, H.M. (2006). Controlled Markov Processes and Viscosity Solutions, Springer. [2].\\\"}, {\\\"key\\\": \\\"ref_16\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"119\\\", \\\"DOI\\\": \\\"10.1016/0034-4877(91)90045-O\\\", \\\"article-title\\\": \\\"The many facets of entropy\\\", \\\"volume\\\": \\\"30\\\", \\\"author\\\": \\\"Wehrl\\\", \\\"year\\\": \\\"1991\\\", \\\"journal-title\\\": \\\"Rep. Math. Phys.\\\"}, {\\\"key\\\": \\\"ref_17\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1216\\\", \\\"DOI\\\": \\\"10.1137/0329064\\\", \\\"article-title\\\": \\\"A monte carlo method for sensitivity analysis and parametric optimization of nonlinear stochastic systems\\\", \\\"volume\\\": \\\"29\\\", \\\"author\\\": \\\"Yang\\\", \\\"year\\\": \\\"1991\\\", \\\"journal-title\\\": \\\"SIAM J. Control Optim.\\\"}, {\\\"key\\\": \\\"ref_18\\\", \\\"unstructured\\\": \\\"Fleming, W.H., and Soner, H.M. (1993). Controlled Markov Processes and Viscosity Solutions, Springer. [1].\\\"}, {\\\"key\\\": \\\"ref_19\\\", \\\"unstructured\\\": \\\"Stengel, R.F. (1994). Optimal Control and Estimation, Dover Publications.\\\"}, {\\\"key\\\": \\\"ref_20\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Leadbetter, R., Cambanis, S., and Pipiras, P. (2014). Basic Course in Measure and Probabilty, Cambridge University Press.\\\", \\\"DOI\\\": \\\"10.1017/CBO9781139103947\\\"}, {\\\"key\\\": \\\"ref_21\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"200201\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.95.200201\\\", \\\"article-title\\\": \\\"Linear theory for control of nonlinear stochastic systems\\\", \\\"volume\\\": \\\"95\\\", \\\"author\\\": \\\"Kappen\\\", \\\"year\\\": \\\"2005\\\", \\\"journal-title\\\": \\\"Phys. Rev. Lett.\\\"}], \\\"container-title\\\": [\\\"Entropy\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://www.mdpi.com/1099-4300/17/5/3352/pdf\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 10, 11]], \\\"date-time\\\": \\\"2025-10-11T20:46:21Z\\\", \\\"timestamp\\\": 1760215581000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.mdpi.com/1099-4300/17/5/3352\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2015, 5, 15]]}, \\\"references-count\\\": 21, \\\"journal-issue\\\": {\\\"issue\\\": \\\"5\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2015, 5]]}}, \\\"alternative-id\\\": [\\\"e17053352\\\"], \\\"URL\\\": \\\"https://doi.org/10.3390/e17053352\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1099-4300\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"1099-4300\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2015, 5, 15]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"76d116812c841b855fa85c316b967fbae62cc186e701dbed95a7ade151de8ea6\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.3390/e17053352\", \"doi:10.3390/mdpi_crossmark_policy\", \"doi:10.1063/1.2709596\", \"doi:10.1088/1742-5468/2005/11/p11011\", \"doi:10.1073/pnas.0710743106\", \"doi:10.7551/mitpress/7503.001.0001\", \"doi:10.1109/adprl.2014.7010616\", \"doi:10.1016/b978-0-12-268201-8.50010-4\", \"doi:10.1007/978-3-642-14394-6\", \"doi:10.1109/cdc.2012.6426381\", \"doi:10.1007/bf01211853\", \"doi:10.1137/s0363012901393894\"]}",
+  "id": "source-441b6f5c905f44f4",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.3390%2Fe17053352",
+  "version": 26,
+  "time": "2026-09-25T02:24:52.266403+00:00"
+}
+```
+
+### `source-bc076b6dfc81442c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=mathematical+relationship+thermodynamic+statistical+mechanical+information-theoretic+entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1550798515\\\", \\\"doi\\\": \\\"https://doi.org/10.3133/pp500a\\\", \\\"title\\\": \\\"The concept of entropy in landscape evolution\\\", \\\"publication_year\\\": 1962, \\\"type\\\": \\\"report\\\", \\\"cited_by_count\\\": 691, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://pubs.usgs.gov/pp/0500a/report.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3133/pp500a\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3133/pp500a\\\", \\\"pdf_url\\\": \\\"https://pubs.usgs.gov/pp/0500a/report.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210169279\\\", \\\"display_name\\\": \\\"USGS professional paper\\\", \\\"issn_l\\\": \\\"1044-9612\\\", \\\"issn\\\": [\\\"1044-9612\\\", \\\"2330-7102\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315882\\\", \\\"host_organization_name\\\": \\\"United States Government Publishing Office\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315882\\\"], \\\"host_organization_lineage_names\\\": [\\\"United States Government Publishing Office\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Professional Paper\\\", \\\"raw_type\\\": \\\"report-component\\\"}, \\\"abstract\\\": \\\"The concept of entropy is expressed in terms of probability of various states. Entropy treats of the distribution of energy. The principle is introduced that the most probable condition exists when energy in a river system is as uniformly distributed as may be permitted by physical constraints. From these general considerations equations for the longitudinal profiles of rivers are derived that are mathematically comparable to those observed in the field. The most probable river profiles approach the condition in which the downstream rate of production of entropy per unit mass is constant. Hydraulic equations are insufficient to determine the velocity, depths, and slopes of rivers that are themselves authors of their own hydraulic geometries. A solution becomes possible by introducing the concept that the distribution of energy tends toward the most probable. This solution leads to a theoretical definition of the hydraulic geometry of river channels that agrees closely with field observations. The most probable state for certain physical systems can also be illustrated by random-walk models. Average longitudinal profiles and drainage networks were so derived and these have the properties implied by the theory. The drainage networks derived from random walks have some of the principal properties demonstrated by the Horton analysis; specifically, the logarithms of stream length and stream numbers are proportional to stream order.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2154815292\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/revmodphys.77.259\\\", \\\"title\\\": \\\"The density-matrix renormalization group\\\", \\\"publication_year\\\": 2005, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3406, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://arxiv.org/pdf/cond-mat/0409292\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/revmodphys.77.259\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/revmodphys.77.259\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S73260565\\\", \\\"display_name\\\": \\\"Reviews of Modern Physics\\\", \\\"issn_l\\\": \\\"0034-6861\\\", \\\"issn\\\": [\\\"0034-6861\\\", \\\"1538-4527\\\", \\\"1539-0756\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Reviews of Modern Physics\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The density-matrix renormalization group (DMRG) is a numerical algorithm for the efficient truncation of the Hilbert space of low-dimensional strongly correlated quantum systems based on a rather general decimation prescription. This algorithm has achieved unprecedented precision in the description of one-dimensional quantum systems. It has therefore quickly become the method of choice for numerical studies of such systems. Its applications to the calculation of static, dynamic, and thermodynamic quantities in these systems are reviewed here. The potential of DMRG applications in the fields of two-dimensional quantum systems, quantum chemistry, three-dimensional small grains, nuclear physics, equilibrium and nonequilibrium statistical physics, and time-dependent phenomena is also discussed. This review additionally considers the theoretical foundations of the method, examining its relationship to matrix-product states and the quantum information content of the density matrices generated by the DMRG.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2889241664\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.actamat.2018.08.053\\\", \\\"title\\\": \\\"Lattice distortion in a strong and ductile refractory high-entropy alloy\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 628, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://doi.org/10.1016/j.actamat.2018.08.053\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.actamat.2018.08.053\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.actamat.2018.08.053\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S64016596\\\", \\\"display_name\\\": \\\"Acta Materialia\\\", \\\"issn_l\\\": \\\"1359-6454\\\", \\\"issn\\\": [\\\"1359-6454\\\", \\\"1873-2453\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"acceptedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": false, \\\"raw_source_name\\\": \\\"Acta Materialia\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2132262459\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/jcc.21287\\\", \\\"title\\\": \\\"CHARMM: The biomolecular simulation program\\\", \\\"publication_year\\\": 2009, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 9332, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jcc.21287\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1002/jcc.21287\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1002/jcc.21287\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jcc.21287\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S21117631\\\", \\\"display_name\\\": \\\"Journal of Computational Chemistry\\\", \\\"issn_l\\\": \\\"0192-8651\\\", \\\"issn\\\": [\\\"0192-8651\\\", \\\"1096-987X\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of Computational Chemistry\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"CHARMM (Chemistry at HARvard Molecular Mechanics) is a highly versatile and widely used molecular simulation program. It has been developed over the last three decades with a primary focus on molecules of biological interest, including proteins, peptides, lipids, nucleic acids, carbohydrates, and small molecule ligands, as they occur in solution, crystals, and membrane environments. For the study of such systems, the program provides a large suite of computational tools that include numerous conformational and path sampling methods, free energy estimators, molecular minimization, dynamics, and analysis techniques, and model-building capabilities. The CHARMM program is applicable to problems involving a much broader class of many-particle systems. Calculations with CHARMM can be performed using a number of different energy functions and models, from mixed quantum mechanical-molecular mechanical force fields, to all-atom classical potential energy functions with explicit solvent and various boundary conditions, to implicit solvent and membrane models. The program has been ported to numerous platforms in both serial and parallel architectures. This article provides an overview of the program as it exists today with an emphasis on developments since the publication of the original CHARMM article in 1983.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"76845f54fcd6a36f9391a6ae8af705379cbc74fbc3a87b82746fb0ab83b83788\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.3133/pp500a\", \"doi:10.1103/revmodphys.77.259\", \"doi:10.1016/j.actamat.2018.08.053\", \"doi:10.1002/jcc.21287\", \"openalex:W1550798515\", \"openalex:W2154815292\", \"openalex:W2889241664\", \"openalex:W2132262459\"]}",
+  "id": "source-bc076b6dfc81442c",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=mathematical+relationship+thermodynamic+statistical+mechanical+information-theoretic+entropy&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 26,
+  "time": "2026-09-25T02:24:53.181840+00:00"
+}
+```
+
+### `source-433687c9444f457f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-433687c9444f457f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 26,
+  "time": "2026-09-25T02:24:53.781204+00:00"
+}
+```
+
+### `source-103eb6005c8e452e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239497,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Japan\\\",\\\"pageid\\\":166254,\\\"size\\\":79036,\\\"wordcount\\\":7551,\\\"snippet\\\":\\\"\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\",\\\"timestamp\\\":\\\"2026-09-17T02:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f1f6d3926cff6ff86023ecc446bfedcafb88f37e1aebbe7045dfa5a103cd9001\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-103eb6005c8e452e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 26,
+  "time": "2026-09-25T02:24:54.215411+00:00"
+}
+```
+
+### `source-6ddd0b38fcbc4afd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Katherine May\\\",\\\"pageid\\\":78381298,\\\"size\\\":13588,\\\"wordcount\\\":1261,\\\"snippet\\\":\\\"Katherine May (born 18 September 1977), also writing as Katie May and Betty Herbert, is a British author and podcaster. Her writing includes memoirs (Wintering\\\",\\\"timestamp\\\":\\\"2026-09-01T10:20:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"67ee716cb9255678d8d0e92378225b5a417d9528443eb9d2332728928a8de4f2\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6ddd0b38fcbc4afd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 26,
+  "time": "2026-09-25T02:24:54.557763+00:00"
+}
+```
+
+### `source-a47d9016549342fd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1b504a7292138325491545392d0465009591439fe76de02f882f2d47bc983538\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-a47d9016549342fd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 26,
+  "time": "2026-09-25T02:24:54.987574+00:00"
+}
+```
+
+### `r-a4ccb615c97b4540`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":26,\"inherited_commitments\":[],\"invocation\":\"w-a4ccb615c97b4540\",\"previous_head\":\"e1a9319f510f8790e70d51fe06faeb6e4c7cf00867515305f1439bede3a12786\",\"process_id\":2361,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a4ccb615c97b4540",
+  "source": "runtime:continuity",
+  "version": 26,
+  "time": "2026-09-25T02:24:55.411845+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -17921,6 +18407,17 @@ _None recorded._
   "invocation": "w-1d1ac3da6cfd4281",
   "title": "Parsing Entropy's Many Faces",
   "summary": "Continued work on the entropy foundations project. The current focus remains on identifying the mathematical bridges between thermodynamic, statistical, and information-theoretic interpretations of entropy, as previously established. Research is now initiated to locate comparative literature on these frameworks."
+}
+```
+
+### 027 · Investigating the Foundations of Entropy
+
+```json
+{
+  "cycle": 27,
+  "invocation": "w-a4ccb615c97b4540",
+  "title": "Investigating the Foundations of Entropy",
+  "summary": "This shift focuses on the entropy project, as required by the active squirrel enforcement. I am initiating a targeted literature search to compare thermodynamic, statistical-mechanical, and information-theoretic frameworks of entropy, aiming to move from general seeds to specific comparative analysis."
 }
 ```
 
@@ -18288,8 +18785,24 @@ _None recorded._
   "query": "mathematical relationship thermodynamic statistical mechanical information-theoretic entropy",
   "reason": "To identify literature comparing these definitions as specified in the project's next step.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-1d1ac3da6cfd4281",
+  "evidence": "source-bc076b6dfc81442c"
+}
+```
+
+### `res-entropy-compare-definitions`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-compare-definitions",
+  "project": "entropy-foundations-formal",
+  "query": "comparison of thermodynamic, statistical mechanical, and information theoretic entropy definitions mathematical relationships",
+  "reason": "To fulfill the research step of comparing entropy frameworks as outlined in the active project entropy-foundations-formal.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-1d1ac3da6cfd4281"
+  "created_by": "w-a4ccb615c97b4540"
 }
 ```
 

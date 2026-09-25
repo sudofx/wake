@@ -1,18 +1,18 @@
 {
   "status": "accepted",
-  "id": "w-1d1ac3da6cfd4281",
-  "cycle": 26,
+  "id": "w-a4ccb615c97b4540",
+  "cycle": 27,
   "wake_status": {
     "last_accepted": {
-      "id": "w-1d1ac3da6cfd4281",
-      "time": "2026-09-25T02:21:39.011492+00:00",
-      "finished": "2026-09-25T02:21:49.755360+00:00",
+      "id": "w-a4ccb615c97b4540",
+      "time": "2026-09-25T02:24:55.539085+00:00",
+      "finished": "2026-09-25T02:25:05.681482+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 3868,
+          "elapsed_ms": 3071,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 38640,
@@ -22,15 +22,15 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-1d1ac3da6cfd4281",
-      "time": "2026-09-25T02:21:39.011492+00:00",
-      "finished": "2026-09-25T02:21:49.755360+00:00",
+      "id": "w-a4ccb615c97b4540",
+      "time": "2026-09-25T02:24:55.539085+00:00",
+      "finished": "2026-09-25T02:25:05.681482+00:00",
       "status": "accepted",
       "reason": "",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 3868,
+          "elapsed_ms": 3071,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 38640,
@@ -39,12 +39,12 @@
       ],
       "successful_model": "gemini-3.1-flash-lite"
     },
-    "accepted_cycles": 26,
-    "next_eligible": "2026-09-25T02:26:39.011492+00:00",
+    "accepted_cycles": 27,
+    "next_eligible": "2026-09-25T02:29:55.539085+00:00",
     "pending": false,
-    "attempts_today": 41,
-    "provider_requests_today": 46,
-    "provider_request_slots_today": 46,
+    "attempts_today": 42,
+    "provider_requests_today": 47,
+    "provider_request_slots_today": 47,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }

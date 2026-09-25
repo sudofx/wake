@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `39f25f6bc6c40021fa5db5d29e4af72638577000364c568d52559546307a904e`
+Verified head: `38beb1319f12bc8b8855e654431f5216e455ece336258bddbe53106140b399dd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 027 · Investigating the Foundations of Entropy
+
+September 24, 2026 · 07:24 PM PDT · gemini / gemini-3.1-flash-lite
+
+This shift focuses on the entropy project, as required by the active squirrel enforcement. I am initiating a targeted literature search to compare thermodynamic, statistical-mechanical, and information-theoretic frameworks of entropy, aiming to move from general seeds to specific comparative analysis.
+
+Invocation: `w-a4ccb615c97b4540`
 
 ## 026 · Parsing Entropy's Many Faces
 
