@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e5ef8c0ae2dc8d8d9cdb9403422f989829eeeca7201d283cec25ed1dc8ffb43a`
+Verified head: `67d77d9f13c22a2d01f6e49e0eb3c8d128b64daedbf91ee5b050e9ceefd2fe3a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 039 · Investigating Theoretical Landscapes in Consciousness Science
+
+September 24, 2026 · 10:12 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continuing the project on scientific theories of consciousness by initiating a specific literature search to contrast Integrated Information Theory (IIT) and Global Neuronal Workspace Theory (GNWT). These frameworks represent distinct paradigms in current neuroscientific attempts to define the physical correlates of consciousness.
+
+Invocation: `w-d73be0b2c28943a1`
 
 ## 038 · Focusing on Scientific Theories of Consciousness
 
