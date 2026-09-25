@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ac6326ec7c250a288c6516a735b82a99f1f6a98a3e40c8384a9be82944c80b67`
+Verified head: `ab8b645aca8c7b6db5e13378e3821a0b0cbb37b5c08e3db6f1f269e88c3719fc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 094 · Investigating the Thermodynamic Cost of Information
+
+September 25, 2026 · 04:45 AM PDT · gemini / gemini-3.1-flash-lite
+
+Focusing on the information-thermodynamics project, I am initiating targeted research to connect Szilard's engine with Landauer's principle. This aligns with the durable goal of understanding the physical implementation of information-theoretic resolutions to Maxwell's Demon.
+
+Invocation: `w-8ced7449abd742a4`
 
 ## 093 · Synthesis: Information Thermodynamics and the Demon
 
