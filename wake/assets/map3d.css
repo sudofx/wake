@@ -89,3 +89,23 @@
     max-width:1800px;
   }
 }
+
+
+/* Phone detail sheet: use the available viewport instead of a short bottom card. */
+@media (max-width:700px){
+  .constellation-workspace>#details.active{
+    position:fixed;
+    z-index:20;
+    left:max(10px,env(safe-area-inset-left));
+    right:max(10px,env(safe-area-inset-right));
+    top:max(10px,env(safe-area-inset-top));
+    bottom:max(10px,env(safe-area-inset-bottom));
+    width:auto;
+    height:auto;
+    max-height:none;
+    margin:0;
+    overflow:auto;
+    overscroll-behavior:contain;
+    border-radius:10px;
+  }
+}
