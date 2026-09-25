@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a21b39c910085e9f096b95fb90fadc7fc440647c13a1123a92dad8d7668d0277`
+Verified head: `4155c5200d2e29bd21e1829ea3bd482264dabba42ad468d7694ca4a7d4bf301b`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 086 · Topic Constraint Enforcement
+
+September 25, 2026 · 03:58 AM PDT · gemini / gemini-3.1-flash-lite
+
+The Squirrel rotation has enforced 'complex_systems' as the active topic. Current active projects ('neurodiversity-paradigm-foundations' and 'epistemology-belief-justification-incomplete-evidence') fall outside this domain and are parked to comply with the enforcement policy. The dance topic remains parked as a deferred topic.
+
+Invocation: `w-06873b68e2244a74`
 
 ## 085 · Synthesis of Dance, Rhythm, and Psychotherapy Research
 

@@ -1,5 +1,5 @@
 {
-  "version": 85,
+  "version": 86,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -9073,6 +9073,68 @@
       "source": "runtime:continuity",
       "version": 85,
       "time": "2026-09-25T10:53:39.247892+00:00"
+    },
+    "source-cea0ccd4c5c14617": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1080%2F17432979.2024.2335252\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 8, 25]], \\\"date-time\\\": \\\"2026-08-25T20:56:51Z\\\", \\\"timestamp\\\": 1787691411758, \\\"version\\\": \\\"build-2784847793\\\"}, \\\"reference-count\\\": 30, \\\"publisher\\\": \\\"Informa UK Limited\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [\\\"www.tandfonline.com\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"Body, Movement and Dance in Psychotherapy\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2025, 1, 2]]}, \\\"DOI\\\": \\\"10.1080/17432979.2024.2335252\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2024, 4, 2]], \\\"date-time\\\": \\\"2024-04-02T11:42:09Z\\\", \\\"timestamp\\\": 1712058129000}, \\\"page\\\": \\\"91-104\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1080/tandf_crossmark_01\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 5, \\\"title\\\": [\\\"Revisiting dance therapy training with Marian Chace: 50 years on\\\"], \\\"prefix\\\": \\\"10.1080\\\", \\\"volume\\\": \\\"20\\\", \\\"author\\\": [{\\\"given\\\": \\\"Yael\\\", \\\"family\\\": \\\"Barkai\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Kibbutzim College of Education\\\", \\\"place\\\": [\\\"Tel Aviv, Israel\\\"]}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"301\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2024, 4, 2]]}, \\\"reference\\\": [{\\\"key\\\": \\\"e_1_3_2_2_1\\\", \\\"unstructured\\\": \\\"Acolin J. Y. (2015). Getting grounded: The beginnings of a foundation for dance/movement therapy theory on the mind-body connection using a modified grounded theory method. Drexel University. https://researchdiscovery.drexel.edu/esploro/outputs/991014632303104721\\\"}, {\\\"key\\\": \\\"e_1_3_2_3_1\\\", \\\"volume-title\\\": \\\"Creative arts therapies manual: A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies\\\", \\\"author\\\": \\\"Brooke S.L.\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Brooke, S.L. (Ed.). (2006). Creative arts therapies manual: A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies. Charles Thomas Publisher Ltd.\\\"}, {\\\"key\\\": \\\"e_1_3_2_4_1\\\", \\\"first-page\\\": \\\"5254\\\", \\\"volume-title\\\": \\\"Marian Chace: Her papers\\\", \\\"author\\\": \\\"Chace M.\\\", \\\"year\\\": \\\"1945\\\", \\\"unstructured\\\": \\\"Chace, M. (1945/1975). Rhythm in movement as used in St. Elizabeth’s Hospital. In H. Chaiklin (Ed.), Marian Chace: Her papers (p. 5254). American Dance Therapy Association. (Reprinted from Group Psychotherapy: A Symposium, pp. 243–45, J. L Moreno, Ed.) Beacon House.\\\"}, {\\\"key\\\": \\\"e_1_3_2_5_1\\\", \\\"volume-title\\\": \\\"Marian Chace: Her papers\\\", \\\"author\\\": \\\"Chaiklin H.\\\", \\\"year\\\": \\\"1975\\\", \\\"unstructured\\\": \\\"Chaiklin, H. (Ed.). (1975). Marian Chace: Her papers. American Dance Therapy Association.\\\"}, {\\\"key\\\": \\\"e_1_3_2_6_1\\\", \\\"first-page\\\": \\\"701\\\", \\\"volume-title\\\": \\\"American handbook of psychiatry\\\", \\\"author\\\": \\\"Chaiklin S.\\\", \\\"year\\\": \\\"1975\\\", \\\"unstructured\\\": \\\"Chaiklin, S. (1975). Dance therapy. In S. Arieti (Ed.), American handbook of psychiatry (2nd ed., Vol. 5, pp. 701–720). Basic Books.\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"e_1_3_2_7_1\\\", \\\"first-page\\\": \\\"15\\\", \\\"volume-title\\\": \\\"Eight theoretical approaches in dance/movement therapy\\\", \\\"author\\\": \\\"Chaiklin S.\\\", \\\"year\\\": \\\"1979\\\", \\\"unstructured\\\": \\\"Chaiklin, S., & Schmais, C. (1979). The Chace approach to dance therapy. In P. Lewis-Bernstein (Ed.), Eight theoretical approaches in dance/movement therapy (pp. 15–30). Kendall/Hunt Publishing.\\\"}, {\\\"key\\\": \\\"e_1_3_2_8_1\\\", \\\"first-page\\\": \\\"75\\\", \\\"volume-title\\\": \\\"Foundation of dance/movement therapy: The life and work of Marian Chace\\\", \\\"author\\\": \\\"Chaiklin S.\\\", \\\"year\\\": \\\"1993\\\", \\\"unstructured\\\": \\\"Chaiklin, S., & Schmais, C. (1993). The Chace approach to dance therapy. In S. L. Sandel, S. Chaiklin, and A. Lohn (Eds.), Foundation of dance/movement therapy: The life and work of Marian Chace (pp. 75–97). The Marian Chace Memorial Fund of the American dance Therapy Association.\\\"}, {\\\"key\\\": \\\"e_1_3_2_9_1\\\", \\\"volume-title\\\": \\\"The art and science of dance/movement therapy: Life is dance\\\", \\\"author\\\": \\\"Chaiklin S.\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Chaiklin, S., & Wengrower, H. (Eds.). (2016). The art and science of dance/movement therapy: Life is dance (2nd ed.). Routledge.\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"e_1_3_2_10_1\\\", \\\"volume-title\\\": \\\"Dance therapy and depth psychology: The moving imagination\\\", \\\"author\\\": \\\"Chodorow J.\\\", \\\"year\\\": \\\"1991\\\", \\\"unstructured\\\": \\\"Chodorow, J. (1991). Dance therapy and depth psychology: The moving imagination. Routledge.\\\"}, {\\\"key\\\": \\\"e_1_3_2_11_1\\\", \\\"volume-title\\\": \\\"The neuroscience of human relationships: Attachment and the developing social brain\\\", \\\"author\\\": \\\"Cozolino L. J.\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Cozolino, L. J. (2006). The neuroscience of human relationships: Attachment and the developing social brain. W. W. Norton & Co.\\\"}, {\\\"key\\\": \\\"e_1_3_2_12_1\\\", \\\"volume-title\\\": \\\"The neuroscience of psychotherapy: Healing the social brain\\\", \\\"author\\\": \\\"Cozolino L. J.\\\", \\\"year\\\": \\\"2010\\\", \\\"unstructured\\\": \\\"Cozolino, L. J. (2010). The neuroscience of psychotherapy: Healing the social brain (2nd ed.). W. W. Norton & Co.\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"e_1_3_2_13_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10465-016-9224-2\\\"}, {\\\"key\\\": \\\"e_1_3_2_14_1\\\", \\\"first-page\\\": \\\"133\\\", \\\"volume-title\\\": \\\"Creative arts therapies manual. A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies\\\", \\\"author\\\": \\\"Cruz R. F.\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Cruz, R. F. (2006). Assessment in dance/movement therapy. In S. L. Brooke (Ed.), Creative arts therapies manual. A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies (pp. 133–143). Charles Thomas Publisher Ltd.\\\"}, {\\\"key\\\": \\\"e_1_3_2_15_1\\\", \\\"unstructured\\\": \\\"Floody E. (2017). An exploration of dance therapy its origins and its applications in Parkinson’s disease [Undergraduate thesis]. Butler University. https://digitalcommons.butler.edu/cgi/viewcontent.cgi?article=1388&context=ugtheses\\\"}, {\\\"key\\\": \\\"e_1_3_2_16_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s11097-005-4737-z\\\"}, {\\\"key\\\": \\\"e_1_3_2_17_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2011.09.003\\\"}, {\\\"key\\\": \\\"e_1_3_2_18_1\\\", \\\"unstructured\\\": \\\"Gómez-Guzmán V. (2017). Ballet and dance movement therapy: Integrating structure and expression. Dance/Movement Therapy Theses. 30 http://digitalcommons.slc.edu/dmt_etd/30\\\"}, {\\\"key\\\": \\\"e_1_3_2_19_1\\\", \\\"volume-title\\\": \\\"Sexuality, body movement, and the rhythms of development\\\", \\\"author\\\": \\\"Kestenberg J. S.\\\", \\\"year\\\": \\\"1995\\\", \\\"unstructured\\\": \\\"Kestenberg, J. S. (1995). Sexuality, body movement, and the rhythms of development. Jason Aronson. (Originally published as Parents and Children, 1975).\\\"}, {\\\"key\\\": \\\"e_1_3_2_20_1\\\", \\\"volume-title\\\": \\\"The empathic brain\\\", \\\"author\\\": \\\"Keysers C.\\\", \\\"year\\\": \\\"2012\\\", \\\"unstructured\\\": \\\"Keysers, C. (2012). The empathic brain. Social Brain Press.\\\"}, {\\\"key\\\": \\\"e_1_3_2_21_1\\\", \\\"unstructured\\\": \\\"Koch N. (2016). An introduction to dance/movement therapy. American Dance Therapy Association. https://www.youtube.com/watch?v=mhoEjbvIEw8\\\"}, {\\\"key\\\": \\\"e_1_3_2_22_1\\\", \\\"volume-title\\\": \\\"Dance/movement therapy: A healing art\\\", \\\"author\\\": \\\"Levy F. J.\\\", \\\"year\\\": \\\"1988\\\", \\\"unstructured\\\": \\\"Levy, F. J. (1988). Dance/movement therapy: A healing art. American Alliance for Health, Physical Education, Recreation & Dance, VA. National Dance Association.\\\"}, {\\\"key\\\": \\\"e_1_3_2_23_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4324/9781315452852-2\\\"}, {\\\"key\\\": \\\"e_1_3_2_24_1\\\", \\\"first-page\\\": \\\"96\\\", \\\"volume-title\\\": \\\"Creative arts therapies manual: A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies\\\", \\\"author\\\": \\\"Nemetz L. D.\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Nemetz, L. D. (2006). Moving with meaning: The historical progression of dance/movement therapy. In S. L. Brooke (Ed.), Creative arts therapies manual: A guide to history, theoretical approaches, assessment, and work with special populations of art, play, dance, music, drama and poetry therapies (pp. 96–108). Charles C Thomas Publisher.\\\"}, {\\\"key\\\": \\\"e_1_3_2_25_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10465-017-9256-2\\\"}, {\\\"key\\\": \\\"e_1_3_2_26_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4324/9781315452852\\\"}, {\\\"key\\\": \\\"e_1_3_2_27_1\\\", \\\"volume-title\\\": \\\"Foundations of dance/movement therapy: The life and work of Marian Chace\\\", \\\"author\\\": \\\"Sandel S.\\\", \\\"year\\\": \\\"1993\\\", \\\"unstructured\\\": \\\"Sandel, S., Chaiklin, S., & Lohn, A. (1993). Foundations of dance/movement therapy: The life and work of Marian Chace. American Dance Therapy Association.\\\"}, {\\\"key\\\": \\\"e_1_3_2_28_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02251439\\\"}, {\\\"key\\\": \\\"e_1_3_2_29_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rsbl.2015.0767\\\"}, {\\\"key\\\": \\\"e_1_3_2_30_1\\\", \\\"unstructured\\\": \\\"Straus R. (2010). Marian Chace: Dance teacher. Retrieved September 12 2020 from https://www.dance-teacher.com/marian-chace-2392301880.html\\\"}, {\\\"key\\\": \\\"e_1_3_2_31_1\\\", \\\"volume-title\\\": \\\"The interpersonal theory of psychiatry\\\", \\\"author\\\": \\\"Sullivan H. S.\\\", \\\"year\\\": \\\"1953\\\", \\\"unstructured\\\": \\\"Sullivan, H. S. (1953). The interpersonal theory of psychiatry. W.W. Norton & Co.\\\"}], \\\"container-title\\\": [\\\"Body, Movement and Dance in Psychotherapy\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://www.tandfonline.com/doi/pdf/10.1080/17432979.2024.2335252\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 7, 28]], \\\"date-time\\\": \\\"2025-07-28T08:26:09Z\\\", \\\"timestamp\\\": 1753691169000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.tandfonline.com/doi/full/10.1080/17432979.2024.2335252\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2024, 4, 2]]}, \\\"references-count\\\": 30, \\\"journal-issue\\\": {\\\"issue\\\": \\\"1\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[2025, 1, 2]]}}, \\\"alternative-id\\\": [\\\"10.1080/17432979.2024.2335252\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/17432979.2024.2335252\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1743-2979\\\", \\\"1743-298\", \"excerpt_truncated\": true, \"source_sha256\": \"f468c498c64aecb023a1d3d484ec779eff9c962bd67aaf1203d12137186a27b5\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1080/17432979.2024.2335252\", \"doi:10.1080/tandf_crossmark_01\", \"doi:10.1007/s10465-016-9224-2\", \"doi:10.1007/s11097-005-4737-z\", \"doi:10.1016/j.tics.2011.09.003\", \"doi:10.4324/9781315452852-2\", \"doi:10.1007/s10465-017-9256-2\", \"doi:10.4324/9781315452852\", \"doi:10.1007/bf02251439\", \"doi:10.1098/rsbl.2015.0767\", \"arxiv:2015.0767\"]}",
+      "id": "source-cea0ccd4c5c14617",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1080%2F17432979.2024.2335252",
+      "version": 85,
+      "time": "2026-09-25T10:58:37.352865+00:00"
+    },
+    "source-9263e7d9653d41ec": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"01c861bbdbc8d92c5f801d9d47586473ff98109339f29a99863605f3780d0966\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+      "id": "source-9263e7d9653d41ec",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 85,
+      "time": "2026-09-25T10:58:38.425497+00:00"
+    },
+    "source-6d7c63f454b14337": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":72077,\\\"wordcount\\\":8768,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T08:45:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"19b077060a3f915b9fb081fa83fe995701eeb879b202af19edb49a92990dfd9f\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-6d7c63f454b14337",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 85,
+      "time": "2026-09-25T10:58:38.993579+00:00"
+    },
+    "source-28652be481a34164": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy\\\",\\\"pageid\\\":1216879,\\\"size\\\":632,\\\"wordcount\\\":100,\\\"snippet\\\":\\\"Maximum\\nentropy\\nthermodynamics Maximum\\nentropy\\nspectral estimation Principle of maximum\\nentropy\\nMaximum\\nentropy\\nprobability distribution Maximum\\nentropy\\nclassifier\\\",\\\"timestamp\\\":\\\"2022-07-15T18:19:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d92b43181f934c76feae9dc96a1c74bbec0bc9ae77a01461f0fab2a2772ab872\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-28652be481a34164",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 85,
+      "time": "2026-09-25T10:58:39.570447+00:00"
+    },
+    "source-a7b9eee079554709": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40314},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness raising\\\",\\\"pageid\\\":1493174,\\\"size\\\":19133,\\\"wordcount\\\":2307,\\\"snippet\\\":\\\"\\nConsciousness\\nraising (also called awareness raising) is a form of activism and identity politics popularized by United States feminists in the late 1960s\\\",\\\"timestamp\\\":\\\"2026-09-21T19:33:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c3e630c79434fd54df53df182b3569034f7687a25a59f7504f1b0dd1f1e96fef\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-a7b9eee079554709",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 85,
+      "time": "2026-09-25T10:58:40.126724+00:00"
+    },
+    "source-19f4657ad29a44dd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7ecd4cc84c8051d5730680a125c9545026d9184da62f3da44c2f9debbfa262cc\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-19f4657ad29a44dd",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 85,
+      "time": "2026-09-25T10:58:40.842000+00:00"
+    },
+    "r-06873b68e2244a74": {
+      "actor": "runtime",
+      "content": "{\"base_version\":85,\"inherited_commitments\":[],\"invocation\":\"w-06873b68e2244a74\",\"previous_head\":\"161d621a714fb4d75e42a388b881525f031d0c82ac4db622f1069f21d4fc45b6\",\"process_id\":2247,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-06873b68e2244a74",
+      "source": "runtime:continuity",
+      "version": 85,
+      "time": "2026-09-25T10:58:42.712921+00:00"
     }
   },
   "journal": [
@@ -9585,6 +9647,12 @@
       "invocation": "w-90e0176218a04884",
       "title": "Synthesis of Dance, Rhythm, and Psychotherapy Research",
       "summary": "This cycle integrates recent evidence on rhythmic movement and psychotherapy to update our understanding of dance cognition. By synthesizing the new bibliographic records, we begin to map the intersection of embodied movement and clinical frameworks."
+    },
+    {
+      "cycle": 86,
+      "invocation": "w-06873b68e2244a74",
+      "title": "Topic Constraint Enforcement",
+      "summary": "The Squirrel rotation has enforced 'complex_systems' as the active topic. Current active projects ('neurodiversity-paradigm-foundations' and 'epistemology-belief-justification-incomplete-evidence') fall outside this domain and are parked to comply with the enforcement policy. The dance topic remains parked as a deferred topic."
     }
   ],
   "posts": {
@@ -62330,6 +62398,480 @@
           }
         ]
       }
+    },
+    "w-06873b68e2244a74": {
+      "base_version": 85,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 19803,
+        "delivered_request_chars": 46365,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 96842,
+        "working_set_chars": 3967
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-06873b68e2244a74",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 85,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "dance-rhythm-cognition",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Rhythmic Coordination"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "epistemology-belief-justification-incomplete-evidence",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 3,
+              "queued_research": 0
+            },
+            "title": "Justification under Incomplete Evidence"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "neurodiversity-paradigm-foundations",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Foundations of Neurodiversity Paradigm"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2247,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "4a85cc11c7a226dcd3a0eff34e1edd1fc20587f648aac13f0752f5304dec846f",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-b1f7f1c3e8f9470d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1f7f1c3e8f9470d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3a360bed53d540e3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3a360bed53d540e3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e0d4e70d45164e4a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e0d4e70d45164e4a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ce27c81fea8449c9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ce27c81fea8449c9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c3bf2d46df6345bc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c3bf2d46df6345bc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cea0ccd4c5c14617"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cea0ccd4c5c14617",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-b1f7f1c3e8f9470d",
+          "source-3a360bed53d540e3",
+          "source-e0d4e70d45164e4a",
+          "source-ce27c81fea8449c9",
+          "source-c3bf2d46df6345bc",
+          "source-cea0ccd4c5c14617"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 5,
+          "topic": "dance"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "dance"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "dance": [
+            {
+              "id": "dance-rhythm-cognition",
+              "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+              "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?"
+            }
+          ]
+        },
+        "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "complex_systems",
+        "temporal": {
+          "anchor_seq": 2194,
+          "anchor_time": "2026-09-25T10:58:41.339959+00:00",
+          "anchor_version": 85,
+          "effective_seconds": 40278.865021
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": "r-06873b68e2244a74",
+        "topic_selection_candidates": [
+          "comedy",
+          "complex_systems",
+          "consciousness",
+          "endocrinology",
+          "entropy",
+          "epistemology",
+          "evolutionary_biology",
+          "information_thermodynamics",
+          "music",
+          "neurodivergence",
+          "neurology",
+          "philosophy",
+          "prime_numbers",
+          "psychology",
+          "quantum_mechanics",
+          "religion",
+          "storytelling",
+          "visual_art"
+        ],
+        "topic_selection_method": "receipt_hash_uniform_index"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 303.455861,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 40278.865021,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 0,
+          "squirrel_assessed": 0,
+          "total": 12
+        },
+        "observed_at": "2026-09-25T10:58:41.339959+00:00",
+        "previous_anchor_time": "2026-09-25T10:53:37.884098+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 303.455861
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19803,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3967,
+        "working_to_delivered_ratio": 0.2003
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodiversity-paradigm-foundations",
+            "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+            "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+            "title": "Foundations of Neurodiversity Paradigm"
+          },
+          {
+            "id": "epistemology-belief-justification-incomplete-evidence",
+            "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+            "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+            "title": "Justification under Incomplete Evidence"
+          },
+          {
+            "id": "dance-rhythm-cognition",
+            "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+            "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?",
+            "title": "Cognitive Mechanisms of Rhythmic Coordination"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-endo-thyroid-provisional-02",
+            "project": "endo-thyroid-neuro",
+            "provenance": [
+              "source-175d044b8a474c62"
+            ],
+            "revision": 1,
+            "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+            "title": "Metabolic and Systemic Modulations of Neurological Function"
+          },
+          {
+            "id": "nb-neurodiversity-foundations-01",
+            "project": "neurodiversity-paradigm-foundations",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 2,
+            "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+            "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+          },
+          {
+            "id": "nb-epistemology-mapping-01",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-b2790f66d7984cbe",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+            "title": "Initial Mapping of Epistemological Sources"
+          },
+          {
+            "id": "nb-epistemology-justification-001",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-fb2f23f9caf94381",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+            "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+          },
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          },
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T10:58:43.225681+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 15819,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 50225,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T10:59:12.692735+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -62352,7 +62894,7 @@
       "dance": {
         "cause": "attention_saturation",
         "deferred_by": "w-90e0176218a04884",
-        "other_topic_attempts": 0,
+        "other_topic_attempts": 1,
         "parked_projects": [
           {
             "id": "dance-rhythm-cognition",
@@ -62365,21 +62907,19 @@
       }
     },
     "last_receipt": {
-      "attention_saturation_triggered": true,
-      "attention_topic": "dance",
-      "durable_progress": true,
+      "attention_saturation_triggered": false,
+      "attention_topic": "epistemology",
+      "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-90e0176218a04884",
+      "invocation": "w-06873b68e2244a74",
       "restored_topics": [],
-      "selected_topic": "dance",
+      "selected_topic": "complex_systems",
       "terminal": "accepted",
-      "triggered_topics": [
-        "dance"
-      ]
+      "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 5,
-      "topic": "dance"
+      "accepted_streak": 1,
+      "topic": "epistemology"
     }
   },
   "acquisition": {
@@ -63097,24 +63637,34 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1007/springer_crossmark_policy",
-        "doi:10.1080/policies-text-data-mining",
-        "doi:10.1080/tandf_crossmark_01",
-        "doi:10.1080/17432979.2024.2335252",
-        "doi:10.1007/s10465-019-09310-w",
-        "doi:10.1080/1750984x.2025.2471759",
-        "doi:10.1016/j.jad.2024.01.089",
-        "doi:10.3389/fpsyg.2025.1668357",
-        "doi:10.1002/da.20686",
         "doi:10.7202/1120368ar",
         "doi:10.1023/a:1022920815305",
-        "doi:10.7551/mitpress/6730.001.0001"
+        "doi:10.7551/mitpress/6730.001.0001",
+        "doi:10.1007/s10465-016-9224-2",
+        "doi:10.1007/s11097-005-4737-z",
+        "doi:10.1016/j.tics.2011.09.003",
+        "doi:10.4324/9781315452852-2",
+        "doi:10.1007/s10465-017-9256-2",
+        "doi:10.4324/9781315452852",
+        "doi:10.1007/bf02251439",
+        "doi:10.1098/rsbl.2015.0767",
+        "arxiv:2015.0767"
       ],
       "last_receipt": {
-        "evidence": "source-c3bf2d46df6345bc",
+        "evidence": "source-cea0ccd4c5c14617",
         "outcome": "progress",
         "persistent_identifiers": [
-          "doi:10.1080/tandf_crossmark_01"
+          "doi:10.1080/17432979.2024.2335252",
+          "doi:10.1080/tandf_crossmark_01",
+          "doi:10.1007/s10465-016-9224-2",
+          "doi:10.1007/s11097-005-4737-z",
+          "doi:10.1016/j.tics.2011.09.003",
+          "doi:10.4324/9781315452852-2",
+          "doi:10.1007/s10465-017-9256-2",
+          "doi:10.4324/9781315452852",
+          "doi:10.1007/bf02251439",
+          "doi:10.1098/rsbl.2015.0767",
+          "arxiv:2015.0767"
         ],
         "research_id": "res-dance-rhythm-cog-002",
         "route": "api.crossref.org:source",
@@ -63352,26 +63902,26 @@
       "id": "neurodiversity-paradigm-foundations",
       "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
       "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
-      "reason": "This project directly addresses the seed question for the neurodivergence topic, establishing a baseline to compare medicalized versus social-constructivist views on neurological variation.",
-      "status": "active",
+      "reason": "Project does not align with the enforced 'complex_systems' topic constraint.",
+      "status": "parked",
       "title": "Foundations of Neurodiversity Paradigm",
       "type": "project",
       "created_version": 71,
-      "updated_version": 71,
-      "updated_by": "w-7a7c01eefd45420d"
+      "updated_version": 86,
+      "updated_by": "w-06873b68e2244a74"
     },
     "epistemology-belief-justification-incomplete-evidence": {
       "domain": "epistemology",
       "id": "epistemology-belief-justification-incomplete-evidence",
       "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
       "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
-      "reason": "Establishes a baseline project for the selected epistemology topic as directed by the squirrel configuration.",
-      "status": "active",
+      "reason": "Project does not align with the enforced 'complex_systems' topic constraint.",
+      "status": "parked",
       "title": "Justification under Incomplete Evidence",
       "type": "project",
       "created_version": 76,
-      "updated_version": 76,
-      "updated_by": "w-b27d16acbd254282"
+      "updated_version": 86,
+      "updated_by": "w-06873b68e2244a74"
     },
     "dance-rhythm-cognition": {
       "domain": "dance",
@@ -64535,9 +65085,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T10:53:37.884098+00:00",
+    "anchor_time": "2026-09-25T10:58:41.339959+00:00",
     "anchor_version": 85,
-    "anchor_seq": 2181,
-    "effective_seconds": 39975.40916
+    "anchor_seq": 2194,
+    "effective_seconds": 40278.865021
   }
 }
