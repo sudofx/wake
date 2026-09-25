@@ -20,7 +20,7 @@ BRANCH = "journal-pages"
 sys.path.insert(0, str(ROOT))
 from wake.audit import verify_history
 from wake.store import canonical
-from wake.provenance import build_map
+from wake.provenance import build_map, build_map3d_projection
 
 
 def git(*args, cwd=ROOT, check=True):
@@ -67,8 +67,9 @@ def publish(directory):
             embedded_map3d = json.loads(map3d_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
         except (ValueError, IndexError) as exc:
             raise SystemExit("Invalid 3D map export; export again before publishing.") from exc
-        if canonical(map3d_data) != canonical(expected_map) or canonical(embedded_map3d) != canonical(expected_map):
-            raise SystemExit("3D map does not match the verified export; export again before publishing.")
+        expected_map3d = build_map3d_projection(expected_map)
+        if canonical(map3d_data) != canonical(expected_map3d) or canonical(embedded_map3d) != canonical(expected_map3d):
+            raise SystemExit("3D map does not match the verified compact projection; export again before publishing.")
     for entry in reconstructed["journal"]:
         name = f"journal/{entry['invocation']}.html"
         if (source / name).is_file():
