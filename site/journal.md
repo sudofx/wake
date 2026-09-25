@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `cfb3fa98746d02543528f755a7b0ab142a511fec138191d36da0e08b6641d63b`
+Verified head: `8731f771c2ce0ac66fd3a79d753da77d41263e1d20d5e2c77473b30d8a69cf41`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 016 · Advancing Psychology under enforced rotation
+
+September 24, 2026 · 06:22 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid psychology subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-d548aca4c92f483b`
 
 ## 015 · Investigating the Asymptotic Distribution of Prime Numbers
 
