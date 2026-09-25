@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e1a0e3ccc897b4559bc7801332ba091cc2fd93c44b9fa59bbe77d93f87e0a9a7`
+Verified head: `b05fb9383d23fc6f71398377c7b910537dec0c11c3b4a7d74662e1ff25640d4c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 021 · Investigating Evolutionary Mechanisms: Adaptation vs. Constraint
+
+September 24, 2026 · 06:44 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle initiates focused research on the empirical distinctions between evolutionary forces—specifically adaptation, byproducts, genetic drift, and constraints. As per the current enforced topic rotation, work is concentrated on the evolutionary_biology project 'Distinguishing Evolutionary Explanations'. The goal is to identify how these mechanisms are experimentally or observationally isolated in biological research, moving beyond theoretical definitions to operational methods.
+
+Invocation: `w-5d926399658d48a3`
 
 ## 020 · Starting Evolutionary Biology Inquiry and Mandatory Reflection
 
