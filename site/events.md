@@ -2,9 +2,148 @@
 
 > A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.
 
-Verified head: `f6ad6b25892266dddc05d5b5f47c4a060e730110ca7d935ddc1a6378766098f4`
+Verified head: `66b22bfb9fbe4adf6304ae750f15854d44b75e4b7f52be5a800dae8692f3f6c7`
 
 [Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)
+
+## Event 1029 · `observation`
+
+**Time:** 2026-09-25T05:22:12.138266+00:00  
+**ID:** `r-3b3331d7897a4f1c`  
+**Hash:** `66b22bfb9fbe4adf6304ae750f15854d44b75e4b7f52be5a800dae8692f3f6c7`  
+**Previous hash:** `a233ba5f8845876886551d1fa1a5a9bddb7a3d4fb2c5db432b09245fe9de24ad`
+
+**Source:** `runtime:continuity`  
+**Actor:** `runtime`
+
+{"base_version":39,"inherited_commitments":[],"invocation":"w-3b3331d7897a4f1c","previous_head":"a233ba5f8845876886551d1fa1a5a9bddb7a3d4fb2c5db432b09245fe9de24ad","process_id":2277,"scope":"Receipt proves state delivery to the provider boundary, not model comprehension."}
+
+## Event 1028 · `temporal_observed`
+
+**Time:** 2026-09-25T05:22:11.707762+00:00  
+**ID:** `system`  
+**Hash:** `a233ba5f8845876886551d1fa1a5a9bddb7a3d4fb2c5db432b09245fe9de24ad`  
+**Previous hash:** `6a75f23201c579680025bf6ea524e982365c54879e601d463a6d48cb7ba4b914`
+
+### Payload
+
+```json
+{
+  "cycle_distance": 0,
+  "effective_elapsed_seconds": 373.486452,
+  "effective_scale": 1.0,
+  "effective_seconds_total": 20089.109577,
+  "intervening_events": {
+    "accepted": 0,
+    "failed": 0,
+    "observation": 7,
+    "rejected": 0,
+    "research_collected": 0,
+    "squirrel_assessed": 0,
+    "total": 8
+  },
+  "observed_at": "2026-09-25T05:22:11.584515+00:00",
+  "previous_anchor_time": "2026-09-25T05:15:58.098063+00:00",
+  "regime_id": "reg-df573bb03399f050",
+  "wall_elapsed_seconds": 373.486452
+}
+```
+
+## Event 1027 · `observation`
+
+**Time:** 2026-09-25T05:22:11.366741+00:00  
+**ID:** `source-d806581855414de8`  
+**Hash:** `6a75f23201c579680025bf6ea524e982365c54879e601d463a6d48cb7ba4b914`  
+**Previous hash:** `df0d1688b2c6ec05e2c8950aae1f24d100a87a12c54eaedd77f425d79494ce35`
+
+**Source:** `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json`  
+**Actor:** `collector`
+
+{"url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json", "scope": "extracted web-page text; may be incomplete", "excerpt": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":10,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":179},\"search\":[{\"ns\":0,\"title\":\"Justification (epistemology)\",\"pageid\":30248,\"size\":11199,\"wordcount\":1195,\"snippet\":\"current\nevidence\n.\nJustification\nis a property of\nbeliefs\ninsofar as they are held blamelessly. In other words, a justified\nbelief\nis a\nbelief\nthat a person\",\"timestamp\":\"2026-08-22T20:08:09Z\"},{\"ns\":0,\"title\":\"Epistemology\",\"pageid\":9247,\"size\":211582,\"wordcount\":19966,\"snippet\":\"Central concepts in\nepistemology\ninclude\nbelief\n, truth,\nevidence\n, and reason. As one of the main branches of philosophy,\nepistemology\nstands alongside fields\",\"timestamp\":\"2026-08-21T14:29:44Z\"},{\"ns\":0,\"title\":\"Empirical evidence\",\"pageid\":307139,\"size\":39043,\"wordcount\":3955,\"snippet\":\"methods and paradigms. In\nepistemology\n,\nevidence\nis what justifies\nbeliefs\nor what determines whether holding a certain\nbelief\nis rational. This is only\",\"timestamp\":\"2026-08-08T15:50:44Z\"},{\"ns\":0,\"title\":\"Formal epistemology\",\"pageid\":3660078,\"size\":11434,\"wordcount\":1321,\"snippet\":\"formal\nepistemology\nhas tended to differ somewhat from that of traditional\nepistemology\n, with topics like\nuncertainty\n, induction, and\nbelief\nrevision\",\"timestamp\":\"2026-03-28T03:41:38Z\"},{\"ns\":0,\"title\":\"Gettier problem\",\"pageid\":246176,\"size\":44511,\"wordcount\":5956,\"snippet\":\"\nbelief\n(JTB). The JTB account holds that knowledge is equivalent to justified true\nbelief\n; if all three conditions (\njustification\n, truth, and\nbelief\n)\",\"timestamp\":\"2026-09-22T13:24:11Z\"},{\"ns\":0,\"title\":\"Outline of epistemology\",\"pageid\":6556377,\"size\":16004,\"wordcount\":1658,\"snippet\":\"\nepistemology\n\\u00a0\\u2013\nBeliefs\nare warranted by proper cognitive function\\u2014proposed by Alvin Plantinga. Evidentialism\\u00a0\\u2013\nBeliefs\ndepend solely on the\nevidence\nfor\",\"timestamp\":\"2026-08-24T15:07:39Z\"},{\"ns\":0,\"title\":\"Belief\",\"pageid\":102883,\"size\":105449,\"wordcount\":12166,\"snippet\":\"having some stance, take, or opinion about something. In\nepistemology\n, philosophers use the term\nbelief\nto refer to attitudes about the world which can be either\",\"timestamp\":\"2026-09-13T03:42:36Z\"},{\"ns\":0,\"title\":\"Declarative knowledge\",\"pageid\":23369987,\"size\":97599,\"wordcount\":10444,\"snippet\":\"A central issue in\nepistemology\nconcerns the standards of\njustification\n, i.e., what conditions have to be fulfilled for a\nbelief\nto be justified. Internalists\",\"timestamp\":\"2026-09-18T11:00:01Z\"},{\"ns\":0,\"title\":\"Evidence\",\"pageid\":20550772,\"size\":46664,\"wordcount\":5455,\"snippet\":\"exact definition and role of\nevidence\nvary across different fields. In\nepistemology\n,\nevidence\nis what justifies\nbeliefs\nor what makes it rational to hold\",\"timestamp\":\"2026-09-09T01:29:13Z\"},{\"ns\":0,\"title\":\"Knowledge\",\"pageid\":243391,\"size\":190334,\"wordcount\":19010,\"snippet\":\"knowledge, is often characterized as true\nbelief\nthat is distinct from opinion or guesswork by virtue of\njustification\n. While there is wide agreement among\",\"timestamp\":\"2026-08-23T18:49:22Z\"}]}}", "excerpt_truncated": false, "source_sha256": "90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28", "verification_required": true, "topic_domain": "epistemology", "evidence_role": "discovery", "host_tier": "discovery", "persistent_identifiers": []}
+
+## Event 1026 · `observation`
+
+**Time:** 2026-09-25T05:22:10.917055+00:00  
+**ID:** `source-9d746e9f14bd40cb`  
+**Hash:** `df0d1688b2c6ec05e2c8950aae1f24d100a87a12c54eaedd77f425d79494ce35`  
+**Previous hash:** `05be079e33be9a795bfb8bc342bfc94eea7da398ef98ec9ad5b557f28dbd892a`
+
+**Source:** `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json`  
+**Actor:** `collector`
+
+{"url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json", "scope": "extracted web-page text; may be incomplete", "excerpt": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":10,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":912},\"search\":[{\"ns\":0,\"title\":\"Endocrinology\",\"pageid\":9311,\"size\":28626,\"wordcount\":3056,\"snippet\":\"hormone.\nEndocrinology\nis the study of the\nendocrine\nsystem in the human body. This is a system of glands which secrete\nhormones\n.\nHormones\nare chemicals\",\"timestamp\":\"2026-08-22T17:29:24Z\"},{\"ns\":0,\"title\":\"Endocrine system\",\"pageid\":9312,\"size\":40983,\"wordcount\":4852,\"snippet\":\"endocrine system by secreting certain\nhormones\n. The study of the\nendocrine\nsystem and its\ndisorders\nis known as\nendocrinology\n. The thyroid secretes thyroxine\",\"timestamp\":\"2026-05-30T18:34:40Z\"},{\"ns\":0,\"title\":\"Endocrine disease\",\"pageid\":8500076,\"size\":11397,\"wordcount\":862,\"snippet\":\"\nEndocrine\ndiseases are\ndisorders\nof the\nendocrine\nsystem. The branch of medicine associated with\nendocrine\ndisorders\nis known as\nendocrinology\n. Broadly\",\"timestamp\":\"2025-12-04T06:52:05Z\"},{\"ns\":0,\"title\":\"Hormones (endocrinology journal)\",\"pageid\":76017572,\"size\":3457,\"wordcount\":234,\"snippet\":\"metabolic\ndisorders\n. It was established in 2002 as the official journal of the Hellenic\nEndocrine\nSociety, the Greek society of\nendocrinology\n, which published\",\"timestamp\":\"2025-10-20T08:31:06Z\"},{\"ns\":0,\"title\":\"Thyroid-stimulating hormone\",\"pageid\":330361,\"size\":29201,\"wordcount\":2790,\"snippet\":\"body. It is a glycoprotein\nhormone\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\nendocrine\nfunction of the thyroid.\",\"timestamp\":\"2026-05-22T04:01:13Z\"},{\"ns\":0,\"title\":\"Gender-affirming hormone therapy\",\"pageid\":36792950,\"size\":64335,\"wordcount\":5099,\"snippet\":\"transgender hormone therapy, is a form of hormone therapy in which sex\nhormones\nand other\nhormonal\nmedications are administered to transgender or gender nonconforming\",\"timestamp\":\"2026-09-16T03:30:17Z\"},{\"ns\":0,\"title\":\"Hormone\",\"pageid\":13311,\"size\":42654,\"wordcount\":4370,\"snippet\":\"Cytokine\nEndocrine\ndisease\nEndocrine\nsystem\nEndocrinology\nEnvironmental\nhormones\nGrowth factor Hepatokine Intracrine List of human\nhormones\nList of investigational\",\"timestamp\":\"2026-09-08T05:55:19Z\"},{\"ns\":0,\"title\":\"Endocrine gland\",\"pageid\":1223446,\"size\":18558,\"wordcount\":2107,\"snippet\":\"anterior pituitary\nhormones\nare tropic\nhormones\nthat regulate the function of other\nendocrine\norgans. Most anterior pituitary\nhormones\nexhibit a diurnal\",\"timestamp\":\"2026-01-25T17:12:40Z\"},{\"ns\":0,\"title\":\"Acromegaly\",\"pageid\":20936195,\"size\":41489,\"wordcount\":3937,\"snippet\":\"acromegaly: evolution of the techniques and outcomes\". Reviews in\nEndocrine\n& Metabolic\nDisorders\n. 9 (1): 67\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\u00a018228147\",\"timestamp\":\"2026-08-09T11:28:10Z\"},{\"ns\":0,\"title\":\"Multiple endocrine neoplasia type 1\",\"pageid\":2574340,\"size\":15344,\"wordcount\":1736,\"snippet\":\"Multiple\nendocrine\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\ndisorders\n, the multiple\nendocrine\nneoplasias, that affect\",\"timestamp\":\"2025-12-23T18:16:14Z\"}]}}", "excerpt_truncated": false, "source_sha256": "b770dec74e73dd12941df8ff8797f146e2ebe72b873008d54890219de7e81a36", "verification_required": true, "topic_domain": "endocrinology", "evidence_role": "discovery", "host_tier": "discovery", "persistent_identifiers": ["doi:10.1007/s11154-007-9064-y"]}
+
+## Event 1025 · `observation`
+
+**Time:** 2026-09-25T05:22:10.421501+00:00  
+**ID:** `source-4838807c34244d50`  
+**Hash:** `05be079e33be9a795bfb8bc342bfc94eea7da398ef98ec9ad5b557f28dbd892a`  
+**Previous hash:** `570f69705b516aa6d072790c15fe2d1e371d41387f7843f106ffca6bcbc692aa`
+
+**Source:** `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json`  
+**Actor:** `collector`
+
+{"url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json", "scope": "extracted web-page text; may be incomplete", "excerpt": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":10,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":74},\"search\":[{\"ns\":0,\"title\":\"Dance\",\"pageid\":7885,\"size\":73058,\"wordcount\":8358,\"snippet\":\"by\ndance\nthat emphasised dramatic mime. A broader concept of\nrhythm\nwas needed, that which Rudolf Laban terms the \"\nrhythm\nand shape\" of\nmovement\nthat\",\"timestamp\":\"2026-09-15T00:29:49Z\"},{\"ns\":0,\"title\":\"African-American culture\",\"pageid\":1142503,\"size\":186819,\"wordcount\":18525,\"snippet\":\"influenced modern popular\nculture\n. Spoken-word artists employ the same techniques as African-American preachers including\nmovement\n,\nrhythm\n, and audience participation\",\"timestamp\":\"2026-09-24T19:24:07Z\"},{\"ns\":0,\"title\":\"Psychology of music\",\"pageid\":4390344,\"size\":79919,\"wordcount\":8734,\"snippet\":\"\\u00a0111. ISBN\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \"\nRhythm\nand pitch in music\ncognition\n\". Psychol. Bull. 126 (1): 159\\u2013179. doi:10.1037/0033-2909\",\"timestamp\":\"2026-08-26T20:22:47Z\"},{\"ns\":0,\"title\":\"Modernism\",\"pageid\":19547,\"size\":185952,\"wordcount\":20347,\"snippet\":\"modern\ndance\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\nmovement\nalso\",\"timestamp\":\"2026-09-23T15:47:13Z\"},{\"ns\":0,\"title\":\"Culture of the United States\",\"pageid\":18985287,\"size\":156497,\"wordcount\":13473,\"snippet\":\"of\ncultures\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\nrhythm\nand\",\"timestamp\":\"2026-09-13T04:15:41Z\"},{\"ns\":0,\"title\":\"Irish stepdance\",\"pageid\":6188670,\"size\":45682,\"wordcount\":5651,\"snippet\":\"called Feiseanna (singular Feis). In Irish\ndance\nculture\n, a Feis is a traditional Gaelic arts and\nculture\nfestival. Contemporarily, costumes are sometimes\",\"timestamp\":\"2026-06-22T02:12:29Z\"},{\"ns\":0,\"title\":\"Cultural universal\",\"pageid\":7745490,\"size\":10277,\"wordcount\":1012,\"snippet\":\"Healing practices, medicine Childbirth customs Rites of passage Music,\nrhythm\n,\ndance\n, and to some degree associations between music and emotion Play Toys\",\"timestamp\":\"2026-05-03T15:57:58Z\"},{\"ns\":0,\"title\":\"Culture and menstruation\",\"pageid\":5778583,\"size\":168019,\"wordcount\":19129,\"snippet\":\"China's youth\nculture\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \"'Stand by Her': In China, a\nMovement\nHands Out Free\",\"timestamp\":\"2026-08-19T15:00:51Z\"},{\"ns\":0,\"title\":\"Jor (music)\",\"pageid\":577500,\"size\":17239,\"wordcount\":2111,\"snippet\":\"These sections, especially Jor is described as not a beat nor a\nrhythm\nbut a\nmovement\nthat helps the Raga gain momentum in the beginning of the piece\",\"timestamp\":\"2026-08-16T18:18:03Z\"},{\"ns\":0,\"title\":\"Psychology of music preference\",\"pageid\":37523519,\"size\":39407,\"wordcount\":4679,\"snippet\":\"familiarity and liking of music. Big Five personality traits\nCulture\nin music\ncognition\nMusic psychology Sch\\u00e4fer, Thomas; Sedlmeier, Peter; St\\u00e4dtler,\",\"timestamp\":\"2025-10-02T16:42:36Z\"}]}}", "excerpt_truncated": false, "source_sha256": "ecb21eac3dea4893c75ded14ed9b760c91e3d206f70fb0a35e3611f2ad10d698", "verification_required": true, "topic_domain": "dance", "evidence_role": "discovery", "host_tier": "discovery", "persistent_identifiers": ["doi:10.1037/0033-2909"]}
+
+## Event 1024 · `observation`
+
+**Time:** 2026-09-25T05:22:09.912784+00:00  
+**ID:** `source-f59f3d9d56ad4bf2`  
+**Hash:** `570f69705b516aa6d072790c15fe2d1e371d41387f7843f106ffca6bcbc692aa`  
+**Previous hash:** `530df4fd0e916e83901666e3769e6eaede17da994fd84c06551b612ed8fda7dc`
+
+**Source:** `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json`  
+**Actor:** `collector`
+
+{"url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json", "scope": "extracted web-page text; may be incomplete", "excerpt": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":10,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":6105},\"search\":[{\"ns\":0,\"title\":\"Entropy\",\"pageid\":9891,\"size\":115933,\"wordcount\":14396,\"snippet\":\"\nEntropy\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\",\"timestamp\":\"2026-09-21T14:49:27Z\"},{\"ns\":0,\"title\":\"Entropy (information theory)\",\"pageid\":15445,\"size\":72351,\"wordcount\":10078,\"snippet\":\"In information theory, the\nentropy\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\",\"timestamp\":\"2026-08-01T11:28:24Z\"},{\"ns\":0,\"title\":\"Second law of thermodynamics\",\"pageid\":133017,\"size\":119048,\"wordcount\":16416,\"snippet\":\"appear below. The second law of thermodynamics establishes the concept of\nentropy\nas a physical property of a thermodynamic system. It predicts whether processes\",\"timestamp\":\"2026-09-22T12:26:14Z\"},{\"ns\":0,\"title\":\"Entropy (disambiguation)\",\"pageid\":302133,\"size\":5540,\"wordcount\":726,\"snippet\":\"Look up\nentropy\nin Wiktionary, the free dictionary.\nEntropy\nis a fundamental scientific concept that quantifies the statistical probability of a system's\",\"timestamp\":\"2026-04-29T22:10:25Z\"},{\"ns\":0,\"title\":\"Cross-entropy\",\"pageid\":1735250,\"size\":19871,\"wordcount\":3496,\"snippet\":\"In information theory, the cross-\nentropy\nbetween two probability distributions p {\\\\displaystyle p} and q {\\\\displaystyle q} , over the same underlying\",\"timestamp\":\"2026-09-15T02:14:33Z\"},{\"ns\":0,\"title\":\"R\\u00e9nyi entropy\",\"pageid\":1731689,\"size\":27228,\"wordcount\":4205,\"snippet\":\"R\\u00e9nyi\nentropy\nis a quantity that generalizes various notions of\nentropy\n, including Hartley\nentropy\n, Shannon\nentropy\n, collision\nentropy\n, and min-\nentropy\n. The\",\"timestamp\":\"2026-08-13T19:55:15Z\"},{\"ns\":0,\"title\":\"Social entropy\",\"pageid\":12447991,\"size\":1975,\"wordcount\":200,\"snippet\":\"\nentropy\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\nentropy\n\",\"timestamp\":\"2026-05-03T07:04:36Z\"},{\"ns\":0,\"title\":\"Information theory\",\"pageid\":14773,\"size\":88576,\"wordcount\":10416,\"snippet\":\"theory is\nentropy\n. In Shannon's formulation,\nentropy\nis equal to the lack of information about an event. In the above coin flip example, the\nentropy\nin the\",\"timestamp\":\"2026-09-19T03:01:03Z\"},{\"ns\":0,\"title\":\"Entropy unit\",\"pageid\":1886799,\"size\":521,\"wordcount\":71,\"snippet\":\"The\nentropy\nunit is a non-S.I. unit of thermodynamic\nentropy\n, usually denoted by \"e.u.\" or \"eU\" and equal to one calorie per kelvin per mole, or 4.184\",\"timestamp\":\"2024-11-06T04:45:06Z\"},{\"ns\":0,\"title\":\"Holographic principle\",\"pageid\":14286,\"size\":36292,\"wordcount\":4216,\"snippet\":\"bound of black hole thermodynamics, which conjectures that the maximum\nentropy\nin any region scales with the radius squared, rather than cubed as might\",\"timestamp\":\"2026-05-16T11:15:06Z\"}]}}", "excerpt_truncated": false, "source_sha256": "bbec3dd4dfb813d936080d11763eea8988c818b75f5a5c38d5ccb35700c0a11f", "verification_required": true, "topic_domain": "entropy", "evidence_role": "discovery", "host_tier": "discovery", "persistent_identifiers": []}
+
+## Event 1023 · `observation`
+
+**Time:** 2026-09-25T05:22:09.548969+00:00  
+**ID:** `source-f90a2cb0d82f4f2c`  
+**Hash:** `530df4fd0e916e83901666e3769e6eaede17da994fd84c06551b612ed8fda7dc`  
+**Previous hash:** `7ef9123853f6c2d80124ebba42c4190ac17ad297428d536aac8c4c69aa9b1511`
+
+**Source:** `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json`  
+**Actor:** `collector`
+
+{"url": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json", "scope": "extracted web-page text; may be incomplete", "excerpt": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":10,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":149385,\"suggestion\":\"philosopher\",\"suggestionsnippet\":\"philosopher\"},\"search\":[{\"ns\":0,\"title\":\"Philosophy\",\"pageid\":13692155,\"size\":202290,\"wordcount\":17543,\"snippet\":\"\nPhilosophy\n(from Ancient Greek philosoph\\u00eda, lit.\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\",\"timestamp\":\"2026-09-24T22:22:04Z\"},{\"ns\":0,\"title\":\"Doctor of Philosophy\",\"pageid\":21031297,\"size\":152425,\"wordcount\":16312,\"snippet\":\"A Doctor of\nPhilosophy\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\",\"timestamp\":\"2026-09-22T15:35:01Z\"},{\"ns\":0,\"title\":\"Epistemology\",\"pageid\":9247,\"size\":211582,\"wordcount\":19966,\"snippet\":\"Epistemology is the branch of\nphilosophy\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\",\"timestamp\":\"2026-08-21T14:29:44Z\"},{\"ns\":0,\"title\":\"Fish! Philosophy\",\"pageid\":8770844,\"size\":8284,\"wordcount\":1071,\"snippet\":\"The Fish!\nPhilosophy\n(styled FISH!\nPhilosophy\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\",\"timestamp\":\"2026-03-07T07:04:15Z\"},{\"ns\":0,\"title\":\"Desert (philosophy)\",\"pageid\":10791397,\"size\":23606,\"wordcount\":3102,\"snippet\":\"Desert (/d\\u026a\\u02c8z\\u025c\\u02d0rt/) in\nphilosophy\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\",\"timestamp\":\"2026-01-20T20:30:37Z\"},{\"ns\":0,\"title\":\"Cynicism (philosophy)\",\"pageid\":19187131,\"size\":40942,\"wordcount\":4715,\"snippet\":\"Cynicism (Ancient Greek: \\u03ba\\u03c5\\u03bd\\u03b9\\u03c3\\u03bc\\u03cc\\u03c2) is a school of thought in ancient Greek\nphilosophy\n, originating in the Classical period and extending into the Hellenistic\",\"timestamp\":\"2026-05-27T04:15:40Z\"},{\"ns\":0,\"title\":\"Aesthetics\",\"pageid\":2130,\"size\":149323,\"wordcount\":16275,\"snippet\":\"Aesthetics is the branch of\nphilosophy\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\nphilosophy\nof art, which examines\",\"timestamp\":\"2026-09-18T11:00:49Z\"},{\"ns\":0,\"title\":\"Western philosophy\",\"pageid\":13704154,\"size\":96464,\"wordcount\":11377,\"snippet\":\"Western\nphilosophy\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\",\"timestamp\":\"2026-09-21T05:16:57Z\"},{\"ns\":0,\"title\":\"Political philosophy\",\"pageid\":23040,\"size\":129861,\"wordcount\":13401,\"snippet\":\"Political\nphilosophy\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\",\"timestamp\":\"2026-09-23T10:21:49Z\"},{\"ns\":0,\"title\":\"Phenomenology (philosophy)\",\"pageid\":76939,\"size\":54614,\"wordcount\":6018,\"snippet\":\"appeared in direct connection to Husserl's\nphilosophy\nin a 1907 article in The Philosophical Review. In\nphilosophy\n, \"phenomenology\" refers to the tradition\",\"timestamp\":\"2026-09-22T15:46:18Z\"}]}}", "excerpt_truncated": false, "source_sha256": "780223482e24d43e70f9ea6b6081d9041819670ecb00c1ffffbff338f53c27ad", "verification_required": true, "topic_domain": "philosophy", "evidence_role": "discovery", "host_tier": "discovery", "persistent_identifiers": []}
+
+## Event 1022 · `acquisition_assessed`
+
+**Time:** 2026-09-25T05:22:09.108497+00:00  
+**ID:** `system`  
+**Hash:** `7ef9123853f6c2d80124ebba42c4190ac17ad297428d536aac8c4c69aa9b1511`  
+**Previous hash:** `344a6b0e49f0e4b70cb7ad4933322d15af512816b40db14b1e333cc482fc34e6`
+
+### Payload
+
+```json
+{
+  "domain": "consciousness",
+  "evidence": "source-845af20bfcc848ae",
+  "outcome": "progress",
+  "persistent_identifiers": [
+    "doi:10.1093/acprof:oso/9780198524588.001.0001"
+  ],
+  "project": "consciousness-scientific-theories",
+  "research_id": "res-consciousness-iit-gnwt-contrast-001",
+  "route": "api.crossref.org:source",
+  "stage": "substantive_source"
+}
+```
+
+## Event 1021 · `observation`
+
+**Time:** 2026-09-25T05:22:08.941867+00:00  
+**ID:** `source-845af20bfcc848ae`  
+**Hash:** `344a6b0e49f0e4b70cb7ad4933322d15af512816b40db14b1e333cc482fc34e6`  
+**Previous hash:** `f6ad6b25892266dddc05d5b5f47c4a060e730110ca7d935ddc1a6378766098f4`
+
+**Source:** `https://api.crossref.org/works/10.1093%2Facprof%3Aoso%2F9780198524588.001.0001`  
+**Actor:** `collector`
+
+{"url": "https://api.crossref.org/works/10.1093%2Facprof%3Aoso%2F9780198524588.001.0001", "scope": "Crossref bibliographic metadata and abstracts where supplied; not full papers", "excerpt": "[{\"indexed\": {\"date-parts\": [[2026, 7, 8]], \"date-time\": \"2026-07-08T06:25:38Z\", \"timestamp\": 1783491938302, \"version\": \"3.55.0\"}, \"reference-count\": 0, \"publisher\": \"Oxford University Press\", \"isbn-type\": [{\"value\": \"9780198524588\", \"type\": \"print\"}], \"content-domain\": {\"domain\": [], \"crossmark-restriction\": false}, \"short-container-title\": [], \"published-print\": {\"date-parts\": [[1999, 6, 3]]}, \"DOI\": \"10.1093/acprof:oso/9780198524588.001.0001\", \"type\": \"monograph\", \"created\": {\"date-parts\": [[2012, 4, 6]], \"date-time\": \"2012-04-06T16:03:26Z\", \"timestamp\": 1333728206000}, \"source\": \"Crossref\", \"is-referenced-by-count\": 52, \"title\": [\"Consciousness Lost and Found\"], \"prefix\": \"10.1093\", \"author\": [{\"given\": \"Lawrence\", \"family\": \"Weiskrantz\", \"sequence\": \"first\", \"affiliation\": [], \"role\": [{\"vocabulary\": \"crossref\", \"role\": \"author\"}]}], \"member\": \"286\", \"container-title\": [], \"original-title\": [], \"deposited\": {\"date-parts\": [[2022, 8, 2]], \"date-time\": \"2022-08-02T20:45:29Z\", \"timestamp\": 1659473129000}, \"score\": 1, \"resource\": {\"primary\": {\"URL\": \"https://academic.oup.com/book/2731\"}}, \"subtitle\": [\"A Neuropsychological Exploration\"], \"short-title\": [], \"issued\": {\"date-parts\": [[1999, 6, 3]]}, \"ISBN\": [\"9780198524588\"], \"references-count\": 0, \"URL\": \"https://doi.org/10.1093/acprof:oso/9780198524588.001.0001\", \"relation\": {}, \"subject\": [], \"published\": {\"date-parts\": [[1999, 6, 3]]}}]", "excerpt_truncated": false, "source_sha256": "e1344a46f092ee265d327eb7e0a6f9ab86e70cc9a5054e12f6985a012b1292f2", "verification_required": true, "topic_domain": "consciousness", "evidence_role": "source", "host_tier": "verification-metadata", "persistent_identifiers": ["doi:10.1093/acprof:oso/9780198524588.001.0001"]}
 
 ## Event 1020 · `observation`
 
