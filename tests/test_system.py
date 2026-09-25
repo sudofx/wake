@@ -189,6 +189,19 @@ class SystemTests(unittest.TestCase):
         final = self.engine.store.performance_snapshot()
         self.assertGreater(final["full_replays"], after["full_replays"])
 
+    def test_projection_cache_preserves_recency_insertion_order(self):
+        with self.engine.store.lock():
+            self.engine.store.append("observation", {
+                "id": "z-first", "source": "fixture:z", "content": "first", "actor": "human"
+            })
+            self.engine.store.append("observation", {
+                "id": "a-second", "source": "fixture:a", "content": "second", "actor": "human"
+            })
+            state = self.engine.store.append("observation", {
+                "id": "m-third", "source": "fixture:m", "content": "third", "actor": "human"
+            })
+        self.assertEqual(list(state["evidence"])[-3:], ["z-first", "a-second", "m-third"])
+
     def test_invocation_records_hot_path_and_compression_metrics(self):
         with self.engine.store.lock():
             invocation, _ = self.engine.start("fixture", "perf-test")

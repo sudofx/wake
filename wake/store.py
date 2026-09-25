@@ -13,6 +13,7 @@
 """SQLite transactions + hash-linked events. The projection is disposable too."""
 
 from contextlib import contextmanager
+from copy import deepcopy
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -395,7 +396,7 @@ class Store:
             "append_cache_hits": 0,
             "append_cache_misses": 0,
             "replay_ms": 0.0,
-            "cached_decode_ms": 0.0,
+            "cached_copy_ms": 0.0,
         }
 
     # ---------------------------------------------------------------------------
@@ -448,10 +449,14 @@ class Store:
         return self.db.execute("PRAGMA data_version").fetchone()[0]
 
     def _remember(self, state, head, seq):
+        # Preserve Python insertion order in the hot projection. Canonical JSON is
+        # useful for hashing/snapshot comparison, but sort_keys=True would destroy
+        # the record's deterministic recency ordering if used as the cache format.
         self._trusted = {
             "seq": seq,
             "head": head,
-            "state": canonical(state),
+            "state": deepcopy(state),
+            "encoded": canonical(state),
             "total_changes": self.db.total_changes,
             "data_version": self._data_version(),
         }
@@ -470,15 +475,15 @@ class Store:
             self._trusted = None
             return None
         snapshot = self.db.execute("SELECT head, state FROM snapshot WHERE id=1").fetchone()
-        if snapshot is not None and snapshot != (trusted["head"], trusted["state"]):
+        if snapshot is not None and snapshot != (trusted["head"], trusted["encoded"]):
             self._trusted = None
             return None
         if seq and snapshot is None:
             self._trusted = None
             return None
         started = perf_counter()
-        state = json.loads(trusted["state"])
-        self._performance["cached_decode_ms"] += (perf_counter() - started) * 1000
+        state = deepcopy(trusted["state"])
+        self._performance["cached_copy_ms"] += (perf_counter() - started) * 1000
         return state, head
 
     def head(self):
