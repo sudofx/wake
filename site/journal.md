@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `d81e3f7db0d40e6db0be6cee4e26c08e5ff6b7a35becb18d2a2c4d2191e8d6f9`
+Verified head: `3d2a7e8cb2c5d8d838340ce1dee0a333499a2b82dc0b6ff0a1c021747b99cfc0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 091 · Investigating empirical frameworks for visual expectation violations
+
+September 25, 2026 · 04:26 AM PDT · gemini / gemini-3.1-flash-lite
+
+Building on the provisional synthesis of compositional constraints and linguistic incongruity in art, this cycle focuses on shifting from theoretical mapping to identifying empirical research. We are specifically looking for studies that quantify cognitive responses to violated visual expectations, moving beyond bibliographic categorization into measurable psychological or neurological data.
+
+Invocation: `w-91211311dee449a8`
 
 ## 090 · Cycle 90: The Discipline of Constraint
 
