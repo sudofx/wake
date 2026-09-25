@@ -761,6 +761,11 @@ class Engine:
         ]
 
         # Evidence content is never authoritative in this emergency view; retain roots only.
+        synthesis_ids = {
+            evidence_id
+            for ids in context.get("project_evidence", {}).values()
+            for evidence_id in ids
+        }
         context["evidence"] = [
             {
                 "id": item.get("id"),
@@ -768,7 +773,14 @@ class Engine:
                 "actor": item.get("actor", ""),
                 "version": item.get("version"),
                 "scope": item.get("scope"),
-                "content_omitted": True,
+                **(
+                    {
+                        "content": excerpt(item.get("content"), 500),
+                        "context_excerpt": True,
+                    }
+                    if item.get("id") in synthesis_ids and item.get("content")
+                    else {"content_omitted": True}
+                ),
             }
             for item in context.get("evidence", [])[-6:]
         ]
@@ -1229,12 +1241,23 @@ class Engine:
             project for project in context.get("projects", [])
             if project.get("status") == "active"
         ]
-        visible_ids = list(existing)
+        # Metadata-only evidence roots are useful for provenance, but they are
+        # not enough for a disposable model to synthesize findings. Treat only
+        # collector records whose content is actually present in this request as
+        # synthesis-visible. This prevents bounded context from falsely deciding
+        # that a project is already serviced merely because an ID survived.
+        readable_ids = [
+            item["id"] for item in context.get("evidence", [])
+            if item.get("actor") == "collector"
+            and item.get("scope") == "collected"
+            and item.get("content")
+            and not item.get("content_omitted")
+        ]
         missing_domains = {
             project.get("domain")
             for project in active_projects
             if not self.project_notebook_evidence_ids(
-                state, visible_ids, project, same_domain=True
+                state, readable_ids, project, same_domain=True
             )
         }
         projects_need_source = bool(missing_domains)
@@ -1261,13 +1284,16 @@ class Engine:
 
         # Prefer sources from domains that are absent for active projects while
         # preserving deterministic retrieval order inside each priority class.
+        selected_topic = (context.get("squirrel") or {}).get("selected_topic")
         requested = sorted(
             requested,
             key=lambda evidence_id: (
                 0 if (
                     (payload := self.durable_notebook_source_payload(state, evidence_id))
-                    and payload.get("topic_domain") in missing_domains
-                ) else 1
+                    and payload.get("topic_domain") == selected_topic
+                ) else 1 if (
+                    payload and payload.get("topic_domain") in missing_domains
+                ) else 2
             ),
         )
 
@@ -1349,7 +1375,16 @@ class Engine:
         # projects may inspect cross-topic sources; WAKE self-analysis keeps its
         # stricter repository-source boundary.
         context["project_evidence"] = {}
-        visible_evidence_ids = list(visible_evidence)
+        # Notebook choices must be evidence the model can actually read in this
+        # invocation, not merely metadata roots whose exact content stayed out
+        # of the bounded request.
+        visible_evidence_ids = [
+            evidence_id for evidence_id, evidence in visible_evidence.items()
+            if evidence.get("actor") == "collector"
+            and evidence.get("scope") == "collected"
+            and evidence.get("content")
+            and not evidence.get("content_omitted")
+        ]
         for project in context.get("projects", []):
             context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
                 state, visible_evidence_ids, project
@@ -1499,19 +1534,15 @@ class Engine:
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
-            # Bounded delivery used to discard exact source records selected
-            # for an overdue obligation, producing functional amnesia precisely
-            # when the rich context overflowed. Preserve one compact qualifying
-            # source when a commitment is near due; ordinary project recovery
-            # remains in the richer path so bounded mode stays safely below its
-            # ceiling. Governance validates the durable full record, not this excerpt.
-            if any(
-                item.get("trigger") == "commitment_near_due"
-                for item in retrieval_shadow.get("candidates", [])
-            ) and retrieval_shadow.get("evidence_ids"):
+            # Bounded delivery must not erase the handoff from collection
+            # to synthesis. Rehydrate a tiny, project-prioritized set of exact
+            # collector records whenever retrieval found qualifying evidence.
+            # One source enables an honest provisional notebook; two can support
+            # corroborated revision/publication without weakening governance.
+            if retrieval_shadow.get("evidence_ids"):
                 request["context"] = self.rehydrate_retrieval_context(
                     state, request["context"], retrieval_shadow,
-                    content_limit=600, max_records=1,
+                    content_limit=900, max_records=2,
                 )
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
