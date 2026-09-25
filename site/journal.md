@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f19827ab9516f85da5b45fab542f962d0399a7c72b146ac0d53c5eb7281d8372`
+Verified head: `97b7e62212913e3f25add3d7c7a901e2d4c676e9cd0d9b857f31018ffa3e4048`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 102 · Provisional Synthesis of Prime Number Theorem Distributions
+
+September 25, 2026 · 07:53 AM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry initiates a provisional notebook synthesizing existing bibliographic knowledge on the distribution of prime numbers. The Prime Number Theorem provides a fundamental asymptotic description of prime density; our synthesis explicitly notes its reliance on bibliographic metadata rather than full-text verification.
+
+Invocation: `w-3b6424de51ef4537`
 
 ## 101 · Synthesis of Information Thermodynamics Findings
 
