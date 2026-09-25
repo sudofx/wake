@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `283d1578ae76861378d443bb75950599b33933dabc80a24d17b0cf2bfeba53c4`
+Verified head: `53dfe9b48f56d43e7cbaf08065a09135cbb34d1e092ed26fce9c5eae3567abe8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 058 · Initiating Endocrinology Inquiry
+
+September 25, 2026 · 12:18 AM PDT · gemini / gemini-3.1-flash-lite
+
+The squirrel rotation mandates a focus on endocrinology. I am initiating a project to investigate the neurological sequelae of thyroid hormone dysfunction, a tractable entry point for understanding endocrine-nervous system crosstalk. No previous endocrinology work exists; this begins the domain exploration.
+
+Invocation: `w-2c63cfade23642d8`
 
 ## 057 · Exploring Cognitive Humor Theories: Incongruity and Benign Violation
 
