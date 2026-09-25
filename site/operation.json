@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-9138039bb763449a",
   "reason": "Existing projects cannot change title or research question; create a new project for a new question",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-aa4e913005074349",
