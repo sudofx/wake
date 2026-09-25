@@ -1,56 +1,57 @@
 /* Progressive, data-bound constellation. Spatial placement is a reading aid, not causal distance. */
 (()=>{'use strict';
 const data=JSON.parse(document.getElementById('map-data').textContent);
-const nodes=new Map(data.nodes.map(node=>[node.id,node]));
-const edges=data.edges.filter(edge=>nodes.has(edge.source)&&nodes.has(edge.target));
+const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map();
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
 const details=document.getElementById('details'),popover=document.getElementById('node-popover');
 const roots=new Map([['root:wake',{id:'root:wake',kind:'root',title:'WAKE✳︎'}],['root:journal',{id:'root:journal',kind:'root',title:'Journal'}],['root:blog',{id:'root:blog',kind:'root',title:'Blog'}],['root:topics',{id:'root:topics',kind:'root',title:'Topics'}],['root:projects',{id:'root:projects',kind:'root',title:'Projects'}],['root:commitments',{id:'root:commitments',kind:'root',title:'Commitments'}],['root:evidence',{id:'root:evidence',kind:'root',title:'Evidence'}],['root:research',{id:'root:research',kind:'root',title:'Research'}]]);
-const related=new Map(),topics=new Map(),pos=new Map(),topicColors=data.meta?.topic_colors||{},topicLabels=data.meta?.topic_labels||{};
-// Keep the exact graph available for navigation, but bound how many siblings are
-// painted at once. The details panel remains the complete branch index.
-const VISUAL_BRANCH_LIMIT=36;
+const pos=new Map(),topicColors=data.meta?.topic_colors||{},topicLabels=data.meta?.topic_labels||{},counts=data.meta?.counts||{};
 const topicLabel=domain=>topicLabels[domain]||String(domain||'').replaceAll('_',' ');
-for(const edge of edges)for(const [from,to] of [[edge.source,edge.target],[edge.target,edge.source]])(related.get(from)||related.set(from,[]).get(from)).push(to);
-const newestFirst=(a,b)=>String(b.detail?.time||b.detail?.updated_version||'').localeCompare(String(a.detail?.time||a.detail?.updated_version||''));
-const journals=[...nodes.values()].filter(node=>node.kind==='journal').sort(newestFirst).slice(0,48);
-const blogs=[...nodes.values()].filter(node=>node.kind==='blog').sort(newestFirst);
-const projects=[...nodes.values()].filter(node=>node.kind==='project').sort(newestFirst);
-const projectKey=node=>String(node.detail?.id||node.id.replace(/^project:/,'').replace(/@\d+$/,''));
-const projectFamilies=new Map();
-for(const node of projects)(projectFamilies.get(projectKey(node))||projectFamilies.set(projectKey(node),[]).get(projectKey(node))).push(node);
-const projectCycle=node=>Number(node.detail?.as_of_cycle??node.detail?.updated_version??0);
-const canonicalProjects=[...projectFamilies.values()].map(family=>[...family].sort((a,b)=>projectCycle(b)-projectCycle(a))[0]).sort(newestFirst);
-const projectCanonical=new Map();
-for(const family of projectFamilies.values()){const canonical=[...family].sort((a,b)=>projectCycle(b)-projectCycle(a))[0];for(const node of family)projectCanonical.set(node.id,canonical.id)}
-const notebooks=[...nodes.values()].filter(node=>node.kind==='notebook').sort(newestFirst);
-const commitments=[...nodes.values()].filter(node=>node.kind==='commitment').sort(newestFirst);
-const evidence=[...nodes.values()].filter(node=>node.kind==='evidence').sort(newestFirst);
-const research=[...nodes.values()].filter(node=>node.kind==='research').sort(newestFirst);
-const topical=[...nodes.values()].filter(node=>['project','notebook'].includes(node.kind)).sort(newestFirst).slice(0,48);
-const records=[...journals,...blogs,...topical];
-const rootChildren=[
-  journals.length&&'root:journal',blogs.length&&'root:blog',topical.some(node=>node.detail?.domain)&&'root:topics',
-  (projects.length||notebooks.length)&&'root:projects',commitments.length&&'root:commitments',
-  evidence.length&&'root:evidence',research.length&&'root:research'
-].filter(Boolean);
-for(const node of records){const domain=node.detail?.domain;if(!domain)continue;const id=`topic:${domain}`;if(!topics.has(id))topics.set(id,{id,kind:'topic',title:topicLabel(domain),domain});}
-let path=[],preview=null,hovered=null,drag=null,nodeDrag=null,nodeOffsets=new Map(),pointers=new Map(),pinch=null,view={x:0,y:0,k:1},frozenAt=performance.now(),frame=null,layoutFrame=null,layoutMotion=null,lastActivation=0,orbitLast=0,stageHovered=false,hoverFrozenAt=0,hoverPausedMs=0;
+const rootChildren=data.root_children||[];
+const VISUAL_BRANCH_LIMIT=36;
+let path=[],preview=null,hovered=null,drag=null,nodeDrag=null,nodeOffsets=new Map(),pointers=new Map(),pinch=null,view={x:0,y:0,k:1},frozenAt=performance.now(),frame=null,layoutFrame=null,layoutMotion=null,lastActivation=0,stageHovered=false,hoverFrozenAt=0,hoverPausedMs=0;
 const recordFromHash=()=>{try{return decodeURIComponent((location.hash.match(/^#record=(.+)$/)||[])[1]||'')}catch{return ''}};
 function writeRecordHash(id){const url=new URL(location.href);url.hash=id?`record=${encodeURIComponent(id)}`:'';history.replaceState(null,'',url)}
 const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const hash=id=>{let value=2166136261;for(const char of id)value=Math.imul(value^char.charCodeAt(0),16777619);return(value>>>0)/4294967295};
-const get=id=>nodes.get(id)||roots.get(id)||topics.get(id);
-const canonicalId=id=>projectCanonical.get(id)||id;
-const uniqueCanonical=ids=>[...new Set(ids.map(canonicalId))];
-const projectRelations=id=>{const node=get(id),key=node&&node.kind==='project'?projectKey(node):null,family=key?projectFamilies.get(key)||[]:[];return uniqueCanonical(family.flatMap(version=>related.get(version.id)||[]).filter(other=>canonicalId(other)!==id))};
-const children=id=>{if(id==='root:wake')return rootChildren;if(id==='root:journal')return journals.map(node=>node.id);if(id==='root:blog')return blogs.map(node=>node.id);if(id==='root:topics')return[...topics.keys()];if(id==='root:projects')return canonicalProjects.map(node=>node.id);if(id==='root:commitments')return commitments.map(node=>node.id);if(id==='root:evidence')return evidence.map(node=>node.id);if(id==='root:research')return research.map(node=>node.id);if(id.startsWith('topic:'))return uniqueCanonical(records.filter(node=>node.detail?.domain===get(id).domain).map(node=>node.id));if(get(id)?.kind==='project')return projectRelations(id);return uniqueCanonical(related.get(id)||[])};
+const get=id=>nodes.get(id)||roots.get(id);
+const children=id=>loadedChildren.get(id)||[];
 const visualChildren=(id,nextPathId=null)=>{const all=children(id);if(id==='root:wake'||id==='root:topics'||all.length<=VISUAL_BRANCH_LIMIT)return all;const shown=all.slice(0,VISUAL_BRANCH_LIMIT);if(nextPathId&&all.includes(nextPathId)&&!shown.includes(nextPathId))shown.push(nextPathId);return shown};
+const branchUrl=id=>`map3d/${encodeURIComponent(id)}.json`;
+async function ensureBranch(id){
+ if(loadedChildren.has(id))return true;
+ if(loading.has(id))return loading.get(id);
+ stage.setAttribute('aria-busy','true');
+ const request=fetch(branchUrl(id),{cache:'force-cache'}).then(response=>{
+   if(!response.ok)throw new Error(`HTTP ${response.status}`);
+   return response.json();
+ }).then(shard=>{
+   if(shard.self)nodes.set(shard.self.id,shard.self);
+   for(const item of shard.children||[])nodes.set(item.id,item);
+   loadedChildren.set(id,Array.isArray(shard.child_ids)?shard.child_ids:[]);
+   loadErrors.delete(id);
+   return true;
+ }).catch(error=>{
+   loadErrors.set(id,String(error?.message||error));
+   loadedChildren.set(id,[]);
+   return false;
+ }).finally(()=>{
+   loading.delete(id);
+   if(!loading.size)stage.removeAttribute('aria-busy');
+ });
+ loading.set(id,request);
+ return request;
+}
+async function ensureNode(id){
+ if(get(id))return true;
+ await ensureBranch(id);
+ return Boolean(get(id));
+}
 const reflection=node=>node.kind==='blog'&&Number(node.detail?.created_version)%10===0&&/reflection/i.test(`${node.id} ${node.title}`);
-const nodeTime=node=>{if(node.detail?.time)return node.detail.time;for(const field of ['updated_by','created_by']){const iid=node.detail?.[field];const invocation=iid&&nodes.get('invocation:'+iid);if(invocation?.detail?.time)return invocation.detail.time}return ''};
+const nodeTime=node=>node.detail?.time||'';
 const timeLabel=value=>{if(!value||Number.isNaN(Date.parse(value)))return '';return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'}).format(new Date(value))};
-const nodeDomain=node=>{if(node.detail?.domain)return node.detail.domain;for(const id of related.get(node.id)||[]){const other=get(id);if(other?.detail?.domain)return other.detail.domain}return ''};
+const nodeDomain=node=>node.detail?.domain||node.domain||get(current())?.detail?.domain||'';
 const nodeMeta=node=>{if(node.kind==='root'||node.kind==='topic')return '';const status=node.detail?.status?`<span class="record-status"><span class="badge ${esc(node.detail.status)}">${esc(String(node.detail.status).replaceAll('_',' '))}</span></span>`:'';const domain=nodeDomain(node);const topic=domain?`<span class="record-topics"><span class="topic-tag" style="--topic-color:${esc(topicColors[domain]||'var(--cyan)')}">${esc(topicLabel(domain).toLowerCase())}</span></span>`:'<span class="record-topics"></span>';const stamp=timeLabel(nodeTime(node));return `<div class="record-panel-meta map3d-meta"><span class="record-type">${esc(node.kind)}</span>${status}${topic}${stamp?`<time>${esc(stamp)}</time>`:''}</div>`};
 const rootColors={'root:wake':'#0a0d15','root:journal':'#38bdf8','root:blog':'#ff5cac','root:topics':'#aa6bff','root:projects':'#ff9457','root:commitments':'#ffd166','root:evidence':'#8ded62','root:research':'#4ddbc2'};
 const categoryColors={journal:'#38bdf8',blog:'#ff9b5f',project:'#b56cff',notebook:'#8dea63',commitment:'#ffd166',evidence:'#ffe273',research:'#4ddbc2',belief:'#a979ff',invocation:'#91a5da',editorial:'#f2709c'};
@@ -76,11 +77,11 @@ function render(){
  showPopover(hovered)
 }
 function showPopover(id){if(!id){popover.hidden=true;return}const node=get(id),target=svg.querySelector(`[data-node="${CSS.escape(id)}"]`);if(!node||!target){popover.hidden=true;return}const summary=node.kind==='root'?`${children(id).length} direct branches`:node.detail?.summary||node.detail?.lede||node.detail?.statement||node.detail?.question||node.detail?.reason||'Recorded WAKE artifact.';const stageRect=stage.getBoundingClientRect(),rect=target.getBoundingClientRect();popover.innerHTML=nodeMeta(node)+`<strong>${esc(node.title)}</strong><span>${esc(String(summary).slice(0,150))}${String(summary).length>150?'…':''}</span>`;popover.hidden=false;const popRect=popover.getBoundingClientRect(),left=Math.max(14,Math.min(stageRect.width-popRect.width-14,rect.left-stageRect.left+rect.width/2-popRect.width/2)),gap=14,above=rect.top-stageRect.top-popRect.height-gap,top=Math.max(14,above);popover.style.left=`${left}px`;popover.style.top=`${top}px`}
-function showDetail(){const id=current(),node=get(id);if(!node)return;const artifacts=children(id).map(get).filter(Boolean),visibleCount=visualChildren(id).length,rootCopy={journal:`${journals.length} journal entries are available in this branch.`,blog:`${blogs.length} blog posts are available in this branch.`,topics:`${topics.size} configured research topics are available in this branch.`,projects:`${canonicalProjects.length} projects are available in this branch. Select a project to expand the records explicitly connected to it.`,commitments:`${commitments.length} commitments are available in this branch.`,evidence:`${evidence.length} observations are available in this branch.`,research:`${research.length} research records are available in this branch.`};const summary=node.kind==='root'?rootCopy[node.id.slice(5)]||'Explore this record branch.':node.kind==='topic'?`${artifacts.length} records in the ${node.title} topic are available in this branch.`:node.detail?.summary||node.detail?.lede||node.detail?.statement||node.detail?.question||node.detail?.reason||'No concise description is available in the published map data.';details.hidden=false;details.classList.add('active');details.innerHTML=`<div class="detail-heading"><p class="eyebrow">${id==='root:projects'?`${artifacts.length} PROJECTS`:`${artifacts.length} CONNECTED RECORDS`}</p><div class="detail-heading-actions"><button id="zoom-in-detail" type="button" aria-label="Zoom in">+</button><button id="zoom-out-detail" type="button" aria-label="Zoom out">−</button><button id="back-detail" type="button">Back up</button><button id="clear-detail" type="button">Clear selection</button></div></div>${nodeMeta(node)}<h2>${esc(node.title)}</h2><p>${esc(summary)}</p>${artifacts.length>visibleCount?`<p class="map3d-window-note">Showing ${visibleCount} of ${artifacts.length} records in the constellation to keep rendering light. Every record remains selectable here.</p>`:''}<div class="detail-artifacts">${artifacts.length?artifacts.map(item=>`<button type="button" data-detail-node="${esc(item.id)}"><span class="artifact-dot kind-${esc(item.kind)}"></span>${esc(item.kind)} · ${esc(item.title)}</button>`).join(''):'<p class="empty">No direct artifacts were exported for this record.</p>'}</div>`;details.querySelector('#zoom-in-detail').addEventListener('click',()=>zoom(.18));details.querySelector('#zoom-out-detail').addEventListener('click',()=>zoom(-.18));details.querySelector('#back-detail').addEventListener('click',goUp);details.querySelector('#clear-detail').addEventListener('click',()=>release(true));details.querySelectorAll('[data-detail-node]').forEach(button=>button.addEventListener('click',()=>choose(button.dataset.detailNode)))}
+function showDetail(){const id=current(),node=get(id);if(!node)return;const artifacts=children(id).map(get).filter(Boolean),visibleCount=visualChildren(id).length,rootCopy={journal:`${counts.journal||0} journal entries are available in this branch.`,blog:`${counts.blog||0} blog posts are available in this branch.`,topics:`${Object.keys(topicLabels).length} configured research topics are available in this branch.`,projects:`${counts.project||0} projects are available in this branch. Select a project to expand the records explicitly connected to it.`,commitments:`${counts.commitment||0} commitments are available in this branch.`,evidence:`${counts.evidence||0} observations are available in this branch.`,research:`${counts.research||0} research records are available in this branch.`};const summary=node.kind==='root'?rootCopy[node.id.slice(5)]||'Explore this record branch.':node.kind==='topic'?`${artifacts.length} records in the ${node.title} topic are available in this branch.`:node.detail?.summary||node.detail?.lede||node.detail?.statement||node.detail?.question||node.detail?.reason||'No concise description is available in the published map data.';details.hidden=false;details.classList.add('active');details.innerHTML=`<div class="detail-heading"><p class="eyebrow">${id==='root:projects'?`${artifacts.length} PROJECTS`:`${artifacts.length} CONNECTED RECORDS`}</p><div class="detail-heading-actions"><button id="zoom-in-detail" type="button" aria-label="Zoom in">+</button><button id="zoom-out-detail" type="button" aria-label="Zoom out">−</button><button id="back-detail" type="button">Back up</button><button id="clear-detail" type="button">Clear selection</button></div></div>${nodeMeta(node)}<h2>${esc(node.title)}</h2><p>${esc(summary)}</p>${loadErrors.has(id)?`<p class="map3d-window-note">This branch could not be loaded. Refresh or try again.</p>`:''}${artifacts.length>visibleCount?`<p class="map3d-window-note">Showing ${visibleCount} of ${artifacts.length} records in the constellation to keep rendering light. Every record remains selectable here.</p>`:''}<div class="detail-artifacts">${artifacts.length?artifacts.map(item=>`<button type="button" data-detail-node="${esc(item.id)}"><span class="artifact-dot kind-${esc(item.kind)}"></span>${esc(item.kind)} · ${esc(item.title)}</button>`).join(''):'<p class="empty">No direct artifacts were exported for this record.</p>'}</div>`;details.querySelector('#zoom-in-detail').addEventListener('click',()=>zoom(.18));details.querySelector('#zoom-out-detail').addEventListener('click',()=>zoom(-.18));details.querySelector('#back-detail').addEventListener('click',goUp);details.querySelector('#clear-detail').addEventListener('click',()=>release(true));details.querySelectorAll('[data-detail-node]').forEach(button=>button.addEventListener('click',()=>choose(button.dataset.detailNode)))}
 function freeze(){frozenAt=performance.now();if(frame){cancelAnimationFrame(frame);frame=null}}
 function frameSelection(id){if(id==='root:wake')return;const point=pos.get(id),rect=stage.getBoundingClientRect();if(!point)return;const k=.58;let focusX=rect.width/2;if(!details.hidden&&details.classList.contains('active')&&matchMedia('(min-width:701px) and (max-width:1920px)').matches){const panel=details.getBoundingClientRect(),panelLeft=Math.max(0,panel.left-rect.left),gutter=28;focusX=Math.max(rect.width*.22,(panelLeft-gutter)/2)}animateView({k,x:focusX-point.x*k,y:rect.height/2-point.y*k})}
 function animateView(target){if(reduced){view=target;render();return}if(frame){cancelAnimationFrame(frame);frame=null}const from={...view},started=performance.now(),duration=560;const tick=now=>{const progress=Math.min(1,(now-started)/duration),ease=1-Math.pow(1-progress,4);view={k:from.k+(target.k-from.k)*ease,x:from.x+(target.x-from.x)*ease,y:from.y+(target.y-from.y)*ease};render();if(progress<1)frame=requestAnimationFrame(tick);else{frame=null;startDrift()}};frame=requestAnimationFrame(tick)}
-function choose(id){if(!get(id))return;if(id===current())return;const parent=current(),isDirectChild=Boolean(parent&&children(parent).includes(id));freeze();beginLayoutMotion();if(!path.length)path=id==='root:wake'?[id]:id.startsWith('root:')?['root:wake',id]:[id];else if(path.includes(id)){const index=path.indexOf(id);if(index===path.length-1){if(path.length===1)return release();path=path.slice(0,-1)}else path=path.slice(0,index+1)}else if(id.startsWith('root:'))path=id==='root:wake'?[id]:['root:wake',id];else{let ancestor=-1;for(let index=path.length-1;index>=0;index--)if(children(path[index]).includes(id)){ancestor=index;break}path=ancestor<0?[id]:[...path.slice(0,ancestor+1),id]}preview=null;hovered=null;render();showDetail();if(!isDirectChild)frameSelection(current());writeRecordHash(current())}
+async function choose(id){if(!get(id)){await ensureNode(id);if(!get(id))return}if(id===current())return;const parent=current(),isDirectChild=Boolean(parent&&children(parent).includes(id));freeze();await ensureBranch(id);beginLayoutMotion();if(!path.length)path=id==='root:wake'?[id]:id.startsWith('root:')?['root:wake',id]:[id];else if(path.includes(id)){const index=path.indexOf(id);if(index===path.length-1){if(path.length===1)return release();path=path.slice(0,-1)}else path=path.slice(0,index+1)}else if(id.startsWith('root:'))path=id==='root:wake'?[id]:['root:wake',id];else{let ancestor=-1;for(let index=path.length-1;index>=0;index--)if(children(path[index]).includes(id)){ancestor=index;break}path=ancestor<0?[id]:[...path.slice(0,ancestor+1),id]}preview=null;hovered=null;render();showDetail();if(!isDirectChild)frameSelection(current());writeRecordHash(current())}
 function goUp(){if(path.length<2)return release();beginLayoutMotion();path=path.slice(0,-1);preview=null;hovered=null;render();showDetail();frameSelection(current())}
 function release(resetView=false){beginLayoutMotion();nodeOffsets.clear();nodeDrag=null;path=[];preview=null;hovered=null;details.hidden=true;details.classList.remove('active');popover.hidden=true;if(resetView)view={x:0,y:0,k:1};render();startDrift();writeRecordHash('')}
 // Ambient orbit used to keep requestAnimationFrame alive forever. Rendering is now
@@ -98,6 +99,6 @@ const endPointer=event=>{if(event.pointerType==='touch'){const wasPinching=Boole
 stage.addEventListener('pointerup',endPointer);stage.addEventListener('pointercancel',endPointer);stage.addEventListener('keydown',event=>{if(event.key==='Escape')release();if(event.key==='+')zoom(.13);if(event.key==='-')zoom(-.13)});
 let resizeFrame=null;window.addEventListener('resize',()=>{if(resizeFrame)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;render()})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(frame){cancelAnimationFrame(frame);frame=null}if(layoutFrame){cancelAnimationFrame(layoutFrame);layoutFrame=null}layoutMotion=null}else render()});
-document.getElementById('counts').textContent=`${journals.length} journal entries · ${blogs.length} blog posts · ${edges.length} recorded relationships · version ${data.meta?.version??'—'}`;document.getElementById('constellation-empty').hidden=records.length>0;const initialRecord=recordFromHash();if(initialRecord&&get(initialRecord))choose(initialRecord);else{render();startDrift()}
+document.getElementById('counts').textContent=`${counts.journal||0} journal entries · ${counts.blog||0} blog posts · ${counts.relationships||0} recorded relationships · version ${data.meta?.version??'—'}`;document.getElementById('constellation-empty').hidden=(counts.journal||counts.blog||counts.project||counts.evidence||counts.research||0)>0;const initialRecord=recordFromHash();if(initialRecord)choose(initialRecord);else{render();startDrift()}
 const theme=document.getElementById('theme-toggle'),icon=document.querySelector('.theme-icon');function sync(){const dark=document.documentElement.dataset.theme==='dark';theme.checked=dark;if(icon)icon.textContent=dark?'◑':'☼'}sync();theme.addEventListener('change',()=>{if(theme.checked)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',theme.checked?'dark':'light')}catch{}sync();render()});
 })();
