@@ -1943,6 +1943,68 @@
       "source": "runtime:continuity",
       "version": 21,
       "time": "2026-09-25T01:50:19.305822+00:00"
+    },
+    "source-72e6dd21f9d54912": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1086%2F303280\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 20]], \\\"date-time\\\": \\\"2026-09-20T22:07:03Z\\\", \\\"timestamp\\\": 1789942023725, \\\"version\\\": \\\"4.0.1\\\"}, \\\"reference-count\\\": 152, \\\"publisher\\\": \\\"University of Chicago Press\\\", \\\"issue\\\": \\\"S1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"The American Naturalist\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1999, 7]]}, \\\"DOI\\\": \\\"10.1086/303280\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2002, 7, 26]], \\\"date-time\\\": \\\"2002-07-26T14:47:54Z\\\", \\\"timestamp\\\": 1027694874000}, \\\"page\\\": \\\"S4-S25\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 475, \\\"title\\\": [\\\"Adaptation, Exaptation, and Constraint: A Hormonal Perspective\\\"], \\\"prefix\\\": \\\"10.1086\\\", \\\"volume\\\": \\\"154\\\", \\\"author\\\": [{\\\"given\\\": \\\"Ellen D.\\\", \\\"family\\\": \\\"Ketterson\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Val\\\", \\\"family\\\": \\\"Nolan, Jr.\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"200\\\", \\\"reference\\\": [{\\\"key\\\": \\\"rf1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rspb.1996.0248\\\"}, {\\\"key\\\": \\\"rf2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/299818a0\\\"}, {\\\"key\\\": \\\"rf3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1996.0053\\\"}, {\\\"key\\\": \\\"rf4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/cne.901650406\\\"}, {\\\"key\\\": \\\"rf5\\\", \\\"volume-title\\\": \\\"Evolution of aggressive behavior in threespine stickleback. Pages 345–380 in M\\\", \\\"author\\\": \\\"Bakker T. C. M.\\\"}, {\\\"key\\\": \\\"rf6\\\", \\\"volume-title\\\": \\\"Hormonal correlates of behavior. Pages 221–365 in D\\\", \\\"volume\\\": \\\"7\\\", \\\"author\\\": \\\"Balthazart J.\\\"}, {\\\"key\\\": \\\"rf8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2992218\\\"}, {\\\"key\\\": \\\"rf9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1995.0047\\\"}, {\\\"key\\\": \\\"rf10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0031-9384(95)02060-8\\\"}, {\\\"key\\\": \\\"rf15\\\", \\\"volume-title\\\": \\\"ecology, and behavior: a research program in comparative biology\\\", \\\"author\\\": \\\"Brooks D. R.\\\"}, {\\\"key\\\": \\\"rf16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/284493\\\"}, {\\\"key\\\": \\\"rf177\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/286209\\\"}, {\\\"key\\\": \\\"rf17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1998.0849\\\"}, {\\\"key\\\": \\\"rf18\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1994.1191\\\"}, {\\\"key\\\": \\\"rf19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1996.0448\\\"}, {\\\"key\\\": \\\"rf20\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1455\\\", \\\"DOI\\\": \\\"10.1093/genetics/139.3.1455\\\", \\\"volume\\\": \\\"139\\\", \\\"author\\\": \\\"Cheverud J. M.\\\", \\\"year\\\": \\\"1995\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"rf21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0169-5347(00)89025-4\\\"}, {\\\"key\\\": \\\"rf22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0003-3472(05)80217-9\\\"}, {\\\"key\\\": \\\"rf23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1997.0468\\\"}, {\\\"key\\\": \\\"rf24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1096-0031.1988.tb00465.x\\\"}, {\\\"key\\\": \\\"rf25\\\", \\\"volume-title\\\": \\\"The roles of homology and convergence in studies of adaptation. Pages 53–78 in P\\\", \\\"author\\\": \\\"Coddington J. A.\\\"}, {\\\"key\\\": \\\"rf26\\\", \\\"first-page\\\": \\\"422\\\", \\\"volume\\\": \\\"109\\\", \\\"author\\\": \\\"Collis K.\\\", \\\"year\\\": \\\"1992\\\", \\\"journal-title\\\": \\\"Auk\\\"}, {\\\"key\\\": \\\"rf27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1997.1382\\\"}, {\\\"key\\\": \\\"rf28\\\", \\\"volume-title\\\": \\\"1987. Psychobiology of reproductive behavior: an evolutionary perspective\\\", \\\"author\\\": \\\"Crews D.\\\"}, {\\\"key\\\": \\\"rf29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF01067936\\\"}, {\\\"key\\\": \\\"rf30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF01946716\\\"}, {\\\"key\\\": \\\"rf31\\\", \\\"volume-title\\\": \\\"The extended phenotype\\\", \\\"author\\\": \\\"Dawkins R.\\\"}, {\\\"key\\\": \\\"rf33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/icb/37.2.172\\\"}, {\\\"key\\\": \\\"rf35\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1439-0310.1991.tb00279.x\\\"}, {\\\"key\\\": \\\"rf36\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1530/jrf.0.1130117\\\"}, {\\\"key\\\": \\\"rf37\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/285860\\\"}, {\\\"key\\\": \\\"rf38\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0018-506X(89)90059-7\\\"}, {\\\"key\\\": \\\"rf39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0169-5347(97)87387-9\\\"}, {\\\"key\\\": \\\"rf40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00170251\\\"}, {\\\"key\\\": \\\"rf41\\\", \\\"volume-title\\\": \\\"Ethology: the biology of behavior. Holt\\\", \\\"author\\\": \\\"Eibl‐Eibesfeldt I.\\\"}, {\\\"key\\\": \\\"rf42\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0022-1910(98)00096-1\\\"}, {\\\"key\\\": \\\"rf43\\\", \\\"volume-title\\\": \\\"Natural selection in the wild\\\", \\\"author\\\": \\\"Endler J. A.\\\"}, {\\\"key\\\": \\\"rf44\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0169-5347(00)88956-9\\\"}, {\\\"key\\\": \\\"rf45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1997.0555\\\"}, {\\\"key\\\": \\\"rf176\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0065-3454(08)60382-4\\\"}, {\\\"key\\\": \\\"rf46\\\", \\\"volume-title\\\": \\\"Introduction to quantitative genetics. 3d ed\\\", \\\"author\\\": \\\"Falconer D. S.\\\"}, {\\\"key\\\": \\\"rf175\\\", \\\"volume-title\\\": \\\"Engineering candidate genes in studies of adaptation: the heat‐shock protein Hsp70 in Drosophila melanogaster. American Naturalist 154(suppl.):S55–S66\\\", \\\"author\\\": \\\"Feder M. E.\\\"}, {\\\"key\\\": \\\"rf47\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/285346\\\"}, {\\\"key\\\": \\\"rf48\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/(SICI)1096-9861(19961111)375:2<333::AID-CNE11>3.0.CO;2-W\\\"}, {\\\"key\\\": \\\"rf49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0169-5347(96)10063-X\\\"}, {\\\"key\\\": \\\"rf50\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0169-5347(97)87388-0\\\"}, {\\\"key\\\": \\\"rf52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1163/156853994X00307\\\"}, {\\\"key\\\": \\\"rf53\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/anbe.1997.0518\\\"}, {\\\"key\\\": \\\"rf54\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1988.tb04137.x\\\"}, {\\\"key\\\": \\\"rf55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1381904\\\"}, {\\\"key\\\": \\\"rf56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1530/jrf.0.1130129\\\"}, {\\\"key\\\": \\\"rf57\\\", \\\"first-page\\\": \\\"16\\\", \\\"volume\\\": \\\"90\\\", \\\"author\\\": \\\"Gould S. J.\\\", \\\"year\\\": \\\"1981\\\", \\\"journal-title\\\": \\\"Natural History\\\"}, {\\\"key\\\": \\\"rf58\\\", \\\"first-page\\\": \\\"16\\\", \\\"volume\\\": \\\"95\\\", \\\"author\\\": \\\"Gould S. J.\\\", \\\"year\\\": \\\"1986\\\", \\\"journal-title\\\": \\\"Natural History\\\"}, {\\\"key\\\": \\\"rf59\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rspb.1979.0086\\\"}, {\\\"key\\\": \\\"rf60\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0094837300004310\\\"}, {\\\"key\\\": \\\"rf61\\\", \\\"volume-title\\\": \\\"On the uses of data on lifetime reproductive success. Pages 454–471 in T\\\", \\\"author\\\": \\\"Grafen A.\\\"}, {\\\"key\\\": \\\"rf62\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1159/000113625\\\"}, {\\\"key\\\": \\\"rf63\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0003-3472(05)80215-5\\\"}, {\\\"key\\\": \\\"rf65\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0018-506X(88)90011-6\\\"}, {\\\"key\\\": \\\"rf67\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/4087545\\\"}, {\\\"key\\\": \\\"rf68\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/gcen.1995.1009\\\"}, {\\\"key\\\": \\\"rf69\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0031-9384(96)80014-X\\\"}, {\\\"key\\\": \\\"rf70\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1994.1008\\\"}, {\\\"key\\\": \\\"rf71\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/beheco/10.1.91\\\"}, {\\\"key\\\": \\\"rf73\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/beheco/8.1.108\\\"}, {\\\"key\\\": \\\"rf74\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1380450\\\"}, {\\\"key\\\": \\\"rf75\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1996.0003\\\"}, {\\\"key\\\": \\\"rf76\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rspb.1996.0097\\\"}, {\\\"key\\\": \\\"rf77\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/4089416\\\"}, {\\\"key\\\": \\\"rf81\\\", \\\"first-page\\\": \\\"1229\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Ketterson E. D.\\\", \\\"year\\\": \\\"1991\\\", \\\"journal-title\\\": \\\"Acta XXI Congressus Internationalis Ornithologici\\\"}, {\\\"key\\\": \\\"rf80\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0018-506X(91)90016-B\\\"}, {\\\"key\\\": \\\"rf79\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/285451\\\"}, {\\\"key\\\": \\\"rf82\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1474-919X.1996.tb04314.x\\\"}, {\\\"key\\\": \\\"rf84\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1997.1402\\\"}, {\\\"key\\\": \\\"rf85\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/gcen.1997.6956\\\"}, {\\\"key\\\": \\\"rf86\\\", \\\"volume-title\\\": \\\"The spotted hyena\\\", \\\"author\\\": \\\"Kruuk H.\\\"}, {\\\"key\\\": \\\"rf87\\\", \\\"volume-title\\\": \\\"Male genital organs. Pages 1–61 in A\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Lake P. E.\\\"}, {\\\"key\\\": \\\"rf88\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1983.tb00236.x\\\"}, {\\\"key\\\": \\\"rf89\\\", \\\"volume-title\\\": \\\"The argument from design. Pages 55–91 in M\\\", \\\"author\\\": \\\"Lauder G. V.\\\"}, {\\\"key\\\": \\\"rf90\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1997.1395\\\"}, {\\\"key\\\": \\\"rf91\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1530/jrf.0.1130105\\\"}, {\\\"key\\\": \\\"rf92\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0016-6480(79)90002-9\\\"}, {\\\"key\\\": \\\"rf93\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0003-3472(05)80932-7\\\"}, {\\\"key\\\": \\\"rf94\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0006-8993(80)91011-2\\\"}, {\\\"key\\\": \\\"rf95\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00303053\\\"}, {\\\"key\\\": \\\"rf96\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/physzool.62.6.30156216\\\"}, {\\\"key\\\": \\\"rf97\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0003-3472(05)80552-4\\\"}, {\\\"key\\\": \\\"rf98\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00177401\\\"}, {\\\"key\\\": \\\"rf99\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.1987.tb02457.x\\\"}, {\\\"key\\\": \\\"rf100\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"volume-title\\\": \\\"Sexual selection and the barn swallow\\\", \\\"author\\\": \\\"Møller A. P.\\\", \\\"DOI\\\": \\\"10.2307/j.ctvs32sm4.22\\\"}, {\\\"key\\\": \\\"rf101\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/286114\\\"}, {\\\"key\\\": \\\"rf102\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0018-506X(91)90048-M\\\"}, {\\\"key\\\": \\\"rf103\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.1997.1381\\\"}, {\\\"key\\\": \\\"rf104\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/334147a0\\\"}, {\\\"key\\\": \\\"rf105\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1369209\\\"}, {\\\"key\\\": \\\"rf106\\\", \\\"volume-title\\\": \\\"Vertebrate endocrinol\", \"excerpt_truncated\": true, \"source_sha256\": \"5d6ae6291b16d21822712579e7105d251ca853dd3c61b8defc9e4de3d8856466\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1086/303280\", \"doi:10.1098/rspb.1996.0248\", \"doi:10.1038/299818a0\", \"doi:10.1006/hbeh.1996.0053\", \"doi:10.1002/cne.901650406\", \"doi:10.2307/2992218\", \"doi:10.1006/anbe.1995.0047\", \"doi:10.1016/0031-9384(95)02060-8\", \"doi:10.1086/284493\", \"doi:10.1086/286209\", \"doi:10.1006/anbe.1998.0849\", \"doi:10.1006/anbe.1994.1191\"]}",
+      "id": "source-72e6dd21f9d54912",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1086%2F303280",
+      "version": 21,
+      "time": "2026-09-25T01:53:28.106520+00:00"
+    },
+    "source-abef6a3537b44ab1": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1d17aec41809890d8821fc841f11bad5069efe727797b1a19b240a4fe0ad6f75\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-abef6a3537b44ab1",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 21,
+      "time": "2026-09-25T01:53:28.454701+00:00"
+    },
+    "source-7e33826539e549e3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formula for primes\\\",\\\"pageid\\\":509009,\\\"size\\\":30336,\\\"wordcount\\\":4689,\\\"snippet\\\":\\\"In number theory, a formula for\\nprimes\\nis a formula that outputs\\nprime\\nnumbers\\n. Such formulas for calculating\\nprimes\\ndo exist; however, they are computationally\\\",\\\"timestamp\\\":\\\"2026-07-05T18:19:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"946f921670ac922d6ad84fc22445c1184b913c4ba3eaf3974fa3401adaa96131\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+      "id": "source-7e33826539e549e3",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+      "version": 21,
+      "time": "2026-09-25T01:53:28.793465+00:00"
+    },
+    "source-403359ae080a4962": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40315},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Class consciousness\\\",\\\"pageid\\\":38794693,\\\"size\\\":11255,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"In sociology, class\\nconsciousness\\nis the set of beliefs that persons hold regarding their social class or economic rank in society, the structure of their\\\",\\\"timestamp\\\":\\\"2026-09-21T19:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"31c7f9b976d971333926ec5f22ed09e1d24cb38925c6bff6c1e3f39854be8ea3\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-403359ae080a4962",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 21,
+      "time": "2026-09-25T01:53:29.096903+00:00"
+    },
+    "source-4d937af14aef46e9": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149387},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Identity (philosophy)\\\",\\\"pageid\\\":89532,\\\"size\\\":10355,\\\"wordcount\\\":1171,\\\"snippet\\\":\\\"true of x is true of y as well. Leibniz's ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\",\\\"timestamp\\\":\\\"2026-06-23T16:17:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"eb3ed78fa647bd00c48be8eb1d9e0861aaab175e1d0121624ba08387d8fc929f\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-4d937af14aef46e9",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 21,
+      "time": "2026-09-25T01:53:29.394689+00:00"
+    },
+    "source-e7c068a1a5954d10": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dramatization\\\",\\\"pageid\\\":57618166,\\\"size\\\":5558,\\\"wordcount\\\":732,\\\"snippet\\\":\\\"emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\",\\\"timestamp\\\":\\\"2026-03-12T01:42:08Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"82a5623f3fe03d8904f81d85995c91ad896aa9209e67dc19df1a3126fcea5eac\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-e7c068a1a5954d10",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 21,
+      "time": "2026-09-25T01:53:29.701500+00:00"
+    },
+    "r-d28f89b54b974ada": {
+      "actor": "runtime",
+      "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-d28f89b54b974ada\",\"previous_head\":\"4dd0b2d2305a44c7822c52c8a48098dba43821c6e421b2cf9e807d955563fa33\",\"process_id\":2250,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d28f89b54b974ada",
+      "source": "runtime:continuity",
+      "version": 21,
+      "time": "2026-09-25T01:53:30.007592+00:00"
     }
   },
   "journal": [
@@ -11354,12 +11416,359 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-d28f89b54b974ada": {
+      "base_version": 21,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 11064,
+        "delivered_request_chars": 35758,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 72302,
+        "working_set_chars": 1375
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-d28f89b54b974ada",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 21,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "evo-trait-explanation",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Distinguishing Evolutionary Explanations"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "psychology-memory-distinction",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Working Memory vs Short-Term Memory"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2250,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "ad162686e607d9cdd09d9a9a69c619675e4cafb48c3a7c4d6d696d95ab3b04ff",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-9101b48f579c4a2a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9101b48f579c4a2a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c78fcbe9c2774dd9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c78fcbe9c2774dd9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fcef25cef18348e4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fcef25cef18348e4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1771bf5251a049f4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1771bf5251a049f4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-50546adb25694d4a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-50546adb25694d4a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-72e6dd21f9d54912"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-72e6dd21f9d54912",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-9101b48f579c4a2a",
+          "source-c78fcbe9c2774dd9",
+          "source-fcef25cef18348e4",
+          "source-1771bf5251a049f4",
+          "source-50546adb25694d4a",
+          "source-72e6dd21f9d54912"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "evolutionary_biology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "evolutionary_biology",
+        "temporal": {
+          "anchor_seq": 481,
+          "anchor_time": "2026-09-25T01:53:29.788930+00:00",
+          "anchor_version": 21,
+          "effective_seconds": 7567.313992
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 190.667783,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 7567.313992,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 1,
+          "research_collected": 0,
+          "squirrel_assessed": 1,
+          "total": 13
+        },
+        "observed_at": "2026-09-25T01:53:29.788930+00:00",
+        "previous_anchor_time": "2026-09-25T01:50:19.121147+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 190.667783
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 11064,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1375,
+        "working_to_delivered_ratio": 0.1243
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "psychology-memory-distinction",
+            "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+            "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+            "title": "Working Memory vs Short-Term Memory"
+          },
+          {
+            "id": "evo-trait-explanation",
+            "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+            "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+            "title": "Distinguishing Evolutionary Explanations"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-25T01:53:30.097715+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3646,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 38071,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T01:53:39.754916+00:00",
+      "reason": "Research request ID already exists",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
   "squirrel": {
     "counters": {
-      "evolutionary_biology": 2,
+      "evolutionary_biology": 3,
       "information_thermodynamics": 1,
       "prime_numbers": 3,
       "visual_art": 0
@@ -11368,7 +11777,7 @@
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 8,
+        "other_topic_attempts": 9,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -11385,7 +11794,7 @@
       "attention_topic": "evolutionary_biology",
       "durable_progress": false,
       "hard_rejection": true,
-      "invocation": "w-84399085155042f4",
+      "invocation": "w-d28f89b54b974ada",
       "restored_topics": [],
       "selected_topic": "evolutionary_biology",
       "terminal": "rejected",
@@ -11602,26 +12011,48 @@
     "evo-trait-explanation": {
       "project": "evo-trait-explanation",
       "domain": "evolutionary_biology",
-      "no_progress": 2,
+      "no_progress": 0,
       "routes": [
         "api.crossref.org:discovery",
-        "api.semanticscholar.org:discovery"
+        "api.semanticscholar.org:discovery",
+        "api.crossref.org:source"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1086/303280",
-        "doi:10.2307/j.ctvjsf433.13",
-        "doi:10.4159/9780674417922-012",
-        "doi:10.1075/cilt.336.13izu"
+        "doi:10.1075/cilt.336.13izu",
+        "doi:10.1098/rspb.1996.0248",
+        "doi:10.1038/299818a0",
+        "doi:10.1006/hbeh.1996.0053",
+        "doi:10.1002/cne.901650406",
+        "doi:10.2307/2992218",
+        "doi:10.1006/anbe.1995.0047",
+        "doi:10.1016/0031-9384(95)02060-8",
+        "doi:10.1086/284493",
+        "doi:10.1086/286209",
+        "doi:10.1006/anbe.1998.0849",
+        "doi:10.1006/anbe.1994.1191"
       ],
       "last_receipt": {
-        "evidence": "source-ffac751a0f3443b9",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
+        "evidence": "source-72e6dd21f9d54912",
+        "outcome": "progress",
+        "persistent_identifiers": [
+          "doi:10.1086/303280",
+          "doi:10.1098/rspb.1996.0248",
+          "doi:10.1038/299818a0",
+          "doi:10.1006/hbeh.1996.0053",
+          "doi:10.1002/cne.901650406",
+          "doi:10.2307/2992218",
+          "doi:10.1006/anbe.1995.0047",
+          "doi:10.1016/0031-9384(95)02060-8",
+          "doi:10.1086/284493",
+          "doi:10.1086/286209",
+          "doi:10.1006/anbe.1998.0849",
+          "doi:10.1006/anbe.1994.1191"
+        ],
         "research_id": "res-evo-trait-001",
-        "route": "api.semanticscholar.org:discovery",
-        "stage": "discovery"
+        "route": "api.crossref.org:source",
+        "stage": "substantive_source"
       }
     }
   },
@@ -12137,9 +12568,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T01:50:19.121147+00:00",
+    "anchor_time": "2026-09-25T01:53:29.788930+00:00",
     "anchor_version": 21,
-    "anchor_seq": 467,
-    "effective_seconds": 7376.646209
+    "anchor_seq": 481,
+    "effective_seconds": 7567.313992
   }
 }
