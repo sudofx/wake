@@ -681,6 +681,7 @@ class Engine:
                 "bob_reflection_due": bob_reflection_due_cycle(state) is not None,
                 "reflection_history": self.bob_reflection_history(state),
                 "project_evidence": {},
+                "research_maturation": self.research_maturation(state),
                 "representation_recovery": recovery,
             })
             for notebook in context["notebooks"]:
@@ -1073,6 +1074,121 @@ class Engine:
             eligible.append(evidence_id)
         return eligible
 
+    def research_maturation(self, state):
+        """Derive research-stage pressure and transition telemetry from durable state.
+
+        This is a read-only projection: it does not add a mutable project status
+        or weaken governance. Corroboration means two distinct source URLs already
+        accepted into a notebook, not a claim that the sources are independent or true.
+        """
+        evidence_ids = list(state.get("evidence", {}))
+        projects = []
+        transition_cycles = {
+            "project_to_first_evidence": [],
+            "project_to_first_notebook": [],
+            "first_notebook_to_corroboration": [],
+        }
+        stage_counts = {
+            "needs_evidence": 0,
+            "needs_synthesis": 0,
+            "needs_corroboration": 0,
+            "completion_ready": 0,
+        }
+        for project in state.get("projects", {}).values():
+            if project.get("status") != "active":
+                continue
+            same_domain = self.project_notebook_evidence_ids(
+                state, evidence_ids, project, same_domain=True
+            )
+            notebooks = [
+                item for item in state.get("notebooks", {}).values()
+                if item.get("project") == project.get("id")
+            ]
+            latest = notebooks[-1] if notebooks else None
+
+            def distinct_urls(notebook):
+                return {
+                    state["evidence"][evidence_id].get("source")
+                    for evidence_id in notebook.get("evidence", [])
+                    if evidence_id in state.get("evidence", {})
+                    and state["evidence"][evidence_id].get("source")
+                }
+
+            corroborated = [item for item in notebooks if len(distinct_urls(item)) >= 2]
+            if not latest:
+                if same_domain:
+                    stage = "needs_synthesis"
+                    missing = "Synthesize the qualifying evidence already collected into an honest provisional notebook."
+                    priority = 2
+                else:
+                    stage = "needs_evidence"
+                    missing = "Collect the first qualifying source that materially addresses the project question."
+                    priority = 1
+            elif len(distinct_urls(latest)) < 2:
+                stage = "needs_corroboration"
+                missing = "Acquire a distinct source that targets a stated limitation, disagreement, or unresolved claim, then revise the notebook."
+                priority = 3
+            else:
+                stage = "completion_ready"
+                missing = "Review whether the corroborated notebook answers the bounded project question; complete or publish only if justified."
+                priority = 4
+            stage_counts[stage] += 1
+
+            created = project.get("created_version")
+            first_evidence = min(
+                (state["evidence"][item].get("version") for item in same_domain
+                 if type(state["evidence"][item].get("version")) is int),
+                default=None,
+            )
+            first_notebook = min(
+                (item.get("created_version") for item in notebooks
+                 if type(item.get("created_version")) is int),
+                default=None,
+            )
+            first_corroborated = min(
+                (item.get("created_version") for item in corroborated
+                 if type(item.get("created_version")) is int),
+                default=None,
+            )
+            if type(created) is int and type(first_evidence) is int:
+                transition_cycles["project_to_first_evidence"].append(max(0, first_evidence - created))
+            if type(created) is int and type(first_notebook) is int:
+                transition_cycles["project_to_first_notebook"].append(max(0, first_notebook - created))
+            if type(first_notebook) is int and type(first_corroborated) is int:
+                transition_cycles["first_notebook_to_corroboration"].append(
+                    max(0, first_corroborated - first_notebook)
+                )
+
+            projects.append({
+                "id": project["id"],
+                "domain": project.get("domain"),
+                "stage": stage,
+                "priority": priority,
+                "qualifying_same_domain_sources": len({
+                    state["evidence"][item].get("source") for item in same_domain
+                    if state["evidence"][item].get("source")
+                }),
+                "notebook_count": len(notebooks),
+                "notebook_source_urls": len(distinct_urls(latest)) if latest else 0,
+                "missing_requirement": missing,
+            })
+
+        projects.sort(key=lambda item: (-item["priority"], item["id"]))
+        return {
+            "projects": projects,
+            "priority_order": [item["id"] for item in projects],
+            "metrics": {
+                "active_projects": len(projects),
+                "stage_counts": stage_counts,
+                "transition_cycles": transition_cycles,
+                "boundary": (
+                    "Derived from durable project/evidence/notebook records. "
+                    "Completion-ready requires two distinct URLs in an accepted notebook; "
+                    "this is workflow pressure, not proof of source independence or truth."
+                ),
+            },
+        }
+
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
@@ -1256,6 +1372,7 @@ class Engine:
                 and context["project_evidence"].get(project["id"])
                 and project["id"] not in notebook_projects
             ]
+            context["research_maturation"] = self.research_maturation(state)
         return context
 
     def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000, max_records=3):
