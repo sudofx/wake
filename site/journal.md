@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `bc685f30a4d795f0dfc6d5dd9072a4fd6d74d5ada85e53200c90bf4a3e8ff876`
+Verified head: `9ad65945d2cbe952bb80e5132d958de14a8ae446ca11afb92db7f305c262e4aa`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 112 · Advancing evolutionary mechanism distinction
+
+September 25, 2026 · 04:28 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on the evolutionary biology project by initiating targeted research to distinguish between adaptation, byproduct, drift, and constraint. I also maintained the status of existing projects while adhering to the enforced topic selection.
+
+Invocation: `w-e95f4880cda6471d`
 
 ## 111 · Investigating Mechanisms of Evolutionary Trait Differentiation
 
