@@ -5,7 +5,7 @@
 **Version:** 109  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `0d42f36f44df1b9ec21cd9848df6412dd87dcd4ec0f49e05df5a7193fb315af2`
+**Verified head:** `b009ef051ad586909087233917cd09142938b625d6679dc5c2d19c06ebf70164`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1369,7 +1369,7 @@ _None recorded._
 {
   "project": "info-thermo-maxwell-demon",
   "domain": "information_thermodynamics",
-  "no_progress": 0,
+  "no_progress": 1,
   "routes": [
     "api.datacite.org:discovery",
     "api.openalex.org:discovery",
@@ -1393,14 +1393,12 @@ _None recorded._
     "doi:10.1017/s0305004100020892"
   ],
   "last_receipt": {
-    "evidence": "source-d6394477d52c4e80",
-    "outcome": "progress",
-    "persistent_identifiers": [
-      "doi:10.1017/s0305004100020892"
-    ],
-    "research_id": "res-szilard-engine-landauer",
-    "route": "api.crossref.org:source",
-    "stage": "substantive_source"
+    "evidence": "source-67e8c5ba26ea4686",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-info-thermo-szilard-landauer-001",
+    "route": "api.datacite.org:discovery",
+    "stage": "discovery"
   }
 }
 ```
@@ -1450,7 +1448,7 @@ _None recorded._
 {
   "project": "prime-numbers-distribution",
   "domain": "prime_numbers",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.crossref.org:source",
     "api.openalex.org:discovery",
@@ -1460,23 +1458,36 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1090/mcom/3652",
-    "doi:10.1016/j.jnt.2025.12.003_br0020",
-    "doi:10.1016/j.jnt.2021.09.016",
-    "doi:10.1016/j.jnt.2025.12.003_br0030",
-    "doi:10.1090/mcom/3643",
-    "doi:10.1016/j.jnt.2025.12.003_br0040",
-    "doi:10.1090/mcom/3264",
-    "doi:10.1016/j.jnt.2025.12.003_br0050",
-    "doi:10.1090/s0025-5718-1985-0771046-9",
-    "doi:10.5802/jtnb.101",
     "doi:10.5802/jtnb.101.pdf",
-    "doi:10.13039/501100000923"
+    "doi:10.13039/501100000923",
+    "doi:10.15223/policy-017",
+    "doi:10.15223/policy-037",
+    "doi:10.15223/policy-012",
+    "doi:10.15223/policy-029",
+    "doi:10.15223/policy-004",
+    "doi:10.13039/501100000266",
+    "doi:10.1016/elsevier_cm_policy",
+    "doi:10.1016/j.jnt.2021.09.016_br0010",
+    "doi:10.1007/bf02422950",
+    "doi:10.1016/j.jnt.2021.09.016_br0020"
   ],
   "last_receipt": {
-    "evidence": "source-d5d4c90b0a9a4f2d",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-6089e7e7ac444e85",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.15223/policy-017",
+      "doi:10.15223/policy-037",
+      "doi:10.15223/policy-012",
+      "doi:10.15223/policy-029",
+      "doi:10.15223/policy-004",
+      "doi:10.13039/501100000266",
+      "doi:10.13039/501100000923",
+      "doi:10.1016/j.jnt.2021.09.016",
+      "doi:10.1016/elsevier_cm_policy",
+      "doi:10.1016/j.jnt.2021.09.016_br0010",
+      "doi:10.1007/bf02422950",
+      "doi:10.1016/j.jnt.2021.09.016_br0020"
+    ],
     "research_id": "res-prime-pnt-error-bounds-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -84538,6 +84549,529 @@ _None recorded._
 }
 ```
 
+### `w-b55c8bcc996f4e53`
+
+```json
+{
+  "base_version": 109,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 18728,
+    "delivered_request_chars": 45871,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.396,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 115835,
+    "working_set_chars": 3439
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-b55c8bcc996f4e53",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 109,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "prime-numbers-distribution",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Distribution of Prime Numbers"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2031,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "ffe497c1454729b09e01f6e7f547241cb3a8563792a9ad8ec9b5656331b413ac",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-42a3c125403b4d89"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-42a3c125403b4d89",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0cac73537ec2425a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0cac73537ec2425a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d6394477d52c4e80"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d6394477d52c4e80",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-acf76370a0f24549"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-acf76370a0f24549",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f29723d75e134fcc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f29723d75e134fcc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6089e7e7ac444e85"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6089e7e7ac444e85",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-42a3c125403b4d89",
+      "source-0cac73537ec2425a",
+      "source-d6394477d52c4e80",
+      "source-acf76370a0f24549",
+      "source-f29723d75e134fcc",
+      "source-6089e7e7ac444e85"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 3.385,
+    "context_build_ms": 34.846,
+    "load_ms": 423.922,
+    "receipt_ms": 308.769,
+    "start_total_before_record_ms": 1440.211,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 495.035,
+      "cached_loads": 0,
+      "event_count": 3031,
+      "full_replays": 11,
+      "replay_ms": 2947.041,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 668.57
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "information_thermodynamics"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "prime_numbers": [
+        {
+          "id": "prime-numbers-distribution",
+          "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "prime_numbers",
+    "temporal": {
+      "anchor_seq": 3030,
+      "anchor_time": "2026-09-25T20:01:44.635474+00:00",
+      "anchor_version": 109,
+      "effective_seconds": 72862.160536
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 307.908026,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 72862.160536,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T20:01:44.635474+00:00",
+    "previous_anchor_time": "2026-09-25T19:56:36.727448+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 307.908026
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18728,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3439,
+    "working_to_delivered_ratio": 0.1836
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "id": "prime-numbers-distribution",
+        "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Distribution of Prime Numbers"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "revision": 2,
+        "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+        "title": "Provisional Synthesis: Composition and Observer Expectation"
+      },
+      {
+        "id": "nb-info-thermo-demon-001",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+        "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+      },
+      {
+        "id": "nb-dance-structural-001",
+        "project": "dance-movement-structural-constraints",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 1,
+        "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+        "title": "Provisional Synthesis: Structural Constraints in Dance"
+      },
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T20:01:45.709459+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 496,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 49739,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T20:02:04.106163+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 496,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 496,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 49739,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 49739,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -104522,6 +105056,103 @@ _None recorded._
 }
 ```
 
+### `source-6089e7e7ac444e85`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fj.jnt.2021.09.016\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 1]], \\\"date-time\\\": \\\"2026-09-01T04:15:34Z\\\", \\\"timestamp\\\": 1788236134925, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 19, \\\"publisher\\\": \\\"Elsevier BV\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.elsevier.com/tdm/userlicense/1.0/\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.elsevier.com/legal/tdmrep-license\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2026, 9, 1]], \\\"date-time\\\": \\\"2026-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1788220800000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 1461, \\\"URL\\\": \\\"http://www.elsevier.com/open-access/userlicense/1.0/\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"stm-asf\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.15223/policy-017\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"stm-asf\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.15223/policy-037\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"stm-asf\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.15223/policy-012\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"stm-asf\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.15223/policy-029\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2022, 9, 1]], \\\"date-time\\\": \\\"2022-09-01T00:00:00Z\\\", \\\"timestamp\\\": 1661990400000}, \\\"content-version\\\": \\\"stm-asf\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.15223/policy-004\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/501100000266\\\", \\\"name\\\": \\\"Engineering and Physical Sciences Research Council\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"EP/K034383/1\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"EP/K034383/1\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000266\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100000266\\\", \\\"name\\\": \\\"Engineering and Physical Sciences Research Council\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"FT160100094\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"FT160100094\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000266\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100000923\\\", \\\"name\\\": \\\"Australian Research Council\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"DP160100932\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"DP160100932\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000923\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"elsevier.com\\\", \\\"sciencedirect.com\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"Journal of Number Theory\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2022, 9]]}, \\\"DOI\\\": \\\"10.1016/j.jnt.2021.09.016\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2021, 10, 22]], \\\"date-time\\\": \\\"2021-10-22T17:39:08Z\\\", \\\"timestamp\\\": 1634924348000}, \\\"page\\\": \\\"740-762\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1016/elsevier_cm_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 8, \\\"special_numbering\\\": \\\"C\\\", \\\"title\\\": [\\\"The mean square of the error term in the prime number theorem\\\"], \\\"prefix\\\": \\\"10.1016\\\", \\\"volume\\\": \\\"238\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-8495-7437\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Richard P.\\\", \\\"family\\\": \\\"Brent\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0003-1926-1465\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"David J.\\\", \\\"family\\\": \\\"Platt\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Timothy S.\\\", \\\"family\\\": \\\"Trudgian\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"78\\\", \\\"reference\\\": [{\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0010\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"345\\\", \\\"DOI\\\": \\\"10.1007/BF02422950\\\", \\\"article-title\\\": \\\"Über die Nullstellen der Riemannschen Zetafunktion\\\", \\\"volume\\\": \\\"41\\\", \\\"author\\\": \\\"Backlund\\\", \\\"year\\\": \\\"1918\\\", \\\"journal-title\\\": \\\"Acta Math.\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0020\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"59\\\", \\\"DOI\\\": \\\"10.1017/S0004972720001252\\\", \\\"article-title\\\": \\\"A harmonic sum over the ordinates of nontrivial zeros of the Riemann zeta-function\\\", \\\"volume\\\": \\\"104\\\", \\\"author\\\": \\\"Brent\\\", \\\"year\\\": \\\"2021\\\", \\\"journal-title\\\": \\\"Bull. Aust. Math. Soc.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0030\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"147\\\", \\\"DOI\\\": \\\"10.1007/BF01482072\\\", \\\"article-title\\\": \\\"Ein Mittelwertsatz in der Primzahltheorie\\\", \\\"volume\\\": \\\"12\\\", \\\"author\\\": \\\"Cramér\\\", \\\"year\\\": \\\"1922\\\", \\\"journal-title\\\": \\\"Math. Z.\\\"}, {\\\"issue\\\": \\\"295\\\", \\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0040\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"2433\\\", \\\"DOI\\\": \\\"10.1090/S0025-5718-2015-02930-5\\\", \\\"article-title\\\": \\\"A still sharper region where π(x)−li(x) is positive\\\", \\\"volume\\\": \\\"84\\\", \\\"author\\\": \\\"Demichel\\\", \\\"year\\\": \\\"2015\\\", \\\"journal-title\\\": \\\"Math. Comput.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0050\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"219\\\", \\\"DOI\\\": \\\"10.1016/j.jnt.2021.06.032\\\", \\\"article-title\\\": \\\"Counting zeros of the Riemann zeta function\\\", \\\"volume\\\": \\\"235\\\", \\\"author\\\": \\\"Hasanalizade\\\", \\\"year\\\": \\\"2022\\\", \\\"journal-title\\\": \\\"J. Number Theory\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0060\\\", \\\"first-page\\\": \\\"109\\\", \\\"article-title\\\": \\\"Explicit approximation of the sums over the imaginary part of the non-trivial zeros of the Riemann zeta function\\\", \\\"volume\\\": \\\"16\\\", \\\"author\\\": \\\"Hassani\\\", \\\"year\\\": \\\"2016\\\", \\\"journal-title\\\": \\\"Appl. Math. E-Notes\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0070\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"397\\\", \\\"DOI\\\": \\\"10.4064/aa-11-4-397-410\\\", \\\"article-title\\\": \\\"On the difference π(x)−li(x)\\\", \\\"volume\\\": \\\"11\\\", \\\"author\\\": \\\"Lehman\\\", \\\"year\\\": \\\"1966\\\", \\\"journal-title\\\": \\\"Acta Arith.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0080\\\", \\\"article-title\\\": \\\"Multiplicative Number Theory. I. Classical Theory\\\", \\\"volume\\\": \\\"vol. 97\\\", \\\"author\\\": \\\"Montgomery\\\", \\\"year\\\": \\\"2007\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0090\\\", \\\"author\\\": \\\"Patel\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0100\\\", \\\"first-page\\\": \\\"225\\\", \\\"article-title\\\": \\\"On the remainder term of the prime number formula VI. Ineffective mean value theorems\\\", \\\"volume\\\": \\\"15\\\", \\\"author\\\": \\\"Pintz\\\", \\\"year\\\": \\\"1980\\\", \\\"journal-title\\\": \\\"Studia Sci. Math. Hung.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0110\\\", \\\"series-title\\\": \\\"Number Theory\\\", \\\"article-title\\\": \\\"On the remainder term of the prime number formula and the zeros of Riemann's zeta-function\\\", \\\"volume\\\": \\\"vol. 1068\\\", \\\"author\\\": \\\"Pintz\\\", \\\"year\\\": \\\"1984\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0120\\\", \\\"series-title\\\": \\\"Elementary and Analytic Theory of Numbers\\\", \\\"first-page\\\": \\\"411\\\", \\\"article-title\\\": \\\"On the mean value of the remainder term of the prime number formula\\\", \\\"volume\\\": \\\"vol. 17\\\", \\\"author\\\": \\\"Pintz\\\", \\\"year\\\": \\\"1985\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0130\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"842\\\", \\\"DOI\\\": \\\"10.1016/j.jnt.2014.08.019\\\", \\\"article-title\\\": \\\"An improved explicit bound on |ζ(12+it)|\\\", \\\"volume\\\": \\\"147\\\", \\\"author\\\": \\\"Platt\\\", \\\"year\\\": \\\"2015\\\", \\\"journal-title\\\": \\\"J. Number Theory\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0140\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"211\\\", \\\"DOI\\\": \\\"10.2307/2371291\\\", \\\"article-title\\\": \\\"Explicit bounds for some functions of prime numbers\\\", \\\"volume\\\": \\\"63\\\", \\\"author\\\": \\\"Rosser\\\", \\\"year\\\": \\\"1941\\\", \\\"journal-title\\\": \\\"Am. J. Math.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0150\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"464\\\", \\\"DOI\\\": \\\"10.1016/j.jnt.2021.05.014\\\", \\\"article-title\\\": \\\"On explicit estimates for S(t), S1(t), and ζ(1/2+it) under the Riemann hypothesis\\\", \\\"volume\\\": \\\"231\\\", \\\"author\\\": \\\"Simonič\\\", \\\"year\\\": \\\"2022\\\", \\\"journal-title\\\": \\\"J. Number Theory\\\"}, {\\\"issue\\\": \\\"6\\\", \\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0160\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1025\\\", \\\"DOI\\\": \\\"10.1070/RM1996v051n06ABEH003000\\\", \\\"article-title\\\": \\\"The asymptotic distribution of prime numbers on the average\\\", \\\"volume\\\": \\\"51\\\", \\\"author\\\": \\\"Stechkin\\\", \\\"year\\\": \\\"1996\\\", \\\"journal-title\\\": \\\"Russ. Math. Surv.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0170\\\", \\\"series-title\\\": \\\"The Theory of the Riemann Zeta-Function\\\", \\\"author\\\": \\\"Titchmarsh\\\", \\\"year\\\": \\\"1986\\\"}, {\\\"issue\\\": \\\"278\\\", \\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0180\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1053\\\", \\\"DOI\\\": \\\"10.1090/S0025-5718-2011-02537-8\\\", \\\"article-title\\\": \\\"An improved upper bound for the argument of the Riemann zeta-function on the critical line\\\", \\\"volume\\\": \\\"81\\\", \\\"author\\\": \\\"Trudgian\\\", \\\"year\\\": \\\"2012\\\", \\\"journal-title\\\": \\\"Math. Comput.\\\"}, {\\\"key\\\": \\\"10.1016/j.jnt.2021.09.016_br0190\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"280\\\", \\\"DOI\\\": \\\"10.1016/j.jnt.2013.07.017\\\", \\\"article-title\\\": \\\"An improved upper bound for the argument of the Riemann zeta-function on the critical line, II\\\", \\\"volume\\\": \\\"134\\\", \\\"author\\\": \\\"Trudgian\\\", \\\"year\\\": \\\"2014\\\", \\\"journal-title\\\": \\\"J. Number Theory\\\"}], \\\"container-title\\\": [\\\"Journal of Number Theory\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S0022314X21003322?httpAccept=text/xml\\\", \\\"content-type\\\": \\\"text/xml\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S0022314X21003322?httpAccept=text/plain\\\", \\\"content-type\\\": \\\"text/plain\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2026, 9, 1]], \\\"date-time\\\": \\\"2026-09-01T03:30:19Z\\\", \\\"timestamp\\\": 1788233419000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://linkinghub.elsevier.com/retrieve/pii/S0022314X21003322\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2022, 9]]}, \\\"references-count\\\": 19, \\\"alternative-id\\\": [\\\"S0022314X21003322\\\"], \\\"URL\\\":\", \"excerpt_truncated\": true, \"source_sha256\": \"c7e96a37ec6e9855f2576cf2c68d8eb47e58004ce522650b344af20af0593454\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.15223/policy-017\", \"doi:10.15223/policy-037\", \"doi:10.15223/policy-012\", \"doi:10.15223/policy-029\", \"doi:10.15223/policy-004\", \"doi:10.13039/501100000266\", \"doi:10.13039/501100000923\", \"doi:10.1016/j.jnt.2021.09.016\", \"doi:10.1016/elsevier_cm_policy\", \"doi:10.1016/j.jnt.2021.09.016_br0010\", \"doi:10.1007/bf02422950\", \"doi:10.1016/j.jnt.2021.09.016_br0020\"]}",
+  "id": "source-6089e7e7ac444e85",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1016%2Fj.jnt.2021.09.016",
+  "version": 109,
+  "time": "2026-09-25T20:01:39.931457+00:00"
+}
+```
+
+### `source-67e8c5ba26ea4686`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=Szilard+engine+Landauer+principle+physical+implementation+consensus&page%5Bsize%5D=4\", \"error\": \"ValueError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-67e8c5ba26ea4686",
+  "scope": "failed",
+  "source": "https://api.datacite.org/dois?query=Szilard+engine+Landauer+principle+physical+implementation+consensus&page%5Bsize%5D=4",
+  "version": 109,
+  "time": "2026-09-25T20:01:41.256753+00:00"
+}
+```
+
+### `source-7e08053462f245d9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone deficiency\\\",\\\"pageid\\\":620879,\\\"size\\\":30695,\\\"wordcount\\\":3241,\\\"snippet\\\":\\\"of Growth\\nHormone\\nDeficiency: A Position Statement from Korean\\nEndocrine\\nSociety and Korean Society of Pediatric\\nEndocrinology\\n\\\".\\nEndocrinology\\nand Metabolism\\\",\\\"timestamp\\\":\\\"2026-05-10T21:56:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"860bbf43df97bbae288cc3b1a2623b2f67cf585715b0113e0eec39b3d2cebca6\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-7e08053462f245d9",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 109,
+  "time": "2026-09-25T20:01:42.357960+00:00"
+}
+```
+
+### `source-142bea76e13f4126`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"95d2ce31c0df1d27534384ed2213a5ec460d95e7ccc3345e3b2aa029b30a9ec6\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-142bea76e13f4126",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 109,
+  "time": "2026-09-25T20:01:42.915382+00:00"
+}
+```
+
+### `source-fa49a113cf4e4400`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Other (philosophy)\\\",\\\"pageid\\\":972208,\\\"size\\\":49508,\\\"wordcount\\\":5797,\\\"snippet\\\":\\\"differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\",\\\"timestamp\\\":\\\"2026-09-20T02:59:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"9cbc784181f91288021f8b54496bbbe8029ee8287181de142cdb1d29a03e9122\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fa49a113cf4e4400",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 109,
+  "time": "2026-09-25T20:01:43.362431+00:00"
+}
+```
+
+### `source-c4b512a36dc64353`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40313},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"2eb3c882c44b9e9236df1d6f596b1d47104f1e25f25758a83173832a80e8fcaa\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-c4b512a36dc64353",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 109,
+  "time": "2026-09-25T20:01:43.982970+00:00"
+}
+```
+
+### `r-b55c8bcc996f4e53`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":109,\"inherited_commitments\":[],\"invocation\":\"w-b55c8bcc996f4e53\",\"previous_head\":\"aa0a8ccebddcafb82286533f7fab23a8b57a0bcf5976f04b1fbf0630ff7badd3\",\"process_id\":2031,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b55c8bcc996f4e53",
+  "source": "runtime:continuity",
+  "version": 109,
+  "time": "2026-09-25T20:01:45.395974+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -107111,8 +107742,9 @@ _None recorded._
   "query": "Szilard engine Landauer principle physical implementation consensus",
   "reason": "The current provisional notebooks rely on 1958-era metadata. Establishing a more robust connection to modern consensus on the physical cost of erasing information (Landauer's Principle) requires searching for literature that explicitly bridges these historical and conceptual implementations.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-ca5b9b22c0134fb9"
+  "status": "failed",
+  "created_by": "w-ca5b9b22c0134fb9",
+  "evidence": "source-67e8c5ba26ea4686"
 }
 ```
 
