@@ -1145,6 +1145,31 @@ class ResearchTests(unittest.TestCase):
         findings = "A bounded comparison of cellular automata explanations follows [s1]."
         self.assertEqual(self.propose([project(), notebook(["s1"], findings)])["status"], "accepted")
 
+    def test_notebook_revision_rejects_single_source(self):
+        self.source("s1")
+        first = notebook(["s1"], "A provisional bounded comparison follows the first source [s1].")
+        self.assertEqual(self.propose([project(), first])["status"], "accepted")
+        self.source("s2")
+        revision = notebook(["s2"], "A revised bounded comparison follows newly retrieved evidence [s2].")
+        result = self.propose([revision])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("two distinct retrieved source URLs", result["reason"])
+
+    def test_notebook_revision_accepts_two_distinct_sources(self):
+        self.source("s1")
+        first = notebook(["s1"], "A provisional bounded comparison follows the first source [s1].")
+        self.assertEqual(self.propose([project(), first])["status"], "accepted")
+        self.source("s2")
+        revision = notebook(
+            ["s1", "s2"],
+            "A revised bounded comparison incorporates independent evidence [s1] [s2].",
+        )
+        result = self.propose([revision])
+        self.assertEqual(result["status"], "accepted")
+        saved = self.engine.store.load()["notebooks"]["n"]
+        self.assertEqual(saved["revision"], 2)
+        self.assertEqual(saved["evidence"], ["s1", "s2"])
+
     def test_verified_notebook_accepts_material_cross_topic_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", dict(
