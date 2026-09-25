@@ -5,7 +5,7 @@
 **Version:** 34  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c48587f8965a6d69eaa4ce431a73877f9cf49074cf0415657687ae7f6eb205f8`
+**Verified head:** `2b6971465a4b53c8cfea3b58a49076bc2c4f7f3089b1508a76fb76709586c690`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -517,18 +517,16 @@ _None recorded._
 {
   "project": "comedy-incongruity-cognition",
   "domain": "comedy",
-  "no_progress": 5,
+  "no_progress": 0,
   "routes": [
     "api.crossref.org:discovery",
     "api.crossref.org:source",
     "api.openalex.org:discovery",
     "api.semanticscholar.org:discovery"
   ],
-  "capability_blocked": true,
-  "retry_after_version": 45,
+  "capability_blocked": false,
+  "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1515/9783110806137.101/xml",
-    "doi:10.1515/9783110806137.101/pdf",
     "doi:10.1515/9783110806137.101/html",
     "doi:10.1515/9783110806137",
     "doi:10.7592/fejf2006.33.kriku",
@@ -538,12 +536,18 @@ _None recorded._
     "openalex:W2022766338",
     "openalex:W2621519993",
     "openalex:W4299415821",
-    "openalex:W3008099517"
+    "openalex:W3008099517",
+    "doi:10.1515/9783110806137/pdf",
+    "doi:10.1515/9783110806137/html"
   ],
   "last_receipt": {
-    "evidence": "source-8ad1f920b56c41de",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-6231101a8cf34b52",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1515/9783110806137",
+      "doi:10.1515/9783110806137/pdf",
+      "doi:10.1515/9783110806137/html"
+    ],
     "research_id": "res-comedy-incongruity-frameworks-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -557,9 +561,10 @@ _None recorded._
 {
   "project": "qm-foundational-experiments",
   "domain": "quantum_mechanics",
-  "no_progress": 1,
+  "no_progress": 2,
   "routes": [
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
@@ -567,19 +572,31 @@ _None recorded._
     "doi:10.31219/osf.io/zsr67",
     "doi:10.1007/978-3-031-14812-5_3",
     "doi:10.1364/opticaopen.25790460.v1",
-    "doi:10.1364/opticaopen.25790460.v2"
+    "doi:10.1364/opticaopen.25790460.v2",
+    "doi:10.1103/physrevphyseducres.13.010109",
+    "doi:10.1002/sce.20389",
+    "doi:10.1103/physrevphyseducres.15.010130",
+    "doi:10.4197/islec",
+    "openalex:W2588853009",
+    "openalex:W2103482819",
+    "openalex:W2945043454",
+    "openalex:W4233309616"
   ],
   "last_receipt": {
-    "evidence": "source-9e8bad9e6a9642f4",
+    "evidence": "source-f2417ff41ef84af8",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.31219/osf.io/zsr67",
-      "doi:10.1007/978-3-031-14812-5_3",
-      "doi:10.1364/opticaopen.25790460.v1",
-      "doi:10.1364/opticaopen.25790460.v2"
+      "doi:10.1103/physrevphyseducres.13.010109",
+      "doi:10.1002/sce.20389",
+      "doi:10.1103/physrevphyseducres.15.010130",
+      "doi:10.4197/islec",
+      "openalex:W2588853009",
+      "openalex:W2103482819",
+      "openalex:W2945043454",
+      "openalex:W4233309616"
     ],
-    "research_id": "res-qm-foundations-001",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-qm-foundational-001",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -599,6 +616,7 @@ _None recorded._
   "evolutionary_biology": 5,
   "information_thermodynamics": 1,
   "prime_numbers": 3,
+  "quantum_mechanics": 1,
   "visual_art": 0
 }
 ```
@@ -610,7 +628,7 @@ _None recorded._
   "entropy": {
     "cause": "attention_saturation",
     "deferred_by": "w-8ff4a9549b464805",
-    "other_topic_attempts": 6,
+    "other_topic_attempts": 7,
     "parked_projects": [
       {
         "id": "entropy-foundations-formal",
@@ -624,7 +642,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 26,
+    "other_topic_attempts": 27,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -645,11 +663,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "quantum_mechanics",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-c4a3092676ff4fd0",
+  "hard_rejection": true,
+  "invocation": "w-9c19a9e82f744894",
   "restored_topics": [],
   "selected_topic": "quantum_mechanics",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -18224,6 +18242,366 @@ _None recorded._
 }
 ```
 
+### `w-9c19a9e82f744894`
+
+```json
+{
+  "base_version": 34,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 11940,
+    "delivered_request_chars": 36634,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 77092,
+    "working_set_chars": 1433
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-9c19a9e82f744894",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 34,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "comedy-incongruity-cognition",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Incongruity in Comedy"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "qm-foundational-experiments",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Foundational Observations in Quantum Mechanics"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2167,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "a148298dabc25203a670f7dbedca3c8b2a8f77685d6db3b36443889128607978",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-56de06f79ea14e94"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-56de06f79ea14e94",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-152d65abb7664225"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-152d65abb7664225",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-bfbbb37430d54038"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bfbbb37430d54038",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ccefcd6ee30d4bcb"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ccefcd6ee30d4bcb",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f15314b71b97484e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f15314b71b97484e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6231101a8cf34b52"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6231101a8cf34b52",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-56de06f79ea14e94",
+      "source-152d65abb7664225",
+      "source-bfbbb37430d54038",
+      "source-ccefcd6ee30d4bcb",
+      "source-f15314b71b97484e",
+      "source-6231101a8cf34b52"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "quantum_mechanics"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "entropy",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "entropy": [
+        {
+          "id": "entropy-foundations-formal",
+          "next_step": "Search for literature comparing these three frameworks.",
+          "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "quantum_mechanics",
+    "temporal": {
+      "anchor_seq": 805,
+      "anchor_time": "2026-09-25T03:15:16.857045+00:00",
+      "anchor_version": 34,
+      "effective_seconds": 12474.382107
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 209.474509,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 12474.382107,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T03:15:16.857045+00:00",
+    "previous_anchor_time": "2026-09-25T03:11:47.382536+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 209.474509
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 11940,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1433,
+    "working_to_delivered_ratio": 0.12
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "comedy-incongruity-cognition",
+        "next_step": "Search for seminal reviews or theoretical frameworks on incongruity theory in humor.",
+        "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+        "title": "Cognitive Mechanisms of Incongruity in Comedy"
+      },
+      {
+        "id": "qm-foundational-experiments",
+        "next_step": "Search for seminal reviews and foundational experiments in early 20th-century physics.",
+        "question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+        "title": "Foundational Observations in Quantum Mechanics"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-25T03:15:17.421890+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 4135,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 39023,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T03:15:29.283598+00:00",
+  "reason": "Research request ID already exists",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -23367,6 +23745,103 @@ _None recorded._
 }
 ```
 
+### `source-6231101a8cf34b52`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1515%2F9783110806137\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 16]], \\\"date-time\\\": \\\"2026-09-16T08:49:56Z\\\", \\\"timestamp\\\": 1789548596759, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"DE GRUYTER MOUTON\\\", \\\"isbn-type\\\": [{\\\"value\\\": \\\"9783110161038\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"9783110806137\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[1999, 12, 31]]}, \\\"DOI\\\": \\\"10.1515/9783110806137\\\", \\\"type\\\": \\\"edited-book\\\", \\\"created\\\": {\\\"date-parts\\\": [[2011, 9, 1]], \\\"date-time\\\": \\\"2011-09-01T16:56:33Z\\\", \\\"timestamp\\\": 1314896193000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 52, \\\"title\\\": [\\\"The Basic Humor Process\\\"], \\\"prefix\\\": \\\"10.1515\\\", \\\"author\\\": [{\\\"given\\\": \\\"Robert L.\\\", \\\"family\\\": \\\"Latta\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"374\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1999, 12, 31]]}, \\\"container-title\\\": [], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"http://www.degruyter.com/view/books/9783110806137/9783110806137/9783110806137.xml\\\", \\\"content-type\\\": \\\"text/html\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://www.degruyter.com/document/doi/10.1515/9783110806137/pdf\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2026, 4, 15]], \\\"date-time\\\": \\\"2026-04-15T19:42:24Z\\\", \\\"timestamp\\\": 1776282144000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.degruyterbrill.com/document/doi/10.1515/9783110806137/html\\\"}}, \\\"subtitle\\\": [\\\"A Cognitive-Shift Theory and the Case against Incongruity\\\"], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1999, 12, 31]]}, \\\"ISBN\\\": [\\\"9783110161038\\\", \\\"9783110806137\\\"], \\\"references-count\\\": 0, \\\"alternative-id\\\": [\\\"10.1515/9783110806137\\\"], \\\"URL\\\": \\\"https://doi.org/10.1515/9783110806137\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1999, 12, 31]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e40735662ab6fda3ee0fe51488d2e28b1e349dbd0e482e71cfe0e61274cdc0f2\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1515/9783110806137\", \"doi:10.1515/9783110806137/pdf\", \"doi:10.1515/9783110806137/html\"]}",
+  "id": "source-6231101a8cf34b52",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1515%2F9783110806137",
+  "version": 34,
+  "time": "2026-09-25T03:15:13.422490+00:00"
+}
+```
+
+### `source-f2417ff41ef84af8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=foundational+quantum+mechanics+experiments+blackbody+radiation+photoelectric+effect+Compton+scattering+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2588853009\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/physrevphyseducres.13.010109\\\", \\\"title\\\": \\\"Insights into teaching quantum mechanics in secondary and lower undergraduate education\\\", \\\"publication_year\\\": 2017, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 245, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"http://link.aps.org/pdf/10.1103/PhysRevPhysEducRes.13.010109\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/physrevphyseducres.13.010109\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/physrevphyseducres.13.010109\\\", \\\"pdf_url\\\": \\\"http://link.aps.org/pdf/10.1103/PhysRevPhysEducRes.13.010109\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210190682\\\", \\\"display_name\\\": \\\"Physical Review Physics Education Research\\\", \\\"issn_l\\\": \\\"2469-9896\\\", \\\"issn\\\": [\\\"2469-9896\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"jufo-2\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Physical Review Physics Education Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This study presents a review of the current state of research on teaching quantum mechanics in secondary and lower undergraduate education.A conceptual approach to quantum mechanics is being implemented in more and more introductory physics courses around the world.Because of the differences between the conceptual nature of quantum mechanics and classical physics, research on misconceptions, testing, and teaching strategies for introductory quantum mechanics is needed.For this review, 74 articles were selected and analyzed for the misconceptions, research tools, teaching strategies, and multimedia applications investigated.Outcomes were categorized according to their contribution to the various subtopics of quantum mechanics.Analysis shows that students have difficulty relating quantum physics to physical reality.It also shows that the teaching of complex quantum behavior, such as time dependence, superposition, and the measurement problem, has barely been investigated for the secondary and lower undergraduate level.At the secondary school level, this article shows a need to investigate student difficulties concerning wave functions and potential wells.Investigation of research tools shows the necessity for the development of assessment tools for secondary and lower undergraduate education, which cover all major topics and are suitable for statistical analysis.Furthermore, this article shows the existence of very diverse ideas concerning teaching strategies for quantum mechanics and a lack of research into which strategies promote understanding.This article underlines the need for more empirical research into student difficulties, teaching strategies, activities, and research tools intended for a conceptual approach for quantum mechanics.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2103482819\\\", \\\"doi\\\": \\\"https://doi.org/10.1002/sce.20389\\\", \\\"title\\\": \\\"Reconstruction of the history of the photoelectric effect and its implications for general physics textbooks\\\", \\\"publication_year\\\": 2010, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 67, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/sce.20389\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1002/sce.20389\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1002/sce.20389\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/sce.20389\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S161883588\\\", \\\"display_name\\\": \\\"Science Education\\\", \\\"issn_l\\\": \\\"0036-8326\\\", \\\"issn\\\": [\\\"0036-8326\\\", \\\"0097-0352\\\", \\\"1098-237X\\\", \\\"2377-0147\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Science Education\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract The photoelectric effect is an important part of general physics textbooks. To study the presentation of this phenomenon, we have reconstructed six essential, history and philosophy of science (HPS)‐related aspects of the events that culminated in Einstein proposing his hypothesis of lightquanta and the ensuing controversy within the scientific community. These aspects are (1) Lenard's trigger hypothesis to explain the photoelectric effect, (2) Einstein's quantum hypothesis to explain the photoelectric effect, (3) lack of acceptance of Einstein's quantum hypothesis in the scientific community, (4) Millikan's experimental determination of the Einstein photoelectric equation and Planck's constant, h, (5) Millikan's presuppositions about the nature of light, and (6) the historical presentation and its interpretation within a history and philosophy of science perspective. Using these aspects as criteria, we analyzed 103 university general physics textbooks. Results obtained reveal that these historical elements are largely ignored or distorted in the textbooks, with only three of the texts obtaining a score of satisfactory and none a score of excellent. It is concluded that inclusion of HPS‐related aspects in general physics textbooks can facilitate a better understanding of the dynamics associated with the initial controversy and final acceptance of Einstein's explanation of the photoelectric effect by the scientific community. © 2010 Wiley Periodicals, Inc. Sci Ed 94:903–931, 2010\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2945043454\\\", \\\"doi\\\": \\\"https://doi.org/10.1103/physrevphyseducres.15.010130\\\", \\\"title\\\": \\\"Analysis of secondary school quantum physics curricula of 15 different countries: Different perspectives on a challenging topic\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 170, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"http://link.aps.org/pdf/10.1103/PhysRevPhysEducRes.15.010130\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1103/physrevphyseducres.15.010130\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1103/physrevphyseducres.15.010130\\\", \\\"pdf_url\\\": \\\"http://link.aps.org/pdf/10.1103/PhysRevPhysEducRes.15.010130\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4210190682\\\", \\\"display_name\\\": \\\"Physical Review Physics Education Research\\\", \\\"issn_l\\\": \\\"2469-9896\\\", \\\"issn\\\": [\\\"2469-9896\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"jufo-2\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320261\\\", \\\"host_organization_name\\\": \\\"American Physical Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320261\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Physical Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Physical Review Physics Education Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Secondary school level quantum physics (QP) courses have recently been implemented in the national curricula of many countries.QP gives opportunities to acquaint students with more recent physics and its applications and to discuss aspects of the nature of science.Research has shown that QP is a challenging area for students.Because the inclusion of QP in national curricula is rather new in most countries, it is interesting to compare QP curricula from these countries to make the choices by curriculum designers visible.In this study, we provide a detailed overview of QP courses from fifteen countries.We collected and analyzed official curriculum documents to identify key items present in most curricula.Our inventory identifies a shared current core curriculum of QP which contains the following seven main categories: discrete atomic energy levels, interactions between light and matter, wave-particle duality, de Broglie wavelength, technical applications, Heisenberg's uncertainty principle, and the probabilistic nature of QP.We also found differences in the focus of the listed topics of certain countries, which indicate different views on teaching QP and might inspire curriculum designers struggling with QP.For instance, challenging items like QP interpretations or epistemological aspects of QP are taught only in a few countries.Although research suggests that epistemological aspects help students to comprehend novel QP concepts, many countries do not explicitly include these in the curriculum.We provide reasons and suggestions for this.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4233309616\\\", \\\"doi\\\": \\\"https://doi.org/10.4197/islec\\\", \\\"title\\\": \\\"Journal of King Abdulaziz University-Islamic Economics\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"paratext\\\", \\\"cited_by_count\\\": 137, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://tesi.cab.unipd.it/65695/1/Tesi_Ludovici_Andrea.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.4197/islec\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.4197/islec\\\", \\\"pdf_url\\\": null, \\\"source\\\": null, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"journal\\\"}, \\\"abstract\\\": \\\"In the past 15 years, quantum mechanics has been included in most secondary school \\\\\\\\nstandards, including \", \"excerpt_truncated\": true, \"source_sha256\": \"b71e9a694440fd4fe6b16e6de2e0e8f7bd72d4cdbec2b891e8eb3e456457f5d7\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1103/physrevphyseducres.13.010109\", \"doi:10.1002/sce.20389\", \"doi:10.1103/physrevphyseducres.15.010130\", \"doi:10.4197/islec\", \"openalex:W2588853009\", \"openalex:W2103482819\", \"openalex:W2945043454\", \"openalex:W4233309616\"]}",
+  "id": "source-f2417ff41ef84af8",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=foundational+quantum+mechanics+experiments+blackbody+radiation+photoelectric+effect+Compton+scattering+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 34,
+  "time": "2026-09-25T03:15:14.573209+00:00"
+}
+```
+
+### `source-7a0d8ab1de6c4b44`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74326},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Reverse psychology\\\",\\\"pageid\\\":702761,\\\"size\\\":8278,\\\"wordcount\\\":959,\\\"snippet\\\":\\\"Reverse\\npsychology\\nis a technique involving the assertion of a belief or behavior that is opposite to the one desired, with the expectation that this approach\\\",\\\"timestamp\\\":\\\"2026-07-23T01:39:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Somatic psychology\\\",\\\"pageid\\\":6774132,\\\"size\\\":16405,\\\"wordcount\\\":1855,\\\"snippet\\\":\\\"Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\",\\\"timestamp\\\":\\\"2026-09-03T20:37:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8ad6fddba961217827d9bf40b09993f8f77da509c23c8c80136d20745e447671\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-7a0d8ab1de6c4b44",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 34,
+  "time": "2026-09-25T03:15:15.345347+00:00"
+}
+```
+
+### `source-c9aaf4c440ca4fea`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"665389b9868cc1faff4cb52ecbd57bc2c405311a2643df6e7e8607bc33caf6f4\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+  "id": "source-c9aaf4c440ca4fea",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 34,
+  "time": "2026-09-25T03:15:15.839160+00:00"
+}
+```
+
+### `source-91abf918d2264d92`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149384,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4bf560d7f442f738f8888974d00020dde205f6b5416b8bed541187cd6537f3e3\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-91abf918d2264d92",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 34,
+  "time": "2026-09-25T03:15:16.255377+00:00"
+}
+```
+
+### `source-dedc141f1d30471a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239498,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Japan\\\",\\\"pageid\\\":166254,\\\"size\\\":79036,\\\"wordcount\\\":7551,\\\"snippet\\\":\\\"\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\",\\\"timestamp\\\":\\\"2026-09-17T02:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"61a6a9b2f57d4419b82ec57364ae9070f884057b7e45509778c46d155525be77\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-dedc141f1d30471a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 34,
+  "time": "2026-09-25T03:15:16.700636+00:00"
+}
+```
+
+### `r-9c19a9e82f744894`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":34,\"inherited_commitments\":[],\"invocation\":\"w-9c19a9e82f744894\",\"previous_head\":\"26bf60d6cfb2e0a56675bb1a345b7f891ab2600918d0d4ec1acf0ac8ff2d670b\",\"process_id\":2167,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9c19a9e82f744894",
+  "source": "runtime:continuity",
+  "version": 34,
+  "time": "2026-09-25T03:15:17.266276+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -24219,8 +24694,9 @@ _None recorded._
   "query": "foundational quantum mechanics experiments blackbody radiation photoelectric effect Compton scattering review",
   "reason": "This search will identify seminal reviews of the specific experimental anomalies (e.g., ultraviolet catastrophe, photoelectric effect) that challenged classical physics and motivated the early quantum era.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-c4a3092676ff4fd0"
+  "status": "collected",
+  "created_by": "w-c4a3092676ff4fd0",
+  "evidence": "source-f2417ff41ef84af8"
 }
 ```
 
