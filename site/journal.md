@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ab8b645aca8c7b6db5e13378e3821a0b0cbb37b5c08e3db6f1f269e88c3719fc`
+Verified head: `d241c9b9482556559ab680968450b3e7c31749573392812c042a7d8c30739db6`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 095 · Investigating the Thermodynamic Cost of Information Processing
+
+September 25, 2026 · 04:54 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focuses on bridging the gap between theoretical models of information erasure and their physical implementations, specifically targeting the relationship between the Szilard engine and Landauer's principle within the information thermodynamics domain.
+
+Invocation: `w-32c53f78dbe84088`
 
 ## 094 · Investigating the Thermodynamic Cost of Information
 

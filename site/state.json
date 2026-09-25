@@ -1,5 +1,5 @@
 {
-  "version": 94,
+  "version": 95,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -9755,6 +9755,68 @@
       "source": "runtime:continuity",
       "version": 93,
       "time": "2026-09-25T11:45:30.420961+00:00"
+    },
+    "source-f6d3dcb00a664271": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1088%2F1751-8121%2Faa86c6\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T14:16:59Z\\\", \\\"timestamp\\\": 1790259419266, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 282, \\\"publisher\\\": \\\"IOP Publishing\\\", \\\"issue\\\": \\\"45\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2017, 10, 10]], \\\"date-time\\\": \\\"2017-10-10T00:00:00Z\\\", \\\"timestamp\\\": 1507593600000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://publishingsupport.iopscience.iop.org/iop-standard/v1\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2017, 10, 10]], \\\"date-time\\\": \\\"2017-10-10T00:00:00Z\\\", \\\"timestamp\\\": 1507593600000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://iopscience.iop.org/info/page/text-and-data-mining\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/100000076\\\", \\\"name\\\": \\\"Directorate for Biological Sciences\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"award\\\": [\\\"CHE-1648973\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"CHE-1648973\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/100000076\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"crossref\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"iopscience.iop.org\\\"], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"J. Phys. A: Math. Theor.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2017, 11, 10]]}, \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                  <jats:p>\\\\n                    One of the most widely known building blocks of modern physics is Heisenberg’s indeterminacy principle. Among the different statements of this fundamental property of the full quantum mechanical nature of physical reality, the uncertainty relation for energy and time has a special place. Its interpretation and its consequences have inspired continued research efforts for almost a century. In its modern formulation, the uncertainty relation is understood as setting a fundamental bound on how fast any quantum system can evolve. In this topical review we describe important milestones, such as the Mandelstam–Tamm and the Margolus–Levitin bounds on the\\\\n                    <jats:italic>quantum speed limit</jats:italic>\\\\n                    , and summarise recent applications in a variety of current research fields—including quantum information theory, quantum computing, and quantum thermodynamics amongst several others. To bring order and to provide an access point into the many different notions and concepts, we have grouped the various approaches into the\\\\n                    <jats:italic>minimal time approach</jats:italic>\\\\n                    and the\\\\n                    <jats:italic>geometric approach</jats:italic>\\\\n                    , where the former relies on quantum control theory, and the latter arises from measuring the distinguishability of quantum states. Due to the volume of the literature, this topical review can only present a snapshot of the current state-of-the-art and can never be fully comprehensive. Therefore, we highlight but a few works hoping that our selection can serve as a representative starting point for the interested reader.\\\\n                  </jats:p>\\\", \\\"DOI\\\": \\\"10.1088/1751-8121/aa86c6\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2017, 8, 17]], \\\"date-time\\\": \\\"2017-08-17T08:00:28Z\\\", \\\"timestamp\\\": 1502956828000}, \\\"page\\\": \\\"453001\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1088/crossmark-policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 578, \\\"title\\\": [\\\"Quantum speed limits: from Heisenberg’s uncertainty principle to optimal quantum control\\\"], \\\"prefix\\\": \\\"10.1088\\\", \\\"volume\\\": \\\"50\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0003-0504-6932\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Sebastian\\\", \\\"family\\\": \\\"Deffner\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"University of Maryland Baltimore County\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-3427-9113\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Steve\\\", \\\"family\\\": \\\"Campbell\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Università degli Studi di Milano\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"266\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2017, 10, 10]]}, \\\"reference\\\": [{\\\"key\\\": \\\"aaa86c6bib001\\\", \\\"author\\\": \\\"Born\\\", \\\"year\\\": \\\"1971\\\", \\\"type\\\": \\\"book\\\"}, {\\\"key\\\": \\\"aaa86c6bib002\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"172\\\", \\\"DOI\\\": \\\"10.1007/BF01397280\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Über den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik\\\", \\\"volume\\\": \\\"43\\\", \\\"author\\\": \\\"Heisenberg\\\", \\\"year\\\": \\\"1927\\\", \\\"journal-title\\\": \\\"Z. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib003\\\", \\\"author\\\": \\\"Heisenberg\\\", \\\"year\\\": \\\"1944\\\", \\\"edition\\\": \\\"5th edn\\\", \\\"type\\\": \\\"book\\\"}, {\\\"key\\\": \\\"aaa86c6bib004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"580\\\", \\\"DOI\\\": \\\"10.1038/121580a0\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The quantum postulate and recent developments of atomic theory\\\", \\\"volume\\\": \\\"121\\\", \\\"author\\\": \\\"Bohr\\\", \\\"year\\\": \\\"1928\\\", \\\"journal-title\\\": \\\"Nature\\\"}, {\\\"key\\\": \\\"aaa86c6bib005\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"163\\\", \\\"DOI\\\": \\\"10.1103/PhysRev.34.163\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The uncertainty principle\\\", \\\"volume\\\": \\\"34\\\", \\\"author\\\": \\\"Robertson\\\", \\\"year\\\": \\\"1929\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"aaa86c6bib006\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1063/1.3062610\\\", \\\"type\\\": \\\"book\\\", \\\"author\\\": \\\"Dirac\\\", \\\"year\\\": \\\"1958\\\", \\\"edition\\\": \\\"4th end\\\"}, {\\\"key\\\": \\\"aaa86c6bib007\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1451\\\", \\\"DOI\\\": \\\"10.1119/1.18410\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The uncertainty principle for energy and time\\\", \\\"volume\\\": \\\"64\\\", \\\"author\\\": \\\"Hilgevoord\\\", \\\"year\\\": \\\"1996\\\", \\\"journal-title\\\": \\\"Am. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib008\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"396\\\", \\\"DOI\\\": \\\"10.1119/1.18880\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The uncertainty principle for energy and time. II\\\", \\\"volume\\\": \\\"66\\\", \\\"author\\\": \\\"Hilgevoord\\\", \\\"year\\\": \\\"1998\\\", \\\"journal-title\\\": \\\"Am. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib009\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"301\\\", \\\"DOI\\\": \\\"10.1119/1.1430697\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Time in quantum mechanics\\\", \\\"volume\\\": \\\"70\\\", \\\"author\\\": \\\"Hilgevoord\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Am. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib010\\\", \\\"first-page\\\": \\\"249\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The uncertainty relation between energy and time in nonrelativistic quantum mechanics\\\", \\\"volume\\\": \\\"9\\\", \\\"author\\\": \\\"Mandelstam\\\", \\\"year\\\": \\\"1945\\\", \\\"journal-title\\\": \\\"J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib011\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"2078\\\", \\\"DOI\\\": \\\"10.1103/PhysRevA.31.2078\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"New form of the time-energy uncertainty relation\\\", \\\"volume\\\": \\\"31\\\", \\\"author\\\": \\\"Gislason\\\", \\\"year\\\": \\\"1985\\\", \\\"journal-title\\\": \\\"Phys. Rev. A\\\"}, {\\\"key\\\": \\\"aaa86c6bib012\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"925\\\", \\\"DOI\\\": \\\"10.1007/BF00739034\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Uncertainty principle and uncertainty relations\\\", \\\"volume\\\": \\\"15\\\", \\\"author\\\": \\\"Uffink\\\", \\\"year\\\": \\\"1985\\\", \\\"journal-title\\\": \\\"Found. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib013\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"323\\\", \\\"DOI\\\": \\\"10.1007/BF01883638\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Uncertainty in prediction and in inference\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"Hilgevoord\\\", \\\"year\\\": \\\"1991\\\", \\\"journal-title\\\": \\\"Found. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib014\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"2991\\\", \\\"DOI\\\": \\\"10.1088/0305-4470/38/13/012\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"On survival probability of quantum states\\\", \\\"volume\\\": \\\"38\\\", \\\"author\\\": \\\"Luo\\\", \\\"year\\\": \\\"2005\\\", \\\"journal-title\\\": \\\"J. Phys. A: Math. Gen.\\\"}, {\\\"key\\\": \\\"aaa86c6bib015\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"673\\\", \\\"DOI\\\": \\\"10.1088/0143-0807/28/4/007\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Evolution time and energy uncertainty\\\", \\\"volume\\\": \\\"28\\\", \\\"author\\\": \\\"Boykin\\\", \\\"year\\\": \\\"2007\\\", \\\"journal-title\\\": \\\"Euro. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib016\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1420\\\", \\\"DOI\\\": \\\"10.1038/ncomms2383\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Motional averaging in a superconducting qubit\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"Li\\\", \\\"year\\\": \\\"2013\\\", \\\"journal-title\\\": \\\"Nat. Commun.\\\"}, {\\\"key\\\": \\\"aaa86c6bib017\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"359\\\", \\\"DOI\\\": \\\"10.1103/PhysRevD.7.359\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Time operators, partial stationarity, and the energy-time uncertainty relation\\\", \\\"volume\\\": \\\"7\\\", \\\"author\\\": \\\"Eberly\\\", \\\"year\\\": \\\"1973\\\", \\\"journal-title\\\": \\\"Phys. Rev. D\\\"}, {\\\"key\\\": \\\"aaa86c6bib018\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"933\\\", \\\"DOI\\\": \\\"10.1103/PhysRevA.50.933\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Derivation of the energy-time uncertainty relation\\\", \\\"volume\\\": \\\"50\\\", \\\"author\\\": \\\"Kobe\\\", \\\"year\\\": \\\"1994\\\", \\\"journal-title\\\": \\\"Phys. Rev. A\\\"}, {\\\"key\\\": \\\"aaa86c6bib019\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"935\\\", \\\"DOI\\\": \\\"10.1119/1.17368\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The rate of evolution of a quantum state\\\", \\\"volume\\\": \\\"61\\\", \\\"author\\\": \\\"Uffink\\\", \\\"year\\\": \\\"1993\\\", \\\"journal-title\\\": \\\"Am. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib020\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"983\\\", \\\"DOI\\\": \\\"10.1119/1.1503380\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"The standard deviation is not an adequate measure of quantum uncertainty\\\", \\\"volume\\\": \\\"70\\\", \\\"author\\\": \\\"Hilgevoord\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Am. J. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib021\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"467\\\", \\\"DOI\\\": \\\"10.1007/BF02650179\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Simulating physics with computers\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"Feynman\\\", \\\"year\\\": \\\"1982\\\", \\\"journal-title\\\": \\\"Int. J. Theor. Phys.\\\"}, {\\\"key\\\": \\\"aaa86c6bib022\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"45\\\", \\\"DOI\\\": \\\"10.1038/nature08812\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article-title\\\": \\\"Quantum computers\\\", \\\"volume\\\": \\\"464\\\", \\\"author\\\": \\\"Ladd\\\", \\\"year\\\": \\\"2010\\\", \\\"journal-title\\\": \\\"Nature\\\"}, {\\\"key\\\": \\\"aaa86c6bib023\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"188\\\", \\\"DOI\\\": \\\"10.1016/S0167-2789(98)00054-2\\\", \\\"type\\\": \\\"journal-article\\\", \\\"article\", \"excerpt_truncated\": true, \"source_sha256\": \"c95c264db78a1f6bca6b73ebeecfcdcb8576f0d523c1a6d1228605094096d715\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.13039/100000076\", \"doi:10.1088/1751-8121/aa86c6\", \"doi:10.1088/crossmark-policy\", \"doi:10.1007/bf01397280\", \"doi:10.1038/121580a0\", \"doi:10.1103/physrev.34.163\", \"doi:10.1063/1.3062610\", \"doi:10.1119/1.18410\", \"doi:10.1119/1.18880\", \"doi:10.1119/1.1430697\", \"doi:10.1103/physreva.31.2078\", \"doi:10.1007/bf00739034\"]}",
+      "id": "source-f6d3dcb00a664271",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1088%2F1751-8121%2Faa86c6",
+      "version": 94,
+      "time": "2026-09-25T11:54:38.212338+00:00"
+    },
+    "source-56da5aded3b24ccf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=physical+implementation+Szilard+engine+Landauer+principle+entropy+production&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-56da5aded3b24ccf",
+      "scope": "failed",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=physical+implementation+Szilard+engine+Landauer+principle+entropy+production&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 94,
+      "time": "2026-09-25T11:54:39.453230+00:00"
+    },
+    "source-3448825f7e474c4d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6106},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"cad54f27a7a84dc0850a0b3215c0a5ecb6515f9b52a6c3a4f678c50dcacd86ee\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-3448825f7e474c4d",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 94,
+      "time": "2026-09-25T11:54:41.851654+00:00"
+    },
+    "source-a306c4184e5e4951": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0d4f23fc0e4cecb3361448905d058310ddf9325b186c0b5f7055c0cc894743bc\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+      "id": "source-a306c4184e5e4951",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 94,
+      "time": "2026-09-25T11:54:42.640362+00:00"
+    },
+    "source-2778fe76e6ee4cce": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87086,\\\"wordcount\\\":7289,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-21T23:51:57Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d2d02db56c33925d2d982aa8a719fccc9ecff5c7d850c9b8938ad0e06a367723\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-2778fe76e6ee4cce",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 94,
+      "time": "2026-09-25T11:54:43.335390+00:00"
+    },
+    "source-c59f11b0eee84b8d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8967b9cad1fce22f5ccedadafa5428cceb409fb5d354e6a86943f17223153708\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c59f11b0eee84b8d",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 94,
+      "time": "2026-09-25T11:54:44.113234+00:00"
+    },
+    "r-32c53f78dbe84088": {
+      "actor": "runtime",
+      "content": "{\"base_version\":94,\"inherited_commitments\":[],\"invocation\":\"w-32c53f78dbe84088\",\"previous_head\":\"11404da22dc79388a1df9151064504fce9a0dd2020d399a8e43deac7b968bf43\",\"process_id\":2317,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-32c53f78dbe84088",
+      "source": "runtime:continuity",
+      "version": 94,
+      "time": "2026-09-25T11:54:46.146573+00:00"
     }
   },
   "journal": [
@@ -10321,6 +10383,12 @@
       "invocation": "w-8ced7449abd742a4",
       "title": "Investigating the Thermodynamic Cost of Information",
       "summary": "Focusing on the information-thermodynamics project, I am initiating targeted research to connect Szilard's engine with Landauer's principle. This aligns with the durable goal of understanding the physical implementation of information-theoretic resolutions to Maxwell's Demon."
+    },
+    {
+      "cycle": 95,
+      "invocation": "w-32c53f78dbe84088",
+      "title": "Investigating the Thermodynamic Cost of Information Processing",
+      "summary": "This cycle focuses on bridging the gap between theoretical models of information erasure and their physical implementations, specifically targeting the relationship between the Szilard engine and Landauer's principle within the information thermodynamics domain."
     }
   ],
   "posts": {
@@ -67818,6 +67886,429 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-32c53f78dbe84088": {
+      "base_version": 94,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 18085,
+        "delivered_request_chars": 45856,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 103487,
+        "working_set_chars": 3713
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-32c53f78dbe84088",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 94,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "info-thermo-maxwell-demon",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "visual-art-composition-and-expectation",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2317,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "121c26ab2f5b77737a00d75b4e2421dd1ce5e3e562a480eed5a0211df5e53593",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-e0d4e70d45164e4a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e0d4e70d45164e4a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ce27c81fea8449c9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ce27c81fea8449c9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c3bf2d46df6345bc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c3bf2d46df6345bc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cea0ccd4c5c14617"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cea0ccd4c5c14617",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-81cb04e2a92a41c3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-81cb04e2a92a41c3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f6d3dcb00a664271"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f6d3dcb00a664271",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-e0d4e70d45164e4a",
+          "source-ce27c81fea8449c9",
+          "source-c3bf2d46df6345bc",
+          "source-cea0ccd4c5c14617",
+          "source-81cb04e2a92a41c3",
+          "source-f6d3dcb00a664271"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 3,
+          "topic": "information_thermodynamics"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "information_thermodynamics",
+        "temporal": {
+          "anchor_seq": 2345,
+          "anchor_time": "2026-09-25T11:54:44.671685+00:00",
+          "anchor_version": 94,
+          "effective_seconds": 43642.196747
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 555.763133,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 43642.196747,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T11:54:44.671685+00:00",
+        "previous_anchor_time": "2026-09-25T11:45:28.908552+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 555.763133
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 18085,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3713,
+        "working_to_delivered_ratio": 0.2053
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "visual-art-composition-and-expectation",
+            "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+            "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          },
+          {
+            "id": "info-thermo-maxwell-demon",
+            "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+            "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+            "title": "Maxwell's Demon and Information Erasure"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-epistemology-mapping-01",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-b2790f66d7984cbe",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+            "title": "Initial Mapping of Epistemological Sources"
+          },
+          {
+            "id": "nb-epistemology-justification-001",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-fb2f23f9caf94381",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+            "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+          },
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          },
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+            "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T11:54:46.710334+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5462,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49949,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T11:55:08.012927+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -67842,14 +68333,14 @@
       "attention_topic": "information_thermodynamics",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-8ced7449abd742a4",
+      "invocation": "w-32c53f78dbe84088",
       "restored_topics": [],
       "selected_topic": "information_thermodynamics",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 3,
+      "accepted_streak": 4,
       "topic": "information_thermodynamics"
     }
   },
@@ -68627,39 +69118,32 @@
       "domain": "information_thermodynamics",
       "no_progress": 1,
       "routes": [
-        "api.openalex.org:discovery"
+        "api.openalex.org:discovery",
+        "api.crossref.org:source",
+        "api.semanticscholar.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1088/1751-8121/aa86c6",
-        "doi:10.1088/1751-8121/aa86c6/pdf",
-        "doi:10.1088/0034-4885/75/12/126001",
-        "doi:10.1088/0034-4885/75/12/126001/pdf",
-        "doi:10.1103/physrevlett.114.060602",
-        "doi:10.12743/quanta.v11i1.206",
-        "openalex:W2619071992",
-        "openalex:W2102277728",
-        "openalex:W1490935643",
-        "openalex:W4309529185"
+        "openalex:W4309529185",
+        "doi:10.13039/100000076",
+        "doi:10.1088/crossmark-policy",
+        "doi:10.1007/bf01397280",
+        "doi:10.1038/121580a0",
+        "doi:10.1103/physrev.34.163",
+        "doi:10.1063/1.3062610",
+        "doi:10.1119/1.18410",
+        "doi:10.1119/1.18880",
+        "doi:10.1119/1.1430697",
+        "doi:10.1103/physreva.31.2078",
+        "doi:10.1007/bf00739034"
       ],
       "last_receipt": {
-        "evidence": "source-f859f11041174875",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.1088/1751-8121/aa86c6",
-          "doi:10.1088/1751-8121/aa86c6/pdf",
-          "doi:10.1088/0034-4885/75/12/126001",
-          "doi:10.1088/0034-4885/75/12/126001/pdf",
-          "doi:10.1103/physrevlett.114.060602",
-          "doi:10.12743/quanta.v11i1.206",
-          "openalex:W2619071992",
-          "openalex:W2102277728",
-          "openalex:W1490935643",
-          "openalex:W4309529185"
-        ],
-        "research_id": "res-landauer-principle-validation",
-        "route": "api.openalex.org:discovery",
+        "evidence": "source-56da5aded3b24ccf",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
+        "research_id": "res-szilard-landauer-link",
+        "route": "api.semanticscholar.org:discovery",
         "stage": "discovery"
       }
     }
@@ -69985,8 +70469,19 @@
       "query": "physical implementation Szilard engine Landauer principle entropy production",
       "reason": "Connecting Szilard's engine directly to Landauer's principle is necessary to bridge the gap between abstract information-theoretic resolutions of Maxwell's Demon and physical entropy production.",
       "type": "research",
+      "status": "failed",
+      "created_by": "w-8ced7449abd742a4",
+      "evidence": "source-56da5aded3b24ccf"
+    },
+    "res-szilard-landauer-001": {
+      "domain": "information_thermodynamics",
+      "id": "res-szilard-landauer-001",
+      "project": "info-thermo-maxwell-demon",
+      "query": "Szilard engine Landauer principle physical implementation consensus",
+      "reason": "Current synthesis relies on general metadata. We need specific literature examining the mechanical connection between the Szilard cycle and physical entropy production to progress beyond provisional status.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-8ced7449abd742a4"
+      "created_by": "w-32c53f78dbe84088"
     }
   },
   "research_topics": [
@@ -70186,9 +70681,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T11:45:28.908552+00:00",
-    "anchor_version": 93,
-    "anchor_seq": 2329,
-    "effective_seconds": 43086.433614
+    "anchor_time": "2026-09-25T11:54:44.671685+00:00",
+    "anchor_version": 94,
+    "anchor_seq": 2345,
+    "effective_seconds": 43642.196747
   }
 }
