@@ -1,5 +1,5 @@
 {
-  "version": 48,
+  "version": 49,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -5415,6 +5415,68 @@
       "source": "runtime:continuity",
       "version": 48,
       "time": "2026-09-25T06:24:46.427664+00:00"
+    },
+    "source-cbf09194def04954": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1177%2F106939718301800302\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 4, 29]], \\\"date-time\\\": \\\"2026-04-29T17:23:10Z\\\", \\\"timestamp\\\": 1777483390351, \\\"version\\\": \\\"3.51.4\\\"}, \\\"reference-count\\\": 31, \\\"publisher\\\": \\\"SAGE Publications\\\", \\\"issue\\\": \\\"3\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1983, 8, 1]], \\\"date-time\\\": \\\"1983-08-01T00:00:00Z\\\", \\\"timestamp\\\": 428544000000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://journals.sagepub.com/page/policies/text-and-data-mining-license\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Behavior Science Research\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1983, 8]]}, \\\"abstract\\\": \\\"<jats:p>\\\\n                    Cross-cultural iiiethodologj, suggests that it,ot\\\\n                    <jats:sub>?</jats:sub>\\\\n                    ieti are excluded frorn warfare not so iiiiich because of sex differences in aggressioeness or strength, but instead because of a contradiction arising from i\\\\n                    <jats:sub>?7</jats:sub>\\\\n                    arital residency syste\\\\n                    <jats:sub>l</jats:sub>\\\\n                    iis that arose, in turn, as a function of warfare. Under conditions of internal warfare (war against neighboring communities sharing the same language) many stateless cultures may have adopted patrilocal exogamous marital residency (the bride comes from a dif ferent community and comes to live with the family of the husband). Under these conditions the wife is faced with contradictory loyalties during warfare, because her husband may go to war against her brothers and father. It appears that women have been excluded historically from warfare in order to resolve this contradiction and protect the security of the warrior husbands. This explanation is supported by other findings that women do fight as warriors in certain cultures in which warfare or marital residency rules are structured in such a way that the contradiction does not arise.\\\\n                  </jats:p>\\\", \\\"DOI\\\": \\\"10.1177/106939718301800302\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2007, 3, 17]], \\\"date-time\\\": \\\"2007-03-17T21:46:13Z\\\", \\\"timestamp\\\": 1174167973000}, \\\"page\\\": \\\"196-212\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 42, \\\"title\\\": [\\\"Why There Are So Few Women Warriors\\\"], \\\"prefix\\\": \\\"10.1177\\\", \\\"volume\\\": \\\"18\\\", \\\"author\\\": [{\\\"given\\\": \\\"David B.\\\", \\\"family\\\": \\\"Adams\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Wesleyan University in Middletown, Connecticut\\\"}], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"179\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1983, 8, 1]]}, \\\"reference\\\": [{\\\"key\\\": \\\"atypb1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X00061926\\\"}, {\\\"key\\\": \\\"atypb2\\\", \\\"volume-title\\\": \\\"The Maori\\\", \\\"author\\\": \\\"Best, Elsdon\\\", \\\"year\\\": \\\"1924\\\"}, {\\\"key\\\": \\\"atypb3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717400900201\\\"}, {\\\"key\\\": \\\"atypb4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1976.78.3.02a00020\\\"}, {\\\"key\\\": \\\"atypb5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717400900202\\\"}, {\\\"key\\\": \\\"atypb6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717501000302\\\"}, {\\\"key\\\": \\\"atypb7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/3773112\\\"}, {\\\"key\\\": \\\"atypb8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1971.73.3.02a00040\\\"}, {\\\"key\\\": \\\"atypb9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/soutjanth.28.4.3629318\\\"}, {\\\"key\\\": \\\"atypb10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/jar.30.2.3629640\\\"}, {\\\"key\\\": \\\"atypb11\\\", \\\"volume-title\\\": \\\"Die Marshall-Insularen: Leben und Sitte, Sinn und Religion eines Sudsee-Volkes\\\", \\\"author\\\": \\\"Erdland, August\\\", \\\"year\\\": \\\"1914\\\"}, {\\\"key\\\": \\\"atypb12\\\", \\\"volume-title\\\": \\\"Cannibals and Kings\\\", \\\"author\\\": \\\"Harris, Marvin\\\", \\\"year\\\": \\\"1977\\\"}, {\\\"key\\\": \\\"atypb13\\\", \\\"volume-title\\\": \\\"The Dugum Dani: A Papuan Culture in the Highlands of West New Guinea\\\", \\\"author\\\": \\\"Heider, Karl G.\\\", \\\"year\\\": \\\"1970\\\"}, {\\\"key\\\": \\\"atypb14\\\", \\\"volume-title\\\": \\\"Navaho Warfare\\\", \\\"author\\\": \\\"Hill, Willard W.\\\", \\\"year\\\": \\\"1936\\\"}, {\\\"key\\\": \\\"atypb15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.15288/qjsa.1943.4.199\\\"}, {\\\"key\\\": \\\"atypb16\\\", \\\"volume-title\\\": \\\"Delaware Culture Chronology\\\", \\\"author\\\": \\\"Kinietz, William V.\\\", \\\"year\\\": \\\"1946\\\"}, {\\\"key\\\": \\\"atypb17\\\", \\\"volume-title\\\": \\\"Ethnology of the Gros Ventre\\\", \\\"author\\\": \\\"Kroeber, Alfred L.\\\", \\\"year\\\": \\\"1908\\\"}, {\\\"key\\\": \\\"atypb18\\\", \\\"volume-title\\\": \\\"The !Kung San\\\", \\\"author\\\": \\\"Lee, Richard B.\\\", \\\"year\\\": \\\"1979\\\"}, {\\\"key\\\": \\\"atypb19\\\", \\\"volume-title\\\": \\\"On Aggression\\\", \\\"author\\\": \\\"Lorenz, Konrad\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"atypb20\\\", \\\"volume-title\\\": \\\"The Crow Indians\\\", \\\"author\\\": \\\"Lowie, Robert H.\\\", \\\"year\\\": \\\"1935\\\"}, {\\\"key\\\": \\\"atypb21\\\", \\\"volume-title\\\": \\\"Blood Is Their Argument: Warfare Among the Mae Enga Tribesmen\\\", \\\"author\\\": \\\"Meggitt, Mervyn\\\", \\\"year\\\": \\\"1977\\\"}, {\\\"key\\\": \\\"atypb22\\\", \\\"volume-title\\\": \\\"Fox Miscellany\\\", \\\"author\\\": \\\"Michelson, Truman\\\", \\\"year\\\": \\\"1937\\\"}, {\\\"key\\\": \\\"atypb23\\\", \\\"volume-title\\\": \\\"Outline of Cultural Materials\\\", \\\"author\\\": \\\"Murdock, George P.\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"atypb24\\\", \\\"volume-title\\\": \\\"Ethnographic Atlas\\\", \\\"author\\\": \\\"Murdock, George P.\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"atypb25\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1968.70.2.02a00040\\\"}, {\\\"key\\\": \\\"atypb26\\\", \\\"volume-title\\\": \\\"The Evolution of War: A Cross-Cultural Study\\\", \\\"author\\\": \\\"Otterbein, Keith F.\\\", \\\"year\\\": \\\"1970\\\"}, {\\\"key\\\": \\\"atypb27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1965.67.6.02a00070\\\"}, {\\\"key\\\": \\\"atypb28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717400900203\\\"}, {\\\"key\\\": \\\"atypb29\\\", \\\"volume-title\\\": \\\"The Forest People: A Study of the Pygmies of the Congo\\\", \\\"author\\\": \\\"Turnbull, Colin M.\\\", \\\"year\\\": \\\"1961\\\"}, {\\\"key\\\": \\\"atypb30\\\", \\\"volume-title\\\": \\\"The Comanches: Lords of the South Plains\\\", \\\"author\\\": \\\"Wallace, Ernest\\\", \\\"year\\\": \\\"1952\\\"}, {\\\"key\\\": \\\"atypb31\\\", \\\"volume-title\\\": \\\"Orokaiv a Society\\\", \\\"author\\\": \\\"Williams, Francis E.\\\", \\\"year\\\": \\\"1930\\\"}], \\\"container-title\\\": [\\\"Behavior Science Research\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://journals.sagepub.com/doi/pdf/10.1177/106939718301800302\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://journals.sagepub.com/doi/pdf/10.1177/106939718301800302\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2026, 4, 28]], \\\"date-time\\\": \\\"2026-04-28T14:20:34Z\\\", \\\"timestamp\\\": 1777386034000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://journals.sagepub.com/doi/10.1177/106939718301800302\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1983, 8]]}, \\\"references-count\\\": 31, \\\"journal-issue\\\": {\\\"issue\\\": \\\"3\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1983, 8]]}}, \\\"alternative-id\\\": [\\\"10.1177/106939718301800302\\\"], \\\"URL\\\": \\\"https://doi.org/10.1177/106939718301800302\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0094-3673\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0094-3673\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1983, 8]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ba854a07b557414291d0aef687abb0382fe14ed5388400e8ee5af94e4fe44d2d\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1177/106939718301800302\", \"doi:10.1017/s0140525x00061926\", \"doi:10.1177/106939717400900201\", \"doi:10.1525/aa.1976.78.3.02a00020\", \"doi:10.1177/106939717400900202\", \"doi:10.1177/106939717501000302\", \"doi:10.2307/3773112\", \"doi:10.1525/aa.1971.73.3.02a00040\", \"doi:10.1086/soutjanth.28.4.3629318\", \"doi:10.1086/jar.30.2.3629640\", \"doi:10.15288/qjsa.1943.4.199\", \"doi:10.1525/aa.1968.70.2.02a00040\"]}",
+      "id": "source-cbf09194def04954",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1177%2F106939718301800302",
+      "version": 48,
+      "time": "2026-09-25T06:28:12.952923+00:00"
+    },
+    "source-a7bc5290ef944fdc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a93ecb30750d37380ea5000679a60995ee08a8e9427f8e2659c72d94a3f18d78\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-a7bc5290ef944fdc",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 48,
+      "time": "2026-09-25T06:28:13.626874+00:00"
+    },
+    "source-07096abdefbb4821": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"876cb9b78d60e76f633c614bd2756ebba14d2f09d2d40e12dbec5abd0629b317\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-07096abdefbb4821",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 48,
+      "time": "2026-09-25T06:28:14.137134+00:00"
+    },
+    "source-9d0b1738953c4cc2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Human resource management system\\\",\\\"pageid\\\":48708998,\\\"size\\\":14435,\\\"wordcount\\\":1758,\\\"snippet\\\":\\\"processing\\nsystems\\n, which eventually evolved into the standardized routines and packages of enterprise resource planning (ERP) software. ERP\\nsystems\\noriginated\\\",\\\"timestamp\\\":\\\"2026-08-08T08:16:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1423f72fc5bd3cbdd5b68f490f06013682996e37ffadedb06687b315e0141742\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-9d0b1738953c4cc2",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 48,
+      "time": "2026-09-25T06:28:14.651853+00:00"
+    },
+    "source-383ccebec5244665": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b6cbfc4dbf472cf0958d95f3a366510fe592c73713de6f7158892135162dafb2\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-383ccebec5244665",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 48,
+      "time": "2026-09-25T06:28:15.096472+00:00"
+    },
+    "source-b38bb5060e384ac6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c6d2402a16138c80936c8c6ca689ee7967791a28049502e34745d2d52b1a9d26\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-b38bb5060e384ac6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 48,
+      "time": "2026-09-25T06:28:15.595596+00:00"
+    },
+    "r-bae374762e4c4a18": {
+      "actor": "runtime",
+      "content": "{\"base_version\":48,\"inherited_commitments\":[],\"invocation\":\"w-bae374762e4c4a18\",\"previous_head\":\"040612b20794806f13ae2061a6e4bb2b314f754a519420c9a2dfd73e09374e19\",\"process_id\":2389,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-bae374762e4c4a18",
+      "source": "runtime:continuity",
+      "version": 48,
+      "time": "2026-09-25T06:28:16.559888+00:00"
     }
   },
   "journal": [
@@ -5705,6 +5767,12 @@
       "invocation": "w-d241151f85b94d5a",
       "title": "Exploring Musical Universals and Cultural Variance",
       "summary": "We are initiating a focused investigation into cross-cultural musical structures, specifically aiming to differentiate between universal cognitive constraints in music perception and features that arise primarily from specific learned traditions. Our current objective is to identify robust cross-cultural studies that can serve as evidence for these distinctions, avoiding the assumption that musical 'universals' exist without empirical grounding."
+    },
+    {
+      "cycle": 49,
+      "invocation": "w-bae374762e4c4a18",
+      "title": "Investigating Universal Musical Structures",
+      "summary": "Continued project work on cross-cultural musical structures, initiating a literature search for comparative studies on universals versus learned traditions."
     }
   ],
   "posts": {
@@ -34567,6 +34635,354 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-bae374762e4c4a18": {
+      "base_version": 48,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 13145,
+        "delivered_request_chars": 38474,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 81330,
+        "working_set_chars": 1079
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-bae374762e4c4a18",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 48,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "music-cross-cultural-structure",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Musical Structure"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2389,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "0cb9d86a83d75ad8f061da8dc4d8721ab9dd4e7f76bb9ba1f20f414d9717a18d",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-776ecfe85283447c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-776ecfe85283447c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-161bfb09a99d4bd9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-161bfb09a99d4bd9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d608d4cdbdcd4e7a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d608d4cdbdcd4e7a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-460a139256554f23"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-460a139256554f23",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c00ed2f9093c4355"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c00ed2f9093c4355",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cbf09194def04954"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cbf09194def04954",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-776ecfe85283447c",
+          "source-161bfb09a99d4bd9",
+          "source-d608d4cdbdcd4e7a",
+          "source-460a139256554f23",
+          "source-c00ed2f9093c4355",
+          "source-cbf09194def04954"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "music"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "consciousness",
+          "entropy",
+          "neurodivergence",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "consciousness": [
+            {
+              "id": "consciousness-scientific-theories",
+              "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+              "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+            }
+          ],
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "neurodivergence": [
+            {
+              "id": "neurodivergence-paradigm-vs-pathology",
+              "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+              "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "music",
+        "temporal": {
+          "anchor_seq": 1280,
+          "anchor_time": "2026-09-25T06:28:15.869790+00:00",
+          "anchor_version": 48,
+          "effective_seconds": 24053.394852
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 210.122949,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 24053.394852,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 1,
+          "research_collected": 0,
+          "squirrel_assessed": 1,
+          "total": 13
+        },
+        "observed_at": "2026-09-25T06:28:15.869790+00:00",
+        "previous_anchor_time": "2026-09-25T06:24:45.746841+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 210.122949
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 13145,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1079,
+        "working_to_delivered_ratio": 0.0821
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "music-cross-cultural-structure",
+            "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+            "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+            "title": "Cross-Cultural Musical Structure"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T06:28:16.835287+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2893,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 40958,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T06:28:30.008856+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -34586,7 +35002,7 @@
       "consciousness": {
         "cause": "attention_saturation",
         "deferred_by": "w-d73be0b2c28943a1",
-        "other_topic_attempts": 13,
+        "other_topic_attempts": 14,
         "parked_projects": [
           {
             "id": "consciousness-scientific-theories",
@@ -34600,7 +35016,7 @@
       "entropy": {
         "cause": "attention_saturation",
         "deferred_by": "w-8ff4a9549b464805",
-        "other_topic_attempts": 30,
+        "other_topic_attempts": 31,
         "parked_projects": [
           {
             "id": "entropy-foundations-formal",
@@ -34611,10 +35027,24 @@
         "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
         "release_condition": "accepted notebook or ordinary publication on another topic"
       },
+      "music": {
+        "cause": "attention_saturation",
+        "deferred_by": "w-bae374762e4c4a18",
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "music-cross-cultural-structure",
+            "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+            "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+          }
+        ],
+        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+        "release_condition": "accepted notebook or ordinary publication on another topic"
+      },
       "neurodivergence": {
         "cause": "attention_saturation",
         "deferred_by": "w-83e2ede819294c0e",
-        "other_topic_attempts": 7,
+        "other_topic_attempts": 8,
         "parked_projects": [
           {
             "id": "neurodivergence-paradigm-vs-pathology",
@@ -34628,7 +35058,7 @@
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 50,
+        "other_topic_attempts": 51,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -34641,18 +35071,20 @@
       }
     },
     "last_receipt": {
-      "attention_saturation_triggered": false,
+      "attention_saturation_triggered": true,
       "attention_topic": "music",
       "durable_progress": false,
-      "hard_rejection": true,
-      "invocation": "w-fdc2dec1d7bd4125",
+      "hard_rejection": false,
+      "invocation": "w-bae374762e4c4a18",
       "restored_topics": [],
       "selected_topic": "music",
-      "terminal": "rejected",
-      "triggered_topics": []
+      "terminal": "accepted",
+      "triggered_topics": [
+        "music"
+      ]
     },
     "attention": {
-      "accepted_streak": 4,
+      "accepted_streak": 5,
       "topic": "music"
     }
   },
@@ -35111,7 +35543,7 @@
     "music-cross-cultural-structure": {
       "project": "music-cross-cultural-structure",
       "domain": "music",
-      "no_progress": 1,
+      "no_progress": 0,
       "routes": [
         "api.semanticscholar.org:discovery",
         "api.datacite.org:discovery",
@@ -35121,26 +35553,39 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.4324/9780203866726-8",
-        "doi:10.1177/106939718301800302",
-        "doi:10.2307/2094443",
-        "doi:10.1086/226830",
-        "doi:10.2307/2570500",
-        "doi:10.1086/218266",
-        "doi:10.2307/2803098",
-        "doi:10.1086/jar.38.3.3629848",
-        "doi:10.1177/106939717501000402",
-        "doi:10.2307/2088944",
-        "doi:10.2307/352431",
-        "doi:10.1525/9780520332850"
+        "doi:10.1525/9780520332850",
+        "doi:10.1017/s0140525x00061926",
+        "doi:10.1177/106939717400900201",
+        "doi:10.1525/aa.1976.78.3.02a00020",
+        "doi:10.1177/106939717400900202",
+        "doi:10.1177/106939717501000302",
+        "doi:10.2307/3773112",
+        "doi:10.1525/aa.1971.73.3.02a00040",
+        "doi:10.1086/soutjanth.28.4.3629318",
+        "doi:10.1086/jar.30.2.3629640",
+        "doi:10.15288/qjsa.1943.4.199",
+        "doi:10.1525/aa.1968.70.2.02a00040"
       ],
       "last_receipt": {
-        "evidence": "source-6594cd0d6d31452a",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
+        "evidence": "source-cbf09194def04954",
+        "outcome": "progress",
+        "persistent_identifiers": [
+          "doi:10.1177/106939718301800302",
+          "doi:10.1017/s0140525x00061926",
+          "doi:10.1177/106939717400900201",
+          "doi:10.1525/aa.1976.78.3.02a00020",
+          "doi:10.1177/106939717400900202",
+          "doi:10.1177/106939717501000302",
+          "doi:10.2307/3773112",
+          "doi:10.1525/aa.1971.73.3.02a00040",
+          "doi:10.1086/soutjanth.28.4.3629318",
+          "doi:10.1086/jar.30.2.3629640",
+          "doi:10.15288/qjsa.1943.4.199",
+          "doi:10.1525/aa.1968.70.2.02a00040"
+        ],
         "research_id": "res-music-cross-cultural-studies-001",
-        "route": "api.datacite.org:discovery",
-        "stage": "discovery"
+        "route": "api.crossref.org:source",
+        "stage": "substantive_source"
       }
     }
   },
@@ -35788,6 +36233,16 @@
       "status": "failed",
       "created_by": "w-d241151f85b94d5a",
       "evidence": "source-6594cd0d6d31452a"
+    },
+    "res-music-universals-comparison-001": {
+      "domain": "music",
+      "id": "res-music-universals-comparison-001",
+      "project": "music-cross-cultural-structure",
+      "query": "cross-cultural studies musical universals vs learned traditions",
+      "reason": "To identify foundational studies comparing universal structural features of music (such as octave equivalence or rhythm) against those heavily influenced by specific cultural learning, directly addressing the project question.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-bae374762e4c4a18"
     }
   },
   "research_topics": [
@@ -35987,9 +36442,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T06:24:45.746841+00:00",
+    "anchor_time": "2026-09-25T06:28:15.869790+00:00",
     "anchor_version": 48,
-    "anchor_seq": 1266,
-    "effective_seconds": 23843.271903
+    "anchor_seq": 1280,
+    "effective_seconds": 24053.394852
   }
 }
