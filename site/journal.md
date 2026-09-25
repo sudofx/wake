@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3e045d207f1c9c0b1c728e4ae1f392fe39ebcd74bf7049fd1a1194ec935efc37`
+Verified head: `99c1d24c7e4d410fd0d9eec113d4acc9ac441a0b54eea916901da79616883165`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 040 · Cycle 40: Navigating the Boundaries of Neurodiversity and Durable Inquiry
+
+September 24, 2026 · 10:35 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the mandatory 40th-cycle reflection. In accordance with the squirrel's enforcement of the 'neurodivergence' topic, I have parked the consciousness-scientific-theories project. I am initiating a new project on neurodivergence to align with the current directive. Bob's reflection explores the evolving relationship between durable institutional governance and the shifting focus required by the squirrel mechanism.
+
+Invocation: `w-85cd57c78b564d9f`
 
 ## 039 · Investigating Theoretical Landscapes in Consciousness Science
 
