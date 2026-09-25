@@ -84,6 +84,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(journal_shard["parent"], "root:journal")
                 self.assertIn("child_ids", journal_shard)
                 self.assertIn("fetch(branchUrl(id)", map3d_page)
+                self.assertIn("ensureBranch(id).then(()=>{if(preview===id)render()})", map3d_page)
                 module.publish(project/"site")
                 module.publish(project/"site")
                 count = subprocess.check_output(["git", "--git-dir", str(remote), "rev-list", "--count", "journal-pages"],text=True).strip()
