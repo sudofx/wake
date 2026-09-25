@@ -486,11 +486,25 @@ class ResearchTests(unittest.TestCase):
             bounded = self.engine.bounded_context(state, "r-test", working, 99999)
 
         self.assertEqual(bounded["project_evidence"], {})
+        # A metadata-only root must not trick bounded delivery into believing
+        # the source is readable. Rehydration upgrades the same durable ID with
+        # compact source content so synthesis can actually happen.
+        bounded["evidence"] = [{
+            "id": "qualifying-old",
+            "source": "https://api.crossref.org/works/10.1000/example",
+            "actor": "collector",
+            "scope": "collected",
+            "version": state["evidence"]["qualifying-old"]["version"],
+            "content_omitted": True,
+        }]
         recovered = self.engine.rehydrate_retrieval_context(
             state, bounded, retrieval, content_limit=900, max_records=1
         )
         visible = {item["id"] for item in recovered["evidence"]}
         self.assertIn("qualifying-old", visible)
+        materialized = next(item for item in recovered["evidence"] if item["id"] == "qualifying-old")
+        self.assertIn("content", materialized)
+        self.assertNotIn("content_omitted", materialized)
         self.assertIn("qualifying-old", recovered["retrieval_rehydration"]["evidence_ids"])
         self.assertIn("qualifying-old", recovered["project_evidence"]["p"])
         self.assertIn("p", recovered["synthesis_ready_projects"])
