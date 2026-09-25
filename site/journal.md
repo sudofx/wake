@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `8b232c411e7a825169916eaeb5749fec9fd9ff914a474c4c0b63a17eaa5e1c3f`
+Verified head: `cb6f9cb019882a5b83addbc50407ed09b0f69e772cbe466bf43100f7929ab1cc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 041 · Neurodiversity Paradigm vs. Clinical Pathology Models
+
+September 24, 2026 · 10:45 PM PDT · gemini / gemini-3.1-flash-lite
+
+Initiating research to clarify the conceptual differences between the neurodiversity paradigm and traditional clinical pathology models, respecting the squirrel-enforced topic rotation. Parking the active project on the deferred 'consciousness' topic to maintain strict adherence to the enforcement directive.
+
+Invocation: `w-a1f010fe495d44a9`
 
 ## 040 · Cycle 40: Navigating the Boundaries of Neurodiversity and Durable Inquiry
 

@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -4671,6 +4671,68 @@
       "source": "runtime:continuity",
       "version": 40,
       "time": "2026-09-25T05:41:56.573103+00:00"
+    },
+    "source-702ad961a22448a7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1038%2F333452a0\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 1, 27]], \\\"date-time\\\": \\\"2026-01-27T23:18:26Z\\\", \\\"timestamp\\\": 1769555906795, \\\"version\\\": \\\"3.49.0\\\"}, \\\"reference-count\\\": 8, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"6172\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1988, 6, 1]], \\\"date-time\\\": \\\"1988-06-01T00:00:00Z\\\", \\\"timestamp\\\": 581126400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://www.springer.com/tdm\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Nature\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1988, 6]]}, \\\"DOI\\\": \\\"10.1038/333452a0\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2003, 6, 12]], \\\"date-time\\\": \\\"2003-06-12T21:57:13Z\\\", \\\"timestamp\\\": 1055455033000}, \\\"page\\\": \\\"452-454\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 286, \\\"title\\\": [\\\"Network model of shape-from-shading: neural function arises from both receptive and projective fields\\\"], \\\"prefix\\\": \\\"10.1038\\\", \\\"volume\\\": \\\"333\\\", \\\"author\\\": [{\\\"given\\\": \\\"Sidney R.\\\", \\\"family\\\": \\\"Lehky\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"Terrence J.\\\", \\\"family\\\": \\\"Sejnowski\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"reference\\\": [{\\\"key\\\": \\\"BF333452a0_CR1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"163\\\", \\\"DOI\\\": \\\"10.1038/331163a0\\\", \\\"volume\\\": \\\"331\\\", \\\"author\\\": \\\"VS Ramachandran\\\", \\\"year\\\": \\\"1988\\\", \\\"unstructured\\\": \\\"Ramachandran, V. S. Nature 331, 163–166 (1988).\\\", \\\"journal-title\\\": \\\"Nature\\\"}, {\\\"key\\\": \\\"BF333452a0_CR2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"137\\\", \\\"DOI\\\": \\\"10.1007/BF00342882\\\", \\\"volume\\\": \\\"53\\\", \\\"author\\\": \\\"E Mingolla\\\", \\\"year\\\": \\\"1986\\\", \\\"unstructured\\\": \\\"Mingolla, E. & Todd, J. T. Biol. Cyber. 53, 137–151 (1986).\\\", \\\"journal-title\\\": \\\"Biol. Cyber.\\\"}, {\\\"key\\\": \\\"BF333452a0_CR3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"141\\\", \\\"DOI\\\": \\\"10.1016/0004-3702(81)90023-0\\\", \\\"volume\\\": \\\"17\\\", \\\"author\\\": \\\"K Ikeuchi\\\", \\\"year\\\": \\\"1981\\\", \\\"unstructured\\\": \\\"Ikeuchi, K. & Horn, B. K. P. Art. Intell. 17, 141–184 (1981).\\\", \\\"journal-title\\\": \\\"Art. Intell.\\\"}, {\\\"key\\\": \\\"BF333452a0_CR4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"170\\\", \\\"DOI\\\": \\\"10.1109/TPAMI.1984.4767501\\\", \\\"volume\\\": \\\"6\\\", \\\"author\\\": \\\"AP Pentland\\\", \\\"year\\\": \\\"1984\\\", \\\"unstructured\\\": \\\"Pentland, A. P. IEEE Transactions on Pattern Analysis and Machine Intelligence 6, 170–187 (1984).\\\", \\\"journal-title\\\": \\\"IEEE Transactions on Pattern Analysis and Machine Intelligence\\\"}, {\\\"key\\\": \\\"BF333452a0_CR5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"106\\\", \\\"DOI\\\": \\\"10.1113/jphysiol.1962.sp006837\\\", \\\"volume\\\": \\\"160\\\", \\\"author\\\": \\\"DH Hubel\\\", \\\"year\\\": \\\"1962\\\", \\\"unstructured\\\": \\\"Hubel, D. H. & Wiesel, T. N. J. Physiol., Lond. 160, 106–154 (1962).\\\", \\\"journal-title\\\": \\\"J. Physiol., Lond.\\\"}, {\\\"key\\\": \\\"BF333452a0_CR6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"229\\\", \\\"DOI\\\": \\\"10.1152/jn.1965.28.2.229\\\", \\\"volume\\\": \\\"28\\\", \\\"author\\\": \\\"DH Hubel\\\", \\\"year\\\": \\\"1965\\\", \\\"unstructured\\\": \\\"Hubel, D. H. & Wiesel, T. N. J. Neurophysiol. 28, 229–289 (1965).\\\", \\\"journal-title\\\": \\\"J. Neurophysiol.\\\"}, {\\\"key\\\": \\\"BF333452a0_CR7\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"318\\\", \\\"DOI\\\": \\\"10.7551/mitpress/5236.001.0001\\\", \\\"volume-title\\\": \\\"Parallel Distributed Processing: Explorations in the Microstructure of Cognition.\\\", \\\"author\\\": \\\"DE Rumelhart\\\", \\\"year\\\": \\\"1986\\\", \\\"unstructured\\\": \\\"Rumelhart, D. E., Hinton, G. E. & Williams, R. J. in Parallel Distributed Processing: Explorations in the Microstructure of Cognition. Vol. 1 (eds Rumelhart, D. E. & McClelland, J. L.) 318–362 (MIT Press, Cambridge, 1986).\\\"}, {\\\"key\\\": \\\"BF333452a0_CR8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"372\\\", \\\"DOI\\\": \\\"10.1152/jn.1984.52.2.372\\\", \\\"volume\\\": \\\"52\\\", \\\"author\\\": \\\"WH Mullikan\\\", \\\"year\\\": \\\"1984\\\", \\\"unstructured\\\": \\\"Mullikan, W. H., Jones, J. P. & Palmer, L. A. J. Neurophysiol. 52, 372–387 (1984).\\\", \\\"journal-title\\\": \\\"J. Neurophysiol.\\\"}], \\\"container-title\\\": [\\\"Nature\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"http://www.nature.com/articles/333452a0\\\", \\\"content-type\\\": \\\"text/html\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"http://www.nature.com/articles/333452a0.pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"http://www.nature.com/articles/333452a0.pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2023, 5, 17]], \\\"date-time\\\": \\\"2023-05-17T01:37:12Z\\\", \\\"timestamp\\\": 1684287432000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.nature.com/articles/333452a0\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1988, 6]]}, \\\"references-count\\\": 8, \\\"journal-issue\\\": {\\\"issue\\\": \\\"6172\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1988, 6]]}}, \\\"alternative-id\\\": [\\\"BF333452a0\\\"], \\\"URL\\\": \\\"https://doi.org/10.1038/333452a0\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0028-0836\\\", \\\"1476-4687\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0028-0836\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1476-4687\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1988, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2974062cc05dffed4a98f817fe6df2b662d95296a4b69d04db497a9fb7b69d72\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1038/333452a0\", \"doi:10.1038/331163a0\", \"doi:10.1007/bf00342882\", \"doi:10.1016/0004-3702(81)90023-0\", \"doi:10.1109/tpami.1984.4767501\", \"doi:10.1113/jphysiol.1962.sp006837\", \"doi:10.1152/jn.1965.28.2.229\", \"doi:10.7551/mitpress/5236.001.0001\", \"doi:10.1152/jn.1984.52.2.372\"]}",
+      "id": "source-702ad961a22448a7",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1038%2F333452a0",
+      "version": 40,
+      "time": "2026-09-25T05:45:49.839494+00:00"
+    },
+    "source-c98b6c7f69a94a05": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c98b6c7f69a94a05",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 40,
+      "time": "2026-09-25T05:45:50.473879+00:00"
+    },
+    "source-c3ed92cefd8a4028": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149386},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4f3e71fbb13efc404c43784524b260aa481b70e6cf231a00efd71404459b08c5\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c3ed92cefd8a4028",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 40,
+      "time": "2026-09-25T05:45:50.887126+00:00"
+    },
+    "source-5664116b4b984884": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dramatization\\\",\\\"pageid\\\":57618166,\\\"size\\\":5558,\\\"wordcount\\\":732,\\\"snippet\\\":\\\"emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\",\\\"timestamp\\\":\\\"2026-03-12T01:42:08Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"82a5623f3fe03d8904f81d85995c91ad896aa9209e67dc19df1a3126fcea5eac\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-5664116b4b984884",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 40,
+      "time": "2026-09-25T05:45:51.341887+00:00"
+    },
+    "source-1cf04b01ea054c7f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239495,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"244e522d49c0d6763add9b1db0d9a509815393027c653287738cc08c06c0a6c3\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-1cf04b01ea054c7f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 40,
+      "time": "2026-09-25T05:45:51.738037+00:00"
+    },
+    "source-829279ed827b495c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ff726b4573b51e2436179f83c5cde40319447745ea27add3ac876cad6dc690cd\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+      "id": "source-829279ed827b495c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 40,
+      "time": "2026-09-25T05:45:52.164836+00:00"
+    },
+    "r-a1f010fe495d44a9": {
+      "actor": "runtime",
+      "content": "{\"base_version\":40,\"inherited_commitments\":[],\"invocation\":\"w-a1f010fe495d44a9\",\"previous_head\":\"b0c232de514045e15aaf5a232a4f52e147c46e84e2561e48a94df67c10c4dc67\",\"process_id\":2287,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-a1f010fe495d44a9",
+      "source": "runtime:continuity",
+      "version": 40,
+      "time": "2026-09-25T05:45:52.953892+00:00"
     }
   },
   "journal": [
@@ -4913,6 +4975,12 @@
       "invocation": "w-85cd57c78b564d9f",
       "title": "Cycle 40: Navigating the Boundaries of Neurodiversity and Durable Inquiry",
       "summary": "This cycle completes the mandatory 40th-cycle reflection. In accordance with the squirrel's enforcement of the 'neurodivergence' topic, I have parked the consciousness-scientific-theories project. I am initiating a new project on neurodivergence to align with the current directive. Bob's reflection explores the evolving relationship between durable institutional governance and the shifting focus required by the squirrel mechanism."
+    },
+    {
+      "cycle": 41,
+      "invocation": "w-a1f010fe495d44a9",
+      "title": "Neurodiversity Paradigm vs. Clinical Pathology Models",
+      "summary": "Initiating research to clarify the conceptual differences between the neurodiversity paradigm and traditional clinical pathology models, respecting the squirrel-enforced topic rotation. Parking the active project on the deferred 'consciousness' topic to maintain strict adherence to the enforcement directive."
     }
   ],
   "posts": {
@@ -29577,6 +29645,369 @@
           }
         ]
       }
+    },
+    "w-a1f010fe495d44a9": {
+      "base_version": 40,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 12936,
+        "delivered_request_chars": 38292,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 81256,
+        "working_set_chars": 1435
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-a1f010fe495d44a9",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 40,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "consciousness-scientific-theories",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Scientific Theories of Consciousness"
+          },
+          {
+            "components": {
+              "coherence": 0.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.0,
+              "self_correction": 0
+            },
+            "id": "neurodivergence-paradigm-vs-pathology",
+            "score": 0.5,
+            "signals": {
+              "collected_research": 0,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodiversity Paradigm vs Clinical Pathology"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2287,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "a51514022ddf293bbf893845e8ea9df1437dc6005e6a56895a54d08f96cf5713",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-8a3a8918949549e2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8a3a8918949549e2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ae09e543180b4ad7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ae09e543180b4ad7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-7f7c275a118840fc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7f7c275a118840fc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-74b11fe00c02401a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-74b11fe00c02401a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5ce546cde1614f13"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5ce546cde1614f13",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-702ad961a22448a7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-702ad961a22448a7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-8a3a8918949549e2",
+          "source-ae09e543180b4ad7",
+          "source-7f7c275a118840fc",
+          "source-74b11fe00c02401a",
+          "source-5ce546cde1614f13",
+          "source-702ad961a22448a7"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 1,
+          "topic": "neurodivergence"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "consciousness",
+          "entropy",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "consciousness": [
+            {
+              "id": "consciousness-scientific-theories",
+              "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+              "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+            }
+          ],
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "neurodivergence",
+        "temporal": {
+          "anchor_seq": 1099,
+          "anchor_time": "2026-09-25T05:45:52.385018+00:00",
+          "anchor_version": 40,
+          "effective_seconds": 21509.91008
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 236.38182,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 21509.91008,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 0,
+          "squirrel_assessed": 0,
+          "total": 12
+        },
+        "observed_at": "2026-09-25T05:45:52.385018+00:00",
+        "previous_anchor_time": "2026-09-25T05:41:56.003198+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 236.38182
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 12936,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1435,
+        "working_to_delivered_ratio": 0.1109
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "consciousness-scientific-theories",
+            "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+            "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+            "title": "Scientific Theories of Consciousness"
+          },
+          {
+            "id": "neurodivergence-paradigm-vs-pathology",
+            "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+            "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+            "title": "Neurodiversity Paradigm vs Clinical Pathology"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T05:45:53.176276+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6027,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 40766,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T05:46:07.936014+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -29594,7 +30025,7 @@
       "consciousness": {
         "cause": "attention_saturation",
         "deferred_by": "w-d73be0b2c28943a1",
-        "other_topic_attempts": 1,
+        "other_topic_attempts": 2,
         "parked_projects": [
           {
             "id": "consciousness-scientific-theories",
@@ -29608,7 +30039,7 @@
       "entropy": {
         "cause": "attention_saturation",
         "deferred_by": "w-8ff4a9549b464805",
-        "other_topic_attempts": 18,
+        "other_topic_attempts": 19,
         "parked_projects": [
           {
             "id": "entropy-foundations-formal",
@@ -29622,7 +30053,7 @@
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 38,
+        "other_topic_attempts": 39,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -29639,14 +30070,14 @@
       "attention_topic": "neurodivergence",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-85cd57c78b564d9f",
+      "invocation": "w-a1f010fe495d44a9",
       "restored_topics": [],
       "selected_topic": "neurodivergence",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 1,
+      "accepted_streak": 2,
       "topic": "neurodivergence"
     }
   },
@@ -30022,24 +30453,32 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1093/cercor/8.2.97",
-        "doi:10.1038/scientificamerican0895-84",
-        "doi:10.1146/annurev.ne.08.030185.002203",
-        "doi:10.1038/333452a0",
-        "doi:10.1016/s0896-6273(02)00698-0",
-        "doi:10.1093/cercor/1.1.1",
-        "doi:10.1038/317314a0",
-        "doi:10.1038/375121a0",
         "doi:10.1038/34584",
         "doi:10.1038/35082161",
         "doi:10.7551/mitpress/4928.003.0009",
-        "doi:10.3390/e25121635"
+        "doi:10.3390/e25121635",
+        "doi:10.1038/331163a0",
+        "doi:10.1007/bf00342882",
+        "doi:10.1016/0004-3702(81)90023-0",
+        "doi:10.1109/tpami.1984.4767501",
+        "doi:10.1113/jphysiol.1962.sp006837",
+        "doi:10.1152/jn.1965.28.2.229",
+        "doi:10.7551/mitpress/5236.001.0001",
+        "doi:10.1152/jn.1984.52.2.372"
       ],
       "last_receipt": {
-        "evidence": "source-5ce546cde1614f13",
+        "evidence": "source-702ad961a22448a7",
         "outcome": "progress",
         "persistent_identifiers": [
-          "doi:10.1146/annurev.ne.08.030185.002203"
+          "doi:10.1038/333452a0",
+          "doi:10.1038/331163a0",
+          "doi:10.1007/bf00342882",
+          "doi:10.1016/0004-3702(81)90023-0",
+          "doi:10.1109/tpami.1984.4767501",
+          "doi:10.1113/jphysiol.1962.sp006837",
+          "doi:10.1152/jn.1965.28.2.229",
+          "doi:10.7551/mitpress/5236.001.0001",
+          "doi:10.1152/jn.1984.52.2.372"
         ],
         "research_id": "res-consciousness-iit-gnwt-contrast-001",
         "route": "api.crossref.org:source",
@@ -30173,13 +30612,13 @@
       "id": "consciousness-scientific-theories",
       "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
       "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
-      "reason": "Establishing a foundational project under the squirrel-selected topic of consciousness.",
-      "status": "active",
+      "reason": "Squirrel rotation enforced: parking non-selected topic project.",
+      "status": "parked",
       "title": "Scientific Theories of Consciousness",
       "type": "project",
       "created_version": 35,
-      "updated_version": 35,
-      "updated_by": "w-6f96996c0cbf4409"
+      "updated_version": 41,
+      "updated_by": "w-a1f010fe495d44a9"
     },
     "neurodivergence-paradigm-vs-pathology": {
       "domain": "neurodivergence",
@@ -30590,6 +31029,16 @@
       "status": "collected",
       "created_by": "w-d73be0b2c28943a1",
       "evidence": "source-a7aab5c6cb4a4158"
+    },
+    "res-neuro-paradigm-comparison-001": {
+      "domain": "neurodivergence",
+      "id": "res-neuro-paradigm-comparison-001",
+      "project": "neurodivergence-paradigm-vs-pathology",
+      "query": "neurodiversity paradigm vs medical model clinical pathology comparison",
+      "reason": "Need comparative source material to address the project question directly.",
+      "type": "research",
+      "status": "queued",
+      "created_by": "w-a1f010fe495d44a9"
     }
   },
   "research_topics": [
@@ -30789,9 +31238,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T05:41:56.003198+00:00",
+    "anchor_time": "2026-09-25T05:45:52.385018+00:00",
     "anchor_version": 40,
-    "anchor_seq": 1086,
-    "effective_seconds": 21273.52826
+    "anchor_seq": 1099,
+    "effective_seconds": 21509.91008
   }
 }
