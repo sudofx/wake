@@ -488,6 +488,101 @@ class Engine:
 
         return working
 
+    def bob_reflection_history(self, state):
+        """Return a compact longitudinal window for a due Bob milestone.
+
+        A reflection is editorial synthesis, not research evidence. Under context
+        pressure Bob still needs enough durable history to notice change across
+        wakes rather than paraphrasing the current snapshot.
+        """
+        milestone = bob_reflection_due_cycle(state)
+        if milestone is None:
+            return None
+
+        def excerpt(value, limit):
+            value = str(value or "")
+            return value if len(value) <= limit else value[:limit - 1] + "…"
+
+        previous_reflection = None
+        for post in reversed(list(state.get("posts", {}).values())):
+            declared = post.get("reflection_cycle")
+            created = post.get("created_version")
+            if (type(declared) is int and declared > 0) or (
+                type(created) is int and created > 0 and created % 10 == 0
+            ):
+                previous_reflection = {
+                    "id": post.get("id"),
+                    "reflection_cycle": declared or created,
+                    "title": excerpt(post.get("title"), 180),
+                    "lede": excerpt(post.get("lede"), 320),
+                    "body_excerpt": excerpt(post.get("body"), 1000),
+                    "lens": excerpt(post.get("lens"), 400),
+                }
+                break
+
+        acquisitions = []
+        for project_id, summary in state.get("acquisition", {}).items():
+            if not (summary.get("no_progress") or summary.get("capability_blocked")):
+                continue
+            receipt = summary.get("last_receipt") or {}
+            acquisitions.append({
+                "project": project_id,
+                "no_progress": summary.get("no_progress", 0),
+                "capability_blocked": bool(summary.get("capability_blocked")),
+                "retry_after_version": summary.get("retry_after_version"),
+                "last_outcome": receipt.get("outcome") or receipt.get("status"),
+                "last_reason": excerpt(receipt.get("reason"), 260),
+            })
+
+        return {
+            "milestone": milestone,
+            "accepted_wakes": [
+                {
+                    "cycle": item.get("cycle"),
+                    "invocation": item.get("invocation"),
+                    "title": excerpt(item.get("title"), 180),
+                    "summary": excerpt(item.get("summary"), 520),
+                }
+                for item in state.get("journal", [])[-10:]
+            ],
+            "projects": [
+                {
+                    "id": project.get("id"),
+                    "title": excerpt(project.get("title"), 160),
+                    "domain": project.get("domain"),
+                    "status": project.get("status"),
+                    "next_step": excerpt(project.get("next_step"), 260),
+                }
+                for project in list(state.get("projects", {}).values())[-8:]
+            ],
+            "research": [
+                {
+                    "id": item.get("id"),
+                    "project": item.get("project"),
+                    "domain": item.get("domain"),
+                    "status": item.get("status"),
+                    "query": excerpt(item.get("query"), 220),
+                }
+                for item in list(state.get("research", {}).values())[-10:]
+            ],
+            "notebooks": [
+                {
+                    "id": item.get("id"),
+                    "project": item.get("project"),
+                    "title": excerpt(item.get("title"), 160),
+                    "summary": excerpt(item.get("summary"), 360),
+                    "revision": item.get("revision"),
+                }
+                for item in list(state.get("notebooks", {}).values())[-6:]
+            ],
+            "acquisition_friction": acquisitions[-8:],
+            "previous_reflection": previous_reflection,
+            "boundary": (
+                "Compact editorial history for Bob's milestone reflection. "
+                "It describes the durable journey but does not qualify as research evidence."
+            ),
+        }
+
     def bounded_context(self, state, receipt, working_set, rich_context_chars):
         """Make the deterministic working set the provider view under pressure.
 
@@ -583,6 +678,7 @@ class Engine:
                 "editorial_notes": [],
                 "bob_reflection_cycle": bob_reflection_due_cycle(state),
                 "bob_reflection_due": bob_reflection_due_cycle(state) is not None,
+                "reflection_history": self.bob_reflection_history(state),
                 "project_evidence": {},
                 "representation_recovery": recovery,
             })
@@ -847,6 +943,9 @@ class Engine:
             # state.version is the accepted-cycle count before the pending wake.
             context["bob_reflection_cycle"] = bob_reflection_due_cycle(state)
             context["bob_reflection_due"] = context["bob_reflection_cycle"] is not None
+            context["reflection_history"] = (
+                self.bob_reflection_history(state) if context["bob_reflection_due"] else None
+            )
             # Source-controlled operator review notes are editorial context, not research evidence.
             # They can flag prior public wording for reconsideration without rewriting history.
             context["editorial_notes"] = list(self.config.get("editorial_notes", []))
