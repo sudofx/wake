@@ -5,7 +5,7 @@
 **Version:** 112  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `3dea9863d3c8baa32c4bcefbc7e0186be090f553fe87cf6e958347e1c0b02556`
+**Verified head:** `83bb66080d841c36daef744387cdbdfef90b6ab9d421a67dbf179cdf253d126f`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1518,35 +1518,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1101/2021.11.05.467433",
-    "doi:10.15223/policy-017",
-    "doi:10.15223/policy-037",
-    "doi:10.15223/policy-012",
-    "doi:10.15223/policy-029",
-    "doi:10.15223/policy-004",
-    "doi:10.13039/501100000265",
-    "doi:10.13039/501100000780",
-    "doi:10.13039/100000015",
-    "doi:10.13039/100010269",
-    "doi:10.1016/elsevier_cm_policy",
-    "doi:10.1016/j.mrfmmm.2007.01.010_bib1"
+    "doi:10.1016/j.mrfmmm.2007.01.010_bib1",
+    "doi:10.1126/science.1174276",
+    "doi:10.1073/pnas.1216128109",
+    "doi:10.1007/s11295-017-1224-y",
+    "doi:10.1126/science.1252136",
+    "doi:10.2307/2408260",
+    "doi:10.1098/rstb.2011.0256",
+    "doi:10.1146/annurev.ecolsys.38.091206.095622",
+    "doi:10.1111/j.1558-5646.2009.00622.x",
+    "doi:10.1086/695136",
+    "doi:10.1098/rstb.2019.0528",
+    "doi:10.1093/genetics/83.4.867"
   ],
   "last_receipt": {
-    "evidence": "source-96559d2fcdf046e8",
+    "evidence": "source-16416e2262024f84",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.15223/policy-017",
-      "doi:10.15223/policy-037",
-      "doi:10.15223/policy-012",
-      "doi:10.15223/policy-029",
-      "doi:10.15223/policy-004",
-      "doi:10.13039/501100000265",
-      "doi:10.13039/501100000780",
-      "doi:10.13039/100000015",
-      "doi:10.13039/100010269",
-      "doi:10.1016/j.mrfmmm.2007.01.010",
-      "doi:10.1016/elsevier_cm_policy",
-      "doi:10.1016/j.mrfmmm.2007.01.010_bib1"
+      "doi:10.1101/2021.11.05.467433",
+      "doi:10.1126/science.1174276",
+      "doi:10.1073/pnas.1216128109",
+      "doi:10.1007/s11295-017-1224-y",
+      "doi:10.1126/science.1252136",
+      "doi:10.2307/2408260",
+      "doi:10.1098/rstb.2011.0256",
+      "doi:10.1146/annurev.ecolsys.38.091206.095622",
+      "doi:10.1111/j.1558-5646.2009.00622.x",
+      "doi:10.1086/695136",
+      "doi:10.1098/rstb.2019.0528",
+      "doi:10.1093/genetics/83.4.867"
     ],
     "research_id": "res-evo-mechanisms-diff-001",
     "route": "api.crossref.org:source",
@@ -1568,7 +1568,7 @@ _None recorded._
   "consciousness": 1,
   "dance": 1,
   "endocrinology": 1,
-  "entropy": 2,
+  "entropy": 3,
   "epistemology": 0,
   "evolutionary_biology": 7,
   "information_thermodynamics": 0,
@@ -1588,7 +1588,7 @@ _None recorded._
     "cause": "hard_rejection",
     "deferred_by": "w-10640175e87545fe",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "evo-bio-mechanisms-distinction",
@@ -1606,16 +1606,14 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "evolutionary_biology",
+  "attention_topic": "entropy",
   "durable_progress": false,
   "hard_rejection": true,
-  "invocation": "w-10640175e87545fe",
+  "invocation": "w-d768934de1b6409e",
   "restored_topics": [],
-  "selected_topic": "evolutionary_biology",
+  "selected_topic": "entropy",
   "terminal": "rejected",
-  "triggered_topics": [
-    "evolutionary_biology"
-  ]
+  "triggered_topics": []
 }
 ```
 
@@ -92341,6 +92339,520 @@ _None recorded._
 }
 ```
 
+### `w-d768934de1b6409e`
+
+```json
+{
+  "base_version": 112,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 20685,
+    "delivered_request_chars": 46936,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4523,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 103782,
+    "working_set_chars": 3806
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-d768934de1b6409e",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 112,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "prime-numbers-distribution",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 6,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Distribution of Prime Numbers"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "evo-bio-mechanisms-distinction",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Distinguishing Evolutionary Mechanisms"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2252,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "0924a5206e8af70cb6c0c5ac5ddf31b184cf9d1f9f0b0d94f12f737f3af29d75",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-4aa09e99fe3c46b3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4aa09e99fe3c46b3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9d6c79b1eb374049"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9d6c79b1eb374049",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f5c2b53518804dc8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f5c2b53518804dc8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ffb6345e55b04646"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ffb6345e55b04646",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-96559d2fcdf046e8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-96559d2fcdf046e8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-16416e2262024f84"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-16416e2262024f84",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-4aa09e99fe3c46b3",
+      "source-9d6c79b1eb374049",
+      "source-f5c2b53518804dc8",
+      "source-ffb6345e55b04646",
+      "source-96559d2fcdf046e8",
+      "source-16416e2262024f84"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.483,
+    "context_build_ms": 84.463,
+    "load_ms": 735.568,
+    "receipt_ms": 450.855,
+    "start_total_before_record_ms": 2359.176,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 703.238,
+      "cached_loads": 0,
+      "event_count": 3238,
+      "full_replays": 11,
+      "replay_ms": 5334.311,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1082.725
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "evolutionary_biology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "evolutionary_biology": [
+        {
+          "id": "evo-bio-mechanisms-distinction",
+          "next_step": "Search for literature regarding the criteria and methodologies used to differentiate these four evolutionary drivers.",
+          "question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological traits?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "entropy",
+    "temporal": {
+      "anchor_seq": 3237,
+      "anchor_time": "2026-09-25T23:48:30.449056+00:00",
+      "anchor_version": 112,
+      "effective_seconds": 86467.974118
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-d768934de1b6409e",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "prime_numbers",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 405.643924,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 86467.974118,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T23:48:30.449056+00:00",
+    "previous_anchor_time": "2026-09-25T23:41:44.805132+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 405.643924
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20685,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3806,
+    "working_to_delivered_ratio": 0.184
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "id": "prime-numbers-distribution",
+        "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Distribution of Prime Numbers"
+      },
+      {
+        "id": "evo-bio-mechanisms-distinction",
+        "next_step": "Search for literature regarding the criteria and methodologies used to differentiate these four evolutionary drivers.",
+        "question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological traits?",
+        "title": "Distinguishing Evolutionary Mechanisms"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "revision": 2,
+        "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+        "title": "Provisional Synthesis: Composition and Observer Expectation"
+      },
+      {
+        "id": "nb-info-thermo-demon-001",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+        "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+      },
+      {
+        "id": "nb-dance-structural-001",
+        "project": "dance-movement-structural-constraints",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 1,
+        "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+        "title": "Provisional Synthesis: Structural Constraints in Dance"
+      },
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-25T23:48:32.151914+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2813,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50929,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T23:48:54.926409+00:00",
+  "reason": "Squirrel rotation requires substantive work on entropy; unknown remains deferred for this shift",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -113777,6 +114289,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 112,
   "time": "2026-09-25T23:41:46.055732+00:00"
+}
+```
+
+### `source-16416e2262024f84`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1101%2F2021.11.05.467433\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"institution\\\": [{\\\"name\\\": \\\"bioRxiv\\\"}], \\\"indexed\\\": {\\\"date-parts\\\": [[2026, 1, 15]], \\\"date-time\\\": \\\"2026-01-15T17:38:13Z\\\", \\\"timestamp\\\": 1768498693179, \\\"version\\\": \\\"3.49.0\\\"}, \\\"posted\\\": {\\\"date-parts\\\": [[2021, 11, 5]]}, \\\"group-title\\\": \\\"Evolutionary Biology\\\", \\\"reference-count\\\": 55, \\\"publisher\\\": \\\"openRxiv\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"accepted\\\": {\\\"date-parts\\\": [[2022, 7, 3]]}, \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                <jats:p>\\\\n                  This paper considers how polygenic local adaptation and reproductive isolation between hybridizing populations is influenced by linkage disequilibria (LD) between loci, in scenarios where both gene flow and genetic drift counteract selection. It shows that the combined effects of multi-locus LD and genetic drift on allele frequencies at selected loci and on heterozygosity at neutral loci are predicted accurately by incorporating (deterministic) effective migration rates into the diffusion approximation (for selected loci) and into the structured coalescent (for neutral loci). Theoretical approximations are tested against individual-based simulations and used to investigate conditions for the maintenance of local adaptation on an island subject to one-way migration from a differently adapted mainland, and in an infinite-island population with two habitats under divergent selection. The analysis clarifies the conditions under which LD between sets of locally deleterious alleles allows these to be collectively eliminated despite drift, causing sharper and (under certain conditions) shifted migration thresholds for loss of adaptation. Local adaptation also has counter-intuitive effects on neutral (relative) divergence:\\\\n                  <jats:italic>F</jats:italic>\\\\n                  <jats:sub>\\\\n                    <jats:italic>ST</jats:italic>\\\\n                  </jats:sub>\\\\n                  is highest for a pair of subpopulations belonging to the same (rare) habitat, despite the lack of reproductive isolation between them.\\\\n                </jats:p>\\\\n                <jats:sec>\\\\n                  <jats:title>Author summary</jats:title>\\\\n                  <jats:p>\\\\n                    Environmental adaptation often involves spatially heterogeneous selection at many genetic loci. Thus, the evolutionary consequences of hybridisation between populations adapted to different environments depend on the\\\\n                    <jats:italic>coupled</jats:italic>\\\\n                    dynamics of multiple loci under selection, migration and genetic drift, making them challenging to predict. Here, I introduce theoretical approximations that accurately capture the effect of such coupling on allele frequencies at individual loci, while also accounting for the stochastic effects of genetic drift. I then use these approximations to study hybridisation in a metapopulation consisting of many interconnected subpopulations, where each subpopulation belongs to one of two habitats under divergent selection. The analysis clarifies how subpopulations belonging to a rare habitat can maintain local adaptation despite high levels of migration if net selection against multi-locus genotypes is stronger than a threshold which depends on the relative abundances of the two habitats. Further, local adaptation in a metapopulation can significantly elevate\\\\n                    <jats:italic>F</jats:italic>\\\\n                    <jats:sub>\\\\n                      <jats:italic>ST</jats:italic>\\\\n                    </jats:sub>\\\\n                    between subpopulations belonging to the same habitat, even though these are not reproductively isolated. These findings highlight the importance of carefully considering the genetic architecture and spatial context of divergence when interpreting patterns of genomic differentiation between speciating populations.\\\\n                  </jats:p>\\\\n                </jats:sec>\\\", \\\"DOI\\\": \\\"10.1101/2021.11.05.467433\\\", \\\"type\\\": \\\"posted-content\\\", \\\"created\\\": {\\\"date-parts\\\": [[2021, 11, 5]], \\\"date-time\\\": \\\"2021-11-05T12:50:13Z\\\", \\\"timestamp\\\": 1636116613000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Reproductive isolation via polygenic local adaptation in sub-divided populations: effect of linkage disequilibria and drift\\\"], \\\"prefix\\\": \\\"10.64898\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-6667-7423\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Himani\\\", \\\"family\\\": \\\"Sachdeva\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"54368\\\", \\\"reference\\\": [{\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1174276\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.1216128109\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.3\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Lind, B. M. , M. Menon , C. E. Bolte , T. M. Faske , and A. J. Eckert . 2018. The genomics of local adaptation in trees: are we out of the woods yet? Tree Genetics and Genomes 14.\\\", \\\"DOI\\\": \\\"10.1007/s11295-017-1224-y\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1252136\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2408260\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rstb.2011.0256\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1146/annurev.ecolsys.38.091206.095622\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2009.00622.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/695136\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rstb.2019.0528\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.11\\\", \\\"unstructured\\\": \\\"Bengtsson, B. O. 1985. The flow of genes through a genetic barrier. Pages 31–42 Cambridge University Press Cambridge; New York.\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.12\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"867\\\", \\\"DOI\\\": \\\"10.1093/genetics/83.4.867\\\", \\\"article-title\\\": \\\"Clines with variable migration\\\", \\\"volume\\\": \\\"83\\\", \\\"year\\\": \\\"1976\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1986.135\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rstb.2011.0260\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0040-5809(74)90022-7\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.16\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"787\\\", \\\"DOI\\\": \\\"10.1093/genetics/81.4.787\\\", \\\"article-title\\\": \\\"Gene flow and selection in a two-locus system\\\", \\\"volume\\\": \\\"81\\\", \\\"year\\\": \\\"1975\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tpb.2011.07.002\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.18\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"43\\\", \\\"DOI\\\": \\\"10.1016/j.tpb.2014.10.006\\\", \\\"article-title\\\": \\\"Clines in quantitative traits: The role of migration patterns and selection scenarios\\\", \\\"volume\\\": \\\"99\\\", \\\"year\\\": \\\"2015\\\", \\\"journal-title\\\": \\\"Theoretical Population Biology\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2009.00943.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/evo.12055\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/jhered/esu038\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.22\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"0001\\\", \\\"DOI\\\": \\\"10.1038/s41559-016-0001\\\", \\\"article-title\\\": \\\"Tipping points in the dynamics of speciation\\\", \\\"volume\\\": \\\"1\\\", \\\"year\\\": \\\"2017\\\", \\\"journal-title\\\": \\\"Nat Ecol Evol\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2011.01277.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300010156\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.25\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1365-294X.2012.05479.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.26\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/682405\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.23.6.307\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0040-5809(83)90020-5\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672397002954\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2011.01269.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/mec.13611\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.32\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1534/genetics.119.302311\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1420-9101.2012.02524.x\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.34\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.1813852116\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.35\\\", \\\"first-page\\\": \\\"1\\\", \\\"article-title\\\": \\\"Genetic diversity in the interference selection limit\\\", \\\"volume\\\": \\\"10\\\", \\\"year\\\": \\\"2014\\\", \\\"journal-title\\\": \\\"PLOS Genetics\\\"}, {\\\"key\\\": \\\"2022070521551447000_2021.11.05.467433v3.36\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \", \"excerpt_truncated\": true, \"source_sha256\": \"b2d86f3d1acdaa59884f385a3213d12988f882ff600562779372a04eedca2340\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1101/2021.11.05.467433\", \"doi:10.1126/science.1174276\", \"doi:10.1073/pnas.1216128109\", \"doi:10.1007/s11295-017-1224-y\", \"doi:10.1126/science.1252136\", \"doi:10.2307/2408260\", \"doi:10.1098/rstb.2011.0256\", \"doi:10.1146/annurev.ecolsys.38.091206.095622\", \"doi:10.1111/j.1558-5646.2009.00622.x\", \"doi:10.1086/695136\", \"doi:10.1098/rstb.2019.0528\", \"doi:10.1093/genetics/83.4.867\"]}",
+  "id": "source-16416e2262024f84",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1101%2F2021.11.05.467433",
+  "version": 112,
+  "time": "2026-09-25T23:48:25.987180+00:00"
+}
+```
+
+### `source-417fed5202154067`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239499,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hawaiian religion\\\",\\\"pageid\\\":17990997,\\\"size\\\":32321,\\\"wordcount\\\":3150,\\\"snippet\\\":\\\"Hawaiian\\nreligion\\ncomprises the Indigenous religious beliefs and practices of Native Hawaiians, also known as the kapu system. Hawaiian\\nreligion\\nwas based\\\",\\\"timestamp\\\":\\\"2026-09-10T11:53:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ce02795cd150c7ed2d02d0d67af860af2bb2b7a8c13bd008fa0d8889789ea286\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-417fed5202154067",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 112,
+  "time": "2026-09-25T23:48:26.937581+00:00"
+}
+```
+
+### `source-1d76cda6c3944dfc`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1d76cda6c3944dfc",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 112,
+  "time": "2026-09-25T23:48:27.555060+00:00"
+}
+```
+
+### `source-0dd969532ba548aa`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":21491,\\\"wordcount\\\":2150,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-25T16:06:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a5d5922344cca9be212e8bc32b43bc5659cba4df187c49479cd9a49bff2c9aa9\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-0dd969532ba548aa",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 112,
+  "time": "2026-09-25T23:48:28.082088+00:00"
+}
+```
+
+### `source-453e2cfb322c4e37`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35255f9021cedcd7245f4147c09cb791a3964d93304117cd09220717030dba93\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-453e2cfb322c4e37",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 112,
+  "time": "2026-09-25T23:48:28.808357+00:00"
+}
+```
+
+### `source-f6551aebb7b84af1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-25T20:49:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"313c4e0ce9db2154b051abcd75cf6daab52a0a430feb4cf0781303b487e008f1\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-f6551aebb7b84af1",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 112,
+  "time": "2026-09-25T23:48:29.437585+00:00"
+}
+```
+
+### `r-d768934de1b6409e`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":112,\"inherited_commitments\":[],\"invocation\":\"w-d768934de1b6409e\",\"previous_head\":\"95a9d7939d09af9cfdc4c9634deab650fc8a0510849bbbfc5b141bde5d6ed5cc\",\"process_id\":2252,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d768934de1b6409e",
+  "source": "runtime:continuity",
+  "version": 112,
+  "time": "2026-09-25T23:48:31.708903+00:00"
 }
 ```
 
