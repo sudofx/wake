@@ -744,7 +744,7 @@ def export(store, destination="site", experiment=None, operation=None):
         atomic_write(target / "rejected.html", _human_page(
             "Rejected & withheld drafts", "What was proposed, why it stopped, and what was preserved.",
             rejected_html(state, events), head, "events.jsonl", "events.md"))
-        from .provenance import build_map, build_map3d_projection
+        from .provenance import build_map, build_map3d_projection, map3d_shard_filename
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
         graph3d_shell, graph3d_shards = build_map3d_projection(graph)
@@ -767,7 +767,7 @@ def export(store, destination="site", experiment=None, operation=None):
             for stale in shard_dir.glob("*.json"):
                 stale.unlink()
         for parent, shard in graph3d_shards.items():
-            atomic_write(shard_dir / (parent + ".json"), json.dumps(shard, ensure_ascii=False))
+            atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
         atomic_write(target / "map3d.html", map3d_page)
         atomic_write(target / "index.html", page)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
