@@ -20,7 +20,7 @@ BRANCH = "journal-pages"
 sys.path.insert(0, str(ROOT))
 from wake.audit import verify_history
 from wake.store import canonical
-from wake.provenance import build_map, build_map3d_projection
+from wake.provenance import build_map, build_map3d_projection, map3d_shard_filename
 
 
 def git(*args, cwd=ROOT, check=True):
@@ -67,9 +67,25 @@ def publish(directory):
             embedded_map3d = json.loads(map3d_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
         except (ValueError, IndexError) as exc:
             raise SystemExit("Invalid 3D map export; export again before publishing.") from exc
-        expected_map3d = build_map3d_projection(expected_map)
+        expected_map3d, expected_shards = build_map3d_projection(expected_map)
         if canonical(map3d_data) != canonical(expected_map3d) or canonical(embedded_map3d) != canonical(expected_map3d):
-            raise SystemExit("3D map does not match the verified compact projection; export again before publishing.")
+            raise SystemExit("3D map does not match the verified lazy shell; export again before publishing.")
+        shard_dir = source / "map3d"
+        if not shard_dir.is_dir():
+            raise SystemExit("Incomplete 3D map branch export; export again before publishing.")
+        expected_files = {parent: map3d_shard_filename(parent) for parent in expected_shards}
+        actual_files = {path.name for path in shard_dir.glob("*.json")}
+        if actual_files != set(expected_files.values()):
+            raise SystemExit("3D map branch set does not match the verified projection; export again before publishing.")
+        for parent, expected_shard in expected_shards.items():
+            shard_path = shard_dir / expected_files[parent]
+            try:
+                actual_shard = json.loads(shard_path.read_text())
+            except ValueError as exc:
+                raise SystemExit("Invalid 3D map branch export; export again before publishing.") from exc
+            if canonical(actual_shard) != canonical(expected_shard):
+                raise SystemExit("3D map branch does not match the verified projection; export again before publishing.")
+            names.append(f"map3d/{expected_files[parent]}")
     for entry in reconstructed["journal"]:
         name = f"journal/{entry['invocation']}.html"
         if (source / name).is_file():
@@ -95,6 +111,8 @@ def publish(directory):
             git("checkout", "--orphan", BRANCH, cwd=target)
         else:
             raise SystemExit("Cannot read the publishing branch; check Git authentication.")
+        if (target / "map3d").exists():
+            shutil.rmtree(target / "map3d")
         for name in names:
             (target / name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source / name, target / name)

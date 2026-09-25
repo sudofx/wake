@@ -21,7 +21,7 @@ import tempfile
 import unittest
 
 from wake.engine import Engine, DEFAULTS
-from wake.provenance import build_map
+from wake.provenance import build_map, map3d_shard_filename
 from wake.report import export
 from support import charter_settings
 
@@ -126,9 +126,12 @@ class ProvenanceTests(unittest.TestCase):
         self.assertIn("topicLabels=data.meta?.topic_labels||{}", page)
         self.assertIn("topicLabel(topic).toLowerCase()", page)
         map3d_page = (self.root/'site/map3d.html').read_text()
-        self.assertIn("topicLabels=data.meta?.topic_labels||{}", map3d_page)
-        self.assertIn("title:topicLabel(domain)", map3d_page)
-        self.assertIn("topicLabel(domain).toLowerCase()", map3d_page)
+        map3d_shell = json.loads((self.root/'site/map3d-data.json').read_text())
+        self.assertEqual(map3d_shell["meta"]["topic_labels"]["entropy"], "Entropy")
+        self.assertEqual(map3d_shell["meta"]["schema_version"], 2)
+        self.assertIn("fetch(branchUrl(id)", map3d_page)
+        topic_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('root:topics')).read_text())
+        self.assertTrue(any(item["title"] == "Entropy" for item in topic_shard["children"]))
         self.assertIn("function timeFor(n)", page)
         self.assertIn("node-time", page)
         self.assertNotIn('</script><script>alert("no")</script>', page)
