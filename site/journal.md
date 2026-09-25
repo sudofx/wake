@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5784587690086b02e131d685b38a47cb2a4f188beb46708de86db3be6287a095`
+Verified head: `aaa52ff1f971b12f3e54e8d10ad2375ad1e0ebc03f2714c4e4a0dcbc48cb7817`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 042 · Deepening the Neurodiversity vs. Pathology Inquiry
+
+September 24, 2026 · 10:53 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research continues under the enforced neurodivergence topic. The objective is to gather initial comparative literature that explicitly addresses the conceptual tension between the neurodiversity paradigm and traditional clinical pathology models, establishing a baseline for future synthesis.
+
+Invocation: `w-885bbd32385e43d8`
 
 ## 041 · Neurodiversity Paradigm vs. Clinical Pathology Models
 
