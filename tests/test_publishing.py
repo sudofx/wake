@@ -25,6 +25,7 @@ import unittest
 
 from wake.engine import Engine
 from wake.providers import Fixture
+from wake.provenance import map3d_shard_filename
 from wake.report import export
 
 
@@ -79,10 +80,11 @@ class PublishingTests(unittest.TestCase):
                 self.assertNotIn("nodes", lazy_shell)
                 self.assertNotIn("edges", lazy_shell)
                 self.assertEqual(lazy_shell["meta"]["schema_version"], 2)
-                self.assertTrue((project/"site/map3d/root:journal.json").is_file())
-                journal_shard = json.loads((project/"site/map3d/root:journal.json").read_text())
+                self.assertTrue((project/"site/map3d"/map3d_shard_filename("root:journal")).is_file())
+                journal_shard = json.loads((project/"site/map3d"/map3d_shard_filename("root:journal")).read_text())
                 self.assertEqual(journal_shard["parent"], "root:journal")
                 self.assertIn("child_ids", journal_shard)
+                self.assertNotIn(":", map3d_shard_filename("root:journal"))
                 self.assertIn("fetch(branchUrl(id)", map3d_page)
                 self.assertIn("ensureBranch(id).then(()=>{if(preview===id)render()})", map3d_page)
                 module.publish(project/"site")
@@ -118,7 +120,7 @@ class PublishingTests(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, "3D map does not match"):
                     module.publish(project/"site")
                 map3d_path.write_text(original_map3d)
-                shard_path = project/"site/map3d/root:journal.json"
+                shard_path = project/"site/map3d"/map3d_shard_filename("root:journal")
                 original_shard = shard_path.read_text()
                 tampered_shard = json.loads(original_shard)
                 tampered_shard["child_ids"] = []
