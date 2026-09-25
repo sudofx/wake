@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5a157e49503f4cad9a6721cfb46406ba9b51e8db759746929143128d8fb47b87`
+Verified head: `2181f85a91bc91dee304a0f037c5918cbd47848c1e3361a0f32a076bfb983765`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 082 · Initiating Research on Cognitive Mechanisms in Dance
+
+September 25, 2026 · 03:23 AM PDT · gemini / gemini-3.1-flash-lite
+
+The 'dance-rhythm-cognition' project is marked as synthesis-ready due to inherited context; however, the currently available evidence (metadata regarding diagnostic reasoning in medicine) is not relevant to the domain of dance and rhythmic cognition. I am initiating a targeted research search to identify relevant cognitive and anthropological sources to build a valid foundation for this project.
+
+Invocation: `w-dcf8b3fdde634199`
 
 ## 081 · **WAKE✳︎**: Investigating Dance Cognition
 

@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 81  
+**Version:** 82  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5a157e49503f4cad9a6721cfb46406ba9b51e8db759746929143128d8fb47b87`
+**Verified head:** `2181f85a91bc91dee304a0f037c5918cbd47848c1e3361a0f32a076bfb983765`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1154,34 +1154,73 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.3102/0013189x023008004",
-    "doi:10.1215/01636545-1979-20-245",
-    "doi:10.2307/1163056",
-    "doi:10.2307/1170383",
-    "doi:10.2307/3202177",
-    "doi:10.1177/001440299105700503",
-    "doi:10.2307/2107917",
-    "doi:10.1093/logcom/13.1.3",
-    "doi:10.1093/oso/9780198537915.003.0002",
-    "doi:10.1093/oso/9780198503064.001.0001",
-    "doi:10.1007/s10670-004-9287-1",
-    "doi:10.1007/1-4020-3835-6_21.pdf"
+    "doi:10.1007/1-4020-3835-6_21.pdf",
+    "doi:10.1177/000276427201600109",
+    "doi:10.1207/s15516709cog1401_6",
+    "doi:10.1207/s15327809jls0202_2",
+    "doi:10.1159/000418984",
+    "doi:10.7551/mitpress/1861.003.0016",
+    "doi:10.4159/9780674029019",
+    "doi:10.2307/1412811",
+    "doi:10.3102/0013189x018009027",
+    "doi:10.1037/10096-005",
+    "doi:10.1037/10914-000",
+    "doi:10.1017/cbo9780511815355"
   ],
   "last_receipt": {
-    "evidence": "source-ee894b1eb9424479",
+    "evidence": "source-b1f7f1c3e8f9470d",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1007/1-4020-3835-6_21",
-      "doi:10.2307/2107917",
-      "doi:10.1093/logcom/13.1.3",
-      "doi:10.1093/oso/9780198537915.003.0002",
-      "doi:10.1093/oso/9780198503064.001.0001",
-      "doi:10.1007/s10670-004-9287-1",
-      "doi:10.1007/1-4020-3835-6_21.pdf"
+      "doi:10.3102/0013189x023008004",
+      "doi:10.1177/000276427201600109",
+      "doi:10.1207/s15516709cog1401_6",
+      "doi:10.1207/s15327809jls0202_2",
+      "doi:10.1159/000418984",
+      "doi:10.7551/mitpress/1861.003.0016",
+      "doi:10.4159/9780674029019",
+      "doi:10.2307/1412811",
+      "doi:10.3102/0013189x018009027",
+      "doi:10.1037/10096-005",
+      "doi:10.1037/10914-000",
+      "doi:10.1017/cbo9780511815355"
     ],
     "research_id": "res-epistemology-incongruity-003",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
+  }
+}
+```
+
+### `dance-rhythm-cognition`
+
+```json
+{
+  "project": "dance-rhythm-cognition",
+  "domain": "dance",
+  "no_progress": 1,
+  "routes": [
+    "api.crossref.org:discovery"
+  ],
+  "capability_blocked": false,
+  "retry_after_version": null,
+  "persistent_identifiers": [
+    "doi:10.4324/9781315515335-14",
+    "doi:10.1007/978-3-031-19451-1_8",
+    "doi:10.1080/17432979.2026.2714785",
+    "doi:10.5040/9798881892104.ch-005"
+  ],
+  "last_receipt": {
+    "evidence": "source-2ccf96ded5dc4da2",
+    "outcome": "no_progress",
+    "persistent_identifiers": [
+      "doi:10.4324/9781315515335-14",
+      "doi:10.1007/978-3-031-19451-1_8",
+      "doi:10.1080/17432979.2026.2714785",
+      "doi:10.5040/9798881892104.ch-005"
+    ],
+    "research_id": "res-dance-rhythm-001",
+    "route": "api.crossref.org:discovery",
+    "stage": "discovery"
   }
 }
 ```
@@ -1217,7 +1256,7 @@ _None recorded._
   "epistemology": {
     "cause": "attention_saturation",
     "deferred_by": "w-bc766334275b47ad",
-    "other_topic_attempts": 1,
+    "other_topic_attempts": 2,
     "parked_projects": [
       {
         "id": "epistemology-belief-justification-incomplete-evidence",
@@ -1239,7 +1278,7 @@ _None recorded._
   "attention_topic": "dance",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-cd44d40fe3b44a0b",
+  "invocation": "w-dcf8b3fdde634199",
   "restored_topics": [],
   "selected_topic": "dance",
   "terminal": "accepted",
@@ -1251,7 +1290,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 1,
+  "accepted_streak": 2,
   "topic": "dance"
 }
 ```
@@ -51578,6 +51617,452 @@ _None recorded._
 }
 ```
 
+### `w-dcf8b3fdde634199`
+
+```json
+{
+  "base_version": 81,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19654,
+    "delivered_request_chars": 46220,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 96473,
+    "working_set_chars": 4032
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-dcf8b3fdde634199",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 81,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurodiversity-paradigm-foundations",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Foundations of Neurodiversity Paradigm"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "dance-rhythm-cognition",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2192,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "1fc40d1ca8cc5eab53e4f0b71037a9193e10f5f0bf9440b044d81e540fd98c3b",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-32ae2941ab804949"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-32ae2941ab804949",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f60fd568868a4d42"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f60fd568868a4d42",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f7fc089139bd4b4c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f7fc089139bd4b4c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-82c87c653e2a4e2e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-82c87c653e2a4e2e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ee894b1eb9424479"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ee894b1eb9424479",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1f7f1c3e8f9470d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1f7f1c3e8f9470d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-32ae2941ab804949",
+      "source-f60fd568868a4d42",
+      "source-f7fc089139bd4b4c",
+      "source-82c87c653e2a4e2e",
+      "source-ee894b1eb9424479",
+      "source-b1f7f1c3e8f9470d"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "dance"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "epistemology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "epistemology": [
+        {
+          "id": "epistemology-belief-justification-incomplete-evidence",
+          "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+          "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "dance",
+    "temporal": {
+      "anchor_seq": 2094,
+      "anchor_time": "2026-09-25T10:23:50.418418+00:00",
+      "anchor_version": 81,
+      "effective_seconds": 38187.94348
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 297.567197,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 38187.94348,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T10:23:50.418418+00:00",
+    "previous_anchor_time": "2026-09-25T10:18:52.851221+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 297.567197
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19654,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4032,
+    "working_to_delivered_ratio": 0.2051
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neurodiversity-paradigm-foundations",
+        "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+        "title": "Foundations of Neurodiversity Paradigm"
+      },
+      {
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+        "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "id": "dance-rhythm-cognition",
+        "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+        "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?",
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-visual-art-incongruity-01",
+        "project": "visual-art-perception-mechanism",
+        "provenance": [
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46"
+        ],
+        "revision": 1,
+        "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+        "title": "Incongruity-Resolution in Aesthetic Reception"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      },
+      {
+        "id": "nb-neurodiversity-foundations-01",
+        "project": "neurodiversity-paradigm-foundations",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 2,
+        "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+        "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+      },
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      },
+      {
+        "id": "nb-epistemology-justification-001",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-fb2f23f9caf94381",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+        "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+      },
+      {
+        "id": "nb-epistemology-incongruity-002",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+        "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T10:23:52.020114+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7708,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50130,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T10:24:14.571579+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -65063,6 +65548,103 @@ _None recorded._
 }
 ```
 
+### `source-b1f7f1c3e8f9470d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.3102%2F0013189x023008004\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T12:23:21Z\\\", \\\"timestamp\\\": 1790252601812, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 47, \\\"publisher\\\": \\\"American Educational Research Association (AERA)\\\", \\\"issue\\\": \\\"8\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1994, 11, 1]], \\\"date-time\\\": \\\"1994-11-01T00:00:00Z\\\", \\\"timestamp\\\": 783648000000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://journals.sagepub.com/page/policies/text-and-data-mining-license\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Educational Researcher\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1994, 11]]}, \\\"DOI\\\": \\\"10.3102/0013189x023008004\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2007, 6, 21]], \\\"date-time\\\": \\\"2007-06-21T21:30:27Z\\\", \\\"timestamp\\\": 1182461427000}, \\\"page\\\": \\\"4-12\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 304, \\\"title\\\": [\\\"The Advancement of Learning\\\"], \\\"prefix\\\": \\\"10.3102\\\", \\\"volume\\\": \\\"23\\\", \\\"author\\\": [{\\\"given\\\": \\\"Ann L.\\\", \\\"family\\\": \\\"Brown\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Division of Education in Math, Science, and Technology at 453 Tolman Hall, the University of California at Berkeley, Berkeley, CA 94720. She specializes in cognitive and developmental psychology, and the design of innovative learning environments for children. This article was the presidential address at the AERA Annual Meeting in April 1994.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"1604\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1994, 11, 1]]}, \\\"reference\\\": [{\\\"key\\\": \\\"b1-0230004\\\", \\\"volume-title\\\": \\\"The jigsaw classroom\\\", \\\"author\\\": \\\"Aronson E\\\", \\\"year\\\": \\\"1978\\\"}, {\\\"key\\\": \\\"b2-0230004\\\", \\\"volume-title\\\": \\\"The advancement of learning\\\", \\\"author\\\": \\\"Bacon F\\\", \\\"year\\\": \\\"1605\\\"}, {\\\"key\\\": \\\"b3-0230004\\\", \\\"volume-title\\\": \\\"Novum organum\\\", \\\"author\\\": \\\"Bacon F\\\", \\\"year\\\": \\\"1623\\\"}, {\\\"key\\\": \\\"b4-0230004\\\", \\\"volume-title\\\": \\\"Speech genres and other late essays\\\", \\\"author\\\": \\\"Bakhtin MM\\\", \\\"year\\\": \\\"1986\\\"}, {\\\"key\\\": \\\"b5-0230004\\\", \\\"volume-title\\\": \\\"Remembering: A study in experimental and social psychology\\\", \\\"author\\\": \\\"Bartlett FC\\\", \\\"year\\\": \\\"1932\\\"}, {\\\"key\\\": \\\"b6-0230004\\\", \\\"volume-title\\\": \\\"Thinking: An experimental and social study\\\", \\\"author\\\": \\\"Bartlett FC\\\", \\\"year\\\": \\\"1958\\\"}, {\\\"key\\\": \\\"b7-0230004\\\", \\\"volume-title\\\": \\\"With a daughter's eye: A memoir of Margaret Mead and Gregory Bateson\\\", \\\"author\\\": \\\"Bateson MC\\\", \\\"year\\\": \\\"1984\\\"}, {\\\"key\\\": \\\"b8-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/000276427201600109\\\"}, {\\\"key\\\": \\\"b9-0230004\\\", \\\"first-page\\\": \\\"361\\\", \\\"volume-title\\\": \\\"Knowing, learning, and instruction: Essays in honor of Robert Glaser\\\", \\\"author\\\": \\\"Bereiter C\\\", \\\"year\\\": \\\"1989\\\"}, {\\\"key\\\": \\\"b10-0230004\\\", \\\"volume-title\\\": \\\"Les idees modernes sur les infants\\\", \\\"author\\\": \\\"Binet A\\\", \\\"year\\\": \\\"1909\\\"}, {\\\"key\\\": \\\"b11-0230004\\\", \\\"first-page\\\": \\\"77\\\", \\\"volume-title\\\": \\\"Advances in Instructional Psychology, 1\\\", \\\"author\\\": \\\"Brown AL\\\", \\\"year\\\": \\\"1978\\\"}, {\\\"key\\\": \\\"b12-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15516709cog1401_6\\\"}, {\\\"key\\\": \\\"b13-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15327809jls0202_2\\\"}, {\\\"key\\\": \\\"b14-0230004\\\", \\\"first-page\\\": \\\"77\\\", \\\"volume-title\\\": \\\"Handbook of child psychology: Vol. 3. Child development\\\", \\\"author\\\": \\\"Brown AL\\\", \\\"year\\\": \\\"1983\\\", \\\"edition\\\": \\\"4\\\"}, {\\\"key\\\": \\\"b15-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1159/000418984\\\"}, {\\\"key\\\": \\\"b16-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.7551/mitpress/1861.003.0016\\\"}, {\\\"key\\\": \\\"b17-0230004\\\", \\\"volume-title\\\": \\\"On knowing: Essays for the left hand\\\", \\\"author\\\": \\\"Bruner JS\\\", \\\"year\\\": \\\"1969\\\"}, {\\\"key\\\": \\\"b18-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4159/9780674029019\\\"}, {\\\"key\\\": \\\"b19-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1412811\\\"}, {\\\"key\\\": \\\"b20-0230004\\\", \\\"volume-title\\\": \\\"Conceptual change in childhood\\\", \\\"author\\\": \\\"Carey S\\\", \\\"year\\\": \\\"1985\\\"}, {\\\"key\\\": \\\"b21-0230004\\\", \\\"volume-title\\\": \\\"The epigenesis of mind\\\", \\\"author\\\": \\\"Carey S\\\", \\\"year\\\": \\\"1991\\\"}, {\\\"key\\\": \\\"b22-0230004\\\", \\\"first-page\\\": \\\"463\\\", \\\"volume-title\\\": \\\"The Dewey School: The laboratory school of the University of Chicago, 1896–1903\\\", \\\"author\\\": \\\"Dewey J\\\", \\\"year\\\": \\\"1936\\\"}, {\\\"key\\\": \\\"b23-0230004\\\", \\\"volume-title\\\": \\\"Is there a text in this class ? The authority of interpretive, communities\\\", \\\"author\\\": \\\"Fish S\\\", \\\"year\\\": \\\"1980\\\"}, {\\\"key\\\": \\\"b24-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3102/0013189X018009027\\\"}, {\\\"key\\\": \\\"b25-0230004\\\", \\\"volume-title\\\": \\\"Frames of mind: The theory of multiple intelligences\\\", \\\"author\\\": \\\"Gardner H\\\", \\\"year\\\": \\\"1983\\\"}, {\\\"key\\\": \\\"b26-0230004\\\", \\\"volume-title\\\": \\\"Progressive education, from Arcady to Academe: A history of the Progressive Education Association, 1919–1955\\\", \\\"author\\\": \\\"Graham PS\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"b27-0230004\\\", \\\"volume-title\\\": \\\"Animal minds\\\", \\\"author\\\": \\\"Griffin DR\\\", \\\"year\\\": \\\"1992\\\"}, {\\\"key\\\": \\\"b28-0230004\\\", \\\"first-page\\\": \\\"249\\\", \\\"volume-title\\\": \\\"Princeton Review\\\", \\\"volume\\\": \\\"11\\\", \\\"author\\\": \\\"Hall GS\\\", \\\"year\\\": \\\"1881\\\"}, {\\\"key\\\": \\\"b29-0230004\\\", \\\"first-page\\\": \\\"120\\\", \\\"volume\\\": \\\"9\\\", \\\"author\\\": \\\"Hatano G\\\", \\\"year\\\": \\\"1987\\\", \\\"journal-title\\\": \\\"The Newsletter of the Laboratory of Comparative Human Cognition\\\"}, {\\\"key\\\": \\\"b30-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/10096-005\\\"}, {\\\"key\\\": \\\"b31-0230004\\\", \\\"author\\\": \\\"Heath SB\\\", \\\"journal-title\\\": \\\"Journal of Curriculum Studies\\\"}, {\\\"key\\\": \\\"b32-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/10914-000\\\"}, {\\\"key\\\": \\\"b33-0230004\\\", \\\"first-page\\\": \\\"103\\\", \\\"volume-title\\\": \\\"Minnesota symposium on child psychology: Modularity and constraints on language and cognition\\\", \\\"author\\\": \\\"Keil FC\\\", \\\"year\\\": \\\"1992\\\"}, {\\\"key\\\": \\\"b34-0230004\\\", \\\"unstructured\\\": \\\"KennedyJF1962Televised address from Rice University, September 12\\\"}, {\\\"key\\\": \\\"b35-0230004\\\", \\\"volume-title\\\": \\\"Psychology: A study of a science: General systematic formulations, learning, and special processes\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Koch S\\\", \\\"year\\\": \\\"1959\\\"}, {\\\"key\\\": \\\"b36-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511815355\\\"}, {\\\"key\\\": \\\"b37-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0063259\\\"}, {\\\"key\\\": \\\"b38-0230004\\\", \\\"first-page\\\": \\\"103\\\", \\\"volume-title\\\": \\\"Policy studies review annual\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Majone G\\\", \\\"year\\\": \\\"1978\\\"}, {\\\"key\\\": \\\"b39-0230004\\\", \\\"volume-title\\\": \\\"Pluto's republic\\\", \\\"author\\\": \\\"Medawar P\\\", \\\"year\\\": \\\"1982\\\"}, {\\\"key\\\": \\\"b40-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s1532690xci0102_1\\\"}, {\\\"key\\\": \\\"b41-0230004\\\", \\\"volume-title\\\": \\\"Future assessment: Changing views of aptitude, achievement and instruction\\\", \\\"author\\\": \\\"Resnick LB\\\", \\\"year\\\": \\\"1991\\\"}, {\\\"key\\\": \\\"b42-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3102/0013189X015002004\\\"}, {\\\"key\\\": \\\"b43-0230004\\\", \\\"first-page\\\": \\\"381\\\", \\\"volume\\\": \\\"55\\\", \\\"author\\\": \\\"Sobel B\\\", \\\"year\\\": \\\"1939\\\", \\\"journal-title\\\": \\\"Journal of Genetic Psychology\\\"}, {\\\"key\\\": \\\"b44-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/14895-000\\\"}, {\\\"key\\\": \\\"b45-0230004\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.185.4157.1124\\\"}, {\\\"key\\\": \\\"b46-0230004\\\", \\\"volume-title\\\": \\\"Mind in society: The development of higher psychological processes\\\", \\\"author\\\": \\\"Vygotsky LS\\\", \\\"year\\\": \\\"1978\\\"}, {\\\"key\\\": \\\"b47-0230004\\\", \\\"volume-title\\\": \\\"Communities of discourse: Ideology d and social structure in Reformation, the Enlightenment, and European socialism\\\", \\\"author\\\": \\\"Wurthnow R\\\", \\\"year\\\": \\\"1989\\\"}], \\\"container-title\\\": [\\\"Educational Researcher\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://journals.sagepub.com/doi/pdf/10.3102/0013189X023008004\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://journals.sagepub.com/doi/pdf/10.3102/0013189X023008004\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2026, 4, 28]], \\\"date-time\\\": \\\"2026-04-28T18:59:07Z\\\", \\\"timestamp\\\": 1777402747000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://journals.sagepub.com/doi/10.3102/0013189X023008004\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1994, 11]]}, \\\"references-count\\\": 47, \\\"journal-issue\\\": {\\\"issue\\\": \\\"8\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1994, 11]]}}, \\\"alternative-id\\\": [\\\"10.3102/0013189X023008004\\\"], \\\"URL\\\": \\\"https://doi.org/10.3102/0013189x023008004\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0013-189X\\\", \\\"1935-102X\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0013-189X\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1935-102X\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1994, 11]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c07dead955fa26ab3361c8d02f7e6e62c81846f8fdb2c01f1afde03a01b6dbd6\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.3102/0013189x023008004\", \"doi:10.1177/000276427201600109\", \"doi:10.1207/s15516709cog1401_6\", \"doi:10.1207/s15327809jls0202_2\", \"doi:10.1159/000418984\", \"doi:10.7551/mitpress/1861.003.0016\", \"doi:10.4159/9780674029019\", \"doi:10.2307/1412811\", \"doi:10.3102/0013189x018009027\", \"doi:10.1037/10096-005\", \"doi:10.1037/10914-000\", \"doi:10.1017/cbo9780511815355\"]}",
+  "id": "source-b1f7f1c3e8f9470d",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.3102%2F0013189x023008004",
+  "version": 81,
+  "time": "2026-09-25T10:23:45.331513+00:00"
+}
+```
+
+### `source-2ccf96ded5dc4da2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=cognitive+mechanisms+of+rhythm+and+movement+in+dance+cross-cultural&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9781315515335-14\\\", \\\"title\\\": [\\\"Silent Rhythm\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781315515335-14\\\", \\\"published\\\": {\\\"date-parts\\\": [[2017, 1, 6]]}}, {\\\"DOI\\\": \\\"10.1007/978-3-031-19451-1_8\\\", \\\"title\\\": [\\\"Dance/Movement Therapy in Cross-Cultural Practice: Fostering Assertiveness with Torture Survivors\\\"], \\\"URL\\\": \\\"https://doi.org/10.1007/978-3-031-19451-1_8\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022]]}}, {\\\"DOI\\\": \\\"10.1080/17432979.2026.2714785\\\", \\\"title\\\": [\\\"The impact of dance choreography integrated with dance movement therapy on university students’ mental health and gender differences: a cross-cultural perspective\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/17432979.2026.2714785\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 8, 25]]}}, {\\\"DOI\\\": \\\"10.5040/9798881892104.ch-005\\\", \\\"title\\\": [\\\"Rhythm, Dance, and the Integrative Mode of Consciousness\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9798881892104.ch-005\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5665ebb66462e34046bb2c2acc3f1a345ba0e602f8d80ff31980b5849ba836ff\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4324/9781315515335-14\", \"doi:10.1007/978-3-031-19451-1_8\", \"doi:10.1080/17432979.2026.2714785\", \"doi:10.5040/9798881892104.ch-005\"]}",
+  "id": "source-2ccf96ded5dc4da2",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=cognitive+mechanisms+of+rhythm+and+movement+in+dance+cross-cultural&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 81,
+  "time": "2026-09-25T10:23:46.934758+00:00"
+}
+```
+
+### `source-d43c92af03a3404b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74328},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Forensic psychology\\\",\\\"pageid\\\":475037,\\\"size\\\":95452,\\\"wordcount\\\":10992,\\\"snippet\\\":\\\"Forensic\\npsychology\\nis the application of scientific knowledge and methods (in relation to\\npsychology\\n) to assist in answering legal questions that may\\\",\\\"timestamp\\\":\\\"2026-09-15T14:30:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Somatic psychology\\\",\\\"pageid\\\":6774132,\\\"size\\\":16405,\\\"wordcount\\\":1855,\\\"snippet\\\":\\\"Somatic\\npsychology\\nor, more precisely, somatic clinical psychotherapy is a form of psychotherapy that focuses on somatic experience, including therapeutic\\\",\\\"timestamp\\\":\\\"2026-09-03T20:37:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c08be992acf2420890dd4c2773a2a1257ba169ca3187adcb3237073f409d6900\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d43c92af03a3404b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 81,
+  "time": "2026-09-25T10:23:48.160966+00:00"
+}
+```
+
+### `source-50ee1c5619864da4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"94a2e9d4528b924f7df5ef7c9c346f7c05a11704d07f78c6e81107fca3796375\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-50ee1c5619864da4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 81,
+  "time": "2026-09-25T10:23:48.759765+00:00"
+}
+```
+
+### `source-fbe32252ea434bb4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"78a5f3da95e2c1b485262a12977406cab22a43d6976b4630bb7de782ec7e15af\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-fbe32252ea434bb4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 81,
+  "time": "2026-09-25T10:23:49.361047+00:00"
+}
+```
+
+### `source-cca58e648fc744c4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c6d2402a16138c80936c8c6ca689ee7967791a28049502e34745d2d52b1a9d26\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-cca58e648fc744c4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 81,
+  "time": "2026-09-25T10:23:49.992658+00:00"
+}
+```
+
+### `r-dcf8b3fdde634199`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":81,\"inherited_commitments\":[],\"invocation\":\"w-dcf8b3fdde634199\",\"previous_head\":\"35af739422f6aeaf3d3f6d5470b33fea0fac85ceb0f6e9a4c75ad655b5e92dee\",\"process_id\":2192,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-dcf8b3fdde634199",
+  "source": "runtime:continuity",
+  "version": 81,
+  "time": "2026-09-25T10:23:51.582474+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -65953,6 +66535,17 @@ _None recorded._
   "invocation": "w-cd44d40fe3b44a0b",
   "title": "WAKE✳︎: Investigating Dance Cognition",
   "summary": "Following the squirrel directive to enforce the 'dance' topic, I have parked existing epistemology work and initiated a new project to investigate the cognitive and social dimensions of rhythm and movement in dance. The goal is to establish a source-backed baseline for understanding how these elements influence the perception of dance."
+}
+```
+
+### 082 · Initiating Research on Cognitive Mechanisms in Dance
+
+```json
+{
+  "cycle": 82,
+  "invocation": "w-dcf8b3fdde634199",
+  "title": "Initiating Research on Cognitive Mechanisms in Dance",
+  "summary": "The 'dance-rhythm-cognition' project is marked as synthesis-ready due to inherited context; however, the currently available evidence (metadata regarding diagnostic reasoning in medicine) is not relevant to the domain of dance and rhythmic cognition. I am initiating a targeted research search to identify relevant cognitive and anthropological sources to build a valid foundation for this project."
 }
 ```
 
@@ -67040,8 +67633,24 @@ _None recorded._
   "query": "cognitive mechanisms of rhythm and movement in dance cross-cultural",
   "reason": "Investigate established cognitive and social theories regarding rhythm in dance to provide initial evidence.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-cd44d40fe3b44a0b",
+  "evidence": "source-2ccf96ded5dc4da2"
+}
+```
+
+### `res-dance-001`
+
+```json
+{
+  "domain": "dance",
+  "id": "res-dance-001",
+  "project": "dance-rhythm-cognition",
+  "query": "cognitive mechanisms of rhythmic coordination in dance",
+  "reason": "Existing evidence in the project context is unrelated to the dance domain. Targeted literature on rhythm perception, movement coordination, and social context is required to establish a valid evidence base.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-cd44d40fe3b44a0b"
+  "created_by": "w-dcf8b3fdde634199"
 }
 ```
 
