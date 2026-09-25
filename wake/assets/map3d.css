@@ -57,3 +57,29 @@
 /* WAKE✳︎ black-hole body fills only the area above the horizon. The horizon itself is supplied by the scene, so there is no closing lower/diameter border. */
 .constellation-node.is-wake .wake-body{fill:#050711;stroke:none;pointer-events:none}
 :root:not([data-theme="dark"]) .constellation-node.is-wake .wake-body{fill:color-mix(in srgb,var(--wake-core) 14%,var(--surface));}
+
+
+/* Ultrawide 3D map: let the instrument use the viewport instead of the prose measure. */
+@media (min-width:1921px){
+  body:has(.constellation-workspace) main{
+    max-width:none;
+    width:100%;
+    padding-left:clamp(24px,2vw,48px);
+    padding-right:clamp(24px,2vw,48px);
+  }
+  .constellation-intro{
+    max-width:900px;
+  }
+  .constellation-workspace{
+    width:100%;
+    grid-template-columns:minmax(0,1fr) clamp(360px,20vw,430px);
+    gap:24px;
+  }
+  .constellation-workspace>#details.active{
+    width:auto;
+  }
+  .constellation-key,
+  body:has(.constellation-workspace) footer{
+    max-width:1800px;
+  }
+}
