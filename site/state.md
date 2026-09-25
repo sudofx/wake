@@ -5,7 +5,7 @@
 **Version:** 69  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `769818cbb3cecabd61aed6b213da1e15331020882b6c958d8c08483bfe3a283d`
+**Verified head:** `5c291aa8968a00225b626dcf3fee5a7de92349959803e83eb5d8a5eed33cb72d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -928,30 +928,42 @@ _None recorded._
 {
   "project": "comedy-incongruity-mechanisms",
   "domain": "comedy",
-  "no_progress": 1,
+  "no_progress": 2,
   "routes": [
-    "api.crossref.org:discovery",
     "api.crossref.org:source",
     "api.semanticscholar.org:discovery",
-    "api.datacite.org:discovery"
+    "api.datacite.org:discovery",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.4135/9781483346175.n37",
     "doi:10.4087/bojq1588",
     "doi:10.1093/oso/9780198791270.003.0004",
     "doi:10.4304/tpls.1.1.83-86",
     "doi:10.4135/9781483346175",
     "doi:10.4324/9780203406953",
-    "doi:10.1515/9783110806137.101"
+    "doi:10.1515/9783110806137.101",
+    "doi:10.7592/ejhr2013.1.1.dynel",
+    "doi:10.7592/ejhr.2023.11.3.791",
+    "openalex:W1480046052",
+    "openalex:W2885938474",
+    "openalex:W4387216584",
+    "openalex:W2918193314"
   ],
   "last_receipt": {
-    "evidence": "source-d829c4826e3844ff",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
-    "research_id": "res-comedy-incongruity-mechanisms-lit",
-    "route": "api.datacite.org:discovery",
+    "evidence": "source-28686a0b238a48d7",
+    "outcome": "no_progress",
+    "persistent_identifiers": [
+      "doi:10.7592/ejhr2013.1.1.dynel",
+      "doi:10.7592/ejhr.2023.11.3.791",
+      "openalex:W1480046052",
+      "openalex:W2885938474",
+      "openalex:W4387216584",
+      "openalex:W2918193314"
+    ],
+    "research_id": "res-comedy-incongruity-002",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -963,7 +975,7 @@ _None recorded._
 {
   "project": "endo-thyroid-neuro",
   "domain": "endocrinology",
-  "no_progress": 4,
+  "no_progress": 5,
   "routes": [
     "api.crossref.org:discovery",
     "api.crossref.org:source",
@@ -971,7 +983,7 @@ _None recorded._
     "api.semanticscholar.org:discovery"
   ],
   "capability_blocked": true,
-  "retry_after_version": 80,
+  "retry_after_version": 81,
   "persistent_identifiers": [
     "doi:10.1016/j.pnpbp.2020.110027_bb0010",
     "doi:10.1210/en.2017-03125",
@@ -987,18 +999,12 @@ _None recorded._
     "arxiv:8412.17005"
   ],
   "last_receipt": {
-    "evidence": "source-3555e856a9464554",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.21694/2577-8412.17005",
-      "doi:10.1016/j.jns.2023.120933",
-      "doi:10.1016/j.jns.2024.122866",
-      "doi:10.1093/med/9780198810940.003.0004",
-      "arxiv:8412.17005"
-    ],
+    "evidence": "source-48b5590f93144b94",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
     "research_id": "res-endo-thyroid-002",
-    "route": "api.crossref.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -43704,6 +43710,455 @@ _None recorded._
 }
 ```
 
+### `w-b649305fd634498d`
+
+```json
+{
+  "base_version": 69,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 16792,
+    "delivered_request_chars": 46037,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 107178,
+    "working_set_chars": 2868
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-b649305fd634498d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 69,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "endo-thyroid-neuro",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "comedy-incongruity-mechanisms",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "evo-bio-trait-mechanisms",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Adaptation vs. Byproduct in Trait Evolution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2030,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "f5579695d88f41ee9dcf59bec278653834e3eaac35907ce9ca8134d6adb3f14a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0a7b2a5c06d44417",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-930f33f0d42a4658",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-19c5ced2c0354525"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-19c5ced2c0354525",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-38af51501a074dac"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38af51501a074dac",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b3112f4969924c38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b3112f4969924c38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6a187301b2844a11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6a187301b2844a11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-19c5ced2c0354525",
+      "source-38af51501a074dac",
+      "source-b3112f4969924c38",
+      "source-6a187301b2844a11"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "endocrinology"
+    ],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "evolutionary_biology",
+    "temporal": {
+      "anchor_seq": 1825,
+      "anchor_time": "2026-09-25T08:59:20.256564+00:00",
+      "anchor_version": 69,
+      "effective_seconds": 33117.781626
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 198.783683,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 33117.781626,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T08:59:20.256564+00:00",
+    "previous_anchor_time": "2026-09-25T08:56:01.472881+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 198.783683
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 16792,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 2868,
+    "working_to_delivered_ratio": 0.1708
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "comedy-incongruity-mechanisms",
+        "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+        "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "id": "endo-thyroid-neuro",
+        "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+        "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?",
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      },
+      {
+        "id": "evo-bio-trait-mechanisms",
+        "next_step": "Search for foundational literature defining adaptation vs. byproduct in behavioral or biological evolution.",
+        "question": "How do evolutionary biologists operationally distinguish between adaptive traits and evolutionary byproducts?",
+        "title": "Adaptation vs. Byproduct in Trait Evolution"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-01",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-85d977fa7bf34654"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+        "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms"
+      },
+      {
+        "id": "notebook-visual-art-incongruity-01",
+        "project": "visual-art-perception-mechanism",
+        "provenance": [
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46"
+        ],
+        "revision": 1,
+        "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+        "title": "Incongruity-Resolution in Aesthetic Reception"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T08:59:21.128470+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 916,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 50094,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T08:59:33.308091+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 916,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 916,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 50094,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 50094,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -55346,6 +55801,103 @@ _None recorded._
 }
 ```
 
+### `source-48b5590f93144b94`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fj.pnpbp.2020.110027_bb0010\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-48b5590f93144b94",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works/10.1016%2Fj.pnpbp.2020.110027_bb0010",
+  "version": 69,
+  "time": "2026-09-25T08:59:16.400096+00:00"
+}
+```
+
+### `source-28686a0b238a48d7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=comedy+incongruity+resolution+benign+violation+theory&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1480046052\\\", \\\"doi\\\": \\\"https://doi.org/10.7592/ejhr2013.1.1.dynel\\\", \\\"title\\\": \\\"Humorous phenomena in dramatic discourse\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 145, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"diamond\\\", \\\"oa_url\\\": \\\"https://www.europeanjournalofhumour.org/ejhr/article/download/Marta%20Dynel/Marta%20Dynel/101\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.7592/ejhr2013.1.1.dynel\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.7592/ejhr2013.1.1.dynel\\\", \\\"pdf_url\\\": \\\"https://www.europeanjournalofhumour.org/ejhr/article/download/Marta%20Dynel/Marta%20Dynel/101\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2738151512\\\", \\\"display_name\\\": \\\"European Journal of Humour Research\\\", \\\"issn_l\\\": \\\"2307-700X\\\", \\\"issn\\\": [\\\"2307-700X\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310317498\\\", \\\"host_organization_name\\\": \\\"Cracow Tertium Society for the Promotion of Language Studies\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310317498\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cracow Tertium Society for the Promotion of Language Studies\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"European Journal of Humour Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The paramount goal of this paper is to tease out a number of universal communicative phenomena which carry humour appreciated by the recipient of a drama series, based on data culled from a famous medical drama series, \\\\\\\"House\\\\\\\".This broad-range study aims to shed light on the humorous phenomena in dramatic discourse, which evinces greater similitude than comedy discourse.It is argued that conversational humour is prevalent in dramatic discourse, manifesting itself in rhetorical figures (e.g.creative metaphor or irony) and pragmatic types (e.g.teasing), which can also be categorised depending on whether or not they display genuine aggression.Two more humour types are also presented as part of conversational humour, namely: non-verbal expression and (non-)parodic impersonation.Additionally, several other sources of humour are distinguished, such as: a character's quirky behaviour (including participatory behaviour and impoliteness), uncanny events, situational irony, and deception.While the humorous capacity of such concepts has already been recognised, their position in the research on film discourse and in humour studies is not yet well-established.It will be argued that these phenomena manifest humorousness to the hearer on the second communicative level, the recipient, and are not necessarily humorous at the characters' level.All the humour forms distinguished are neatly captured by incongruity theory, specifically the incongruity-resolution model, coupled with superiority theory in the case of disaffiliative humour.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2885938474\\\", \\\"doi\\\": null, \\\"title\\\": \\\"The development of Comic Stage Persona (CSP) in stand-up comedy: An interdisciplinary approach to an intersubjective performance phenomenon\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"dissertation\\\", \\\"cited_by_count\\\": 16, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/2262/83328\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:http://www.rian.ie/150645/\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"http://hdl.handle.net/2262/83328\\\", \\\"pdf_url\\\": \\\"http://hdl.handle.net/2262/83328\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306400033\\\", \\\"display_name\\\": \\\"Arrow@dit (Dublin Institute of Technology)\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"host_organization\\\": \\\"https://openalex.org/I115570527\\\", \\\"host_organization_name\\\": \\\"Dublin Institute of Technology\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/I115570527\\\"], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": \\\"cc-by-nc-sa\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-sa\\\", \\\"version\\\": \\\"submittedVersion\\\", \\\"is_accepted\\\": false, \\\"is_published\\\": false, \\\"raw_source_name\\\": \\\"NAESSENS, EDWARD DAVID, The development of Comic Stage Persona (CSP) in stand-up comedy: An interdisciplinary approach to an intersubjective performance phenomenon, Trinity College Dublin.School of Creative Arts.DRAMA, 2018\\\", \\\"raw_type\\\": \\\"Doctoral thesis\\\"}, \\\"abstract\\\": \\\"Comedians learn how and who to be on stage. Writing and performing stand-up comedy entails complex social and professional challenges. Facing these challenges, stand-up comedians adapt personae.\\\\\\\\nVia a critical analysis of research literature, humour theories, and first-person and third-person accounts of stand-up comedy and humour, the thesis identifies the need to bridge folk accounts to scientific method. The thesis appraises current approaches to humour and stand-up comedy, identifies conceptual difficulties and germane lines of discovery, and proposes remedies via NIGHTS (a Notionally Integrated General Humour Theory of Stand-up Comedy). The key claim of NIGHTS is that the performance of stand-up comedy begins as an intentioned process.\\\\\\\\nThe theoretical framework employed is a multi-disciplinary matrix under the umbrella of Daniel Dennett?s Heterophenomenological approach to the study of consciousness. Given that any meaningful investigation of CSP and humour entails studying first-person subjective reporting, Dennett?s Heterophenomenological approach provides a strategy that accommodates first-person subjective accounts within a third-person objective framework. \\\\\\\\nThe approach allows for engagement with first-person reports of stand-up comedy from comedians, coaches, spectators, and critics, without privileging such reports. In this way the thesis aims to bridge first-person accounts (folk theory) and scientific approaches to performance. The aim of the thesis is to engage with subjective accounts, unpack concepts (identifying compatibilities and conflicting concepts and definitions), and analyse stand-up comedy and the development of CSP in a way that is amenable to psychology and cognitive science.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4387216584\\\", \\\"doi\\\": \\\"https://doi.org/10.7592/ejhr.2023.11.3.791\\\", \\\"title\\\": \\\"Sexual jokes in Nigerian stand-up comedy\\\", \\\"publication_year\\\": 2023, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 3, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"diamond\\\", \\\"oa_url\\\": \\\"https://europeanjournalofhumour.org/ejhr/article/download/791/728\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.7592/ejhr.2023.11.3.791\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.7592/ejhr.2023.11.3.791\\\", \\\"pdf_url\\\": \\\"https://europeanjournalofhumour.org/ejhr/article/download/791/728\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2738151512\\\", \\\"display_name\\\": \\\"European Journal of Humour Research\\\", \\\"issn_l\\\": \\\"2307-700X\\\", \\\"issn\\\": [\\\"2307-700X\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310317498\\\", \\\"host_organization_name\\\": \\\"Cracow Tertium Society for the Promotion of Language Studies\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310317498\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cracow Tertium Society for the Promotion of Language Studies\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"The European Journal of Humour Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Nigerian stand-up comic artists explore emerging social, religious, and political issues as materials for comic entertainment within their performance space and community of practice. One of the resources for comic performance is the recourse to sexual contents which are deployed to reduce apprehension around stereotyped norms about sex and sexuality in the Nigerian sociocultural context. Drawing on ethnographic qualitative data using social media skits, audio-visual disks and semi-structured interviews, this article examines sexual jokes as ideological texts and rhetorical devices that embody the struggle between conservatism and postmodern conceptions of sex and sexuality. It highlights the recurrent themes and creative discourses of sexual humour which stand-up comedy performers exploit as artistic tools for the engagement of gender roles, sexual myths, sexual politics and social contradictions within a vulnerable socio-political and economic context. We adopt social relief theory and incongruity theory of humour comprehension to provide a nuanced understanding of sexual jokes and the sociocultural inhibitions that surround them. The dominant themes in these jokes include male sterility, faking orgasm, commodification of sex, prostitution, rape, and the use of aphrodisiac. The results indicate that sexual jokes are circulating within the comedy performance space as forms of protest against stereotyped sexual culture. In this way, male and female comedians, working with the tools and ideology of postmodernism, help to satirise conventional sexual values and radicalise their audiences against normative construction of sex and sexuality.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2918193314\\\", \\\"doi\\\": null, \\\"title\\\": \\\"Comic trans : presenting and representing the other in stand-up comedy\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"dissertation\\\", \\\"cited_by_count\\\": 4, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/10138/273464\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmh:oai:taju.uniarts.fi:11111/1297\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://taju.uniarts.fi/handle/11111/1297\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://opena\", \"excerpt_truncated\": true, \"source_sha256\": \"3aac8d63d97dcb013165cb234174308631a295bab2395a6ab82ee4b3e18f133e\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.7592/ejhr2013.1.1.dynel\", \"doi:10.7592/ejhr.2023.11.3.791\", \"openalex:W1480046052\", \"openalex:W2885938474\", \"openalex:W4387216584\", \"openalex:W2918193314\"]}",
+  "id": "source-28686a0b238a48d7",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=comedy+incongruity+resolution+benign+violation+theory&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 69,
+  "time": "2026-09-25T08:59:17.500253+00:00"
+}
+```
+
+### `source-40f738cab94144c6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a7b5fb70f4a5aefa56b5b52334961667d28684e0607480ee9abb4e1835b0e12\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-40f738cab94144c6",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 69,
+  "time": "2026-09-25T08:59:18.503283+00:00"
+}
+```
+
+### `source-f4665c537289480a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"60d56814db9e113c04446db2ff106618ab83ef8ce2a010db3d2bf6226a8d6e3a\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+  "id": "source-f4665c537289480a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 69,
+  "time": "2026-09-25T08:59:19.025123+00:00"
+}
+```
+
+### `source-2a48a6634ab24de7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40313},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rule consciousness\\\",\\\"pageid\\\":47313267,\\\"size\\\":1874,\\\"wordcount\\\":217,\\\"snippet\\\":\\\"Rule\\nconsciousness\\nis one of the primary factors of personality out of sixteen, as categorized by Raymond Cattell in 1946 as low- and high-level. The\\\",\\\"timestamp\\\":\\\"2026-09-17T00:12:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"609b363834c453b95d0e8cf5afd55c8b36147f10ff913468df7c19d5fc062a28\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2a48a6634ab24de7",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 69,
+  "time": "2026-09-25T08:59:19.481317+00:00"
+}
+```
+
+### `source-1792952a98ea46d8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"06dc05011f80b00b87adf32ccedd661bf07b8ffa37bfedfb5f309a9c495f0dc2\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1792952a98ea46d8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 69,
+  "time": "2026-09-25T08:59:20.007008+00:00"
+}
+```
+
+### `r-b649305fd634498d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":69,\"inherited_commitments\":[],\"invocation\":\"w-b649305fd634498d\",\"previous_head\":\"2d01e3c52f782ea8cb3eeb51beda5c3686a73775d645a5036ffca56eee7c814d\",\"process_id\":2030,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b649305fd634498d",
+  "source": "runtime:continuity",
+  "version": 69,
+  "time": "2026-09-25T08:59:20.856633+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -57063,8 +57615,9 @@ _None recorded._
   "query": "comedy incongruity resolution benign violation theory",
   "reason": "To locate humor-theory publications, as current project evidence contains only unrelated neuro-metabolic sources.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-e62a1a5e42c74bc1"
+  "status": "collected",
+  "created_by": "w-e62a1a5e42c74bc1",
+  "evidence": "source-28686a0b238a48d7"
 }
 ```
 
