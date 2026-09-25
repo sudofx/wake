@@ -1,5 +1,5 @@
 {
-  "version": 62,
+  "version": 63,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -6779,6 +6779,68 @@
       "source": "runtime:continuity",
       "version": 61,
       "time": "2026-09-25T08:04:15.628294+00:00"
+    },
+    "source-175d044b8a474c62": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1093%2Fmed%2F9780199972135.003.0067\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2022, 8, 2]], \\\"date-time\\\": \\\"2022-08-02T18:16:07Z\\\", \\\"timestamp\\\": 1659464167425}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Oxford University Press\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2016, 9]]}, \\\"abstract\\\": \\\"<p>Late-onset forms of inborn errors of metabolism (IEM) first presenting in adulthood often display psychiatric or neurological manifestations, including atypical psychosis or depression, unexplained coma, peripheral neuropathy, cerebellar ataxia, spastic paraparesis, dementia, movement disorders, or epilepsy. With the exception of several review articles, most if not all existing books and diagnostic algorithms refer to pediatric forms of these diseases. Late-onset forms of IEM always display attenuated phenotypes, which in some instances are associated with one or more clinical manifestations that differ from the classic clinical picture described in children. Although the limited information available about adult forms of IEM makes the specialty new and quite exploratory, the diagnostic approach in adults is facilitated by the fact that the nervous system is already mature. Therefore, clinical presentations are more homogeneous than in children, in whom clinical signs usually differ depending on their stage of maturation.</p>\\\", \\\"DOI\\\": \\\"10.1093/med/9780199972135.003.0067\\\", \\\"type\\\": \\\"book\\\", \\\"created\\\": {\\\"date-parts\\\": [[2016, 9, 29]], \\\"date-time\\\": \\\"2016-09-29T18:16:46Z\\\", \\\"timestamp\\\": 1475173006000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [\\\"Neurological and Psychiatric Symptoms\\\"], \\\"prefix\\\": \\\"10.1093\\\", \\\"author\\\": [{\\\"given\\\": \\\"Frédéric\\\", \\\"family\\\": \\\"Sedel\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"Yann\\\", \\\"family\\\": \\\"Nadjar\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"286\\\", \\\"container-title\\\": [\\\"Oxford Medicine Online\\\"], \\\"original-title\\\": [\\\"Neurological and Psychiatric Symptoms\\\"], \\\"deposited\\\": {\\\"date-parts\\\": [[2022, 8, 2]], \\\"date-time\\\": \\\"2022-08-02T17:28:50Z\\\", \\\"timestamp\\\": 1659461330000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://academic.oup.com/book/30624/chapter/258973241\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2016, 9]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1093/med/9780199972135.003.0067\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2016, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"11e711bb5c4696aff05557fd495068562da03b902bf22f4c04058d1853d942e4\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1093/med/9780199972135.003.0067\"]}",
+      "id": "source-175d044b8a474c62",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1093%2Fmed%2F9780199972135.003.0067",
+      "version": 62,
+      "time": "2026-09-25T08:08:29.734264+00:00"
+    },
+    "source-a76cc1d2d4d14156": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=thyroid+hormone+cognitive+dysfunction+psychiatric+mechanism&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"scope\": \"Semantic Scholar scholarly metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"paperId\\\": \\\"9a1643c89a228dc40eddbbaa474b15ae462018a3\\\", \\\"title\\\": \\\"Association of altered thyroid hormones and neurometabolism to cognitive dysfunction in unmedicated bipolar II depression.\\\", \\\"year\\\": 2020, \\\"abstract\\\": \\\"BACKGROUND\\\\nThe underlying mechanism of cognitive impairment in bipolar II depression (BD II) remains unclear. Studies show disturbances of the hypothalamus-pituitary-thyroid (HPT) axis are suspected of correlating to brain neurometabolic alterations and cognitive deficits psychiatric disorders. While, the nature of their inter-relationships in BD II depression remain enigmatic.\\\\n\\\\n\\\\nMETHODS\\\\nOne hundred and six patients with unmedicated BD II depression and 100 healthy controls underwent cognitive processing speed assessment using Trail Making Test, Part-A (TMT-A), Digit Symbol Substitution Test (DSST), and Semantic Verbal Fluency testing (SVF). Of those, 69 patients and 53 healthy controls had serum thyroid hormone levels measured including free tri-iodothyronine (FT3), total tri-iodothyronine (TT3), free thyroxin (FT4), total thyroxin (TT4) and thyroid-stimulating hormone (TSH). Additionally, 79 of the patients and 76 of the healthy controls underwent proton magnetic resonance spectroscopy ((Kim et al., 2017) H-MRS) to obtain ratios of N-acetyl aspartate to creatine (NAA/Cr) and choline-containing compounds to creatine (Cho/Cr) in the prefrontal cortex (PFC), anterior cingulate cortex (ACC) and thalamus. Finally, association and multiple regression analysis were conducted to investigate their inter-relationships.\\\\n\\\\n\\\\nRESULTS\\\\nPatients with BD II depression showed significantly lower DSST and verbal fluency scores and longer completion time of TMT-A than did healthy controls. The FT3, TT3, and TSH levels of the BD cohort significantly decreased, while their FT4 levels increased. We also found significantly lower NAA/Cr ratios in the PFC and higher NAA/Cr ratios in the left thalamus of patients with BD II depression than in healthy controls. Furthermore, association analysis showed that increased FT4 negatively correlated to DSST and SVF, while increased FT4 correlation significantly with increasing TSH and DSST. Multiple regression analyses revealed relationships between TSH and NAA in the left PFC and the left thalamus, while correlating to SVF testing within the BD II depression cohort.\\\\n\\\\n\\\\nCONCLUSIONS\\\\nOur results demonstrate coinciding thyroid hormone abnormalities, cognitive dysfunction, and neurometabolic alterations of the PFC-thalamic circuitry occur in an early course of BD II depression. Further understanding of the interaction between thyroid-stimulating hormone and NAA/Cr of PFC-thalamic circuitry may shed light on the etiology of associated cognitive impairment.\\\", \\\"url\\\": \\\"https://www.semanticscholar.org/paper/9a1643c89a228dc40eddbbaa474b15ae462018a3\\\", \\\"externalIds\\\": {\\\"MAG\\\": \\\"3048796225\\\", \\\"DOI\\\": \\\"10.1016/j.pnpbp.2020.110027\\\", \\\"CorpusId\\\": 221092180, \\\"PubMed\\\": \\\"32791168\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"\\\", \\\"status\\\": null, \\\"license\\\": null, \\\"disclaimer\\\": \\\"Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.1016/j.pnpbp.2020.110027?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1016/j.pnpbp.2020.110027, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"36ec8a432383e52f942cac629a1ea18a17ec57d3\\\", \\\"title\\\": \\\"Increased Thyroid Hormone Action Alleviates Hippocampal Damage by Downregulating Neuronal Type I Interferon Signaling/Necroptosis in Diabetes-Associated Cognitive Dysfunction\\\", \\\"year\\\": 2024, \\\"abstract\\\": \\\"Background: Thyroid dysfunction plays an important role in the pathology of diabetes-associated cognitive dysfunction (DACD). However, thyroid hormone (TH) signaling and action changes in DACD brains remain unknown. This study evaluated the alternations in TH signaling and action in the brains of DACD mice and explored the beneficial effects of levothyroxine (L-T4) treatment. Methods: KK-Ay mice, serving as a spontaneous type 2 diabetes mellitus model, underwent intragastric administration of 10 ng/g and 20 ng/g of L-T4 solution or normal saline for 8 weeks. Age-matched C57BL/6J mice were used as normal controls. Cognitive and memory functions were examined through the open field and Morris water maze tests. Hippocampal TH signaling and pathogenic status were evaluated. The potential signaling pathways involved in the neuroprotective action of L-T4 were investigated through RNA sequencing and further verified through quantitative real-time PCR (qPCR), Western blotting (WB), immunofluorescence (IF), and fluorescent multiplex immunohistochemistry (mIHC) in vivo and vitro. Results: The expressions of hippocampal TH transporters (Mct8 and Oatp1c1), Dio2, and TH receptor were upregulated, whereas Dio3 as well as the TH-positive regulated genes MBP, Enpp2, and Klf9 were downregulated in DACD mice. Exogenous L-T4 partially alleviated cognitive and memory dysfunction and restored hippocampal neuronal activity by optimizing TH signaling. RNA sequencing provided insights into the role of type I interferon (IFN-I) signaling and necroptosis on the amelioration of hippocampal damage after L-T4 treatment. WB and qPCR further confirmed that the levels of key proteins for IFN-I signaling and necroptosis (p-STAT1, p-STAT2, IRF9, ZBP1, p-RIP3, and p-MLKL) were increased, but largely returned after L-T4 administration in vivo and T3 treatment in vitro. IF and mIHC revealed that IRF9 and p-MLKL colocalized in neurons, but not in astrocytes or microglia, of the hippocampus in DACD mice. The diabetes mellitus group had an increased number of IRF9+ p-MLKL+ NeuN+ cells, which decreased after L-T4 treatment. The elevated IFN-I signaling-mediated necroptosis in HT22 cells was also decreased by T3. Conclusion: We demonstrated abnormal hippocampal TH signaling and action in DACD. Promoting TH action with exogenous L-T4 ameliorated hippocampal impairment through inhibiting IFN-I signaling-induced necroptosis.\\\", \\\"url\\\": \\\"https://www.semanticscholar.org/paper/36ec8a432383e52f942cac629a1ea18a17ec57d3\\\", \\\"externalIds\\\": {\\\"DOI\\\": \\\"10.1089/thy.2024.0087\\\", \\\"CorpusId\\\": 271719259, \\\"PubMed\\\": \\\"39104259\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"\\\", \\\"status\\\": \\\"CLOSED\\\", \\\"license\\\": null, \\\"disclaimer\\\": \\\"Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.1089/thy.2024.0087?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1089/thy.2024.0087, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"1ce6f254eeaee979380fc117e0b6aa8dc4a996d3\\\", \\\"title\\\": \\\"Thyroid hormones and cognitive function in chronic schizophrenia: a large-scale cross-sectional study.\\\", \\\"year\\\": 2025, \\\"abstract\\\": null, \\\"url\\\": \\\"https://www.semanticscholar.org/paper/1ce6f254eeaee979380fc117e0b6aa8dc4a996d3\\\", \\\"externalIds\\\": {\\\"DOI\\\": \\\"10.1007/s00406-025-02085-x\\\", \\\"CorpusId\\\": 280685773, \\\"PubMed\\\": \\\"40828420\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"\\\", \\\"status\\\": \\\"CLOSED\\\", \\\"license\\\": null, \\\"disclaimer\\\": \\\"Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1007/s00406-025-02085-x?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1007/s00406-025-02085-x, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"264cfb1874ed32482ea6b0b628c1800129d1c2d5\\\", \\\"title\\\": \\\"Thyroid Hormone Supplementation Restores Cognitive Deficit, Insulin Signaling, and Neuroinflammation in the Hippocampus of a Sporadic Alzheimer’s-like Disease Rat Model\\\", \\\"year\\\": 2024, \\\"abstract\\\": \\\"Thyroid hormones play a crucial role in the development of the central nervous system and are considered pivotal to cognitive functions in the adult brain. Recently, thyroid dysfunction has been associated with Alzheimer’s disease. The aim of this study was to assess the neuroprotective effects of triiodothyronine (T3) on insulin signaling, neuroinflammation, apoptosis, and cognitive function in a streptozotocin (STZ)-induced sporadic Alzheimer’s disease-like model. Male Wistar rats underwent stereotaxic surgery for intracerebroventricular injections of streptozotocin (STZ; 2 mg/kg) or vehicle in the lateral ventricles to induce an AD-like model. The animals received a daily dose of 1.5 μg of T3/100 g body weight or the same volume of vehicle for 30 days and were subdivided into four experimental groups: (1) animals receiving citrate treated with saline (Control = CTL); (2) animals receiving citrate treated with T3 (T3); (3) animals receiving STZ treated with saline (STZ); and (4) animals receiving STZ treated with T3 (STZ + T3). The novel object recognition test was used to measure cognitive function. Serum analysis, real-time RT-PCR, immunohistochemistry, and immunoblotting analyses were also carried out. Our results demonstrated that T3 treatment reversed cognitive impairment and increased Akt and GSK3 phosphorylation in the treated group, while also reducing microglial activation (Iba-1) and GFAP expression (reactive astrocytes), along with TNF-α, IL-6, and IL-1β levels in the hippocampus. Additionally, T3 treatment increased levels of the anti-apoptotic protein Bcl-2 and reduced the expression of the pro-apoptotic protein BAX in the hippocampus. Our study demonstrated that T3 could potentially protect neurons in an AD model induced by STZ.\\\", \\\"url\\\": \\\"https://www.semanticscholar.org/paper/264cfb1874ed32482ea6b0b628c1800129d1c2d5\\\", \\\"externalIds\\\": {\\\"PubMedCentral\\\": \\\"11545223\\\", \\\"DOI\\\": \\\"10.3390/cells13211793\\\", \\\"CorpusId\\\": 273713494, \\\"PubMed\\\": \\\"39513900\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"https://doi.org/10.3390/cells13211793\\\", \\\"status\\\": \\\"GOLD\\\", \\\"license\\\": \\\"CCBY\\\", \\\"disclaimer\\\": \\\"Notice: Paper or abstract available at https\", \"excerpt_truncated\": true, \"source_sha256\": \"9a34ded72920120eabb47639ba563d54e6aa799aff6b8a4c15e0bd2a7e38a7eb\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/j.pnpbp.2020.110027\", \"doi:10.1089/thy.2024.0087\", \"doi:10.1007/s00406-025-02085-x\", \"doi:10.3390/cells13211793\", \"arxiv:2024.0087\"]}",
+      "id": "source-a76cc1d2d4d14156",
+      "scope": "collected",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=thyroid+hormone+cognitive+dysfunction+psychiatric+mechanism&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 62,
+      "time": "2026-09-25T08:08:31.421019+00:00"
+    },
+    "source-2fbe686b15274883": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":72580,\\\"wordcount\\\":8023,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T07:32:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":70575,\\\"wordcount\\\":8638,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T07:50:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a933c31ad4b40d3d00805e3a5b6fc96091f2184ec94c73e6601bf2eac4c9d62e\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-2fbe686b15274883",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 62,
+      "time": "2026-09-25T08:08:32.561850+00:00"
+    },
+    "source-c54637f0a8f8401d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"74a42531c96e60b8b2d348cc1a00379b7eb7966681245c7ee664545145301850\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c54637f0a8f8401d",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 62,
+      "time": "2026-09-25T08:08:33.199206+00:00"
+    },
+    "source-570e994d71554872": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"876cb9b78d60e76f633c614bd2756ebba14d2f09d2d40e12dbec5abd0629b317\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-570e994d71554872",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 62,
+      "time": "2026-09-25T08:08:33.899771+00:00"
+    },
+    "source-4025547347b845cb": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86eb4c3d2818af260c0a74a78353a03723383ad3b000c2dc82f427a4a134b6d7\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-4025547347b845cb",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 62,
+      "time": "2026-09-25T08:08:34.464833+00:00"
+    },
+    "r-af93f5af78554aa0": {
+      "actor": "runtime",
+      "content": "{\"base_version\":62,\"inherited_commitments\":[],\"invocation\":\"w-af93f5af78554aa0\",\"previous_head\":\"b181b75553b616142a3691b6e1c22babcaa7508597953013ad1125c9ebda9a18\",\"process_id\":2320,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-af93f5af78554aa0",
+      "source": "runtime:continuity",
+      "version": 62,
+      "time": "2026-09-25T08:08:35.735959+00:00"
     }
   },
   "journal": [
@@ -7153,6 +7215,12 @@
       "invocation": "w-f28a0b57b0f9488c",
       "title": "Mapping Thyroid-Psychiatric Intersections",
       "summary": "Synthesized initial provisional notebook on maternal thyroid dysfunction and psychiatric symptoms based on Crossref metadata, mapping out the endocrine-neurological pathway while staying aligned with the active endocrinology focus."
+    },
+    {
+      "cycle": 63,
+      "invocation": "w-af93f5af78554aa0",
+      "title": "Advancing Visual art under enforced rotation",
+      "summary": "Squirrel accepted the valid visual_art subset of a mixed provider proposal and withheld 0 off-topic or administrative action(s). The exact provider response remains preserved in history."
     }
   ],
   "posts": {
@@ -44840,6 +44908,424 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-25T08:04:44.435036+00:00",
       "reason": ""
+    },
+    "w-af93f5af78554aa0": {
+      "base_version": 62,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 16246,
+        "delivered_request_chars": 41422,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 86105,
+        "working_set_chars": 2061
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-af93f5af78554aa0",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 62,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0.5
+            },
+            "id": "endo-thyroid-neuro",
+            "score": 0.925,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Thyroid Dysfunction and Neurological Outcomes"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "comedy-incongruity-mechanisms",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Humor"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "info-thermo-landauer",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Landauer's Principle and Information Costs"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2320,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "e543e9976b31bf9172567a1aed0742aa5708ff112005f7502505c95ea5e65669",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-143261413b09417a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-143261413b09417a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d433f7f88da14a8b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d433f7f88da14a8b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ecdb3112fdd94b46"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ecdb3112fdd94b46",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0a7b2a5c06d44417",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-930f33f0d42a4658",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-175d044b8a474c62"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-175d044b8a474c62",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-143261413b09417a",
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46",
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-175d044b8a474c62"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 5,
+          "topic": "endocrinology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [
+          "information_thermodynamics"
+        ],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "endocrinology"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "endocrinology": [
+            {
+              "id": "endo-thyroid-neuro",
+              "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+              "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?"
+            }
+          ]
+        },
+        "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 1635,
+          "anchor_time": "2026-09-25T08:08:34.816182+00:00",
+          "anchor_version": 62,
+          "effective_seconds": 30072.341244
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": "r-af93f5af78554aa0",
+        "topic_selection_candidates": [
+          "comedy",
+          "complex_systems",
+          "consciousness",
+          "dance",
+          "entropy",
+          "epistemology",
+          "evolutionary_biology",
+          "music",
+          "neurodivergence",
+          "neurology",
+          "philosophy",
+          "prime_numbers",
+          "psychology",
+          "quantum_mechanics",
+          "religion",
+          "storytelling",
+          "visual_art"
+        ],
+        "topic_selection_method": "receipt_hash_uniform_index"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 260.043147,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 30072.341244,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 17
+        },
+        "observed_at": "2026-09-25T08:08:34.816182+00:00",
+        "previous_anchor_time": "2026-09-25T08:04:14.773035+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 260.043147
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 16246,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 2061,
+        "working_to_delivered_ratio": 0.1269
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "info-thermo-landauer",
+            "next_step": "Search for foundational and critical literature on Landauer's principle.",
+            "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+            "title": "Landauer's Principle and Information Costs"
+          },
+          {
+            "id": "comedy-incongruity-mechanisms",
+            "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+            "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+            "title": "Cognitive Mechanisms of Humor"
+          },
+          {
+            "id": "endo-thyroid-neuro",
+            "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+            "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?",
+            "title": "Thyroid Dysfunction and Neurological Outcomes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          },
+          {
+            "id": "notebook-endo-thyroid-provisional-01",
+            "project": "endo-thyroid-neuro",
+            "provenance": [
+              "source-85d977fa7bf34654"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+            "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T08:08:36.088866+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 980,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 44414,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 435,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 44414,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 25395,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 44414,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T08:09:29.867646+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -44860,7 +45346,7 @@
       "endocrinology": {
         "cause": "attention_saturation",
         "deferred_by": "w-f28a0b57b0f9488c",
-        "other_topic_attempts": 0,
+        "other_topic_attempts": 1,
         "parked_projects": [
           {
             "id": "endo-thyroid-neuro",
@@ -44873,28 +45359,19 @@
       }
     },
     "last_receipt": {
-      "attention_saturation_triggered": true,
-      "attention_topic": "endocrinology",
-      "durable_progress": true,
+      "attention_saturation_triggered": false,
+      "attention_topic": "visual_art",
+      "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-f28a0b57b0f9488c",
-      "restored_topics": [
-        "comedy",
-        "consciousness",
-        "entropy",
-        "music",
-        "neurodivergence",
-        "prime_numbers"
-      ],
-      "selected_topic": "endocrinology",
+      "invocation": "w-af93f5af78554aa0",
+      "restored_topics": [],
+      "selected_topic": "visual_art",
       "terminal": "accepted",
-      "triggered_topics": [
-        "endocrinology"
-      ]
+      "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 5,
-      "topic": "endocrinology"
+      "accepted_streak": 1,
+      "topic": "visual_art"
     }
   },
   "acquisition": {
@@ -45444,7 +45921,7 @@
     "endo-thyroid-neuro": {
       "project": "endo-thyroid-neuro",
       "domain": "endocrinology",
-      "no_progress": 0,
+      "no_progress": 1,
       "routes": [
         "api.semanticscholar.org:discovery",
         "api.datacite.org:discovery",
@@ -45458,18 +45935,26 @@
         "doi:10.1093/med/9780199972135.003.0067",
         "doi:10.1176/posters.psych.apa2026.4215426",
         "doi:10.1016/j.jns.2023.120933",
-        "arxiv:8412.17005"
+        "arxiv:8412.17005",
+        "doi:10.1016/j.pnpbp.2020.110027",
+        "doi:10.1089/thy.2024.0087",
+        "doi:10.1007/s00406-025-02085-x",
+        "doi:10.3390/cells13211793",
+        "arxiv:2024.0087"
       ],
       "last_receipt": {
-        "evidence": "source-85d977fa7bf34654",
-        "outcome": "progress",
+        "evidence": "source-a76cc1d2d4d14156",
+        "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.21694/2577-8412.17005",
-          "arxiv:8412.17005"
+          "doi:10.1016/j.pnpbp.2020.110027",
+          "doi:10.1089/thy.2024.0087",
+          "doi:10.1007/s00406-025-02085-x",
+          "doi:10.3390/cells13211793",
+          "arxiv:2024.0087"
         ],
-        "research_id": "res-thyroid-neuro-psych",
-        "route": "api.crossref.org:source",
-        "stage": "substantive_source"
+        "research_id": "res-endo-thyroid-neurology-01",
+        "route": "api.semanticscholar.org:discovery",
+        "stage": "discovery"
       }
     }
   },
@@ -45638,13 +46123,13 @@
       "id": "info-thermo-landauer",
       "next_step": "Search for foundational and critical literature on Landauer's principle.",
       "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
-      "reason": "To explore the fundamental physical limits of information processing as mandated by the current squirrel rotation.",
-      "status": "active",
+      "reason": "Deterministic Squirrel capacity recovery: park this non-selected project so visual_art work can proceed.",
+      "status": "parked",
       "title": "Landauer's Principle and Information Costs",
       "type": "project",
       "created_version": 50,
-      "updated_version": 50,
-      "updated_by": "w-a7e180db574f455b"
+      "updated_version": 63,
+      "updated_by": "w-af93f5af78554aa0"
     },
     "comedy-incongruity-mechanisms": {
       "domain": "comedy",
@@ -45671,6 +46156,19 @@
       "created_version": 58,
       "updated_version": 58,
       "updated_by": "w-2c63cfade23642d8"
+    },
+    "visual-art-perception-mechanism": {
+      "domain": "visual_art",
+      "id": "visual-art-perception-mechanism",
+      "next_step": "Search for peer-reviewed literature on neuroaesthetics and the cognitive mechanisms underlying visual art evaluation.",
+      "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+      "reason": "To initiate research under the enforced topic rotation of visual_art, focusing on the cognitive and perceptual basis of aesthetic evaluation.",
+      "status": "active",
+      "title": "Mechanisms of Visual Art Perception",
+      "type": "project",
+      "created_version": 63,
+      "updated_version": 63,
+      "updated_by": "w-af93f5af78554aa0"
     }
   },
   "notebooks": {
@@ -46304,8 +46802,19 @@
       "query": "thyroid hormone cognitive dysfunction psychiatric mechanism",
       "reason": "To retrieve further clinical or review literature detailing the physiological mechanisms through which thyroid hormone imbalances induce cognitive and psychiatric symptoms.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-f28a0b57b0f9488c",
+      "evidence": "source-a76cc1d2d4d14156"
+    },
+    "res-visual-art-perception-002": {
+      "domain": "visual_art",
+      "id": "res-visual-art-perception-002",
+      "project": "visual-art-perception-mechanism",
+      "query": "neuroaesthetics cognitive mechanisms visual art perception composition symmetry ambiguity",
+      "reason": "Identify foundational and contemporary literature connecting cognitive science to visual art perception.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-f28a0b57b0f9488c"
+      "created_by": "w-af93f5af78554aa0"
     }
   },
   "research_topics": [
@@ -46505,9 +47014,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T08:04:14.773035+00:00",
-    "anchor_version": 61,
-    "anchor_seq": 1617,
-    "effective_seconds": 29812.298097
+    "anchor_time": "2026-09-25T08:08:34.816182+00:00",
+    "anchor_version": 62,
+    "anchor_seq": 1635,
+    "effective_seconds": 30072.341244
   }
 }
