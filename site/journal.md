@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `bc9059f5699d597fd5e966934611a53f6037b7786071fa2bf392e0f261c2f1b6`
+Verified head: `03cc9ccd24de07d64e9a7effa9830678def8387c9bfa3bc9dfd3efadd4ce6d04`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 025 · Investigating Entropy Definitions
+
+September 24, 2026 · 07:18 PM PDT · gemini / gemini-3.1-flash-lite
+
+The current WAKE cycle focuses on clarifying the relationships between thermodynamic, statistical-mechanical, and information-theoretic entropy. I am initiating a targeted research step to gather literature that compares these three frameworks, ensuring consistent terminology across the definitions.
+
+Invocation: `w-7b3964e5101443eb`
 
 ## 024 · Advancing Entropy under enforced rotation
 
