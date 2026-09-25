@@ -5,7 +5,7 @@
 **Version:** 8  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `17aa8babaa510d4048314671c1bb7374d0090a10819e336d9087fee13bcd748a`
+**Verified head:** `668f7ecb1529b1f52c2bb7d5035464bdf35fdeceddea9878aced373ede0e30e6`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -147,40 +147,92 @@ _None recorded._
 {
   "project": "landauer_principle_foundations",
   "domain": "information_thermodynamics",
-  "no_progress": 5,
+  "no_progress": 0,
   "routes": [
     "api.crossref.org:discovery",
     "api.openalex.org:discovery",
     "api.datacite.org:discovery",
     "api.crossref.org:source"
   ],
-  "capability_blocked": true,
-  "retry_after_version": 19,
+  "capability_blocked": false,
+  "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1088/1751-8121/aa86c6/pdf",
-    "doi:10.1038/s41567-018-0070-7",
-    "doi:10.1088/1751-8113/49/14/143001",
-    "doi:10.1088/1751-8113/49/14/143001/pdf",
-    "openalex:W2510914679",
-    "openalex:W2619071992",
-    "openalex:W2790785914",
-    "openalex:W3098165131",
-    "doi:10.5281/zenodo.20416349",
-    "doi:10.1887/0750307595/b1154c4",
-    "doi:10.2139/ssrn.5982813",
-    "doi:10.1088/1742-5468/2015/06/p06015"
+    "doi:10.1088/1742-5468/2015/06/p06015",
+    "doi:10.1088/crossmark-policy",
+    "doi:10.1147/rd.53.0183",
+    "doi:10.1007/bf02084158",
+    "doi:10.1007/bf01341281",
+    "doi:10.1002/bs.3830090402",
+    "doi:10.1038/nphys1821",
+    "doi:10.1887/0750307595",
+    "doi:10.1201/9781420033991",
+    "doi:10.1038/nphys3230",
+    "doi:10.1103/physreve.52.3495",
+    "doi:10.1103/physrevlett.102.210601"
   ],
   "last_receipt": {
-    "evidence": "source-2628c5d1be214613",
-    "outcome": "no_progress",
+    "evidence": "source-35bacfc7a5084ca9",
+    "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1887/0750307595/b1154c4",
-      "doi:10.2139/ssrn.5982813",
       "doi:10.1088/1742-5468/2015/06/p06015",
-      "doi:10.1080/00107510010018916"
+      "doi:10.1088/crossmark-policy",
+      "doi:10.1147/rd.53.0183",
+      "doi:10.1007/bf02084158",
+      "doi:10.1007/bf01341281",
+      "doi:10.1002/bs.3830090402",
+      "doi:10.1038/nphys1821",
+      "doi:10.1887/0750307595",
+      "doi:10.1201/9781420033991",
+      "doi:10.1038/nphys3230",
+      "doi:10.1103/physreve.52.3495",
+      "doi:10.1103/physrevlett.102.210601"
     ],
     "research_id": "res-landauer-001",
-    "route": "api.crossref.org:discovery",
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
+  }
+}
+```
+
+### `visual_art_perception`
+
+```json
+{
+  "project": "visual_art_perception",
+  "domain": "visual_art",
+  "no_progress": 1,
+  "routes": [
+    "api.openalex.org:discovery"
+  ],
+  "capability_blocked": false,
+  "retry_after_version": null,
+  "persistent_identifiers": [
+    "doi:10.1016/j.plrev.2013.05.008",
+    "doi:10.1037/rev0000135",
+    "doi:10.1073/pnas.1301227110",
+    "doi:10.1007/s10462-018-9646-y",
+    "doi:10.1007/s10462-018-9646-y.pdf",
+    "openalex:W2028880259",
+    "openalex:W2917867349",
+    "openalex:W2143742505",
+    "openalex:W2883445328"
+  ],
+  "last_receipt": {
+    "evidence": "source-e635b6005c7847d2",
+    "outcome": "no_progress",
+    "persistent_identifiers": [
+      "doi:10.1016/j.plrev.2013.05.008",
+      "doi:10.1037/rev0000135",
+      "doi:10.1073/pnas.1301227110",
+      "doi:10.1007/s10462-018-9646-y",
+      "doi:10.1007/s10462-018-9646-y.pdf",
+      "openalex:W2028880259",
+      "openalex:W2917867349",
+      "openalex:W2143742505",
+      "openalex:W2883445328"
+    ],
+    "research_id": "res-visual-art-001",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -2664,6 +2716,377 @@ _None recorded._
 }
 ```
 
+### `w-d6d226a0861448d6`
+
+```json
+{
+  "base_version": 8,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 9793,
+    "delivered_request_chars": 35166,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 66068,
+    "working_set_chars": 1658
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-d6d226a0861448d6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 8,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "landauer_principle_foundations",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "entropy_foundations",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Formulations of Entropy"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "visual_art_perception",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Visual Perception in Art"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2036,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "986665e806a06397bef4671846b9821d273abb9f95d064220e5f71f101c2b888",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-entropy-synthesis-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-37de73467bbc40e5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-37de73467bbc40e5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-35bacfc7a5084ca9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-35bacfc7a5084ca9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-37de73467bbc40e5",
+      "source-35bacfc7a5084ca9"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 3,
+      "evidence_count": 2,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 2
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "visual_art"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "visual_art",
+    "temporal": {
+      "anchor_seq": 161,
+      "anchor_time": "2026-09-25T00:36:50.290706+00:00",
+      "anchor_version": 8,
+      "effective_seconds": 2967.815768
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 136.867029,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 2967.815768,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T00:36:50.290706+00:00",
+    "previous_anchor_time": "2026-09-25T00:34:33.423677+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 136.867029
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 9793,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 3,
+    "retrieval_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 2
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1658,
+    "working_to_delivered_ratio": 0.1693
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_foundations",
+        "next_step": "Query Wikipedia for foundational summaries of thermodynamic, statistical, and information entropies.",
+        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+        "title": "Formulations of Entropy"
+      },
+      {
+        "id": "landauer_principle_foundations",
+        "next_step": "Search for foundational literature and experimental evidence regarding Landauer's principle.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what experimental evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "id": "visual_art_perception",
+        "next_step": "Search for literature on the cognitive mechanisms of visual composition and aesthetics.",
+        "question": "How do composition, contrast, and ambiguity influence the viewer's aesthetic evaluation?",
+        "title": "Mechanisms of Visual Perception in Art"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 4,
+        "id": "commit-entropy-synthesis-001",
+        "reason": "Allows adequate time to process the findings from the new search and move toward synthesis.",
+        "task": "Review collected entropy literature and synthesize initial findings into a project notebook."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T00:36:50.356822+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 685,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 37437,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T00:36:56.084247+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 685,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 685,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 37437,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 37437,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -3539,6 +3962,103 @@ _None recorded._
 }
 ```
 
+### `source-35bacfc7a5084ca9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1088%2F1742-5468%2F2015%2F06%2Fp06015\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 7, 31]], \\\"date-time\\\": \\\"2026-07-31T23:06:10Z\\\", \\\"timestamp\\\": 1785539170782, \\\"version\\\": \\\"3.56.0\\\"}, \\\"reference-count\\\": 24, \\\"publisher\\\": \\\"IOP Publishing\\\", \\\"issue\\\": \\\"6\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2015, 6, 10]], \\\"date-time\\\": \\\"2015-06-10T00:00:00Z\\\", \\\"timestamp\\\": 1433894400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://iopscience.iop.org/info/page/text-and-data-mining\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2015, 6, 10]], \\\"date-time\\\": \\\"2015-06-10T00:00:00Z\\\", \\\"timestamp\\\": 1433894400000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://iopscience.iop.org/page/copyright\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"iopscience.iop.org\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"J. Stat. Mech.\\\"], \\\"DOI\\\": \\\"10.1088/1742-5468/2015/06/p06015\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2015, 6, 10]], \\\"date-time\\\": \\\"2015-06-10T16:13:24Z\\\", \\\"timestamp\\\": 1433952804000}, \\\"page\\\": \\\"P06015\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1088/crossmark-policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 52, \\\"title\\\": [\\\"Information and thermodynamics: experimental verification of Landauer's Erasure principle\\\"], \\\"prefix\\\": \\\"10.1088\\\", \\\"volume\\\": \\\"2015\\\", \\\"author\\\": [{\\\"given\\\": \\\"Antoine\\\", \\\"family\\\": \\\"Bérut\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Artyom\\\", \\\"family\\\": \\\"Petrosyan\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Sergio\\\", \\\"family\\\": \\\"Ciliberto\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"266\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2015, 6, 10]]}, \\\"reference\\\": [{\\\"key\\\": \\\"1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1147/rd.53.0183\\\"}, {\\\"key\\\": \\\"2\\\", \\\"author\\\": \\\"Brillouin L\\\", \\\"year\\\": \\\"1956\\\", \\\"journal-title\\\": \\\"Science and Information Theory\\\"}, {\\\"key\\\": \\\"3\\\", \\\"author\\\": \\\"Penrose O\\\", \\\"year\\\": \\\"1970\\\", \\\"journal-title\\\": \\\"Foundations of Statistical Mechanics: a Deductive Treatment\\\"}, {\\\"key\\\": \\\"4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02084158\\\"}, {\\\"key\\\": \\\"5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF01341281\\\"}, {\\\"key\\\": \\\"6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/bs.3830090402\\\"}, {\\\"key\\\": \\\"7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nphys1821\\\"}, {\\\"key\\\": \\\"8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1887/0750307595\\\"}, {\\\"key\\\": \\\"9\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1201/9781420033991\\\", \\\"author\\\": \\\"Leff H\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Maxwell's Demon 2 Entropy, Classical, Quantum Information and Computing\\\"}, {\\\"key\\\": \\\"10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nphys3230\\\"}, {\\\"key\\\": \\\"11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1103/PhysRevE.52.3495\\\"}, {\\\"key\\\": \\\"12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.102.210601\\\"}, {\\\"key\\\": \\\"13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nature10872\\\"}, {\\\"key\\\": \\\"14\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"60002\\\", \\\"DOI\\\": \\\"10.1209/0295-5075/103/60002\\\", \\\"volume\\\": \\\"103\\\", \\\"author\\\": \\\"Bérut A\\\", \\\"year\\\": \\\"2013\\\", \\\"journal-title\\\": \\\"Europhys. Lett.\\\", \\\"ISSN\\\": \\\"https://id.crossref.org/issn/0295-5075\\\", \\\"issn-type\\\": \\\"print\\\"}, {\\\"key\\\": \\\"15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nphys2940\\\"}, {\\\"key\\\": \\\"16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.113.190601\\\"}, {\\\"key\\\": \\\"17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0031-8914(40)90098-2\\\"}, {\\\"key\\\": \\\"18\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1143/PTPS.130.17\\\"}, {\\\"key\\\": \\\"19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1143/JPSJ.66.3326\\\"}, {\\\"key\\\": \\\"20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.78.2690\\\"}, {\\\"key\\\": \\\"21\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1088/0034-4885/75/12/126001\\\", \\\"volume\\\": \\\"75\\\", \\\"author\\\": \\\"Seifert U\\\", \\\"year\\\": \\\"2012\\\", \\\"journal-title\\\": \\\"Rep. Prog. Phys.\\\", \\\"ISSN\\\": \\\"https://id.crossref.org/issn/0034-4885\\\", \\\"issn-type\\\": \\\"print\\\"}, {\\\"key\\\": \\\"22\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"60005\\\", \\\"DOI\\\": \\\"10.1209/0295-5075/87/60005\\\", \\\"volume\\\": \\\"87\\\", \\\"author\\\": \\\"Vaikuntanathan S\\\", \\\"year\\\": \\\"2009\\\", \\\"journal-title\\\": \\\"Europhys. Lett.\\\", \\\"ISSN\\\": \\\"https://id.crossref.org/issn/0295-5075\\\", \\\"issn-type\\\": \\\"print\\\"}, {\\\"key\\\": \\\"23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.98.080602\\\"}, {\\\"key\\\": \\\"24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10955-012-0478-x\\\"}], \\\"container-title\\\": [\\\"Journal of Statistical Mechanics: Theory and Experiment\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"http://stacks.iop.org/1742-5468/2015/i=6/a=P06015/pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"http://stacks.iop.org/1742-5468/2015/i=6/a=P06015?key=crossref.64631bbfd1103098f6f03e6b18e41b00\\\", \\\"content-type\\\": \\\"text/html\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"http://stacks.iop.org/1742-5468/2015/i=6/a=P06015/pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}, {\\\"URL\\\": \\\"http://stacks.iop.org/1742-5468/2015/i=6/a=P06015?key=crossref.64631bbfd1103098f6f03e6b18e41b00\\\", \\\"content-type\\\": \\\"text/html\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2020, 4, 11]], \\\"date-time\\\": \\\"2020-04-11T03:02:31Z\\\", \\\"timestamp\\\": 1586574151000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://iopscience.iop.org/article/10.1088/1742-5468/2015/06/P06015\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2015, 6, 10]]}, \\\"references-count\\\": 24, \\\"journal-issue\\\": {\\\"issue\\\": \\\"6\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2015, 6, 1]]}}, \\\"URL\\\": \\\"https://doi.org/10.1088/1742-5468/2015/06/p06015\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1742-5468\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"1742-5468\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2015, 6, 10]]}, \\\"assertion\\\": [{\\\"value\\\": \\\"Journal of Statistical Mechanics: Theory and Experiment\\\", \\\"name\\\": \\\"journal_title\\\", \\\"label\\\": \\\"Journal title\\\"}, {\\\"value\\\": \\\"paper\\\", \\\"name\\\": \\\"article_type\\\", \\\"label\\\": \\\"Article type\\\"}, {\\\"value\\\": \\\"Information and thermodynamics: experimental verification of Landauer's Erasure principle\\\", \\\"name\\\": \\\"article_title\\\", \\\"label\\\": \\\"Article title\\\"}, {\\\"value\\\": \\\"© 2015 IOP Publishing Ltd and SISSA Medialab srl\\\", \\\"name\\\": \\\"copyright_information\\\", \\\"label\\\": \\\"Copyright information\\\"}, {\\\"value\\\": \\\"2015-03-24\\\", \\\"name\\\": \\\"date_received\\\", \\\"label\\\": \\\"Date received\\\", \\\"group\\\": {\\\"name\\\": \\\"publication_dates\\\", \\\"label\\\": \\\"Publication dates\\\"}}, {\\\"value\\\": \\\"2015-04-28\\\", \\\"name\\\": \\\"date_accepted\\\", \\\"label\\\": \\\"Date accepted\\\", \\\"group\\\": {\\\"name\\\": \\\"publication_dates\\\", \\\"label\\\": \\\"Publication dates\\\"}}, {\\\"value\\\": \\\"2015-06-10\\\", \\\"name\\\": \\\"date_epub\\\", \\\"label\\\": \\\"Online publication date\\\", \\\"group\\\": {\\\"name\\\": \\\"publication_dates\\\", \\\"label\\\": \\\"Publication dates\\\"}}]}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2b9d54e861491851ff40fa5d3e036bba04e7b474db4a2bf1ba155d65736525e8\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1088/1742-5468/2015/06/p06015\", \"doi:10.1088/crossmark-policy\", \"doi:10.1147/rd.53.0183\", \"doi:10.1007/bf02084158\", \"doi:10.1007/bf01341281\", \"doi:10.1002/bs.3830090402\", \"doi:10.1038/nphys1821\", \"doi:10.1887/0750307595\", \"doi:10.1201/9781420033991\", \"doi:10.1038/nphys3230\", \"doi:10.1103/physreve.52.3495\", \"doi:10.1103/physrevlett.102.210601\"]}",
+  "id": "source-35bacfc7a5084ca9",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1088%2F1742-5468%2F2015%2F06%2Fp06015",
+  "version": 8,
+  "time": "2026-09-25T00:36:48.092337+00:00"
+}
+```
+
+### `source-e635b6005c7847d2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=cognitive+mechanisms+of+visual+composition+and+aesthetic+preference&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2028880259\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.plrev.2013.05.008\\\", \\\"title\\\": \\\"From everyday emotions to aesthetic emotions: Towards a unified theory of musical emotions\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 772, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S1571064513000638/pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.plrev.2013.05.008\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.plrev.2013.05.008\\\", \\\"pdf_url\\\": \\\"https://www.sciencedirect.com/science/article/pii/S1571064513000638/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S78119372\\\", \\\"display_name\\\": \\\"Physics of Life Reviews\\\", \\\"issn_l\\\": \\\"1571-0645\\\", \\\"issn\\\": [\\\"1571-0645\\\", \\\"1873-1457\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-2\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Physics of Life Reviews\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The sound of music may arouse profound emotions in listeners. But such experiences seem to involve a 'paradox', namely that music--an abstract form of art, which appears removed from our concerns in everyday life--can arouse emotions - biologically evolved reactions related to human survival. How are these (seemingly) non-commensurable phenomena linked together? Key is to understand the processes through which sounds are imbued with meaning. It can be argued that the survival of our ancient ancestors depended on their ability to detect patterns in sounds, derive meaning from them, and adjust their behavior accordingly. Such an ecological perspective on sound and emotion forms the basis of a recent multi-level framework that aims to explain emotional responses to music in terms of a large set of psychological mechanisms. The goal of this review is to offer an updated and expanded version of the framework that can explain both 'everyday emotions' and 'aesthetic emotions'. The revised framework--referred to as BRECVEMA--includes eight mechanisms: Brain Stem Reflex, Rhythmic Entrainment, Evaluative Conditioning, Contagion, Visual Imagery, Episodic Memory, Musical Expectancy, and Aesthetic Judgment. In this review, it is argued that all of the above mechanisms may be directed at information that occurs in a 'musical event' (i.e., a specific constellation of music, listener, and context). Of particular significance is the addition of a mechanism corresponding to aesthetic judgments of the music, to better account for typical 'appreciation emotions' such as admiration and awe. Relationships between aesthetic judgments and other mechanisms are reviewed based on the revised framework. It is suggested that the framework may contribute to a long-needed reconciliation between previous approaches that have conceptualized music listeners' responses in terms of either 'everyday emotions' or 'aesthetic emotions'.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2917867349\\\", \\\"doi\\\": \\\"https://doi.org/10.1037/rev0000135\\\", \\\"title\\\": \\\"What are aesthetic emotions?\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 382, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://research.rug.nl/en/publications/c33b160d-1edc-4cb5-927f-4a0179025463\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1037/rev0000135\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1037/rev0000135\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S35223124\\\", \\\"display_name\\\": \\\"Psychological Review\\\", \\\"issn_l\\\": \\\"0033-295X\\\", \\\"issn\\\": [\\\"0033-295X\\\", \\\"1939-1471\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"abdc-a-star\\\", \\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"ki-jl-2\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320262\\\", \\\"host_organization_name\\\": \\\"American Psychological Association\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320262\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Psychological Association\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Psychological Review\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"This is the first comprehensive theoretical article on aesthetic emotions. Following Kant's definition, we propose that it is the first and foremost characteristic of aesthetic emotions to make a direct contribution to aesthetic evaluation/appreciation. Each aesthetic emotion is tuned to a special type of perceived aesthetic appeal and is predictive of the subjectively felt pleasure or displeasure and the liking or disliking associated with this type of appeal. Contrary to the negativity bias of classical emotion catalogues, emotion terms used for aesthetic evaluation purposes include far more positive than negative emotions. At the same time, many overall positive aesthetic emotions encompass negative or mixed emotional ingredients. Appraisals of intrinsic pleasantness, familiarity, and novelty are preeminently important for aesthetic emotions. Appraisals of goal relevance/conduciveness and coping potential are largely irrelevant from a pragmatic perspective, but in some cases highly relevant for cognitive and affective coping. Aesthetic emotions are typically sought and savored for their own sake, with subjectively felt intensity and/or emotional arousal being rewards in their own right. The expression component of aesthetic emotions includes laughter, tears, and facial and bodily movements, along with applause or booing and words of praise or blame. Aesthetic emotions entail motivational approach and avoidance tendencies, specifically, tendencies toward prolonged, repeated, or interrupted exposure and wanting to possess aesthetically pleasing objects. They are experienced across a broad range of experiential domains and not coextensive with art-elicited emotions. (PsycINFO Database Record (c) 2019 APA, all rights reserved).\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2143742505\\\", \\\"doi\\\": \\\"https://doi.org/10.1073/pnas.1301227110\\\", \\\"title\\\": \\\"Impact of contour on aesthetic judgments and approach-avoidance decisions in architecture\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 414, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://www.pnas.org/content/pnas/110/Supplement_2/10446.full.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1073/pnas.1301227110\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1073/pnas.1301227110\\\", \\\"pdf_url\\\": \\\"https://www.pnas.org/content/pnas/110/Supplement_2/10446.full.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S125754415\\\", \\\"display_name\\\": \\\"Proceedings of the National Academy of Sciences\\\", \\\"issn_l\\\": \\\"0027-8424\\\", \\\"issn\\\": [\\\"0027-8424\\\", \\\"1091-6490\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320052\\\", \\\"host_organization_name\\\": \\\"National Academy of Sciences\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320052\\\"], \\\"host_organization_lineage_names\\\": [\\\"National Academy of Sciences\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Proceedings of the National Academy of Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"On average, we urban dwellers spend about 90% of our time indoors, and share the intuition that the physical features of the places we live and work in influence how we feel and act. However, there is surprisingly little research on how architecture impacts behavior, much less on how it influences brain function. To begin closing this gap, we conducted a functional magnetic resonance imaging study to examine how systematic variation in contour impacts aesthetic judgments and approach-avoidance decisions, outcome measures of interest to both architects and users of spaces alike. As predicted, participants were more likely to judge spaces as beautiful if they were curvilinear than rectilinear. Neuroanatomically, when contemplating beauty, curvilinear contour activated the anterior cingulate cortex exclusively, a region strongly responsive to the reward properties and emotional salience of objects. Complementing this finding, pleasantness--the valence dimension of the affect circumplex--accounted for nearly 60% of the variance in beauty ratings. Furthermore, activation in a distributed brain network known to underlie the aesthetic evaluation of different types of visual stimuli covaried with beauty ratings. In contrast, contour did not affect approach-avoidance decisions, although curvilinear spaces activated the visual cortex. The results suggest that the well-established effect of contour on aesthetic preference can be extended to architecture. Furthermore, the combination of our behavioral and neural evidence underscores the role of emotion in our preference for curvilinear objects in this domain.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2883445328\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s10462-018-9646-y\\\", \\\"title\\\": \\\"40 years of cognitive architectures: core cognitive abilities and practical applications\\\", \\\"publication_year\\\": 2018, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 537, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10462-018-9646-y.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.10\", \"excerpt_truncated\": true, \"source_sha256\": \"8fd73cb0fb4a549d20839c8deb51cfa160bd4f4a045534eb0fa1985a4199466b\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/j.plrev.2013.05.008\", \"doi:10.1037/rev0000135\", \"doi:10.1073/pnas.1301227110\", \"doi:10.1007/s10462-018-9646-y\", \"doi:10.1007/s10462-018-9646-y.pdf\", \"openalex:W2028880259\", \"openalex:W2917867349\", \"openalex:W2143742505\", \"openalex:W2883445328\"]}",
+  "id": "source-e635b6005c7847d2",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=cognitive+mechanisms+of+visual+composition+and+aesthetic+preference&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 8,
+  "time": "2026-09-25T00:36:48.896921+00:00"
+}
+```
+
+### `source-d21dc22d181b47f0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149381,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b1ae2704de49d8f8b232f54f06778c0a5eae1a659d61f4422eddb808f7f365a4\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d21dc22d181b47f0",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 8,
+  "time": "2026-09-25T00:36:49.269839+00:00"
+}
+```
+
+### `source-1288bcd6608b4808`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"990e162b5ef4454cb16acc4e9ab7ae00f3577aa00e20fe0fff7989ea585f686a\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1288bcd6608b4808",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 8,
+  "time": "2026-09-25T00:36:49.567813+00:00"
+}
+```
+
+### `source-2c921ec73f6540a3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c4d88d5ab400259263cfc9b631e2a310aaef17c0f6cb0b576116bb87929143c2\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2c921ec73f6540a3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 8,
+  "time": "2026-09-25T00:36:49.921483+00:00"
+}
+```
+
+### `source-6b1b4e7cd8834e15`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4df735f5a1c97e351da2cd6a0022716e8e90b9f1276c50992c148386541aaf3a\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6b1b4e7cd8834e15",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 8,
+  "time": "2026-09-25T00:36:50.272284+00:00"
+}
+```
+
+### `r-d6d226a0861448d6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":8,\"inherited_commitments\":[\"commit-entropy-synthesis-001\"],\"invocation\":\"w-d6d226a0861448d6\",\"previous_head\":\"c86bfce35e9c50ff5f4e342fd8bb97584ef76933a5a2c2f07753be099c7806d9\",\"process_id\":2036,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d6d226a0861448d6",
+  "source": "runtime:continuity",
+  "version": 8,
+  "time": "2026-09-25T00:36:50.333859+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -3768,8 +4288,9 @@ _None recorded._
   "query": "cognitive mechanisms of visual composition and aesthetic preference",
   "reason": "This search will gather evidence to address the core question regarding how composition and ambiguity influence perception.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-93b0fb48a09a4b27"
+  "status": "collected",
+  "created_by": "w-93b0fb48a09a4b27",
+  "evidence": "source-e635b6005c7847d2"
 }
 ```
 
