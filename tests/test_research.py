@@ -27,7 +27,7 @@ from wake.engine import DEFAULTS, Engine
 from wake.governance import PUBLICATION_MIN_SOURCES, Rejected
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
-    allowed_url, collect, discovery_urls, evidence_role, host_tier,
+    allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
     repository_sources, research_urls,
 )
 from wake.report import export
@@ -1067,6 +1067,47 @@ class ResearchTests(unittest.TestCase):
                             "cellular%20automata%20symmetry%20followup" in url for url in calls))
         self.assertTrue(any("query=symmetry" not in url and "search=symmetry" not in url for url in calls))
         self.assertEqual(self.engine.store.load()["research"]["q-follow"]["status"], "collected")
+
+    def test_exact_openalex_work_lookup_becomes_a_readable_source_record(self):
+        url = exact_identifier_url("openalex:W2162809807")
+        payload = {
+            "id": "https://openalex.org/W2162809807",
+            "doi": "https://doi.org/10.1146/annurev-psych-010814-015031",
+            "title": "The Cognitive Neuroscience of Working Memory",
+            "publication_year": 2014,
+            "type": "review",
+            "cited_by_count": 1781,
+            "open_access": {"is_oa": True},
+            "primary_location": {"landing_page_url": "https://doi.org/10.1146/annurev-psych-010814-015031"},
+            "abstract_inverted_index": {
+                "Working": [0], "memory": [1], "coordinates": [2], "active": [3],
+                "information": [4], "for": [5], "goal-directed": [6], "behavior.": [7],
+            },
+        }
+        raw = json.dumps(payload).encode()
+
+        class Response:
+            def __init__(self):
+                self.url = url
+                self.headers = {"Content-Type": "application/json"}
+            def read(self, _limit):
+                return raw
+            def __enter__(self):
+                return self
+            def __exit__(self, *_args):
+                return False
+
+        class Opener:
+            def open(self, _request, timeout=None):
+                self.timeout = timeout
+                return Response()
+
+        with patch("wake.research.urllib.request.build_opener", return_value=Opener()):
+            observation = fetch_source(url)
+
+        self.assertEqual(evidence_role(url), "source")
+        self.assertIn("The Cognitive Neuroscience of Working Memory", observation["excerpt"])
+        self.assertIn("Working memory coordinates active information", observation["excerpt"])
 
     def test_queued_exact_source_url_is_not_replaced_by_another_search(self):
         exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
