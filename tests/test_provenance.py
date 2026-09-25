@@ -21,7 +21,7 @@ import tempfile
 import unittest
 
 from wake.engine import Engine, DEFAULTS
-from wake.provenance import build_map
+from wake.provenance import build_map, map3d_shard_filename
 from wake.report import export
 from support import charter_settings
 
@@ -130,7 +130,7 @@ class ProvenanceTests(unittest.TestCase):
         self.assertEqual(map3d_shell["meta"]["topic_labels"]["entropy"], "Entropy")
         self.assertEqual(map3d_shell["meta"]["schema_version"], 2)
         self.assertIn("fetch(branchUrl(id)", map3d_page)
-        topic_shard = json.loads((self.root/'site/map3d/root:topics.json').read_text())
+        topic_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('root:topics')).read_text())
         self.assertTrue(any(item["title"] == "Entropy" for item in topic_shard["children"]))
         self.assertIn("function timeFor(n)", page)
         self.assertIn("node-time", page)
