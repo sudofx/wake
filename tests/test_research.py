@@ -284,6 +284,71 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
 
+    def test_research_maturation_advances_without_mutating_project_status(self):
+        state = self.engine.store.load()
+        state["projects"] = {
+            "p": {
+                "id": "p", "title": "Entropy project", "question": "Q",
+                "domain": "entropy", "status": "active", "next_step": "N",
+                "reason": "R", "created_version": 1,
+            }
+        }
+        state["evidence"] = {}
+        state["notebooks"] = {}
+
+        first = self.engine.research_maturation(state)
+        self.assertEqual(first["projects"][0]["stage"], "needs_evidence")
+        self.assertEqual(state["projects"]["p"]["status"], "active")
+
+        state["evidence"]["s1"] = {
+            "id": "s1", "source": "https://example.org/one", "actor": "collector",
+            "scope": "collected", "version": 2,
+            "content": json.dumps({
+                "verification_required": True, "evidence_role": "source",
+                "topic_domain": "entropy",
+            }),
+        }
+        second = self.engine.research_maturation(state)
+        self.assertEqual(second["projects"][0]["stage"], "needs_synthesis")
+
+        state["notebooks"]["n"] = {
+            "id": "n", "project": "p", "revision": 1, "evidence": ["s1"],
+            "created_version": 3, "updated_version": 3,
+        }
+        third = self.engine.research_maturation(state)
+        self.assertEqual(third["projects"][0]["stage"], "needs_corroboration")
+        self.assertIn("limitation", third["projects"][0]["missing_requirement"])
+
+        state["evidence"]["s2"] = {
+            "id": "s2", "source": "https://example.org/two", "actor": "collector",
+            "scope": "collected", "version": 4,
+            "content": json.dumps({
+                "verification_required": True, "evidence_role": "source",
+                "topic_domain": "entropy",
+            }),
+        }
+        state["notebooks"]["n"] = {
+            **state["notebooks"]["n"], "revision": 2,
+            "evidence": ["s1", "s2"], "updated_version": 5,
+        }
+        final = self.engine.research_maturation(state)
+        self.assertEqual(final["projects"][0]["stage"], "completion_ready")
+        self.assertEqual(
+            final["metrics"]["transition_cycles"]["project_to_first_evidence"], [1]
+        )
+        self.assertEqual(
+            final["metrics"]["transition_cycles"]["project_to_first_notebook"], [2]
+        )
+        self.assertEqual(
+            final["metrics"]["transition_cycles"]["first_notebook_to_corroboration"], [2]
+        )
+
+    def test_research_prompt_prioritizes_maturation_and_targeted_corroboration(self):
+        self.assertIn("research_maturation.priority_order", RESEARCH_SYSTEM)
+        self.assertIn("needs_corroboration", RESEARCH_SYSTEM)
+        self.assertIn("do not repeat broad discovery", RESEARCH_SYSTEM)
+        self.assertIn("not a reason to collect an arbitrary second source", RESEARCH_SYSTEM)
+
     def test_truncated_discovery_never_becomes_project_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
