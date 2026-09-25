@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3af91a552d07a6cc78328528f82c1827dadf3e19a495df0033be7adfde5545bd`
+Verified head: `9ca85946398962d90412702eaeb7fd048bdcd538b7762187ed05ea15c69707da`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 011 · Advancing Prime numbers under enforced rotation
+
+September 24, 2026 · 05:47 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid prime_numbers subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-0b287cd6ec5945ed`
 
 ## 010 · Reflection on the Durable Journey: Patterns in Entropy and Aesthetics
 
