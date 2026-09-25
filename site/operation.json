@@ -1,6 +1,6 @@
 {
   "status": "rejected",
-  "id": "w-957385bee6ce4296",
+  "id": "w-37c1f4160685421d",
   "reason": "Stale or invalid base_version",
   "wake_status": {
     "last_accepted": {
@@ -50,16 +50,16 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "latest_attempt": {
-      "id": "w-957385bee6ce4296",
-      "time": "2026-09-25T07:27:36.017307+00:00",
-      "finished": "2026-09-25T07:28:14.405726+00:00",
+      "id": "w-37c1f4160685421d",
+      "time": "2026-09-25T07:31:57.936293+00:00",
+      "finished": "2026-09-25T07:32:30.874576+00:00",
       "status": "rejected",
       "reason": "Stale or invalid base_version",
       "provider_requests_sent": 3,
       "provider_attempts": [
         {
           "category": "server",
-          "elapsed_ms": 3529,
+          "elapsed_ms": 826,
           "http_status": 503,
           "model": "gemini-3.8-flash",
           "provider_error": {
@@ -73,7 +73,7 @@
         },
         {
           "category": "server",
-          "elapsed_ms": 415,
+          "elapsed_ms": 473,
           "http_status": 503,
           "model": "gemini-3.5-flash",
           "provider_error": {
@@ -86,7 +86,7 @@
           "result": "transient_failure"
         },
         {
-          "elapsed_ms": 8830,
+          "elapsed_ms": 7909,
           "http_status": 200,
           "model": "gemini-3.1-flash-lite",
           "request_payload_bytes": 45035,
@@ -96,11 +96,11 @@
       "successful_model": "gemini-3.1-flash-lite"
     },
     "accepted_cycles": 59,
-    "next_eligible": "2026-09-25T07:32:36.017307+00:00",
+    "next_eligible": "2026-09-25T07:36:57.936293+00:00",
     "pending": false,
-    "attempts_today": 7,
-    "provider_requests_today": 18,
-    "provider_request_slots_today": 18,
+    "attempts_today": 8,
+    "provider_requests_today": 21,
+    "provider_request_slots_today": 21,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
