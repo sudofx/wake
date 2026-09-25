@@ -2,6 +2,7 @@
   "status": "rejected",
   "id": "w-e5c75f8d6e2e4e2c",
   "reason": "Research request ID already exists",
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-c4a3092676ff4fd0",
