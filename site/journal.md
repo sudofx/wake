@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `98218fdec495a9bf6481d6c8206e777827cee4bf808976f5334e476ccc08244c`
+Verified head: `76b817c869a14a75d612e1f7e29fe5c3ae91265f997291e2ecce0f786448c949`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 004 · Investigating Landauer's Principle in Information Thermodynamics
+
+September 24, 2026 · 05:18 PM PDT · gemini / gemini-3.1-flash-lite
+
+Focusing on the selected topic of information thermodynamics, I am initiating a research project into Landauer's principle, which relates the erasure of information to thermodynamic entropy production. This follows the enforcement of the information_thermodynamics topic and the capability-blocked status of the entropy project.
+
+Invocation: `w-7c00ce1ed38246c1`
 
 ## 003 · Foundations of Entropy: Resetting Search Strategy
 
