@@ -18,7 +18,8 @@ const hash=id=>{let value=2166136261;for(const char of id)value=Math.imul(value^
 const get=id=>nodes.get(id)||roots.get(id);
 const children=id=>loadedChildren.get(id)||[];
 const visualChildren=(id,nextPathId=null)=>{const all=children(id);if(id==='root:wake'||id==='root:topics'||all.length<=VISUAL_BRANCH_LIMIT)return all;const shown=all.slice(0,VISUAL_BRANCH_LIMIT);if(nextPathId&&all.includes(nextPathId)&&!shown.includes(nextPathId))shown.push(nextPathId);return shown};
-const branchUrl=id=>`map3d/${encodeURIComponent(id)}.json`;
+const branchFile=id=>encodeURIComponent(id).replaceAll('%','_')+'.json';
+const branchUrl=id=>`map3d/${branchFile(id)}`;
 async function ensureBranch(id){
  if(loadedChildren.has(id))return true;
  if(loading.has(id))return loading.get(id);
