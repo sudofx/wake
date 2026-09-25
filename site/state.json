@@ -1,5 +1,5 @@
 {
-  "version": 88,
+  "version": 89,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -9259,6 +9259,68 @@
       "source": "runtime:continuity",
       "version": 87,
       "time": "2026-09-25T11:07:33.640507+00:00"
+    },
+    "source-d518f8ab6ac74179": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=compositional+constraints+and+observer+expectations+in+visual+art+perception&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"scope\": \"Semantic Scholar scholarly metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"paperId\\\": null, \\\"title\\\": null, \\\"year\\\": null, \\\"abstract\\\": null, \\\"url\\\": null, \\\"externalIds\\\": null, \\\"openAccessPdf\\\": null}]\", \"excerpt_truncated\": false, \"source_sha256\": \"df3a6e9628f559abd8e5b9abb679ca761d0e2cb0e5a6e8e9944fb6a23ec391fb\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": []}",
+      "id": "source-d518f8ab6ac74179",
+      "scope": "collected",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=compositional+constraints+and+observer+expectations+in+visual+art+perception&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 88,
+      "time": "2026-09-25T11:11:35.959547+00:00"
+    },
+    "source-3f0c212e08c244f4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4ac583d04f81d8d329dbc1d6b611707d628623e139a3cb478ad3829693621fef\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-3f0c212e08c244f4",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 88,
+      "time": "2026-09-25T11:11:38.006920+00:00"
+    },
+    "source-b20e7a2f771e459d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1baa9725c358e9fee37b1f681c2d0249147c932e89b3814020e76d2b3725a8da\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-b20e7a2f771e459d",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 88,
+      "time": "2026-09-25T11:11:38.726084+00:00"
+    },
+    "source-5074f9538b664cb7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"process theory) assumes the existence of a mutual dependence between\\ncognition\\nand elicitation of emotion. Robinson argues that the process of emotional\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"19adafd34b280e8f6418788755d778338a33745c32d783b0c0a6ca62212e9874\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+      "id": "source-5074f9538b664cb7",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 88,
+      "time": "2026-09-25T11:11:39.444340+00:00"
+    },
+    "source-432451ae6a474b3c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4df735f5a1c97e351da2cd6a0022716e8e90b9f1276c50992c148386541aaf3a\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-432451ae6a474b3c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 88,
+      "time": "2026-09-25T11:11:40.113286+00:00"
+    },
+    "source-06cfc5dad9ad4c33": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":72077,\\\"wordcount\\\":8768,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T08:45:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f8fff151c37a72bea5e063b6bbd1d0210a67d13cde9d3d7a33c726ebc2f37c6e\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-06cfc5dad9ad4c33",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 88,
+      "time": "2026-09-25T11:11:40.722915+00:00"
+    },
+    "r-c7cf13245bb54362": {
+      "actor": "runtime",
+      "content": "{\"base_version\":88,\"inherited_commitments\":[],\"invocation\":\"w-c7cf13245bb54362\",\"previous_head\":\"85f3f1d547720994a4c8aefa7df6f865852d836e6ff91367c50ab3105dea42d4\",\"process_id\":2127,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-c7cf13245bb54362",
+      "source": "runtime:continuity",
+      "version": 88,
+      "time": "2026-09-25T11:11:42.584720+00:00"
     }
   },
   "journal": [
@@ -9789,6 +9851,12 @@
       "invocation": "w-ef239d7b9cc545db",
       "title": "Investigating compositional constraints and observer expectations in visual art",
       "summary": "Initiated research in the visual_art domain to examine the interplay between compositional constraints and observer expectations. Current evidence in the bounded context is insufficient to synthesize an answer to the project's core question, necessitating a targeted search."
+    },
+    {
+      "cycle": 89,
+      "invocation": "w-c7cf13245bb54362",
+      "title": "Synthesis of Composition and Linguistic Analysis in Art Perception",
+      "summary": "This journal entry synthesizes foundational metadata regarding composition and linguistic analysis in visual art perception. We have drafted an initial notebook connecting these domains, focusing on how established structural constraints and incongruity-resolution models might inform an understanding of visual expectations."
     }
   ],
   "posts": {
@@ -63845,6 +63913,415 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-c7cf13245bb54362": {
+      "base_version": 88,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 17879,
+        "delivered_request_chars": 44503,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 94278,
+        "working_set_chars": 3150
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-c7cf13245bb54362",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 88,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "visual-art-composition-and-expectation",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2127,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "e888487058ba29ef36bbecb9ab153ad1fc737dfa4662ee3a31c27950c8c440d0",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-3a360bed53d540e3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3a360bed53d540e3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e0d4e70d45164e4a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e0d4e70d45164e4a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ce27c81fea8449c9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ce27c81fea8449c9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c3bf2d46df6345bc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c3bf2d46df6345bc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cea0ccd4c5c14617"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cea0ccd4c5c14617",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-81cb04e2a92a41c3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-81cb04e2a92a41c3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-3a360bed53d540e3",
+          "source-e0d4e70d45164e4a",
+          "source-ce27c81fea8449c9",
+          "source-c3bf2d46df6345bc",
+          "source-cea0ccd4c5c14617",
+          "source-81cb04e2a92a41c3"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "visual_art"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "dance"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "dance": [
+            {
+              "id": "dance-rhythm-cognition",
+              "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+              "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 2236,
+          "anchor_time": "2026-09-25T11:11:41.194172+00:00",
+          "anchor_version": 88,
+          "effective_seconds": 41058.719234
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 248.865498,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 41058.719234,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 14
+        },
+        "observed_at": "2026-09-25T11:11:41.194172+00:00",
+        "previous_anchor_time": "2026-09-25T11:07:32.328674+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 248.865498
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 17879,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3150,
+        "working_to_delivered_ratio": 0.1762
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "visual-art-composition-and-expectation",
+            "next_step": "Identify foundational studies on compositional framing effects.",
+            "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-endo-thyroid-provisional-02",
+            "project": "endo-thyroid-neuro",
+            "provenance": [
+              "source-175d044b8a474c62"
+            ],
+            "revision": 1,
+            "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+            "title": "Metabolic and Systemic Modulations of Neurological Function"
+          },
+          {
+            "id": "nb-neurodiversity-foundations-01",
+            "project": "neurodiversity-paradigm-foundations",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 2,
+            "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+            "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+          },
+          {
+            "id": "nb-epistemology-mapping-01",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-b2790f66d7984cbe",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+            "title": "Initial Mapping of Epistemological Sources"
+          },
+          {
+            "id": "nb-epistemology-justification-001",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-fb2f23f9caf94381",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+            "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+          },
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          },
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T11:11:43.063844+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3889,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48351,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T11:12:01.820077+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -63863,35 +64340,22 @@
       "quantum_mechanics": 5,
       "visual_art": 0
     },
-    "deferred": {
-      "dance": {
-        "cause": "attention_saturation",
-        "deferred_by": "w-90e0176218a04884",
-        "other_topic_attempts": 3,
-        "parked_projects": [
-          {
-            "id": "dance-rhythm-cognition",
-            "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
-            "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?"
-          }
-        ],
-        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-        "release_condition": "accepted notebook or ordinary publication on another topic"
-      }
-    },
+    "deferred": {},
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "visual_art",
-      "durable_progress": false,
+      "durable_progress": true,
       "hard_rejection": false,
-      "invocation": "w-ef239d7b9cc545db",
-      "restored_topics": [],
+      "invocation": "w-c7cf13245bb54362",
+      "restored_topics": [
+        "dance"
+      ],
       "selected_topic": "visual_art",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 2,
+      "accepted_streak": 3,
       "topic": "visual_art"
     }
   },
@@ -64644,6 +65108,25 @@
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
       }
+    },
+    "visual-art-composition-and-expectation": {
+      "project": "visual-art-composition-and-expectation",
+      "domain": "visual_art",
+      "no_progress": 1,
+      "routes": [
+        "api.semanticscholar.org:discovery"
+      ],
+      "capability_blocked": false,
+      "retry_after_version": null,
+      "persistent_identifiers": [],
+      "last_receipt": {
+        "evidence": "source-d518f8ab6ac74179",
+        "outcome": "no_progress",
+        "persistent_identifiers": [],
+        "research_id": "res-visual-art-composition-002",
+        "route": "api.semanticscholar.org:discovery",
+        "stage": "discovery"
+      }
     }
   },
   "representations": {},
@@ -64913,15 +65396,15 @@
     "visual-art-composition-and-expectation": {
       "domain": "visual_art",
       "id": "visual-art-composition-and-expectation",
-      "next_step": "Identify foundational studies on compositional framing effects.",
+      "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
       "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
-      "reason": "Establishing a new project in the enforced visual_art domain to enable tractable research outside of blocked capability routes.",
+      "reason": "The project now has an established provisional synthesis, allowing us to pivot from bibliographic mapping to more focused empirical research.",
       "status": "active",
       "title": "Influence of Composition and Expectation on Visual Perception",
       "type": "project",
       "created_version": 87,
-      "updated_version": 87,
-      "updated_by": "w-3a901245aa3d468a"
+      "updated_version": 89,
+      "updated_by": "w-c7cf13245bb54362"
     }
   },
   "notebooks": {
@@ -65101,6 +65584,26 @@
       "updated_version": 85,
       "updated_by": "w-90e0176218a04884",
       "domain": "dance"
+    },
+    "nb-visual-art-composition-001": {
+      "evidence": [
+        "source-0a7b2a5c06d44417",
+        "source-930f33f0d42a4658"
+      ],
+      "findings": "Initial bibliographic review suggests potential structural parallels between linguistic humor models—specifically incongruity-resolution theories [source-930f33f0d42a4658]—and the compositional constraints often discussed in art theory [source-0a7b2a5c06d44417]. The literature points to 'incongruity' as a mechanism for epistemic update, where the violation of an expectation (visual or linguistic) forces a re-evaluation of the stimulus, potentially driving engagement or 'aesthetic' interest [source-930f33f0d42a4658].",
+      "id": "nb-visual-art-composition-001",
+      "limitations": "Current evidence is limited to bibliographic metadata and abstract-level descriptions of monographs. We lack the full content of these works and cannot confirm if they explicitly treat visual composition as a form of linguistic or cognitive incongruity, or if this is an interpretive analogy. No consensus on causality exists between structural constraints and perceptual evaluation at this stage.",
+      "next_questions": "Can we locate empirical studies that quantify 'visual incongruity' or 'compositional expectation violation'? Do these studies utilize the terminology of linguistic humor theory, or are these domains analytically distinct?",
+      "project": "visual-art-composition-and-expectation",
+      "reason": "This notebook synthesizes the available metadata, providing a structured, albeit provisional, framework to guide subsequent research, fulfilling the synthesis-ready requirement for the visual art project.",
+      "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+      "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 89,
+      "updated_version": 89,
+      "updated_by": "w-c7cf13245bb54362",
+      "domain": "visual_art"
     }
   },
   "research": {
@@ -65881,8 +66384,9 @@
       "query": "compositional constraints and observer expectations in visual art perception",
       "reason": "The existing evidence (general reference and linguistic humor analysis) does not address the project's specific question regarding visual art composition and observer expectations. A focused search is required to retrieve relevant literature.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-ef239d7b9cc545db"
+      "status": "collected",
+      "created_by": "w-ef239d7b9cc545db",
+      "evidence": "source-d518f8ab6ac74179"
     }
   },
   "research_topics": [
@@ -66082,9 +66586,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T11:07:32.328674+00:00",
-    "anchor_version": 87,
-    "anchor_seq": 2221,
-    "effective_seconds": 40809.853736
+    "anchor_time": "2026-09-25T11:11:41.194172+00:00",
+    "anchor_version": 88,
+    "anchor_seq": 2236,
+    "effective_seconds": 41058.719234
   }
 }

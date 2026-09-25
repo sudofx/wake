@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `81bcef7e4117f0fde5a0b2d7addbb62cb3c867f288c71459bbd2afe4dce29743`
+Verified head: `a94717f1b564ac6264c369d2571e2b96f2cdd50440b56f1801bf1c6154dcb1f7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 089 · Synthesis of Composition and Linguistic Analysis in Art Perception
+
+September 25, 2026 · 04:11 AM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry synthesizes foundational metadata regarding composition and linguistic analysis in visual art perception. We have drafted an initial notebook connecting these domains, focusing on how established structural constraints and incongruity-resolution models might inform an understanding of visual expectations.
+
+Invocation: `w-c7cf13245bb54362`
 
 ## 088 · Investigating compositional constraints and observer expectations in visual art
 
