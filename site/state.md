@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 61  
+**Version:** 62  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `78ac54eaa6368bdc5c74ff482a3ab721d7da352ac3d6c4dffbb9ed522ab0faee`
+**Verified head:** `3cef28cec0b59e1ece482587cffa98860aea9ca7beae3b5eaec4a47b946c0fbb`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -929,11 +929,12 @@ _None recorded._
 {
   "project": "endo-thyroid-neuro",
   "domain": "endocrinology",
-  "no_progress": 3,
+  "no_progress": 0,
   "routes": [
     "api.semanticscholar.org:discovery",
     "api.datacite.org:discovery",
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.crossref.org:source"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
@@ -945,18 +946,15 @@ _None recorded._
     "arxiv:8412.17005"
   ],
   "last_receipt": {
-    "evidence": "source-987a83bc6f6f4790",
-    "outcome": "no_progress",
+    "evidence": "source-85d977fa7bf34654",
+    "outcome": "progress",
     "persistent_identifiers": [
       "doi:10.21694/2577-8412.17005",
-      "doi:10.1093/med/9780199972135.003.0067",
-      "doi:10.1176/posters.psych.apa2026.4215426",
-      "doi:10.1016/j.jns.2023.120933",
       "arxiv:8412.17005"
     ],
     "research_id": "res-thyroid-neuro-psych",
-    "route": "api.crossref.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -972,7 +970,7 @@ _None recorded._
 ```json
 {
   "consciousness": 1,
-  "endocrinology": 4,
+  "endocrinology": 0,
   "entropy": 2,
   "evolutionary_biology": 5,
   "information_thermodynamics": 3,
@@ -988,85 +986,15 @@ _None recorded._
 
 ```json
 {
-  "comedy": {
+  "endocrinology": {
     "cause": "attention_saturation",
-    "deferred_by": "w-c2fd51c15beb4b0f",
-    "other_topic_attempts": 8,
+    "deferred_by": "w-f28a0b57b0f9488c",
+    "other_topic_attempts": 0,
     "parked_projects": [
       {
-        "id": "comedy-incongruity-mechanisms",
-        "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
-        "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  },
-  "consciousness": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-d73be0b2c28943a1",
-    "other_topic_attempts": 32,
-    "parked_projects": [
-      {
-        "id": "consciousness-scientific-theories",
-        "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
-        "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  },
-  "entropy": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-8ff4a9549b464805",
-    "other_topic_attempts": 49,
-    "parked_projects": [
-      {
-        "id": "entropy-foundations-formal",
-        "next_step": "Search for literature comparing these three frameworks.",
-        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  },
-  "music": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-bae374762e4c4a18",
-    "other_topic_attempts": 18,
-    "parked_projects": [
-      {
-        "id": "music-cross-cultural-structure",
-        "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
-        "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  },
-  "neurodivergence": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-83e2ede819294c0e",
-    "other_topic_attempts": 26,
-    "parked_projects": [
-      {
-        "id": "neurodivergence-paradigm-vs-pathology",
-        "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
-        "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  },
-  "prime_numbers": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 69,
-    "parked_projects": [
-      {
-        "id": "prime_number_distribution",
-        "next_step": "Research the Prime Number Theorem and its implications for prime density.",
-        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        "id": "endo-thyroid-neuro",
+        "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+        "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?"
       }
     ],
     "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
@@ -1079,15 +1007,24 @@ _None recorded._
 
 ```json
 {
-  "attention_saturation_triggered": false,
+  "attention_saturation_triggered": true,
   "attention_topic": "endocrinology",
-  "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-51e5844fae284a10",
-  "restored_topics": [],
+  "durable_progress": true,
+  "hard_rejection": false,
+  "invocation": "w-f28a0b57b0f9488c",
+  "restored_topics": [
+    "comedy",
+    "consciousness",
+    "entropy",
+    "music",
+    "neurodivergence",
+    "prime_numbers"
+  ],
   "selected_topic": "endocrinology",
-  "terminal": "rejected",
-  "triggered_topics": []
+  "terminal": "accepted",
+  "triggered_topics": [
+    "endocrinology"
+  ]
 }
 ```
 
@@ -1095,7 +1032,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 4,
+  "accepted_streak": 5,
   "topic": "endocrinology"
 }
 ```
@@ -1123,6 +1060,30 @@ _None recorded._
   "updated_version": 9,
   "updated_by": "w-cc8f1c06210548d3",
   "domain": "entropy"
+}
+```
+
+### `notebook-endo-thyroid-provisional-01` · Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms
+
+```json
+{
+  "evidence": [
+    "source-85d977fa7bf34654"
+  ],
+  "findings": "The literature metadata identifies a connection between the dysfunction of maternal thyroid hormones and psychiatric symptoms [source-85d977fa7bf34654]. The study details indicate clinical interest in how endocrine levels during pregnancy or post-partum may correlate with psychiatric presentations in mothers, highlighting the intersection between hormonal signaling and behavioral health [source-85d977fa7bf34654].",
+  "id": "notebook-endo-thyroid-provisional-01",
+  "limitations": "The current synthesis is based on a single bibliographic metadata entry and abstract record [source-85d977fa7bf34654]. Full-paper analysis is missing, and the mechanistic pathways linking endocrine signaling to psychiatric symptoms require broader corroboration from complete clinical studies rather than metadata indexing.",
+  "next_questions": "What specific molecular mechanisms link maternal thyroid hormone levels to neurotransmitter regulation or psychiatric symptomatology? What are the clinical outcomes of correcting maternal thyroid dysfunction on these psychiatric symptoms?",
+  "project": "endo-thyroid-neuro",
+  "reason": "To establish an initial source-backed notebook under the active project in endocrinology as required by synthesis-ready status.",
+  "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+  "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 62,
+  "updated_version": 62,
+  "updated_by": "w-f28a0b57b0f9488c",
+  "domain": "endocrinology"
 }
 ```
 
@@ -38826,6 +38787,427 @@ _None recorded._
 }
 ```
 
+### `w-f28a0b57b0f9488c`
+
+```json
+{
+  "base_version": 61,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19708,
+    "delivered_request_chars": 46278,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 88043,
+    "working_set_chars": 1694
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-f28a0b57b0f9488c",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 61,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "comedy-incongruity-mechanisms",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "endo-thyroid-neuro",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "info-thermo-landauer",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Costs"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2184,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "af36c0b6c15f6879ce407bfe3f22fbe688c6d119111c1426cadbaf3cddcf2fe8",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-143261413b09417a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-143261413b09417a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d433f7f88da14a8b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d433f7f88da14a8b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ecdb3112fdd94b46"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ecdb3112fdd94b46",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0a7b2a5c06d44417",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-930f33f0d42a4658",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-85d977fa7bf34654"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-85d977fa7bf34654",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-143261413b09417a",
+      "source-d433f7f88da14a8b",
+      "source-ecdb3112fdd94b46",
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-85d977fa7bf34654"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "endocrinology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "information_thermodynamics"
+    ],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "comedy",
+      "consciousness",
+      "entropy",
+      "music",
+      "neurodivergence",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "comedy": [
+        {
+          "id": "comedy-incongruity-mechanisms",
+          "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+          "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?"
+        }
+      ],
+      "consciousness": [
+        {
+          "id": "consciousness-scientific-theories",
+          "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+          "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+        }
+      ],
+      "entropy": [
+        {
+          "id": "entropy-foundations-formal",
+          "next_step": "Search for literature comparing these three frameworks.",
+          "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+        }
+      ],
+      "music": [
+        {
+          "id": "music-cross-cultural-structure",
+          "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+          "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+        }
+      ],
+      "neurodivergence": [
+        {
+          "id": "neurodivergence-paradigm-vs-pathology",
+          "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+          "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "endocrinology",
+    "temporal": {
+      "anchor_seq": 1617,
+      "anchor_time": "2026-09-25T08:04:14.773035+00:00",
+      "anchor_version": 61,
+      "effective_seconds": 29812.298097
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 258.849548,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 29812.298097,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T08:04:14.773035+00:00",
+    "previous_anchor_time": "2026-09-25T07:59:55.923487+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 258.849548
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19708,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1694,
+    "working_to_delivered_ratio": 0.086
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "info-thermo-landauer",
+        "next_step": "Search for foundational and critical literature on Landauer's principle.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Costs"
+      },
+      {
+        "id": "comedy-incongruity-mechanisms",
+        "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+        "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "id": "endo-thyroid-neuro",
+        "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+        "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?",
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T08:04:15.955490+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 947,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 50051,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 8415,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 50051,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 2,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-25T08:04:44.435036+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -49304,6 +49686,103 @@ _None recorded._
 }
 ```
 
+### `source-85d977fa7bf34654`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.21694%2F2577-8412.17005\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2022, 4, 2]], \\\"date-time\\\": \\\"2022-04-02T12:42:17Z\\\", \\\"timestamp\\\": 1648903337019}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"American Research Journals\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"ARJE\\\"], \\\"DOI\\\": \\\"10.21694/2577-8412.17005\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2018, 5, 8]], \\\"date-time\\\": \\\"2018-05-08T12:29:45Z\\\", \\\"timestamp\\\": 1525782585000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Dysfunction of Maternal Thyroid Hormones and Psychiatric Symptoms\\\"], \\\"prefix\\\": \\\"10.21694\\\", \\\"member\\\": \\\"9154\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2017]]}, \\\"container-title\\\": [\\\"American Research Journal of Endocrinology\\\"], \\\"original-title\\\": [\\\"Dysfunction of Maternal Thyroid Hormones and Psychiatric Symptoms\\\"], \\\"deposited\\\": {\\\"date-parts\\\": [[2018, 5, 8]], \\\"date-time\\\": \\\"2018-05-08T12:29:46Z\\\", \\\"timestamp\\\": 1525782586000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.arjonline.org/papers/arje/v1-i1/5.pdf\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2017]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.21694/2577-8412.17005\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"2577-8412\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"2577-8412\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2017]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"55a111d93e3bdd4e7889e2b3fc264cadf455bcef49abed37ecd3ff5cae14e23c\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.21694/2577-8412.17005\", \"arxiv:8412.17005\"]}",
+  "id": "source-85d977fa7bf34654",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.21694%2F2577-8412.17005",
+  "version": 61,
+  "time": "2026-09-25T08:04:11.332181+00:00"
+}
+```
+
+### `source-91565569ea0241dd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dramatization\\\",\\\"pageid\\\":57618166,\\\"size\\\":5558,\\\"wordcount\\\":732,\\\"snippet\\\":\\\"emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\",\\\"timestamp\\\":\\\"2026-03-12T01:42:08Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c2faf4430f852c820b2f62d89753abc6a9bf74973f2d45d891e79a3817faf1a5\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-91565569ea0241dd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 61,
+  "time": "2026-09-25T08:04:12.149777+00:00"
+}
+```
+
+### `source-320ede1d6a404d83`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2768},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Human resource management system\\\",\\\"pageid\\\":48708998,\\\"size\\\":14435,\\\"wordcount\\\":1758,\\\"snippet\\\":\\\"processing\\nsystems\\n, which eventually evolved into the standardized routines and packages of enterprise resource planning (ERP) software. ERP\\nsystems\\noriginated\\\",\\\"timestamp\\\":\\\"2026-08-08T08:16:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e7339ffc9beaf0bcea28953a038526310755ab227bcc39375d1a006782f5fb24\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-320ede1d6a404d83",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 61,
+  "time": "2026-09-25T08:04:12.868842+00:00"
+}
+```
+
+### `source-3e2f11d97f34461d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86eb4c3d2818af260c0a74a78353a03723383ad3b000c2dc82f427a4a134b6d7\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3e2f11d97f34461d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 61,
+  "time": "2026-09-25T08:04:13.326091+00:00"
+}
+```
+
+### `source-8b1a79d7170b44cb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bayesian probability\\\",\\\"pageid\\\":4890,\\\"size\\\":33893,\\\"wordcount\\\":3450,\\\"snippet\\\":\\\"expectation representing a state of knowledge or as quantification of a personal\\nbelief\\n. The Bayesian interpretation of probability can be seen as an extension\\\",\\\"timestamp\\\":\\\"2026-07-22T06:31:12Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bcbb7b52ffea3930e7441d2eaf87f4a021b5986cc76f18373d1df0df64c39b02\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8b1a79d7170b44cb",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 61,
+  "time": "2026-09-25T08:04:13.891410+00:00"
+}
+```
+
+### `source-bb8069d9b79f4dd3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"913a3716bbd00dcaeb9dd0fe984cc5394389f8892158a78eab8fd64cd40a5804\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-bb8069d9b79f4dd3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 61,
+  "time": "2026-09-25T08:04:14.438820+00:00"
+}
+```
+
+### `r-f28a0b57b0f9488c`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":61,\"inherited_commitments\":[],\"invocation\":\"w-f28a0b57b0f9488c\",\"previous_head\":\"6a338af28caecef3b2c065c7d086e27328f2931670565da7a9bbceeb5a5bca2e\",\"process_id\":2184,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-f28a0b57b0f9488c",
+  "source": "runtime:continuity",
+  "version": 61,
+  "time": "2026-09-25T08:04:15.628294+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -49974,6 +50453,17 @@ _None recorded._
   "invocation": "w-a8a55b8f6f7b4e65",
   "title": "Thyroid Endocrinology and Neurological Function",
   "summary": "Continued work on endocrine-neurological interactions. The current research focuses on synthesizing existing literature on the neurological and psychiatric impacts of thyroid hormone dysfunction. I am prioritizing the endocrinology project per the enforced topic rotation, while preserving other durable project states."
+}
+```
+
+### 062 · Mapping Thyroid-Psychiatric Intersections
+
+```json
+{
+  "cycle": 62,
+  "invocation": "w-f28a0b57b0f9488c",
+  "title": "Mapping Thyroid-Psychiatric Intersections",
+  "summary": "Synthesized initial provisional notebook on maternal thyroid dysfunction and psychiatric symptoms based on Crossref metadata, mapping out the endocrine-neurological pathway while staying aligned with the active endocrinology focus."
 }
 ```
 
@@ -50824,6 +51314,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-a8a55b8f6f7b4e65",
   "evidence": "source-987a83bc6f6f4790"
+}
+```
+
+### `res-endo-thyroid-neurology-01`
+
+```json
+{
+  "domain": "endocrinology",
+  "id": "res-endo-thyroid-neurology-01",
+  "project": "endo-thyroid-neuro",
+  "query": "thyroid hormone cognitive dysfunction psychiatric mechanism",
+  "reason": "To retrieve further clinical or review literature detailing the physiological mechanisms through which thyroid hormone imbalances induce cognitive and psychiatric symptoms.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-f28a0b57b0f9488c"
 }
 ```
 

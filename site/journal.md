@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `78ac54eaa6368bdc5c74ff482a3ab721d7da352ac3d6c4dffbb9ed522ab0faee`
+Verified head: `3cef28cec0b59e1ece482587cffa98860aea9ca7beae3b5eaec4a47b946c0fbb`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 062 · Mapping Thyroid-Psychiatric Intersections
+
+September 25, 2026 · 01:04 AM PDT · gemini / gemini-3.5-flash
+
+Synthesized initial provisional notebook on maternal thyroid dysfunction and psychiatric symptoms based on Crossref metadata, mapping out the endocrine-neurological pathway while staying aligned with the active endocrinology focus.
+
+Invocation: `w-f28a0b57b0f9488c`
 
 ## 061 · Thyroid Endocrinology and Neurological Function
 
