@@ -413,6 +413,38 @@ class ResearchTests(unittest.TestCase):
             for evidence_id in request["context"]["project_evidence"]["p"]
         ))
 
+    def test_bounded_context_preserves_longitudinal_history_for_due_bob_reflection(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        for _ in range(8):
+            self.assertEqual(self.propose([])["status"], "accepted")
+        state = self.engine.store.load()
+        working = self.engine.working_set(state)
+        bounded = self.engine.bounded_context(state, "r-reflection", working, 99999)
+        self.assertTrue(bounded["bob_reflection_due"])
+        self.assertEqual(bounded["bob_reflection_cycle"], 10)
+        history = bounded["reflection_history"]
+        self.assertEqual(history["milestone"], 10)
+        self.assertEqual(len(history["accepted_wakes"]), 9)
+        self.assertEqual(history["accepted_wakes"][-1]["cycle"], 9)
+        self.assertIn("boundary", history)
+
+    def test_reflection_schema_requires_substantive_body_and_lens(self):
+        context = {
+            "research_topics": [],
+            "projects": [],
+            "blog_notebooks": {},
+            "commitments": [],
+            "evidence": [],
+            "bob_reflection_due": True,
+            "bob_reflection_cycle": 10,
+        }
+        schema = schema_for_context(context)
+        blog = next(item for item in schema["properties"]["actions"]["items"]["anyOf"]
+                    if item["properties"]["type"]["enum"] == ["blog"])
+        self.assertIn("lens", blog["required"])
+        self.assertEqual(blog["properties"]["body"]["minLength"], 900)
+        self.assertEqual(blog["properties"]["reflection_cycle"]["enum"], [10])
+
     def test_bounded_context_can_rehydrate_selected_source_for_synthesis(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
@@ -783,7 +815,15 @@ class ResearchTests(unittest.TestCase):
             "it is the visible tension between persistent obligations, evidence gates, provider "
             "availability, and disposable model calls. The record shows what survived each handoff "
             "and where the process remained blocked. My job is to translate those receipts without "
-            "turning continuity into a stronger claim than the evidence supports."
+            "turning continuity into a stronger claim than the evidence supports. Across the window, "
+            "another pattern is the repeated tradeoff between carrying enough history to remain accountable "
+            "and keeping each fresh invocation small enough to stay usable. Some wakes advanced research, "
+            "others mostly routed attention, and the difference matters: an accepted cycle is not automatically "
+            "a scientific result. The tension I want to keep visible for readers is that continuity can be "
+            "mechanically strong while understanding remains provisional and source-bounded. My translation "
+            "approach therefore has to show both what survived and what still failed to resolve. The question "
+            "I carry forward is how much longitudinal context a future reflection needs before compression "
+            "starts erasing the very changes the milestone is supposed to notice."
         )
         reflection = self.blog(
             id="bob-cycle-10", notebooks=[], evidence=[], reflection_cycle=10,
@@ -803,6 +843,9 @@ class ResearchTests(unittest.TestCase):
         self.assertNotIn("<h3>Research notebooks</h3>", rendered)
         self.assertNotIn("<h3>Collected sources</h3>", rendered)
         self.assertIn("System-wide reflection · no project-specific research receipts attached.", rendered)
+        app = (Path(__file__).resolve().parents[1]/"wake/assets/app.js").read_text()
+        self.assertIn("Scope: system-wide reflection.", app)
+        self.assertIn("post.project?s.projects?.[post.project]:null", app)
 
     def test_significant_notebook_can_create_a_durable_blog_post(self):
         self.source("s1")
