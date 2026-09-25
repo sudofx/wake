@@ -67,9 +67,23 @@ def publish(directory):
             embedded_map3d = json.loads(map3d_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
         except (ValueError, IndexError) as exc:
             raise SystemExit("Invalid 3D map export; export again before publishing.") from exc
-        expected_map3d = build_map3d_projection(expected_map)
+        expected_map3d, expected_shards = build_map3d_projection(expected_map)
         if canonical(map3d_data) != canonical(expected_map3d) or canonical(embedded_map3d) != canonical(expected_map3d):
-            raise SystemExit("3D map does not match the verified compact projection; export again before publishing.")
+            raise SystemExit("3D map does not match the verified lazy shell; export again before publishing.")
+        shard_dir = source / "map3d"
+        if not shard_dir.is_dir():
+            raise SystemExit("Incomplete 3D map branch export; export again before publishing.")
+        actual_shards = {path.stem: path for path in shard_dir.glob("*.json")}
+        if set(actual_shards) != set(expected_shards):
+            raise SystemExit("3D map branch set does not match the verified projection; export again before publishing.")
+        for parent, expected_shard in expected_shards.items():
+            try:
+                actual_shard = json.loads(actual_shards[parent].read_text())
+            except ValueError as exc:
+                raise SystemExit("Invalid 3D map branch export; export again before publishing.") from exc
+            if canonical(actual_shard) != canonical(expected_shard):
+                raise SystemExit("3D map branch does not match the verified projection; export again before publishing.")
+            names.append(f"map3d/{parent}.json")
     for entry in reconstructed["journal"]:
         name = f"journal/{entry['invocation']}.html"
         if (source / name).is_file():
@@ -95,6 +109,8 @@ def publish(directory):
             git("checkout", "--orphan", BRANCH, cwd=target)
         else:
             raise SystemExit("Cannot read the publishing branch; check Git authentication.")
+        if (target / "map3d").exists():
+            shutil.rmtree(target / "map3d")
         for name in names:
             (target / name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source / name, target / name)
