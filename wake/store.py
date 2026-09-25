@@ -20,6 +20,7 @@ import json
 import os
 from pathlib import Path
 import sqlite3
+from time import perf_counter
 
 from .governance import Rejected, require, transition
 
@@ -382,6 +383,20 @@ class Store:
             CREATE TABLE IF NOT EXISTS snapshot (id INTEGER PRIMARY KEY CHECK(id=1),
                 head TEXT NOT NULL, state TEXT NOT NULL);
         """)
+        # A fresh Store still proves history by replaying from genesis. After that
+        # proof succeeds, repeated reads/appends in the same process may reuse the
+        # exact derived projection while the SQLite connection fingerprint remains
+        # unchanged. Any observed database mutation invalidates the cache and falls
+        # back to full replay. The cache is an optimization, never a second authority.
+        self._trusted = None
+        self._performance = {
+            "full_replays": 0,
+            "cached_loads": 0,
+            "append_cache_hits": 0,
+            "append_cache_misses": 0,
+            "replay_ms": 0.0,
+            "cached_decode_ms": 0.0,
+        }
 
     # ---------------------------------------------------------------------------
     # STEP: close
@@ -429,6 +444,57 @@ class Store:
                  "prev_hash": row[4], "hash": row[5]}
                 for row in self.db.execute("SELECT * FROM events ORDER BY seq")]
 
+    def _data_version(self):
+        return self.db.execute("PRAGMA data_version").fetchone()[0]
+
+    def _remember(self, state, head, seq):
+        self._trusted = {
+            "seq": seq,
+            "head": head,
+            "state": canonical(state),
+            "total_changes": self.db.total_changes,
+            "data_version": self._data_version(),
+        }
+
+    def _cached_base(self):
+        """Return the already-proved projection only while SQLite is unchanged."""
+        trusted = self._trusted
+        if not trusted:
+            return None
+        if self.db.total_changes != trusted["total_changes"] or self._data_version() != trusted["data_version"]:
+            self._trusted = None
+            return None
+        tail = self.db.execute("SELECT seq, hash FROM events ORDER BY seq DESC LIMIT 1").fetchone()
+        seq, head = (tail if tail else (0, ZERO))
+        if seq != trusted["seq"] or head != trusted["head"]:
+            self._trusted = None
+            return None
+        snapshot = self.db.execute("SELECT head, state FROM snapshot WHERE id=1").fetchone()
+        if snapshot is not None and snapshot != (trusted["head"], trusted["state"]):
+            self._trusted = None
+            return None
+        if seq and snapshot is None:
+            self._trusted = None
+            return None
+        started = perf_counter()
+        state = json.loads(trusted["state"])
+        self._performance["cached_decode_ms"] += (perf_counter() - started) * 1000
+        return state, head
+
+    def head(self):
+        cached = self._cached_base()
+        if cached is not None:
+            return cached[1]
+        return self.replay()[1]
+
+    def performance_snapshot(self):
+        return {
+            **{key: (round(value, 3) if isinstance(value, float) else value)
+               for key, value in self._performance.items()},
+            "event_count": self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0],
+            "trusted_projection_active": self._trusted is not None,
+        }
+
     # ---------------------------------------------------------------------------
     # STEP: replay
     #
@@ -439,6 +505,7 @@ class Store:
     # ---------------------------------------------------------------------------
 
     def replay(self):
+        started = perf_counter()
         state, head = empty(), ZERO
         try:
             events = self.events()
@@ -451,7 +518,11 @@ class Store:
                 state = reduce_event(state, event, historical=True)
                 head = event["hash"]
         except (ValueError, KeyError, TypeError, sqlite3.DatabaseError) as exc:
+            self._trusted = None
             raise IntegrityError(f"Invalid history: {exc}") from exc
+        self._performance["full_replays"] += 1
+        self._performance["replay_ms"] += (perf_counter() - started) * 1000
+        self._remember(state, head, len(events))
         return state, head
 
     # ---------------------------------------------------------------------------
@@ -464,14 +535,23 @@ class Store:
     # ---------------------------------------------------------------------------
 
     def load(self, repair=False):
-        # Always replay governance; never trust the cache as an authority.
-        state, head = self.replay()
+        # A fresh process always earns authority through replay. Repeated reads in
+        # that same process may reuse only the projection produced by that replay,
+        # and only while SQLite's connection fingerprint and stored snapshot agree.
+        cached = self._cached_base()
+        if cached is None:
+            state, head = self.replay()
+        else:
+            self._performance["cached_loads"] += 1
+            state, head = cached
+        encoded = canonical(state)
         row = self.db.execute("SELECT head, state FROM snapshot WHERE id=1").fetchone()
-        if row != (head, canonical(state)):
+        if row != (head, encoded):
             if not repair:
                 raise IntegrityError("Projection differs from valid history; run `python -m wake recover`")
             with self.db:
-                self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, canonical(state)))
+                self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, encoded))
+            self._remember(state, head, self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0])
         return state
 
     # ---------------------------------------------------------------------------
@@ -485,6 +565,7 @@ class Store:
 
     def reset(self):
         """Irreversibly clear durable history and rebuild the empty projection."""
+        self._trusted = None
         with self.db:
             self.db.execute("DELETE FROM events")
             self.db.execute("DELETE FROM snapshot")
@@ -503,17 +584,26 @@ class Store:
     # ---------------------------------------------------------------------------
 
     def append(self, kind, payload, crash=False):
-        state, head = self.replay()
-        seq = self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0] + 1
+        cached = self._cached_base()
+        if cached is None:
+            self._performance["append_cache_misses"] += 1
+            state, head = self.replay()
+        else:
+            self._performance["append_cache_hits"] += 1
+            state, head = cached
+        seq = (self._trusted["seq"] if self._trusted else
+               self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0]) + 1
         event = {"seq": seq, "time": now(), "kind": kind, "payload": payload, "prev_hash": head}
         event["hash"] = digest(event)
         state = reduce_event(state, event)
+        encoded = canonical(state)
         with self.db:
             self.db.execute("INSERT INTO events VALUES(?,?,?,?,?,?)",
                             (seq, event["time"], kind, canonical(payload), head, event["hash"]))
             if crash:
                 os._exit(86)  # Deliberate experiment: process dies before transaction commit.
-            self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (event["hash"], canonical(state)))
+            self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (event["hash"], encoded))
+        self._remember(state, event["hash"], seq)
         return state
 
     # ---------------------------------------------------------------------------

@@ -17,6 +17,8 @@ The fixed objective is written at initialization. Models cannot alter it or the 
 
 SQLite uses FULL synchronization. The event and updated snapshot commit in the same transaction. A local advisory writer lock covers a whole automatic wake, including the network call. Competing **WAKE✳︎** writers fail before requesting a model. This lock covers cooperating WAKE processes on one local filesystem. The cloud wrapper additionally serializes workflows and pushes its database to the `wake-state` branch before each model call; see [cloud operations](cloud.md). Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
 
+A fresh process still earns authority by replaying the hash-linked history from genesis. After that replay succeeds, the same process may reuse the exact derived projection for repeated reads and appends while SQLite's connection fingerprint, event tail and stored snapshot remain unchanged. Any observed database mutation invalidates that hot cache and falls back to full replay. This removes repeated genesis reconstruction inside one wake without turning the snapshot into an independent authority; `replay()` and exported-history audit remain the canonical reconstruction paths.
+
 The record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.
 
 ## **WAKE✳︎** lifecycle

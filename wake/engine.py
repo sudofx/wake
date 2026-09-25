@@ -20,6 +20,7 @@ import re
 import secrets
 import tomllib
 import uuid
+from time import perf_counter
 from zoneinfo import ZoneInfo
 
 from .governance import Rejected, bob_reflection_due_cycle, require, text, transition
@@ -1457,7 +1458,10 @@ class Engine:
     # ---------------------------------------------------------------------------
 
     def start(self, provider, model, charged=False):
+        started_at = perf_counter()
+        phase_at = started_at
         state = self.store.load()
+        load_ms = (perf_counter() - phase_at) * 1000
         require(state["pending"] is None, "An invocation is already pending")
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         if charged:
@@ -1481,18 +1485,23 @@ class Engine:
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         # Capture the temporal environment before the next model boundary. This
         # measures a new interval; it never recalculates an earlier receipt.
+        phase_at = perf_counter()
         temporal = temporal_snapshot(state, self.store.events(), now())
         self.store.append("temporal_observed", temporal)
         state = self.store.load()
+        temporal_ms = (perf_counter() - phase_at) * 1000
         invocation = "w-" + uuid.uuid4().hex[:16]
         receipt = "r-" + invocation[2:]
-        _, head = self.store.replay()
+        phase_at = perf_counter()
+        head = self.store.head()
         state = self.store.append("observation", {"id": receipt, "source": "runtime:continuity",
             "actor": "runtime", "content": canonical({"invocation": invocation, "process_id": os.getpid(),
                 "base_version": state["version"], "previous_head": head,
                 "inherited_commitments": [k for k, v in state["commitments"].items() if v["status"] == "open"],
                 "scope": "Receipt proves state delivery to the provider boundary, not model comprehension."})})
+        receipt_ms = (perf_counter() - phase_at) * 1000
         from .providers import RESEARCH_SYSTEM, SCHEMA
+        phase_at = perf_counter()
         delivered_context = self.context(state, receipt)
         working_set_shadow = self.working_set(state)
         trust_compacts_shadow = build_trust_compacts_shadow(state)
@@ -1511,6 +1520,8 @@ class Engine:
                    "context": delivered_context,
                    "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
         rich_context_chars = len(canonical(request))
+        context_build_ms = (perf_counter() - phase_at) * 1000
+        phase_at = perf_counter()
         context_mode = "rich"
         if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
             # Crossing the context threshold is a retrieval problem, not a reason to
@@ -1599,8 +1610,20 @@ class Engine:
                 self.fit_bounded_request(request)
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
+        compaction_ms = (perf_counter() - phase_at) * 1000
         shadow_chars = len(canonical(working_set_shadow))
         delivered_chars = len(canonical(request["context"]))
+        delivered_request_chars = len(canonical(request))
+        rehydrated_count = len(request["context"].get("retrieval_rehydration", {}).get("evidence_ids", []))
+        runtime_performance = {
+            "load_ms": round(load_ms, 3),
+            "temporal_ms": round(temporal_ms, 3),
+            "receipt_ms": round(receipt_ms, 3),
+            "context_build_ms": round(context_build_ms, 3),
+            "compaction_ms": round(compaction_ms, 3),
+            "start_total_before_record_ms": round((perf_counter() - started_at) * 1000, 3),
+            "store": self.store.performance_snapshot(),
+        }
         self.store.append("invocation_started", {"id": invocation, "provider": provider, "model": model,
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
             "request_hash": digest(request), "process_id": os.getpid(),
@@ -1610,11 +1633,14 @@ class Engine:
             "inquiry_drive_shadow": inquiry_drive_shadow,
             "squirrel": delivered_context.get("squirrel", {"active": False}),
             "experimental_regime": state["experimental"], "temporal": temporal,
+            "runtime_performance": runtime_performance,
             "context_delivery": {
                 "mode": context_mode,
                 "rich_context_chars": rich_context_chars,
-                "delivered_request_chars": len(canonical(request)),
+                "delivered_request_chars": delivered_request_chars,
                 "delivered_context_chars": delivered_chars,
+                "request_compression_ratio": round(delivered_request_chars / max(rich_context_chars, 1), 4),
+                "retrieval_rehydrated_evidence_count": rehydrated_count,
                 "working_set_chars": shadow_chars,
                 "omitted_categories": request["context"].get("bounded_context", {}).get("omitted_categories", []),
                 "provenance_policy": request["context"].get("bounded_context", {}).get("provenance_policy"),
@@ -1626,6 +1652,7 @@ class Engine:
                 "working_to_delivered_ratio": round(shadow_chars / max(delivered_chars, 1), 4),
                 "retrieval_candidate_count": retrieval_shadow["metrics"]["candidate_count"],
                 "retrieval_evidence_count": retrieval_shadow["metrics"]["evidence_count"],
+                "retrieval_rehydrated_evidence_count": rehydrated_count,
                 "retrieval_trigger_counts": retrieval_shadow["metrics"]["trigger_counts"],
                 "trust_compact_candidate_count": trust_compacts_shadow["metrics"]["candidate_count"],
                 "trust_compact_settled_count": trust_compacts_shadow["metrics"]["settled_count"],

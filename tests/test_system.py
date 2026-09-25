@@ -175,6 +175,29 @@ class SystemTests(unittest.TestCase):
         with self.assertRaises(IntegrityError):
             self.engine.recover()
 
+    def test_verified_projection_cache_avoids_replaying_unchanged_history(self):
+        self.engine.store.load()
+        before = self.engine.store.performance_snapshot()
+        self.engine.store.load()
+        after = self.engine.store.performance_snapshot()
+        self.assertEqual(after["full_replays"], before["full_replays"])
+        self.assertGreater(after["cached_loads"], before["cached_loads"])
+        with self.engine.store.lock():
+            self.engine.store.append("focus_changed", {"focus": "cache-test"})
+        final = self.engine.store.performance_snapshot()
+        self.assertGreater(final["append_cache_hits"], after["append_cache_hits"])
+
+    def test_invocation_records_hot_path_and_compression_metrics(self):
+        with self.engine.store.lock():
+            invocation, _ = self.engine.start("fixture", "perf-test")
+            item = self.engine.store.load()["invocations"][invocation]
+        perf = item["runtime_performance"]
+        self.assertGreaterEqual(perf["load_ms"], 0)
+        self.assertGreaterEqual(perf["context_build_ms"], 0)
+        self.assertIn("full_replays", perf["store"])
+        self.assertIn("request_compression_ratio", item["context_delivery"])
+        self.assertIn("retrieval_rehydrated_evidence_count", item["working_set_metrics"])
+
     def test_quota_is_reserved_before_failure_and_survives_restart(self):
         class Failure(Fixture):
             charged = True
