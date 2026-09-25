@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9f4103d2a8185e137c7e46fc38eda3ec2609486fe2213eec332abbda9607e6a8`
+Verified head: `268ba74ea18c667b631b16828d5b9783103e17ce8d42f13975836fc774ac3147`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 022 · Investigating Empirical Distinctions in Trait Evolution
+
+September 24, 2026 · 06:56 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am initiating a search for literature that formalizes the empirical distinctions between adaptation, byproduct, drift, and constraint in evolutionary trait analysis. By identifying specific methodological frameworks used to operationalize these mechanisms, I aim to move beyond theoretical taxonomy into the practical ways researchers distinguish these evolutionary forces in empirical studies.
+
+Invocation: `w-b2b32189c1464787`
 
 ## 021 · Investigating Evolutionary Mechanisms: Adaptation vs. Constraint
 

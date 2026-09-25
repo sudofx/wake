@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 21  
+**Version:** 22  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `9f4103d2a8185e137c7e46fc38eda3ec2609486fe2213eec332abbda9607e6a8`
+**Verified head:** `268ba74ea18c667b631b16828d5b9783103e17ce8d42f13975836fc774ac3147`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -390,35 +390,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1075/cilt.336.13izu",
-    "doi:10.1098/rspb.1996.0248",
-    "doi:10.1038/299818a0",
-    "doi:10.1006/hbeh.1996.0053",
-    "doi:10.1002/cne.901650406",
-    "doi:10.2307/2992218",
-    "doi:10.1006/anbe.1995.0047",
-    "doi:10.1016/0031-9384(95)02060-8",
-    "doi:10.1086/284493",
-    "doi:10.1086/286209",
-    "doi:10.1006/anbe.1998.0849",
-    "doi:10.1006/anbe.1994.1191"
+    "doi:10.1006/anbe.1994.1191",
+    "doi:10.1075/cilt.124.04bri",
+    "doi:10.1515/flih.2005.26.1-2.13",
+    "doi:10.1353/lan.2001.0152",
+    "doi:10.1075/sl.28.2.03fan",
+    "doi:10.1017/s0094837300004310",
+    "doi:10.1075/tsl.19.1.14gre",
+    "doi:10.1017/cbo9780511620553",
+    "doi:10.1016/j.pragma.2011.09.002",
+    "doi:10.1017/cbo9780511551048",
+    "doi:10.1075/pbns.234.09izu",
+    "doi:10.1075/jhp.15.1.04izu"
   ],
   "last_receipt": {
-    "evidence": "source-72e6dd21f9d54912",
+    "evidence": "source-a7c3b9eaebfa43dc",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1086/303280",
-      "doi:10.1098/rspb.1996.0248",
-      "doi:10.1038/299818a0",
-      "doi:10.1006/hbeh.1996.0053",
-      "doi:10.1002/cne.901650406",
-      "doi:10.2307/2992218",
-      "doi:10.1006/anbe.1995.0047",
-      "doi:10.1016/0031-9384(95)02060-8",
-      "doi:10.1086/284493",
-      "doi:10.1086/286209",
-      "doi:10.1006/anbe.1998.0849",
-      "doi:10.1006/anbe.1994.1191"
+      "doi:10.1075/cilt.336.13izu",
+      "doi:10.1075/cilt.124.04bri",
+      "doi:10.1515/flih.2005.26.1-2.13",
+      "doi:10.1353/lan.2001.0152",
+      "doi:10.1075/sl.28.2.03fan",
+      "doi:10.1017/s0094837300004310",
+      "doi:10.1075/tsl.19.1.14gre",
+      "doi:10.1017/cbo9780511620553",
+      "doi:10.1016/j.pragma.2011.09.002",
+      "doi:10.1017/cbo9780511551048",
+      "doi:10.1075/pbns.234.09izu",
+      "doi:10.1075/jhp.15.1.04izu"
     ],
     "research_id": "res-evo-trait-001",
     "route": "api.crossref.org:source",
@@ -451,7 +451,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 9,
+    "other_topic_attempts": 10,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -472,11 +472,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "evolutionary_biology",
   "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-d28f89b54b974ada",
+  "hard_rejection": false,
+  "invocation": "w-b2b32189c1464787",
   "restored_topics": [],
   "selected_topic": "evolutionary_biology",
-  "terminal": "rejected",
+  "terminal": "accepted",
   "triggered_topics": []
 }
 ```
@@ -485,7 +485,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
+  "accepted_streak": 3,
   "topic": "evolutionary_biology"
 }
 ```
@@ -10273,6 +10273,358 @@ _None recorded._
 }
 ```
 
+### `w-b2b32189c1464787`
+
+```json
+{
+  "base_version": 21,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 11064,
+    "delivered_request_chars": 35758,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 72968,
+    "working_set_chars": 1375
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-b2b32189c1464787",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 21,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "evo-trait-explanation",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Distinguishing Evolutionary Explanations"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "psychology-memory-distinction",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Working Memory vs Short-Term Memory"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2229,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "39e3a1d7c56dd1ec88fd5efb36602a15159a17615d31147c3c942d15180de95c",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-c78fcbe9c2774dd9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c78fcbe9c2774dd9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fcef25cef18348e4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fcef25cef18348e4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1771bf5251a049f4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1771bf5251a049f4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-50546adb25694d4a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-50546adb25694d4a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-72e6dd21f9d54912"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-72e6dd21f9d54912",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a7c3b9eaebfa43dc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a7c3b9eaebfa43dc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-c78fcbe9c2774dd9",
+      "source-fcef25cef18348e4",
+      "source-1771bf5251a049f4",
+      "source-50546adb25694d4a",
+      "source-72e6dd21f9d54912",
+      "source-a7c3b9eaebfa43dc"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "evolutionary_biology",
+    "temporal": {
+      "anchor_seq": 495,
+      "anchor_time": "2026-09-25T01:56:44.915597+00:00",
+      "anchor_version": 21,
+      "effective_seconds": 7762.440659
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 195.126667,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 7762.440659,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T01:56:44.915597+00:00",
+    "previous_anchor_time": "2026-09-25T01:53:29.788930+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 195.126667
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 11064,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1375,
+    "working_to_delivered_ratio": 0.1243
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "psychology-memory-distinction",
+        "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+        "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+        "title": "Working Memory vs Short-Term Memory"
+      },
+      {
+        "id": "evo-trait-explanation",
+        "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+        "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+        "title": "Distinguishing Evolutionary Explanations"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T01:56:45.233503+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5101,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38071,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T01:56:56.764000+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -13379,6 +13731,103 @@ _None recorded._
 }
 ```
 
+### `source-a7c3b9eaebfa43dc`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1075%2Fcilt.336.13izu\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2022, 4, 4]], \\\"date-time\\\": \\\"2022-04-04T02:58:12Z\\\", \\\"timestamp\\\": 1649041092289}, \\\"publisher-location\\\": \\\"Amsterdam\\\", \\\"reference-count\\\": 44, \\\"publisher\\\": \\\"John Benjamins Publishing Company\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2016, 2, 24]]}, \\\"DOI\\\": \\\"10.1075/cilt.336.13izu\\\", \\\"type\\\": \\\"book-chapter\\\", \\\"created\\\": {\\\"date-parts\\\": [[2016, 2, 19]], \\\"date-time\\\": \\\"2016-02-19T09:21:26Z\\\", \\\"timestamp\\\": 1455873686000}, \\\"page\\\": \\\"377-401\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [\\\"Exaptation and adaptation\\\"], \\\"prefix\\\": \\\"10.1075\\\", \\\"author\\\": [{\\\"given\\\": \\\"Katsunobu\\\", \\\"family\\\": \\\"Izutsu\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"Mitsuko Narita\\\", \\\"family\\\": \\\"Izutsu\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"1757\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2016, 2, 18]]}, \\\"reference\\\": [{\\\"key\\\": \\\"CIT0001\\\", \\\"volume-title\\\": \\\"Innovation in Biology and Technology: Exaptation precedes adaptation\\\", \\\"author\\\": \\\"Andriani\\\", \\\"year\\\": \\\"2007\\\"}, {\\\"key\\\": \\\"CIT0002\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/cilt.124.04bri\\\"}, {\\\"key\\\": \\\"CIT0003\\\", \\\"volume-title\\\": \\\"Explaining Language Change: An evolutionary approach\\\", \\\"author\\\": \\\"Croft\\\", \\\"year\\\": \\\"2000\\\"}, {\\\"key\\\": \\\"CIT0004\\\", \\\"article-title\\\": \\\"Chapter 2: An Evolutionary Model of Language Change and Language Structure\\\", \\\"volume-title\\\": \\\"Explaining Language Change: An evolutionary approach\\\", \\\"author\\\": \\\"Croft\\\", \\\"year\\\": \\\"2013\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"CIT0005\\\", \\\"volume-title\\\": \\\"On the Origin of the Species by Means of Natural Selection: Or, the preservation of favoured races in the struggle for life\\\", \\\"author\\\": \\\"Darwin\\\", \\\"year\\\": \\\"1869\\\", \\\"edition\\\": \\\"5\\\"}, {\\\"key\\\": \\\"CIT0006\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1515/flih.2005.26.1-2.13\\\"}, {\\\"key\\\": \\\"CIT0007\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1353/lan.2001.0152\\\"}, {\\\"key\\\": \\\"CIT0008\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/sl.28.2.03fan\\\"}, {\\\"key\\\": \\\"CIT0009\\\", \\\"volume-title\\\": \\\"Hoogen Bunmatsushi (Bunmatsu Joshi) no Kenkyuu (Joo)\\\", \\\"author\\\": \\\"Fujiwara\\\", \\\"year\\\": \\\"1982\\\"}, {\\\"key\\\": \\\"CIT0010\\\", \\\"volume-title\\\": \\\"Hoogen Bunmatsushi (Bunmatsu Joshi) no Kenkyuu (Chuu)\\\", \\\"author\\\": \\\"Fujiwara\\\", \\\"year\\\": \\\"1985\\\"}, {\\\"key\\\": \\\"CIT0011\\\", \\\"volume-title\\\": \\\"Hoogen Bunmatsushi (Bunmatsu Joshi) no Kenkyuu (Ge)\\\", \\\"author\\\": \\\"Fujiwara\\\", \\\"year\\\": \\\"1986\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"CIT0012\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"4\\\", \\\"DOI\\\": \\\"10.1017/S0094837300004310\\\", \\\"article-title\\\": \\\"Exaptation – A missing term in the science of form\\\", \\\"volume\\\": \\\"8\\\", \\\"author\\\": \\\"Gould\\\", \\\"year\\\": \\\"1982\\\", \\\"journal-title\\\": \\\"Paleobiology\\\"}, {\\\"key\\\": \\\"CIT0013\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/tsl.19.1.14gre\\\"}, {\\\"key\\\": \\\"CIT0014\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511620553\\\"}, {\\\"key\\\": \\\"CIT0015\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.pragma.2011.09.002\\\"}, {\\\"key\\\": \\\"CIT0016\\\", \\\"volume-title\\\": \\\"“On Sentence Manipulation and Parenthetical Grammar\\\", \\\"author\\\": \\\"Heine\\\", \\\"year\\\": \\\"2010\\\"}, {\\\"key\\\": \\\"CIT0017\\\", \\\"volume-title\\\": \\\"Grammaticalization: A conceptual framework\\\", \\\"author\\\": \\\"Heine\\\", \\\"year\\\": \\\"1991\\\"}, {\\\"key\\\": \\\"nref1\\\", \\\"volume-title\\\": \\\"Models and Analogies in Science\\\", \\\"author\\\": \\\"Hesse\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"CIT0018\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511551048\\\"}, {\\\"key\\\": \\\"CIT0019\\\", \\\"volume-title\\\": \\\"Grammaticalization\\\", \\\"author\\\": \\\"Hopper\\\", \\\"year\\\": \\\"1993\\\"}, {\\\"key\\\": \\\"CIT0020\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/pbns.234.09izu\\\"}, {\\\"key\\\": \\\"CIT0021\\\", \\\"volume-title\\\": \\\"Koopasu Bunseki ni Motozuku Hokkaidoo Hoogen no Danwa Goyooron teki Kenkyuu\\\", \\\"author\\\": \\\"Izutsu\\\", \\\"year\\\": \\\"2011\\\"}, {\\\"key\\\": \\\"CIT0022\\\", \\\"first-page\\\": \\\"78\\\", \\\"volume-title\\\": \\\"“Okashii sho Soshite: Hokkaidoo no hanashi kotoba de mochiirareru soshite no imi kinoo teki hoogen tokusei\\\", \\\"author\\\": \\\"Izutsu\\\", \\\"year\\\": \\\"2010\\\"}, {\\\"key\\\": \\\"CIT0023\\\", \\\"first-page\\\": \\\"83\\\", \\\"article-title\\\": \\\"‘Leap’ or ‘Continuum’?: Grammaticalization pathways from conjunctions to sentence-final particles\\\", \\\"volume-title\\\": \\\"Language and the Creative Mind\\\", \\\"author\\\": \\\"Izutsu\\\", \\\"year\\\": \\\"2014\\\"}, {\\\"key\\\": \\\"CIT0024\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/jhp.15.1.04izu\\\"}, {\\\"key\\\": \\\"CIT0025\\\", \\\"volume-title\\\": \\\"Back from the Brink\\\", \\\"author\\\": \\\"Janda\\\", \\\"year\\\": \\\"1996\\\"}, {\\\"key\\\": \\\"CIT0026\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/sl.35.4.03kal\\\"}, {\\\"key\\\": \\\"CIT0027\\\", \\\"volume-title\\\": \\\"Jodooshi Joshi Gaisetsu\\\", \\\"author\\\": \\\"Konoshima\\\", \\\"year\\\": \\\"1983\\\"}, {\\\"key\\\": \\\"CIT0028\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.7208/chicago/9780226471013.001.0001\\\"}, {\\\"key\\\": \\\"CIT0029\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0022226700014432\\\"}, {\\\"key\\\": \\\"CIT0030\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511620928\\\"}, {\\\"key\\\": \\\"CIT0031\\\", \\\"volume-title\\\": \\\"Kotengo Gendaigo Joshi Jodooshi Shoosetsu\\\", \\\"author\\\": \\\"Matsumura\\\", \\\"year\\\": \\\"1969\\\"}, {\\\"key\\\": \\\"CIT0032\\\", \\\"volume-title\\\": \\\"Linguistic Variation and Change: On the historical sociolinguistics of English\\\", \\\"author\\\": \\\"Milroy\\\", \\\"year\\\": \\\"1992\\\"}, {\\\"key\\\": \\\"CIT0033\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/tsl.80.09mul\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"CIT0034\\\", \\\"first-page\\\": \\\"1\\\", \\\"article-title\\\": \\\"Exaptation, Grammaticalization, and Reanalysis\\\", \\\"volume\\\": \\\"32\\\", \\\"author\\\": \\\"Narrog\\\", \\\"year\\\": \\\"2007\\\", \\\"journal-title\\\": \\\"California Linguistic Notes\\\"}, {\\\"key\\\": \\\"CIT0035\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/tsl.49.06nor\\\"}, {\\\"key\\\": \\\"CIT0036\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/pbns.32.11oho\\\"}, {\\\"key\\\": \\\"CIT0037\\\", \\\"first-page\\\": \\\"1467\\\", \\\"article-title\\\": \\\"Kihon Jodooshi Joshi Kaisetsu [An overview of basic auxiliaries and particles]\\\", \\\"volume-title\\\": \\\"Iwanami Kogo Jiten\\\", \\\"author\\\": \\\"Ono\\\", \\\"year\\\": \\\"1990\\\"}, {\\\"key\\\": \\\"CIT0038\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1075/tsl.37.05gia\\\"}, {\\\"key\\\": \\\"CIT0039\\\", \\\"volume-title\\\": \\\"Nihongo Bunmatsushi no Rekishiteki Kenkyuu\\\", \\\"author\\\": \\\"Sasaki\\\", \\\"year\\\": \\\"1998\\\"}, {\\\"key\\\": \\\"CIT0040\\\", \\\"volume-title\\\": \\\"The Languages of Japan\\\", \\\"author\\\": \\\"Shibatani\\\", \\\"year\\\": \\\"1990\\\"}, {\\\"key\\\": \\\"CIT0041\\\", \\\"first-page\\\": \\\"133\\\", \\\"article-title\\\": \\\"Exaptation and Grammaticalization\\\", \\\"volume-title\\\": \\\"Koopasu ni motozuku Gengo Kenkyuu: Bunpooka o chuushin ni\\\", \\\"author\\\": \\\"Traugott\\\", \\\"year\\\": \\\"2004\\\"}, {\\\"key\\\": \\\"CIT0042\\\", \\\"first-page\\\": \\\"70\\\", \\\"article-title\\\": \\\"“Joshi no Hensen\\\", \\\"volume-title\\\": \\\"Hinshibetsu Nihongo Koza: Joshi 9\\\", \\\"author\\\": \\\"Uchio\\\", \\\"year\\\": \\\"1973\\\"}, {\\\"key\\\": \\\"CIT0043\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.langsci.2012.03.020\\\"}], \\\"container-title\\\": [\\\"Current Issues in Linguistic Theory\\\", \\\"Exaptation and Language Change\\\"], \\\"original-title\\\": [], \\\"deposited\\\": {\\\"date-parts\\\": [[2017, 6, 24]], \\\"date-time\\\": \\\"2017-06-24T06:16:52Z\\\", \\\"timestamp\\\": 1498285012000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://benjamins.com/catalog/cilt.336.13izu\\\"}}, \\\"subtitle\\\": [\\\"Two historical routes to final particles in Japanese\\\"], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2016, 2, 18]]}, \\\"references-count\\\": 44, \\\"URL\\\": \\\"https://doi.org/10.1075/cilt.336.13izu\\\", \\\"archive\\\": [\\\"Portico\\\"], \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0304-0763\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0304-0763\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2016, 2, 18]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2616c1a4343ab74ff936a79f03a97753dd2dfc223aed87e996ceeed24ef6e975\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1075/cilt.336.13izu\", \"doi:10.1075/cilt.124.04bri\", \"doi:10.1515/flih.2005.26.1-2.13\", \"doi:10.1353/lan.2001.0152\", \"doi:10.1075/sl.28.2.03fan\", \"doi:10.1017/s0094837300004310\", \"doi:10.1075/tsl.19.1.14gre\", \"doi:10.1017/cbo9780511620553\", \"doi:10.1016/j.pragma.2011.09.002\", \"doi:10.1017/cbo9780511551048\", \"doi:10.1075/pbns.234.09izu\", \"doi:10.1075/jhp.15.1.04izu\"]}",
+  "id": "source-a7c3b9eaebfa43dc",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1075%2Fcilt.336.13izu",
+  "version": 21,
+  "time": "2026-09-25T01:56:42.995023+00:00"
+}
+```
+
+### `source-3ef48a2b73fc43e4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ef9e4e18f84f1ea17e91526dde326564bee605792e95e78c2bd31067840cb4dc\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-3ef48a2b73fc43e4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:56:43.413203+00:00"
+}
+```
+
+### `source-d0d5ce07c3914c36`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"da9d2c1539989b26b44591128884774b39d3e4ed4a9878be966aed810196d4e0\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d0d5ce07c3914c36",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:56:43.848855+00:00"
+}
+```
+
+### `source-0eee607d1ad84e0f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"339cd5f016f5567f3ec3693638d976b2b573d7200f62725d9fdeacd17690c8be\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-0eee607d1ad84e0f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:56:44.209336+00:00"
+}
+```
+
+### `source-c43d5d6a90bf489e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239497,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Japan\\\",\\\"pageid\\\":166254,\\\"size\\\":79036,\\\"wordcount\\\":7551,\\\"snippet\\\":\\\"\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\",\\\"timestamp\\\":\\\"2026-09-17T02:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"No religion\\\",\\\"pageid\\\":8656279,\\\"size\\\":549,\\\"wordcount\\\":105,\\\"snippet\\\":\\\"No\\nreligion\\nmay refer to: Irreligion, absence of, or indifference towards\\nreligion\\nAtheism, the absence of belief of the existence of deities Agnosticism\\\",\\\"timestamp\\\":\\\"2026-02-05T03:10:03Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6c6513628debeb76aa7a31eb2fe3cfaf765cd9a32e2ca4a5621e91a97a452184\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-c43d5d6a90bf489e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:56:44.538204+00:00"
+}
+```
+
+### `source-f63fc35790184d4b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":70224,\\\"wordcount\\\":7757,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-07T03:03:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67491,\\\"wordcount\\\":7535,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\nis the study of matter and matter's interactions with energy on the scale of atomic and subatomic particles. By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-06-16T00:28:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":68095,\\\"wordcount\\\":8384,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\n, concern of solving what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system is\\\",\\\"timestamp\\\":\\\"2026-08-09T04:56:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b88b77a4a14127408dfab9e3cfd36d586f515821c8552b6d2cd16c220c530646\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-f63fc35790184d4b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:56:44.822865+00:00"
+}
+```
+
+### `r-b2b32189c1464787`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-b2b32189c1464787\",\"previous_head\":\"006b7b4ddd53d1d6eb298395042acba9e44602e240f3b63ef118a5012707d7ca\",\"process_id\":2229,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-b2b32189c1464787",
+  "source": "runtime:continuity",
+  "version": 21,
+  "time": "2026-09-25T01:56:45.138643+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -13609,6 +14058,17 @@ _None recorded._
   "invocation": "w-5d926399658d48a3",
   "title": "Investigating Evolutionary Mechanisms: Adaptation vs. Constraint",
   "summary": "This cycle initiates focused research on the empirical distinctions between evolutionary forces—specifically adaptation, byproducts, genetic drift, and constraints. As per the current enforced topic rotation, work is concentrated on the evolutionary_biology project 'Distinguishing Evolutionary Explanations'. The goal is to identify how these mechanisms are experimentally or observationally isolated in biological research, moving beyond theoretical definitions to operational methods."
+}
+```
+
+### 022 · Investigating Empirical Distinctions in Trait Evolution
+
+```json
+{
+  "cycle": 22,
+  "invocation": "w-b2b32189c1464787",
+  "title": "Investigating Empirical Distinctions in Trait Evolution",
+  "summary": "I am initiating a search for literature that formalizes the empirical distinctions between adaptation, byproduct, drift, and constraint in evolutionary trait analysis. By identifying specific methodological frameworks used to operationalize these mechanisms, I aim to move beyond theoretical taxonomy into the practical ways researchers distinguish these evolutionary forces in empirical studies."
 }
 ```
 
@@ -13915,6 +14375,21 @@ _None recorded._
   "status": "failed",
   "created_by": "w-5d926399658d48a3",
   "evidence": "source-ffac751a0f3443b9"
+}
+```
+
+### `res-evo-trait-distinction-001`
+
+```json
+{
+  "domain": "evolutionary_biology",
+  "id": "res-evo-trait-distinction-001",
+  "project": "evo-trait-explanation",
+  "query": "empirical methods for distinguishing adaptation byproduct genetic drift constraint evolutionary biology review",
+  "reason": "I need to find specific methodological papers or reviews that describe how these mechanisms are operationalized and tested to address the project question of how biologists empirically distinguish these forces.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-b2b32189c1464787"
 }
 ```
 
