@@ -1327,8 +1327,21 @@ class Engine:
                     continue
 
             rehydrated.append(evidence_id)
-            if evidence_id not in existing:
+            visible_entry = next(
+                (item for item in context.get("evidence", []) if item.get("id") == evidence_id),
+                None,
+            )
+            needs_materialization = (
+                visible_entry is None
+                or not visible_entry.get("content")
+                or visible_entry.get("content_omitted")
+            )
+            if needs_materialization:
                 content = evidence.get("content", "")
+                context["evidence"] = [
+                    item for item in context.get("evidence", [])
+                    if item.get("id") != evidence_id
+                ]
                 context.setdefault("evidence", []).append({
                     **evidence,
                     "content": content[:content_limit],
