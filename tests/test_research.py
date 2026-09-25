@@ -449,7 +449,8 @@ class ResearchTests(unittest.TestCase):
                 })
             state = self.engine.store.load()
             working = self.engine.working_set(state)
-            from wake.retrieval import build_retrieval_shadow\n            retrieval = build_retrieval_shadow(state, working)
+            from wake.retrieval import build_retrieval_shadow
+            retrieval = build_retrieval_shadow(state, working)
             bounded = self.engine.bounded_context(state, "r-test", working, 99999)
 
         self.assertEqual(bounded["project_evidence"], {})
