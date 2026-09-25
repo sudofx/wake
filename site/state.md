@@ -5,7 +5,7 @@
 **Version:** 70  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `995129cf393454a0987fae0c1139ff14526e76ee0cc60992f61140de63932469`
+**Verified head:** `2dd421bb442c5b11f314831420965b85b1650a8be225bc2af5fa81c47828e30d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -45011,6 +45011,388 @@ _None recorded._
 }
 ```
 
+### `w-fc7f0c7e13d2408d`
+
+```json
+{
+  "base_version": 70,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 13229,
+    "delivered_request_chars": 38165,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 74606,
+    "working_set_chars": 1902
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-fc7f0c7e13d2408d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 70,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2069,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "a8efef774ed2953f124c966f21ef64ab3e9dc982284e299d81b77f23b026ffaf",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-19c5ced2c0354525"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-19c5ced2c0354525",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-38af51501a074dac"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38af51501a074dac",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b3112f4969924c38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b3112f4969924c38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6a187301b2844a11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6a187301b2844a11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b0fb84dc554a4f40"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b0fb84dc554a4f40",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-32ae2941ab804949"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-32ae2941ab804949",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-19c5ced2c0354525",
+      "source-38af51501a074dac",
+      "source-b3112f4969924c38",
+      "source-6a187301b2844a11",
+      "source-b0fb84dc554a4f40",
+      "source-32ae2941ab804949"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "evolutionary_biology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "evolutionary_biology": [
+        {
+          "id": "evo-bio-trait-mechanisms",
+          "next_step": "Search for foundational literature defining adaptation vs. byproduct in behavioral or biological evolution.",
+          "question": "How do evolutionary biologists operationally distinguish between adaptive traits and evolutionary byproducts?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurodivergence",
+    "temporal": {
+      "anchor_seq": 1865,
+      "anchor_time": "2026-09-25T09:11:10.513769+00:00",
+      "anchor_version": 70,
+      "effective_seconds": 33828.038831
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 193.119222,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 33828.038831,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 12
+    },
+    "observed_at": "2026-09-25T09:11:10.513769+00:00",
+    "previous_anchor_time": "2026-09-25T09:07:57.394547+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 193.119222
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 13229,
+    "inquiry_drive_project_count": 0,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1902,
+    "working_to_delivered_ratio": 0.1438
+  },
+  "working_set_shadow": {
+    "active_projects": [],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-01",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-85d977fa7bf34654"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+        "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms"
+      },
+      {
+        "id": "notebook-visual-art-incongruity-01",
+        "project": "visual-art-perception-mechanism",
+        "provenance": [
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46"
+        ],
+        "revision": 1,
+        "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+        "title": "Incongruity-Resolution in Aesthetic Reception"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T09:11:11.550523+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 31775,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 40618,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T09:11:56.220095+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 31775,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 31775,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 40618,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 40618,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -56941,6 +57323,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 69,
   "time": "2026-09-25T09:07:58.501801+00:00"
+}
+```
+
+### `source-6918bea20ab449c8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c6d2402a16138c80936c8c6ca689ee7967791a28049502e34745d2d52b1a9d26\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6918bea20ab449c8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:06.148572+00:00"
+}
+```
+
+### `source-6b45fb4dcbb24e79`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a12febf70329e32d9a3bdb4cb1800741991a82b52c4cc28c6e195d8f7c956c2\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6b45fb4dcbb24e79",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:06.784565+00:00"
+}
+```
+
+### `source-14886584eaf34ee9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0c59dfe954048f5067c94d7a2e0cbe08ee567a51d2984b4bbbd83b3b94ffec32\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-14886584eaf34ee9",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:07.363344+00:00"
+}
+```
+
+### `source-b4116d6a046041f2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"Many people affected by MSA experience dysfunction of the autonomic\\nnervous\\nsystem\\n, which commonly manifests as orthostatic hypotension, impotence, loss\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"56f7a58d6f5bcbcf78619182dc12ff07e1c0d06baf1de076dbb72262b1e91d51\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b4116d6a046041f2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:08.901851+00:00"
+}
+```
+
+### `source-c49ad82d3238488b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"307245831280ace86146fd9f363dbf79e269e01676ffadeaacef148c27e8f2b8\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+  "id": "source-c49ad82d3238488b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:09.673893+00:00"
+}
+```
+
+### `source-eed30ff6b3fd4ef3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bayesian probability\\\",\\\"pageid\\\":4890,\\\"size\\\":33893,\\\"wordcount\\\":3450,\\\"snippet\\\":\\\"expectation representing a state of knowledge or as quantification of a personal\\nbelief\\n. The Bayesian interpretation of probability can be seen as an extension\\\",\\\"timestamp\\\":\\\"2026-07-22T06:31:12Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bcbb7b52ffea3930e7441d2eaf87f4a021b5986cc76f18373d1df0df64c39b02\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-eed30ff6b3fd4ef3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 70,
+  "time": "2026-09-25T09:11:10.224138+00:00"
+}
+```
+
+### `r-fc7f0c7e13d2408d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":70,\"inherited_commitments\":[],\"invocation\":\"w-fc7f0c7e13d2408d\",\"previous_head\":\"5478508d07831c3b6032c74aa203e151bdb818c515bb7f23e775271f6f531c2f\",\"process_id\":2069,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-fc7f0c7e13d2408d",
+  "source": "runtime:continuity",
+  "version": 70,
+  "time": "2026-09-25T09:11:11.240593+00:00"
 }
 ```
 
