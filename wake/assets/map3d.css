@@ -114,3 +114,6 @@
     border-radius:10px;
   }
 }
+
+/* Large durable branches stay fully navigable in the detail panel while the canvas renders a bounded window. */
+.map3d-window-note{margin:.65rem 0 .8rem;color:var(--muted);font-size:.82rem;line-height:1.45}
