@@ -10447,6 +10447,68 @@
       "source": "runtime:continuity",
       "version": 98,
       "time": "2026-09-25T13:06:16.694527+00:00"
+    },
+    "source-e32ebd88953d4148": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.12743%2Fquanta.v11i1.206\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 7, 2]], \\\"date-time\\\": \\\"2026-07-02T23:30:31Z\\\", \\\"timestamp\\\": 1783035031502, \\\"version\\\": \\\"3.54.6\\\"}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Quanta\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2022, 11, 21]], \\\"date-time\\\": \\\"2022-11-21T00:00:00Z\\\", \\\"timestamp\\\": 1668988800000}, \\\"content-version\\\": \\\"unspecified\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://creativecommons.org/licenses/by/4.0\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Quanta\\\"], \\\"abstract\\\": \\\"<jats:p>We show in this pedagogical review that far from being an apparent law of physics that stands by itself, the holographic principle is a straightforward consequence of the quantum information theory of separable systems. It provides a basis for the theories of measurement, time, and scattering. Utilizing the notion of holographic screens, which are information encoding boundaries between physical subsystems, we demonstrate that the physical interaction is an information exchange during which information is strictly conserved. Then we use generalized holographic principle in order to flesh out a fully-general quantum theory of measurement in which the measurement produces finite-resolution, classical outcomes. Further, we show that the measurements are given meaning by quantum reference frames and sequential measurements induce topological quantum field theories. Finally, we discuss principles equivalent to the holographic principle, including Markov blankets and the free-energy principle in biology, multiple realizability and virtual machines in computer science, and active inference and interface theories in cognitive science. This appearance in multiple disciplines suggests that the holographic principle is not just a fundamental principle of physics, but of all of science.\\\\r\\\\nQuanta 2022; 11: 72–96.</jats:p>\\\", \\\"DOI\\\": \\\"10.12743/quanta.v11i1.206\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2022, 11, 21]], \\\"date-time\\\": \\\"2022-11-21T08:11:08Z\\\", \\\"timestamp\\\": 1669018268000}, \\\"page\\\": \\\"72-96\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 29, \\\"title\\\": [\\\"The Physical Meaning of the Holographic Principle\\\"], \\\"prefix\\\": \\\"10.12743\\\", \\\"volume\\\": \\\"11\\\", \\\"author\\\": [{\\\"given\\\": \\\"Chris\\\", \\\"family\\\": \\\"Fields\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"James F.\\\", \\\"family\\\": \\\"Glazebrook\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Antonino\\\", \\\"family\\\": \\\"Marcianò\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"4996\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2022, 11, 21]]}, \\\"container-title\\\": [\\\"Quanta\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"https://dankogeorgiev.com/ojs/index.php/quanta/article/download/71/71\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://dankogeorgiev.com/ojs/index.php/quanta/article/download/71/71\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 7, 26]], \\\"date-time\\\": \\\"2025-07-26T15:16:43Z\\\", \\\"timestamp\\\": 1753543003000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://dankogeorgiev.com/ojs/index.php/quanta/article/view/71\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2022, 11, 21]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.12743/quanta.v11i1.206\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1314-7374\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"1314-7374\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2022, 11, 21]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"277bfea41f898ae45eab87525877db253cf0e057e1a4c4e28c556500a45f190e\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.12743/quanta.v11i1.206\"]}",
+      "id": "source-e32ebd88953d4148",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.12743%2Fquanta.v11i1.206",
+      "version": 99,
+      "time": "2026-09-25T13:11:16.257767+00:00"
+    },
+    "source-4c3941ab2bea4ac4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=cognitive+load+in+dance+observation+rhythmic+complexity&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2084866186\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.actpsy.2011.12.005\\\", \\\"title\\\": \\\"Neurocognitive control in dance perception and performance\\\", \\\"publication_year\\\": 2012, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 350, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://centaur.reading.ac.uk/42652/2/NeurocognitiveDance_ACTA%20Psychologica%202012.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.actpsy.2011.12.005\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.actpsy.2011.12.005\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S180067919\\\", \\\"display_name\\\": \\\"Acta Psychologica\\\", \\\"issn_l\\\": \\\"0001-6918\\\", \\\"issn\\\": [\\\"0001-6918\\\", \\\"1873-6297\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"abdc-a\\\", \\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Acta Psychologica\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2133752023\\\", \\\"doi\\\": \\\"https://doi.org/10.1186/1471-2458-13-477\\\", \\\"title\\\": \\\"Can social dancing prevent falls in older adults? a protocol of the Dance, Aging, Cognition, Economics (DAnCE) fall prevention randomised controlled trial\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 184, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://bmcpublichealth.biomedcentral.com/counter/pdf/10.1186/1471-2458-13-477\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1186/1471-2458-13-477\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1186/1471-2458-13-477\\\", \\\"pdf_url\\\": \\\"https://bmcpublichealth.biomedcentral.com/counter/pdf/10.1186/1471-2458-13-477\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S200437886\\\", \\\"display_name\\\": \\\"BMC Public Health\\\", \\\"issn_l\\\": \\\"1471-2458\\\", \\\"issn\\\": [\\\"1471-2458\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"doyens\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320256\\\", \\\"host_organization_name\\\": \\\"BioMed Central\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320256\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"BioMed Central\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"BMC Public Health\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"BACKGROUND: Falls are one of the most common health problems among older people and pose a major economic burden on health care systems. Exercise is an accepted stand-alone fall prevention strategy particularly if it is balance training or regular participation in Tai chi. Dance shares the 'holistic' approach of practices such as Tai chi. It is a complex sensorimotor rhythmic activity integrating multiple physical, cognitive and social elements. Small-scale randomised controlled trials have indicated that diverse dance styles can improve measures of balance and mobility in older people, but none of these studies has examined the effect of dance on falls or cognition. This study aims to determine whether participation in social dancing: i) reduces the number of falls; and ii) improves cognitive functions associated with fall risk in older people. METHODS/DESIGN: A single-blind, cluster randomised controlled trial of 12 months duration will be conducted. Approximately 450 participants will be recruited from 24 self-care retirement villages that house at least 60 residents each in Sydney, Australia. Village residents without cognitive impairment and obtain medical clearance will be eligible. After comprehensive baseline measurements including physiological and cognitive tests and self-completed questionnaires, villages will be randomised to intervention sites (ballroom or folk dance) or to a wait-listed control using a computer randomisation method that minimises imbalances between villages based on two baseline fall risk measures. Main outcome measures are falls, prospectively measured, and the Trail Making cognitive function test. Cost-effectiveness and cost-utility analyses will be performed. DISCUSSION: This study offers a novel approach to balance training for older people. As a community-based approach to fall prevention, dance offers older people an opportunity for greater social engagement, thereby making a major contribution to healthy ageing. Providing diversity in exercise programs targeting seniors recognises the heterogeneity of multicultural populations and may further increase the number of taking part in exercise. TRIAL REGISTRATION: Australian New Zealand Clinical Trials Registry ACTRN12612000889853The trial is now in progress with 12 villages already have been randomised.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2050190743\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01478\\\", \\\"title\\\": \\\"New framework for rehabilitation – fusion of cognitive and physical rehabilitation: the hope for dancing\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 144, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01478/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2014.01478\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2014.01478\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01478/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Neurorehabilitation programs are commonly employed with the goal to help restore functionality in patients. However, many of these therapies report only having a small impact. In response to the need for more effective and innovative approaches, rehabilitative methods that take advantage of the neuroplastic properties of the brain have been used to aid with both physical and cognitive impairments. Following this path of reasoning, there has been a particular interest in the use of physical exercise as well as musical related activities. Although such therapies demonstrate potential, they also have limitations that may affect their use, calling for further exploration. Here, we propose dance as a potential parallel to physical and music therapies. Dance may be able to aid with both physical and cognitive impairments, particularly due to it combined nature of including both physical and cognitive stimulation. Not only does it incorporate physical and motor skill related activities, but it can also engage various cognitive functions such as perception, emotion, and memory, all while done in an enriched environment. Other more practical benefits, such as promoting adherence due to being enjoyable, are also discussed, along with the current literature on the application of dance as an intervention tool, as well as future directions required to evaluate the potential of dance as an alternative therapy in neurorehabilitation.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2118607666\\\", \\\"doi\\\": \\\"https://doi.org/10.3758/s13423-012-0371-2\\\", \\\"title\\\": \\\"Sensorimotor synchronization: A review of recent research (2006–2012)\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1243, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.3758%2Fs13423-012-0371-2.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3758/s13423-012-0371-2\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3758/s13423-012-0371-2\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.3758%2Fs13423-012-0371-2.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S138679565\\\", \\\"display_name\\\": \\\"Psychonomic Bulletin & Review\\\", \\\"issn_l\\\": \\\"1069-9384\\\", \\\"issn\\\": [\\\"1069-9384\\\", \\\"1531-5320\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Psychonomic Bulletin &amp; Review\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}]\", \"excerpt_truncated\": false, \"source_sha256\": \"c02dd872ad6f3bd721a0c29e7e05b00ad0611d2cffe410ff4f67ec262aced804\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/j.actpsy.2011.12.005\", \"doi:10.1186/1471-2458-13-477\", \"doi:10.3389/fpsyg.2014.01478\", \"doi:10.3389/fpsyg.2014.01478/pdf\", \"doi:10.3758/s13423-012-0371-2\", \"openalex:W2084866186\", \"openalex:W2133752023\", \"openalex:W2050190743\", \"openalex:W2118607666\", \"arxiv:2014.01478\"]}",
+      "id": "source-4c3941ab2bea4ac4",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=cognitive+load+in+dance+observation+rhythmic+complexity&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 99,
+      "time": "2026-09-25T13:11:18.004210+00:00"
+    },
+    "source-eb9a901365694bc6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c4d88d5ab400259263cfc9b631e2a310aaef17c0f6cb0b576116bb87929143c2\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-eb9a901365694bc6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 99,
+      "time": "2026-09-25T13:11:19.654764+00:00"
+    },
+    "source-72ea50a8c9e24c24": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6106,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"961acedd87e5caae0cd2154bc0383adc95bacd2ef7a79a2a98af32877dc4f3c5\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-72ea50a8c9e24c24",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 99,
+      "time": "2026-09-25T13:11:20.289517+00:00"
+    },
+    "source-7fe0cf681f224125": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87118,\\\"wordcount\\\":7293,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-25T12:16:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b5839a04b1e4b51cd93b1e5b334fd96653f6bbbe2b0f052616e243065f317a73\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-7fe0cf681f224125",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 99,
+      "time": "2026-09-25T13:11:20.974749+00:00"
+    },
+    "source-ca48bd0027374463": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dramatization\\\",\\\"pageid\\\":57618166,\\\"size\\\":5558,\\\"wordcount\\\":732,\\\"snippet\\\":\\\"emphasis on spontaneity,\\ncognition\\n, action, identification, dialogue and sequence of events. Greater appreciation of the\\nliterature\\nmay then occur. Children\\\",\\\"timestamp\\\":\\\"2026-03-12T01:42:08Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"82a5623f3fe03d8904f81d85995c91ad896aa9209e67dc19df1a3126fcea5eac\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-ca48bd0027374463",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 99,
+      "time": "2026-09-25T13:11:21.756674+00:00"
+    },
+    "r-5a0b0d169179446f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":99,\"inherited_commitments\":[\"commit-synthesize-demon-findings\"],\"invocation\":\"w-5a0b0d169179446f\",\"previous_head\":\"0ba0a09cc405aa90e3385034f4b2b089a8fd1f04801f36cba59210ba66122fef\",\"process_id\":2278,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-5a0b0d169179446f",
+      "source": "runtime:continuity",
+      "version": 99,
+      "time": "2026-09-25T13:11:23.940368+00:00"
     }
   },
   "journal": [
@@ -73867,6 +73929,521 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-5a0b0d169179446f": {
+      "base_version": 99,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 17430,
+        "delivered_request_chars": 46385,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 123911,
+        "working_set_chars": 4338
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-5a0b0d169179446f",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 99,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "dance-movement-structural-constraints",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Structural Constraints in Dance and Movement"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "info-thermo-maxwell-demon",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "visual-art-composition-and-expectation",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2278,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "162c364c8f6e17ce1e786127cc243c7b049296200cb801958e80aad1eb11c419",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-synthesize-demon-findings",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-62fe2a5e06734315"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-62fe2a5e06734315",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ae0e2b3554414618"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ae0e2b3554414618",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b772fc7044e548f7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b772fc7044e548f7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-bbabf9bd19cd48d9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-bbabf9bd19cd48d9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a82bc861d5424c4b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a82bc861d5424c4b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e32ebd88953d4148"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e32ebd88953d4148",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-62fe2a5e06734315",
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7",
+          "source-bbabf9bd19cd48d9",
+          "source-a82bc861d5424c4b",
+          "source-e32ebd88953d4148"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "dance"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "dance",
+        "temporal": {
+          "anchor_seq": 2501,
+          "anchor_time": "2026-09-25T13:11:22.346402+00:00",
+          "anchor_version": 99,
+          "effective_seconds": 48239.871464
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 307.215299,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 48239.871464,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T13:11:22.346402+00:00",
+        "previous_anchor_time": "2026-09-25T13:06:15.131103+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 307.215299
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 17430,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 10,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 4338,
+        "working_to_delivered_ratio": 0.2489
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "visual-art-composition-and-expectation",
+            "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+            "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          },
+          {
+            "id": "info-thermo-maxwell-demon",
+            "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+            "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "id": "dance-movement-structural-constraints",
+            "next_step": "Search for literature on observer cognitive responses to rhythmic complexity in dance.",
+            "question": "How do rhythmic and spatial constraints in choreography influence perceived cognitive load in observers?",
+            "title": "Structural Constraints in Dance and Movement"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 97,
+            "id": "commit-synthesize-demon-findings",
+            "reason": "Ensures that the findings from the focused research on Szilard/Landauer are consolidated into the project record promptly.",
+            "task": "Synthesize findings from the search into a revised notebook for info-thermo-maxwell-demon"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-epistemology-justification-001",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-fb2f23f9caf94381",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+            "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+          },
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          },
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+            "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-25T13:11:24.550676+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 233,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50407,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-25T13:11:40.749362+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ],
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 233,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 233,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 50407,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 50407,
+        "response_bytes_captured": 198,
+        "result": "transient_failure",
+        "skipped_models": [
+          {
+            "model": "gemini-3.8-flash",
+            "reason": "configured_daily_limit"
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "reason": "configured_daily_limit"
+          }
+        ]
+      }
     }
   },
   "pending": null,
@@ -74701,23 +75278,55 @@
         "doi:10.1103/physrev.78.29"
       ],
       "last_receipt": {
-        "evidence": "source-a82bc861d5424c4b",
+        "evidence": "source-e32ebd88953d4148",
         "outcome": "progress",
         "persistent_identifiers": [
-          "doi:10.1119/1.1430697",
-          "doi:10.1063/aip-crossmark-policy-page",
-          "doi:10.1016/s0370-1573(00)00047-8",
-          "doi:10.1119/1.18410",
-          "doi:10.1103/revmodphys.29.255",
-          "doi:10.1103/physrev.109.571",
-          "doi:10.1119/1.12061",
-          "doi:10.1119/1.18880",
-          "doi:10.1103/revmodphys.21.400",
-          "doi:10.1103/physrev.78.29"
+          "doi:10.12743/quanta.v11i1.206"
         ],
         "research_id": "res-szilard-landauer-consensus",
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
+      }
+    },
+    "dance-movement-structural-constraints": {
+      "project": "dance-movement-structural-constraints",
+      "domain": "dance",
+      "no_progress": 1,
+      "routes": [
+        "api.openalex.org:discovery"
+      ],
+      "capability_blocked": false,
+      "retry_after_version": null,
+      "persistent_identifiers": [
+        "doi:10.1016/j.actpsy.2011.12.005",
+        "doi:10.1186/1471-2458-13-477",
+        "doi:10.3389/fpsyg.2014.01478",
+        "doi:10.3389/fpsyg.2014.01478/pdf",
+        "doi:10.3758/s13423-012-0371-2",
+        "openalex:W2084866186",
+        "openalex:W2133752023",
+        "openalex:W2050190743",
+        "openalex:W2118607666",
+        "arxiv:2014.01478"
+      ],
+      "last_receipt": {
+        "evidence": "source-4c3941ab2bea4ac4",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.1016/j.actpsy.2011.12.005",
+          "doi:10.1186/1471-2458-13-477",
+          "doi:10.3389/fpsyg.2014.01478",
+          "doi:10.3389/fpsyg.2014.01478/pdf",
+          "doi:10.3758/s13423-012-0371-2",
+          "openalex:W2084866186",
+          "openalex:W2133752023",
+          "openalex:W2050190743",
+          "openalex:W2118607666",
+          "arxiv:2014.01478"
+        ],
+        "research_id": "res-dance-cog-load-001",
+        "route": "api.openalex.org:discovery",
+        "stage": "discovery"
       }
     }
   },
@@ -76119,8 +76728,9 @@
       "query": "cognitive load in dance observation rhythmic complexity",
       "reason": "Current metadata evidence is insufficient for deep findings; empirical literature on cognitive responses to movement constraints is required.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-4dddedf28af446a9"
+      "status": "collected",
+      "created_by": "w-4dddedf28af446a9",
+      "evidence": "source-4c3941ab2bea4ac4"
     }
   },
   "research_topics": [
@@ -76320,9 +76930,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T13:06:15.131103+00:00",
-    "anchor_version": 98,
-    "anchor_seq": 2485,
-    "effective_seconds": 47932.656165
+    "anchor_time": "2026-09-25T13:11:22.346402+00:00",
+    "anchor_version": 99,
+    "anchor_seq": 2501,
+    "effective_seconds": 48239.871464
   }
 }
