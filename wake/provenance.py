@@ -222,36 +222,199 @@ MAP3D_DETAIL_FIELDS = (
     "as_of_cycle", "updated_by", "created_by", "resolved_by", "cycle",
     "version", "provider", "model",
 )
+MAP3D_ROOTS = (
+    "root:journal", "root:blog", "root:topics", "root:projects",
+    "root:commitments", "root:evidence", "root:research",
+)
+
+
+def _map3d_compact_node(item, invocation_times):
+    detail = item.get("detail") if isinstance(item.get("detail"), dict) else {}
+    compact_detail = {
+        key: deepcopy(detail[key])
+        for key in MAP3D_DETAIL_FIELDS
+        if key in detail
+    }
+    if not compact_detail.get("time"):
+        for field in ("updated_by", "created_by", "resolved_by"):
+            if detail.get(field) in invocation_times:
+                compact_detail["time"] = invocation_times[detail[field]]
+                break
+    return {
+        "id": item["id"],
+        "kind": item["kind"],
+        "title": item.get("title", item["id"]),
+        "detail": compact_detail,
+    }
 
 
 def build_map3d_projection(graph):
-    """Return the compact, behavior-preserving graph consumed by the 3-D map."""
-    nodes = []
-    for item in graph.get("nodes", []):
-        detail = item.get("detail") if isinstance(item.get("detail"), dict) else {}
-        compact_detail = {
-            key: deepcopy(detail[key])
-            for key in MAP3D_DETAIL_FIELDS
-            if key in detail
-        }
-        nodes.append({
-            "id": item["id"],
-            "kind": item["kind"],
-            "title": item.get("title", item["id"]),
-            "detail": compact_detail,
+    """Build a tiny shell plus one deterministic JSON shard per expandable node."""
+    raw_nodes = {item["id"]: item for item in graph.get("nodes", [])}
+    invocation_times = {
+        key.removeprefix("invocation:"): item.get("detail", {}).get("time")
+        for key, item in raw_nodes.items()
+        if key.startswith("invocation:") and item.get("detail", {}).get("time")
+    }
+    compact = {
+        key: _map3d_compact_node(item, invocation_times)
+        for key, item in raw_nodes.items()
+    }
+
+    related = {}
+    for edge in graph.get("edges", []):
+        source, target = edge.get("source"), edge.get("target")
+        if source not in compact or target not in compact:
+            continue
+        related.setdefault(source, []).append(target)
+        related.setdefault(target, []).append(source)
+
+    def newest_key(item):
+        detail = item.get("detail", {})
+        return str(detail.get("time") or detail.get("updated_version") or "")
+
+    ordered = sorted(compact.values(), key=newest_key, reverse=True)
+    journals = [item["id"] for item in ordered if item["kind"] == "journal"][:48]
+    blogs = [item["id"] for item in ordered if item["kind"] == "blog"]
+    projects = [item for item in ordered if item["kind"] == "project"]
+    notebooks = [item["id"] for item in ordered if item["kind"] == "notebook"]
+    commitments = [item["id"] for item in ordered if item["kind"] == "commitment"]
+    evidence = [item["id"] for item in ordered if item["kind"] == "evidence"]
+    research = [item["id"] for item in ordered if item["kind"] == "research"]
+
+    def project_key(item):
+        explicit = item.get("detail", {}).get("id")
+        if explicit:
+            return str(explicit)
+        value = item["id"].removeprefix("project:")
+        return value.rsplit("@", 1)[0] if "@" in value else value
+
+    families = {}
+    for item in projects:
+        families.setdefault(project_key(item), []).append(item)
+
+    def project_cycle(item):
+        detail = item.get("detail", {})
+        return int(detail.get("as_of_cycle") or detail.get("updated_version") or 0)
+
+    canonical_projects = []
+    project_canonical = {}
+    for family in families.values():
+        canonical = max(family, key=project_cycle)
+        canonical_projects.append(canonical)
+        for item in family:
+            project_canonical[item["id"]] = canonical["id"]
+    canonical_projects.sort(key=newest_key, reverse=True)
+
+    topical_items = [item for item in ordered if item["kind"] in ("project", "notebook")][:48]
+    records = [compact[item] for item in journals if item in compact] + [
+        compact[item] for item in blogs if item in compact
+    ] + topical_items
+
+    topic_labels = graph.get("meta", {}).get("topic_labels", {})
+    topics = {}
+    for item in records:
+        domain = item.get("detail", {}).get("domain")
+        if not domain:
+            continue
+        topic_id = f"topic:{domain}"
+        topics.setdefault(topic_id, {
+            "id": topic_id,
+            "kind": "topic",
+            "title": topic_labels.get(domain, str(domain).replace("_", " ")),
+            "domain": domain,
+            "detail": {"domain": domain},
         })
-    edges = [
-        {"source": item["source"], "target": item["target"]}
-        for item in graph.get("edges", [])
-        if item.get("source") and item.get("target")
-    ]
+
+    def unique_canonical(ids):
+        seen, result = set(), []
+        for identifier in ids:
+            identifier = project_canonical.get(identifier, identifier)
+            if identifier in seen:
+                continue
+            seen.add(identifier)
+            result.append(identifier)
+        return result
+
+    root_children = []
+    if journals:
+        root_children.append("root:journal")
+    if blogs:
+        root_children.append("root:blog")
+    if topics:
+        root_children.append("root:topics")
+    if canonical_projects or notebooks:
+        root_children.append("root:projects")
+    if commitments:
+        root_children.append("root:commitments")
+    if evidence:
+        root_children.append("root:evidence")
+    if research:
+        root_children.append("root:research")
+
+    children = {"root:wake": root_children}
+    children["root:journal"] = journals
+    children["root:blog"] = blogs
+    children["root:topics"] = list(topics)
+    children["root:projects"] = [item["id"] for item in canonical_projects]
+    children["root:commitments"] = commitments
+    children["root:evidence"] = evidence
+    children["root:research"] = research
+
+    for topic_id, topic in topics.items():
+        domain = topic["domain"]
+        children[topic_id] = unique_canonical([
+            item["id"] for item in records
+            if item.get("detail", {}).get("domain") == domain
+        ])
+
+    for item in compact.values():
+        identifier = item["id"]
+        if item["kind"] == "project":
+            family = families.get(project_key(item), [])
+            candidates = []
+            for version in family:
+                candidates.extend(related.get(version["id"], []))
+            canonical_id = project_canonical.get(identifier, identifier)
+            children[canonical_id] = [
+                child for child in unique_canonical(candidates)
+                if child != canonical_id
+            ]
+        elif identifier not in children:
+            children[identifier] = unique_canonical(related.get(identifier, []))
+
+    all_nodes = {**compact, **topics}
+    shards = {}
+    shard_parents = set(children) | set(MAP3D_ROOTS) | set(all_nodes)
+    for parent in sorted(shard_parents):
+        child_ids = [identifier for identifier in children.get(parent, []) if identifier in all_nodes or identifier.startswith("root:")]
+        shards[parent] = {
+            "parent": parent,
+            "self": all_nodes.get(parent),
+            "children": [all_nodes[identifier] for identifier in child_ids if identifier in all_nodes],
+            "child_ids": child_ids,
+            "total": len(child_ids),
+        }
+
     meta = graph.get("meta", {})
-    return {
-        "nodes": nodes,
-        "edges": edges,
+    shell = {
+        "root_children": root_children,
         "meta": {
-            key: deepcopy(meta[key])
-            for key in ("version", "schema_version", "topic_colors", "topic_labels")
-            if key in meta
+            "version": meta.get("version"),
+            "schema_version": 2,
+            "topic_colors": deepcopy(meta.get("topic_colors", {})),
+            "topic_labels": deepcopy(topic_labels),
+            "counts": {
+                "journal": len(journals),
+                "blog": len(blogs),
+                "project": len(canonical_projects),
+                "notebook": len(notebooks),
+                "commitment": len(commitments),
+                "evidence": len(evidence),
+                "research": len(research),
+                "relationships": len(graph.get("edges", [])),
+            },
         },
     }
+    return shell, shards
+
