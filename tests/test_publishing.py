@@ -73,6 +73,12 @@ class PublishingTests(unittest.TestCase):
                 self.assertNotIn("stroke:#11182d", map3d_css)
                 self.assertIn("stroke:var(--wake-core)", map3d_css)
                 self.assertIn("var(--paper)", map3d_css)
+                full_graph = json.loads((project/"site/map-data.json").read_text())
+                compact_graph = json.loads((project/"site/map3d-data.json").read_text())
+                self.assertLess(len(json.dumps(compact_graph)), len(json.dumps(full_graph)))
+                self.assertTrue(all(set(edge) == {"source", "target"} for edge in compact_graph["edges"]))
+                self.assertNotIn("head", compact_graph["meta"])
+                self.assertTrue(all("working_set_shadow" not in node.get("detail", {}) for node in compact_graph["nodes"]))
                 module.publish(project/"site")
                 module.publish(project/"site")
                 count = subprocess.check_output(["git", "--git-dir", str(remote), "rev-list", "--count", "journal-pages"],text=True).strip()
@@ -98,6 +104,14 @@ class PublishingTests(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, "Map does not match"):
                     module.publish(project/"site")
                 map_path.write_text(original_map)
+                map3d_path = project/"site/map3d-data.json"
+                original_map3d = map3d_path.read_text()
+                tampered_map3d = json.loads(original_map3d)
+                tampered_map3d["edges"] = []
+                map3d_path.write_text(json.dumps(tampered_map3d))
+                with self.assertRaisesRegex(SystemExit, "3D map does not match"):
+                    module.publish(project/"site")
+                map3d_path.write_text(original_map3d)
                 (project/"site/state.json").write_text('{}')
                 with self.assertRaises(SystemExit):
                     module.publish(project/"site")
