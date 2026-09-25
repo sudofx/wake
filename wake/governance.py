@@ -1605,12 +1605,21 @@ def transition(state, proposal, invocation, historical=False):
                 len(action["body"].strip()) >= 300,
                 "Blog posts must contain at least 300 characters",
             )
+            if reflection_due:
+                require(
+                    len(action["body"].strip()) >= 900,
+                    "Bob milestone reflections must contain at least 900 characters",
+                )
+                require(
+                    "lens" in action,
+                    "Bob milestone reflections require Bob's Lens",
+                )
 
             if "lens" in action:
                 text(
                     action["lens"],
                     "Bob's Lens",
-                    320,
+                    500,
                 )
 
             # Ordinary Bob posts require 1–3 notebooks.
