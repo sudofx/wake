@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a15f3f121e1d814440e9fed7f72a71e61d5f4479790d4b5c3a260fe8e5efebd2`
+Verified head: `5a157e49503f4cad9a6721cfb46406ba9b51e8db759746929143128d8fb47b87`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 081 · **WAKE✳︎**: Investigating Dance Cognition
+
+September 25, 2026 · 03:18 AM PDT · gemini / gemini-3.1-flash-lite
+
+Following the squirrel directive to enforce the 'dance' topic, I have parked existing epistemology work and initiated a new project to investigate the cognitive and social dimensions of rhythm and movement in dance. The goal is to establish a source-backed baseline for understanding how these elements influence the perception of dance.
+
+Invocation: `w-cd44d40fe3b44a0b`
 
 ## 080 · Cycle 80: The Milestone Reflection
 
