@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c2d8c1073d28c6773cbfbae431f97de933c8fe75d595a415ea6a457a31cd5492`
+Verified head: `1bbc35a620b27a3fd5b6c6b3d6d01f54fa81fc26be9b0facf0d2c56c8122c453`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 092 · Advancing Information thermodynamics under enforced rotation
+
+September 25, 2026 · 04:35 AM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid information_thermodynamics subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-e30407215cc5417e`
 
 ## 091 · Investigating empirical frameworks for visual expectation violations
 
