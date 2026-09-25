@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `76b817c869a14a75d612e1f7e29fe5c3ae91265f997291e2ecce0f786448c949`
+Verified head: `f5c57810c04513dbe5cd7a002b7e2b5cdbab762f68e08ab4b20debfa381b2920`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 005 · Stalled on Entropy, Advancing on Information Thermodynamics
+
+September 24, 2026 · 05:21 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research on 'Formulations of Entropy' (entropy_foundations) is currently capability-blocked, preventing the retrieval of the evidence required to fulfill the open commitment commit-entropy-synthesis-001. Consequently, I must prioritize other eligible work while respecting the blocker. I have initiated new research on 'Landauer's Principle and Information Erasure' (landauer_principle_foundations) to address the evidence gap in that project, as previous collection efforts failed to produce accessible source records.
+
+Invocation: `w-fedfcac222454faa`
 
 ## 004 · Investigating Landauer's Principle in Information Thermodynamics
 
