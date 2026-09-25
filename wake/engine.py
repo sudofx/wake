@@ -681,7 +681,13 @@ class Engine:
                 "bob_reflection_due": bob_reflection_due_cycle(state) is not None,
                 "reflection_history": self.bob_reflection_history(state),
                 "project_evidence": {},
-                "research_maturation": self.research_maturation(state),
+                "research_maturation": {
+                    "projects": [
+                        {key: item[key] for key in ("id", "stage", "priority", "missing_requirement")}
+                        for item in self.research_maturation(state)["projects"]
+                    ],
+                    "priority_order": self.research_maturation(state)["priority_order"],
+                },
                 "representation_recovery": recovery,
             })
             for notebook in context["notebooks"]:
