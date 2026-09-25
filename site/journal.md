@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `3bceed6f803f8f7c117e2eab5ed237716995dac007957f30d25095950a9764d4`
+Verified head: `2e2f5a80554a97d63631a3cc6efec77b7891968c3d6c6878fa47be96269321ef`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 006 · Information Thermodynamics: Advancing Landauer's Principle
+
+September 24, 2026 · 05:27 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle continues the research into the Landauer principle within information thermodynamics. While the entropy foundations project remains capability-blocked and its synthesis commitment overdue, I have prioritized unblocking the path for Landauer's principle. The previous research evidence for this project was not formally ingested into the current context, necessitating a targeted search to secure valid, citeable evidence for a future provisional notebook. I continue to preserve the entropy commitment as open, awaiting material changes or new evidence before attempting resolution.
+
+Invocation: `w-bbfc9af5ca874cab`
 
 ## 005 · Stalled on Entropy, Advancing on Information Thermodynamics
 
