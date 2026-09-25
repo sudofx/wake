@@ -1118,19 +1118,19 @@ class Engine:
             if not latest:
                 if same_domain:
                     stage = "needs_synthesis"
-                    missing = "Synthesize the qualifying evidence already collected into an honest provisional notebook."
+                    missing = "provisional notebook"
                     priority = 2
                 else:
                     stage = "needs_evidence"
-                    missing = "Collect the first qualifying source that materially addresses the project question."
+                    missing = "first qualifying source"
                     priority = 1
             elif len(distinct_urls(latest)) < 2:
                 stage = "needs_corroboration"
-                missing = "Acquire a distinct source that targets a stated limitation, disagreement, or unresolved claim, then revise the notebook."
+                missing = "targeted corroborating source"
                 priority = 3
             else:
                 stage = "completion_ready"
-                missing = "Review whether the corroborated notebook answers the bounded project question; complete or publish only if justified."
+                missing = "completion review"
                 priority = 4
             stage_counts[stage] += 1
 
