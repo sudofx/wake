@@ -134,10 +134,15 @@ class FeedTests(unittest.TestCase):
                 self.assertTrue(target.is_file())
                 self.assertIn("deterministic rehearsal", target.read_text())
                 self.assertIn("Deterministic simulation", item.findtext("description"))
-                for page in (root / "site/index.html", root / "site/map.html", target):
+                # Feeds remain generated and directly addressable, but the public UI does not advertise them.
+                self.assertTrue((root / "site/blog.xml").is_file())
+                self.assertTrue((root / "site/journal.xml").is_file())
+                for page in (root / "site/index.html", root / "site/map.html", root / "site/map3d.html", target):
                     text = page.read_text()
-                    self.assertIn('type="application/rss+xml"', text)
-                    self.assertIn(HOME + "blog.xml", text)
-                    self.assertIn(HOME + "journal.xml", text)
+                    self.assertNotIn('type="application/rss+xml"', text)
+                    self.assertNotIn("Blog RSS", text)
+                    self.assertNotIn("Journal RSS", text)
+                    self.assertNotIn("Subscribe to Bob’s blog via RSS", text)
+                    self.assertNotIn("Subscribe to the journal via RSS", text)
             finally:
                 engine.store.close()
