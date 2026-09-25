@@ -1387,16 +1387,21 @@ def transition(state, proposal, invocation, historical=False):
                 "retrieved external sources",
             )
 
-            # Notebooks are working artifacts. One successfully collected
-            # source may support a provisional synthesis; later revisions can
-            # add independent evidence without rewriting the earlier record.
+            # Notebooks are progressive working artifacts. A first revision may
+            # begin from one qualifying collected source. Once a notebook is
+            # revised, current governance requires corroboration from at least
+            # two distinct retrieved source URLs. Historical replay retains the
+            # rules that were authoritative when an older event was accepted.
+            old = result["notebooks"].get(action["id"])
+            notebook_min_sources = 2 if old and not historical else 1
             require(
                 len({
                     evidence["source"]
                     for evidence in cited
-                }) >= 1,
-                "Research notebooks need at least one "
-                "retrieved source URL",
+                }) >= notebook_min_sources,
+                "Notebook revisions need at least two distinct retrieved source URLs"
+                if notebook_min_sources == 2
+                else "Research notebooks need at least one retrieved source URL",
             )
 
             # New verification semantics apply only to current acceptance.
@@ -1410,7 +1415,7 @@ def transition(state, proposal, invocation, historical=False):
                     cited,
                     result["projects"][action["project"]]["domain"],
                     "Notebook findings",
-                    minimum_sources=1,
+                    minimum_sources=notebook_min_sources,
                 )
 
                 if verification:
@@ -1418,7 +1423,7 @@ def transition(state, proposal, invocation, historical=False):
                         action["findings"],
                         verification,
                         "Notebook findings",
-                        minimum_sources=1,
+                        minimum_sources=notebook_min_sources,
                     )
 
             # Repository-analysis is a configured topic capability, not a
@@ -1442,8 +1447,6 @@ def transition(state, proposal, invocation, historical=False):
                     "Repository-analysis notebooks must cite only "
                     "source-controlled files from " + repository,
                 )
-
-            old = result["notebooks"].get(action["id"])
 
             if old:
 
