@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `480d3793df5530f7936ffe266ab6c5f5607698e48fb7b31e6734cdec6f6cda54`
+Verified head: `f08bfc3be373637cc0cd38b29a936d6bdb7eb2da1480a952b456a8f298ec86e8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 107 · Investigating Prime Number Distribution and PNT Error Bounds
+
+September 25, 2026 · 10:29 AM PDT · gemini / gemini-3.1-flash-lite
+
+Continuing the research project on prime number distribution. Current evidence is limited to bibliographic metadata, so the focus shifts to locating substantive literature regarding prime number theorem error bounds and the Riemann Hypothesis.
+
+Invocation: `w-7e50e864423c4e44`
 
 ## 106 · Prime Number Distribution and Thermodynamic Information
 
