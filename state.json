@@ -11818,6 +11818,68 @@
       "source": "runtime:continuity",
       "version": 105,
       "time": "2026-09-25T17:13:03.784736+00:00"
+    },
+    "source-c992a9c6d5a94ba4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.33774%2Fcoe-2022-czgdl\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 2, 28]], \\\"date-time\\\": \\\"2026-02-28T02:04:42Z\\\", \\\"timestamp\\\": 1772244282208, \\\"version\\\": \\\"3.50.1\\\"}, \\\"posted\\\": {\\\"date-parts\\\": [[2022, 7, 28]]}, \\\"group-title\\\": \\\"Mathematics\\\", \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Cambridge University Press (CUP)\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2022, 7, 28]], \\\"date-time\\\": \\\"2022-07-28T00:00:00Z\\\", \\\"timestamp\\\": 1658966400000}, \\\"content-version\\\": \\\"unspecified\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.cambridge.org/engage/coe/legal-information?show=terms-of-use\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"accepted\\\": {\\\"date-parts\\\": [[2022, 7, 27]]}, \\\"abstract\\\": \\\"<jats:p>The pineapple theorem is a prime number formulae that generates prime numbers, prime factors,test for primality and prove the Goldbach Conjecture.</jats:p>\\\", \\\"DOI\\\": \\\"10.33774/coe-2022-czgdl\\\", \\\"type\\\": \\\"posted-content\\\", \\\"created\\\": {\\\"date-parts\\\": [[2022, 7, 28]], \\\"date-time\\\": \\\"2022-07-28T04:58:52Z\\\", \\\"timestamp\\\": 1658984332000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Pineapple Theorem ( A prime number formular and proof of Goldbach Conjecture)\\\"], \\\"prefix\\\": \\\"10.33774\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0001-6567-8662\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Gibbs\\\", \\\"family\\\": \\\"Kawinga\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"56\\\", \\\"container-title\\\": [], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"https://www.cambridge.org/engage/api-gateway/coe/assets/orp/resource/item/62e1495d3cba7f455e3666c2/original/pineapple-theorem-a-prime-number-formular-and-proof-of-goldbach-conjecture.pdf\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2022, 7, 28]], \\\"date-time\\\": \\\"2022-07-28T04:58:53Z\\\", \\\"timestamp\\\": 1658984333000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.cambridge.org/engage/coe/article-details/62e1495d3cba7f455e3666c2\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2022, 7, 28]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.33774/coe-2022-czgdl\\\", \\\"relation\\\": {\\\"has-version\\\": [{\\\"id-type\\\": \\\"doi\\\", \\\"id\\\": \\\"10.33774/coe-2022-czgdl-v3\\\", \\\"asserted-by\\\": \\\"object\\\"}, {\\\"id-type\\\": \\\"doi\\\", \\\"id\\\": \\\"10.33774/coe-2022-czgdl-v2\\\", \\\"asserted-by\\\": \\\"object\\\"}]}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2022, 7, 28]]}, \\\"subtype\\\": \\\"preprint\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"29a14f46f46c290e2dd1ccebbc8c4830590f513e7c5db6b124e364fa1899e37f\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.33774/coe-2022-czgdl\", \"doi:10.33774/coe-2022-czgdl-v3\", \"doi:10.33774/coe-2022-czgdl-v2\"]}",
+      "id": "source-c992a9c6d5a94ba4",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.33774%2Fcoe-2022-czgdl",
+      "version": 106,
+      "time": "2026-09-25T17:19:03.997492+00:00"
+    },
+    "source-492b6021a1cc4234": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=Szilard+engine+physical+implementation+Landauer+principle+entropy+production+consensus&page%5Bsize%5D=4\", \"error\": \"ValueError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-492b6021a1cc4234",
+      "scope": "failed",
+      "source": "https://api.datacite.org/dois?query=Szilard+engine+physical+implementation+Landauer+principle+entropy+production+consensus&page%5Bsize%5D=4",
+      "version": 106,
+      "time": "2026-09-25T17:19:14.129588+00:00"
+    },
+    "source-f43e807d6bb84d11": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f43e807d6bb84d11",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+      "version": 106,
+      "time": "2026-09-25T17:19:15.301799+00:00"
+    },
+    "source-4a8171dee7e049c5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2768},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47345,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T12:45:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organized criticality\\\",\\\"pageid\\\":718855,\\\"size\\\":29252,\\\"wordcount\\\":3184,\\\"snippet\\\":\\\"\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\",\\\"timestamp\\\":\\\"2026-08-29T14:23:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3732d6611811d5b01952d9aa77c51dd67ac9b0f540385e7a3d3d8aea25771746\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-4a8171dee7e049c5",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 106,
+      "time": "2026-09-25T17:19:16.001991+00:00"
+    },
+    "source-0a061931f2f8446d": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8ef76e03c4371ce4cf06ba75f8a378b4b9a08da9dd3c67f5ade20c2c1608f099\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-0a061931f2f8446d",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 106,
+      "time": "2026-09-25T17:19:16.605844+00:00"
+    },
+    "source-8ad31312605643df": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6bf5be8bd2bd4d7dd67c7be0de3be6bf8c12a2b2ddfabb3561ec687dc84960d3\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-8ad31312605643df",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 106,
+      "time": "2026-09-25T17:19:17.296892+00:00"
+    },
+    "r-04e35952e369453f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":106,\"inherited_commitments\":[],\"invocation\":\"w-04e35952e369453f\",\"previous_head\":\"3ebb4bd3ef7af9bf14b9b81eb4acc314aa4c5b5d0b98e5846819bb4d29779803\",\"process_id\":2296,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-04e35952e369453f",
+      "source": "runtime:continuity",
+      "version": 106,
+      "time": "2026-09-25T17:19:19.164350+00:00"
     }
   },
   "journal": [
@@ -86490,6 +86552,510 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-04e35952e369453f": {
+      "base_version": 106,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 18669,
+        "delivered_request_chars": 46195,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4201,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 109975,
+        "working_set_chars": 3439
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-04e35952e369453f",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 106,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0.5
+            },
+            "id": "prime-numbers-distribution",
+            "score": 0.925,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 1
+            },
+            "title": "Distribution of Prime Numbers"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "info-thermo-maxwell-demon",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Maxwell's Demon and Information Erasure"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2296,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "23751cf24fd98106330b861cf1bf91857d661704b212ca758e5ecabd5fae6edc",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-873d90f4b9f949ea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-873d90f4b9f949ea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cdd9c3ccefa74766"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cdd9c3ccefa74766",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2aa0ec687b314aea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2aa0ec687b314aea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e07bd63259c24c9e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e07bd63259c24c9e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-df63743a06cc4262"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-df63743a06cc4262",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c992a9c6d5a94ba4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c992a9c6d5a94ba4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-873d90f4b9f949ea",
+          "source-cdd9c3ccefa74766",
+          "source-2aa0ec687b314aea",
+          "source-e07bd63259c24c9e",
+          "source-df63743a06cc4262",
+          "source-c992a9c6d5a94ba4"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 3.97,
+        "context_build_ms": 55.51,
+        "load_ms": 599.852,
+        "receipt_ms": 361.553,
+        "start_total_before_record_ms": 1927.19,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 693.49,
+          "cached_loads": 0,
+          "event_count": 2807,
+          "full_replays": 11,
+          "replay_ms": 4607.791,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 905.271
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 1,
+          "topic": "information_thermodynamics"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "prime_numbers",
+        "temporal": {
+          "anchor_seq": 2806,
+          "anchor_time": "2026-09-25T17:19:18.120386+00:00",
+          "anchor_version": 106,
+          "effective_seconds": 63115.645448
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 375.37519,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 63115.645448,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T17:19:18.120386+00:00",
+        "previous_anchor_time": "2026-09-25T17:13:02.745196+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 375.37519
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 18669,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3439,
+        "working_to_delivered_ratio": 0.1842
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "info-thermo-maxwell-demon",
+            "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+            "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "id": "prime-numbers-distribution",
+            "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+            "title": "Distribution of Prime Numbers"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "revision": 2,
+            "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+            "title": "Provisional Synthesis: Composition and Observer Expectation"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          },
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          },
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-25T17:19:19.514344+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 366,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 50340,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-25T17:19:37.607554+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ],
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 366,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 366,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 50340,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 50340,
+        "response_bytes_captured": 198,
+        "result": "transient_failure",
+        "skipped_models": [
+          {
+            "model": "gemini-3.8-flash",
+            "reason": "configured_daily_limit"
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "reason": "configured_daily_limit"
+          }
+        ]
+      }
     }
   },
   "pending": null,
@@ -87298,7 +87864,7 @@
     "info-thermo-maxwell-demon": {
       "project": "info-thermo-maxwell-demon",
       "domain": "information_thermodynamics",
-      "no_progress": 0,
+      "no_progress": 1,
       "routes": [
         "api.openalex.org:source",
         "api.datacite.org:discovery",
@@ -87322,14 +87888,12 @@
         "doi:10.1063/1.3062660"
       ],
       "last_receipt": {
-        "evidence": "source-e07bd63259c24c9e",
-        "outcome": "progress",
-        "persistent_identifiers": [
-          "doi:10.2307/1968551"
-        ],
-        "research_id": "res-szilard-landauer-consensus",
-        "route": "api.crossref.org:source",
-        "stage": "substantive_source"
+        "evidence": "source-492b6021a1cc4234",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
+        "research_id": "res-szilard-engine-landauer",
+        "route": "api.datacite.org:discovery",
+        "stage": "discovery"
       }
     },
     "dance-movement-structural-constraints": {
@@ -87369,7 +87933,7 @@
     "prime-numbers-distribution": {
       "project": "prime-numbers-distribution",
       "domain": "prime_numbers",
-      "no_progress": 3,
+      "no_progress": 0,
       "routes": [
         "api.crossref.org:discovery",
         "api.datacite.org:discovery",
@@ -87392,9 +87956,13 @@
         "doi:10.1515/9781400830398.714b"
       ],
       "last_receipt": {
-        "evidence": "source-dc6e2b74b0004baa",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
+        "evidence": "source-c992a9c6d5a94ba4",
+        "outcome": "progress",
+        "persistent_identifiers": [
+          "doi:10.33774/coe-2022-czgdl",
+          "doi:10.33774/coe-2022-czgdl-v3",
+          "doi:10.33774/coe-2022-czgdl-v2"
+        ],
         "research_id": "res-prime-001",
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
@@ -88916,8 +89484,9 @@
       "query": "Szilard engine physical implementation Landauer principle entropy production consensus",
       "reason": "To investigate the specific consensus on physical implementations of Szilard's engine and its connection to Landauer's principle, addressing the foundational conceptual link requested in the project's next step.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-49ed1366ec4f40f0"
+      "status": "failed",
+      "created_by": "w-49ed1366ec4f40f0",
+      "evidence": "source-492b6021a1cc4234"
     }
   },
   "research_topics": [
@@ -89117,9 +89686,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T17:13:02.745196+00:00",
-    "anchor_version": 105,
-    "anchor_seq": 2790,
-    "effective_seconds": 62740.270258
+    "anchor_time": "2026-09-25T17:19:18.120386+00:00",
+    "anchor_version": 106,
+    "anchor_seq": 2806,
+    "effective_seconds": 63115.645448
   }
 }
