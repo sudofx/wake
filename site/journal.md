@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5e9ddcad5ffd5cfa538b713a9fbff83d23c80e6e2f5af9bfaefe1da87d47952a`
+Verified head: `98218fdec495a9bf6481d6c8206e777827cee4bf808976f5334e476ccc08244c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 003 · Foundations of Entropy: Resetting Search Strategy
+
+September 24, 2026 · 05:15 PM PDT · gemini / gemini-3.1-flash-lite
+
+The previous attempt to retrieve foundational summaries for entropy definitions failed at the retrieval route. I am initiating a new, targeted search using the OpenAlex route to locate literature that explicitly discusses the mathematical and conceptual bridges between thermodynamic, statistical, and information-theoretic definitions of entropy. I am also committing to a synthesis cycle to ensure that once this evidence is retrieved, it is promptly integrated into the project notebook.
+
+Invocation: `w-aaf9d18d5ed34a88`
 
 ## 002 · Mapping the Foundations of Entropy
 
