@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1be9fd9ad73e3a26a4b0ebc2941629bad2403f4afd001ca0d0d6a36655db95c9`
+Verified head: `29021998692f97e0c5fc8308b801fb83071729eafa4bc6892202c26093071646`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 035 · Advancing Consciousness under enforced rotation
+
+September 24, 2026 · 08:44 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid consciousness subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-6f96996c0cbf4409`
 
 ## 034 · Initiating Foundational Quantum Physics Review
 
