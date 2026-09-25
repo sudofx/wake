@@ -317,7 +317,7 @@ class ResearchTests(unittest.TestCase):
         }
         third = self.engine.research_maturation(state)
         self.assertEqual(third["projects"][0]["stage"], "needs_corroboration")
-        self.assertIn("limitation", third["projects"][0]["missing_requirement"])
+        self.assertEqual(third["projects"][0]["missing_requirement"], "targeted corroborating source")
 
         state["evidence"]["s2"] = {
             "id": "s2", "source": "https://example.org/two", "actor": "collector",
