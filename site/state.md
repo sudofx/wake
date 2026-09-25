@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 47  
+**Version:** 48  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `5390813febaa7f876c310ff9adcafd734dfa94ee9cf8cb09fd05b02917455240`
+**Verified head:** `4c709901b58a4722252ece0806a8fbac71cf7ac90568d7267490826acea112f2`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -778,16 +778,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.3726/978-3-653-04329-7/15",
-    "doi:10.1177/106939719302700303",
-    "doi:10.1007/978-1-137-11913-1_6",
-    "doi:10.4324/9780203866726-8"
+    "doi:10.4324/9780203866726-8",
+    "doi:10.1177/106939718301800302",
+    "doi:10.2307/2094443",
+    "doi:10.1086/226830",
+    "doi:10.2307/2570500",
+    "doi:10.1086/218266",
+    "doi:10.2307/2803098",
+    "doi:10.1086/jar.38.3.3629848",
+    "doi:10.1177/106939717501000402",
+    "doi:10.2307/2088944",
+    "doi:10.2307/352431",
+    "doi:10.1525/9780520332850"
   ],
   "last_receipt": {
-    "evidence": "source-d608d4cdbdcd4e7a",
+    "evidence": "source-460a139256554f23",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.3726/978-3-653-04329-7/15"
+      "doi:10.1177/106939719302700303",
+      "doi:10.1177/106939718301800302",
+      "doi:10.2307/2094443",
+      "doi:10.1086/226830",
+      "doi:10.2307/2570500",
+      "doi:10.1086/218266",
+      "doi:10.2307/2803098",
+      "doi:10.1086/jar.38.3.3629848",
+      "doi:10.1177/106939717501000402",
+      "doi:10.2307/2088944",
+      "doi:10.2307/352431",
+      "doi:10.1525/9780520332850"
     ],
     "research_id": "res-music-structure-universals-001",
     "route": "api.crossref.org:source",
@@ -825,7 +844,7 @@ _None recorded._
   "consciousness": {
     "cause": "attention_saturation",
     "deferred_by": "w-d73be0b2c28943a1",
-    "other_topic_attempts": 11,
+    "other_topic_attempts": 12,
     "parked_projects": [
       {
         "id": "consciousness-scientific-theories",
@@ -839,7 +858,7 @@ _None recorded._
   "entropy": {
     "cause": "attention_saturation",
     "deferred_by": "w-8ff4a9549b464805",
-    "other_topic_attempts": 28,
+    "other_topic_attempts": 29,
     "parked_projects": [
       {
         "id": "entropy-foundations-formal",
@@ -853,7 +872,7 @@ _None recorded._
   "neurodivergence": {
     "cause": "attention_saturation",
     "deferred_by": "w-83e2ede819294c0e",
-    "other_topic_attempts": 5,
+    "other_topic_attempts": 6,
     "parked_projects": [
       {
         "id": "neurodivergence-paradigm-vs-pathology",
@@ -867,7 +886,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 48,
+    "other_topic_attempts": 49,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -888,11 +907,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "music",
   "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-b9ae2ed2bea64e4e",
+  "hard_rejection": false,
+  "invocation": "w-d241151f85b94d5a",
   "restored_topics": [],
   "selected_topic": "music",
-  "terminal": "rejected",
+  "terminal": "accepted",
   "triggered_topics": []
 }
 ```
@@ -901,7 +920,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 3,
+  "accepted_streak": 4,
   "topic": "music"
 }
 ```
@@ -29444,6 +29463,359 @@ _None recorded._
 }
 ```
 
+### `w-d241151f85b94d5a`
+
+```json
+{
+  "base_version": 47,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 13145,
+    "delivered_request_chars": 38474,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 82015,
+    "working_set_chars": 1079
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-d241151f85b94d5a",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 47,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "music-cross-cultural-structure",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Musical Structure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2284,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "1a772964193e4a28bb330fb574519b41d11616cb6c74265f1a9d53abc3a3b10a",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-03824d5598a0461e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-03824d5598a0461e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e33d12dd647f4076"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e33d12dd647f4076",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-776ecfe85283447c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-776ecfe85283447c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-161bfb09a99d4bd9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-161bfb09a99d4bd9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d608d4cdbdcd4e7a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d608d4cdbdcd4e7a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-460a139256554f23"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-460a139256554f23",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-03824d5598a0461e",
+      "source-e33d12dd647f4076",
+      "source-776ecfe85283447c",
+      "source-161bfb09a99d4bd9",
+      "source-d608d4cdbdcd4e7a",
+      "source-460a139256554f23"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "music"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "consciousness",
+      "entropy",
+      "neurodivergence",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "consciousness": [
+        {
+          "id": "consciousness-scientific-theories",
+          "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+          "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+        }
+      ],
+      "entropy": [
+        {
+          "id": "entropy-foundations-formal",
+          "next_step": "Search for literature comparing these three frameworks.",
+          "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+        }
+      ],
+      "neurodivergence": [
+        {
+          "id": "neurodivergence-paradigm-vs-pathology",
+          "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+          "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "music",
+    "temporal": {
+      "anchor_seq": 1250,
+      "anchor_time": "2026-09-25T06:21:12.170650+00:00",
+      "anchor_version": 47,
+      "effective_seconds": 23629.695712
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 221.066737,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 23629.695712,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T06:21:12.170650+00:00",
+    "previous_anchor_time": "2026-09-25T06:17:31.103913+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 221.066737
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 13145,
+    "inquiry_drive_project_count": 1,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1079,
+    "working_to_delivered_ratio": 0.0821
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "music-cross-cultural-structure",
+        "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+        "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+        "title": "Cross-Cultural Musical Structure"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T06:21:13.174638+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2031,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 40958,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T06:21:25.303540+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -37691,6 +38063,103 @@ _None recorded._
 }
 ```
 
+### `source-460a139256554f23`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1177%2F106939719302700303\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 4, 29]], \\\"date-time\\\": \\\"2026-04-29T17:25:40Z\\\", \\\"timestamp\\\": 1777483540709, \\\"version\\\": \\\"3.51.4\\\"}, \\\"reference-count\\\": 70, \\\"publisher\\\": \\\"SAGE Publications\\\", \\\"issue\\\": \\\"3-4\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1993, 8, 1]], \\\"date-time\\\": \\\"1993-08-01T00:00:00Z\\\", \\\"timestamp\\\": 744163200000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://journals.sagepub.com/page/policies/text-and-data-mining-license\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Cross-Cultural Research\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1993, 8]]}, \\\"abstract\\\": \\\"<jats:p>Various features of the family have been argued to be universal among the world's societies. These include marriage and the family itself, male dominance and the division of labor by sex, incest taboos and exogamy, and the distinction between legitimate and illegiti mate birth. Each of these features except illegitimacy has a long history of theoretical and comparative investigation. The author argues that illegitimacy underlies each of the other family univer sals, in the sense that it is a given in their theoretical accounts. Hence it is more basic to family and kinship, and more primordial, than the others. Theoretical and comparative work on illegitimacy as a social norm and value is sorely needed, for without understand ing illegitimacy in this way, we cannot fully account for the other purported universal features of the family.</jats:p>\\\", \\\"DOI\\\": \\\"10.1177/106939719302700303\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2007, 3, 17]], \\\"date-time\\\": \\\"2007-03-17T21:46:13Z\\\", \\\"timestamp\\\": 1174167973000}, \\\"page\\\": \\\"212-231\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [\\\"Illegitimacy and Other Purported Family Universals\\\"], \\\"prefix\\\": \\\"10.1177\\\", \\\"volume\\\": \\\"27\\\", \\\"author\\\": [{\\\"given\\\": \\\"Lewellyn\\\", \\\"family\\\": \\\"Hendrix\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Southern Illinois University-Carbondale\\\"}], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"179\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1993, 8, 1]]}, \\\"reference\\\": [{\\\"key\\\": \\\"atypb1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939718301800302\\\"}, {\\\"key\\\": \\\"atypb2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2094443\\\"}, {\\\"key\\\": \\\"atypb3\\\", \\\"unstructured\\\": \\\"Blake, J. (1979). Structural differentiation and the family: A quiet revolution. In A. Hawley (Ed.), Societal growth (pp. 179-201). New York: Free Press.\\\"}, {\\\"key\\\": \\\"atypb4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/226830\\\"}, {\\\"key\\\": \\\"atypb5\\\", \\\"volume-title\\\": \\\"Marriage, divorce, remarriage\\\", \\\"author\\\": \\\"Cherlin, A.\\\", \\\"year\\\": \\\"1981\\\"}, {\\\"key\\\": \\\"atypb6\\\", \\\"unstructured\\\": \\\"Coser, R.L. & Coser, L.A. (1974). The principle of legitimacy and its patterned infringement in social revolutions. In R. L. Coser (Ed.), The family: Its structures and functions (pp. 94-106). New York: St. Martin's.\\\"}, {\\\"key\\\": \\\"atypb7\\\", \\\"unstructured\\\": \\\"D'Andrade, R.G. (1966). Sex differences and cultural institutions. In E. E. Maccoby (Ed.), Development of sex differences (pp. 174-202). Stanford, CA: Stanford University Press.\\\"}, {\\\"key\\\": \\\"atypb8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2570500\\\"}, {\\\"key\\\": \\\"atypb9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/218266\\\"}, {\\\"key\\\": \\\"atypb10\\\", \\\"volume-title\\\": \\\"Human society\\\", \\\"author\\\": \\\"Davis, K.\\\", \\\"year\\\": \\\"1949\\\"}, {\\\"key\\\": \\\"atypb11\\\", \\\"unstructured\\\": \\\"Davis, K. (1985). The future of marriage. In K. Davis & A. Grossbard-Schectman (Eds.), Contemporary marriage (pp. 25-52). New York: Russell Sage.\\\"}, {\\\"key\\\": \\\"atypb12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2803098\\\"}, {\\\"key\\\": \\\"atypb13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/jar.38.3.3629848\\\"}, {\\\"key\\\": \\\"atypb14\\\", \\\"volume-title\\\": \\\"Marriage and cohabitation in contemporary societies\\\", \\\"author\\\": \\\"Eekelaar, J.M.\\\", \\\"year\\\": \\\"1980\\\"}, {\\\"key\\\": \\\"atypb15\\\", \\\"unstructured\\\": \\\"Ember, C.R. (1981). A cross-cultural perspective on sex differences . In R. H. Munroe, R. L. Munroe, & B. B. Whiting (Eds.), Handbook of cross-cultural human development (pp. 531-580). New York: Garland.\\\"}, {\\\"key\\\": \\\"atypb16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717501000402\\\"}, {\\\"key\\\": \\\"atypb17\\\", \\\"volume-title\\\": \\\"The origin of the family, private property and the state\\\", \\\"author\\\": \\\"Engels, F.\\\", \\\"year\\\": \\\"1972\\\"}, {\\\"key\\\": \\\"atypb18\\\", \\\"volume-title\\\": \\\"Kinship and marriage\\\", \\\"author\\\": \\\"Fox, R.\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"atypb19\\\", \\\"volume-title\\\": \\\"Conflict and custom in Africa\\\", \\\"author\\\": \\\"Gluckman, M.\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"atypb20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2088944\\\"}, {\\\"key\\\": \\\"atypb21\\\", \\\"volume-title\\\": \\\"The family\\\", \\\"author\\\": \\\"Goode, W.J.\\\", \\\"year\\\": \\\"1964\\\"}, {\\\"key\\\": \\\"atypb22\\\", \\\"volume-title\\\": \\\"The family\\\", \\\"author\\\": \\\"Goode, W.J.\\\", \\\"year\\\": \\\"1982\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"atypb23\\\", \\\"volume-title\\\": \\\"Parenthood and social reproduction\\\", \\\"author\\\": \\\"Goody, E.\\\", \\\"year\\\": \\\"1982\\\"}, {\\\"key\\\": \\\"atypb24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/352431\\\"}, {\\\"key\\\": \\\"atypb25\\\", \\\"unstructured\\\": \\\"Gough, K. (1968). Is the family universal? The Nayar case. In N. W. Bell & E. F. Vogel (Eds.), A modern introduction to the family (pp. 80-96). New York: Free Press.\\\"}, {\\\"key\\\": \\\"atypb26\\\", \\\"volume-title\\\": \\\"Too many women? The sex ratio question\\\", \\\"author\\\": \\\"Guttentag, M.\\\", \\\"year\\\": \\\"1983\\\"}, {\\\"key\\\": \\\"atypb27\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1525/9780520332850\\\", \\\"volume-title\\\": \\\"Illegitimacy\\\", \\\"author\\\": \\\"Hartley, S.F.\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"atypb28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3138/jcfs.6.2.125\\\"}, {\\\"key\\\": \\\"atypb29\\\", \\\"volume-title\\\": \\\"Paper presented at the annual meeting of the American Sociological Association\\\", \\\"author\\\": \\\"Hendrix, L.\\\"}, {\\\"key\\\": \\\"atypb30\\\", \\\"volume-title\\\": \\\"Father-child relations: Cultural and biosocial contexts\\\", \\\"author\\\": \\\"Hewlett, B.S.\\\", \\\"year\\\": \\\"1992\\\"}, {\\\"key\\\": \\\"atypb31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0010417500009385\\\"}, {\\\"key\\\": \\\"atypb32\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939717901400402\\\"}, {\\\"key\\\": \\\"atypb33\\\", \\\"volume-title\\\": \\\"Bastardy and its comparative history\\\", \\\"author\\\": \\\"Laslett, P.\\\", \\\"year\\\": \\\"1980\\\"}, {\\\"key\\\": \\\"atypb34\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1990.92.4.02a00070\\\"}, {\\\"key\\\": \\\"atypb35\\\", \\\"volume-title\\\": \\\"The elementary structures of kinship\\\", \\\"author\\\": \\\"Levi-Strauss, C.\\\", \\\"year\\\": \\\"1969\\\"}, {\\\"key\\\": \\\"atypb36\\\", \\\"volume-title\\\": \\\"Modernization and the structure of societies\\\", \\\"author\\\": \\\"Levy, M.J., Jr.\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"atypb37\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1525/9780520336070\\\", \\\"volume-title\\\": \\\"Our mother tempers\\\", \\\"author\\\": \\\"Levy, M.J., Jr.\\\", \\\"year\\\": \\\"1989\\\"}, {\\\"key\\\": \\\"atypb38\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/978-1-4613-2425-6\\\"}, {\\\"key\\\": \\\"atypb39\\\", \\\"unstructured\\\": \\\"Malinowski, B. (1930). Parenthood: The basis of social structure. In V F. Calverton & S. D. Schmalhausen (Eds.), The new generation (pp. 113-168). New York: Macaulay.\\\"}, {\\\"key\\\": \\\"atypb40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2089618\\\"}, {\\\"key\\\": \\\"atypb41\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/353317\\\"}, {\\\"key\\\": \\\"atypb42\\\", \\\"unstructured\\\": \\\"Munroe, R.L. & Munroe, R.H. (1992). Fathers in children's environments : A four culture study. In B. S. Hewlett (Ed.), Father-child relations : Cultural and biological contexts (pp. 213-230). New York: Aldine de Gruyter.\\\"}, {\\\"key\\\": \\\"atypb43\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2571428\\\"}, {\\\"key\\\": \\\"atypb44\\\", \\\"volume-title\\\": \\\"Social structure\\\", \\\"author\\\": \\\"Murdock, G.P.\\\", \\\"year\\\": \\\"1949\\\"}, {\\\"key\\\": \\\"atypb45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/3773347\\\"}, {\\\"key\\\": \\\"atypb46\\\", \\\"volume-title\\\": \\\"The politics of reproduction\\\", \\\"author\\\": \\\"O'Brien, M.\\\", \\\"year\\\": \\\"1981\\\"}, {\\\"key\\\": \\\"atypb47\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1939-0025.1986.tb03486.x\\\"}, {\\\"key\\\": \\\"atypb48\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1976.78.2.02a00030\\\"}, {\\\"key\\\": \\\"atypb49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1525/aa.1979.81.2.02a00030\\\"}, {\\\"key\\\": \\\"atypb50\\\", \\\"unstructured\\\": \\\"Radcliffe-Brown, A.R. (1950). Introduction. In A. R. Radcliffe-Brown & D. Forde (Eds.), African systems of kinship and marriage (pp. 1-85). London : Oxford University Press.\\\"}, {\\\"key\\\": \\\"atypb51\\\", \\\"volume-title\\\": \\\"Chisungu: A girl's initiation ceremony among the Bemba of Northern Rhodesia\\\", \\\"author\\\": \\\"Richards, A.I.\\\", \\\"year\\\": \\\"1956\\\"}, {\\\"key\\\": \\\"atypb52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0145-2134(84)90045-0\\\"}, {\\\"key\\\": \\\"atypb53\\\", \\\"volume-title\\\": \\\"Sisters and wives\\\", \\\"author\\\": \\\"Sacks, K.\\\", \\\"year\\\": \\\"1979\\\"}, {\\\"key\\\": \\\"atypb54\\\", \\\"volume-title\\\": \\\"Men, women, and change\\\", \\\"author\\\": \\\"Scanzoni, L.D.\\\", \\\"year\\\": \\\"1988\\\", \\\"edition\\\": \\\"3\\\"}, {\\\"key\\\": \\\"atypb55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/106939718902300107\\\"}, {\\\"key\\\": \\\"atypb56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1159/000152391\\\"}, {\\\"key\\\": \\\"atypb57\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF01638058\\\"}, {\\\"key\\\": \\\"atypb58\\\", \\\"volume-title\\\": \\\"Incest: A biosocial view\\\", \\\"author\\\": \\\"Shepher, J.\\\", \\\"year\\\": \\\"1983\\\"}, {\\\"key\\\": \\\"atypb59\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/202844\\\"}, {\\\"key\\\": \\\"atypb60\\\", \\\"volume-title\\\": \\\"The making of the modern family\\\", \\\"author\\\": \\\"Shorter, E.\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"atypb61\\\", \\\"volume-title\\\": \\\"Children of the kibbutz\\\", \\\"author\\\": \\\"Spiro, M.E.\\\", \\\"year\\\": \\\"1965\\\"}, {\\\"key\\\": \\\"atypb62\\\", \\\"volume-title\\\": \\\"All our kin\\\", \\\"author\\\": \\\"Stack, C.\\\", \\\"year\\\": \\\"1974\\\"}, {\\\"key\\\": \\\"atypb63\\\", \\\"volume-title\\\": \\\"The family in cross-cultural perspective\\\", \\\"author\\\": \\\"Stephens, W.N.\\\", \\\"year\\\": \\\"1963\\\"}, {\\\"key\\\": \\\"atypb64\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2091199\\\"}, {\\\"key\\\": \\\"atypb65\\\", \\\"unstructured\\\": \\\"Tapp, P. (1980). The social and legal position of children of un-married cohabitation. In J. M. Eekelaar & S. N. Katz (Eds.), Marriage and cohabitation in contemporary societies (pp. 437-449). Toronto: Butterworths.\\\"}, {\\\"key\\\": \\\"atypb66\\\", \\\"volume-title\\\": \\\"The history of human marriage\\\", \\\"author\\\": \\\"Westermarck, E.\\\", \\\"year\\\"\", \"excerpt_truncated\": true, \"source_sha256\": \"44c4c14193dc4d7807b6980d3a78bfc195c3a1678159be18a479ab8ee937fd01\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1177/106939719302700303\", \"doi:10.1177/106939718301800302\", \"doi:10.2307/2094443\", \"doi:10.1086/226830\", \"doi:10.2307/2570500\", \"doi:10.1086/218266\", \"doi:10.2307/2803098\", \"doi:10.1086/jar.38.3.3629848\", \"doi:10.1177/106939717501000402\", \"doi:10.2307/2088944\", \"doi:10.2307/352431\", \"doi:10.1525/9780520332850\"]}",
+  "id": "source-460a139256554f23",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1177%2F106939719302700303",
+  "version": 47,
+  "time": "2026-09-25T06:21:09.031788+00:00"
+}
+```
+
+### `source-072f13684a58445f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"cfd71803543245de552a012e88a555034fd1a2edb6719452c23e294954a1be23\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-072f13684a58445f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 47,
+  "time": "2026-09-25T06:21:09.804595+00:00"
+}
+```
+
+### `source-8c5349cb0f8c4bd0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organized criticality\\\",\\\"pageid\\\":718855,\\\"size\\\":29252,\\\"wordcount\\\":3184,\\\"snippet\\\":\\\"\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\",\\\"timestamp\\\":\\\"2026-08-29T14:23:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a9f6356fc4733803d199b9d1a4122f4898a9fe867557c2f9291d7ed5418af393\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8c5349cb0f8c4bd0",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 47,
+  "time": "2026-09-25T06:21:10.338707+00:00"
+}
+```
+
+### `source-2bc6fb1c32564ebf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2bc6fb1c32564ebf",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 47,
+  "time": "2026-09-25T06:21:10.806944+00:00"
+}
+```
+
+### `source-775824949a814ac3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-775824949a814ac3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 47,
+  "time": "2026-09-25T06:21:11.348373+00:00"
+}
+```
+
+### `source-3bdd9e50e7d94842`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2202},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6996561c399eda3e63cb2c07d73afd0696d27f2bbebc870e3f6aa7d20798304d\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3bdd9e50e7d94842",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 47,
+  "time": "2026-09-25T06:21:11.892468+00:00"
+}
+```
+
+### `r-d241151f85b94d5a`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":47,\"inherited_commitments\":[],\"invocation\":\"w-d241151f85b94d5a\",\"previous_head\":\"69615a924c486efef1576245e321c4b3c88a1c48d43897c2f862d42af0d4c7df\",\"process_id\":2284,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-d241151f85b94d5a",
+  "source": "runtime:continuity",
+  "version": 47,
+  "time": "2026-09-25T06:21:12.879750+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -38207,6 +38676,17 @@ _None recorded._
   "invocation": "w-f81a7c95d1a9438b",
   "title": "Investigating Musical Universals vs. Cultural Learning",
   "summary": "Continuing the research project on cross-cultural musical structures, I am initiating a search for literature that compares universal musical features with those shaped by specific learned traditions. This aligns with the enforced music topic rotation."
+}
+```
+
+### 048 · Exploring Musical Universals and Cultural Variance
+
+```json
+{
+  "cycle": 48,
+  "invocation": "w-d241151f85b94d5a",
+  "title": "Exploring Musical Universals and Cultural Variance",
+  "summary": "We are initiating a focused investigation into cross-cultural musical structures, specifically aiming to differentiate between universal cognitive constraints in music perception and features that arise primarily from specific learned traditions. Our current objective is to identify robust cross-cultural studies that can serve as evidence for these distinctions, avoiding the assumption that musical 'universals' exist without empirical grounding."
 }
 ```
 
@@ -38865,6 +39345,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-f81a7c95d1a9438b",
   "evidence": "source-14b19f92fb554f43"
+}
+```
+
+### `res-music-cross-cultural-studies-001`
+
+```json
+{
+  "domain": "music",
+  "id": "res-music-cross-cultural-studies-001",
+  "project": "music-cross-cultural-structure",
+  "query": "cross-cultural music study structural universals vs learned traditions",
+  "reason": "To identify specific cross-cultural studies comparing musical structures, which is necessary to address the project's core question regarding universal vs. learned aspects of music.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-d241151f85b94d5a"
 }
 ```
 
