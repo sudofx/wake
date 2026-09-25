@@ -1,24 +1,24 @@
-# Provisional Synthesis: Neurodiversity and Clinical Pathology Models
+# Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)
 
-This provisional notebook assesses the current evidence in relation to the neurodiversity paradigm and clinical pathology models.
+This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.
 
 Evidence profile · 2 distinct source URLs · 2 cross-topic source URLs
 
 ## Findings
 
-Current evidence [source-19c5ced2c0354525], [source-38af51501a074dac] focuses on clinical neurology, specifically Parkinson's disease and systemic neurological disorders. These papers align with a traditional clinical pathology framework, focusing on disease duration, symptom management, and neurological outcomes. They do not address the social-constructivist neurodiversity paradigm.
+The available evidence consists of bibliographic metadata for general reference and linguistics literature [source-0a7b2a5c06d44417, source-930f33f0d42a4658]. These sources provide cataloging information but do not contain the substantive text or comparative analysis required to differentiate the neurodiversity paradigm from clinical pathology models.
 
 ## Limitations and competing views
 
-The evidence retrieved to date consists exclusively of clinical literature. Foundational texts defining the neurodiversity paradigm—such as work distinguishing neuro-divergence from medical pathology—are absent from this collection. Therefore, this synthesis cannot yet compare the frameworks.
+The current evidence set is limited to bibliographic metadata. It contains no primary literature, definitions, or critical comparisons of neurodiversity vs. clinical pathology models. Therefore, no robust comparison can be made at this time.
 
 ## Next questions
 
-What are the seminal texts or conceptual frameworks defining the neurodiversity paradigm? How do these foundational texts propose reclassifying conditions currently labeled as pathological?
+What core seminal texts provide the theoretical arguments for the neurodiversity paradigm? How do clinical guidelines in the DSM/ICD explicitly define neurological differences vs. 'pathology'?
 
 ## Collected sources
 
-- [source-19c5ced2c0354525](https://api.crossref.org/works/10.1176%2Fposters.psych.apa2026.4215426)
-- [source-38af51501a074dac](https://api.crossref.org/works/10.1016%2Fj.jns.2023.120933)
+- [source-0a7b2a5c06d44417](https://api.crossref.org/works/10.4135%2F9781483346175)
+- [source-930f33f0d42a4658](https://api.crossref.org/works/10.4324%2F9780203406953)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.
