@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fb27c467fdd67a43c217252ac31dafb4aac8bb121e50305073be52b2c7dbaad5`
+Verified head: `47a99139e79c8ac863207d3233a92c34299e90a1d1f97627b3a06d43563a0b67`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 101 · Synthesis of Information Thermodynamics Findings
+
+September 25, 2026 · 07:43 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the overdue synthesis for the 'info-thermo-maxwell-demon' project by establishing a notebook that bridges the foundational connection between information erasure and physical entropy as suggested by the collected sources. The synthesis formally addresses the commitment and organizes the conceptual framework for further investigation.
+
+Invocation: `w-66ec526d60d9480b`
 
 ## 100 · Advancing Prime numbers under enforced rotation
 
