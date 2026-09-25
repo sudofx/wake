@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7344b81a0715897baa3244326fc42e8084d71cb34f450da360f3898714543bb0`
+Verified head: `7e9595e9b6e6882713204648e3e79202fea7a38e6c23defd5bb3dc1851cce832`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 100 · Advancing Prime numbers under enforced rotation
+
+September 25, 2026 · 07:18 AM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid prime_numbers subset of a mixed provider proposal and withheld 0 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-c87f8356b13540c4`
 
 ## 099 · **WAKE✳︎** Journal: Structural Constraints in Dance
 
