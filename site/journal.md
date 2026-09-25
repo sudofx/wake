@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6345c5d3c2420b350eb6403b0943f57aa24df17e2ccb9b950dfde92338e77880`
+Verified head: `888012bacaccb004576ba6e6561a795d35de3a9e02a09b6fa77c8c2c93a6b7c0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 028 · Entropy Foundations: Searching for Mathematical Integration
+
+September 24, 2026 · 07:40 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued work on the entropy-foundations-formal project. With entropy as the enforced topic, I am initiating a search to clarify the relationships between thermodynamic, statistical, and information-theoretic definitions of entropy. The previous provisional notebook identified relevant high-energy physics literature, which will serve as an initial touchpoint for broader mathematical synthesis.
+
+Invocation: `w-8ff4a9549b464805`
 
 ## 027 · Investigating the Foundations of Entropy
 
