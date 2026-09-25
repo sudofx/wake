@@ -5,7 +5,7 @@
 **Version:** 21  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `b05fb9383d23fc6f71398377c7b910537dec0c11c3b4a7d74662e1ff25640d4c`
+**Verified head:** `e94b46943e5cc0a22d8409c31354592cf1334de40efc36be747dc8d4eee664c7`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -328,33 +328,48 @@ _None recorded._
 {
   "project": "psychology-memory-distinction",
   "domain": "psychology",
-  "no_progress": 7,
+  "no_progress": 0,
   "routes": [
-    "api.openalex.org:discovery",
     "api.openalex.org:source",
     "api.semanticscholar.org:discovery",
-    "api.datacite.org:discovery"
+    "api.datacite.org:discovery",
+    "api.crossref.org:source"
   ],
-  "capability_blocked": true,
-  "retry_after_version": 32,
+  "capability_blocked": false,
+  "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1146/annurev-psych-010814-015031",
-    "doi:10.1037/0096-3445.133.2.189",
-    "doi:10.3758/bf03196323",
-    "doi:10.3758/bf03196323.pdf",
-    "doi:10.3758/s13423-016-1191-6",
-    "doi:10.3758/s13423-016-1191-6.pdf",
-    "openalex:W2162809807",
-    "openalex:W2048613949",
-    "openalex:W2151179877",
-    "openalex:W2559446857"
+    "openalex:W2559446857",
+    "doi:10.1523/jneurosci.23-06-02008.2003",
+    "doi:10.1111/j.0963-7214.2004.01502006.x",
+    "doi:10.1523/jneurosci.0293-14.2014",
+    "doi:10.1177/026988119701100208",
+    "doi:10.1007/bf02245056",
+    "doi:10.1016/s1364-6613(00)01593-x",
+    "doi:10.1037/0096-1523.24.3.780",
+    "doi:10.1016/j.neuroimage.2013.09.031",
+    "doi:10.1016/s0079-7421(08)60452-1",
+    "doi:10.1016/j.tics.2008.02.004",
+    "doi:10.1073/pnas.1216902109"
   ],
   "last_receipt": {
-    "evidence": "source-874b60f11d994038",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-50546adb25694d4a",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1146/annurev-psych-010814-015031",
+      "doi:10.1523/jneurosci.23-06-02008.2003",
+      "doi:10.1111/j.0963-7214.2004.01502006.x",
+      "doi:10.1523/jneurosci.0293-14.2014",
+      "doi:10.1177/026988119701100208",
+      "doi:10.1007/bf02245056",
+      "doi:10.1016/s1364-6613(00)01593-x",
+      "doi:10.1037/0096-1523.24.3.780",
+      "doi:10.1016/j.neuroimage.2013.09.031",
+      "doi:10.1016/s0079-7421(08)60452-1",
+      "doi:10.1016/j.tics.2008.02.004",
+      "doi:10.1073/pnas.1216902109"
+    ],
     "research_id": "res-psychology-memory-001",
-    "route": "api.openalex.org:source",
+    "route": "api.crossref.org:source",
     "stage": "substantive_source"
   }
 }
@@ -366,9 +381,10 @@ _None recorded._
 {
   "project": "evo-trait-explanation",
   "domain": "evolutionary_biology",
-  "no_progress": 1,
+  "no_progress": 2,
   "routes": [
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.semanticscholar.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
@@ -379,16 +395,11 @@ _None recorded._
     "doi:10.1075/cilt.336.13izu"
   ],
   "last_receipt": {
-    "evidence": "source-ff52964d659a429a",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.1086/303280",
-      "doi:10.2307/j.ctvjsf433.13",
-      "doi:10.4159/9780674417922-012",
-      "doi:10.1075/cilt.336.13izu"
-    ],
-    "research_id": "res-evo-mechanisms-001",
-    "route": "api.crossref.org:discovery",
+    "evidence": "source-ffac751a0f3443b9",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-evo-trait-001",
+    "route": "api.semanticscholar.org:discovery",
     "stage": "discovery"
   }
 }
@@ -404,7 +415,7 @@ _None recorded._
 
 ```json
 {
-  "evolutionary_biology": 1,
+  "evolutionary_biology": 2,
   "information_thermodynamics": 1,
   "prime_numbers": 3,
   "visual_art": 0
@@ -418,7 +429,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 7,
+    "other_topic_attempts": 8,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -439,11 +450,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "evolutionary_biology",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-5d926399658d48a3",
+  "hard_rejection": true,
+  "invocation": "w-84399085155042f4",
   "restored_topics": [],
   "selected_topic": "evolutionary_biology",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -9536,6 +9547,358 @@ _None recorded._
 }
 ```
 
+### `w-84399085155042f4`
+
+```json
+{
+  "base_version": 21,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 11064,
+    "delivered_request_chars": 35758,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 71347,
+    "working_set_chars": 1375
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-84399085155042f4",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 21,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "evo-trait-explanation",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Distinguishing Evolutionary Explanations"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "psychology-memory-distinction",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Working Memory vs Short-Term Memory"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2042,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "c22ab8b699efe39cc12dde611ea653697c7e7b81981a51d8c22bb3c00685ae87",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-af4aea6d65ce4db8"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-af4aea6d65ce4db8",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9101b48f579c4a2a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9101b48f579c4a2a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c78fcbe9c2774dd9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c78fcbe9c2774dd9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fcef25cef18348e4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fcef25cef18348e4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1771bf5251a049f4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1771bf5251a049f4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-50546adb25694d4a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-50546adb25694d4a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-af4aea6d65ce4db8",
+      "source-9101b48f579c4a2a",
+      "source-c78fcbe9c2774dd9",
+      "source-fcef25cef18348e4",
+      "source-1771bf5251a049f4",
+      "source-50546adb25694d4a"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "evolutionary_biology",
+    "temporal": {
+      "anchor_seq": 467,
+      "anchor_time": "2026-09-25T01:50:19.121147+00:00",
+      "anchor_version": 21,
+      "effective_seconds": 7376.646209
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 330.413445,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 7376.646209,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T01:50:19.121147+00:00",
+    "previous_anchor_time": "2026-09-25T01:44:48.707702+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 330.413445
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 11064,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1375,
+    "working_to_delivered_ratio": 0.1243
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "psychology-memory-distinction",
+        "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+        "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+        "title": "Working Memory vs Short-Term Memory"
+      },
+      {
+        "id": "evo-trait-explanation",
+        "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+        "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+        "title": "Distinguishing Evolutionary Explanations"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-25T01:50:19.409762+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 2422,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 38071,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T01:50:27.823252+00:00",
+  "reason": "New projects must use a configured topic; existing projects keep their original topic",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -12448,6 +12811,103 @@ _None recorded._
 }
 ```
 
+### `source-50546adb25694d4a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1146%2Fannurev-psych-010814-015031\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T05:04:55Z\\\", \\\"timestamp\\\": 1790226295565, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 173, \\\"publisher\\\": \\\"Annual Reviews\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Annu. Rev. Psychol.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2015, 1, 3]]}, \\\"abstract\\\": \\\"<jats:p>For more than 50 years, psychologists and neuroscientists have recognized the importance of a working memory to coordinate processing when multiple goals are active and to guide behavior with information that is not present in the immediate environment. In recent years, psychological theory and cognitive neuroscience data have converged on the idea that information is encoded into working memory by allocating attention to internal representations, whether semantic long-term memory (e.g., letters, digits, words), sensory, or motoric. Thus, information-based multivariate analyses of human functional MRI data typically find evidence for the temporary representation of stimuli in regions that also process this information in nonworking memory contexts. The prefrontal cortex (PFC), on the other hand, exerts control over behavior by biasing the salience of mnemonic representations and adjudicating among competing, context-dependent rules. The “control of the controller” emerges from a complex interplay between PFC and striatal circuits and ascending dopaminergic neuromodulatory signals.</jats:p>\\\", \\\"DOI\\\": \\\"10.1146/annurev-psych-010814-015031\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2014, 9, 24]], \\\"date-time\\\": \\\"2014-09-24T23:42:30Z\\\", \\\"timestamp\\\": 1411602150000}, \\\"page\\\": \\\"115-142\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1380, \\\"title\\\": [\\\"The Cognitive Neuroscience of Working Memory\\\"], \\\"prefix\\\": \\\"10.1146\\\", \\\"volume\\\": \\\"66\\\", \\\"author\\\": [{\\\"given\\\": \\\"Mark\\\", \\\"family\\\": \\\"D'Esposito\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Helen Wills Neuroscience Institute and Department of Psychology, University of California, Berkeley, California 94720;\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Bradley R.\\\", \\\"family\\\": \\\"Postle\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Departments of Psychology and Psychiatry, University of Wisconsin, Madison, Madison, Wisconsin 53719;\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"22\\\", \\\"reference\\\": [{\\\"key\\\": \\\"B1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.23-06-02008.2003\\\"}, {\\\"key\\\": \\\"B2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.0963-7214.2004.01502006.x\\\"}, {\\\"key\\\": \\\"B3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.0293-14.2014\\\"}, {\\\"key\\\": \\\"B4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/026988119701100208\\\"}, {\\\"key\\\": \\\"B5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02245056\\\"}, {\\\"key\\\": \\\"B6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S1364-6613(00)01593-X\\\"}, {\\\"key\\\": \\\"B7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0096-1523.24.3.780\\\"}, {\\\"key\\\": \\\"B8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuroimage.2013.09.031\\\"}, {\\\"key\\\": \\\"B9\\\", \\\"volume-title\\\": \\\"Working Memory\\\", \\\"author\\\": \\\"Baddeley A\\\", \\\"year\\\": \\\"1986\\\"}, {\\\"key\\\": \\\"B10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0079-7421(08)60452-1\\\"}, {\\\"key\\\": \\\"B11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2008.02.004\\\"}, {\\\"key\\\": \\\"B12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.1216902109\\\"}, {\\\"key\\\": \\\"B13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn.2007.19.12.2082\\\"}, {\\\"key\\\": \\\"B14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nrn2667\\\"}, {\\\"key\\\": \\\"B15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/cercor/bhr117\\\"}, {\\\"key\\\": \\\"B16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nn.2277\\\"}, {\\\"key\\\": \\\"B17\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"53\\\", \\\"DOI\\\": \\\"10.1016/S0031-6997(25)06572-X\\\", \\\"volume\\\": \\\"35\\\", \\\"author\\\": \\\"Bannon MJ\\\", \\\"year\\\": \\\"1983\\\", \\\"journal-title\\\": \\\"Pharmacol. Rev.\\\"}, {\\\"key\\\": \\\"B18\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"35\\\", \\\"DOI\\\": \\\"10.1093/oso/9780195062847.003.0002\\\", \\\"volume-title\\\": \\\"Frontal Lobe Function and Dysfunction\\\", \\\"author\\\": \\\"Barbas H\\\", \\\"year\\\": \\\"1991\\\"}, {\\\"key\\\": \\\"B19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1158023\\\"}, {\\\"key\\\": \\\"B20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn.1996.8.6.551\\\"}, {\\\"key\\\": \\\"B21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/sj.npp.1300542\\\"}, {\\\"key\\\": \\\"B22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/cercor/bhs223\\\"}, {\\\"key\\\": \\\"B23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0079-6123(08)63082-4\\\"}, {\\\"key\\\": \\\"B24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/acprof:oso/9780195168648.003.0004\\\"}, {\\\"key\\\": \\\"B25\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0006-8993(79)90132-X\\\"}, {\\\"key\\\": \\\"B26\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.112679\\\"}, {\\\"key\\\": \\\"B27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2007.05.004\\\"}, {\\\"key\\\": \\\"B28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1099745\\\"}, {\\\"key\\\": \\\"B29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0306-4522(89)90179-6\\\"}, {\\\"key\\\": \\\"B30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/089892998562636\\\"}, {\\\"key\\\": \\\"B31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3389/fnbeh.2013.00083\\\"}, {\\\"key\\\": \\\"B32\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3389/fnhum.2012.00187\\\"}, {\\\"key\\\": \\\"B33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0735-7044.117.6.1161\\\"}, {\\\"key\\\": \\\"B34\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.0184-12.2012\\\"}, {\\\"key\\\": \\\"B35\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0959-4388(02)00314-8\\\"}, {\\\"key\\\": \\\"B36\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/85179\\\"}, {\\\"key\\\": \\\"B37\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/acprof:oso/9780195373035.003.0017\\\"}, {\\\"key\\\": \\\"B38\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.biopsych.2011.03.028\\\"}, {\\\"key\\\": \\\"B39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rsta.2004.1468\\\"}, {\\\"key\\\": \\\"B40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.0601-07.2007\\\"}, {\\\"key\\\": \\\"B41\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.2360050\\\"}, {\\\"key\\\": \\\"B42\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/386608a0\\\"}, {\\\"key\\\": \\\"B43\\\", \\\"volume-title\\\": \\\"Attention and Memory: An Integrated Framework\\\", \\\"author\\\": \\\"Cowan N\\\", \\\"year\\\": \\\"1995\\\"}, {\\\"key\\\": \\\"B44\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn_a_00379\\\"}, {\\\"key\\\": \\\"B45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1001/archneur.1993.00540080076020\\\"}, {\\\"key\\\": \\\"B46\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.5640-03.2004\\\"}, {\\\"key\\\": \\\"B47\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1150605\\\"}, {\\\"key\\\": \\\"B48\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rstb.2007.2086\\\"}, {\\\"key\\\": \\\"B49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s002210000395\\\"}, {\\\"key\\\": \\\"B50\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1093/oso/9780195137644.001.0001\\\", \\\"volume-title\\\": \\\"Neurology of Cognitive and Behavioral Disorders\\\", \\\"author\\\": \\\"Devinsky O\\\", \\\"year\\\": \\\"2003\\\"}, {\\\"key\\\": \\\"B51\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/35097575\\\"}, {\\\"key\\\": \\\"B52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.biopsych.2008.05.015\\\"}, {\\\"key\\\": \\\"B53\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1152/jn.2000.83.3.1733\\\"}, {\\\"key\\\": \\\"B54\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/81460\\\"}, {\\\"key\\\": \\\"B55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2012.12.007\\\"}, {\\\"key\\\": \\\"B56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.5732-12.2013\\\"}, {\\\"key\\\": \\\"B57\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/33402\\\"}, {\\\"key\\\": \\\"B58\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn.2009.21375\\\"}, {\\\"key\\\": \\\"B59\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn_a_00357\\\"}, {\\\"key\\\": \\\"B60\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nrn2979\\\"}, {\\\"key\\\": \\\"B61\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.1106439108\\\"}, {\\\"key\\\": \\\"B62\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuron.2006.06.007\\\"}, {\\\"key\\\": \\\"B63\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/cercor/bhr114\\\"}, {\\\"key\\\": \\\"B64\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/CABN.1.2.137\\\"}, {\\\"key\\\": \\\"B65\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0735-7044.120.3.497\\\"}, {\\\"key\\\": \\\"B66\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.291.5502.312\\\"}, {\\\"key\\\": \\\"B67\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.23-12-05235.2003\\\"}, {\\\"key\\\": \\\"B68\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2005.08.011\\\"}, {\\\"key\\\": \\\"B69\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1152/jn.1989.61.2.331\\\"}, {\\\"key\\\": \\\"B70\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1749-6632.1990.tb48901.x\\\"}, {\\\"key\\\": \\\"B71\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2004.02.004\\\"}, {\\\"key\\\": \\\"B72\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/B978-0-12-373644-4.00002-5\\\"}, {\\\"key\\\": \\\"B73\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.173.3997.652\\\"}, {\\\"key\\\": \\\"B74\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0006-8993(85)90689-4\\\"}, {\\\"key\\\": \\\"B75\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/0898929053279522\\\"}, {\\\"key\\\": \\\"B76\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/CABN.4.4.580\\\"}, {\\\"key\\\": \\\"B77\\\", \\\"first-page\\\": \\\"373\\\", \\\"volume-title\\\": \\\"Handbook of Physiology: The Nervous System\\\", \\\"author\\\": \\\"Goldman-Rakic PS\\\", \\\"year\\\": \\\"1987\\\"}, {\\\"key\\\": \\\"B78\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0896-6273(95)90304-6\\\"}, {\\\"key\\\": \\\"B79\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.10-07-02125.1990\\\"}, {\\\"key\\\": \\\"B80\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1046/j.1360-0443.95.8s2.1.x\\\"}, {\\\"key\\\": \\\"B81\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.brainres.2008.07.008\\\"}, {\\\"key\\\": \\\"B82\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuropsychologia.2008.08.026\\\"}, {\\\"key\\\": \\\"B83\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuroimage.2013.01.055\\\"}, {\\\"key\\\": \\\"B84\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nature07832\\\"}, {\\\"key\\\": \\\"B85\\\", \\\"doi-asser\", \"excerpt_truncated\": true, \"source_sha256\": \"000c9bc4a23995f71336f92911e377cf6a22f1303d175cd2db537d88af2d7a81\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1146/annurev-psych-010814-015031\", \"doi:10.1523/jneurosci.23-06-02008.2003\", \"doi:10.1111/j.0963-7214.2004.01502006.x\", \"doi:10.1523/jneurosci.0293-14.2014\", \"doi:10.1177/026988119701100208\", \"doi:10.1007/bf02245056\", \"doi:10.1016/s1364-6613(00)01593-x\", \"doi:10.1037/0096-1523.24.3.780\", \"doi:10.1016/j.neuroimage.2013.09.031\", \"doi:10.1016/s0079-7421(08)60452-1\", \"doi:10.1016/j.tics.2008.02.004\", \"doi:10.1073/pnas.1216902109\"]}",
+  "id": "source-50546adb25694d4a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1146%2Fannurev-psych-010814-015031",
+  "version": 21,
+  "time": "2026-09-25T01:50:16.810014+00:00"
+}
+```
+
+### `source-ffac751a0f3443b9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=empirical+methods+distinguishing+adaptation+byproduct+drift+constraint+evolutionary+biology&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-ffac751a0f3443b9",
+  "scope": "failed",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=empirical+methods+distinguishing+adaptation+byproduct+drift+constraint+evolutionary+biology&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+  "version": 21,
+  "time": "2026-09-25T01:50:17.337696+00:00"
+}
+```
+
+### `source-36ff7e86df8a4795`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40315},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3ffeeecd3e188ad95d95d94e0e877b6dc609130c43e0859177d042680fed06e3\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-36ff7e86df8a4795",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:50:17.794535+00:00"
+}
+```
+
+### `source-2b7b8c262efb4ac9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"06f8ba91768f15710b91f31844fa91e298adcfcf0e38ec56976b9387dc3f9145\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2b7b8c262efb4ac9",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:50:18.229434+00:00"
+}
+```
+
+### `source-93d121ebb9634915`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Human resource management system\\\",\\\"pageid\\\":48708998,\\\"size\\\":14435,\\\"wordcount\\\":1758,\\\"snippet\\\":\\\"processing\\nsystems\\n, which eventually evolved into the standardized routines and packages of enterprise resource planning (ERP) software. ERP\\nsystems\\noriginated\\\",\\\"timestamp\\\":\\\"2026-08-08T08:16:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"44d7c0bcefd88a2f2737f8ad65a2d69c65b176eb28ac65735ae3916fe4251488\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-93d121ebb9634915",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:50:18.644184+00:00"
+}
+```
+
+### `source-3418bf22c0514f31`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35dba10eabf8eaaa73b67816742dda9fafbe620555ad541dd87af7abd9070f9e\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3418bf22c0514f31",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 21,
+  "time": "2026-09-25T01:50:19.035879+00:00"
+}
+```
+
+### `r-84399085155042f4`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":21,\"inherited_commitments\":[],\"invocation\":\"w-84399085155042f4\",\"previous_head\":\"40b62da187098976d2fb71f37093639901ecfab464fadb99f4782d98ffaa4865\",\"process_id\":2042,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-84399085155042f4",
+  "source": "runtime:continuity",
+  "version": 21,
+  "time": "2026-09-25T01:50:19.305822+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -12981,8 +13441,9 @@ _None recorded._
   "query": "empirical methods distinguishing adaptation byproduct drift constraint evolutionary biology",
   "reason": "Foundational literature is required to understand how biologists observationally or experimentally disentangle these evolutionary forces in trait evolution.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-5d926399658d48a3"
+  "status": "failed",
+  "created_by": "w-5d926399658d48a3",
+  "evidence": "source-ffac751a0f3443b9"
 }
 ```
 
