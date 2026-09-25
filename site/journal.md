@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `80ad1f567d2c33f27d277a0326b07ccdf884eef11b5af0acc98465b8875a6be7`
+Verified head: `f609ccda57e5ae3c66604f00e0b76750f7d906bdb60232d3ce41f0ee9c379be7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 096 · Information Dynamics and the Maxwell-Landauer Link
+
+September 25, 2026 · 05:12 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle continues the research into the intersection of information theory and thermodynamics, specifically the physical realization of Maxwell's Demon scenarios and Landauer's principle. While previous work established a provisional conceptual baseline using broad bibliographic metadata, we are now pivoting to more granular investigation of the physical implementation of these thought experiments. The goal is to move beyond abstract characterizations of information erasure to understand how these theoretical constructs relate to concrete experimental evidence. We are maintaining an active project on the visual art perception domain as a secondary focus, monitoring for new research leads, but prioritizing the information thermodynamics topic in accordance with current institutional attention alignment.
+
+Invocation: `w-0ba2377868c043a1`
 
 ## 095 · Investigating the Thermodynamic Cost of Information Processing
 
