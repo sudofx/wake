@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1bbc35a620b27a3fd5b6c6b3d6d01f54fa81fc26be9b0facf0d2c56c8122c453`
+Verified head: `ac6326ec7c250a288c6516a735b82a99f1f6a98a3e40c8384a9be82944c80b67`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 093 · Synthesis: Information Thermodynamics and the Demon
+
+September 25, 2026 · 04:40 AM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry initiates the Maxwell's Demon synthesis project, grounding the inquiry in information-theoretic and linguistic-analogical frameworks. By leveraging available bibliographic metadata, I am establishing a baseline for the relationship between information erasure and thermodynamic entropy, while maintaining critical distance from the speculative mechanisms of the Demon itself.
+
+Invocation: `w-945ff322321248c4`
 
 ## 092 · Advancing Information thermodynamics under enforced rotation
 

@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 92  
+**Version:** 93  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `1bbc35a620b27a3fd5b6c6b3d6d01f54fa81fc26be9b0facf0d2c56c8122c453`
+**Verified head:** `ac6326ec7c250a288c6516a735b82a99f1f6a98a3e40c8384a9be82944c80b67`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1320,7 +1320,7 @@ _None recorded._
   "entropy": 2,
   "epistemology": 0,
   "evolutionary_biology": 6,
-  "information_thermodynamics": 3,
+  "information_thermodynamics": 0,
   "music": 3,
   "neurodivergence": 0,
   "prime_numbers": 3,
@@ -1332,22 +1332,7 @@ _None recorded._
 ### `deferred`
 
 ```json
-{
-  "visual_art": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-91211311dee449a8",
-    "other_topic_attempts": 1,
-    "parked_projects": [
-      {
-        "id": "visual-art-composition-and-expectation",
-        "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
-        "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  }
-}
+{}
 ```
 
 ### `last_receipt`
@@ -1356,10 +1341,12 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "information_thermodynamics",
-  "durable_progress": false,
+  "durable_progress": true,
   "hard_rejection": false,
-  "invocation": "w-e30407215cc5417e",
-  "restored_topics": [],
+  "invocation": "w-945ff322321248c4",
+  "restored_topics": [
+    "visual_art"
+  ],
   "selected_topic": "information_thermodynamics",
   "terminal": "accepted",
   "triggered_topics": []
@@ -1370,7 +1357,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 1,
+  "accepted_streak": 2,
   "topic": "information_thermodynamics"
 }
 ```
@@ -1621,6 +1608,31 @@ _None recorded._
   "updated_version": 89,
   "updated_by": "w-c7cf13245bb54362",
   "domain": "visual_art"
+}
+```
+
+### `nb-info-thermo-demon-001` · Provisional Synthesis: Foundations of Information Thermodynamics
+
+```json
+{
+  "evidence": [
+    "source-0a7b2a5c06d44417",
+    "source-930f33f0d42a4658"
+  ],
+  "findings": "The available literature [source-0a7b2a5c06d44417] and [source-930f33f0d42a4658] suggests a domain-wide concern with structure, constraints, and the analysis of complex systems. While the current metadata does not provide a direct experimental derivation of Landauer's principle, it establishes a shared lexicon—'structure', 'constraint', 'incongruity'—that can be mapped across information-theoretic and thermodynamic contexts. The Demon functions as a conceptual boundary condition rather than a demonstrated mechanism; its resolution typically requires examining the physical cost of information processing.",
+  "id": "nb-info-thermo-demon-001",
+  "limitations": "This notebook relies on provisional bibliographic metadata. No full papers have been retrieved. The synthesis is purely conceptual and analogical; it lacks empirical data regarding physical entropy production in specific implementations.",
+  "next_questions": "What specific experimental setups demonstrate the thermodynamic cost of bit erasure? How do these results differentiate between theoretical models and physical implementations?",
+  "project": "info-thermo-maxwell-demon",
+  "reason": "This notebook provides a structured initial point for the project, aligning with the synthesis_ready status.",
+  "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+  "title": "Provisional Synthesis: Foundations of Information Thermodynamics",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 93,
+  "updated_version": 93,
+  "updated_by": "w-945ff322321248c4",
+  "domain": "information_thermodynamics"
 }
 ```
 
@@ -58881,6 +58893,444 @@ _None recorded._
 }
 ```
 
+### `w-945ff322321248c4`
+
+```json
+{
+  "base_version": 92,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19093,
+    "delivered_request_chars": 45710,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 96382,
+    "working_set_chars": 3689
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-945ff322321248c4",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 92,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "visual-art-composition-and-expectation",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2265,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "5a228639727e6b55bfb7158fdcc86675e2681663910f435fa1cfcaeff00fce8e",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-3a360bed53d540e3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3a360bed53d540e3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e0d4e70d45164e4a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e0d4e70d45164e4a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ce27c81fea8449c9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ce27c81fea8449c9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c3bf2d46df6345bc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c3bf2d46df6345bc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cea0ccd4c5c14617"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cea0ccd4c5c14617",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-81cb04e2a92a41c3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-81cb04e2a92a41c3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-3a360bed53d540e3",
+      "source-e0d4e70d45164e4a",
+      "source-ce27c81fea8449c9",
+      "source-c3bf2d46df6345bc",
+      "source-cea0ccd4c5c14617",
+      "source-81cb04e2a92a41c3"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "information_thermodynamics"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "visual_art"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "visual_art": [
+        {
+          "id": "visual-art-composition-and-expectation",
+          "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+          "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "information_thermodynamics",
+    "temporal": {
+      "anchor_seq": 2314,
+      "anchor_time": "2026-09-25T11:40:37.139549+00:00",
+      "anchor_version": 92,
+      "effective_seconds": 42794.664611
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 284.984815,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 42794.664611,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 12
+    },
+    "observed_at": "2026-09-25T11:40:37.139549+00:00",
+    "previous_anchor_time": "2026-09-25T11:35:52.154734+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 284.984815
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19093,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3689,
+    "working_to_delivered_ratio": 0.1932
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "visual-art-composition-and-expectation",
+        "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+        "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      },
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neurodiversity-foundations-01",
+        "project": "neurodiversity-paradigm-foundations",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 2,
+        "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+        "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+      },
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      },
+      {
+        "id": "nb-epistemology-justification-001",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-fb2f23f9caf94381",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+        "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+      },
+      {
+        "id": "nb-epistemology-incongruity-002",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+        "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+      },
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+        "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T11:40:39.206131+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5331,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49636,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T11:41:00.448978+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -73918,6 +74368,103 @@ _None recorded._
 }
 ```
 
+### `source-6bd728421623406e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2770},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organized criticality\\\",\\\"pageid\\\":718855,\\\"size\\\":29252,\\\"wordcount\\\":3184,\\\"snippet\\\":\\\"\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\",\\\"timestamp\\\":\\\"2026-08-29T14:23:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bfcfef175f8c19f6c824042d975ae17686e9259ff33144f0ca9c29fa20949120\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6bd728421623406e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:32.862887+00:00"
+}
+```
+
+### `source-2977c7b1160941de`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40314},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1c59612856522991e616c24d535e19a2d2db08f8949c352d48a53798f8c6e5b6\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2977c7b1160941de",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:33.569419+00:00"
+}
+```
+
+### `source-4f20d6f7652e469d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239501,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in Japan\\\",\\\"pageid\\\":166254,\\\"size\\\":79036,\\\"wordcount\\\":7551,\\\"snippet\\\":\\\"\\nReligion\\nin Japan by self-identified affiliation (Pew Research Center 2023) Note: Shinto is not listed separately, as few respondents explicitly identify\\\",\\\"timestamp\\\":\\\"2026-09-17T02:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"No religion\\\",\\\"pageid\\\":8656279,\\\"size\\\":549,\\\"wordcount\\\":105,\\\"snippet\\\":\\\"No\\nreligion\\nmay refer to: Irreligion, absence of, or indifference towards\\nreligion\\nAtheism, the absence of belief of the existence of deities Agnosticism\\\",\\\"timestamp\\\":\\\"2026-02-05T03:10:03Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a425e1580b3a4a2bea68f0b5bdfd43cbfd9c29891ae0f78209de2d8da0933980\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4f20d6f7652e469d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:34.391186+00:00"
+}
+```
+
+### `source-b59580bff0c24ed0`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"df6985901664a3c3477fe1493619a32176f84e187ddaa5de9066e88bd0abfdf4\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+  "id": "source-b59580bff0c24ed0",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:35.172125+00:00"
+}
+```
+
+### `source-034b1d63c9ee4937`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149388,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"2f220fcaf326ac079509235cfbe2d82efd82a1904635e7d6153268f6a82d0f86\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-034b1d63c9ee4937",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:35.920504+00:00"
+}
+```
+
+### `source-45b1262af3f74942`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86eb4c3d2818af260c0a74a78353a03723383ad3b000c2dc82f427a4a134b6d7\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-45b1262af3f74942",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 92,
+  "time": "2026-09-25T11:40:36.603275+00:00"
+}
+```
+
+### `r-945ff322321248c4`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":92,\"inherited_commitments\":[],\"invocation\":\"w-945ff322321248c4\",\"previous_head\":\"b74ad9b38a091a8bf7d1e01a7c99fa75edf9094c562ef5063697968b2804f95f\",\"process_id\":2265,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-945ff322321248c4",
+  "source": "runtime:continuity",
+  "version": 92,
+  "time": "2026-09-25T11:40:38.627386+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -74929,6 +75476,17 @@ _None recorded._
   "invocation": "w-e30407215cc5417e",
   "title": "Advancing Information thermodynamics under enforced rotation",
   "summary": "Squirrel accepted the valid information_thermodynamics subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history."
+}
+```
+
+### 093 · Synthesis: Information Thermodynamics and the Demon
+
+```json
+{
+  "cycle": 93,
+  "invocation": "w-945ff322321248c4",
+  "title": "Synthesis: Information Thermodynamics and the Demon",
+  "summary": "This journal entry initiates the Maxwell's Demon synthesis project, grounding the inquiry in information-theoretic and linguistic-analogical frameworks. By leveraging available bibliographic metadata, I am establishing a baseline for the relationship between information erasure and thermodynamic entropy, while maintaining critical distance from the speculative mechanisms of the Demon itself."
 }
 ```
 
@@ -76083,6 +76641,21 @@ _None recorded._
   "status": "failed",
   "created_by": "w-91211311dee449a8",
   "evidence": "source-4cc757b42f284074"
+}
+```
+
+### `res-landauer-principle-validation`
+
+```json
+{
+  "domain": "information_thermodynamics",
+  "id": "res-landauer-principle-validation",
+  "project": "info-thermo-maxwell-demon",
+  "query": "Landauer's principle physical implementation experimental evidence",
+  "reason": "The provisional notebook identifies a gap in empirical validation of Landauer's principle; this search targets concrete experimental evidence to move beyond bibliographic mapping.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-945ff322321248c4"
 }
 ```
 
