@@ -1,5 +1,5 @@
 {
-  "version": 82,
+  "version": 83,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -8701,6 +8701,68 @@
       "source": "runtime:continuity",
       "version": 81,
       "time": "2026-09-25T10:23:51.582474+00:00"
+    },
+    "source-3a360bed53d540e3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.4324%2F9781315515335-14\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2024, 9, 9]], \\\"date-time\\\": \\\"2024-09-09T17:50:10Z\\\", \\\"timestamp\\\": 1725904210400}, \\\"edition-number\\\": \\\"0\\\", \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Routledge\\\", \\\"isbn-type\\\": [{\\\"type\\\": \\\"electronic\\\", \\\"value\\\": \\\"9781315515335\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2017, 1, 6]]}, \\\"DOI\\\": \\\"10.4324/9781315515335-14\\\", \\\"type\\\": \\\"book-chapter\\\", \\\"created\\\": {\\\"date-parts\\\": [[2020, 12, 25]], \\\"date-time\\\": \\\"2020-12-25T06:25:11Z\\\", \\\"timestamp\\\": 1608877511000}, \\\"page\\\": \\\"92-103\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Silent Rhythm\\\"], \\\"prefix\\\": \\\"10.4324\\\", \\\"member\\\": \\\"301\\\", \\\"container-title\\\": [\\\"The Aging Body in Dance\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"deposited\\\": {\\\"date-parts\\\": [[2020, 12, 25]], \\\"date-time\\\": \\\"2020-12-25T06:25:19Z\\\", \\\"timestamp\\\": 1608877519000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.taylorfrancis.com/books/9781315515328/chapters/10.4324/9781315515335-14\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2017, 1, 6]]}, \\\"ISBN\\\": [\\\"9781315515335\\\"], \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.4324/9781315515335-14\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2017, 1, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2ef1075af884ac3c6fbd1a98c31d019d78142859e58c336e88d8ef8a74686297\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4324/9781315515335-14\"]}",
+      "id": "source-3a360bed53d540e3",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.4324%2F9781315515335-14",
+      "version": 82,
+      "time": "2026-09-25T10:28:23.899887+00:00"
+    },
+    "source-4dc986f31b674849": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=cognitive+mechanisms+of+rhythmic+coordination+in+dance&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2320899008\\\", \\\"doi\\\": \\\"https://doi.org/10.1098/rstb.2013.0394\\\", \\\"title\\\": \\\"Rhythm in joint action: psychological and neurophysiological mechanisms for real-time interpersonal coordination\\\", \\\"publication_year\\\": 2014, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 473, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://www.ncbi.nlm.nih.gov/pmc/articles/4240961\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1098/rstb.2013.0394\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1098/rstb.2013.0394\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S91660768\\\", \\\"display_name\\\": \\\"Philosophical Transactions of the Royal Society B Biological Sciences\\\", \\\"issn_l\\\": \\\"0962-8436\\\", \\\"issn\\\": [\\\"0962-8436\\\", \\\"1471-2970\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-2\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319787\\\", \\\"host_organization_name\\\": \\\"Royal Society\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319787\\\"], \\\"host_organization_lineage_names\\\": [\\\"Royal Society\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Philosophical Transactions of the Royal Society B: Biological Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Human interaction often requires simultaneous precision and flexibility in the coordination of rhythmic behaviour between individuals engaged in joint activity, for example, playing a musical duet or dancing with a partner. This review article addresses the psychological processes and brain mechanisms that enable such rhythmic interpersonal coordination. First, an overview is given of research on the cognitive-motor processes that enable individuals to represent joint action goals and to anticipate, attend and adapt to other's actions in real time. Second, the neurophysiological mechanisms that underpin rhythmic interpersonal coordination are sought in studies of sensorimotor and cognitive processes that play a role in the representation and integration of self- and other-related actions within and between individuals' brains. Finally, relationships between social-psychological factors and rhythmic interpersonal coordination are considered from two perspectives, one concerning how social-cognitive tendencies (e.g. empathy) affect coordination, and the other concerning how coordination affects interpersonal affiliation, trust and prosocial behaviour. Our review highlights musical ensemble performance as an ecologically valid yet readily controlled domain for investigating rhythm in joint action.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2076825472\\\", \\\"doi\\\": \\\"https://doi.org/10.3758/bf03206433\\\", \\\"title\\\": \\\"Sensorimotor synchronization: A review of the tapping literature\\\", \\\"publication_year\\\": 2005, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1490, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3758/bf03206433\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.3758/bf03206433\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S138679565\\\", \\\"display_name\\\": \\\"Psychonomic Bulletin & Review\\\", \\\"issn_l\\\": \\\"1069-9384\\\", \\\"issn\\\": [\\\"1069-9384\\\", \\\"1531-5320\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Psychonomic Bulletin &amp; Review\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2338467621\\\", \\\"doi\\\": \\\"https://doi.org/10.1038/srep20612\\\", \\\"title\\\": \\\"Individual Differences in Rhythmic Cortical Entrainment Correlate with Predictive Behavior in Sensorimotor Synchronization\\\", \\\"publication_year\\\": 2016, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 778, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.nature.com/articles/srep20612.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1038/srep20612\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1038/srep20612\\\", \\\"pdf_url\\\": \\\"https://www.nature.com/articles/srep20612.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S196734849\\\", \\\"display_name\\\": \\\"Scientific Reports\\\", \\\"issn_l\\\": \\\"2045-2322\\\", \\\"issn\\\": [\\\"2045-2322\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"doyens\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319908\\\", \\\"host_organization_name\\\": \\\"Nature Portfolio\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319908\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Nature Portfolio\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Scientific Reports\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The current study aims at characterizing the mechanisms that allow humans to entrain the mind and body to incoming rhythmic sensory inputs in real time. We addressed this unresolved issue by examining the relationship between covert neural processes and overt behavior in the context of musical rhythm. We measured temporal prediction abilities, sensorimotor synchronization accuracy and neural entrainment to auditory rhythms as captured using an EEG frequency-tagging approach. Importantly, movement synchronization accuracy with a rhythmic beat could be explained by the amplitude of neural activity selectively locked with the beat period when listening to the rhythmic inputs. Furthermore, stronger endogenous neural entrainment at the beat frequency was associated with superior temporal prediction abilities. Together, these results reveal a direct link between cortical and behavioral measures of rhythmic entrainment, thus providing evidence that frequency-tagged brain activity has functional relevance for beat perception and synchronization.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2084397223\\\", \\\"doi\\\": \\\"https://doi.org/10.1371/journal.pone.0071182\\\", \\\"title\\\": \\\"Let’s Dance Together: Synchrony, Shared Intentionality and Cooperation\\\", \\\"publication_year\\\": 2013, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 566, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://doi.org/10.1371/journal.pone.0071182\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1371/journal.pone.0071182\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1371/journal.pone.0071182\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S202381698\\\", \\\"display_name\\\": \\\"PLoS ONE\\\", \\\"issn_l\\\": \\\"1932-6203\\\", \\\"issn\\\": [\\\"1932-6203\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"doyens\\\", \\\"erih-plus\\\", \\\"jufo-1\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315706\\\", \\\"host_organization_name\\\": \\\"Public Library of Science\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315706\\\"], \\\"host_organization_lineage_names\\\": [\\\"Public Library of Science\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"PLoS ONE\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Previous research has shown that the matching of rhythmic behaviour between individuals (synchrony) increases cooperation. Such synchrony is most noticeable in music, dance and collective rituals. As well as the matching of behaviour, such collective performances typically involve shared intentionality: performers actively collaborate to produce joint actions. Over three experiments we examined the importance of shared intentionality in promoting cooperation from group synchrony. Experiment 1 compared a condition in which group synchrony was produced through shared intentionality to conditions in which synchrony or asynchrony were created as a by-product of hearing the same or different rhythmic beats. We found that synchrony combined with shared intentionality produced the greatest level of cooperation. To examinef the importance of synchrony when shared intentionality is present, Experiment 2 compared a condition in which participants deliberately worked together to produce synchrony with a condition in which participants deliberately worked together to produce asynchrony. We found that synchrony combined with shared intentionality produced the greatest level of cooperation. Experiment 3 manipulated both the presence of synchrony and shared intentionality and found significantly greater cooperation with synchrony and shared intentionality combined. Path analysis supported a reinforcement of cooperation model according to which perceiving synchrony when there is a shared goal to produce synchrony provides immediate feedback for successful cooperation so reinforcing the group's cooperative tendencies. The reinforcement of cooperation model helps to explain the evolutionary conservation of traditional music and dance performances, and furthermore suggests that the collectivist values of such cultures may be an essential part of the mechanisms by which synchrony galvanises cooperative behaviours.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"be04571927f994654054ba0c71b5590f5db19f7c3f8ee7d66324e6cc03df1c4c\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1098/rstb.2013.0394\", \"doi:10.3758/bf03206433\", \"doi:10.1038/srep20612\", \"doi:10.1371/journal.pone.0071182\", \"openalex:W2320899008\", \"openalex:W2076825472\", \"openalex:W2338467621\", \"openalex:W2084397223\", \"arxiv:2013.0394\"]}",
+      "id": "source-4dc986f31b674849",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=cognitive+mechanisms+of+rhythmic+coordination+in+dance&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 82,
+      "time": "2026-09-25T10:28:25.651107+00:00"
+    },
+    "source-fc401a1ff4b64c13": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149389},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Identity (philosophy)\\\",\\\"pageid\\\":89532,\\\"size\\\":10355,\\\"wordcount\\\":1171,\\\"snippet\\\":\\\"true of x is true of y as well. Leibniz's ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\",\\\"timestamp\\\":\\\"2026-06-23T16:17:15Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3fe10d20289f6d94e164991a0ad1d8e307d91e0a381a10d697b33dec5d895593\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-fc401a1ff4b64c13",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 82,
+      "time": "2026-09-25T10:28:27.105432+00:00"
+    },
+    "source-a96ff4f5d2fb4207": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"58f621699166b4d8ba54d6016907832aa97a337e04148b78cc836af2b952cd84\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-a96ff4f5d2fb4207",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 82,
+      "time": "2026-09-25T10:28:27.798572+00:00"
+    },
+    "source-e810d320829f4a33": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mersenne prime\\\",\\\"pageid\\\":18908,\\\"size\\\":78122,\\\"wordcount\\\":6673,\\\"snippet\\\":\\\"In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\",\\\"timestamp\\\":\\\"2026-09-08T20:24:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"9399bb7d68194e7f79187a2b35f68789a92328e30b8469ed686f6d9d0454c828\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+      "id": "source-e810d320829f4a33",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+      "version": 82,
+      "time": "2026-09-25T10:28:28.533821+00:00"
+    },
+    "source-ece66376e9a04de4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of the nude in art\\\",\\\"pageid\\\":71247922,\\\"size\\\":337730,\\\"wordcount\\\":43252,\\\"snippet\\\":\\\"academic classifications of works of\\nart\\n. Nudity in\\nart\\nhas generally reflected the social standards for\\naesthetics\\nand morality of the era in which the\\\",\\\"timestamp\\\":\\\"2026-09-19T06:09:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8565c6212310025dd1e4eae2814efeb1482cbcbe1dff0cc2511072571fdace0b\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-ece66376e9a04de4",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 82,
+      "time": "2026-09-25T10:28:29.300344+00:00"
+    },
+    "r-3ca54f4279ad4ab6": {
+      "actor": "runtime",
+      "content": "{\"base_version\":82,\"inherited_commitments\":[],\"invocation\":\"w-3ca54f4279ad4ab6\",\"previous_head\":\"be0f4c6455f221d4f6cb8f584159c21af763696b7865c120b360569b7bc9572d\",\"process_id\":2294,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-3ca54f4279ad4ab6",
+      "source": "runtime:continuity",
+      "version": 82,
+      "time": "2026-09-25T10:28:31.141141+00:00"
     }
   },
   "journal": [
@@ -9195,6 +9257,12 @@
       "invocation": "w-dcf8b3fdde634199",
       "title": "Initiating Research on Cognitive Mechanisms in Dance",
       "summary": "The 'dance-rhythm-cognition' project is marked as synthesis-ready due to inherited context; however, the currently available evidence (metadata regarding diagnostic reasoning in medicine) is not relevant to the domain of dance and rhythmic cognition. I am initiating a targeted research search to identify relevant cognitive and anthropological sources to build a valid foundation for this project."
+    },
+    {
+      "cycle": 83,
+      "invocation": "w-3ca54f4279ad4ab6",
+      "title": "Dance: Provisional Rhythmic Coordination Synthesis",
+      "summary": "This cycle focuses on the dance project, synthesizing available bibliographic leads into a provisional notebook to establish a research baseline."
     }
   ],
   "posts": {
@@ -59207,12 +59275,454 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-3ca54f4279ad4ab6": {
+      "base_version": 82,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 19670,
+        "delivered_request_chars": 46236,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 95535,
+        "working_set_chars": 4032
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-3ca54f4279ad4ab6",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 82,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "epistemology-belief-justification-incomplete-evidence",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 3,
+              "queued_research": 0
+            },
+            "title": "Justification under Incomplete Evidence"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "dance-rhythm-cognition",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Rhythmic Coordination"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "neurodiversity-paradigm-foundations",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Foundations of Neurodiversity Paradigm"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2294,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "7377e1e4fd87b0bb804391a800baa2669e0dc90224fb34f2deed84a6abfae0f1",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f60fd568868a4d42"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f60fd568868a4d42",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f7fc089139bd4b4c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f7fc089139bd4b4c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-82c87c653e2a4e2e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-82c87c653e2a4e2e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ee894b1eb9424479"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ee894b1eb9424479",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b1f7f1c3e8f9470d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1f7f1c3e8f9470d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3a360bed53d540e3"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3a360bed53d540e3",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f60fd568868a4d42",
+          "source-f7fc089139bd4b4c",
+          "source-82c87c653e2a4e2e",
+          "source-ee894b1eb9424479",
+          "source-b1f7f1c3e8f9470d",
+          "source-3a360bed53d540e3"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 7,
+          "evidence_count": 8,
+          "trigger_counts": {
+            "notebook_revised": 1,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "dance"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "epistemology"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "epistemology": [
+            {
+              "id": "epistemology-belief-justification-incomplete-evidence",
+              "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+              "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "dance",
+        "temporal": {
+          "anchor_seq": 2110,
+          "anchor_time": "2026-09-25T10:28:29.791729+00:00",
+          "anchor_version": 82,
+          "effective_seconds": 38467.316791
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 279.373311,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 38467.316791,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T10:28:29.791729+00:00",
+        "previous_anchor_time": "2026-09-25T10:23:50.418418+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 279.373311
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19670,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 7,
+        "retrieval_evidence_count": 8,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 1,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 4032,
+        "working_to_delivered_ratio": 0.205
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodiversity-paradigm-foundations",
+            "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+            "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+            "title": "Foundations of Neurodiversity Paradigm"
+          },
+          {
+            "id": "epistemology-belief-justification-incomplete-evidence",
+            "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+            "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+            "title": "Justification under Incomplete Evidence"
+          },
+          {
+            "id": "dance-rhythm-cognition",
+            "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+            "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?",
+            "title": "Cognitive Mechanisms of Rhythmic Coordination"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-visual-art-incongruity-01",
+            "project": "visual-art-perception-mechanism",
+            "provenance": [
+              "source-d433f7f88da14a8b",
+              "source-ecdb3112fdd94b46"
+            ],
+            "revision": 1,
+            "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+            "title": "Incongruity-Resolution in Aesthetic Reception"
+          },
+          {
+            "id": "notebook-endo-thyroid-provisional-02",
+            "project": "endo-thyroid-neuro",
+            "provenance": [
+              "source-175d044b8a474c62"
+            ],
+            "revision": 1,
+            "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+            "title": "Metabolic and Systemic Modulations of Neurological Function"
+          },
+          {
+            "id": "nb-neurodiversity-foundations-01",
+            "project": "neurodiversity-paradigm-foundations",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 2,
+            "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+            "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+          },
+          {
+            "id": "nb-epistemology-mapping-01",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-b2790f66d7984cbe",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+            "title": "Initial Mapping of Epistemological Sources"
+          },
+          {
+            "id": "nb-epistemology-justification-001",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-fb2f23f9caf94381",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 1,
+            "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+            "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+          },
+          {
+            "id": "nb-epistemology-incongruity-002",
+            "project": "epistemology-belief-justification-incomplete-evidence",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+            "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T10:28:31.659393+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7112,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 50182,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T10:28:53.379501+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
   "squirrel": {
     "counters": {
       "consciousness": 1,
+      "dance": 0,
       "endocrinology": 1,
       "entropy": 2,
       "epistemology": 0,
@@ -59224,35 +59734,22 @@
       "quantum_mechanics": 5,
       "visual_art": 0
     },
-    "deferred": {
-      "epistemology": {
-        "cause": "attention_saturation",
-        "deferred_by": "w-bc766334275b47ad",
-        "other_topic_attempts": 2,
-        "parked_projects": [
-          {
-            "id": "epistemology-belief-justification-incomplete-evidence",
-            "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
-            "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
-          }
-        ],
-        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-        "release_condition": "accepted notebook or ordinary publication on another topic"
-      }
-    },
+    "deferred": {},
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "dance",
-      "durable_progress": false,
+      "durable_progress": true,
       "hard_rejection": false,
-      "invocation": "w-dcf8b3fdde634199",
-      "restored_topics": [],
+      "invocation": "w-3ca54f4279ad4ab6",
+      "restored_topics": [
+        "epistemology"
+      ],
       "selected_topic": "dance",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 2,
+      "accepted_streak": 3,
       "topic": "dance"
     }
   },
@@ -59963,27 +60460,42 @@
       "domain": "dance",
       "no_progress": 1,
       "routes": [
-        "api.crossref.org:discovery"
+        "api.crossref.org:discovery",
+        "api.crossref.org:source",
+        "api.openalex.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.4324/9781315515335-14",
         "doi:10.1007/978-3-031-19451-1_8",
         "doi:10.1080/17432979.2026.2714785",
-        "doi:10.5040/9798881892104.ch-005"
+        "doi:10.5040/9798881892104.ch-005",
+        "doi:10.1098/rstb.2013.0394",
+        "doi:10.3758/bf03206433",
+        "doi:10.1038/srep20612",
+        "doi:10.1371/journal.pone.0071182",
+        "openalex:W2320899008",
+        "openalex:W2076825472",
+        "openalex:W2338467621",
+        "openalex:W2084397223",
+        "arxiv:2013.0394"
       ],
       "last_receipt": {
-        "evidence": "source-2ccf96ded5dc4da2",
+        "evidence": "source-4dc986f31b674849",
         "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.4324/9781315515335-14",
-          "doi:10.1007/978-3-031-19451-1_8",
-          "doi:10.1080/17432979.2026.2714785",
-          "doi:10.5040/9798881892104.ch-005"
+          "doi:10.1098/rstb.2013.0394",
+          "doi:10.3758/bf03206433",
+          "doi:10.1038/srep20612",
+          "doi:10.1371/journal.pone.0071182",
+          "openalex:W2320899008",
+          "openalex:W2076825472",
+          "openalex:W2338467621",
+          "openalex:W2084397223",
+          "arxiv:2013.0394"
         ],
-        "research_id": "res-dance-rhythm-001",
-        "route": "api.crossref.org:discovery",
+        "research_id": "res-dance-001",
+        "route": "api.openalex.org:discovery",
         "stage": "discovery"
       }
     }
@@ -60410,6 +60922,26 @@
       "updated_version": 79,
       "updated_by": "w-1fd7671000fa4b81",
       "domain": "epistemology"
+    },
+    "nb-dance-rhythm-001": {
+      "evidence": [
+        "source-3a360bed53d540e3",
+        "source-f60fd568868a4d42"
+      ],
+      "findings": "The sources [source-3a360bed53d540e3] and [source-f60fd568868a4d42] provide bibliographic anchors for investigating the intersection of rhythmic coordination and dance. Current evidence consists of metadata/abstracts, which confirm the existence of scholarly literature on the subject but do not yet provide the detailed mechanism-level data required to analyze specific cognitive or social processes.",
+      "id": "nb-dance-rhythm-001",
+      "limitations": "The synthesis is restricted to bibliographic metadata. I lack full-paper access for [source-3a360bed53d540e3] and [source-f60fd568868a4d42]. Therefore, I cannot definitively claim how these sources define rhythmic mechanisms.",
+      "next_questions": "Future research requires access to the full texts or detailed summaries of the identified sources to extract substantive cognitive models of rhythmic coordination in dance.",
+      "project": "dance-rhythm-cognition",
+      "reason": "Establishing a provisional notebook anchors the project's evidence and justifies future retrieval attempts for substantive paper content.",
+      "summary": "This provisional synthesis acknowledges the available bibliographic markers for studying rhythm in dance while noting the limitation that current sources are restricted to metadata and abstracts.",
+      "title": "Provisional Synthesis: Rhythmic Coordination and Dance",
+      "type": "notebook",
+      "revision": 1,
+      "created_version": 83,
+      "updated_version": 83,
+      "updated_by": "w-3ca54f4279ad4ab6",
+      "domain": "dance"
     }
   },
   "research": {
@@ -61168,8 +61700,9 @@
       "query": "cognitive mechanisms of rhythmic coordination in dance",
       "reason": "Existing evidence in the project context is unrelated to the dance domain. Targeted literature on rhythm perception, movement coordination, and social context is required to establish a valid evidence base.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-dcf8b3fdde634199"
+      "status": "collected",
+      "created_by": "w-dcf8b3fdde634199",
+      "evidence": "source-4dc986f31b674849"
     }
   },
   "research_topics": [
@@ -61369,9 +61902,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T10:23:50.418418+00:00",
-    "anchor_version": 81,
-    "anchor_seq": 2094,
-    "effective_seconds": 38187.94348
+    "anchor_time": "2026-09-25T10:28:29.791729+00:00",
+    "anchor_version": 82,
+    "anchor_seq": 2110,
+    "effective_seconds": 38467.316791
   }
 }
