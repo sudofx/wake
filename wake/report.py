@@ -744,9 +744,11 @@ def export(store, destination="site", experiment=None, operation=None):
         atomic_write(target / "rejected.html", _human_page(
             "Rejected & withheld drafts", "What was proposed, why it stopped, and what was preserved.",
             rejected_html(state, events), head, "events.jsonl", "events.md"))
-        from .provenance import build_map
+        from .provenance import build_map, build_map3d_projection
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
+        graph3d = build_map3d_projection(graph)
+        graph3d_json = json.dumps(graph3d, ensure_ascii=False)
         map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         map_page = map_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
         map_page = map_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
@@ -758,8 +760,8 @@ def export(store, destination="site", experiment=None, operation=None):
         map3d_page = map3d_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
         map3d_page = map3d_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         map3d_page = map3d_page.replace("/* MAP3D_SCRIPT */", (assets / "map3d.js").read_text())
-        map3d_page = map3d_page.replace("MAP_DATA", graph_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
-        atomic_write(target / "map3d-data.json", graph_json)
+        map3d_page = map3d_page.replace("MAP_DATA", graph3d_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+        atomic_write(target / "map3d-data.json", graph3d_json)
         atomic_write(target / "map3d.html", map3d_page)
         atomic_write(target / "index.html", page)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}

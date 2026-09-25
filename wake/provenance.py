@@ -211,3 +211,47 @@ def build_map(state, events, head):
                      "topic_labels": topic_labels,
                      "principle": "The record is auditable. The record is not thereby proven correct.",
                      "shadow_note": "Character ratios are observational instrumentation, not token savings or proof of behavioral equivalence."}}
+
+
+# 3-D map is a presentation projection, not a second durable record. Keep only
+# fields the interactive constellation actually reads; full provenance remains
+# available in map-data.json, state.json, and events.jsonl.
+MAP3D_DETAIL_FIELDS = (
+    "id", "title", "summary", "lede", "statement", "question", "reason",
+    "status", "domain", "time", "updated_version", "created_version",
+    "as_of_cycle", "updated_by", "created_by", "resolved_by", "cycle",
+    "version", "provider", "model",
+)
+
+
+def build_map3d_projection(graph):
+    """Return the compact, behavior-preserving graph consumed by the 3-D map."""
+    nodes = []
+    for item in graph.get("nodes", []):
+        detail = item.get("detail") if isinstance(item.get("detail"), dict) else {}
+        compact_detail = {
+            key: deepcopy(detail[key])
+            for key in MAP3D_DETAIL_FIELDS
+            if key in detail
+        }
+        nodes.append({
+            "id": item["id"],
+            "kind": item["kind"],
+            "title": item.get("title", item["id"]),
+            "detail": compact_detail,
+        })
+    edges = [
+        {"source": item["source"], "target": item["target"]}
+        for item in graph.get("edges", [])
+        if item.get("source") and item.get("target")
+    ]
+    meta = graph.get("meta", {})
+    return {
+        "nodes": nodes,
+        "edges": edges,
+        "meta": {
+            key: deepcopy(meta[key])
+            for key in ("version", "schema_version", "topic_colors", "topic_labels")
+            if key in meta
+        },
+    }
