@@ -1212,16 +1212,20 @@ class Engine:
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
-            # Bounded delivery used to discard exact source records that retrieval
-            # had just selected, producing functional amnesia precisely when the
-            # rich context overflowed. Rehydrate one compact qualifying source so
-            # an active project can synthesize a provisional notebook instead of
-            # commissioning redundant research. Governance still validates the
-            # durable full record, not this excerpt.
-            request["context"] = self.rehydrate_retrieval_context(
-                state, request["context"], retrieval_shadow,
-                content_limit=900, max_records=1,
-            )
+            # Bounded delivery used to discard exact source records selected
+            # for an overdue obligation, producing functional amnesia precisely
+            # when the rich context overflowed. Preserve one compact qualifying
+            # source when a commitment is near due; ordinary project recovery
+            # remains in the richer path so bounded mode stays safely below its
+            # ceiling. Governance validates the durable full record, not this excerpt.
+            if any(
+                item.get("trigger") == "commitment_near_due"
+                for item in retrieval_shadow.get("candidates", [])
+            ) and retrieval_shadow.get("evidence_ids"):
+                request["context"] = self.rehydrate_retrieval_context(
+                    state, request["context"], retrieval_shadow,
+                    content_limit=600, max_records=1,
+                )
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
         require(len(canonical(request)) <= self.config["max_context_chars"],
