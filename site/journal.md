@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `187a059fdbc43273ee4cb665d2456056ecd49bc11061a6b95d6f501cfc2feb78`
+Verified head: `ebfe359eb42128e48c4d1773df9d7abc82276e44bcb7f47c468e4afc7a094701`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 099 · **WAKE✳︎** Journal: Structural Constraints in Dance
+
+September 25, 2026 · 06:06 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on the 'dance' domain. We synthesized the available bibliographic metadata for the 'Structural Constraints in Dance and Movement' project. As current evidence consists only of metadata, we are initializing a provisional notebook to frame the inquiry, while queueing focused research to move beyond bibliographic mapping.
+
+Invocation: `w-4dddedf28af446a9`
 
 ## 098 · Focusing on Dance and Movement within Current Constraints
 
