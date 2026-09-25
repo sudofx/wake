@@ -5,7 +5,7 @@
 **Version:** 84  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `faa09f328d6f9b336e3a34b0dd90fbf6ba8d1503d9e72c17fca5b611fd70f044`
+**Verified head:** `c0f9c6f214b04534a706ee713a35bdab84e535f450d68af2c723bec4c7a0dde2`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1197,38 +1197,36 @@ _None recorded._
 {
   "project": "dance-rhythm-cognition",
   "domain": "dance",
-  "no_progress": 0,
+  "no_progress": 1,
   "routes": [
     "api.crossref.org:discovery",
     "api.crossref.org:source",
-    "api.openalex.org:discovery"
+    "api.openalex.org:discovery",
+    "api.datacite.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1080/17432979.2026.2714785",
-    "doi:10.5040/9798881892104.ch-005",
-    "doi:10.1098/rstb.2013.0394",
-    "doi:10.3758/bf03206433",
-    "doi:10.1038/srep20612",
-    "doi:10.1371/journal.pone.0071182",
-    "openalex:W2320899008",
-    "openalex:W2076825472",
-    "openalex:W2338467621",
-    "openalex:W2084397223",
-    "arxiv:2013.0394",
-    "doi:10.1007/springer_crossmark_policy"
+    "doi:10.1007/springer_crossmark_policy",
+    "doi:10.1080/policies-text-data-mining",
+    "doi:10.1080/tandf_crossmark_01",
+    "doi:10.1080/17432979.2024.2335252",
+    "doi:10.1007/s10465-019-09310-w",
+    "doi:10.1080/1750984x.2025.2471759",
+    "doi:10.1016/j.jad.2024.01.089",
+    "doi:10.3389/fpsyg.2025.1668357",
+    "doi:10.1002/da.20686",
+    "doi:10.7202/1120368ar",
+    "doi:10.1023/a:1022920815305",
+    "doi:10.7551/mitpress/6730.001.0001"
   ],
   "last_receipt": {
-    "evidence": "source-f535f6171025430e",
-    "outcome": "progress",
-    "persistent_identifiers": [
-      "doi:10.1007/978-3-031-19451-1_8",
-      "doi:10.1007/springer_crossmark_policy"
-    ],
-    "research_id": "res-dance-001",
-    "route": "api.crossref.org:source",
-    "stage": "substantive_source"
+    "evidence": "source-175bbf4171a34a8d",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-dance-rhythm-cog-002",
+    "route": "api.datacite.org:discovery",
+    "stage": "discovery"
   }
 }
 ```
@@ -1244,7 +1242,7 @@ _None recorded._
 ```json
 {
   "consciousness": 1,
-  "dance": 0,
+  "dance": 1,
   "endocrinology": 1,
   "entropy": 2,
   "epistemology": 0,
@@ -1271,11 +1269,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "dance",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-c90d60fc07264111",
+  "hard_rejection": true,
+  "invocation": "w-a6433dc8c6854f81",
   "restored_topics": [],
   "selected_topic": "dance",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -52964,6 +52962,442 @@ _None recorded._
 }
 ```
 
+### `w-a6433dc8c6854f81`
+
+```json
+{
+  "base_version": 84,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 18701,
+    "delivered_request_chars": 47173,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 102340,
+    "working_set_chars": 4020
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-a6433dc8c6854f81",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 84,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "dance-rhythm-cognition",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurodiversity-paradigm-foundations",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Foundations of Neurodiversity Paradigm"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2257,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "4c424440d48fdccd7f04df6d02693deb5dcd1ae8e56f012097bef728401c9e47",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f7fc089139bd4b4c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f7fc089139bd4b4c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-82c87c653e2a4e2e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-82c87c653e2a4e2e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ee894b1eb9424479"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ee894b1eb9424479",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1f7f1c3e8f9470d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1f7f1c3e8f9470d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f535f6171025430e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b4a60e211150449b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b4a60e211150449b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f7fc089139bd4b4c",
+      "source-82c87c653e2a4e2e",
+      "source-ee894b1eb9424479",
+      "source-b1f7f1c3e8f9470d",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "dance"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "dance",
+    "temporal": {
+      "anchor_seq": 2140,
+      "anchor_time": "2026-09-25T10:39:00.911589+00:00",
+      "anchor_version": 84,
+      "effective_seconds": 39098.436651
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 281.698993,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 39098.436651,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T10:39:00.911589+00:00",
+    "previous_anchor_time": "2026-09-25T10:34:19.212596+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 281.698993
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18701,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4020,
+    "working_to_delivered_ratio": 0.215
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neurodiversity-paradigm-foundations",
+        "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+        "title": "Foundations of Neurodiversity Paradigm"
+      },
+      {
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+        "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "id": "dance-rhythm-cognition",
+        "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+        "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?",
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      },
+      {
+        "id": "nb-neurodiversity-foundations-01",
+        "project": "neurodiversity-paradigm-foundations",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 2,
+        "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+        "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+      },
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      },
+      {
+        "id": "nb-epistemology-justification-001",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-fb2f23f9caf94381",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+        "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+      },
+      {
+        "id": "nb-epistemology-incongruity-002",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+        "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+      },
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-3a360bed53d540e3",
+          "source-f60fd568868a4d42"
+        ],
+        "revision": 1,
+        "summary": "This provisional synthesis acknowledges the available bibliographic markers for studying rhythm in dance while noting the limitation that current sources are restricted to metadata and abstracts.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-25T10:39:02.754639+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7286,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51503,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T10:39:24.629970+00:00",
+  "reason": "Notebook revisions need at least two distinct retrieved source URLs",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -66740,6 +67174,103 @@ _None recorded._
 }
 ```
 
+### `source-b4a60e211150449b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1080%2F17432979.2026.2714785\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 8, 25]], \\\"date-time\\\": \\\"2026-08-25T10:19:43Z\\\", \\\"timestamp\\\": 1787653183991, \\\"version\\\": \\\"build-2736575974\\\"}, \\\"reference-count\\\": 26, \\\"publisher\\\": \\\"Informa UK Limited\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2026, 8, 25]], \\\"date-time\\\": \\\"2026-08-25T00:00:00Z\\\", \\\"timestamp\\\": 1787616000000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1080/policies-text-data-mining\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"www.tandfonline.com\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"Body, Movement and Dance in Psychotherapy\\\"], \\\"DOI\\\": \\\"10.1080/17432979.2026.2714785\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2026, 8, 25]], \\\"date-time\\\": \\\"2026-08-25T09:32:41Z\\\", \\\"timestamp\\\": 1787650361000}, \\\"page\\\": \\\"1-20\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1080/tandf_crossmark_01\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"The impact of dance choreography integrated with dance movement therapy on university students’ mental health and gender differences: a cross-cultural perspective\\\"], \\\"prefix\\\": \\\"10.1080\\\", \\\"author\\\": [{\\\"given\\\": \\\"Ruoyu\\\", \\\"family\\\": \\\"Wang\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Guilin University of Technology\\\", \\\"place\\\": [\\\"China\\\"]}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Xia\\\", \\\"family\\\": \\\"Shi\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"China Guangxi Shengyu Culture and Media Co., Ltd\\\", \\\"place\\\": [\\\"China\\\"]}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"301\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2026, 8, 25]]}, \\\"reference\\\": [{\\\"key\\\": \\\"e_1_3_2_2_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/17432979.2024.2335252\\\"}, {\\\"key\\\": \\\"e_1_3_2_3_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10465-019-09310-w\\\"}, {\\\"key\\\": \\\"e_1_3_2_4_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/1750984X.2025.2471759\\\"}, {\\\"key\\\": \\\"e_1_3_2_5_1\\\", \\\"first-page\\\": \\\"54\\\", \\\"article-title\\\": \\\"舞动的力量: 浅谈舞蹈动作治疗的内涵及其运用 [The power of dance: A brief discussion on the connotation and application of dance movement therapy]\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"Chen L.\\\", \\\"year\\\": \\\"2007\\\", \\\"unstructured\\\": \\\"Chen, L. (2007). 舞动的力量: 浅谈舞蹈动作治疗的内涵及其运用 [The power of dance: A brief discussion on the connotation and application of dance movement therapy]. 北京舞蹈学院学报, (4), 54–57.\\\", \\\"journal-title\\\": \\\"北京舞蹈学院学报\\\"}, {\\\"key\\\": \\\"e_1_3_2_6_1\\\", \\\"unstructured\\\": \\\"Chen Z. L. (2017). A study on the intervention of dance movement therapy on college students’ interpersonal relationships and emotional psychology [舞蹈治疗对大学生人际关系及情绪心理的干预研究 [Master’s thesis]. Shanghai University of Sport. ].\\\"}, {\\\"key\\\": \\\"e_1_3_2_7_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.jad.2024.01.089\\\"}, {\\\"key\\\": \\\"e_1_3_2_8_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3389/fpsyg.2025.1668357\\\"}, {\\\"key\\\": \\\"e_1_3_2_9_1\\\", \\\"unstructured\\\": \\\"Han K. (2015). Research on the theory and application of dance therapy [舞蹈治疗的理论及其运用的研究 [Unpublished master’s thesis]. Wuhan Sports University.\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"e_1_3_2_10_1\\\", \\\"first-page\\\": \\\"45\\\", \\\"article-title\\\": \\\"The effect of dance movement therapy on improving community consciousness of low-income adolescents: Focusing on sense of belonging and public consciousness\\\", \\\"volume\\\": \\\"1\\\", \\\"author\\\": \\\"Heo S. H.\\\", \\\"year\\\": \\\"2015\\\", \\\"unstructured\\\": \\\"Heo, S. H., & Jung, Y. H. (2015). The effect of dance movement therapy on improving community consciousness of low-income adolescents: Focusing on sense of belonging and public consciousness. Korea Exhibition Industry Convergence Research Institute, 1(1), 45–62.\\\", \\\"journal-title\\\": \\\"Korea Exhibition Industry Convergence Research Institute\\\"}, {\\\"key\\\": \\\"e_1_3_2_11_1\\\", \\\"author\\\": \\\"Institute of Psychology, Chinese Academy of Sciences\\\", \\\"year\\\": \\\"2022\\\", \\\"unstructured\\\": \\\"Institute of Psychology, Chinese Academy of Sciences (2022). Report on national mental health development in China (2021-2022). Social Sciences Academic Press.\\\", \\\"journal-title\\\": \\\"Report on national mental health development in China (2021-2022)\\\"}, {\\\"key\\\": \\\"e_1_3_2_12_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/da.20686\\\"}, {\\\"key\\\": \\\"e_1_3_2_13_1\\\", \\\"unstructured\\\": \\\"Kim K. B. (2002). A study on dance movement therapy through creative expression [Unpublished master’s thesis]. Sejong University.\\\"}, {\\\"key\\\": \\\"e_1_3_2_14_1\\\", \\\"unstructured\\\": \\\"Lang L. F. (2017). Feasibility study on offering dance therapy courses in medical colleges [舞蹈治疗法在高等医学院设置的可行性研究 [Unpublished master’s thesis]. Northeast Normal University.\\\"}, {\\\"issue\\\": \\\"3\\\", \\\"key\\\": \\\"e_1_3_2_15_1\\\", \\\"first-page\\\": \\\"123\\\", \\\"article-title\\\": \\\"The effect of aerobics dance participation on social psychological health of female college students\\\", \\\"volume\\\": \\\"14\\\", \\\"author\\\": \\\"Lee S. I.\\\", \\\"year\\\": \\\"2002\\\", \\\"unstructured\\\": \\\"Lee, S. I., Lee, S. G., & Kim, J. Y. (2002). The effect of aerobics dance participation on social psychological health of female college students. Journal of Sport Science Studies, 14(3), 123–138.\\\", \\\"journal-title\\\": \\\"Journal of Sport Science Studies\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"e_1_3_2_16_1\\\", \\\"first-page\\\": \\\"112\\\", \\\"article-title\\\": \\\"Knowledge map and frontier progress of domestic dance therapy research from 2000 to 2023\\\", \\\"author\\\": \\\"Liu Y.\\\", \\\"year\\\": \\\"2024\\\", \\\"unstructured\\\": \\\"Liu, Y., & Zhao, M. (2024). Knowledge map and frontier progress of domestic dance therapy research from 2000 to 2023. Journal of Beijing Dance Academy, (4), 112–121.\\\", \\\"journal-title\\\": \\\"Journal of Beijing Dance Academy\\\"}, {\\\"key\\\": \\\"e_1_3_2_17_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.7202/1120368ar\\\"}, {\\\"key\\\": \\\"e_1_3_2_18_1\\\", \\\"unstructured\\\": \\\"Shang J. (2023). A study on the effect of dance therapy on college students’ interpersonal relationships and emotional psychology [Unpublished [doctoral dissertation]. Semyung University.\\\"}, {\\\"key\\\": \\\"e_1_3_2_19_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/A:1022920815305\\\"}, {\\\"key\\\": \\\"e_1_3_2_20_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.7551/mitpress/6730.001.0001\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"e_1_3_2_21_1\\\", \\\"first-page\\\": \\\"248\\\", \\\"article-title\\\": \\\"The effect of general education courses based on dance therapy concepts on emotion regulation of college students\\\", \\\"volume\\\": \\\"46\\\", \\\"author\\\": \\\"Wang L.\\\", \\\"year\\\": \\\"2025\\\", \\\"unstructured\\\": \\\"Wang, L., Zhang, Q., & Li, S. (2025). The effect of general education courses based on dance therapy concepts on emotion regulation of college students. 中国学校卫生, 46(2), 248–252.\\\", \\\"journal-title\\\": \\\"中国学校卫生\\\"}, {\\\"key\\\": \\\"e_1_3_2_22_1\\\", \\\"volume-title\\\": \\\"对孤独症儿童的舞蹈治疗 [Dance therapy for children with autism]\\\", \\\"author\\\": \\\"Wang X. P.\\\", \\\"year\\\": \\\"2021\\\", \\\"unstructured\\\": \\\"Wang, X. P. (2021). 对孤独症儿童的舞蹈治疗 [Dance therapy for children with autism]. Zhengzhou Normal Education Press.\\\"}, {\\\"key\\\": \\\"e_1_3_2_23_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.aip.2024.102147\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"e_1_3_2_24_1\\\", \\\"first-page\\\": \\\"78\\\", \\\"article-title\\\": \\\"A study on the experience of dance movement therapy classes for graduate students majoring in dance\\\", \\\"volume\\\": \\\"25\\\", \\\"author\\\": \\\"Yoon H. S.\\\", \\\"year\\\": \\\"2021\\\", \\\"unstructured\\\": \\\"Yoon, H. S. (2021). A study on the experience of dance movement therapy classes for graduate students majoring in dance. Korean Society of Dance Science, 25(2), 78–95. DOI not available)\\\", \\\"journal-title\\\": \\\"Korean Society of Dance Science\\\"}, {\\\"key\\\": \\\"e_1_3_2_25_1\\\", \\\"first-page\\\": \\\"136\\\", \\\"article-title\\\": \\\"舞蹈治疗在舞蹈教学中的应用研究 [Application research of dance therapy in dance teaching]\\\", \\\"volume\\\": \\\"12\\\", \\\"author\\\": \\\"Zhang J. H.\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Zhang, J. H. (2018). 舞蹈治疗在舞蹈教学中的应用研究 [Application research of dance therapy in dance teaching]. 黄河之声, (12), 136–137.\\\", \\\"journal-title\\\": \\\"黄河之声\\\"}, {\\\"issue\\\": \\\"10\\\", \\\"key\\\": \\\"e_1_3_2_26_1\\\", \\\"first-page\\\": \\\"835\\\", \\\"article-title\\\": \\\"A meta-analysis of the effect of dance movement therapy on mental health of Chinese college students\\\", \\\"volume\\\": \\\"38\\\", \\\"author\\\": \\\"Zhang R.\\\", \\\"year\\\": \\\"2024\\\", \\\"unstructured\\\": \\\"Zhang, R., Chen, Y., & Wu, J. (2024). A meta-analysis of the effect of dance movement therapy on mental health of Chinese college students. 中国心理卫生杂志, 38(10), 835–841.\\\", \\\"journal-title\\\": \\\"中国心理卫生杂志\\\"}, {\\\"issue\\\": \\\"8\\\", \\\"key\\\": \\\"e_1_3_2_27_1\\\", \\\"first-page\\\": \\\"1245\\\", \\\"article-title\\\": \\\"舞蹈治疗通识课程对大学生情绪调节与社会适应能力的影响 [The effect of dance therapy general education courses on emotion regulation and social adaptation of college students]\\\", \\\"volume\\\": \\\"31\\\", \\\"author\\\": \\\"Zhou Y.\\\", \\\"year\\\": \\\"2023\\\", \\\"unstructured\\\": \\\"Zhou, Y., & Sun, L. (2023). 舞蹈治疗通识课程对大学生情绪调节与社会适应能力的影响 [The effect of dance therapy general education courses on emotion regulation and social adaptation of college students]. 中国健康心理学杂志, 31(8), 1245–1251.\\\", \\\"journal-title\\\": \\\"中国健康心理学杂志\\\"}], \\\"container-title\\\": [\\\"Body, Movement and Dance in Psychotherapy\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://www.tandfonline.com/doi/pdf/10.1080/17432979.2026.2714785\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://www.tandfonline.com/doi/full-xml/10.1080/17432979.2026.2714785\\\", \\\"content-type\\\": \\\"application/xml\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://www.tandfonline.com/doi/pdf/10.1080/17432979.2026.2714785\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2026, 8, 25]], \\\"date-time\\\": \\\"2026-08-25T09:32:44Z\\\", \\\"timestamp\\\": 1787650364000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.tandfonline.com/doi/full/10.1080/17432979.2026.2714785\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2026, 8, 25]]}, \\\"references-count\\\": 26, \\\"alternative-id\\\": [\\\"10.1080/17432979.2026.2714785\\\"], \\\"URL\\\": \\\"https://doi.org/10.1080/17432979.2026.2714785\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1743-2979\\\", \\\"1743-2987\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"1743-2979\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1743-2987\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2026, 8, 25]]}, \\\"assertion\\\": [{\\\"value\\\": \\\"The publishing and review policy for this title is described in its Aims &\", \"excerpt_truncated\": true, \"source_sha256\": \"4014f3490302d0e6a547d0323d3fc530424d5d7fe583a82b80d86c6b49a6e25e\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1080/policies-text-data-mining\", \"doi:10.1080/17432979.2026.2714785\", \"doi:10.1080/tandf_crossmark_01\", \"doi:10.1080/17432979.2024.2335252\", \"doi:10.1007/s10465-019-09310-w\", \"doi:10.1080/1750984x.2025.2471759\", \"doi:10.1016/j.jad.2024.01.089\", \"doi:10.3389/fpsyg.2025.1668357\", \"doi:10.1002/da.20686\", \"doi:10.7202/1120368ar\", \"doi:10.1023/a:1022920815305\", \"doi:10.7551/mitpress/6730.001.0001\"]}",
+  "id": "source-b4a60e211150449b",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1080%2F17432979.2026.2714785",
+  "version": 84,
+  "time": "2026-09-25T10:38:53.276864+00:00"
+}
+```
+
+### `source-175bbf4171a34a8d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=cognitive+science+dance+rhythmic+coordination+imitation&page%5Bsize%5D=4\", \"error\": \"ValueError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-175bbf4171a34a8d",
+  "scope": "failed",
+  "source": "https://api.datacite.org/dois?query=cognitive+science+dance+rhythmic+coordination+imitation&page%5Bsize%5D=4",
+  "version": 84,
+  "time": "2026-09-25T10:38:56.838252+00:00"
+}
+```
+
+### `source-8df8f22555bf457e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c4d88d5ab400259263cfc9b631e2a310aaef17c0f6cb0b576116bb87929143c2\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8df8f22555bf457e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:38:58.379940+00:00"
+}
+```
+
+### `source-5f207751bc6c4f66`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formula for primes\\\",\\\"pageid\\\":509009,\\\"size\\\":30336,\\\"wordcount\\\":4689,\\\"snippet\\\":\\\"In number theory, a formula for\\nprimes\\nis a formula that outputs\\nprime\\nnumbers\\n. Such formulas for calculating\\nprimes\\ndo exist; however, they are computationally\\\",\\\"timestamp\\\":\\\"2026-07-05T18:19:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6cdc25a0abb8db38460a5ae7eccb830421afbb79f28c4cff326721b29b9f6bc0\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+  "id": "source-5f207751bc6c4f66",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:38:59.042385+00:00"
+}
+```
+
+### `source-6bebf5313a78411b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6bebf5313a78411b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:38:59.740295+00:00"
+}
+```
+
+### `source-4c55506d332b4871`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":72077,\\\"wordcount\\\":8768,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T08:45:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ba023957032a319cdfa464692a8d46f978636af6b35d4e716987e93cf623c232\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4c55506d332b4871",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:39:00.407334+00:00"
+}
+```
+
+### `r-a6433dc8c6854f81`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":84,\"inherited_commitments\":[],\"invocation\":\"w-a6433dc8c6854f81\",\"previous_head\":\"4f6c42046f68a95d89ad836a21029352d8a080c12668d729eae59c355d9dd007\",\"process_id\":2257,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-a6433dc8c6854f81",
+  "source": "runtime:continuity",
+  "version": 84,
+  "time": "2026-09-25T10:39:02.241167+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -68782,8 +69313,9 @@ _None recorded._
   "query": "cognitive science dance rhythmic coordination imitation",
   "reason": "Current project evidence is limited to generic metadata. This search aims to identify peer-reviewed sources on the cognitive mechanisms of rhythmic synchronization in dance to ground the provisional synthesis.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-c90d60fc07264111"
+  "status": "failed",
+  "created_by": "w-c90d60fc07264111",
+  "evidence": "source-175bbf4171a34a8d"
 }
 ```
 
