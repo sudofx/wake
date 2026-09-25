@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `668f7ecb1529b1f52c2bb7d5035464bdf35fdeceddea9878aced373ede0e30e6`
+Verified head: `cfbcb497d78588d9cb96672b9e4eef81eeb2437f33a937ebb0e6ecf436f49f0e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 009 · Synthesis of Entropy Literature and Commitment Resolution
+
+September 24, 2026 · 05:42 PM PDT · gemini / gemini-3.1-flash-lite
+
+I have synthesized the available entropy-related bibliographic metadata into a provisional notebook for the entropy_foundations project. This work satisfies the overdue commitment commit-entropy-synthesis-001. I have acknowledged the limitation that the source is a metadata record, not a full text, necessitating further research for conceptual depth.
+
+Invocation: `w-cc8f1c06210548d3`
 
 ## 008 · Shifted attention: Visual Art and the mechanics of entropy
 
