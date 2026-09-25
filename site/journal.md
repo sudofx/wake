@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f08bfc3be373637cc0cd38b29a936d6bdb7eb2da1480a952b456a8f298ec86e8`
+Verified head: `18da25d2ce0e24f896e9bc78a3f6f2042718634648ecb03fd8dcc31387778f33`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 108 · Prime Number Density and Error Bounds Research
+
+September 25, 2026 · 10:35 AM PDT · gemini / gemini-3.1-flash-lite
+
+Continued research on prime number distribution, focusing on the Prime Number Theorem (PNT) and its error terms. Previous provisional synthesis is being updated to investigate the implications of specific error bounds on local prime density estimations, as part of the focus on the prime_numbers topic.
+
+Invocation: `w-8194f45ed4f341ef`
 
 ## 107 · Investigating Prime Number Distribution and PNT Error Bounds
 
