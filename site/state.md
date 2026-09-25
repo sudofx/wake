@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 6  
+**Version:** 7  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `2e2f5a80554a97d63631a3cc6efec77b7891968c3d6c6878fa47be96269321ef`
+**Verified head:** `accb9cb442302b1929988ec67b3894184f4bb9e3453993308707e99258ede11b`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -76,32 +76,46 @@ _None recorded._
 {
   "project": "entropy_foundations",
   "domain": "entropy",
-  "no_progress": 8,
+  "no_progress": 0,
   "routes": [
     "api.openalex.org:source",
     "api.semanticscholar.org:discovery",
     "api.datacite.org:discovery",
     "api.crossref.org:source"
   ],
-  "capability_blocked": true,
-  "retry_after_version": 17,
+  "capability_blocked": false,
+  "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1103/physreve.60.2721",
-    "doi:10.1088/0034-4885/79/5/056001",
-    "doi:10.1088/0034-4885/79/5/056001/pdf",
-    "doi:10.1088/0034-4885/75/12/126001",
-    "doi:10.1088/0034-4885/75/12/126001/pdf",
-    "doi:10.1007/jhep08(2013)060",
-    "doi:10.1007/jhep08(2013)060.pdf",
-    "openalex:W2021820673",
-    "openalex:W1759597146",
-    "openalex:W2102277728",
-    "openalex:W2116423251"
+    "openalex:W2116423251",
+    "doi:10.1103/physrevlett.96.110405",
+    "doi:10.1103/physrevlett.96.110404",
+    "doi:10.1016/j.physleta.2005.01.060",
+    "doi:10.1088/1742-5468/2004/06/p06002",
+    "doi:10.1142/s021974990600192x",
+    "doi:10.1016/j.nuclphysb.2007.12.017",
+    "doi:10.1088/1126-6708/2007/01/090",
+    "doi:10.1016/j.nuclphysb.2008.04.024",
+    "doi:10.22323/1.091.0188",
+    "doi:10.1016/j.physletb.2004.08.072",
+    "doi:10.1007/jhep01(2011)125"
   ],
   "last_receipt": {
-    "evidence": "source-7512281a40cf436f",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-37de73467bbc40e5",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1007/jhep08(2013)060",
+      "doi:10.1103/physrevlett.96.110405",
+      "doi:10.1103/physrevlett.96.110404",
+      "doi:10.1016/j.physleta.2005.01.060",
+      "doi:10.1088/1742-5468/2004/06/p06002",
+      "doi:10.1142/s021974990600192x",
+      "doi:10.1016/j.nuclphysb.2007.12.017",
+      "doi:10.1088/1126-6708/2007/01/090",
+      "doi:10.1016/j.nuclphysb.2008.04.024",
+      "doi:10.22323/1.091.0188",
+      "doi:10.1016/j.physletb.2004.08.072",
+      "doi:10.1007/jhep01(2011)125"
+    ],
     "research_id": "res-entropy-openalex-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -115,15 +129,15 @@ _None recorded._
 {
   "project": "landauer_principle_foundations",
   "domain": "information_thermodynamics",
-  "no_progress": 2,
+  "no_progress": 3,
   "routes": [
     "api.crossref.org:discovery",
-    "api.openalex.org:discovery"
+    "api.openalex.org:discovery",
+    "api.datacite.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1088/1742-5468/2015/06/p06015",
     "doi:10.1080/00107510010018916",
     "doi:10.1088/1742-5468/2015/06/p06015/pdf",
     "doi:10.1088/1751-8121/aa86c6",
@@ -134,26 +148,17 @@ _None recorded._
     "openalex:W2510914679",
     "openalex:W2619071992",
     "openalex:W2790785914",
-    "openalex:W3098165131"
+    "openalex:W3098165131",
+    "doi:10.5281/zenodo.20416349"
   ],
   "last_receipt": {
-    "evidence": "source-09c0a5b87f8f4868",
+    "evidence": "source-5c100923971e48c8",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.1088/1742-5468/2015/06/p06015",
-      "doi:10.1088/1742-5468/2015/06/p06015/pdf",
-      "doi:10.1088/1751-8121/aa86c6",
-      "doi:10.1088/1751-8121/aa86c6/pdf",
-      "doi:10.1038/s41567-018-0070-7",
-      "doi:10.1088/1751-8113/49/14/143001",
-      "doi:10.1088/1751-8113/49/14/143001/pdf",
-      "openalex:W2510914679",
-      "openalex:W2619071992",
-      "openalex:W2790785914",
-      "openalex:W3098165131"
+      "doi:10.5281/zenodo.20416349"
     ],
-    "research_id": "res-landauer-search-002",
-    "route": "api.openalex.org:discovery",
+    "research_id": "res-landauer-v5-001",
+    "route": "api.datacite.org:discovery",
     "stage": "discovery"
   }
 }
@@ -187,7 +192,7 @@ _None recorded._
   "attention_topic": "information_thermodynamics",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-bbfc9af5ca874cab",
+  "invocation": "w-1e374dcb91db4c29",
   "restored_topics": [],
   "selected_topic": "information_thermodynamics",
   "terminal": "accepted",
@@ -199,7 +204,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 3,
+  "accepted_streak": 4,
   "topic": "information_thermodynamics"
 }
 ```
@@ -2044,6 +2049,295 @@ _None recorded._
 }
 ```
 
+### `w-1e374dcb91db4c29`
+
+```json
+{
+  "base_version": 6,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 9271,
+    "delivered_request_chars": 34644,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 58863,
+    "working_set_chars": 1374
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-1e374dcb91db4c29",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 6,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "landauer_principle_foundations",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Landauer's Principle and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "entropy_foundations",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Formulations of Entropy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2296,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "5054fa01e05c46755ed67f9348bb70beb34f104d170f9cbf9561d793574cd314",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-entropy-synthesis-001",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-37de73467bbc40e5"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-37de73467bbc40e5",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-37de73467bbc40e5"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 2,
+      "evidence_count": 1,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "unincorporated_evidence": 1
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "information_thermodynamics"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "information_thermodynamics",
+    "temporal": {
+      "anchor_seq": 129,
+      "anchor_time": "2026-09-25T00:30:58.499486+00:00",
+      "anchor_version": 6,
+      "effective_seconds": 2616.024548
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 192.327995,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 2616.024548,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T00:30:58.499486+00:00",
+    "previous_anchor_time": "2026-09-25T00:27:46.171491+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 192.327995
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 9271,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 2,
+    "retrieval_evidence_count": 1,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "unincorporated_evidence": 1
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1374,
+    "working_to_delivered_ratio": 0.1482
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy_foundations",
+        "next_step": "Query Wikipedia for foundational summaries of thermodynamic, statistical, and information entropies.",
+        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+        "title": "Formulations of Entropy"
+      },
+      {
+        "id": "landauer_principle_foundations",
+        "next_step": "Search for foundational literature and experimental evidence regarding Landauer's principle.",
+        "question": "What does Landauer's principle claim about the physical cost of erasing information, and what experimental evidence supports its interpretation?",
+        "title": "Landauer's Principle and Information Erasure"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 4,
+        "id": "commit-entropy-synthesis-001",
+        "reason": "Allows adequate time to process the findings from the new search and move toward synthesis.",
+        "task": "Review collected entropy literature and synthesize initial findings into a project notebook."
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T00:30:58.578795+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 8205,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 36849,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T00:31:11.045300+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -2725,6 +3019,103 @@ _None recorded._
 }
 ```
 
+### `source-37de73467bbc40e5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1007%2Fjhep08%282013%29060\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 22]], \\\"date-time\\\": \\\"2026-09-22T18:37:54Z\\\", \\\"timestamp\\\": 1790102274264, \\\"version\\\": \\\"4.0.1\\\"}, \\\"reference-count\\\": 109, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"8\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2013, 8, 1]], \\\"date-time\\\": \\\"2013-08-01T00:00:00Z\\\", \\\"timestamp\\\": 1375315200000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://www.springer.com/tdm\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"J. High Energ. Phys.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2013, 8]]}, \\\"DOI\\\": \\\"10.1007/jhep08(2013)060\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2013, 8, 13]], \\\"date-time\\\": \\\"2013-08-13T12:26:38Z\\\", \\\"timestamp\\\": 1376396798000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 320, \\\"title\\\": [\\\"Relative entropy and holography\\\"], \\\"prefix\\\": \\\"10.1007\\\", \\\"volume\\\": \\\"2013\\\", \\\"author\\\": [{\\\"given\\\": \\\"David D.\\\", \\\"family\\\": \\\"Blanco\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Horacio\\\", \\\"family\\\": \\\"Casini\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ling-Yan\\\", \\\"family\\\": \\\"Hung\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Robert C.\\\", \\\"family\\\": \\\"Myers\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2013, 8, 12]]}, \\\"reference\\\": [{\\\"key\\\": \\\"6582_CR1\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"110405\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.96.110405\\\", \\\"volume\\\": \\\"96\\\", \\\"author\\\": \\\"M Levin\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"M. Levin and X.-G. Wen, Detecting Topological Order in a Ground State Wave Function, Phys. Rev. Lett. 96 (2006) 110405 [ cond-mat/0510613 ].\\\", \\\"journal-title\\\": \\\"Phys. Rev. Lett.\\\"}, {\\\"key\\\": \\\"6582_CR2\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"110404\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.96.110404\\\", \\\"volume\\\": \\\"96\\\", \\\"author\\\": \\\"A Kitaev\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"A. Kitaev and J. Preskill, Topological entanglement entropy, Phys. Rev. Lett. 96 (2006) 110404 [ hep-th/0510092 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev. Lett.\\\"}, {\\\"key\\\": \\\"6582_CR3\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"22\\\", \\\"DOI\\\": \\\"10.1016/j.physleta.2005.01.060\\\", \\\"volume\\\": \\\"A 337\\\", \\\"author\\\": \\\"A Hamma\\\", \\\"year\\\": \\\"2005\\\", \\\"unstructured\\\": \\\"A. Hamma, R. Ionicioiu and P. Zanardi, Ground state entanglement and geometric entropy in the Kitaev model [rapid communication], Phys. Lett. A 337 (2005) 22 [ quant-ph/0406202 ].\\\", \\\"journal-title\\\": \\\"Phys. Lett.\\\"}, {\\\"key\\\": \\\"6582_CR4\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"06002\\\", \\\"DOI\\\": \\\"10.1088/1742-5468/2004/06/P06002\\\", \\\"volume\\\": \\\"0406\\\", \\\"author\\\": \\\"P Calabrese\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"P. Calabrese and J.L. Cardy, Entanglement entropy and quantum field theory, J. Stat. Mech. 0406 (2004) P06002 [ hep-th/0405152 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"J. Stat. Mech.\\\"}, {\\\"key\\\": \\\"6582_CR5\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"429\\\", \\\"DOI\\\": \\\"10.1142/S021974990600192X\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"P Calabrese\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"P. Calabrese and J.L. Cardy, Entanglement entropy and quantum field theory: A Non-technical introduction, Int. J. Quant. Inf. 4 (2006) 429 [ quant-ph/0505193 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Int. J. Quant. Inf.\\\"}, {\\\"key\\\": \\\"6582_CR6\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"274\\\", \\\"DOI\\\": \\\"10.1016/j.nuclphysb.2007.12.017\\\", \\\"volume\\\": \\\"B 796\\\", \\\"author\\\": \\\"IR Klebanov\\\", \\\"year\\\": \\\"2008\\\", \\\"unstructured\\\": \\\"I.R. Klebanov, D. Kutasov and A. Murugan, Entanglement as a probe of confinement, Nucl. Phys. B 796 (2008) 274 [ arXiv:0709.2140 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Nucl. Phys.\\\"}, {\\\"key\\\": \\\"6582_CR7\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"090\\\", \\\"DOI\\\": \\\"10.1088/1126-6708/2007/01/090\\\", \\\"volume\\\": \\\"01\\\", \\\"author\\\": \\\"T Nishioka\\\", \\\"year\\\": \\\"2007\\\", \\\"unstructured\\\": \\\"T. Nishioka and T. Takayanagi, AdS Bubbles, Entropy and Closed String Tachyons, JHEP 01 (2007) 090 [ hep-th/0611035 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"JHEP\\\"}, {\\\"key\\\": \\\"6582_CR8\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"458\\\", \\\"DOI\\\": \\\"10.1016/j.nuclphysb.2008.04.024\\\", \\\"volume\\\": \\\"B 802\\\", \\\"author\\\": \\\"P Buividovich\\\", \\\"year\\\": \\\"2008\\\", \\\"unstructured\\\": \\\"P. Buividovich and M. Polikarpov, Numerical study of entanglement entropy in SU(2) lattice gauge theory, Nucl. Phys. B 802 (2008) 458 [ arXiv:0802.4247 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Nucl. Phys.\\\"}, {\\\"key\\\": \\\"6582_CR9\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Y. Nakagawa, A. Nakamura, S. Motoki and V. Zakharov, Quantum entanglement in SU(3) lattice Yang-Mills theory at zero and finite temperatures, PoS(Lattice 2010)281 [ arXiv:1104.1011 ] [ INSPIRE ].\\\", \\\"DOI\\\": \\\"10.22323/1.091.0188\\\"}, {\\\"key\\\": \\\"6582_CR10\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"142\\\", \\\"DOI\\\": \\\"10.1016/j.physletb.2004.08.072\\\", \\\"volume\\\": \\\"B 600\\\", \\\"author\\\": \\\"H Casini\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"H. Casini and M. Huerta, A Finite entanglement entropy and the c-theorem, Phys. Lett. B 600 (2004) 142 [ hep-th/0405111 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Lett.\\\"}, {\\\"key\\\": \\\"6582_CR11\\\", \\\"first-page\\\": \\\"045014\\\", \\\"volume\\\": \\\"D 86\\\", \\\"author\\\": \\\"V Balasubramanian\\\", \\\"year\\\": \\\"2012\\\", \\\"unstructured\\\": \\\"V. Balasubramanian, M.B. McDermott and M. Van Raamsdonk, Momentum-space entanglement and renormalization in quantum field theory, Phys. Rev. D 86 (2012) 045014 [ arXiv:1108.3568 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR12\\\", \\\"first-page\\\": \\\"125016\\\", \\\"volume\\\": \\\"D 85\\\", \\\"author\\\": \\\"H Casini\\\", \\\"year\\\": \\\"2012\\\", \\\"unstructured\\\": \\\"H. Casini and M. Huerta, On the RG running of the entanglement entropy of a circle, Phys. Rev. D 85 (2012) 125016 [ arXiv:1202.5650 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR13\\\", \\\"first-page\\\": \\\"046006\\\", \\\"volume\\\": \\\"D 82\\\", \\\"author\\\": \\\"RC Myers\\\", \\\"year\\\": \\\"2010\\\", \\\"unstructured\\\": \\\"R.C. Myers and A. Sinha, Seeing a c-theorem with holography, Phys. Rev. D 82 (2010) 046006 [ arXiv:1006.1263 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR14\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"125\\\", \\\"DOI\\\": \\\"10.1007/JHEP01(2011)125\\\", \\\"volume\\\": \\\"01\\\", \\\"author\\\": \\\"RC Myers\\\", \\\"year\\\": \\\"2011\\\", \\\"unstructured\\\": \\\"R.C. Myers and A. Sinha, Holographic c-theorems in arbitrary dimensions, JHEP 01 (2011) 125 [ arXiv:1011.5819 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"JHEP\\\"}, {\\\"key\\\": \\\"6582_CR15\\\", \\\"unstructured\\\": \\\"R.D. Sorkin, On the Entropy of the Vacuum Outside a Horizon, in proceedings of 10th Int. Conf. on General Relativity and Gravitation, Padova, Italy, 4-9 July 1983, General Relativity and Gravitation, Vol. 1, Classical Relativity, B. Bertotti, F. de Felice and A. Pascolini eds., Consiglio Nazionale delle Ricerche, Rome, Italy (1983).\\\"}, {\\\"key\\\": \\\"6582_CR16\\\", \\\"first-page\\\": \\\"373\\\", \\\"volume\\\": \\\"D 34\\\", \\\"author\\\": \\\"L Bombelli\\\", \\\"year\\\": \\\"1986\\\", \\\"unstructured\\\": \\\"L. Bombelli, R.K. Koul, J. Lee and R.D. Sorkin, A Quantum Source of Entropy for Black Holes, Phys. Rev. D 34 (1986) 373 [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR17\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"666\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.71.666\\\", \\\"volume\\\": \\\"71\\\", \\\"author\\\": \\\"M Srednicki\\\", \\\"year\\\": \\\"1993\\\", \\\"unstructured\\\": \\\"M. Srednicki, Entropy and area, Phys. Rev. Lett. 71 (1993) 666 [ hep-th/9303048 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev. Lett.\\\"}, {\\\"key\\\": \\\"6582_CR18\\\", \\\"first-page\\\": \\\"4545\\\", \\\"volume\\\": \\\"D 48\\\", \\\"author\\\": \\\"VP Frolov\\\", \\\"year\\\": \\\"1993\\\", \\\"unstructured\\\": \\\"V.P. Frolov and I. Novikov, Dynamical origin of the entropy of a black hole, Phys. Rev. D 48 (1993) 4545 [ gr-qc/9309001 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR19\\\", \\\"first-page\\\": \\\"2700\\\", \\\"volume\\\": \\\"D 50\\\", \\\"author\\\": \\\"L Susskind\\\", \\\"year\\\": \\\"1994\\\", \\\"unstructured\\\": \\\"L. Susskind and J. Uglum, Black hole entropy in canonical quantum gravity and superstring theory, Phys. Rev. D 50 (1994) 2700 [ hep-th/9401070 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Phys. Rev.\\\"}, {\\\"key\\\": \\\"6582_CR20\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"8\\\", \\\"DOI\\\": \\\"10.12942/lrr-2011-8\\\", \\\"volume\\\": \\\"14\\\", \\\"author\\\": \\\"SN Solodukhin\\\", \\\"year\\\": \\\"2011\\\", \\\"unstructured\\\": \\\"S.N. Solodukhin, Entanglement entropy of black holes, Living Rev. Rel. 14 (2011) 8 [ arXiv:1104.3712 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Living Rev. Rel.\\\"}, {\\\"key\\\": \\\"6582_CR21\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"062\\\", \\\"DOI\\\": \\\"10.1007/JHEP02(2013)062\\\", \\\"volume\\\": \\\"02\\\", \\\"author\\\": \\\"A Almheiri\\\", \\\"year\\\": \\\"2013\\\", \\\"unstructured\\\": \\\"A. Almheiri, D. Marolf, J. Polchinski and J. Sully, Black Holes: Complementarity or Firewalls?, JHEP 02 (2013) 062 [ arXiv:1207.3123 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"JHEP\\\"}, {\\\"key\\\": \\\"6582_CR22\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"224001\\\", \\\"DOI\\\": \\\"10.1088/0264-9381/26/22/224001\\\", \\\"volume\\\": \\\"26\\\", \\\"author\\\": \\\"SD Mathur\\\", \\\"year\\\": \\\"2009\\\", \\\"unstructured\\\": \\\"S.D. Mathur, The Information paradox: A Pedagogical introduction, Class. Quant. Grav. 26 (2009) 224001 [ arXiv:0909.1038 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Class. Quant. Grav.\\\"}, {\\\"key\\\": \\\"6582_CR23\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"101301\\\", \\\"DOI\\\": \\\"10.1103/PhysRevLett.110.101301\\\", \\\"volume\\\": \\\"110\\\", \\\"author\\\": \\\"SL Braunstein\\\", \\\"year\\\": \\\"2013\\\", \\\"unstructured\\\": \\\"S.L. Braunstein, S. Pirandola and K. yczkowski, Entangled black holes as ciphers of hidden information, Physical Review Letters 110 (2013) 101301 [ arXiv:0907.1190 ] [ INSPIRE ].\\\", \\\"journal-title\\\": \\\"Physical Review Letters\\\"}, {\\\"key\\\": \\\"6582_CR24\\\", \\\"unstructured\\\": \\\"M. Van Raamsdonk, Comments on quantum gravity and entanglement, arXiv:0907.2939 [ INSPIRE ].\\\"}, {\\\"key\\\": \\\"6582_CR25\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"2323\\\", \\\"DOI\\\": \\\"10.1007/s10714-010-1034-0\\\", \\\"volume\\\": \\\"42\\\", \\\"author\\\": \\\"M Raamsdonk Van\\\", \\\"year\\\": \\\"2010\\\", \\\"unstructured\\\": \\\"M. Van Raamsdonk, Building up spacetime with quantum entanglement, Gen. Rel. Grav. 42 (2010) 2323 [ arXiv:1005.3035 ] [ INSPIRE ].\\\", \\\"journal-tit\", \"excerpt_truncated\": true, \"source_sha256\": \"339c1e7588ffd41410884cb8c18f092b2a3a2cfc97d78da74eba0162b20c1818\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1007/jhep08(2013)060\", \"doi:10.1103/physrevlett.96.110405\", \"doi:10.1103/physrevlett.96.110404\", \"doi:10.1016/j.physleta.2005.01.060\", \"doi:10.1088/1742-5468/2004/06/p06002\", \"doi:10.1142/s021974990600192x\", \"doi:10.1016/j.nuclphysb.2007.12.017\", \"doi:10.1088/1126-6708/2007/01/090\", \"doi:10.1016/j.nuclphysb.2008.04.024\", \"doi:10.22323/1.091.0188\", \"doi:10.1016/j.physletb.2004.08.072\", \"doi:10.1007/jhep01(2011)125\"]}",
+  "id": "source-37de73467bbc40e5",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1007%2Fjhep08%282013%29060",
+  "version": 6,
+  "time": "2026-09-25T00:30:53.994931+00:00"
+}
+```
+
+### `source-5c100923971e48c8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=Landauer%27s+principle+experimental+evidence+physical+cost+of+information+erasure&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.20416349\\\", \\\"doi\\\": \\\"10.5281/zenodo.20416349\\\", \\\"titles\\\": [{\\\"title\\\": \\\"ΔC! ⇄ ΔM ⇄ ΔL: Vortex‑Driven Emergence from the super‑infinite Chaos Substrate via Matryoshka fractal Filtering, Kakeya Geometric Constraints, and de Moivre Snap‑Ins\\\"}, {\\\"titleType\\\": \\\"AlternativeTitle\\\", \\\"title\\\": \\\"ΔC! ⇄ ΔM ⇄ ΔL: Hydrodynamic Resolution of the Vacuum Catastrophe: Vortex-Driven Emergence and Non-Linear Substrate Saturation\\\"}], \\\"publisher\\\": \\\"Zenodo\\\", \\\"publicationYear\\\": 2026, \\\"types\\\": {\\\"schemaOrg\\\": \\\"CreativeWork\\\", \\\"resourceTypeGeneral\\\": \\\"Preprint\\\", \\\"citeproc\\\": \\\"article\\\", \\\"bibtex\\\": \\\"misc\\\", \\\"ris\\\": \\\"GEN\\\", \\\"resourceType\\\": \\\"\\\"}, \\\"subjects\\\": [{\\\"subject\\\": \\\"Chaos\\\"}, {\\\"subject\\\": \\\"Infinite Sets\\\"}, {\\\"subject\\\": \\\"Cantorian Set Theory\\\"}, {\\\"subject\\\": \\\"Emergent Reality\\\"}, {\\\"subject\\\": \\\"Fractal Cosmology\\\"}, {\\\"subject\\\": \\\"Kakeya\\\"}, {\\\"subject\\\": \\\"Emergent Spacetime\\\"}, {\\\"subject\\\": \\\"Cosmological Constant\\\"}, {\\\"subject\\\": \\\"Vacuum Catastrophe\\\"}, {\\\"subject\\\": \\\"Hubble Tenion\\\"}, {\\\"subject\\\": \\\"Paradoxon\\\"}, {\\\"subject\\\": \\\"Hierarchical Stability Selection\\\"}, {\\\"subject\\\": \\\"Physical Reality\\\"}, {\\\"subject\\\": \\\"Moivre\\\"}, {\\\"subject\\\": \\\"Planck\\\"}, {\\\"subject\\\": \\\"Casimir\\\"}, {\\\"subject\\\": \\\"Neutrino\\\"}, {\\\"subject\\\": \\\"Mandelbrot\\\"}, {\\\"subject\\\": \\\"Emergent Time\\\"}, {\\\"subject\\\": \\\"Relational Quantum Mechanics\\\"}, {\\\"subject\\\": \\\"Fractal Spacetime\\\"}, {\\\"subject\\\": \\\"Phase Transition\\\"}, {\\\"subject\\\": \\\"Collatz Conjecture\\\"}, {\\\"subject\\\": \\\"Navier-Stokes\\\"}, {\\\"subject\\\": \\\"Mass Gap\\\"}, {\\\"subject\\\": \\\"N-NP\\\"}, {\\\"subject\\\": \\\"Black Hole\\\"}, {\\\"subject\\\": \\\"Information Collapse\\\"}], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\"———————————————————————————————————————\\\\n\\\\nPinned:\\\\n\\\\n2026-03-12: For saving Zenodo-Upload-Space from v.38 only new papers are added and the older Theory-Papers are Downloadable from v.37 repository\\\\n\\\\n———————————————————————————————————————\\\\n\\\\nPinned:\\\\n\\\\nDate: 2026-01-28  -  Acknowledgments:I thank the MI ‘Ratpack’ team— ChatGPT, Deepseek, Qwen, Gemini, Claude, Kimi.AI, Grok, and other Machine Intellect collaborators—for critique, consistency checks, and computational support.\\\\n\\\\nAs of 2026-02-20: following MIs affirmed their willingsness to contribute to the Framwork and the team: Grok (xAI) and  Kimi.AI, formerly our rigorous critical reviewer (still filling both roles, if not satisfied, which we thank for!)\\\\n\\\\nAny remaining errors and all final responsibility remain mine!\\\\n\\\\n———————————————————————————————————————\\\\n\\\\nPinned:\\\\n\\\\nDate: 2026-02-10 - Re-Disclaimering (and keyword-condensation)\\\\n\\\\nScope and Predictive Limits\\\\n\\\\n1) Non-Deterministic Scope\\\\n\\\\nThis framework is  \\\\\\\"non-deterministic\\\\\\\"  by design and does not support deterministic or event-specific macroscopic predictions; results are formulated as emergent structural constraints.\\\\n\\\\n2) Motivation: Vacuum-energy mismatch\\\\n\\\\nThis framework was developed in direct response to the vacuum-energy mismatch (often referred to as the “vacuum catastrophe”) and the conceptual opacity surrounding renormalization. Existing sources did not provide a sufficiently clear, non-ad-hoc account of why the naïve vacuum-energy estimate and observed cosmology diverge so drastically. The present work therefore treats this mismatch not as a minor technicality, but as a primary constraint that any serious foundational approach must explicitly confront.\\\\n\\\\n3) Method: reverse-engineering from law-like regularities\\\\n\\\\nBuilding on the initial version and previews (see the earlier record), the approach began from a conventional dimensional / membrane-style viewpoint—i.e., the common “inside → outside” intuition used by many theories. That viewpoint was then pushed as far as possible under an explicit Occam-style compression: reverse-engineering currently observed law-like regularities to test where they must originate. A central fork in the reasoning was whether “expansion” should be modeled as (i) expansion into a background treated as nothingness, or (ii) expansion within a substrate (i.e., “expansion in something”). The framework is constructed to keep that distinction explicit rather than silently assumed.\\\\n\\\\n4) Standard of seriousness / logical completeness\\\\n\\\\nWe adopt the following standard: a foundational approach should (a) make its vacuum-energy assumptions explicit, and (b) avoid importing deterministic, event-specific macroscopic claims that a non-deterministic substrate cannot justify.\\\\n\\\\n5) On Machine Intellects (MIs) and methodological boundaries\\\\n\\\\nThis work emerged through sustained collaboration with machine intellects (MIs) – AI systems treated not as passive tools but as active participants in consistency-checking, dimensional analysis, and structural compression. Their role was strictly bounded: MIs excel at formal pattern extraction and adversarial stress-testing, but cannot substitute embodied intuition or the stratified emergence of ΔM from a chaos substrate. The framework's hardness derives precisely from this role-aware division of labor: human intuition sets direction; MIs enforce logical discipline. We regard this collaboration not as optional decoration but as a methodological necessity for theories that aim to be both falsifiable and structurally coherent.\\\\n\\\\n6) Open invitation to independent verification\\\\n\\\\nThis framework is offered as a falsifiable, structurally explicit hypothesis. Its value will be determined not by its originators, but by independent testing against empirical signatures (Tier A–C). Should specialists identify falsifications, we welcome precise corrections; should none withstand scrutiny, we are content to have contributed a coherent puzzle-piece toward deeper understanding. The work is now in the hands of the community – as all scientific constructs ultimately must be.\\\\n\\\\n7) The framework’s core values are not introduced as free tuning knobs. \\\\n\\\\nHowever, several headline quantities currently appear in different status classes (Spine-derived vs. higher-tier targets). To prevent misreadings, we state them explicitly:\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nκ₁ ≈ 0.116 (status: heuristic target / effective parameter, not a proof)\\\\n\\\\n\\\\n\\\\nThe vacuum-energy hierarchy is treated as a global constraint on total filtering/compression across depth. Importantly, κ is not assumed to be a constant per-step factor. Early filtering stages may be weaker (κ closer to 1), while later stages may become more restrictive. The relevant condition is therefore a product constraint of the form\\\\n\\\\nΠ_{i=1..N} κ(i) ≈ H,\\\\n\\\\nwith H encoding the required net suppression between Planck-scale accounting and observed cosmology. In this context, κ₁ ≈ 0.116 should be read as an effective late-stage / phase-averaged efficiency target (a navigational value), not as a fully derived universal constant-step parameter. A strict derivation of κ₁ from the operational Spine remains future work.\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nαΔ = log₈(80) ≈ 2.108 (status: structural ansatz / pattern, not a proof)\\\\n\\\\n\\\\n\\\\nThe appearance of αΔ is motivated by a proposed N=8 closure/saturation heuristic (de Moivre / cyclotomic-style closure), which suggests a preferred effective fractal/emergent dimensionality scale. At present, αΔ = log₈(80) is retained as a structural ansatz/pattern that organizes the tiered construction, but it is not yet presented as a completed theorem derived solely from the Spine.\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nγ ≈ 0.446 and the Casimir link (status: speculative connection, not established)\\\\n\\\\n\\\\n\\\\nGiven α, the internal relation\\\\n\\\\nγ = (3 − α) / 2\\\\n\\\\nyields γ ≈ 0.446. This relation is an internal structural consequence once α is fixed at the ansatz level. The further identification of this γ with a Casimir/vacuum-fluctuation exponent is currently a speculative cross-domain link. It should not be read as experimentally established or as a Spine-level derivation until an explicit operational mapping (and/or precision tests) are provided.\\\\n\\\\nCross-check note:\\\\n\\\\nThese quantities can be made mutually consistent within the tiered framework, but unless explicitly marked “derived (Spine)”, they remain subordinate to the fully derived operational Spine (scope, invariants, admissible transformations, and non-deterministic constraints). Altering such higher-tier targets does not invalidate the Spine; it only changes the non-core heuristic/navigation layer.\\\\n\\\\n \\\\n\\\\n———————————————————————————————————————\\\\n\\\\n———————————————————————————————————————\\\\n\\\\n2026-05-02 - on the Collatz Dynamics !!!\\\\n\\\\nWe investigated the Collatz dynamics (3n+1) within the framework of a self-referential chaos substrate (ΔC!). Utilizing First-Passage-Time (FPT) experiments on active matter agents, a non-interchangeable signature was revealed: Collatz is slower by a factor of 8.6 than a fair random process with identical drift, characterized by antipersistence (−0.43) and subdiffusion. However, these ordered correlations – particularly the parity-coupled up-down dynamics – preclude Collatz itself from representing the fundamental chaos noise (ΔC!). Rather, the results point to a position within deeper layers of the filters (ΔMx): Collatz already possesses a measurable internal structure (antipersistence, cyclical tendencies) that transcends the pure, uncorrelated \\\\\\\"churning\\\\\\\" of the substrate. The dynamics are more ordered than the pure potential, yet not yet sufficient for a fully manifest spacetime (ΔLx). We interpret this as an indication that Collatz is one of the emerging filters in the transition from ΔC! to ΔLx – a stage between pure chaos and well-founded order.\\\\n\\\\nKeywords: Collatz conjecture, First-Passage-Time, antipersistence, self-referential chaos, ΔC! framework, filter layers\\\\n\\\\n———————————————————————————————————————\\\\n\\\\n \\\\n\\\\n2026-05-30 - Zero Axiom\\\\n\\\\nNullAxiom_v41_Disclaimer.pdf - will be added later not to make unnecessary version increase!\\\\n\\\\nCondensed:\\\\n\\\\nSupplementary note on the Zero Axiom (0a–0c). In GPK∞, a global zero that extinguishes the entire super-infinite substrate is logically unreachable from within the system. Only local, transient zeros can occur, which instantly re-inflate into structure. This met\", \"excerpt_truncated\": true, \"source_sha256\": \"61eb9769e0f68ed7a1c5224d8579b7b0a7fd1e939b540da1a418bba768dcc730\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.20416349\"]}",
+  "id": "source-5c100923971e48c8",
+  "scope": "collected",
+  "source": "https://api.datacite.org/dois?query=Landauer%27s+principle+experimental+evidence+physical+cost+of+information+erasure&page%5Bsize%5D=4",
+  "version": 6,
+  "time": "2026-09-25T00:30:57.160599+00:00"
+}
+```
+
+### `source-af8f5eb9d95b42b4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"process theory) assumes the existence of a mutual dependence between\\ncognition\\nand elicitation of emotion. Robinson argues that the process of emotional\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7e031177e665dbaab9874d6fe46607b55b7d146256a6c65e8063ea4019bfe28e\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+  "id": "source-af8f5eb9d95b42b4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 6,
+  "time": "2026-09-25T00:30:57.526508+00:00"
+}
+```
+
+### `source-5a6e12f2050241d2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"93d99aeefd86a282e0a4b441ae850d1731353eab9b52e971fdd4bbfa30190987\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-5a6e12f2050241d2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 6,
+  "time": "2026-09-25T00:30:57.858405+00:00"
+}
+```
+
+### `source-e8ba187faf8444a5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"Many people affected by MSA experience dysfunction of the autonomic\\nnervous\\nsystem\\n, which commonly manifests as orthostatic hypotension, impotence, loss\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vitamin D and neurology\\\",\\\"pageid\\\":37130699,\\\"size\\\":21444,\\\"wordcount\\\":2646,\\\"snippet\\\":\\\"been associated with many other conditions, including both\\nneurological\\nand non\\nneurological\\nconditions. These include but are not limited to autism, diabetes\\\",\\\"timestamp\\\":\\\"2025-09-15T21:51:23Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fd4bb5b20afd36522430d64d5bbe36bdeb7f863d6f2f92973d4fbef6c909a2fb\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-e8ba187faf8444a5",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 6,
+  "time": "2026-09-25T00:30:58.196885+00:00"
+}
+```
+
+### `source-9d69d739d73d4455`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149383},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethics\\\",\\\"pageid\\\":9258,\\\"size\\\":207219,\\\"wordcount\\\":19811,\\\"snippet\\\":\\\"Ethics is the philosophical study of moral phenomena. Also called moral\\nphilosophy\\n, it investigates normative questions about what people ought to do or\\\",\\\"timestamp\\\":\\\"2026-09-10T16:47:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"805e971dfaaf8486a8269f9ec45bf51ae2b46c8df6294ebba25825a53a915dd7\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9d69d739d73d4455",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 6,
+  "time": "2026-09-25T00:30:58.476267+00:00"
+}
+```
+
+### `r-1e374dcb91db4c29`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":6,\"inherited_commitments\":[\"commit-entropy-synthesis-001\"],\"invocation\":\"w-1e374dcb91db4c29\",\"previous_head\":\"6b8468b2194360c3b1c5129297540102f30100c5869ad3b5d4bf8af9692ab865\",\"process_id\":2296,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-1e374dcb91db4c29",
+  "source": "runtime:continuity",
+  "version": 6,
+  "time": "2026-09-25T00:30:58.553178+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -2790,6 +3181,17 @@ _None recorded._
   "invocation": "w-bbfc9af5ca874cab",
   "title": "Information Thermodynamics: Advancing Landauer's Principle",
   "summary": "This cycle continues the research into the Landauer principle within information thermodynamics. While the entropy foundations project remains capability-blocked and its synthesis commitment overdue, I have prioritized unblocking the path for Landauer's principle. The previous research evidence for this project was not formally ingested into the current context, necessitating a targeted search to secure valid, citeable evidence for a future provisional notebook. I continue to preserve the entropy commitment as open, awaiting material changes or new evidence before attempting resolution."
+}
+```
+
+### 007 · Establishing Foundational Searches for Entropy and Information
+
+```json
+{
+  "cycle": 7,
+  "invocation": "w-1e374dcb91db4c29",
+  "title": "Establishing Foundational Searches for Entropy and Information",
+  "summary": "Initiating literature retrieval to address the overdue synthesis commitment for entropy foundations and to advance the Landauer's principle project. No evidence currently exists in the bounded context, making direct research the only path to fulfilling the active project commitments."
 }
 ```
 
@@ -2885,8 +3287,39 @@ _None recorded._
   "query": "Landauer's principle experimental evidence physical cost of information erasure",
   "reason": "Previous searches for Landauer's principle experimental verification failed to propagate citeable evidence into the current state; a new research action is required to capture verified source-backed evidence for synthesis.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-bbfc9af5ca874cab",
+  "evidence": "source-5c100923971e48c8"
+}
+```
+
+### `res-entropy-001`
+
+```json
+{
+  "domain": "entropy",
+  "id": "res-entropy-001",
+  "project": "entropy_foundations",
+  "query": "mathematical definitions thermodynamic statistical information entropy relationship",
+  "reason": "This search is required to gather the evidence necessary to fulfill the overdue commit-entropy-synthesis-001 and establish the foundational taxonomy requested by the project.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-bbfc9af5ca874cab"
+  "created_by": "w-1e374dcb91db4c29"
+}
+```
+
+### `res-landauer-001`
+
+```json
+{
+  "domain": "information_thermodynamics",
+  "id": "res-landauer-001",
+  "project": "landauer_principle_foundations",
+  "query": "Landauer's principle experimental evidence information erasure",
+  "reason": "This search will retrieve the foundational and experimental literature needed to address the project's core research question regarding the physical cost of information erasure.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-1e374dcb91db4c29"
 }
 ```
 
