@@ -1,24 +1,24 @@
-# Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art
+# Provisional Synthesis: Composition and Observer Expectation
 
-This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.
+A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.
 
 Evidence profile · 2 distinct source URLs · 2 cross-topic source URLs
 
 ## Findings
 
-Initial bibliographic review suggests potential structural parallels between linguistic humor models—specifically incongruity-resolution theories [source-930f33f0d42a4658]—and the compositional constraints often discussed in art theory [source-0a7b2a5c06d44417]. The literature points to 'incongruity' as a mechanism for epistemic update, where the violation of an expectation (visual or linguistic) forces a re-evaluation of the stimulus, potentially driving engagement or 'aesthetic' interest [source-930f33f0d42a4658].
+The available evidence [source-41fac1eecb0246dd, source-51a9b989df3144af] consists of bibliographic records indexed via AIP Publishing. These sources do not contain full-text empirical findings regarding the interplay of compositional constraints and observer expectations in neuroaesthetics. Our reading is that these records currently serve as indices rather than substantive content for analyzing visual expectation violations.
 
 ## Limitations and competing views
 
-Current evidence is limited to bibliographic metadata and abstract-level descriptions of monographs. We lack the full content of these works and cannot confirm if they explicitly treat visual composition as a form of linguistic or cognitive incongruity, or if this is an interpretive analogy. No consensus on causality exists between structural constraints and perceptual evaluation at this stage.
+This notebook relies on bibliographic metadata and indexing information. It does not provide detailed findings on specific psychological or neuroscientific mechanisms of expectation. The current evidence is insufficient to distinguish the project's research question from established neuroaesthetics models.
 
 ## Next questions
 
-Can we locate empirical studies that quantify 'visual incongruity' or 'compositional expectation violation'? Do these studies utilize the terminology of linguistic humor theory, or are these domains analytically distinct?
+Future research requires access to full-text empirical studies that specifically address the interaction between compositional constraints and cognitive expectations, rather than general indexing data.
 
 ## Collected sources
 
-- [source-0a7b2a5c06d44417](https://api.crossref.org/works/10.4135%2F9781483346175)
-- [source-930f33f0d42a4658](https://api.crossref.org/works/10.4324%2F9780203406953)
+- [source-41fac1eecb0246dd](https://api.crossref.org/works/10.1063%2F1.3062655)
+- [source-51a9b989df3144af](https://api.crossref.org/works/10.1063%2F1.3062464)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

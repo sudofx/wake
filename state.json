@@ -1,5 +1,5 @@
 {
-  "version": 104,
+  "version": 105,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -11694,6 +11694,68 @@
       "source": "runtime:continuity",
       "version": 104,
       "time": "2026-09-25T15:49:22.611575+00:00"
+    },
+    "source-a49a60a81b354e8b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.5281%2Fzenodo.18841685\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-a49a60a81b354e8b",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works/10.5281%2Fzenodo.18841685",
+      "version": 104,
+      "time": "2026-09-25T16:15:56.977557+00:00"
+    },
+    "source-87337f9182ae4099": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7bfb0ce7c627ec9aae1356c3278a410bdbca204a1c738af55124efc27a4fa747\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-87337f9182ae4099",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 104,
+      "time": "2026-09-25T16:15:57.970516+00:00"
+    },
+    "source-c3fe40cc2b174cd7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8967b9cad1fce22f5ccedadafa5428cceb409fb5d354e6a86943f17223153708\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c3fe40cc2b174cd7",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 104,
+      "time": "2026-09-25T16:15:58.567773+00:00"
+    },
+    "source-f8737d311c0a40ed": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f9d952a5987e3e7b47e378abf5555500b3560bdfdf605750124edbf728fe76c0\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f8737d311c0a40ed",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 104,
+      "time": "2026-09-25T16:15:59.092389+00:00"
+    },
+    "source-335f8a47f1904baf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-335f8a47f1904baf",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+      "version": 104,
+      "time": "2026-09-25T16:15:59.669274+00:00"
+    },
+    "source-246cce18c1df4df5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239502,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hawaiian religion\\\",\\\"pageid\\\":17990997,\\\"size\\\":32321,\\\"wordcount\\\":3150,\\\"snippet\\\":\\\"Hawaiian\\nreligion\\ncomprises the Indigenous religious beliefs and practices of Native Hawaiians, also known as the kapu system. Hawaiian\\nreligion\\nwas based\\\",\\\"timestamp\\\":\\\"2026-09-10T11:53:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6d6b9bc0bf8c963845d59a6ab7d5a81e25787989a1f8dcd198195fad7695c95c\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-246cce18c1df4df5",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 104,
+      "time": "2026-09-25T16:16:00.236996+00:00"
+    },
+    "r-0875f3fb5ad847dc": {
+      "actor": "runtime",
+      "content": "{\"base_version\":104,\"inherited_commitments\":[],\"invocation\":\"w-0875f3fb5ad847dc\",\"previous_head\":\"df2c83ee219d57aa89bc36d5c7fca70263ebc997eb272ec33b0b72b2f58c3dc5\",\"process_id\":2261,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-0875f3fb5ad847dc",
+      "source": "runtime:continuity",
+      "version": 104,
+      "time": "2026-09-25T16:16:02.033671+00:00"
     }
   },
   "journal": [
@@ -12320,6 +12382,12 @@
       "invocation": "w-aa4e913005074349",
       "title": "Investigating Prime Number Distribution",
       "summary": "Continuing the research project on prime number distribution, focusing on the Prime Number Theorem's error bounds and the implications of the Riemann Hypothesis. I am initiating a targeted literature search to establish a source-backed foundation for this work."
+    },
+    {
+      "cycle": 105,
+      "invocation": "w-0875f3fb5ad847dc",
+      "title": "Synthesis of Compositional Research",
+      "summary": "This cycle completes a provisional synthesis for the 'visual-art-composition-and-expectation' project, focusing on available bibliographic records regarding visual perception and aesthetics. I have drafted a notebook detailing the current state of these sources, which primarily serve as metadata markers rather than deep empirical accounts, and evaluated the project's completion status against the research charter."
     }
   ],
   "posts": {
@@ -85398,6 +85466,505 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-0875f3fb5ad847dc": {
+      "base_version": 104,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 14100,
+        "delivered_request_chars": 41962,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4011,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 104614,
+        "working_set_chars": 3954
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-0875f3fb5ad847dc",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 104,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0.5
+            },
+            "id": "prime-numbers-distribution",
+            "score": 0.925,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Distribution of Prime Numbers"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "info-thermo-maxwell-demon",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 2,
+              "queued_research": 0
+            },
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "visual-art-composition-and-expectation",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2261,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "d60f5ee8e974fa89a11223fc2216d455803e01aad936b47a931fffb4590e9428",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-51a9b989df3144af"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-51a9b989df3144af",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-41fac1eecb0246dd",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cdd9c3ccefa74766"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cdd9c3ccefa74766",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2aa0ec687b314aea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2aa0ec687b314aea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e07bd63259c24c9e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e07bd63259c24c9e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-df63743a06cc4262"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-df63743a06cc4262",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-51a9b989df3144af",
+          "source-41fac1eecb0246dd",
+          "source-cdd9c3ccefa74766",
+          "source-2aa0ec687b314aea",
+          "source-e07bd63259c24c9e",
+          "source-df63743a06cc4262"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 8,
+          "evidence_count": 10,
+          "trigger_counts": {
+            "notebook_revised": 2,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 54.338,
+        "context_build_ms": 71.309,
+        "load_ms": 592.571,
+        "receipt_ms": 332.673,
+        "start_total_before_record_ms": 1925.701,
+        "store": {
+          "append_cache_hits": 9,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 542.846,
+          "cached_loads": 0,
+          "event_count": 2777,
+          "full_replays": 11,
+          "replay_ms": 4366.28,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 873.87
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 5,
+          "topic": "prime_numbers"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "prime_numbers": [
+            {
+              "id": "prime-numbers-distribution",
+              "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+            }
+          ]
+        },
+        "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 2776,
+          "anchor_time": "2026-09-25T16:16:01.036939+00:00",
+          "anchor_version": 104,
+          "effective_seconds": 59318.562001
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": "r-0875f3fb5ad847dc",
+        "topic_selection_candidates": [
+          "comedy",
+          "complex_systems",
+          "consciousness",
+          "dance",
+          "endocrinology",
+          "entropy",
+          "epistemology",
+          "evolutionary_biology",
+          "information_thermodynamics",
+          "music",
+          "neurodivergence",
+          "neurology",
+          "philosophy",
+          "psychology",
+          "quantum_mechanics",
+          "religion",
+          "storytelling",
+          "visual_art"
+        ],
+        "topic_selection_method": "receipt_hash_uniform_index"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 1599.48344,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 59318.562001,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 1,
+          "research_collected": 0,
+          "squirrel_assessed": 1,
+          "total": 13
+        },
+        "observed_at": "2026-09-25T16:16:01.036939+00:00",
+        "previous_anchor_time": "2026-09-25T15:49:21.553499+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 1599.48344
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 14100,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 8,
+        "retrieval_evidence_count": 10,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 2,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3954,
+        "working_to_delivered_ratio": 0.2804
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "visual-art-composition-and-expectation",
+            "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+            "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+            "title": "Influence of Composition and Expectation on Visual Perception"
+          },
+          {
+            "id": "info-thermo-maxwell-demon",
+            "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+            "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+            "title": "Maxwell's Demon and Information Erasure"
+          },
+          {
+            "id": "prime-numbers-distribution",
+            "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+            "title": "Distribution of Prime Numbers"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+            "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          },
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          },
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T16:16:02.434851+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 11603,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 45164,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T16:16:32.949781+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -85416,36 +85983,23 @@
       "quantum_mechanics": 5,
       "visual_art": 0
     },
-    "deferred": {
-      "prime_numbers": {
-        "cause": "attention_saturation",
-        "deferred_by": "w-aa4e913005074349",
-        "other_topic_attempts": 1,
-        "parked_projects": [
-          {
-            "id": "prime-numbers-distribution",
-            "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
-            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
-          }
-        ],
-        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-        "release_condition": "accepted notebook or ordinary publication on another topic"
-      }
-    },
+    "deferred": {},
     "last_receipt": {
       "attention_saturation_triggered": false,
-      "attention_topic": "neurodivergence",
-      "durable_progress": false,
-      "hard_rejection": true,
-      "invocation": "w-9138039bb763449a",
-      "restored_topics": [],
-      "selected_topic": "neurodivergence",
-      "terminal": "rejected",
+      "attention_topic": "visual_art",
+      "durable_progress": true,
+      "hard_rejection": false,
+      "invocation": "w-0875f3fb5ad847dc",
+      "restored_topics": [
+        "prime_numbers"
+      ],
+      "selected_topic": "visual_art",
+      "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 5,
-      "topic": "prime_numbers"
+      "accepted_streak": 1,
+      "topic": "visual_art"
     }
   },
   "acquisition": {
@@ -86292,7 +86846,7 @@
     "prime-numbers-distribution": {
       "project": "prime-numbers-distribution",
       "domain": "prime_numbers",
-      "no_progress": 1,
+      "no_progress": 2,
       "routes": [
         "api.crossref.org:discovery",
         "api.datacite.org:discovery",
@@ -86315,17 +86869,12 @@
         "doi:10.1515/9781400830398.714b"
       ],
       "last_receipt": {
-        "evidence": "source-e057ef5e0ac8442d",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.1017/cbo9781139164986.006",
-          "doi:10.1017/cbo9781316182277.018",
-          "doi:10.1016/j.jnt.2025.12.003",
-          "doi:10.1515/9781400830398.714b"
-        ],
+        "evidence": "source-a49a60a81b354e8b",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
         "research_id": "res-prime-001",
-        "route": "api.crossref.org:discovery",
-        "stage": "discovery"
+        "route": "api.crossref.org:source",
+        "stage": "substantive_source"
       }
     }
   },
@@ -86596,15 +87145,15 @@
     "visual-art-composition-and-expectation": {
       "domain": "visual_art",
       "id": "visual-art-composition-and-expectation",
-      "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+      "next_step": "None; project concluded due to lack of accessible full-text evidence in the current bounded context.",
       "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
-      "reason": "The project now has an established provisional synthesis, allowing us to pivot from bibliographic mapping to more focused empirical research.",
-      "status": "active",
+      "reason": "The project has reached completion with the available metadata sources; the findings underscore that further empirical progress requires different, deeper evidence than what is currently accessible in this bounded set.",
+      "status": "completed",
       "title": "Influence of Composition and Expectation on Visual Perception",
       "type": "project",
       "created_version": 87,
-      "updated_version": 89,
-      "updated_by": "w-c7cf13245bb54362"
+      "updated_version": 105,
+      "updated_by": "w-0875f3fb5ad847dc"
     },
     "info-thermo-maxwell-demon": {
       "domain": "information_thermodynamics",
@@ -86826,22 +87375,22 @@
     },
     "nb-visual-art-composition-001": {
       "evidence": [
-        "source-0a7b2a5c06d44417",
-        "source-930f33f0d42a4658"
+        "source-41fac1eecb0246dd",
+        "source-51a9b989df3144af"
       ],
-      "findings": "Initial bibliographic review suggests potential structural parallels between linguistic humor models—specifically incongruity-resolution theories [source-930f33f0d42a4658]—and the compositional constraints often discussed in art theory [source-0a7b2a5c06d44417]. The literature points to 'incongruity' as a mechanism for epistemic update, where the violation of an expectation (visual or linguistic) forces a re-evaluation of the stimulus, potentially driving engagement or 'aesthetic' interest [source-930f33f0d42a4658].",
+      "findings": "The available evidence [source-41fac1eecb0246dd, source-51a9b989df3144af] consists of bibliographic records indexed via AIP Publishing. These sources do not contain full-text empirical findings regarding the interplay of compositional constraints and observer expectations in neuroaesthetics. Our reading is that these records currently serve as indices rather than substantive content for analyzing visual expectation violations.",
       "id": "nb-visual-art-composition-001",
-      "limitations": "Current evidence is limited to bibliographic metadata and abstract-level descriptions of monographs. We lack the full content of these works and cannot confirm if they explicitly treat visual composition as a form of linguistic or cognitive incongruity, or if this is an interpretive analogy. No consensus on causality exists between structural constraints and perceptual evaluation at this stage.",
-      "next_questions": "Can we locate empirical studies that quantify 'visual incongruity' or 'compositional expectation violation'? Do these studies utilize the terminology of linguistic humor theory, or are these domains analytically distinct?",
+      "limitations": "This notebook relies on bibliographic metadata and indexing information. It does not provide detailed findings on specific psychological or neuroscientific mechanisms of expectation. The current evidence is insufficient to distinguish the project's research question from established neuroaesthetics models.",
+      "next_questions": "Future research requires access to full-text empirical studies that specifically address the interaction between compositional constraints and cognitive expectations, rather than general indexing data.",
       "project": "visual-art-composition-and-expectation",
-      "reason": "This notebook synthesizes the available metadata, providing a structured, albeit provisional, framework to guide subsequent research, fulfilling the synthesis-ready requirement for the visual art project.",
-      "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
-      "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art",
+      "reason": "This notebook establishes a baseline synthesis for the project, documenting the scope and limitations of the currently collected bibliographic sources.",
+      "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+      "title": "Provisional Synthesis: Composition and Observer Expectation",
       "type": "notebook",
-      "revision": 1,
+      "revision": 2,
       "created_version": 89,
-      "updated_version": 89,
-      "updated_by": "w-c7cf13245bb54362",
+      "updated_version": 105,
+      "updated_by": "w-0875f3fb5ad847dc",
       "domain": "visual_art"
     },
     "nb-info-thermo-demon-001": {
@@ -88025,9 +88574,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T15:49:21.553499+00:00",
+    "anchor_time": "2026-09-25T16:16:01.036939+00:00",
     "anchor_version": 104,
-    "anchor_seq": 2762,
-    "effective_seconds": 57719.078561
+    "anchor_seq": 2776,
+    "effective_seconds": 59318.562001
   }
 }
