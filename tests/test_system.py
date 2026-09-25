@@ -189,6 +189,24 @@ class SystemTests(unittest.TestCase):
         final = self.engine.store.performance_snapshot()
         self.assertGreater(final["full_replays"], after["full_replays"])
 
+    def test_bounded_event_queries_match_full_history_semantics(self):
+        with self.engine.store.lock():
+            self.engine.store.append("observation", {
+                "id": "event-query-one", "source": "fixture:one", "content": "one", "actor": "human"
+            })
+            first_seq = self.engine.store.events()[-1]["seq"]
+            self.engine.store.append("focus_changed", {"focus": "bounded-query"})
+            self.engine.store.append("observation", {
+                "id": "event-query-two", "source": "fixture:two", "content": "two", "actor": "human"
+            })
+        summary = self.engine.store.event_counts_since(
+            first_seq, ("observation", "focus_changed", "failed")
+        )
+        self.assertEqual(summary["total"], 2)
+        self.assertEqual(summary["kinds"], {"observation": 1, "focus_changed": 1, "failed": 0})
+        tail = self.engine.store.tail_events(("observation",), 1)
+        self.assertEqual([item["payload"]["id"] for item in tail], ["event-query-two"])
+
     def test_projection_cache_preserves_recency_insertion_order(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", {

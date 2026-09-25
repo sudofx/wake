@@ -445,6 +445,34 @@ class Store:
                  "prev_hash": row[4], "hash": row[5]}
                 for row in self.db.execute("SELECT * FROM events ORDER BY seq")]
 
+    def event_counts_since(self, seq, kinds):
+        """Count a bounded event suffix without materializing the full history."""
+        rows = self.db.execute(
+            "SELECT kind, COUNT(*) FROM events WHERE seq > ? GROUP BY kind",
+            (seq,),
+        ).fetchall()
+        counts = dict(rows)
+        return {
+            "total": sum(counts.values()),
+            "kinds": {kind: counts.get(kind, 0) for kind in kinds},
+        }
+
+    def tail_events(self, kinds, limit):
+        """Return the newest matching events in chronological order."""
+        if not kinds or limit <= 0:
+            return []
+        placeholders = ",".join("?" for _ in kinds)
+        rows = self.db.execute(
+            f"SELECT seq,time,kind,payload,prev_hash,hash FROM events "
+            f"WHERE kind IN ({placeholders}) ORDER BY seq DESC LIMIT ?",
+            (*kinds, limit),
+        ).fetchall()
+        return [
+            {"seq": row[0], "time": row[1], "kind": row[2], "payload": json.loads(row[3]),
+             "prev_hash": row[4], "hash": row[5]}
+            for row in reversed(rows)
+        ]
+
     def _data_version(self):
         return self.db.execute("PRAGMA data_version").fetchone()[0]
 

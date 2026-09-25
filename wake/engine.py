@@ -1216,7 +1216,7 @@ class Engine:
                                    for e in context["evidence"] if e.get("actor") != "collector"][-3:]
             context["evidence"] += [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000} for e in sources]
             context["beliefs"] = [{**b, "evidence": b["evidence"][-6:]} for b in context["beliefs"]]
-            outcomes = [e for e in self.store.events() if e["kind"] in ("rejected", "failed")][-2:]
+            outcomes = self.store.tail_events(("rejected", "failed"), 2)
             context["recent_problems"] = [e["payload"].get("reason", "") for e in outcomes]
             withheld = [i["editorial"] for i in state["invocations"].values() if i.get("editorial")][-2:]
             context["recent_problems"] += ["Blog withheld: " + note["reason"] for note in withheld]
@@ -1486,7 +1486,14 @@ class Engine:
         # Capture the temporal environment before the next model boundary. This
         # measures a new interval; it never recalculates an earlier receipt.
         phase_at = perf_counter()
-        temporal = temporal_snapshot(state, self.store.events(), now())
+        temporal_anchor = (state.get("temporal") or {}).get(
+            "anchor_seq", state["experimental"]["event_seq"]
+        )
+        temporal_counts = self.store.event_counts_since(
+            temporal_anchor,
+            ("accepted", "rejected", "failed", "observation", "research_collected", "squirrel_assessed"),
+        )
+        temporal = temporal_snapshot(state, temporal_counts, now())
         self.store.append("temporal_observed", temporal)
         state = self.store.load()
         temporal_ms = (perf_counter() - phase_at) * 1000

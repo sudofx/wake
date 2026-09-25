@@ -66,14 +66,19 @@ def temporal_snapshot(state, events, at):
         "anchor_seq": experimental["event_seq"], "effective_seconds": 0.0,
     }
     wall = _seconds(previous["anchor_time"], at)
-    since = [event for event in events if event["seq"] > previous.get("anchor_seq", 0)]
-    kinds = {kind: sum(event["kind"] == kind for event in since) for kind in
-             ("accepted", "rejected", "failed", "observation", "research_collected", "squirrel_assessed")}
+    tracked = ("accepted", "rejected", "failed", "observation", "research_collected", "squirrel_assessed")
+    if isinstance(events, dict) and "total" in events and "kinds" in events:
+        since_total = events["total"]
+        kinds = {kind: events["kinds"].get(kind, 0) for kind in tracked}
+    else:
+        since = [event for event in events if event["seq"] > previous.get("anchor_seq", 0)]
+        since_total = len(since)
+        kinds = {kind: sum(event["kind"] == kind for event in since) for kind in tracked}
     factor = scale(experimental["controls"])
     return {
         "observed_at": at, "wall_elapsed_seconds": round(wall, 6),
         "cycle_distance": state["version"] - previous["anchor_version"],
-        "intervening_events": {"total": len(since), **kinds},
+        "intervening_events": {"total": since_total, **kinds},
         "effective_scale": factor,
         "effective_elapsed_seconds": round(wall * factor, 6),
         "effective_seconds_total": round(previous["effective_seconds"] + wall * factor, 6),
