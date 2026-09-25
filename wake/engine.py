@@ -922,7 +922,7 @@ class Engine:
             ]
         return context
 
-    def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000):
+    def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000, max_records=3):
         """Materialize qualifying durable evidence selected by retrieval into provider context.
 
         The retrieval planner remains deterministic and ID-based. This step is the
@@ -1025,10 +1025,11 @@ class Engine:
                 if is_repository_source:
                     visible_repository_urls.add(source)
 
-            # One provisional notebook needs only one qualifying source; allow a
-            # small second/third record for comparison or commitment resolution
-            # without recreating the unbounded context problem retrieval solves.
-            if len(rehydrated) >= 3:
+            # One provisional notebook needs only one qualifying source; ordinary
+            # rich context may carry a small comparison set. Emergency bounded
+            # context can lower max_records so exact source recovery survives the
+            # context ceiling without recreating the pressure that triggered it.
+            if len(rehydrated) >= max_records:
                 break
 
         context["retrieval_rehydration"] = {
@@ -1211,9 +1212,16 @@ class Engine:
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
-            # The emergency bounded view is already the final context-pressure
-            # fallback. Do not re-expand it here; ordinary rich/compacted views
-            # perform retrieval rehydration before this threshold is reached.
+            # Bounded delivery used to discard exact source records that retrieval
+            # had just selected, producing functional amnesia precisely when the
+            # rich context overflowed. Rehydrate one compact qualifying source so
+            # an active project can synthesize a provisional notebook instead of
+            # commissioning redundant research. Governance still validates the
+            # durable full record, not this excerpt.
+            request["context"] = self.rehydrate_retrieval_context(
+                state, request["context"], retrieval_shadow,
+                content_limit=900, max_records=1,
+            )
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
         require(len(canonical(request)) <= self.config["max_context_chars"],
