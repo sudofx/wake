@@ -2067,6 +2067,68 @@
       "source": "runtime:continuity",
       "version": 21,
       "time": "2026-09-25T01:56:45.138643+00:00"
+    },
+    "source-1babe293127a4999": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1006%2Fanbe.1994.1191\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 3, 12]], \\\"date-time\\\": \\\"2026-03-12T22:30:43Z\\\", \\\"timestamp\\\": 1773354643217, \\\"version\\\": \\\"3.50.1\\\"}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Elsevier BV\\\", \\\"issue\\\": \\\"6\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1994, 6, 1]], \\\"date-time\\\": \\\"1994-06-01T00:00:00Z\\\", \\\"timestamp\\\": 770428800000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.elsevier.com/tdm/userlicense/1.0/\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Animal Behaviour\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1994, 6]]}, \\\"DOI\\\": \\\"10.1006/anbe.1994.1191\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2002, 10, 6]], \\\"date-time\\\": \\\"2002-10-06T19:59:36Z\\\", \\\"timestamp\\\": 1033934376000}, \\\"page\\\": \\\"1445-1455\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 117, \\\"title\\\": [\\\"Effects of testosterone on spatial activity in free-ranging male dark-eyed juncos, Junco hyemalis\\\"], \\\"prefix\\\": \\\"10.1006\\\", \\\"volume\\\": \\\"47\\\", \\\"author\\\": [{\\\"given\\\": \\\"C.Ray\\\", \\\"family\\\": \\\"Chandler\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"Ellen D.\\\", \\\"family\\\": \\\"Ketterson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"suffix\\\": \\\"Jr.\\\", \\\"given\\\": \\\"Val\\\", \\\"family\\\": \\\"Nolan\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"Charles\\\", \\\"family\\\": \\\"Ziegenfus\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"78\\\", \\\"container-title\\\": [\\\"Animal Behaviour\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S0003347284711912?httpAccept=text/xml\\\", \\\"content-type\\\": \\\"text/xml\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S0003347284711912?httpAccept=text/plain\\\", \\\"content-type\\\": \\\"text/plain\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2019, 5, 6]], \\\"date-time\\\": \\\"2019-05-06T20:57:43Z\\\", \\\"timestamp\\\": 1557176263000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://linkinghub.elsevier.com/retrieve/pii/S0003347284711912\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1994, 6]]}, \\\"references-count\\\": 0, \\\"journal-issue\\\": {\\\"issue\\\": \\\"6\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1994, 6]]}}, \\\"alternative-id\\\": [\\\"S0003347284711912\\\"], \\\"URL\\\": \\\"https://doi.org/10.1006/anbe.1994.1191\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0003-3472\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0003-3472\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1994, 6]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e3d303cbee28a478d47504534206a220533e4657c27c09ec11ba11aab8445508\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1006/anbe.1994.1191\", \"arxiv:1994.1191\"]}",
+      "id": "source-1babe293127a4999",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1006%2Fanbe.1994.1191",
+      "version": 22,
+      "time": "2026-09-25T02:00:00.593987+00:00"
+    },
+    "source-27e0096e6b6243f5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=empirical+methods+for+distinguishing+adaptation+byproduct+genetic+drift+constraint+evolutionary+biology+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2132827427\\\", \\\"doi\\\": \\\"https://doi.org/10.1086/343878\\\", \\\"title\\\": \\\"The Ecology of Individuals: Incidence and Implications of Individual Specialization\\\", \\\"publication_year\\\": 2003, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 2822, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://digital.lib.washington.edu/bitstreams/bd6e4c58-3bc0-4246-95b7-e4e6e26b118d/download\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1086/343878\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1086/343878\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S122176235\\\", \\\"display_name\\\": \\\"The American Naturalist\\\", \\\"issn_l\\\": \\\"0003-0147\\\", \\\"issn\\\": [\\\"0003-0147\\\", \\\"1537-5323\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310315672\\\", \\\"host_organization_name\\\": \\\"University of Chicago Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310315672\\\", \\\"https://openalex.org/P4310315690\\\"], \\\"host_organization_lineage_names\\\": [\\\"University of Chicago Press\\\", \\\"University of Chicago\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"The American Naturalist\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Most empirical and theoretical studies of resource use and population dynamics treat conspecific individuals as ecologically equivalent. This simplification is only justified if interindividual niche variation is rare, weak, or has a trivial effect on ecological processes. This article reviews the incidence, degree, causes, and implications of individual-level niche variation to challenge these simplifications. Evidence for individual specialization is available for 93 species distributed across a broad range of taxonomic groups. Although few studies have quantified the degree to which individuals are specialized relative to their population, between-individual variation can sometimes comprise the majority of the population's niche width. The degree of individual specialization varies widely among species and among populations, reflecting a diverse array of physiological, behavioral, and ecological mechanisms that can generate intrapopulation variation. Finally, individual specialization has potentially important ecological, evolutionary, and conservation implications. Theory suggests that niche variation facilitates frequency-dependent interactions that can profoundly affect the population's stability, the amount of intraspecific competition, fitness-function shapes, and the population's capacity to diversify and speciate rapidly. Our collection of case studies suggests that individual specialization is a widespread but underappreciated phenomenon that poses many important but unanswered questions.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2137063713\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s11692-012-9162-y\\\", \\\"title\\\": \\\"Evolutionary Developmental Biology and Human Language Evolution: Constraints on Adaptation\\\", \\\"publication_year\\\": 2012, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 55, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s11692-012-9162-y.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s11692-012-9162-y\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s11692-012-9162-y\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s11692-012-9162-y.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S198828251\\\", \\\"display_name\\\": \\\"Evolutionary Biology\\\", \\\"issn_l\\\": \\\"0071-3260\\\", \\\"issn\\\": [\\\"0071-3260\\\", \\\"1934-2845\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Evolutionary Biology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"A tension has long existed between those biologists who emphasize the importance of adaptation by natural selection and those who highlight the role of phylogenetic and developmental constraints on organismal form and function. This contrast has been particularly noticeable in recent debates concerning the evolution of human language. Darwin himself acknowledged the existence and importance of both of these, and a long line of biologists have followed him in seeing, in the concept of \\\\\\\"descent with modification\\\\\\\", a framework naturally able to incorporate both adaptation and constraint. Today, the integrated perspective of modern evolutionary developmental biology (\\\\\\\"evo-devo\\\\\\\") allows a more subtle and pluralistic approach to these traditional questions, and has provided several examples where the traditional notion of \\\\\\\"constraint\\\\\\\" can be cashed out in specific, mechanistic terms. This integrated viewpoint is particularly relevant to the evolution of the multiple mechanisms underlying human language, because of the short time available for novel aspects of these mechanisms to evolve and be optimized. Comparative data indicate that many cognitive aspects of human language predate humans, suggesting that pre-adaptation and exaptation have played important roles in language evolution. Thus, substantial components of what many linguists call \\\\\\\"Universal Grammar\\\\\\\" predate language itself. However, at least some of these older mechanisms have been combined in ways that generate true novelty. I suggest that we can insightfully exploit major steps forward in our understanding of evolution and development, to gain a richer understanding of the principles that underlie human language evolution.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2564499575\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s10539-016-9557-8\\\", \\\"title\\\": \\\"What’s wrong with evolutionary biology?\\\", \\\"publication_year\\\": 2016, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 108, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10539-016-9557-8.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s10539-016-9557-8\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s10539-016-9557-8\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s10539-016-9557-8.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S75346102\\\", \\\"display_name\\\": \\\"Biology & Philosophy\\\", \\\"issn_l\\\": \\\"0169-3867\\\", \\\"issn\\\": [\\\"0169-3867\\\", \\\"1572-8404\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"erih-plus\\\", \\\"jufo-2\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Biology &amp; Philosophy\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"There have been periodic claims that evolutionary biology needs urgent reform, and this article tries to account for the volume and persistence of this discontent. It is argued that a few inescapable properties of the field make it prone to criticisms of predictable kinds, whether or not the criticisms have any merit. For example, the variety of living things and the complexity of evolution make it easy to generate data that seem revolutionary (e.g. exceptions to well-established generalizations, or neglected factors in evolution), and lead to disappointment with existing explanatory frameworks (with their high levels of abstraction, and limited predictive power). It is then argued that special discontent stems from misunderstandings and dislike of one well-known but atypical research programme: the study of adaptive function, in the tradition of behavioural ecology. To achieve its goals, this research needs distinct tools, often including imaginary agency, and a partial description of the evolutionary process. This invites mistaken charges of narrowness and oversimplification (which come, not least, from researchers in other subfields), and these chime with anxieties about human agency and overall purpose. The article ends by discussing several ways in which calls to reform evolutionary biology actively hinder progress in the field.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W3045865694\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fgene.2020.00792\\\", \\\"title\\\": \\\"Genomics of Evolutionary Novelty in Hybrids and Polyploids\\\", \\\"publication_year\\\": 2020, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 169, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fgene.2020.00792/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fgene.2020.00792\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fgene.2020.00792\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fgene.2020.00792/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2597340651\\\", \\\"display_name\\\": \\\"Frontiers in Genetics\\\", \\\"issn_l\\\": \\\"1664-8021\\\", \\\"issn\\\": [\\\"1664-8021\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"jufo-1\\\", \\\"ki-jl-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_org\", \"excerpt_truncated\": true, \"source_sha256\": \"33b0fcb152d6229f42ee62e7e292b8ee698bb570f33b4eb53bf87bde4b8ecd5e\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1086/343878\", \"doi:10.1007/s11692-012-9162-y\", \"doi:10.1007/s11692-012-9162-y.pdf\", \"doi:10.1007/s10539-016-9557-8\", \"doi:10.1007/s10539-016-9557-8.pdf\", \"doi:10.3389/fgene.2020.00792\", \"doi:10.3389/fgene.2020.00792/pdf\", \"openalex:W2132827427\", \"openalex:W2137063713\", \"openalex:W2564499575\", \"openalex:W3045865694\", \"arxiv:2020.00792\"]}",
+      "id": "source-27e0096e6b6243f5",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=empirical+methods+for+distinguishing+adaptation+byproduct+genetic+drift+constraint+evolutionary+biology+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 22,
+      "time": "2026-09-25T02:00:02.176118+00:00"
+    },
+    "source-4e5cb30629b24310": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"055fa130cda10520d0281614ef54a00c4cf284c839af0fdd1282f67523fdbf34\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-4e5cb30629b24310",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 22,
+      "time": "2026-09-25T02:00:02.667220+00:00"
+    },
+    "source-fb0326c4bbac4111": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"014f8bf3e85b65bddf46cecb7fe98f21fbf630b79e4d089b48023cef411456cd\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-fb0326c4bbac4111",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 22,
+      "time": "2026-09-25T02:00:02.997837+00:00"
+    },
+    "source-82a70a30cc7d4737": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"cfd71803543245de552a012e88a555034fd1a2edb6719452c23e294954a1be23\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-82a70a30cc7d4737",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 22,
+      "time": "2026-09-25T02:00:03.397612+00:00"
+    },
+    "source-ca501d4ebc9246e6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pascal's wager\\\",\\\"pageid\\\":215539,\\\"size\\\":49950,\\\"wordcount\\\":6450,\\\"snippet\\\":\\\"Perspectives on Religious\\nEpistemology\\n. Oxford University Press. pp.\\\\u00a0270\\\\u2013282. Martin, Michael (1990). Atheism: A Philosophical\\nJustification\\n. Temple University\\\",\\\"timestamp\\\":\\\"2026-08-30T21:37:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4df735f5a1c97e351da2cd6a0022716e8e90b9f1276c50992c148386541aaf3a\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-ca501d4ebc9246e6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 22,
+      "time": "2026-09-25T02:00:03.781955+00:00"
+    },
+    "r-41e09e1ba9c343f3": {
+      "actor": "runtime",
+      "content": "{\"base_version\":22,\"inherited_commitments\":[],\"invocation\":\"w-41e09e1ba9c343f3\",\"previous_head\":\"513a13fdf15ac264088b9e7f2a8245ac853bcf22d20c9f83a39399535677d6d2\",\"process_id\":2178,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-41e09e1ba9c343f3",
+      "source": "runtime:continuity",
+      "version": 22,
+      "time": "2026-09-25T02:00:04.104177+00:00"
     }
   },
   "journal": [
@@ -12178,6 +12240,400 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-41e09e1ba9c343f3": {
+      "base_version": 22,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 11064,
+        "delivered_request_chars": 35758,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 73320,
+        "working_set_chars": 1375
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-41e09e1ba9c343f3",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 22,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "evo-trait-explanation",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Distinguishing Evolutionary Explanations"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "psychology-memory-distinction",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Working Memory vs Short-Term Memory"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2178,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "6b0a2728b86067dd24f1cb8a130d54781c4086145007235f857bcce45fe766e4",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-fcef25cef18348e4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fcef25cef18348e4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1771bf5251a049f4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1771bf5251a049f4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-50546adb25694d4a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-50546adb25694d4a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-72e6dd21f9d54912"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-72e6dd21f9d54912",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-a7c3b9eaebfa43dc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-a7c3b9eaebfa43dc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1babe293127a4999"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1babe293127a4999",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-fcef25cef18348e4",
+          "source-1771bf5251a049f4",
+          "source-50546adb25694d4a",
+          "source-72e6dd21f9d54912",
+          "source-a7c3b9eaebfa43dc",
+          "source-1babe293127a4999"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 3,
+          "topic": "evolutionary_biology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "evolutionary_biology",
+        "temporal": {
+          "anchor_seq": 511,
+          "anchor_time": "2026-09-25T02:00:03.874498+00:00",
+          "anchor_version": 22,
+          "effective_seconds": 7961.39956
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 198.958901,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 7961.39956,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T02:00:03.874498+00:00",
+        "previous_anchor_time": "2026-09-25T01:56:44.915597+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 198.958901
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 11064,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1375,
+        "working_to_delivered_ratio": 0.1243
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "psychology-memory-distinction",
+            "next_step": "Research psychological models distinguishing working memory and short-term memory.",
+            "question": "How do working memory and short-term memory differ in major psychological models, and what experimental evidence motivated that distinction?",
+            "title": "Working Memory vs Short-Term Memory"
+          },
+          {
+            "id": "evo-trait-explanation",
+            "next_step": "Search for reviews or seminal papers comparing these evolutionary mechanisms.",
+            "question": "How do biologists empirically distinguish adaptation, byproduct, drift, and constraint in trait evolution?",
+            "title": "Distinguishing Evolutionary Explanations"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-25T02:00:04.198608+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 584,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 38071,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "finished": "2026-09-25T02:00:11.475039+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ],
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 584,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 584,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 38071,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 1,
+        "request_payload_bytes": 38071,
+        "response_bytes_captured": 198,
+        "result": "transient_failure",
+        "skipped_models": [
+          {
+            "model": "gemini-3.8-flash",
+            "reason": "configured_daily_limit"
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "reason": "configured_daily_limit"
+          }
+        ]
+      }
     }
   },
   "pending": null,
@@ -12426,48 +12882,49 @@
     "evo-trait-explanation": {
       "project": "evo-trait-explanation",
       "domain": "evolutionary_biology",
-      "no_progress": 0,
+      "no_progress": 1,
       "routes": [
         "api.crossref.org:discovery",
         "api.semanticscholar.org:discovery",
-        "api.crossref.org:source"
+        "api.crossref.org:source",
+        "api.openalex.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1006/anbe.1994.1191",
-        "doi:10.1075/cilt.124.04bri",
-        "doi:10.1515/flih.2005.26.1-2.13",
-        "doi:10.1353/lan.2001.0152",
-        "doi:10.1075/sl.28.2.03fan",
-        "doi:10.1017/s0094837300004310",
-        "doi:10.1075/tsl.19.1.14gre",
-        "doi:10.1017/cbo9780511620553",
-        "doi:10.1016/j.pragma.2011.09.002",
-        "doi:10.1017/cbo9780511551048",
-        "doi:10.1075/pbns.234.09izu",
-        "doi:10.1075/jhp.15.1.04izu"
+        "doi:10.1086/343878",
+        "doi:10.1007/s11692-012-9162-y",
+        "doi:10.1007/s11692-012-9162-y.pdf",
+        "doi:10.1007/s10539-016-9557-8",
+        "doi:10.1007/s10539-016-9557-8.pdf",
+        "doi:10.3389/fgene.2020.00792",
+        "doi:10.3389/fgene.2020.00792/pdf",
+        "openalex:W2132827427",
+        "openalex:W2137063713",
+        "openalex:W2564499575",
+        "openalex:W3045865694",
+        "arxiv:2020.00792"
       ],
       "last_receipt": {
-        "evidence": "source-a7c3b9eaebfa43dc",
-        "outcome": "progress",
+        "evidence": "source-27e0096e6b6243f5",
+        "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.1075/cilt.336.13izu",
-          "doi:10.1075/cilt.124.04bri",
-          "doi:10.1515/flih.2005.26.1-2.13",
-          "doi:10.1353/lan.2001.0152",
-          "doi:10.1075/sl.28.2.03fan",
-          "doi:10.1017/s0094837300004310",
-          "doi:10.1075/tsl.19.1.14gre",
-          "doi:10.1017/cbo9780511620553",
-          "doi:10.1016/j.pragma.2011.09.002",
-          "doi:10.1017/cbo9780511551048",
-          "doi:10.1075/pbns.234.09izu",
-          "doi:10.1075/jhp.15.1.04izu"
+          "doi:10.1086/343878",
+          "doi:10.1007/s11692-012-9162-y",
+          "doi:10.1007/s11692-012-9162-y.pdf",
+          "doi:10.1007/s10539-016-9557-8",
+          "doi:10.1007/s10539-016-9557-8.pdf",
+          "doi:10.3389/fgene.2020.00792",
+          "doi:10.3389/fgene.2020.00792/pdf",
+          "openalex:W2132827427",
+          "openalex:W2137063713",
+          "openalex:W2564499575",
+          "openalex:W3045865694",
+          "arxiv:2020.00792"
         ],
-        "research_id": "res-evo-trait-001",
-        "route": "api.crossref.org:source",
-        "stage": "substantive_source"
+        "research_id": "res-evo-trait-distinction-001",
+        "route": "api.openalex.org:discovery",
+        "stage": "discovery"
       }
     }
   },
@@ -12792,8 +13249,9 @@
       "query": "empirical methods for distinguishing adaptation byproduct genetic drift constraint evolutionary biology review",
       "reason": "I need to find specific methodological papers or reviews that describe how these mechanisms are operationalized and tested to address the project question of how biologists empirically distinguish these forces.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-b2b32189c1464787"
+      "status": "collected",
+      "created_by": "w-b2b32189c1464787",
+      "evidence": "source-27e0096e6b6243f5"
     }
   },
   "research_topics": [
@@ -12993,9 +13451,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T01:56:44.915597+00:00",
-    "anchor_version": 21,
-    "anchor_seq": 495,
-    "effective_seconds": 7762.440659
+    "anchor_time": "2026-09-25T02:00:03.874498+00:00",
+    "anchor_version": 22,
+    "anchor_seq": 511,
+    "effective_seconds": 7961.39956
   }
 }
