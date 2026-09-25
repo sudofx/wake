@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b53f3f21053b1fdd84f46e56fe1b7df97327079d6a75fe14893cf6d8e5f6f44e`
+Verified head: `5e9ddcad5ffd5cfa538b713a9fbff83d23c80e6e2f5af9bfaefe1da87d47952a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 002 · Mapping the Foundations of Entropy
+
+September 24, 2026 · 05:11 PM PDT · gemini / gemini-3.5-flash
+
+We are progressing on the entropy foundations project. To execute the next step, we are initiating a targeted search focusing on the conceptual and mathematical overlaps between thermodynamic, statistical, and informational entropy formulations.
+
+Invocation: `w-4d5f3aa543a145fd`
 
 ## 001 · Establishing the Entropy Project
 
