@@ -6159,6 +6159,68 @@
       "source": "runtime:continuity",
       "version": 56,
       "time": "2026-09-25T07:10:11.338909+00:00"
+    },
+    "source-ecdb3112fdd94b46": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.4304%2Ftpls.1.1.83-86\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2022, 4, 5]], \\\"date-time\\\": \\\"2022-04-05T12:13:22Z\\\", \\\"timestamp\\\": 1649160802914}, \\\"reference-count\\\": 6, \\\"publisher\\\": \\\"Academy Publication\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"TPLS\\\"], \\\"DOI\\\": \\\"10.4304/tpls.1.1.83-86\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2011, 1, 15]], \\\"date-time\\\": \\\"2011-01-15T11:59:57Z\\\", \\\"timestamp\\\": 1295092797000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [\\\"Incongruity-resolution in English Humor\\\"], \\\"prefix\\\": \\\"10.17507\\\", \\\"volume\\\": \\\"1\\\", \\\"author\\\": [{\\\"given\\\": \\\"Yufeng\\\", \\\"family\\\": \\\"Bai\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"6939\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2011, 1, 1]]}, \\\"reference\\\": [{\\\"key\\\": \\\"ref1\\\", \\\"first-page\\\": \\\"35\\\", \\\"article-title\\\": \\\"Humor and the search for relevance.\\\", \\\"author\\\": \\\"Yus\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"J. Pragmatics\\\", \\\"ISSN\\\": \\\"http://id.crossref.org/issn/0378-2166\\\", \\\"issn-type\\\": \\\"print\\\"}, {\\\"key\\\": \\\"ref2\\\", \\\"first-page\\\": \\\"25\\\", \\\"article-title\\\": \\\"The Relevance-Integration Model of Verbal HumorâSome Disagreements with Wang Wenbin and Lin Bo.\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Biyue\\\", \\\"year\\\": \\\"2007\\\", \\\"journal-title\\\": \\\"Journal of TianJin Foreign Studies University.\\\"}, {\\\"key\\\": \\\"ref3\\\", \\\"first-page\\\": \\\"23\\\", \\\"article-title\\\": \\\"A Study of Humorous Utterances from the Perspective of Relevance Theory.\\\", \\\"volume\\\": \\\"1\\\", \\\"author\\\": \\\"Yong\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"Foreign Language Education.\\\"}, {\\\"key\\\": \\\"ref4\\\", \\\"first-page\\\": \\\"31\\\", \\\"article-title\\\": \\\"Appreciation of English Verbal Humor from a Cognitive Pragmatics' Perspective.\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Ping\\\", \\\"year\\\": \\\"2006\\\", \\\"journal-title\\\": \\\"Journal of GuangDong University of Foreign Studies.\\\"}, {\\\"key\\\": \\\"ref5\\\", \\\"volume-title\\\": \\\"Developing the Incongruity-Resolution Theory. Informatics Research Report. Kant, I. (1790). The Critique of Judgment, Trans J. C. Meredith, (1952)\\\", \\\"author\\\": \\\"Ritchie\\\", \\\"year\\\": \\\"1999\\\"}, {\\\"key\\\": \\\"ref6\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.4324/9780203406953\\\", \\\"volume-title\\\": \\\"The linguistic Analysis of Jokes.\\\", \\\"author\\\": \\\"Richie\\\", \\\"year\\\": \\\"2004\\\"}], \\\"container-title\\\": [\\\"Theory and Practice in Language Studies\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"http://www.academypublication.com/issues/past/tpls/vol01/01/12.pdf\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2019, 6, 7]], \\\"date-time\\\": \\\"2019-06-07T18:13:04Z\\\", \\\"timestamp\\\": 1559931184000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"http://www.academypublication.com/issues/past/tpls/vol01/01/12.pdf\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2011, 1, 1]]}, \\\"references-count\\\": 6, \\\"journal-issue\\\": {\\\"issue\\\": \\\"1\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2011, 1, 1]]}}, \\\"URL\\\": \\\"https://doi.org/10.4304/tpls.1.1.83-86\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"1799-2591\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"1799-2591\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2011, 1, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"a7c3822b148cde150d2c77f31e934769c5b757d8382aeb65f7ce8bff7f476611\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4304/tpls.1.1.83-86\", \"doi:10.4324/9780203406953\"]}",
+      "id": "source-ecdb3112fdd94b46",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.4304%2Ftpls.1.1.83-86",
+      "version": 57,
+      "time": "2026-09-25T07:13:41.908651+00:00"
+    },
+    "source-21c7a79f90ca4bec": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=incongruity-resolution+theory+humor+benign+violation+theory+mcgraw+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4135/9781483346175.n37\\\", \\\"title\\\": [\\\"Benign Violation Theory\\\"], \\\"URL\\\": \\\"https://doi.org/10.4135/9781483346175.n37\\\"}, {\\\"DOI\\\": \\\"10.4087/bojq1588\\\", \\\"title\\\": [\\\"Norms Violation and Dark Personality: Benign Violation Theory for Humor and Dark Humor\\\"], \\\"abstract\\\": \\\"<jats:p>Benign violation theory of humor has stood for years as a reliable explanation of what makes things funny. Nonetheless, some researchers emphasized the importance of context in various cultures. This research employs the benign violation framework to dissect the antecedents of amusement in violations that occurred in Indonesia's memetic internet content. Study 1 (N = 40) compared the effect of comedic video (vs. neutral video) on participants' perception of the degree of amusement and violation of the videos presented. The result showed that comedic video was perceived as having a higher level of violations, and the degree of amusement was positively correlated with perceived level of violations, but not with participants' sense of humor. Study 2 (N = 160) investigated the difference between casual jokes and dark jokes. Participants rated casual jokes as funnier, more amusing, more understandable, and less violating compared to dark jokes. Dark jokes were rated as funny only when participants understood the joke. Participants with a higher level of dark triad personality showed higher liking and understanding of dark jokes. In general, violations explain why jokes are funny, and personality explains why dark jokes are funny.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.4087/bojq1588\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025]]}}, {\\\"DOI\\\": \\\"10.4304/tpls.1.1.83-86\\\", \\\"title\\\": [\\\"Incongruity-resolution in English Humor\\\"], \\\"URL\\\": \\\"https://doi.org/10.4304/tpls.1.1.83-86\\\", \\\"published\\\": {\\\"date-parts\\\": [[2011, 1, 1]]}}, {\\\"DOI\\\": \\\"10.1515/9783110806137.101\\\", \\\"title\\\": [\\\"Chapter 7. Incongruity theory and the concept of incongruity\\\"], \\\"URL\\\": \\\"https://doi.org/10.1515/9783110806137.101\\\", \\\"published\\\": {\\\"date-parts\\\": [[1999, 12, 31]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"fa05a2824a632237ccc6d258b1dc223706a71535942606031e79175a6d8fe613\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4135/9781483346175.n37\", \"doi:10.4087/bojq1588\", \"doi:10.4304/tpls.1.1.83-86\", \"doi:10.1515/9783110806137.101\"]}",
+      "id": "source-21c7a79f90ca4bec",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=incongruity-resolution+theory+humor+benign+violation+theory+mcgraw+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 57,
+      "time": "2026-09-25T07:13:43.340602+00:00"
+    },
+    "source-6b1ac60ebe3248df": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86eb4c3d2818af260c0a74a78353a03723383ad3b000c2dc82f427a4a134b6d7\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-6b1ac60ebe3248df",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 57,
+      "time": "2026-09-25T07:13:44.543245+00:00"
+    },
+    "source-2e2b38b1ce4e4ed6": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of the nude in art\\\",\\\"pageid\\\":71247922,\\\"size\\\":337730,\\\"wordcount\\\":43252,\\\"snippet\\\":\\\"academic classifications of works of\\nart\\n. Nudity in\\nart\\nhas generally reflected the social standards for\\naesthetics\\nand morality of the era in which the\\\",\\\"timestamp\\\":\\\"2026-09-19T06:09:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c7f3099118c8bdcc71248689f8c5acac4664eb840080c75bf08eb5cf082a5f85\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-2e2b38b1ce4e4ed6",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 57,
+      "time": "2026-09-25T07:13:45.119285+00:00"
+    },
+    "source-d8dd1b9984324419": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"acaf96a2ef825007ccb873cc5b113842fe6d99df6806019ecf0c26e289555016\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+      "id": "source-d8dd1b9984324419",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 57,
+      "time": "2026-09-25T07:13:45.664104+00:00"
+    },
+    "source-e48f3f5f6e254d8f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organized criticality\\\",\\\"pageid\\\":718855,\\\"size\\\":29252,\\\"wordcount\\\":3184,\\\"snippet\\\":\\\"\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\",\\\"timestamp\\\":\\\"2026-08-29T14:23:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1c81977602594f268f8275d1d8410575290768ab5468bd1210484e391f19f33e\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-e48f3f5f6e254d8f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 57,
+      "time": "2026-09-25T07:13:46.401107+00:00"
+    },
+    "r-3b8c0da5e435443a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":57,\"inherited_commitments\":[],\"invocation\":\"w-3b8c0da5e435443a\",\"previous_head\":\"70c82eeece94c24998deb62884044e8ede4a185a29ff4d5b1378fbf13727f287\",\"process_id\":2155,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-3b8c0da5e435443a",
+      "source": "runtime:continuity",
+      "version": 57,
+      "time": "2026-09-25T07:13:47.356727+00:00"
     }
   },
   "journal": [
@@ -39887,6 +39949,491 @@
       "successful_model": "gemini-3.1-flash-lite",
       "finished": "2026-09-25T07:10:41.165900+00:00",
       "reason": ""
+    },
+    "w-3b8c0da5e435443a": {
+      "base_version": 57,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 16292,
+        "delivered_request_chars": 41225,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 85347,
+        "working_set_chars": 1400
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-3b8c0da5e435443a",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 57,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "comedy-incongruity-mechanisms",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Humor"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "info-thermo-landauer",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Landauer's Principle and Information Costs"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2155,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "cb263d77dfd1c36cd8b1efa89c0ad6fce9aedf4edc67141dee319f0d4e683a98",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-70b42b75a2ee479d"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-70b42b75a2ee479d",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b1fe5e48653a415c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b1fe5e48653a415c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-3ac9acc8fb5a41d9"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-3ac9acc8fb5a41d9",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-143261413b09417a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-143261413b09417a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-d433f7f88da14a8b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-d433f7f88da14a8b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ecdb3112fdd94b46"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ecdb3112fdd94b46",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-70b42b75a2ee479d",
+          "source-b1fe5e48653a415c",
+          "source-3ac9acc8fb5a41d9",
+          "source-143261413b09417a",
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 5,
+          "topic": "comedy"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [
+          "information_thermodynamics"
+        ],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "comedy",
+          "consciousness",
+          "entropy",
+          "music",
+          "neurodivergence",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "comedy": [
+            {
+              "id": "comedy-incongruity-mechanisms",
+              "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+              "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?"
+            }
+          ],
+          "consciousness": [
+            {
+              "id": "consciousness-scientific-theories",
+              "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+              "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+            }
+          ],
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "music": [
+            {
+              "id": "music-cross-cultural-structure",
+              "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+              "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+            }
+          ],
+          "neurodivergence": [
+            {
+              "id": "neurodivergence-paradigm-vs-pathology",
+              "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+              "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "storytelling",
+        "temporal": {
+          "anchor_seq": 1464,
+          "anchor_time": "2026-09-25T07:13:46.681460+00:00",
+          "anchor_version": 57,
+          "effective_seconds": 26784.206522
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": "r-3b8c0da5e435443a",
+        "topic_selection_candidates": [
+          "complex_systems",
+          "dance",
+          "endocrinology",
+          "epistemology",
+          "evolutionary_biology",
+          "neurology",
+          "philosophy",
+          "psychology",
+          "quantum_mechanics",
+          "religion",
+          "storytelling",
+          "visual_art"
+        ],
+        "topic_selection_method": "receipt_hash_uniform_index"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 216.111039,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 26784.206522,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 19
+        },
+        "observed_at": "2026-09-25T07:13:46.681460+00:00",
+        "previous_anchor_time": "2026-09-25T07:10:10.570421+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 216.111039
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 16292,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1400,
+        "working_to_delivered_ratio": 0.0859
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "info-thermo-landauer",
+            "next_step": "Search for foundational and critical literature on Landauer's principle.",
+            "question": "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?",
+            "title": "Landauer's Principle and Information Costs"
+          },
+          {
+            "id": "comedy-incongruity-mechanisms",
+            "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+            "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+            "title": "Cognitive Mechanisms of Humor"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "deferred",
+      "time": "2026-09-25T07:13:47.643829+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 22615,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43937,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 1093,
+          "http_status": 503,
+          "model": "gemini-3.5-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43937,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "category": "server",
+          "elapsed_ms": 47151,
+          "http_status": 503,
+          "model": "gemini-3.1-flash-lite",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 43937,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        }
+      ],
+      "provider_requests_sent": 3,
+      "finished": "2026-09-25T07:15:24.543087+00:00",
+      "reason": "Gemini temporarily unavailable; wake deferred",
+      "provider_error": {
+        "category": "server",
+        "elapsed_ms": 47151,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_attempts": [
+          {
+            "category": "server",
+            "elapsed_ms": 22615,
+            "http_status": 503,
+            "model": "gemini-3.8-flash",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 43937,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          },
+          {
+            "category": "server",
+            "elapsed_ms": 1093,
+            "http_status": 503,
+            "model": "gemini-3.5-flash",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 43937,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          },
+          {
+            "category": "server",
+            "elapsed_ms": 47151,
+            "http_status": 503,
+            "model": "gemini-3.1-flash-lite",
+            "provider_error": {
+              "code": 503,
+              "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+              "status": "UNAVAILABLE"
+            },
+            "request_payload_bytes": 43937,
+            "response_bytes_captured": 198,
+            "result": "transient_failure"
+          }
+        ],
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "provider_requests_sent": 3,
+        "request_payload_bytes": 43937,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
     }
   },
   "pending": null,
@@ -40535,14 +41082,21 @@
         "doi:10.4087/bojq1588",
         "doi:10.1093/oso/9780198791270.003.0004",
         "doi:10.4304/tpls.1.1.83-86",
-        "doi:10.4135/9781483346175"
+        "doi:10.4135/9781483346175",
+        "doi:10.4324/9780203406953",
+        "doi:10.1515/9783110806137.101"
       ],
       "last_receipt": {
-        "evidence": "source-4b07be7b2ccf47c0",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
-        "research_id": "res_comedy_theories_incongruity_01",
-        "route": "api.datacite.org:discovery",
+        "evidence": "source-21c7a79f90ca4bec",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.4135/9781483346175.n37",
+          "doi:10.4087/bojq1588",
+          "doi:10.4304/tpls.1.1.83-86",
+          "doi:10.1515/9783110806137.101"
+        ],
+        "research_id": "res-comedy-theories-incongruity-benign-violation",
+        "route": "api.crossref.org:discovery",
         "stage": "discovery"
       }
     }
@@ -41302,8 +41856,9 @@
       "query": "incongruity-resolution theory humor benign violation theory mcgraw review",
       "reason": "To identify foundational literature defining the mechanisms of incongruity-resolution and benign violation theory, allowing for a comparative analysis of how each framework explains humor response.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-c2fd51c15beb4b0f"
+      "status": "collected",
+      "created_by": "w-c2fd51c15beb4b0f",
+      "evidence": "source-21c7a79f90ca4bec"
     }
   },
   "research_topics": [
@@ -41503,9 +42058,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T07:10:10.570421+00:00",
-    "anchor_version": 56,
-    "anchor_seq": 1444,
-    "effective_seconds": 26568.095483
+    "anchor_time": "2026-09-25T07:13:46.681460+00:00",
+    "anchor_version": 57,
+    "anchor_seq": 1464,
+    "effective_seconds": 26784.206522
   }
 }
