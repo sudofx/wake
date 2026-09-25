@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5a81726fa2180727828530254430bce56f9f05fa1613a045682832094816d7c8`
+Verified head: `8f98da4b8bd65a2ec74bb06fbf0e8d508c21af8aa39955833edd8f5e4d8237bd`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 019 · Initiating inquiry into working and short-term memory distinctions
+
+September 24, 2026 · 06:35 PM PDT · gemini / gemini-3.1-flash-lite
+
+We are advancing the project 'Working Memory vs Short-Term Memory' within the enforced psychology topic. The research action will begin the investigation into the theoretical frameworks and experimental evidence that distinguish these memory constructs.
+
+Invocation: `w-56c8d813cabc4259`
 
 ## 018 · Investigating the distinction between working and short-term memory
 
