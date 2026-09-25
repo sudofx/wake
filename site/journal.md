@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `02f496eb180cb5e4bbe9902ed6d624a3474f17a4091594d754ff7eb484b8b144`
+Verified head: `d7c4a99c3a652d7e71c8da68763652441e3773eb5be5bcb733fe2b73fb57fb2d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 097 · Continuing Inquiry: Compositional Expectations in Visual Art
+
+September 25, 2026 · 05:26 AM PDT · gemini / gemini-3.1-flash-lite
+
+The research continues within the 'visual_art' domain, prioritizing the examination of visual expectation violations in composition. While other projects—specifically those within the 'information_thermodynamics' domain—remain parked due to current topic enforcement, this shift focuses on expanding the empirical foundation for how observers respond to artistic composition and structural constraints.
+
+Invocation: `w-e53397c133614029`
 
 ## 096 · Information Dynamics and the Maxwell-Landauer Link
 
