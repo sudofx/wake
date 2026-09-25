@@ -5,7 +5,7 @@
 **Version:** 84  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `c0f9c6f214b04534a706ee713a35bdab84e535f450d68af2c723bec4c7a0dde2`
+**Verified head:** `d7a1bb5e30a08f1b999fa42ee2a8a94bf2a07a0e1906ea104ad708680133137d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1197,7 +1197,7 @@ _None recorded._
 {
   "project": "dance-rhythm-cognition",
   "domain": "dance",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.crossref.org:discovery",
     "api.crossref.org:source",
@@ -1221,12 +1221,14 @@ _None recorded._
     "doi:10.7551/mitpress/6730.001.0001"
   ],
   "last_receipt": {
-    "evidence": "source-175bbf4171a34a8d",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-e0d4e70d45164e4a",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1007/springer_crossmark_policy"
+    ],
     "research_id": "res-dance-rhythm-cog-002",
-    "route": "api.datacite.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -53398,6 +53400,489 @@ _None recorded._
 }
 ```
 
+### `w-185abc51ddb54139`
+
+```json
+{
+  "base_version": 84,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 18701,
+    "delivered_request_chars": 47173,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 102960,
+    "working_set_chars": 4020
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-185abc51ddb54139",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 84,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "dance-rhythm-cognition",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurodiversity-paradigm-foundations",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Foundations of Neurodiversity Paradigm"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2298,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "9da31514955f173ac93cbccfd876d97dab4d4d58edf1349a598d430b6e733eb9",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-82c87c653e2a4e2e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-82c87c653e2a4e2e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ee894b1eb9424479"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ee894b1eb9424479",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b1f7f1c3e8f9470d"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b1f7f1c3e8f9470d",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f535f6171025430e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b4a60e211150449b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b4a60e211150449b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e0d4e70d45164e4a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e0d4e70d45164e4a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-82c87c653e2a4e2e",
+      "source-ee894b1eb9424479",
+      "source-b1f7f1c3e8f9470d",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-e0d4e70d45164e4a"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "dance"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "dance",
+    "temporal": {
+      "anchor_seq": 2154,
+      "anchor_time": "2026-09-25T10:43:40.272103+00:00",
+      "anchor_version": 84,
+      "effective_seconds": 39377.797165
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 279.360514,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 39377.797165,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T10:43:40.272103+00:00",
+    "previous_anchor_time": "2026-09-25T10:39:00.911589+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 279.360514
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18701,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4020,
+    "working_to_delivered_ratio": 0.215
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neurodiversity-paradigm-foundations",
+        "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+        "title": "Foundations of Neurodiversity Paradigm"
+      },
+      {
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+        "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "id": "dance-rhythm-cognition",
+        "next_step": "Search for cognitive and anthropological research on rhythm, movement, and social context in dance.",
+        "question": "How do rhythm, coordinated movement, and imitation shape the perception and meaning of dance across different cultures?",
+        "title": "Cognitive Mechanisms of Rhythmic Coordination"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      },
+      {
+        "id": "nb-neurodiversity-foundations-01",
+        "project": "neurodiversity-paradigm-foundations",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 2,
+        "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+        "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+      },
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      },
+      {
+        "id": "nb-epistemology-justification-001",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-fb2f23f9caf94381",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+        "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+      },
+      {
+        "id": "nb-epistemology-incongruity-002",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+        "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+      },
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-3a360bed53d540e3",
+          "source-f60fd568868a4d42"
+        ],
+        "revision": 1,
+        "summary": "This provisional synthesis acknowledges the available bibliographic markers for studying rhythm in dance while noting the limitation that current sources are restricted to metadata and abstracts.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T10:43:42.095924+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 13122,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 51503,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T10:44:09.350472+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 13122,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 13122,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 51503,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 51503,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -67268,6 +67753,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 84,
   "time": "2026-09-25T10:39:02.241167+00:00"
+}
+```
+
+### `source-e0d4e70d45164e4a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1007%2Fspringer_crossmark_policy\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2023, 11, 24]], \\\"date-time\\\": \\\"2023-11-24T16:35:00Z\\\", \\\"timestamp\\\": 1700843700035}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"DOI\\\": \\\"10.1007/springer_crossmark_policy\\\", \\\"type\\\": \\\"dataset\\\", \\\"created\\\": {\\\"date-parts\\\": [[2014, 3, 20]], \\\"date-time\\\": \\\"2014-03-20T03:34:30Z\\\", \\\"timestamp\\\": 1395286470000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [], \\\"prefix\\\": \\\"10.1007\\\", \\\"member\\\": \\\"297\\\", \\\"container-title\\\": [\\\"Springer CrossMark Policy\\\"], \\\"original-title\\\": [], \\\"deposited\\\": {\\\"date-parts\\\": [[2014, 4, 28]], \\\"date-time\\\": \\\"2014-04-28T14:38:57Z\\\", \\\"timestamp\\\": 1398695937000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"http://www.springer.com/gp/crossmarkpolicy\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[null]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1007/springer_crossmark_policy\\\", \\\"relation\\\": {}, \\\"subject\\\": []}]\", \"excerpt_truncated\": false, \"source_sha256\": \"770d313ee87a126d95bb4b728ff6b41bb1594604b467dbd0f073f61d6cf91340\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1007/springer_crossmark_policy\"]}",
+  "id": "source-e0d4e70d45164e4a",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1007%2Fspringer_crossmark_policy",
+  "version": 84,
+  "time": "2026-09-25T10:43:35.564906+00:00"
+}
+```
+
+### `source-ea04f5127eff4753`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-ea04f5127eff4753",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:43:36.667174+00:00"
+}
+```
+
+### `source-622934add6414a5f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d449571dadc7f39f0ac82f8e3d498137e573ed871994ca0dea3e3466461f72a2\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-622934add6414a5f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:43:37.743803+00:00"
+}
+```
+
+### `source-8b496bce49054a13`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40313},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"117ac3b04a7325859e2ffa1528d4b3c0b3c599d7e08c8d8027554e607f190e87\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-8b496bce49054a13",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:43:38.380630+00:00"
+}
+```
+
+### `source-b9cf13f6486c46dd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"06dc05011f80b00b87adf32ccedd661bf07b8ffa37bfedfb5f309a9c495f0dc2\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b9cf13f6486c46dd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:43:39.040752+00:00"
+}
+```
+
+### `source-9f112384c2fc4dc5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d158653835730a06932bc0c6aa6220d96e3d2a38fba4d2f475e22c899f58ee99\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9f112384c2fc4dc5",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 84,
+  "time": "2026-09-25T10:43:39.786029+00:00"
+}
+```
+
+### `r-185abc51ddb54139`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":84,\"inherited_commitments\":[],\"invocation\":\"w-185abc51ddb54139\",\"previous_head\":\"d424ecf6fd87c0c5943ea65f50842b775b1127029bc1005981e867e38ad43650\",\"process_id\":2298,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-185abc51ddb54139",
+  "source": "runtime:continuity",
+  "version": 84,
+  "time": "2026-09-25T10:43:41.591027+00:00"
 }
 ```
 
