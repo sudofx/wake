@@ -1,8 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-fedfcac222454faa",
-  "reason": "",
-  "cycle": 99,
+  "status": "deferred",
+  "id": "w-5a0b0d169179446f",
+  "reason": "Gemini temporarily unavailable; wake deferred",
   "publication_only": true,
   "wake_status": {
     "last_accepted": {
