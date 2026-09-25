@@ -891,6 +891,42 @@ class Engine:
                 context["reflection_history"]["acquisition_friction"] = []
             request["response_schema"] = schema_for_context(context)
 
+        # Very small configured ceilings (including compaction tests) may not
+        # have room for the normal 500-character synthesis excerpts. Degrade
+        # source prose before abandoning the synthesis signal entirely.
+        if len(canonical(request)) > limit:
+            for item in context.get("evidence", []):
+                if item.get("content"):
+                    item["content"] = excerpt(item["content"], 160)
+                    item["context_excerpt"] = True
+            request["response_schema"] = schema_for_context(context)
+
+        # Absolute safety valve: if the schema plus even tiny readable excerpts
+        # cannot fit, preserve provenance roots but suppress synthesis for this
+        # one invocation rather than failing before the provider boundary.
+        if len(canonical(request)) > limit:
+            context["evidence"] = [
+                {
+                    "id": item.get("id"),
+                    "source": item.get("source", ""),
+                    "actor": item.get("actor", ""),
+                    "version": item.get("version"),
+                    "scope": item.get("scope"),
+                    "content_omitted": True,
+                }
+                for item in context.get("evidence", [])
+            ]
+            context["project_evidence"] = {}
+            context["synthesis_ready_projects"] = []
+            context["retrieval_rehydration"] = {
+                "evidence_ids": [],
+                "boundary": (
+                    "Configured provider ceiling could not fit readable synthesis "
+                    "excerpts; exact records remain durable for a later invocation."
+                ),
+            }
+            request["response_schema"] = schema_for_context(context)
+
     # ---------------------------------------------------------------------------
     # STEP: inquiry_drive_shadow
     #
