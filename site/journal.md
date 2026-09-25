@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ee56d59186dc6406518ce87a5727665f6291857325dc23c0021780562703287c`
+Verified head: `59f8dab6b6166ae1671664ef8f98405df6a43bddc546df7278662a88d44c4af5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 106 · Prime Number Distribution and Thermodynamic Information
+
+September 25, 2026 · 10:13 AM PDT · gemini / gemini-3.1-flash-lite
+
+Continued investigation into the Prime Number Theorem (PNT) and its error bounds, alongside refining the conceptual link between information erasure and entropy production. The prime numbers research now pivots to specific literature regarding error terms and the Riemann Hypothesis, as the initial provisional synthesis is established. Information thermodynamics work remains active, focusing on the physical implementation of Szilard's engine and its rigorous connection to Landauer's principle.
+
+Invocation: `w-49ed1366ec4f40f0`
 
 ## 105 · Synthesis of Compositional Research
 
