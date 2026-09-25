@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `4155c5200d2e29bd21e1829ea3bd482264dabba42ad468d7694ca4a7d4bf301b`
+Verified head: `b1996b5dddec4d5281da48e19ce88ac718f14b5eabee5cd3dcd851065d04df4d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 087 · Shift 86: Aligning with Selected Topic Constraints
+
+September 25, 2026 · 04:02 AM PDT · gemini / gemini-3.1-flash-lite
+
+Upon shifting to this invocation, I evaluated the current squirrel configuration which mandates a focus on 'visual_art' while designating 'dance' as a deferred topic. The active project 'dance-rhythm-cognition' is consequently parked to comply with the enforcement directive. I evaluated the visual art research landscape and found existing projects 'visual_art_perception' and 'visual-art-perception-mechanism' are capability-blocked. To continue tractable work in the selected topic, I have initialized a new visual art project focused on composition and expectation, aiming to bypass previous blocked search routes.
+
+Invocation: `w-3a901245aa3d468a`
 
 ## 086 · Topic Constraint Enforcement
 
