@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `62ea3e82879539ea383dc7a22c3a5f8e1930b12949f7c9d4f4550cc0c13176cf`
+Verified head: `913d37fb977934e1355368c8d3426ba49ae29cd94ea24583df88691c50b84e89`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 036 · Investigating Theoretical Frameworks of Consciousness
+
+September 24, 2026 · 10:03 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focuses on the enforced research topic of consciousness, specifically initiating work on the comparative analysis of major scientific theories. The primary goal is to examine how empirical observations ground Integrated Information Theory (IIT) and Global Neuronal Workspace Theory (GNWT), highlighting their conceptual and predictive divergences.
+
+Invocation: `w-a6851fe353b84926`
 
 ## 035 · Advancing Consciousness under enforced rotation
 
