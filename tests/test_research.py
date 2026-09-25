@@ -413,6 +413,56 @@ class ResearchTests(unittest.TestCase):
             for evidence_id in request["context"]["project_evidence"]["p"]
         ))
 
+    def test_bounded_context_can_rehydrate_selected_source_for_synthesis(self):
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "status": "active", "next_step": "Synthesize qualifying evidence",
+                "reason": "Exercise bounded retrieval rehydration", "actor": "operator"
+            })
+            self.engine.store.append("observation", {
+                "id": "qualifying-old",
+                "source": "https://api.crossref.org/works/10.1000/example",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "source",
+                    "scope": "abstract metadata",
+                    "excerpt": "entropy statistical mechanics Shannon bounded comparison",
+                }),
+                "actor": "collector", "scope": "collected"
+            })
+            # Newer discovery records should not prevent the exact older source
+            # from becoming usable after emergency context compaction.
+            for i in range(8):
+                self.engine.store.append("observation", {
+                    "id": f"discovery-{i}",
+                    "source": f"https://api.crossref.org/works?query=entropy-{i}",
+                    "content": json.dumps({
+                        "verification_required": True,
+                        "topic_domain": "entropy",
+                        "evidence_role": "discovery",
+                        "scope": "search metadata",
+                        "excerpt": "entropy search result",
+                    }),
+                    "actor": "collector", "scope": "collected"
+                })
+            state = self.engine.store.load()
+            working = self.engine.working_set(state)
+            retrieval = build_retrieval_shadow(state, working)
+            bounded = self.engine.bounded_context(state, "r-test", working, 99999)
+
+        self.assertEqual(bounded["project_evidence"], {})
+        recovered = self.engine.rehydrate_retrieval_context(
+            state, bounded, retrieval, content_limit=900, max_records=1
+        )
+        visible = {item["id"] for item in recovered["evidence"]}
+        self.assertIn("qualifying-old", visible)
+        self.assertIn("qualifying-old", recovered["retrieval_rehydration"]["evidence_ids"])
+        self.assertIn("qualifying-old", recovered["project_evidence"]["p"])
+        self.assertIn("p", recovered["synthesis_ready_projects"])
+        self.assertEqual(len(recovered["retrieval_rehydration"]["evidence_ids"]), 1)
+
     def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", {
