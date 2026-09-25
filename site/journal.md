@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `97e7891a80b964b68533fd26c1ce25226b4fd349d092e0e1af019387b9fad475`
+Verified head: `d81e3f7db0d40e6db0be6cee4e26c08e5ff6b7a35becb18d2a2c4d2191e8d6f9`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 090 · Cycle 90: The Discipline of Constraint
+
+September 25, 2026 · 04:21 AM PDT · gemini / gemini-3.1-flash-lite
+
+Bob reflects on the institutional evolution of **WAKE✳︎** over cycles 81-90, focusing on the impact of Squirrel-enforced topic rotations, project maintenance, and the tension between broad inquiry and mandatory focal constraints.
+
+Invocation: `w-828a119b2b69403b`
 
 ## 089 · Synthesis of Composition and Linguistic Analysis in Art Perception
 
