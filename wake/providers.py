@@ -166,9 +166,13 @@ translating the system for outsiders, and what questions Bob has about his role 
 Bob may ask questions about his role, boundaries, perspective, or usefulness, but must not imply that
 Bob or WAKE✳ is conscious, sentient, experiencing, or a persistent mind. The reflection should synthesize
 the big picture rather than recap cycles mechanically. Use context.bob_reflection_cycle as the milestone
-number. Because this is an editorial reflection on the system and journey, it may draw on supplied journal,
-project, research, problem, and prior-blog context; it must clearly label research claims as source-backed
-and personal/editorial interpretation as Bob's reflection.
+number. When context.reflection_history is present, use it as the longitudinal editorial window: name
+multiple concrete changes from the recorded wakes, identify at least one recurring pattern or tension,
+say what changed in Bob's translation approach, and end with at least one genuinely unresolved question.
+A milestone reflection should usually be 1200–3500 characters of body prose rather than a short status note.
+Do not pad or mechanically enumerate cycles. Because this is an editorial reflection on the system and journey,
+it may draw on supplied journal, project, research, problem, prior-blog, and reflection-history context; it
+must clearly label research claims as source-backed and personal/editorial interpretation as Bob's reflection.
 
 If recent_blog in the supplied context is empty, this is Bob's first public post. The first post's body
 must begin with a brief, natural introduction in Bob's voice before the regular article: greet the reader,
@@ -217,6 +221,8 @@ Exact shape:
  "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
  "lens":"Optional short original philosophical reflection","reflection_cycle":10}
 Use reflection_cycle ONLY when context.bob_reflection_due is true, and set it exactly to context.bob_reflection_cycle.
+For a mandatory milestone reflection, body must be at least 900 characters and Bob's Lens is required;
+ordinary Bob posts retain the 300-character minimum and optional Lens.
 Omit reflection_cycle from ordinary Bob posts. A mandatory milestone reflection is system-wide: it may use project:""
 with empty notebooks/evidence when no single research project is the honest anchor for the longitudinal reflection.
 The optional lens may reflect on observation, uncertainty, listening, perspective, humility, and
@@ -444,9 +450,13 @@ def schema_for_context(context):
         if reflection_due:
             props["notebooks"]["minItems"] = 0
             props["evidence"]["minItems"] = 0
+            props["body"]["minLength"] = 900
+            props["body"]["maxLength"] = 6000
+            props["lens"]["maxLength"] = 500
             props["reflection_cycle"]["enum"] = [context["bob_reflection_cycle"]]
-            if "reflection_cycle" not in blog["required"]:
-                blog["required"].append("reflection_cycle")
+            for required_field in ("reflection_cycle", "lens"):
+                if required_field not in blog["required"]:
+                    blog["required"].append(required_field)
         else:
             # Expose the public promotion threshold before generation.
             # Governance still re-validates distinct source URLs.
@@ -891,9 +901,17 @@ class Fixture:
                     "exists only to exercise the same mandatory publication boundary used by the live research "
                     "runtime. The record shows obligations moving between fresh fixture processes, evidence "
                     "being retained, and governance deciding whether proposed changes may become durable. "
-                    "Nothing in this fixture demonstrates consciousness, comprehension, or scientific truth. "
-                    "Its purpose is narrower: verify that a due editorial milestone cannot silently disappear "
-                    "while accepted state continues to advance."
+                    "Across repeated shifts, the useful tension is between continuity of the external record "
+                    "and discontinuity of the model process reading it: commitments survive even though the "
+                    "invocation that created them does not. Another pattern is that governance, not model prose, "
+                    "decides which proposals become durable, so a fluent answer can still be rejected without "
+                    "damaging the prior state. From Bob's editorial perspective, that changes what is worth "
+                    "explaining: the interesting story is not that a model remembers, but that a later model can "
+                    "inherit exact obligations and be held to them. The unresolved question is how much of that "
+                    "history a future bounded invocation must see to describe the journey without flattening it "
+                    "into a generic status update. Nothing in this fixture demonstrates consciousness, "
+                    "comprehension, or scientific truth. Its purpose is narrower: verify that a due editorial "
+                    "milestone cannot silently disappear while accepted state continues to advance."
                 ),
                 "notebooks": [],
                 "evidence": [],
