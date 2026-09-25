@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -4113,6 +4113,68 @@
       "source": "runtime:continuity",
       "version": 36,
       "time": "2026-09-25T05:06:24.459309+00:00"
+    },
+    "source-2b1b803e853c4f98": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1371%2Fjournal.pone.0268577\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 11]], \\\"date-time\\\": \\\"2026-09-11T23:27:32Z\\\", \\\"timestamp\\\": 1789169252473, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 66, \\\"publisher\\\": \\\"Public Library of Science (PLoS)\\\", \\\"issue\\\": \\\"2\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2023, 2, 10]], \\\"date-time\\\": \\\"2023-02-10T00:00:00Z\\\", \\\"timestamp\\\": 1675987200000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://creativecommons.org/licenses/by/4.0/\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/501100011730\\\", \\\"name\\\": \\\"Templeton World Charity Foundation, Inc\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"award\\\": [\\\"TWCF0389\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"TWCF0389\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100011730\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"crossref\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100011730\\\", \\\"name\\\": \\\"Templeton World Charity Foundation, Inc\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"award\\\": [\\\"TWCF0345\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"TWCF0345\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100011730\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"crossref\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100011730\\\", \\\"name\\\": \\\"Templeton World Charity Foundation, Inc\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"award\\\": [\\\"TWCF0378\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"TWCF0378\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100011730\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"crossref\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"www.plosone.org\\\"], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"PLoS ONE\\\"], \\\"abstract\\\": \\\"<jats:p>The relationship between conscious experience and brain activity has intrigued scientists and philosophers for centuries. In the last decades, several theories have suggested different accounts for these relationships. These theories have developed in parallel, with little to no cross-talk among them. To advance research on consciousness, we established an adversarial collaboration between proponents of two of the major theories in the field, Global Neuronal Workspace and Integrated Information Theory. Together, we devised and preregistered two experiments that test contrasting predictions of these theories concerning the location and timing of correlates of visual consciousness, which have been endorsed by the theories’ proponents. Predicted outcomes should either support, refute, or challenge these theories. Six theory-impartial laboratories will follow the study protocol specified here, using three complementary methods: Functional Magnetic Resonance Imaging (fMRI), Magneto-Electroencephalography (M-EEG), and intracranial electroencephalography (iEEG). The study protocol will include built-in replications, both between labs and within datasets. Through this ambitious undertaking, we hope to provide decisive evidence in favor or against the two theories and clarify the footprints of conscious visual perception in the human brain, while also providing an innovative model of large-scale, collaborative, and open science practice.</jats:p>\\\", \\\"DOI\\\": \\\"10.1371/journal.pone.0268577\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2023, 2, 10]], \\\"date-time\\\": \\\"2023-02-10T18:50:18Z\\\", \\\"timestamp\\\": 1676055018000}, \\\"page\\\": \\\"e0268577\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1371/journal.pone.corrections_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 94, \\\"title\\\": [\\\"An adversarial collaboration protocol for testing contrasting predictions of global neuronal workspace and integrated information theory\\\"], \\\"prefix\\\": \\\"10.1371\\\", \\\"volume\\\": \\\"18\\\", \\\"author\\\": [{\\\"given\\\": \\\"Lucia\\\", \\\"family\\\": \\\"Melloni\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Liad\\\", \\\"family\\\": \\\"Mudrik\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-9824-3443\\\", \\\"authenticated-orcid\\\": true, \\\"given\\\": \\\"Michael\\\", \\\"family\\\": \\\"Pitts\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Katarina\\\", \\\"family\\\": \\\"Bendtz\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Oscar\\\", \\\"family\\\": \\\"Ferrante\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-3808-337X\\\", \\\"authenticated-orcid\\\": true, \\\"given\\\": \\\"Urszula\\\", \\\"family\\\": \\\"Gorska\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0001-7710-5159\\\", \\\"authenticated-orcid\\\": true, \\\"given\\\": \\\"Rony\\\", \\\"family\\\": \\\"Hirschhorn\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Aya\\\", \\\"family\\\": \\\"Khalaf\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Csaba\\\", \\\"family\\\": \\\"Kozma\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Alex\\\", \\\"family\\\": \\\"Lepauvre\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ling\\\", \\\"family\\\": \\\"Liu\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"David\\\", \\\"family\\\": \\\"Mazumder\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"David\\\", \\\"family\\\": \\\"Richter\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Hao\\\", \\\"family\\\": \\\"Zhou\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Hal\\\", \\\"family\\\": \\\"Blumenfeld\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Melanie\\\", \\\"family\\\": \\\"Boly\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"David J.\\\", \\\"family\\\": \\\"Chalmers\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Sasha\\\", \\\"family\\\": \\\"Devore\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Francis\\\", \\\"family\\\": \\\"Fallon\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Floris P.\\\", \\\"family\\\": \\\"de Lange\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ole\\\", \\\"family\\\": \\\"Jensen\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0003-3505-8475\\\", \\\"authenticated-orcid\\\": true, \\\"given\\\": \\\"Gabriel\\\", \\\"family\\\": \\\"Kreiman\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Huan\\\", \\\"family\\\": \\\"Luo\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Theofanis I.\\\", \\\"family\\\": \\\"Panagiotaropoulos\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Stanislas\\\", \\\"family\\\": \\\"Dehaene\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Christof\\\", \\\"family\\\": \\\"Koch\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Giulio\\\", \\\"family\\\": \\\"Tononi\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"340\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2023, 2, 10]]}, \\\"reference\\\": [{\\\"key\\\": \\\"pone.0268577.ref001\\\", \\\"volume-title\\\": \\\"The astonishing hypothesis: the scientific search for the soul\\\", \\\"author\\\": \\\"F. Crick\\\", \\\"year\\\": \\\"1994\\\"}, {\\\"key\\\": \\\"pone.0268577.ref002\\\", \\\"first-page\\\": \\\"7\\\", \\\"article-title\\\": \\\"The problems of consciousness\\\", \\\"volume\\\": \\\"77\\\", \\\"author\\\": \\\"D.J. Chalmers\\\", \\\"year\\\": \\\"1998\\\", \\\"journal-title\\\": \\\"Adv Neurol\\\"}, {\\\"key\\\": \\\"pone.0268577.ref003\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1093/acprof:oso/9780198524588.001.0001\\\", \\\"volume-title\\\": \\\"Consciousness lost and found: A neuropsychological exploration\\\", \\\"author\\\": \\\"L. Weiskrantz\\\", \\\"year\\\": \\\"1999\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"pone.0268577.ref004\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"119\\\", \\\"DOI\\\": \\\"10.1038/nn0203-119\\\", \\\"article-title\\\": \\\"A framework for consciousness\\\", \\\"volume\\\": \\\"6\\\", \\\"author\\\": \\\"F. Crick\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"Nature Neuroscience\\\"}, {\\\"key\\\": \\\"pone.0268577.ref005\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.7551/mitpress/11705.001.0001\\\", \\\"volume-title\\\": \\\"The Feeling of Life Itself: Why Consciousness Is Widespread but Can’t Be Computed\\\", \\\"author\\\": \\\"C. Koch\\\", \\\"year\\\": \\\"2019\\\"}, {\\\"key\\\": \\\"pone.0268577.ref006\\\", \\\"volume-title\\\": \\\"Consciousness and the Brain: Deciphering How the Brain Codes our Thoughts\\\", \\\"author\\\": \\\"S. Dehaene\\\", \\\"year\\\": \\\"2014\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"pone.0268577.ref007\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1093/nc/niab021\\\", \\\"article-title\\\": \\\"Explanatory profiles of models of consciousness-towards a systematic classification\\\", \\\"volume\\\": \\\"2021\\\", \\\"author\\\": \\\"C.M. Signorelli\\\", \\\"year\\\": \\\"2021\\\", \\\"journal-title\\\": \\\"Neuroscience of consciousness\\\"}, {\\\"key\\\": \\\"pone.0268577.ref008\\\", \\\"article-title\\\": \\\"The Consciousness Theories Studies (ConTraSt) database: analyzing and comparing empirical studies of consciousness theories\\\", \\\"author\\\": \\\"I. Yaron\\\", \\\"year\\\": \\\"2021\\\", \\\"journal-title\\\": \\\"bioRxiv\\\"}, {\\\"issue\\\": \\\"6545\\\", \\\"key\\\": \\\"pone.0268577.ref009\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"911\\\", \\\"DOI\\\": \\\"10.1126/science.abj3259\\\", \\\"article-title\\\": \\\"Making the hard problem of consciousness easier\\\", \\\"volume\\\": \\\"372\\\", \\\"author\\\": \\\"L. Melloni\\\", \\\"year\\\": \\\"2021\\\", \\\"journal-title\\\": \\\"Science\\\"}, {\\\"issue\\\": \\\"9\\\", \\\"key\\\": \\\"pone.0268577.ref010\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"723\\\", \\\"DOI\\\": \\\"10.1037/0003-066X.58.9.723\\\", \\\"article-title\\\": \\\"Experiences of collaborative research\\\", \\\"volume\\\": \\\"58\\\", \\\"author\\\": \\\"D. Kahneman\\\",\", \"excerpt_truncated\": true, \"source_sha256\": \"3955bab66ba71a1ab87b19a87235361d83736b39468780432e6b482a799b188d\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.13039/501100011730\", \"doi:10.1371/journal.pone.0268577\", \"doi:10.1371/journal.pone.corrections_policy\", \"doi:10.1093/acprof:oso/9780198524588.001.0001\", \"doi:10.1038/nn0203-119\", \"doi:10.7551/mitpress/11705.001.0001\", \"doi:10.1093/nc/niab021\", \"doi:10.1126/science.abj3259\", \"doi:10.1037/0003-066x.58.9.723\"]}",
+      "id": "source-2b1b803e853c4f98",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1371%2Fjournal.pone.0268577",
+      "version": 37,
+      "time": "2026-09-25T05:09:16.216893+00:00"
+    },
+    "source-a78deb52631f4fe7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=Integrated+Information+Theory+vs+Global+Neuronal+Workspace+Theory+empirical+predictions+comparison+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-a78deb52631f4fe7",
+      "scope": "failed",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=Integrated+Information+Theory+vs+Global+Neuronal+Workspace+Theory+empirical+predictions+comparison+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 37,
+      "time": "2026-09-25T05:09:16.667017+00:00"
+    },
+    "source-ce4a5d8277ba43a7": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2202},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"78a9460cfe67b5d55bb3c20e14af4ff24f30053959edf38456879438bdc0d2f2\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-ce4a5d8277ba43a7",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 37,
+      "time": "2026-09-25T05:09:17.262171+00:00"
+    },
+    "source-184c1cac75a74faf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy\\\",\\\"pageid\\\":1216879,\\\"size\\\":632,\\\"wordcount\\\":100,\\\"snippet\\\":\\\"Maximum\\nentropy\\nthermodynamics Maximum\\nentropy\\nspectral estimation Principle of maximum\\nentropy\\nMaximum\\nentropy\\nprobability distribution Maximum\\nentropy\\nclassifier\\\",\\\"timestamp\\\":\\\"2022-07-15T18:19:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d92b43181f934c76feae9dc96a1c74bbec0bc9ae77a01461f0fab2a2772ab872\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-184c1cac75a74faf",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 37,
+      "time": "2026-09-25T05:09:17.606251+00:00"
+    },
+    "source-c51086c19baf4c6f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Growth hormone\\\",\\\"pageid\\\":173072,\\\"size\\\":61715,\\\"wordcount\\\":6968,\\\"snippet\\\":\\\"treatment of adult growth\\nhormone\\ndeficiency: an\\nEndocrine\\nSociety Clinical Practice Guideline\\\". The Journal of Clinical\\nEndocrinology\\nand Metabolism. 91 (5):\\\",\\\"timestamp\\\":\\\"2026-09-07T06:53:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d61d5ef79aa0d892347e1ce7d7fa9d7881bd2c0afb2877a42e3a073dbba3c95e\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+      "id": "source-c51086c19baf4c6f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+      "version": 37,
+      "time": "2026-09-25T05:09:18.024647+00:00"
+    },
+    "source-a6fa9755787040cf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1e3dad2e179a208d4a309489fdf9bc69c2853f5bbdf03929dccadfa6c010d718\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-a6fa9755787040cf",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 37,
+      "time": "2026-09-25T05:09:18.427895+00:00"
+    },
+    "r-5e2bdba21bc5499e": {
+      "actor": "runtime",
+      "content": "{\"base_version\":37,\"inherited_commitments\":[],\"invocation\":\"w-5e2bdba21bc5499e\",\"previous_head\":\"a2ce30a75b812b9b3a942833af21e493377d26555c9263f3ade41ded422d9c58\",\"process_id\":2040,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-5e2bdba21bc5499e",
+      "source": "runtime:continuity",
+      "version": 37,
+      "time": "2026-09-25T05:09:19.018054+00:00"
     }
   },
   "journal": [
@@ -4337,6 +4399,12 @@
       "invocation": "w-295d382fb47842c9",
       "title": "Investigating Theoretical Frameworks of Consciousness",
       "summary": "I am initiating research into the comparative literature for major scientific theories of consciousness. Current work focuses on gathering foundational texts that articulate the predictive differences between Integrated Information Theory (IIT) and Global Neuronal Workspace Theory (GNWT). My objective is to build a source-backed understanding of how these theories categorize empirical observations of conscious states, rather than attempting to synthesize a consensus where one does not yet exist."
+    },
+    {
+      "cycle": 38,
+      "invocation": "w-5e2bdba21bc5499e",
+      "title": "Focusing on Scientific Theories of Consciousness",
+      "summary": "This cycle enforces the selected topic of consciousness. To maintain focus and stay within project capacity limits, I have parked non-selected projects. The primary research effort is directed at finding comparative literature on Integrated Information Theory and Global Neuronal Workspace Theory to clarify their empirical predictions and foundational differences."
     }
   ],
   "posts": {
@@ -26686,6 +26754,384 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-5e2bdba21bc5499e": {
+      "base_version": 37,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 12567,
+        "delivered_request_chars": 37915,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 78540,
+        "working_set_chars": 1784
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-5e2bdba21bc5499e",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 37,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "comedy-incongruity-cognition",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cognitive Mechanisms of Incongruity in Comedy"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "qm-foundational-experiments",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Foundational Observations in Quantum Mechanics"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "consciousness-scientific-theories",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Scientific Theories of Consciousness"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2040,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "13dc8f0501d015be68b142d481089a668fa9c5475ed394fceb186867d67d377c",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-f97ab929a311415c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f97ab929a311415c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-9b6d87f3c73249ab"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9b6d87f3c73249ab",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-c856b0d8f3ef4692"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-c856b0d8f3ef4692",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-4a3c3ad5e239478f"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-4a3c3ad5e239478f",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-dd621435ca9645fb"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-dd621435ca9645fb",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2b1b803e853c4f98"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2b1b803e853c4f98",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-f97ab929a311415c",
+          "source-9b6d87f3c73249ab",
+          "source-c856b0d8f3ef4692",
+          "source-4a3c3ad5e239478f",
+          "source-dd621435ca9645fb",
+          "source-2b1b803e853c4f98"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 3,
+          "topic": "consciousness"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "entropy",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "consciousness",
+        "temporal": {
+          "anchor_seq": 987,
+          "anchor_time": "2026-09-25T05:09:18.600900+00:00",
+          "anchor_version": 37,
+          "effective_seconds": 19316.125962
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 174.496255,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 19316.125962,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T05:09:18.600900+00:00",
+        "previous_anchor_time": "2026-09-25T05:06:24.104645+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 174.496255
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 12567,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1784,
+        "working_to_delivered_ratio": 0.142
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "comedy-incongruity-cognition",
+            "next_step": "Search for seminal reviews or theoretical frameworks on incongruity theory in humor.",
+            "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+            "title": "Cognitive Mechanisms of Incongruity in Comedy"
+          },
+          {
+            "id": "qm-foundational-experiments",
+            "next_step": "Search for seminal reviews and foundational experiments in early 20th-century physics.",
+            "question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
+            "title": "Foundational Observations in Quantum Mechanics"
+          },
+          {
+            "id": "consciousness-scientific-theories",
+            "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+            "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?",
+            "title": "Scientific Theories of Consciousness"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T05:09:19.224011+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 5350,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 40379,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T05:09:32.093570+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -26703,7 +27149,7 @@
       "entropy": {
         "cause": "attention_saturation",
         "deferred_by": "w-8ff4a9549b464805",
-        "other_topic_attempts": 15,
+        "other_topic_attempts": 16,
         "parked_projects": [
           {
             "id": "entropy-foundations-formal",
@@ -26717,7 +27163,7 @@
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 35,
+        "other_topic_attempts": 36,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -26734,14 +27180,14 @@
       "attention_topic": "consciousness",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-295d382fb47842c9",
+      "invocation": "w-5e2bdba21bc5499e",
       "restored_topics": [],
       "selected_topic": "consciousness",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 3,
+      "accepted_streak": 4,
       "topic": "consciousness"
     }
   },
@@ -27109,39 +27555,32 @@
       "domain": "consciousness",
       "no_progress": 1,
       "routes": [
-        "api.openalex.org:discovery"
+        "api.openalex.org:discovery",
+        "api.crossref.org:source",
+        "api.semanticscholar.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1371/journal.pone.0268577",
-        "doi:10.3389/fnhum.2014.00020",
-        "doi:10.3389/fnhum.2014.00020/pdf",
-        "doi:10.3389/fpsyg.2013.00200",
-        "doi:10.3389/fpsyg.2013.00200/pdf",
-        "openalex:W4319825978",
         "openalex:W2109543774",
         "openalex:W2033624480",
         "arxiv:2014.00020",
-        "arxiv:2013.00200"
+        "arxiv:2013.00200",
+        "doi:10.13039/501100011730",
+        "doi:10.1371/journal.pone.corrections_policy",
+        "doi:10.1093/acprof:oso/9780198524588.001.0001",
+        "doi:10.1038/nn0203-119",
+        "doi:10.7551/mitpress/11705.001.0001",
+        "doi:10.1093/nc/niab021",
+        "doi:10.1126/science.abj3259",
+        "doi:10.1037/0003-066x.58.9.723"
       ],
       "last_receipt": {
-        "evidence": "source-67538f431fb44e7a",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.1371/journal.pone.0268577",
-          "doi:10.3389/fnhum.2014.00020",
-          "doi:10.3389/fnhum.2014.00020/pdf",
-          "doi:10.3389/fpsyg.2013.00200",
-          "doi:10.3389/fpsyg.2013.00200/pdf",
-          "openalex:W4319825978",
-          "openalex:W2109543774",
-          "openalex:W2033624480",
-          "arxiv:2014.00020",
-          "arxiv:2013.00200"
-        ],
-        "research_id": "res-consciousness-iit-gnwt-001",
-        "route": "api.openalex.org:discovery",
+        "evidence": "source-a78deb52631f4fe7",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
+        "research_id": "res-consciousness-iit-gnwt-compare-001",
+        "route": "api.semanticscholar.org:discovery",
         "stage": "discovery"
       }
     }
@@ -27244,28 +27683,28 @@
     "comedy-incongruity-cognition": {
       "domain": "comedy",
       "id": "comedy-incongruity-cognition",
-      "next_step": "Search for seminal reviews or theoretical frameworks on incongruity theory in humor.",
+      "next_step": "Resume search for theoretical frameworks on incongruity theory.",
       "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
-      "reason": "Starting new project under selected topic: comedy.",
-      "status": "active",
+      "reason": "Parking to free capacity for enforced topic: consciousness.",
+      "status": "parked",
       "title": "Cognitive Mechanisms of Incongruity in Comedy",
       "type": "project",
       "created_version": 29,
-      "updated_version": 29,
-      "updated_by": "w-f4736fd9621d4fc8"
+      "updated_version": 38,
+      "updated_by": "w-5e2bdba21bc5499e"
     },
     "qm-foundational-experiments": {
       "domain": "quantum_mechanics",
       "id": "qm-foundational-experiments",
-      "next_step": "Search for seminal reviews and foundational experiments in early 20th-century physics.",
+      "next_step": "Resume search for seminal reviews of foundational experiments.",
       "question": "What experimental observations motivated the development of quantum mechanics, and which features could classical physics not adequately explain?",
-      "reason": "This project initiates work on the selected topic (quantum_mechanics) as directed by the current squirrel context.",
-      "status": "active",
+      "reason": "Parking to free capacity for enforced topic: consciousness.",
+      "status": "parked",
       "title": "Foundational Observations in Quantum Mechanics",
       "type": "project",
       "created_version": 33,
-      "updated_version": 33,
-      "updated_by": "w-1a03c7c5d4b74f70"
+      "updated_version": 38,
+      "updated_by": "w-5e2bdba21bc5499e"
     },
     "consciousness-scientific-theories": {
       "domain": "consciousness",
@@ -27651,8 +28090,19 @@
       "query": "Integrated Information Theory vs Global Neuronal Workspace Theory empirical predictions comparison review",
       "reason": "This search is necessary to identify high-quality review literature that explicitly compares the empirical predictions and underlying axioms of IIT and GNWT, which is the foundational step for evaluating their differences.",
       "type": "research",
+      "status": "failed",
+      "created_by": "w-295d382fb47842c9",
+      "evidence": "source-a78deb52631f4fe7"
+    },
+    "res-consciousness-iit-gnwt-compare": {
+      "domain": "consciousness",
+      "id": "res-consciousness-iit-gnwt-compare",
+      "project": "consciousness-scientific-theories",
+      "query": "Integrated Information Theory vs Global Neuronal Workspace Theory comparative review",
+      "reason": "This search directly addresses the project question by seeking comparative analyses of the two major scientific theories of consciousness.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-295d382fb47842c9"
+      "created_by": "w-5e2bdba21bc5499e"
     }
   },
   "research_topics": [
@@ -27852,9 +28302,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T05:06:24.104645+00:00",
-    "anchor_version": 36,
-    "anchor_seq": 971,
-    "effective_seconds": 19141.629707
+    "anchor_time": "2026-09-25T05:09:18.600900+00:00",
+    "anchor_version": 37,
+    "anchor_seq": 987,
+    "effective_seconds": 19316.125962
   }
 }
