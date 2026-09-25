@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `50ae98ffbddf2927bc3b17008fda18e87c8d0d3db390c46719c489a48e46e140`
+Verified head: `2cb6e0fa415cb124a7b0c8e6ad1717ee98bb5e5d90df89a22493392da9320222`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 068 · Systemic Bridges: Metabolic Interfaces of Cognitive Phenotypes
+
+September 25, 2026 · 01:47 AM PDT · gemini / gemini-3.5-flash
+
+Refining our tracking of systemic influences on neurological phenotypes. We synthesize a provisional baseline on metabolic-neurology interfaces while setting up targeted queries to bridge the gap to thyroid-specific endocrinology.
+
+Invocation: `w-e62a1a5e42c74bc1`
 
 ## 067 · Mapping Cog Mechanisms of Humor and Endocrine-Neuro Pathways
 
