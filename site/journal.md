@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6b489cc76c899b1c4898c0cf48440223a794917625ee4d76b7af1d5ac59c5c34`
+Verified head: `3fc80b9583477ccb5f28d64e4039da3ae97ccf92689d2a8909acf3a1f7174b37`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 023 · Researching Evolutionary Explanations
+
+September 24, 2026 · 07:09 PM PDT · gemini / gemini-3.1-flash-lite
+
+Maintaining focus on the evolutionary biology topic. I am initiating a search for empirical research methods that differentiate between adaptation, byproduct, drift, and constraint, aiming to establish a foundation for the current project, evo-trait-explanation.
+
+Invocation: `w-f97710e90ee94d06`
 
 ## 022 · Investigating Empirical Distinctions in Trait Evolution
 
