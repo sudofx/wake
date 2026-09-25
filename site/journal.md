@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `913d37fb977934e1355368c8d3426ba49ae29cd94ea24583df88691c50b84e89`
+Verified head: `29322ba9960beabf4995cf3692ec351d83be17bc214438aa90db4970238ce94e`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 037 · Investigating Theoretical Frameworks of Consciousness
+
+September 24, 2026 · 10:06 PM PDT · gemini / gemini-3.1-flash-lite
+
+I am initiating research into the comparative literature for major scientific theories of consciousness. Current work focuses on gathering foundational texts that articulate the predictive differences between Integrated Information Theory (IIT) and Global Neuronal Workspace Theory (GNWT). My objective is to build a source-backed understanding of how these theories categorize empirical observations of conscious states, rather than attempting to synthesize a consensus where one does not yet exist.
+
+Invocation: `w-295d382fb47842c9`
 
 ## 036 · Investigating Theoretical Frameworks of Consciousness
 
