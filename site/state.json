@@ -1,5 +1,5 @@
 {
-  "version": 43,
+  "version": 44,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -4919,6 +4919,68 @@
       "source": "runtime:continuity",
       "version": 42,
       "time": "2026-09-25T05:57:16.943403+00:00"
+    },
+    "source-264f040ddcb643a8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.13039%2F100010433\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-264f040ddcb643a8",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works/10.13039%2F100010433",
+      "version": 43,
+      "time": "2026-09-25T06:00:03.336695+00:00"
+    },
+    "source-cae85e21efc740bd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=neurodiversity+paradigm+vs+clinical+pathology+models+comparative+analysis&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9780429322297-4\\\", \\\"title\\\": [\\\"Language games used to construct autism as pathology\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9780429322297-4\\\", \\\"published\\\": {\\\"date-parts\\\": [[2020, 6, 2]]}}, {\\\"DOI\\\": \\\"10.5040/9781839979897.ch-004\\\", \\\"title\\\": [\\\"The Pathology Paradigm\\\"], \\\"URL\\\": \\\"https://doi.org/10.5040/9781839979897.ch-004\\\", \\\"published\\\": {\\\"date-parts\\\": [[2024]]}}, {\\\"DOI\\\": \\\"10.1177/27546330241294138\\\", \\\"title\\\": [\\\"Moving to a neurodiversity-affirming paradigm in the support system: Autistic professionals\\\\n                    <u>\\\\n                      <i>As</i>\\\\n                    </u>\\\\n                    paradigm change\\\"], \\\"abstract\\\": \\\"<jats:p>The purpose of support provided to autistic people in the United States has been to normalize their behavior and communication. Due to serious risks of normalization, support professionals have begun to question normalization as the best approach. The Neurodiversity Movement has initiated a paradigm shift in clinical support, mental health therapy, and special education away from normalization and toward affirmation of neurocognitive diversities as natural for human beings. Self-advocates want supports that eschew normalization. However, normalization still dominates the support system. Paradigm change remains incomplete. Eleven autistic professionals were interviewed utilizing emancipatory methodology to elicit their suggestions for movement to a neurodiversity-affirming paradigm in the support system. One suggestion was to ensure that autistic individuals have regular access to autistic professionals. If we follow this advice and develop society-wide, visible, and powerful cohorts of autistic professionals across support settings and contexts, the paradigm will change.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1177/27546330241294138\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 1]]}}, {\\\"DOI\\\": \\\"10.4324/9781003495949-11\\\", \\\"title\\\": [\\\"Embracing an Evolving Paradigm of Neurodiversity\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003495949-11\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 9, 19]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"dbd2eba1162bb8f0835bb046215d6580d0024bbd8f2ffb710743a94ad83b3151\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4324/9780429322297-4\", \"doi:10.5040/9781839979897.ch-004\", \"doi:10.1177/27546330241294138\", \"doi:10.4324/9781003495949-11\"]}",
+      "id": "source-cae85e21efc740bd",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=neurodiversity+paradigm+vs+clinical+pathology+models+comparative+analysis&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 43,
+      "time": "2026-09-25T06:00:04.869314+00:00"
+    },
+    "source-2827b9d0abcd4149": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6105},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"86eb4c3d2818af260c0a74a78353a03723383ad3b000c2dc82f427a4a134b6d7\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-2827b9d0abcd4149",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 43,
+      "time": "2026-09-25T06:00:05.950810+00:00"
+    },
+    "source-c43dcd221287493b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a76e2a7999144fa750680c11e6608e2c7eca26c5fc4ed703a3fb5efc31d89e14\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c43dcd221287493b",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 43,
+      "time": "2026-09-25T06:00:06.648171+00:00"
+    },
+    "source-297ada3940ef4937": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2202},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6996561c399eda3e63cb2c07d73afd0696d27f2bbebc870e3f6aa7d20798304d\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-297ada3940ef4937",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 43,
+      "time": "2026-09-25T06:00:07.038161+00:00"
+    },
+    "source-d8061015d95a445a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20900,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-08-23T19:07:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organized criticality\\\",\\\"pageid\\\":718855,\\\"size\\\":29252,\\\"wordcount\\\":3184,\\\"snippet\\\":\\\"\\nSelf\\n-organized criticality (SOC) is a property of dynamical\\nsystems\\nthat have a critical point as an attractor. Their macroscopic behavior thus displays\\\",\\\"timestamp\\\":\\\"2026-08-29T14:23:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4b2c6250605b8ceccd971661294ccbf39c68d1a3ad88d5b2b3d1ed5ced3b9d95\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-d8061015d95a445a",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 43,
+      "time": "2026-09-25T06:00:07.596221+00:00"
+    },
+    "r-83e2ede819294c0e": {
+      "actor": "runtime",
+      "content": "{\"base_version\":43,\"inherited_commitments\":[],\"invocation\":\"w-83e2ede819294c0e\",\"previous_head\":\"aba49d3febc759cd837639be6a468ba1ca27f5b10f488c214f327fe39699a639\",\"process_id\":2049,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-83e2ede819294c0e",
+      "source": "runtime:continuity",
+      "version": 43,
+      "time": "2026-09-25T06:00:08.217142+00:00"
     }
   },
   "journal": [
@@ -5179,6 +5241,12 @@
       "invocation": "w-d7d26c6d3b524c7f",
       "title": "Initiating Comparative Neurodivergence Research",
       "summary": "In adherence to the squirrel-enforced focus on the neurodivergence domain, I am beginning work on the project 'Neurodiversity Paradigm vs Clinical Pathology'. This research action will gather foundational literature comparing the neurodiversity framework with traditional clinical pathology models, fulfilling the project's next step."
+    },
+    {
+      "cycle": 44,
+      "invocation": "w-83e2ede819294c0e",
+      "title": "Exploring the Neurodiversity Paradigm and Clinical Pathology Frameworks",
+      "summary": "The research project investigating the distinctions and overlaps between the neurodiversity paradigm and clinical pathology models remains active. This shift focuses on retrieving comparative literature to establish a grounded, source-backed understanding of how these two frameworks categorize neurodivergent traits, fulfilling the next step defined for the project under the enforced neurodivergence topic rotation."
     }
   ],
   "posts": {
@@ -31226,6 +31294,346 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-83e2ede819294c0e": {
+      "base_version": 43,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 12327,
+        "delivered_request_chars": 37683,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "rich_context_chars": 80332,
+        "working_set_chars": 1084
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-83e2ede819294c0e",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 43,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "neurodivergence-paradigm-vs-pathology",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Neurodiversity Paradigm vs Clinical Pathology"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2049,
+      "provider": "gemini",
+      "quota_day": "2026-09-24",
+      "request_hash": "a5b36daf3319bdf26c1cec2b16eee1a9859303cbc344aee40f2a5b4db471a7e9",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-7f7c275a118840fc"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-7f7c275a118840fc",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-74b11fe00c02401a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-74b11fe00c02401a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5ce546cde1614f13"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5ce546cde1614f13",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-702ad961a22448a7"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-702ad961a22448a7",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-03824d5598a0461e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-03824d5598a0461e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e33d12dd647f4076"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e33d12dd647f4076",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-7f7c275a118840fc",
+          "source-74b11fe00c02401a",
+          "source-5ce546cde1614f13",
+          "source-702ad961a22448a7",
+          "source-03824d5598a0461e",
+          "source-e33d12dd647f4076"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 6,
+          "evidence_count": 6,
+          "trigger_counts": {
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "neurodivergence"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "consciousness",
+          "entropy",
+          "prime_numbers"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "consciousness": [
+            {
+              "id": "consciousness-scientific-theories",
+              "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+              "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+            }
+          ],
+          "entropy": [
+            {
+              "id": "entropy-foundations-formal",
+              "next_step": "Search for literature comparing these three frameworks.",
+              "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+            }
+          ],
+          "prime_numbers": [
+            {
+              "id": "prime_number_distribution",
+              "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+              "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "neurodivergence",
+        "temporal": {
+          "anchor_seq": 1160,
+          "anchor_time": "2026-09-25T06:00:07.787634+00:00",
+          "anchor_version": 43,
+          "effective_seconds": 22365.312696
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 171.454031,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 22365.312696,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-25T06:00:07.787634+00:00",
+        "previous_anchor_time": "2026-09-25T05:57:16.333603+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 171.454031
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 12327,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 6,
+        "retrieval_evidence_count": 6,
+        "retrieval_trigger_counts": {
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 1084,
+        "working_to_delivered_ratio": 0.0879
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "neurodivergence-paradigm-vs-pathology",
+            "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+            "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+            "title": "Neurodiversity Paradigm vs Clinical Pathology"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "notebook-entropy-provisional-01",
+            "project": "entropy_foundations",
+            "provenance": [
+              "source-37de73467bbc40e5"
+            ],
+            "revision": 1,
+            "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+            "title": "Provisional Review of Entropy Literature"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-25T06:00:08.567153+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3569,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 40091,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-25T06:00:22.058698+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -31244,7 +31652,7 @@
       "consciousness": {
         "cause": "attention_saturation",
         "deferred_by": "w-d73be0b2c28943a1",
-        "other_topic_attempts": 5,
+        "other_topic_attempts": 6,
         "parked_projects": [
           {
             "id": "consciousness-scientific-theories",
@@ -31258,7 +31666,7 @@
       "entropy": {
         "cause": "attention_saturation",
         "deferred_by": "w-8ff4a9549b464805",
-        "other_topic_attempts": 22,
+        "other_topic_attempts": 23,
         "parked_projects": [
           {
             "id": "entropy-foundations-formal",
@@ -31269,10 +31677,24 @@
         "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
         "release_condition": "accepted notebook or ordinary publication on another topic"
       },
+      "neurodivergence": {
+        "cause": "attention_saturation",
+        "deferred_by": "w-83e2ede819294c0e",
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "neurodivergence-paradigm-vs-pathology",
+            "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+            "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+          }
+        ],
+        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+        "release_condition": "accepted notebook or ordinary publication on another topic"
+      },
       "prime_numbers": {
         "cause": "attention_saturation",
         "deferred_by": "w-7c196d7d8eca4233",
-        "other_topic_attempts": 42,
+        "other_topic_attempts": 43,
         "parked_projects": [
           {
             "id": "prime_number_distribution",
@@ -31285,18 +31707,20 @@
       }
     },
     "last_receipt": {
-      "attention_saturation_triggered": false,
+      "attention_saturation_triggered": true,
       "attention_topic": "neurodivergence",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-d7d26c6d3b524c7f",
+      "invocation": "w-83e2ede819294c0e",
       "restored_topics": [],
       "selected_topic": "neurodivergence",
       "terminal": "accepted",
-      "triggered_topics": []
+      "triggered_topics": [
+        "neurodivergence"
+      ]
     },
     "attention": {
-      "accepted_streak": 4,
+      "accepted_streak": 5,
       "topic": "neurodivergence"
     }
   },
@@ -31707,20 +32131,16 @@
     "neurodivergence-paradigm-vs-pathology": {
       "project": "neurodivergence-paradigm-vs-pathology",
       "domain": "neurodivergence",
-      "no_progress": 1,
+      "no_progress": 3,
       "routes": [
-        "api.openalex.org:discovery",
         "api.crossref.org:source",
         "api.openalex.org:source",
-        "api.datacite.org:discovery"
+        "api.datacite.org:discovery",
+        "api.crossref.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.13039/100010433",
-        "doi:10.1002/crossmark_policy",
-        "doi:10.1007/s40489-020-00226-7",
-        "doi:10.1037/a0029851",
         "doi:10.1177/1362361319852831",
         "doi:10.1176/appi.books.9780890425596",
         "doi:10.1016/s1369-8486(99)00033-3",
@@ -31728,14 +32148,23 @@
         "doi:10.1111/j.1548-1352.2009.01080.x",
         "doi:10.1017/s0954579400003126",
         "doi:10.1007/s40617-023-00780-6",
-        "doi:10.1007/s40617-023-00780-6.pdf"
+        "doi:10.1007/s40617-023-00780-6.pdf",
+        "doi:10.4324/9780429322297-4",
+        "doi:10.5040/9781839979897.ch-004",
+        "doi:10.1177/27546330241294138",
+        "doi:10.4324/9781003495949-11"
       ],
       "last_receipt": {
-        "evidence": "source-99f586e1d36d40a9",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
-        "research_id": "res-nd-vs-path-001",
-        "route": "api.datacite.org:discovery",
+        "evidence": "source-cae85e21efc740bd",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.4324/9780429322297-4",
+          "doi:10.5040/9781839979897.ch-004",
+          "doi:10.1177/27546330241294138",
+          "doi:10.4324/9781003495949-11"
+        ],
+        "research_id": "res-neurodivergence-001",
+        "route": "api.crossref.org:discovery",
         "stage": "discovery"
       }
     }
@@ -32313,8 +32742,19 @@
       "query": "neurodiversity paradigm vs clinical pathology models comparative analysis",
       "reason": "Executing the project's next step to gather literature that addresses the tension and overlap between neurodiversity and clinical pathology, required for establishing a baseline understanding.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-d7d26c6d3b524c7f",
+      "evidence": "source-cae85e21efc740bd"
+    },
+    "res-neuro-paradigm-comp-001": {
+      "domain": "neurodivergence",
+      "id": "res-neuro-paradigm-comp-001",
+      "project": "neurodivergence-paradigm-vs-pathology",
+      "query": "neurodiversity paradigm vs medical model clinical pathology comparative literature",
+      "reason": "To retrieve comparative literature necessary for synthesizing a notebook that delineates the theoretical differences and potential overlaps between the neurodiversity paradigm and clinical pathology models.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-d7d26c6d3b524c7f"
+      "created_by": "w-83e2ede819294c0e"
     }
   },
   "research_topics": [
@@ -32514,9 +32954,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-25T05:57:16.333603+00:00",
-    "anchor_version": 42,
-    "anchor_seq": 1144,
-    "effective_seconds": 22193.858665
+    "anchor_time": "2026-09-25T06:00:07.787634+00:00",
+    "anchor_version": 43,
+    "anchor_seq": 1160,
+    "effective_seconds": 22365.312696
   }
 }
