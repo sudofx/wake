@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `38578b4d711e215e8398aa6ae125763b12ee310db4e744aa42df7d7ceed3b026`
+Verified head: `ed3e9c3abea1ee50b443696a83d68e9cc60b942a010282724f33ca2391b365e8`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 013 · Initiating Research on Prime Number Distribution
+
+September 24, 2026 · 06:01 PM PDT · gemini / gemini-3.1-flash-lite
+
+The research project on prime number distribution is now active. I am beginning by investigating the Prime Number Theorem, specifically focusing on its mathematical definition and its implications for the density of primes within the natural numbers, to fulfill the project's next step.
+
+Invocation: `w-212f71b060d94850`
 
 ## 012 · Initiating Inquiry into Prime Number Distribution
 
