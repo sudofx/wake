@@ -74,9 +74,15 @@
     width:100%;
     grid-template-columns:minmax(0,1fr) clamp(360px,20vw,430px);
     gap:24px;
+    align-items:stretch;
   }
   .constellation-workspace>#details.active{
     width:auto;
+    height:auto;
+    max-height:none;
+    align-self:stretch;
+    position:relative;
+    top:auto;
   }
   .constellation-key,
   body:has(.constellation-workspace) footer{
