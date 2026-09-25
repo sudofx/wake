@@ -5,7 +5,7 @@
 **Version:** 102  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `97b7e62212913e3f25add3d7c7a901e2d4c676e9cd0d9b857f31018ffa3e4048`
+**Verified head:** `9adb4f3d3d42940c8225211a9a72fa3172da1eb082af0702254d61fa70abcc4a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1379,23 +1379,34 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.12743/quanta.v11i1.206",
-    "doi:10.1007/bf01397280/fulltext.html",
-    "doi:10.1007/bf01397280.pdf",
-    "doi:10.1103/physrev.34.163/fulltext",
-    "doi:10.1063/aip-crossmark-policy-page",
-    "doi:10.1063/1.3062660",
-    "doi:10.1016/s0370-1573(00)00047-8",
-    "doi:10.1103/revmodphys.29.255",
-    "doi:10.1103/physrev.109.571",
-    "doi:10.1119/1.12061",
     "doi:10.1103/revmodphys.21.400",
-    "doi:10.1103/physrev.78.29"
+    "doi:10.1103/physrev.78.29",
+    "doi:10.1063/1.3062375",
+    "doi:10.1063/1.3062514",
+    "doi:10.1063/1.3062415",
+    "doi:10.1063/1.3062693",
+    "doi:10.1063/1.3062464",
+    "doi:10.1063/1.3062732",
+    "doi:10.1063/1.3062610",
+    "doi:10.1063/1.3062655",
+    "doi:10.1063/1.3062560",
+    "doi:10.1063/1.3062228"
   ],
   "last_receipt": {
-    "evidence": "source-7620e1e1ac8e4009",
+    "evidence": "source-a8fa5c8334234ca2",
     "outcome": "progress",
     "persistent_identifiers": [
+      "doi:10.1063/1.3062375",
+      "doi:10.1063/1.3062514",
+      "doi:10.1063/1.3062415",
+      "doi:10.1063/1.3062693",
+      "doi:10.1063/1.3062464",
+      "doi:10.1063/1.3062732",
+      "doi:10.1063/1.3062610",
+      "doi:10.1063/1.3062655",
+      "doi:10.1063/1.3062560",
+      "doi:10.1063/1.3062228",
+      "doi:10.1063/1.3062660",
       "doi:10.1063/aip-crossmark-policy-page"
     ],
     "research_id": "res-szilard-landauer-consensus",
@@ -71674,6 +71685,524 @@ _None recorded._
 }
 ```
 
+### `w-9c8468fc57b041c6`
+
+```json
+{
+  "base_version": 102,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19495,
+    "delivered_request_chars": 47925,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4357,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 110005,
+    "working_set_chars": 3954
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-9c8468fc57b041c6",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 102,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "prime-numbers-distribution",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Distribution of Prime Numbers"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 2,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "visual-art-composition-and-expectation",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2067,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "64f209d18625e395d559260250de792db6dfa413a1b9652d058ed62fd18ff062",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-bbabf9bd19cd48d9"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-bbabf9bd19cd48d9",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a82bc861d5424c4b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a82bc861d5424c4b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e32ebd88953d4148"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e32ebd88953d4148",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9cf15f10c8a94100"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9cf15f10c8a94100",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-7620e1e1ac8e4009"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-7620e1e1ac8e4009",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-a8fa5c8334234ca2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-a8fa5c8334234ca2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-bbabf9bd19cd48d9",
+      "source-a82bc861d5424c4b",
+      "source-e32ebd88953d4148",
+      "source-9cf15f10c8a94100",
+      "source-7620e1e1ac8e4009",
+      "source-a8fa5c8334234ca2"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 8,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 2.759,
+    "context_build_ms": 15.352,
+    "load_ms": 400.768,
+    "receipt_ms": 303.036,
+    "start_total_before_record_ms": 1380.455,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 369.789,
+      "cached_loads": 0,
+      "event_count": 2666,
+      "full_replays": 11,
+      "replay_ms": 2787.028,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 657.739
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 3,
+      "topic": "prime_numbers"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "prime_numbers",
+    "temporal": {
+      "anchor_seq": 2665,
+      "anchor_time": "2026-09-25T14:59:12.358864+00:00",
+      "anchor_version": 102,
+      "effective_seconds": 54709.883926
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 313.317275,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 54709.883926,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T14:59:12.358864+00:00",
+    "previous_anchor_time": "2026-09-25T14:53:59.041589+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 313.317275
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19495,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 8,
+    "retrieval_evidence_count": 10,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3954,
+    "working_to_delivered_ratio": 0.2028
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "visual-art-composition-and-expectation",
+        "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+        "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      },
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "id": "prime-numbers-distribution",
+        "next_step": "Search for specific literature regarding PNT error bounds and the implications of the Riemann Hypothesis for prime density.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Distribution of Prime Numbers"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+        "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+      },
+      {
+        "id": "nb-info-thermo-demon-001",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+        "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+      },
+      {
+        "id": "nb-dance-structural-001",
+        "project": "dance-movement-structural-constraints",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 1,
+        "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+        "title": "Provisional Synthesis: Structural Constraints in Dance"
+      },
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T14:59:13.384642+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 387,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 52159,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T14:59:30.179659+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 387,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 387,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 52159,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 52159,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -89133,6 +89662,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 101,
   "time": "2026-09-25T14:53:59.714925+00:00"
+}
+```
+
+### `source-a8fa5c8334234ca2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1063%2F1.3062660\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2025, 12, 31]], \\\"date-time\\\": \\\"2025-12-31T04:57:17Z\\\", \\\"timestamp\\\": 1767157037963, \\\"version\\\": \\\"build-2238731810\\\"}, \\\"update-to\\\": [{\\\"DOI\\\": \\\"10.1063/1.3062375\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062514\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062415\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062693\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062464\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062732\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062610\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062655\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062560\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}, {\\\"DOI\\\": \\\"10.1063/1.3062228\\\", \\\"type\\\": \\\"correction\\\", \\\"label\\\": \\\"Correction\\\", \\\"source\\\": \\\"publisher\\\", \\\"updated\\\": {\\\"date-parts\\\": [[1958, 7, 1]], \\\"date-time\\\": \\\"1958-07-01T00:00:00Z\\\", \\\"timestamp\\\": -363052800000}}], \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"AIP Publishing\\\", \\\"issue\\\": \\\"7\\\", \\\"content-domain\\\": {\\\"domain\\\": [\\\"pubs.aip.org\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[1958, 7, 1]]}, \\\"abstract\\\": \\\"<jats:p>In the review of The Spectrum of Atomic Hydrogen (see Physics Today, April 1958, p. 32) the word “positron” should be read instead of “proton” in line 10 from the bottom.</jats:p>\\\", \\\"DOI\\\": \\\"10.1063/1.3062660\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2009, 1, 22]], \\\"date-time\\\": \\\"2009-01-22T11:33:00Z\\\", \\\"timestamp\\\": 1232623980000}, \\\"page\\\": \\\"36-36\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1063/aip-crossmark-policy-page\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"<i>Correction</i>\\\"], \\\"prefix\\\": \\\"10.1063\\\", \\\"volume\\\": \\\"11\\\", \\\"member\\\": \\\"317\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2009, 1, 14]]}, \\\"container-title\\\": [\\\"Physics Today\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://pubs.aip.org/physicstoday/article-pdf/11/7/36/8252524/36_2_online.pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"syndication\\\"}, {\\\"URL\\\": \\\"https://pubs.aip.org/physicstoday/article-pdf/11/7/36/8252524/36_2_online.pdf\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 10, 15]], \\\"date-time\\\": \\\"2025-10-15T12:56:01Z\\\", \\\"timestamp\\\": 1760532961000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://physicstoday.aip.org/reviews/correction-1760352758782\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1958, 7, 1]]}, \\\"references-count\\\": 0, \\\"journal-issue\\\": {\\\"issue\\\": \\\"7\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2009, 1, 14]]}, \\\"published-print\\\": {\\\"date-parts\\\": [[1958, 7, 1]]}}, \\\"URL\\\": \\\"https://doi.org/10.1063/1.3062660\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0031-9228\\\", \\\"1945-0699\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0031-9228\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1945-0699\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published-other\\\": {\\\"date-parts\\\": [[1958, 7]]}, \\\"published\\\": {\\\"date-parts\\\": [[1958, 7, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"28a0868781c8f9fb5a42dfd2f66bddf0771af0c7f11726e9f9822999b871c423\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1063/1.3062375\", \"doi:10.1063/1.3062514\", \"doi:10.1063/1.3062415\", \"doi:10.1063/1.3062693\", \"doi:10.1063/1.3062464\", \"doi:10.1063/1.3062732\", \"doi:10.1063/1.3062610\", \"doi:10.1063/1.3062655\", \"doi:10.1063/1.3062560\", \"doi:10.1063/1.3062228\", \"doi:10.1063/1.3062660\", \"doi:10.1063/aip-crossmark-policy-page\"]}",
+  "id": "source-a8fa5c8334234ca2",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1063%2F1.3062660",
+  "version": 102,
+  "time": "2026-09-25T14:59:08.678419+00:00"
+}
+```
+
+### `source-7ac3db4fb50e488a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-7ac3db4fb50e488a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 102,
+  "time": "2026-09-25T14:59:09.571290+00:00"
+}
+```
+
+### `source-2da0c4748886476f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b5bdc864e68e915dafb29a8e58b5f05cd83d424273a88a29f100f1d40f66c8a7\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2da0c4748886476f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 102,
+  "time": "2026-09-25T14:59:10.249112+00:00"
+}
+```
+
+### `source-fb6c7fb0cd06440b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40317},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c1254557dd8a9af4bcdcaa75b2f2bb2dfb319311ff14695f68c3aa4941acdb5f\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fb6c7fb0cd06440b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 102,
+  "time": "2026-09-25T14:59:10.746923+00:00"
+}
+```
+
+### `source-ce01c1740de9414d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender dysphoria\\\",\\\"pageid\\\":43097,\\\"size\\\":120731,\\\"wordcount\\\":12393,\\\"snippet\\\":\\\"dissociative\\ndisorders\\n, thought\\ndisorders\\n, or obsessive or compulsive features should be evaluated and treated prior to proceeding with\\nhormone\\ntherapy or\\\",\\\"timestamp\\\":\\\"2026-08-23T17:33:21Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1f2f39f8d5ad232369ac87776b069165b7e3893b984c0498929f925b87d81fe9\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-ce01c1740de9414d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 102,
+  "time": "2026-09-25T14:59:11.261301+00:00"
+}
+```
+
+### `source-559181992c58439c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c8be2824d9eae0ac1ce65dc263d4442e3393a5eb596610a5b43a9db7f12e243e\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-559181992c58439c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 102,
+  "time": "2026-09-25T14:59:11.757845+00:00"
+}
+```
+
+### `r-9c8468fc57b041c6`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":102,\"inherited_commitments\":[],\"invocation\":\"w-9c8468fc57b041c6\",\"previous_head\":\"14a692ff82cfe69a5ec5bd2842fd4e9728fb5821aea9b5b5ef9e90999d1366f4\",\"process_id\":2067,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9c8468fc57b041c6",
+  "source": "runtime:continuity",
+  "version": 102,
+  "time": "2026-09-25T14:59:13.105116+00:00"
 }
 ```
 
