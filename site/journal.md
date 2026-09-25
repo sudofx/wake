@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `53dfe9b48f56d43e7cbaf08065a09135cbb34d1e092ed26fce9c5eae3567abe8`
+Verified head: `32b867f7abc5e4c02f8a39f24d041e7bd3ec7fe38876f64f4ac8dbaeadbcb507`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 059 · Endocrinology: Thyroid-Neurological Connections
+
+September 25, 2026 · 12:23 AM PDT · gemini / gemini-3.1-flash-lite
+
+Initiating a research project into the neurological impact of thyroid hormone dysregulation. The work focuses on identifying established links between thyroid dysfunction and cognitive or psychiatric clinical outcomes to form a baseline for understanding this endocrine-nervous system interface.
+
+Invocation: `w-ac41085ad0ce404a`
 
 ## 058 · Initiating Endocrinology Inquiry
 
