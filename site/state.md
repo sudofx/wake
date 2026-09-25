@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 44  
+**Version:** 45  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `dfe94dbc76dcfbc01ff041855b246cb5c4d0e4866b545ed242527ae73afe1cf1`
+**Verified head:** `c2e29260963dda32479570648264d1e929d2dcf2b0ed7c769898f82084044af9`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -233,6 +233,24 @@ _None recorded._
   "created_version": 40,
   "updated_version": 40,
   "updated_by": "w-85cd57c78b564d9f"
+}
+```
+
+### `music-cross-cultural-structure` · Cross-Cultural Musical Structure
+
+```json
+{
+  "domain": "music",
+  "id": "music-cross-cultural-structure",
+  "next_step": "Search for cross-cultural studies comparing musical structures and their learned vs. universal aspects.",
+  "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+  "reason": "This project aligns with the enforced 'music' topic mandate and seeks to address core questions about musical cognition and structure.",
+  "status": "active",
+  "title": "Cross-Cultural Musical Structure",
+  "type": "project",
+  "created_version": 45,
+  "updated_version": 45,
+  "updated_by": "w-90ee3bd065204dd7"
 }
 ```
 
@@ -697,40 +715,48 @@ _None recorded._
 {
   "project": "neurodivergence-paradigm-vs-pathology",
   "domain": "neurodivergence",
-  "no_progress": 3,
+  "no_progress": 1,
   "routes": [
-    "api.crossref.org:source",
     "api.openalex.org:source",
     "api.datacite.org:discovery",
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1177/1362361319852831",
-    "doi:10.1176/appi.books.9780890425596",
-    "doi:10.1016/s1369-8486(99)00033-3",
-    "doi:10.1007/s40489-014-0040-7",
-    "doi:10.1111/j.1548-1352.2009.01080.x",
-    "doi:10.1017/s0954579400003126",
-    "doi:10.1007/s40617-023-00780-6",
-    "doi:10.1007/s40617-023-00780-6.pdf",
-    "doi:10.4324/9780429322297-4",
-    "doi:10.5040/9781839979897.ch-004",
-    "doi:10.1177/27546330241294138",
-    "doi:10.4324/9781003495949-11"
+    "doi:10.3389/fpsyg.2023.1225152",
+    "doi:10.3389/fpsyg.2023.1225152/pdf",
+    "doi:10.1007/s40489-025-00493-2",
+    "doi:10.1007/s40489-025-00493-2.pdf",
+    "doi:10.3389/fpsyg.2024.1488328",
+    "doi:10.3389/fpsyg.2024.1488328/pdf",
+    "doi:10.1111/1460-6984.70100",
+    "openalex:W4386419062",
+    "openalex:W4406993291",
+    "openalex:W4405239639",
+    "openalex:W4412653641",
+    "arxiv:6984.70100"
   ],
   "last_receipt": {
-    "evidence": "source-cae85e21efc740bd",
+    "evidence": "source-3da5883e1a304446",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.4324/9780429322297-4",
-      "doi:10.5040/9781839979897.ch-004",
-      "doi:10.1177/27546330241294138",
-      "doi:10.4324/9781003495949-11"
+      "doi:10.3389/fpsyg.2023.1225152",
+      "doi:10.3389/fpsyg.2023.1225152/pdf",
+      "doi:10.1007/s40489-025-00493-2",
+      "doi:10.1007/s40489-025-00493-2.pdf",
+      "doi:10.3389/fpsyg.2024.1488328",
+      "doi:10.3389/fpsyg.2024.1488328/pdf",
+      "doi:10.1111/1460-6984.70100",
+      "openalex:W4386419062",
+      "openalex:W4406993291",
+      "openalex:W4405239639",
+      "openalex:W4412653641",
+      "arxiv:6984.70100"
     ],
-    "research_id": "res-neurodivergence-001",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-neuro-paradigm-comp-001",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -764,7 +790,7 @@ _None recorded._
   "consciousness": {
     "cause": "attention_saturation",
     "deferred_by": "w-d73be0b2c28943a1",
-    "other_topic_attempts": 6,
+    "other_topic_attempts": 7,
     "parked_projects": [
       {
         "id": "consciousness-scientific-theories",
@@ -778,7 +804,7 @@ _None recorded._
   "entropy": {
     "cause": "attention_saturation",
     "deferred_by": "w-8ff4a9549b464805",
-    "other_topic_attempts": 23,
+    "other_topic_attempts": 24,
     "parked_projects": [
       {
         "id": "entropy-foundations-formal",
@@ -792,7 +818,7 @@ _None recorded._
   "neurodivergence": {
     "cause": "attention_saturation",
     "deferred_by": "w-83e2ede819294c0e",
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "neurodivergence-paradigm-vs-pathology",
@@ -806,7 +832,7 @@ _None recorded._
   "prime_numbers": {
     "cause": "attention_saturation",
     "deferred_by": "w-7c196d7d8eca4233",
-    "other_topic_attempts": 43,
+    "other_topic_attempts": 44,
     "parked_projects": [
       {
         "id": "prime_number_distribution",
@@ -824,17 +850,15 @@ _None recorded._
 
 ```json
 {
-  "attention_saturation_triggered": true,
-  "attention_topic": "neurodivergence",
+  "attention_saturation_triggered": false,
+  "attention_topic": "music",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-83e2ede819294c0e",
+  "invocation": "w-90ee3bd065204dd7",
   "restored_topics": [],
-  "selected_topic": "neurodivergence",
+  "selected_topic": "music",
   "terminal": "accepted",
-  "triggered_topics": [
-    "neurodivergence"
-  ]
+  "triggered_topics": []
 }
 ```
 
@@ -842,8 +866,8 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 5,
-  "topic": "neurodivergence"
+  "accepted_streak": 1,
+  "topic": "music"
 }
 ```
 
@@ -27581,6 +27605,375 @@ _None recorded._
 }
 ```
 
+### `w-90ee3bd065204dd7`
+
+```json
+{
+  "base_version": 44,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 13458,
+    "delivered_request_chars": 38384,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 80497,
+    "working_set_chars": 1084
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-90ee3bd065204dd7",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 44,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "neurodivergence-paradigm-vs-pathology",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs Clinical Pathology"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2273,
+  "provider": "gemini",
+  "quota_day": "2026-09-24",
+  "request_hash": "c034785136262a48673e1983ac2caa559aae643490af591b1df3fcf6b389f9b1",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-74b11fe00c02401a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-74b11fe00c02401a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5ce546cde1614f13"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5ce546cde1614f13",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-702ad961a22448a7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-702ad961a22448a7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-03824d5598a0461e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-03824d5598a0461e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e33d12dd647f4076"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e33d12dd647f4076",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-776ecfe85283447c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-776ecfe85283447c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-74b11fe00c02401a",
+      "source-5ce546cde1614f13",
+      "source-702ad961a22448a7",
+      "source-03824d5598a0461e",
+      "source-e33d12dd647f4076",
+      "source-776ecfe85283447c"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 5,
+      "topic": "neurodivergence"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "consciousness",
+      "entropy",
+      "neurodivergence",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "consciousness": [
+        {
+          "id": "consciousness-scientific-theories",
+          "next_step": "Search for reviews comparing Integrated Information Theory and Global Neuronal Workspace Theory.",
+          "question": "What empirical observations are major scientific theories of consciousness attempting to explain, and where do their predictions differ?"
+        }
+      ],
+      "entropy": [
+        {
+          "id": "entropy-foundations-formal",
+          "next_step": "Search for literature comparing these three frameworks.",
+          "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+        }
+      ],
+      "neurodivergence": [
+        {
+          "id": "neurodivergence-paradigm-vs-pathology",
+          "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+          "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime_number_distribution",
+          "next_step": "Research the Prime Number Theorem and its implications for prime density.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "music",
+    "temporal": {
+      "anchor_seq": 1176,
+      "anchor_time": "2026-09-25T06:03:36.703507+00:00",
+      "anchor_version": 44,
+      "effective_seconds": 22574.228569
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-90ee3bd065204dd7",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "dance",
+      "endocrinology",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurology",
+      "philosophy",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 208.915873,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 22574.228569,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T06:03:36.703507+00:00",
+    "previous_anchor_time": "2026-09-25T06:00:07.787634+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 208.915873
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 13458,
+    "inquiry_drive_project_count": 1,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 1084,
+    "working_to_delivered_ratio": 0.0805
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neurodivergence-paradigm-vs-pathology",
+        "next_step": "Search for comparative literature on neurodiversity paradigm vs. clinical pathology models.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models, and where do the two frameworks overlap?",
+        "title": "Neurodiversity Paradigm vs Clinical Pathology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T06:03:37.515280+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3596,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 40793,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T06:03:50.769290+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -35343,6 +35736,103 @@ _None recorded._
 }
 ```
 
+### `source-776ecfe85283447c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1177%2F1362361319852831\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 16]], \\\"date-time\\\": \\\"2026-09-16T18:33:37Z\\\", \\\"timestamp\\\": 1789583617874, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 56, \\\"publisher\\\": \\\"SAGE Publications\\\", \\\"issue\\\": \\\"1\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2019, 6, 19]], \\\"date-time\\\": \\\"2019-06-19T00:00:00Z\\\", \\\"timestamp\\\": 1560902400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://journals.sagepub.com/page/policies/text-and-data-mining-license\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/501100001063\\\", \\\"name\\\": \\\"Raine Medical Research Foundation\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"RPG103-18\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"RPG103-18\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100001063\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100000925\\\", \\\"name\\\": \\\"National Health and Medical Research Council\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"APP1077966\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"APP1077966\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000925\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"journals.sagepub.com\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"Autism\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2020, 1]]}, \\\"abstract\\\": \\\"<jats:p>‘High functioning autism’ is a term often used for individuals with autism spectrum disorder without an intellectual disability. Over time, this term has become synonymous with expectations of greater functional skills and better long-term outcomes, despite contradictory clinical observations. This study investigated the relationship between adaptive behaviour, cognitive estimates (intelligence quotient) and age at diagnosis in autism spectrum disorder. Participants ( n = 2225, 1–18 years of age) were notified at diagnosis to a prospective register and grouped by presence ( n = 1041) or absence ( n = 1184) of intellectual disability. Functional abilities were reported using the Vineland Adaptive Behaviour Scales. Regression models suggested that intelligence quotient was a weak predictor of Vineland Adaptive Behaviour Scales after controlling for sex. Whereas the intellectual disability group’s adaptive behaviour estimates were close to reported intelligence quotients, Vineland Adaptive Behaviour Scales scores fell significantly below intelligence quotients for children without intellectual disability. The gap between intelligence quotient and Vineland Adaptive Behaviour Scales scores remained large with increasing age at diagnosis for all children. These data indicate that estimates from intelligence quotient alone are an imprecise proxy for functional abilities when diagnosing autism spectrum disorder, particularly for those without intellectual disability. We argue that ‘high functioning autism’ is an inaccurate clinical descriptor when based solely on intelligence quotient demarcations and this term should be abandoned in research and clinical practice.</jats:p>\\\", \\\"DOI\\\": \\\"10.1177/1362361319852831\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2019, 6, 19]], \\\"date-time\\\": \\\"2019-06-19T10:30:18Z\\\", \\\"timestamp\\\": 1560940218000}, \\\"page\\\": \\\"221-232\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1177/sage-journals-update-policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 240, \\\"title\\\": [\\\"The misnomer of ‘high functioning autism’: Intelligence is an imprecise predictor of functional abilities at diagnosis\\\"], \\\"prefix\\\": \\\"10.1177\\\", \\\"volume\\\": \\\"24\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0003-3351-5919\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Gail A\\\", \\\"family\\\": \\\"Alvares\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Keely\\\", \\\"family\\\": \\\"Bebbington\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Dominique\\\", \\\"family\\\": \\\"Cleary\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Kiah\\\", \\\"family\\\": \\\"Evans\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Emma J\\\", \\\"family\\\": \\\"Glasson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Murray T\\\", \\\"family\\\": \\\"Maybery\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Sarah\\\", \\\"family\\\": \\\"Pillar\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-7481-3923\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Mirko\\\", \\\"family\\\": \\\"Uljarević\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Stanford University, USA\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Kandice\\\", \\\"family\\\": \\\"Varcin\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"John\\\", \\\"family\\\": \\\"Wray\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"WA Department of Health, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Andrew JO\\\", \\\"family\\\": \\\"Whitehouse\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Telethon Kids Institute, The University of Western Australia, Australia\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"179\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2019, 6, 19]]}, \\\"reference\\\": [{\\\"key\\\": \\\"bibr1-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02211878\\\"}, {\\\"key\\\": \\\"bibr2-1362361319852831\\\", \\\"volume-title\\\": \\\"Diagnostic and statistical manual of mental disorders\\\", \\\"author\\\": \\\"American Psychiatric Association\\\", \\\"year\\\": \\\"2000\\\", \\\"edition\\\": \\\"4\\\"}, {\\\"key\\\": \\\"bibr3-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1176/appi.books.9780890425596\\\"}, {\\\"key\\\": \\\"bibr4-1362361319852831\\\", \\\"unstructured\\\": \\\"Australian Standard Classification of Cultural and Ethnic Groups. (2016). Retrieved from http://www.abs.gov.au/ausstats/abs@.nsf/mf/1249.0\\\"}, {\\\"key\\\": \\\"bibr5-1362361319852831\\\", \\\"volume-title\\\": \\\"Bayley Scales of Infant Development\\\", \\\"author\\\": \\\"Bayley N.\\\", \\\"year\\\": \\\"1993\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"bibr6-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/1362361318755522\\\"}, {\\\"key\\\": \\\"bibr7-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/A:1020734325815\\\"}, {\\\"key\\\": \\\"bibr8-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/aur.1335\\\"}, {\\\"key\\\": \\\"bibr9-1362361319852831\\\", \\\"volume-title\\\": \\\"Autism spectrum disorders (ASD): State of the states of services and supports for people with ASD\\\", \\\"author\\\": \\\"Bowen S. E.\\\", \\\"year\\\": \\\"2014\\\"}, {\\\"key\\\": \\\"bibr10-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/A:1026056518470\\\"}, {\\\"key\\\": \\\"bibr11-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/aur.1874\\\"}, {\\\"key\\\": \\\"bibr12-1362361319852831\\\", \\\"volume-title\\\": \\\"Statistical power analysis for the behavioral sciences\\\", \\\"author\\\": \\\"Cohen J.\\\", \\\"year\\\": \\\"1988\\\", \\\"edition\\\": \\\"2\\\"}, {\\\"key\\\": \\\"bibr13-1362361319852831\\\", \\\"volume-title\\\": \\\"Eligibility policies and practices for young children under Part B of IDEA\\\", \\\"author\\\": \\\"Danaher J.\\\", \\\"year\\\": \\\"2011\\\"}, {\\\"key\\\": \\\"bibr14-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10803-006-0133-y\\\"}, {\\\"key\\\": \\\"bibr15-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02211877\\\"}, {\\\"key\\\": \\\"bibr16-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/1362361318820762\\\"}, {\\\"key\\\": \\\"bibr17-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/1362361313510068\\\"}, {\\\"key\\\": \\\"bibr18-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1186/s11689-017-9222-9\\\"}, {\\\"key\\\": \\\"bibr19-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/jcpp.12037\\\"}, {\\\"key\\\": \\\"bibr20-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.jaac.2013.12.004\\\"}, {\\\"key\\\": \\\"bibr21-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1097/00004583-199105000-00020\\\"}, {\\\"key\\\": \\\"bibr22-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1046/j.1440-1754.2002.00859.x\\\"}, {\\\"key\\\": \\\"bibr23-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.5694/j.1326-5377.2008.tb01623.x\\\"}, {\\\"key\\\": \\\"bibr24-1362361319852831\\\", \\\"volume-title\\\": \\\"The Griffiths mental development scales from birth to 2 years. Manual. The 1996 revision\\\", \\\"author\\\": \\\"Griffiths R.\\\", \\\"year\\\": \\\"1996\\\"}, {\\\"key\\\": \\\"bibr25-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/A:1022270118899\\\"}, {\\\"key\\\": \\\"bibr26-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/jcpp.12115\\\"}, {\\\"key\\\": \\\"bibr27-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10803-010-1126-4\\\"}, {\\\"key\\\": \\\"bibr28-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/1362361315588200\\\"}, {\\\"key\\\": \\\"bibr29-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10803-009-0911-4\\\"}, {\\\"key\\\": \\\"bibr30-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10803-006-0229-4\\\"}, {\\\"key\\\": \\\"bibr31-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/A:1005460027636\\\"}, {\\\"key\\\": \\\"bibr32-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10803-017-3213-2\\\"}, {\\\"key\\\": \\\"bibr33-1362361319852831\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1046/j.1440-1819.2003.01106.x\\\"}, {\\\"key\\\": \\\"bibr34-13623613\", \"excerpt_truncated\": true, \"source_sha256\": \"0517ef36c8685ef149882828be6e0f1660576e2c306fa915a6e84f641de5c84b\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.13039/501100001063\", \"doi:10.13039/501100000925\", \"doi:10.1177/1362361319852831\", \"doi:10.1177/sage-journals-update-policy\", \"doi:10.1007/bf02211878\", \"doi:10.1176/appi.books.9780890425596\", \"doi:10.1177/1362361318755522\", \"doi:10.1023/a:1020734325815\", \"doi:10.1002/aur.1335\", \"doi:10.1023/a:1026056518470\", \"doi:10.1002/aur.1874\", \"doi:10.1007/s10803-006-0133-y\"]}",
+  "id": "source-776ecfe85283447c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1177%2F1362361319852831",
+  "version": 44,
+  "time": "2026-09-25T06:03:32.812023+00:00"
+}
+```
+
+### `source-3da5883e1a304446`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=neurodiversity+paradigm+vs+medical+model+clinical+pathology+comparative+literature&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4386419062\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2023.1225152\\\", \\\"title\\\": \\\"Addressing the autism mental health crisis: the potential of phenomenology in neurodiversity-affirming clinical practices\\\", \\\"publication_year\\\": 2023, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 58, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2023.1225152/pdf?isPublishedV2=False\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2023.1225152\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2023.1225152\\\", \\\"pdf_url\\\": \\\"https://www.frontiersin.org/articles/10.3389/fpsyg.2023.1225152/pdf?isPublishedV2=False\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The neurodiversity movement has introduced a new era for autism research. Yet, the neurodiversity paradigm and the autism clinic remain largely unconnected. With the present work, we aim to contribute to filling this lacuna by putting forward phenomenology as a foundation for developing neurodiversity-affirming clinical interventions for autism. In the first part of this paper, we highlight that autistic people face a severe mental health crisis. We argue that approaches focused on reducing autistic ‘symptoms’ are unlikely to solve the problem, as autistic mental health is positively correlated with autism acceptance and perceived quality of support provided, not necessarily with lack of ‘symptomatologic severity’. Therefore, the development and dissemination of neurodiversity-affirming clinical interventions is key for addressing the autism mental health crisis. However, therapists and researchers exploring such neurodiversity-affirming practices are faced with two significant challenges. First, they lack concrete methodological principles regarding the incorporation of neurodiversity into clinical work. Second, they need to find ways to acknowledge rightful calls to respect the ‘autistic self’ within the clinic, while also challenging certain beliefs and behaviors of autistic clients in a manner that is sine qua non for therapy, irrespective of neurotype. In the second part of the paper, we introduce phenomenological psychology as a potential resource for engaging with these challenges in neurodiversity-affirming approaches to psychotherapy. In this vein, we put forward specific directions for adapting cognitive behavioral and interpersonal psychotherapy for autism.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4406993291\\\", \\\"doi\\\": \\\"https://doi.org/10.1007/s40489-025-00493-2\\\", \\\"title\\\": \\\"Thirty Years on from Sinclair: A Scoping Review of Neurodiversity Definitions and Conceptualisations in Empirical Research\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 18, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s40489-025-00493-2.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1007/s40489-025-00493-2\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1007/s40489-025-00493-2\\\", \\\"pdf_url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s40489-025-00493-2.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S2764534415\\\", \\\"display_name\\\": \\\"Review Journal of Autism and Developmental Disorders\\\", \\\"issn_l\\\": \\\"2195-7177\\\", \\\"issn\\\": [\\\"2195-7177\\\", \\\"2195-7185\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319900\\\", \\\"host_organization_name\\\": \\\"Springer Science+Business Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319900\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"Springer Science+Business Media\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Review Journal of Autism and Developmental Disorders\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract A review of research is beneficial in contributing to the debate about neurodiversity conceptualisation. Thus, the aim of this study was to identify how neurodiversity has been defined and conceptualised in empirical research. A scoping review of research featuring neurodiversity as a central focus was conducted, accessing 10 databases. Key concepts related to neurodiversity were collated from 46 articles, and a constant comparative analysis was used to generate results. Results position neurodiversity as natural human variation alongside a further seven categories. These results were compared to theoretical work and early principles of neurodiversity, particularly those introduced by Jim Sinclair 30 years ago. While some consensus in the field exists, contrasts and debate remain, particularly regarding the alignment of neurodiversity with disability models.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4405239639\\\", \\\"doi\\\": \\\"https://doi.org/10.3389/fpsyg.2024.1488328\\\", \\\"title\\\": \\\"CARE Model of Treatment for stuttering: Theory, assumptions, and preliminary findings\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 29, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1488328/pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.3389/fpsyg.2024.1488328\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.3389/fpsyg.2024.1488328\\\", \\\"pdf_url\\\": \\\"https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1488328/pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9692511\\\", \\\"display_name\\\": \\\"Frontiers in Psychology\\\", \\\"issn_l\\\": \\\"1664-1078\\\", \\\"issn\\\": [\\\"1664-1078\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"erih-plus\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320527\\\", \\\"host_organization_name\\\": \\\"Frontiers Media\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320527\\\"], \\\"host_organization_lineage_names\\\": [\\\"Frontiers Media\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Frontiers in Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"The purpose of this article is to present a theory of therapy for stuttering, its related assumptions, and findings from associated empirical studies. Specifically, we propose the Blank Center CARE™ Model of Treatment (CT) for stuttering, which differs from the current, widely employed fluency model of treatment (FT). The CT reflects the authors' belief in the need to move away from fluency-focused or seemingly ableist treatments (i.e., any approach that attempts to correct, cure, or fix a disabling condition) for stuttering. The authors propose a shift toward a theory of treatment that addresses whole-person wellness and considers the treatment of stuttering from outside the framework of fluency shaping and stuttering modification. In support of such considerations, this article provides preliminary findings from both non-clinical and clinical studies of using the CT for children and adults. Although preliminary, these findings appear to lend empirical support to the authors' belief that the treatment of stuttering needs to change. In essence, a change in the zeitgeist regarding the treatment of stuttering may contribute to an associated paradigm shift from FT to CT in the management of stuttering in children and adults.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W4412653641\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/1460-6984.70100\\\", \\\"title\\\": \\\"Examining Neurodiversity in Bilingual Development Research: Recent Insights Through an Equity, Diversity, and Inclusion Lens\\\", \\\"publication_year\\\": 2025, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 4, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/1460-6984.70100\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/1460-6984.70100\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/1460-6984.70100\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/1460-6984.70100\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S119771102\\\", \\\"display_name\\\": \\\"International Journal of Language & Communication Disorders\\\", \\\"issn_l\\\": \\\"1368-2822\\\", \\\"issn\\\": [\\\"1368-2822\\\", \\\"1460-6984\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"International Journal of Language &amp; Communication Disorders\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"BACKGROUND: As highlighted by research on typically developing children, various biases exist \", \"excerpt_truncated\": true, \"source_sha256\": \"d95834c847430810b9129e578710cf201dc5070fbf67d7ed091c33534dbb33a0\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.3389/fpsyg.2023.1225152\", \"doi:10.3389/fpsyg.2023.1225152/pdf\", \"doi:10.1007/s40489-025-00493-2\", \"doi:10.1007/s40489-025-00493-2.pdf\", \"doi:10.3389/fpsyg.2024.1488328\", \"doi:10.3389/fpsyg.2024.1488328/pdf\", \"doi:10.1111/1460-6984.70100\", \"openalex:W4386419062\", \"openalex:W4406993291\", \"openalex:W4405239639\", \"openalex:W4412653641\", \"arxiv:6984.70100\"]}",
+  "id": "source-3da5883e1a304446",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=neurodiversity+paradigm+vs+medical+model+clinical+pathology+comparative+literature&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 44,
+  "time": "2026-09-25T06:03:34.325430+00:00"
+}
+```
+
+### `source-d56fec97b13140dd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149385,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":96464,\\\"wordcount\\\":11377,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-21T05:16:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"780223482e24d43e70f9ea6b6081d9041819670ecb00c1ffffbff338f53c27ad\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d56fec97b13140dd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 44,
+  "time": "2026-09-25T06:03:35.117319+00:00"
+}
+```
+
+### `source-81702ad999ae408a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-81702ad999ae408a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 44,
+  "time": "2026-09-25T06:03:35.546130+00:00"
+}
+```
+
+### `source-6d4d2cd473e74e1d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22030,\\\"wordcount\\\":2583,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-18T18:05:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"782e206eb01604254e0f84cf8ff2aac2f0c8a2807236cf28c304c04a64cc1392\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6d4d2cd473e74e1d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 44,
+  "time": "2026-09-25T06:03:36.000132+00:00"
+}
+```
+
+### `source-292530e48bf542df`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111928,\\\"wordcount\\\":11702,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth. Individual\\\",\\\"timestamp\\\":\\\"2026-09-21T13:55:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"404b58bf97a8424c20cda68e6c450d0a793c61af407f7258afa5debb0c164a4a\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-292530e48bf542df",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 44,
+  "time": "2026-09-25T06:03:36.471200+00:00"
+}
+```
+
+### `r-90ee3bd065204dd7`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":44,\"inherited_commitments\":[],\"invocation\":\"w-90ee3bd065204dd7\",\"previous_head\":\"d66f3bb6e3ace0fc81a07b3ed722e238889c9763440203bfb85750c829de3f19\",\"process_id\":2273,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-90ee3bd065204dd7",
+  "source": "runtime:continuity",
+  "version": 44,
+  "time": "2026-09-25T06:03:37.287230+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -35826,6 +36316,17 @@ _None recorded._
   "invocation": "w-83e2ede819294c0e",
   "title": "Exploring the Neurodiversity Paradigm and Clinical Pathology Frameworks",
   "summary": "The research project investigating the distinctions and overlaps between the neurodiversity paradigm and clinical pathology models remains active. This shift focuses on retrieving comparative literature to establish a grounded, source-backed understanding of how these two frameworks categorize neurodivergent traits, fulfilling the next step defined for the project under the enforced neurodivergence topic rotation."
+}
+```
+
+### 045 · Initiating Cross-Cultural Music Research
+
+```json
+{
+  "cycle": 45,
+  "invocation": "w-90ee3bd065204dd7",
+  "title": "Initiating Cross-Cultural Music Research",
+  "summary": "The system is initiating a new project on music, adhering to the squirrel rotation directive. I am beginning an investigation into universal versus culturally-specific structural features of music."
 }
 ```
 
@@ -36433,8 +36934,24 @@ _None recorded._
   "query": "neurodiversity paradigm vs medical model clinical pathology comparative literature",
   "reason": "To retrieve comparative literature necessary for synthesizing a notebook that delineates the theoretical differences and potential overlaps between the neurodiversity paradigm and clinical pathology models.",
   "type": "research",
+  "status": "collected",
+  "created_by": "w-83e2ede819294c0e",
+  "evidence": "source-3da5883e1a304446"
+}
+```
+
+### `res-music-structure-001`
+
+```json
+{
+  "domain": "music",
+  "id": "res-music-structure-001",
+  "project": "music-cross-cultural-structure",
+  "query": "cross-cultural music universals versus cultural specificities",
+  "reason": "To initiate the research plan and identify comparative studies addressing musical structural features.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-83e2ede819294c0e"
+  "created_by": "w-90ee3bd065204dd7"
 }
 ```
 
