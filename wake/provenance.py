@@ -14,7 +14,7 @@
 
 import json
 from copy import deepcopy
-from urllib.parse import unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 
 from .store import empty, reduce_event
 
@@ -226,6 +226,11 @@ MAP3D_ROOTS = (
     "root:journal", "root:blog", "root:topics", "root:projects",
     "root:commitments", "root:evidence", "root:research",
 )
+
+
+def map3d_shard_filename(identifier):
+    """Filesystem-safe deterministic name for one lazy 3-D branch shard."""
+    return quote(str(identifier), safe="").replace("%", "_") + ".json"
 
 
 def _map3d_compact_node(item, invocation_times):
