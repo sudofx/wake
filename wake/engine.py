@@ -1146,8 +1146,12 @@ class Engine:
                 default=None,
             )
             first_corroborated = min(
-                (item.get("created_version") for item in corroborated
-                 if type(item.get("created_version")) is int),
+                ((item.get("updated_version")
+                  if type(item.get("updated_version")) is int
+                  else item.get("created_version"))
+                 for item in corroborated
+                 if type(item.get("updated_version")) is int
+                 or type(item.get("created_version")) is int),
                 default=None,
             )
             if type(created) is int and type(first_evidence) is int:
