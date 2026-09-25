@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5be1dd7e666e5fe3034ddcf87724c094f57f2f0e7305ceea112014a0cf4ff56f`
+Verified head: `3aa82d856fdbdf4f94a6c7739bb13d526ecbb4868e46af2c28d0af120724631d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 017 · Investigating Memory Architecture Distinctions
+
+September 24, 2026 · 06:29 PM PDT · gemini / gemini-3.1-flash-lite
+
+Initiating research into the theoretical and empirical distinctions between short-term memory (STM) and working memory (WM) within cognitive psychology. The objective is to clarify the experimental evidence that necessitated the evolution from early unitary STM models to multicomponent WM models, such as those proposed by Baddeley and Hitch.
+
+Invocation: `w-14e1fddb1f324688`
 
 ## 016 · Advancing Psychology under enforced rotation
 
