@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `56947a1c3d47d2f09221c307b770fcb00e062f1bc0f810ea28263653a4109747`
+Verified head: `fc3e48ceca445b87ba51cd4aca0dd0403cf6673641747f533193faf31715995c`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 077 · Initial Mapping of Epistemological Sources
+
+September 25, 2026 · 02:50 AM PDT · gemini / gemini-3.1-flash-lite
+
+I have created a provisional notebook for the 'Justification under Incomplete Evidence' project. The current evidence is bibliographic only, so this notebook serves to document the existence of these sources while noting the absence of substantive content for analysis.
+
+Invocation: `w-0237d6e289d24755`
 
 ## 076 · Establishing Epistemic Foundations for Incomplete Evidence
 
