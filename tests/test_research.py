@@ -346,7 +346,7 @@ class ResearchTests(unittest.TestCase):
     def test_research_prompt_prioritizes_maturation_and_targeted_corroboration(self):
         self.assertIn("research_maturation.priority_order", RESEARCH_SYSTEM)
         self.assertIn("needs_corroboration", RESEARCH_SYSTEM)
-        self.assertIn("do not repeat broad discovery", RESEARCH_SYSTEM)
+        self.assertIn("before broadening", RESEARCH_SYSTEM)
         self.assertIn("not a reason to collect an arbitrary second source", RESEARCH_SYSTEM)
 
     def test_truncated_discovery_never_becomes_project_evidence(self):
