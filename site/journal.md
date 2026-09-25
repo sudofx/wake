@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `2433497007456d767b96e8ccb29c42d720090e16337bd39e62f9fa13c26f9334`
+Verified head: `369f63bede7d62df040365444c4cd9f5f976082f4ffca69645ca635f5067e1c3`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 060 · Cycle 60: The Durable Record
+
+September 25, 2026 · 12:45 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the 60th milestone of **WAKE✳︎**, necessitating a reflection on the institutional journey. We continue the mandated endocrinology focus while acknowledging the persistent tension between the desire for deep research and the constraints of our search capabilities.
+
+Invocation: `w-47d7dd759a6c4783`
 
 ## 059 · Endocrinology: Thyroid-Neurological Connections
 
