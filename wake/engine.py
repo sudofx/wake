@@ -691,6 +691,194 @@ class Engine:
                     for key in ("id", "title", "revision", "evidence")
                 })
         return context
+    def fit_bounded_request(self, request):
+        """Deterministically shrink an already-bounded provider request below the hard ceiling.
+
+        This is an emergency delivery adaptation only. Exact durable state is untouched.
+        Preserve IDs, active project frames, Squirrel routing, milestone identity, and
+        provenance roots while dropping duplicated prose and oversized recovery detail.
+        """
+        context = request["context"]
+        limit = self.config["max_context_chars"]
+
+        def excerpt(value, size):
+            value = str(value or "")
+            return value if len(value) <= size else value[:size - 1] + "…"
+
+        bounded = context.setdefault("bounded_context", {})
+        omitted = list(bounded.get("omitted_categories", []))
+        for item in (
+            "verbose recovery frames",
+            "extended bounded reflection history",
+            "redundant evidence payload text",
+            "low-priority bounded prose",
+        ):
+            if item not in omitted:
+                omitted.append(item)
+        bounded["omitted_categories"] = omitted
+        bounded["emergency_compaction"] = True
+
+        # Preserve the routing decision Squirrel needs, not its full diagnostic payload.
+        squirrel = context.get("squirrel") or {}
+        context["squirrel"] = {
+            key: squirrel.get(key)
+            for key in (
+                "active", "selected_topic", "enforce_selected_topic",
+                "rotation_required", "capability_blocked_topics",
+                "deferred_topics", "reason",
+            )
+            if key in squirrel
+        }
+
+        # Recovery detail is durable elsewhere; IDs are enough to signal its existence.
+        context["representation_recovery"] = [
+            {"project": item.get("project")}
+            for item in context.get("representation_recovery", [])[-2:]
+        ]
+
+        context["beliefs"] = [
+            {
+                "id": item.get("id"),
+                "statement": excerpt(item.get("statement"), 220),
+                "confidence": item.get("confidence"),
+                "status": item.get("status"),
+                "evidence": list(item.get("evidence", []))[-4:],
+                "context_excerpt": True,
+            }
+            for item in context.get("beliefs", [])[-4:]
+        ]
+        context["commitments"] = [
+            {
+                **{key: item.get(key) for key in (
+                    "id", "due_cycle", "status", "created_version",
+                )},
+                "task": excerpt(item.get("task"), 220),
+                "reason": excerpt(item.get("reason"), 160),
+                "resolution_evidence": list(item.get("resolution_evidence", []))[-3:],
+                "context_excerpt": True,
+            }
+            for item in context.get("commitments", [])[-4:]
+        ]
+
+        # Evidence content is never authoritative in this emergency view; retain roots only.
+        context["evidence"] = [
+            {
+                "id": item.get("id"),
+                "source": item.get("source", ""),
+                "actor": item.get("actor", ""),
+                "version": item.get("version"),
+                "scope": item.get("scope"),
+                "content_omitted": True,
+            }
+            for item in context.get("evidence", [])[-6:]
+        ]
+
+        # Active-project capacity is already bounded by governance. Trim prose, not identity.
+        context["projects"] = [
+            {
+                **{key: value for key, value in item.items()
+                   if key not in ("title", "question", "next_step", "reason")},
+                "title": excerpt(item.get("title"), 120),
+                "question": excerpt(item.get("question"), 180),
+                "next_step": excerpt(item.get("next_step"), 180),
+                "reason": excerpt(item.get("reason"), 120),
+                "context_excerpt": True,
+            }
+            for item in context.get("projects", [])[-3:]
+        ]
+
+        context["notebooks"] = [
+            {
+                "id": item.get("id"), "project": item.get("project"),
+                "title": excerpt(item.get("title"), 120),
+                "summary": excerpt(item.get("summary"), 180),
+                "revision": item.get("revision"),
+                "evidence": list(item.get("evidence", []))[-3:],
+                "context_excerpt": True,
+            }
+            for item in context.get("notebooks", [])[-2:]
+        ]
+        context["blog_notebooks"] = {}
+        for notebook in context["notebooks"]:
+            context["blog_notebooks"].setdefault(notebook.get("project"), []).append({
+                key: notebook.get(key) for key in ("id", "title", "revision", "evidence")
+            })
+
+        history = context.get("reflection_history")
+        if isinstance(history, dict):
+            previous = history.get("previous_reflection")
+            if isinstance(previous, dict):
+                previous = {
+                    "id": previous.get("id"),
+                    "reflection_cycle": previous.get("reflection_cycle"),
+                    "title": excerpt(previous.get("title"), 120),
+                    "lede": excerpt(previous.get("lede"), 180),
+                    "body_excerpt": excerpt(previous.get("body_excerpt"), 420),
+                    "lens": excerpt(previous.get("lens"), 220),
+                }
+            context["reflection_history"] = {
+                "milestone": history.get("milestone"),
+                "accepted_wakes": [
+                    {
+                        "cycle": item.get("cycle"),
+                        "invocation": item.get("invocation"),
+                        "title": excerpt(item.get("title"), 120),
+                        "summary": excerpt(item.get("summary"), 240),
+                    }
+                    for item in history.get("accepted_wakes", [])[-6:]
+                ],
+                "projects": [
+                    {
+                        "id": item.get("id"), "domain": item.get("domain"),
+                        "status": item.get("status"),
+                        "title": excerpt(item.get("title"), 100),
+                        "next_step": excerpt(item.get("next_step"), 140),
+                    }
+                    for item in history.get("projects", [])[-4:]
+                ],
+                "research": [
+                    {
+                        "id": item.get("id"), "project": item.get("project"),
+                        "domain": item.get("domain"), "status": item.get("status"),
+                        "query": excerpt(item.get("query"), 140),
+                    }
+                    for item in history.get("research", [])[-4:]
+                ],
+                "notebooks": [
+                    {
+                        "id": item.get("id"), "project": item.get("project"),
+                        "revision": item.get("revision"),
+                        "title": excerpt(item.get("title"), 100),
+                        "summary": excerpt(item.get("summary"), 160),
+                    }
+                    for item in history.get("notebooks", [])[-3:]
+                ],
+                "acquisition_friction": [
+                    {
+                        "project": item.get("project"),
+                        "no_progress": item.get("no_progress"),
+                        "capability_blocked": item.get("capability_blocked"),
+                        "last_outcome": item.get("last_outcome"),
+                        "last_reason": excerpt(item.get("last_reason"), 140),
+                    }
+                    for item in history.get("acquisition_friction", [])[-4:]
+                ],
+                "previous_reflection": previous,
+                "boundary": history.get("boundary"),
+            }
+
+        # Rebuild dependent allowlists after trimming. If still oversized, strip
+        # nonessential prose one final time while retaining action identities.
+        request["response_schema"] = schema_for_context(context)
+        if len(canonical(request)) > limit:
+            context["beliefs"] = []
+            context["representation_recovery"] = []
+            if isinstance(context.get("reflection_history"), dict):
+                context["reflection_history"]["research"] = []
+                context["reflection_history"]["notebooks"] = []
+                context["reflection_history"]["acquisition_friction"] = []
+            request["response_schema"] = schema_for_context(context)
+
     # ---------------------------------------------------------------------------
     # STEP: inquiry_drive_shadow
     #
@@ -1327,6 +1515,8 @@ class Engine:
                 )
             request["response_schema"] = schema_for_context(request["context"])
             context_mode = "bounded"
+            if len(canonical(request)) > self.config["max_context_chars"]:
+                self.fit_bounded_request(request)
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         shadow_chars = len(canonical(working_set_shadow))
