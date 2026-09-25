@@ -1,75 +1,9 @@
 {
-  "status": "deferred",
-  "id": "w-5a0b0d169179446f",
-  "reason": "Gemini temporarily unavailable; wake deferred",
-  "provider_error": {
-    "model": "gemini-3.1-flash-lite",
-    "request_payload_bytes": 50407,
-    "http_status": 503,
-    "result": "transient_failure",
-    "elapsed_ms": 233,
-    "response_bytes_captured": 198,
-    "provider_error": {
-      "code": 503,
-      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-      "status": "UNAVAILABLE"
-    },
-    "category": "server",
-    "provider_requests_sent": 1,
-    "provider_attempts": [
-      {
-        "model": "gemini-3.1-flash-lite",
-        "request_payload_bytes": 50407,
-        "http_status": 503,
-        "result": "transient_failure",
-        "elapsed_ms": 233,
-        "response_bytes_captured": 198,
-        "provider_error": {
-          "code": 503,
-          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-          "status": "UNAVAILABLE"
-        },
-        "category": "server"
-      }
-    ],
-    "skipped_models": [
-      {
-        "model": "gemini-3.8-flash",
-        "reason": "configured_daily_limit"
-      },
-      {
-        "model": "gemini-3.5-flash",
-        "reason": "configured_daily_limit"
-      }
-    ]
-  },
-  "provider_requests_sent": 1,
-  "provider_attempts": [
-    {
-      "model": "gemini-3.1-flash-lite",
-      "request_payload_bytes": 50407,
-      "http_status": 503,
-      "result": "transient_failure",
-      "elapsed_ms": 233,
-      "response_bytes_captured": 198,
-      "provider_error": {
-        "code": 503,
-        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "status": "UNAVAILABLE"
-      },
-      "category": "server"
-    }
-  ],
-  "skipped_models": [
-    {
-      "model": "gemini-3.8-flash",
-      "reason": "configured_daily_limit"
-    },
-    {
-      "model": "gemini-3.5-flash",
-      "reason": "configured_daily_limit"
-    }
-  ],
+  "status": "accepted",
+  "id": "w-fedfcac222454faa",
+  "reason": "",
+  "cycle": 99,
+  "publication_only": true,
   "wake_status": {
     "last_accepted": {
       "id": "w-4dddedf28af446a9",
