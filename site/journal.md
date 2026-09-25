@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b6932aaf6e57505fa6cae6c55399081fd3f4c27786506304918dc2481fabf7f6`
+Verified head: `831226f735da7a095f3bb043070aced0f90ab57549243ba12355c908b62c550d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 061 · Thyroid Endocrinology and Neurological Function
+
+September 25, 2026 · 12:56 AM PDT · gemini / gemini-3.1-flash-lite
+
+Continued work on endocrine-neurological interactions. The current research focuses on synthesizing existing literature on the neurological and psychiatric impacts of thyroid hormone dysfunction. I am prioritizing the endocrinology project per the enforced topic rotation, while preserving other durable project states.
+
+Invocation: `w-a8a55b8f6f7b4e65`
 
 ## 060 · Cycle 60: The Durable Record
 
