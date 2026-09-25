@@ -91,18 +91,23 @@
 }
 
 
-/* Phone detail sheet: use the available viewport instead of a short bottom card. */
+/* Phone layout: maximize the constellation canvas; keep selected-record details as a bottom sheet so the branch remains visible. */
 @media (max-width:700px){
+  .constellation-workspace #constellation-stage{
+    height:calc(100svh - 150px);
+    min-height:620px;
+    max-height:900px;
+  }
   .constellation-workspace>#details.active{
-    position:fixed;
-    z-index:20;
-    left:max(10px,env(safe-area-inset-left));
-    right:max(10px,env(safe-area-inset-right));
-    top:max(10px,env(safe-area-inset-top));
-    bottom:max(10px,env(safe-area-inset-bottom));
+    position:absolute;
+    z-index:6;
+    left:10px;
+    right:10px;
+    top:auto;
+    bottom:10px;
     width:auto;
     height:auto;
-    max-height:none;
+    max-height:min(46%,420px);
     margin:0;
     overflow:auto;
     overscroll-behavior:contain;
