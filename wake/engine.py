@@ -1697,6 +1697,11 @@ class Engine:
                 evidence["content"] = evidence["content"][:800]
                 evidence["context_excerpt"] = True
 
+            # Maturation telemetry is an optimization signal, not a governance
+            # requirement. Under a hard context ceiling, preserve the established
+            # project/evidence/notebook contract and omit this derived duplicate.
+            request["context"].pop("research_maturation", None)
+
             # The response schema contains context-derived allowlists. Rebuild it
             # after shrinking the working view; otherwise stale project/notebook/
             # evidence alternatives from the pre-compaction context can keep the
