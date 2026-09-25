@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 77  
+**Version:** 78  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `fc3e48ceca445b87ba51cd4aca0dd0403cf6673641747f533193faf31715995c`
+**Verified head:** `dd02610443d0cd39b832e59c1b20a8355cde6f02c680a9ef9efb908e47a0af41`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1126,40 +1126,47 @@ _None recorded._
 {
   "project": "epistemology-belief-justification-incomplete-evidence",
   "domain": "epistemology",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
-    "api.openalex.org:discovery"
+    "api.openalex.org:discovery",
+    "api.crossref.org:source"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1207/s15326985ep4102_1",
-    "doi:10.1002/sce.20048",
-    "doi:10.1111/j.1475-4975.2007.00160.x",
-    "doi:10.5040/9781472544735",
-    "openalex:W1976637107",
-    "openalex:W1995030765",
-    "openalex:W2012788680",
-    "openalex:W3132809789",
-    "arxiv:4975.2007"
+    "arxiv:4975.2007",
+    "doi:10.1097/00001888-199301000-00012",
+    "doi:10.1021/ed063p533",
+    "doi:10.1037//0003-066x.51.4.355",
+    "doi:10.1037/h0034585",
+    "doi:10.1207/s15327809jls0404_1",
+    "doi:10.1037/0022-0663.94.3.520",
+    "doi:10.1097/00001888-199310000-00053",
+    "doi:10.1177/001872089203400201",
+    "doi:10.1037/0022-0663.86.3.360",
+    "doi:10.1080/03057267808559856",
+    "doi:10.1016/0010-0285(73)90004-2"
   ],
   "last_receipt": {
-    "evidence": "source-9efb3e00d9eb44b8",
-    "outcome": "no_progress",
+    "evidence": "source-fb2f23f9caf94381",
+    "outcome": "progress",
     "persistent_identifiers": [
       "doi:10.1207/s15326985ep4102_1",
-      "doi:10.1002/sce.20048",
-      "doi:10.1111/j.1475-4975.2007.00160.x",
-      "doi:10.5040/9781472544735",
-      "openalex:W1976637107",
-      "openalex:W1995030765",
-      "openalex:W2012788680",
-      "openalex:W3132809789",
-      "arxiv:4975.2007"
+      "doi:10.1097/00001888-199301000-00012",
+      "doi:10.1021/ed063p533",
+      "doi:10.1037//0003-066x.51.4.355",
+      "doi:10.1037/h0034585",
+      "doi:10.1207/s15327809jls0404_1",
+      "doi:10.1037/0022-0663.94.3.520",
+      "doi:10.1097/00001888-199310000-00053",
+      "doi:10.1177/001872089203400201",
+      "doi:10.1037/0022-0663.86.3.360",
+      "doi:10.1080/03057267808559856",
+      "doi:10.1016/0010-0285(73)90004-2"
     ],
     "research_id": "res-epistemology-justification-001",
-    "route": "api.openalex.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -1202,10 +1209,8 @@ _None recorded._
   "attention_topic": "epistemology",
   "durable_progress": true,
   "hard_rejection": false,
-  "invocation": "w-0237d6e289d24755",
-  "restored_topics": [
-    "neurodivergence"
-  ],
+  "invocation": "w-8dd12c4be0fd49a1",
+  "restored_topics": [],
   "selected_topic": "epistemology",
   "terminal": "accepted",
   "triggered_topics": []
@@ -1216,7 +1221,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
+  "accepted_streak": 3,
   "topic": "epistemology"
 }
 ```
@@ -1366,6 +1371,31 @@ _None recorded._
   "created_version": 77,
   "updated_version": 77,
   "updated_by": "w-0237d6e289d24755",
+  "domain": "epistemology"
+}
+```
+
+### `nb-epistemology-justification-001` · Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification
+
+```json
+{
+  "evidence": [
+    "source-fb2f23f9caf94381",
+    "source-0a7b2a5c06d44417"
+  ],
+  "findings": "While the project aims to define justification with incomplete evidence, current literature [source-fb2f23f9caf94381] focuses on cognitive load and instructional design. It argues that 'minimal guidance' often fails because it ignores the cognitive architecture of the learner. In an epistemic context, this suggests that justification processes may be constrained by the observer's cognitive capacity, not merely by the quantity of evidence [source-0a7b2a5c06d44417].",
+  "id": "nb-epistemology-justification-001",
+  "limitations": "The primary source [source-fb2f23f9caf94381] concerns pedagogical research, not epistemological theory. Applying 'cognitive architecture' constraints to the broader question of belief justification is an interpretation, not an established philosophical consensus.",
+  "next_questions": "What epistemological frameworks explicitly address the limits of the observer's cognitive architecture when evaluating incomplete evidence?",
+  "project": "epistemology-belief-justification-incomplete-evidence",
+  "reason": "This notebook synthesizes the available metadata, demonstrating the current limitations while framing a path toward more relevant philosophical literature.",
+  "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+  "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 78,
+  "updated_version": 78,
+  "updated_by": "w-8dd12c4be0fd49a1",
   "domain": "epistemology"
 }
 ```
@@ -48833,6 +48863,417 @@ _None recorded._
 }
 ```
 
+### `w-8dd12c4be0fd49a1`
+
+```json
+{
+  "base_version": 77,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 17884,
+    "delivered_request_chars": 45705,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 96884,
+    "working_set_chars": 3528
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-8dd12c4be0fd49a1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 77,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Justification under Incomplete Evidence"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurodiversity-paradigm-foundations",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Foundations of Neurodiversity Paradigm"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2277,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "7dbdc984fe491c095aa68b9de8b6c7e8a3021650da4462073a3e7d27148ab8f4",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-38af51501a074dac"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-38af51501a074dac",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b3112f4969924c38"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b3112f4969924c38",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-6a187301b2844a11"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6a187301b2844a11",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b0fb84dc554a4f40"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b0fb84dc554a4f40",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-32ae2941ab804949"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-32ae2941ab804949",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fb2f23f9caf94381"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fb2f23f9caf94381",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-38af51501a074dac",
+      "source-b3112f4969924c38",
+      "source-6a187301b2844a11",
+      "source-b0fb84dc554a4f40",
+      "source-32ae2941ab804949",
+      "source-fb2f23f9caf94381"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 7,
+      "evidence_count": 8,
+      "trigger_counts": {
+        "notebook_revised": 1,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "epistemology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "epistemology",
+    "temporal": {
+      "anchor_seq": 2006,
+      "anchor_time": "2026-09-25T09:55:26.407632+00:00",
+      "anchor_version": 77,
+      "effective_seconds": 36483.932694
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 272.308751,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 36483.932694,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-25T09:55:26.407632+00:00",
+    "previous_anchor_time": "2026-09-25T09:50:54.098881+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 272.308751
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 17884,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 7,
+    "retrieval_evidence_count": 8,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 1,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3528,
+    "working_to_delivered_ratio": 0.1973
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "neurodiversity-paradigm-foundations",
+        "next_step": "Identify and retrieve core seminal texts defining the neurodiversity paradigm to contrast with standard DSM/ICD clinical pathology taxonomies.",
+        "question": "How does the neurodiversity paradigm differ from clinical pathology models in conceptualizing neurological differences, and what empirical evidence supports the validity of each framework in explaining behavioral outcomes?",
+        "title": "Foundations of Neurodiversity Paradigm"
+      },
+      {
+        "id": "epistemology-belief-justification-incomplete-evidence",
+        "next_step": "Search for epistemological frameworks addressing justification under epistemic uncertainty or limited access.",
+        "question": "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?",
+        "title": "Justification under Incomplete Evidence"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-01",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-85d977fa7bf34654"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+        "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms"
+      },
+      {
+        "id": "notebook-visual-art-incongruity-01",
+        "project": "visual-art-perception-mechanism",
+        "provenance": [
+          "source-d433f7f88da14a8b",
+          "source-ecdb3112fdd94b46"
+        ],
+        "revision": 1,
+        "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+        "title": "Incongruity-Resolution in Aesthetic Reception"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-02",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-175d044b8a474c62"
+        ],
+        "revision": 1,
+        "summary": "Analyses of metabolic and neuro-psychiatric interfaces, focusing on how systemic biochemical errors present as cognitive or psychiatric disorders.",
+        "title": "Metabolic and Systemic Modulations of Neurological Function"
+      },
+      {
+        "id": "nb-neurodiversity-foundations-01",
+        "project": "neurodiversity-paradigm-foundations",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 2,
+        "summary": "This synthesis evaluates the currently available bibliographic evidence regarding the neurodiversity paradigm.",
+        "title": "Provisional Synthesis: Neurodiversity and Clinical Pathology Models (Revised)"
+      },
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T09:55:28.015498+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 7151,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49804,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T09:55:49.470276+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -61736,6 +62177,103 @@ _None recorded._
 }
 ```
 
+### `source-fb2f23f9caf94381`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1207%2Fs15326985ep4102_1\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 25]], \\\"date-time\\\": \\\"2026-09-25T01:07:24Z\\\", \\\"timestamp\\\": 1790298444808, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 114, \\\"publisher\\\": \\\"Informa UK Limited\\\", \\\"issue\\\": \\\"2\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Educational Psychologist\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2006, 6]]}, \\\"DOI\\\": \\\"10.1207/s15326985ep4102_1\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2006, 5, 1]], \\\"date-time\\\": \\\"2006-05-01T13:15:32Z\\\", \\\"timestamp\\\": 1146489332000}, \\\"page\\\": \\\"75-86\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 4435, \\\"title\\\": [\\\"Why Minimal Guidance During Instruction Does Not Work: An Analysis of the Failure of Constructivist, Discovery, Problem-Based, Experiential, and Inquiry-Based Teaching\\\"], \\\"prefix\\\": \\\"10.1080\\\", \\\"volume\\\": \\\"41\\\", \\\"author\\\": [{\\\"given\\\": \\\"Paul A.\\\", \\\"family\\\": \\\"Kirschner\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"John\\\", \\\"family\\\": \\\"Sweller\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Richard E.\\\", \\\"family\\\": \\\"Clark\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"301\\\", \\\"reference\\\": [{\\\"key\\\": \\\"p_1_324\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1097/00001888-199301000-00012\\\"}, {\\\"key\\\": \\\"p_2_325\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"533\\\", \\\"DOI\\\": \\\"10.1021/ed063p533\\\", \\\"volume\\\": \\\"63\\\", \\\"author\\\": \\\"Allen J. B.\\\", \\\"year\\\": \\\"1986\\\", \\\"journal-title\\\": \\\"Journal of Chemical Education\\\"}, {\\\"key\\\": \\\"p_3_326\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037//0003-066X.51.4.355\\\"}, {\\\"key\\\": \\\"p_4_327\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"325\\\", \\\"DOI\\\": \\\"10.1037/h0034585\\\", \\\"volume\\\": \\\"64\\\", \\\"author\\\": \\\"Anthony W. S.\\\", \\\"year\\\": \\\"1973\\\", \\\"journal-title\\\": \\\"Journal of Educational Psychology\\\"}, {\\\"key\\\": \\\"p_5_328\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15327809jls0404_1\\\"}, {\\\"key\\\": \\\"p_6_329\\\", \\\"unstructured\\\": \\\"Atkinson, R. & Shiffrin, R. (1968). Human memory: A proposed system and its control processes. In K. Spence & J. Spence (Eds.), The psychology of learning and motivation (Vol. 2, pp. 89-195). New York: Academic.\\\"}, {\\\"key\\\": \\\"p_7_330\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"520\\\", \\\"DOI\\\": \\\"10.1037/0022-0663.94.3.520\\\", \\\"volume\\\": \\\"94\\\", \\\"author\\\": \\\"Aulls M. W.\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Journal of Educational Psychology\\\"}, {\\\"key\\\": \\\"p_8_331\\\", \\\"first-page\\\": \\\"290\\\", \\\"volume\\\": \\\"11\\\", \\\"author\\\": \\\"Ausubel D. P.\\\", \\\"year\\\": \\\"1964\\\", \\\"journal-title\\\": \\\"The Arithmetic Teacher\\\"}, {\\\"key\\\": \\\"p_9_332\\\", \\\"unstructured\\\": \\\"Barrows, H. S. & Tamblyn, R. M. (1980). Problem-based learning: An approach to medical education. New York: Springer.\\\"}, {\\\"key\\\": \\\"p_10_333\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Berkson, L. (1993). Problem-based learning: Have the expectations been met? Academic Medicine, 68(Suppl.), S79-S88.\\\", \\\"DOI\\\": \\\"10.1097/00001888-199310000-00053\\\"}, {\\\"key\\\": \\\"p_11_334\\\", \\\"unstructured\\\": \\\"Bernstein, D. A., Penner, L. A., Clarke-Stewart, A., Roy, E. J. & Wickens, C. D. (2003). Psychology (6th ed.). Boston: Houghton-Mifflin.\\\"}, {\\\"key\\\": \\\"p_12_335\\\", \\\"unstructured\\\": \\\"Boud, D., Keogh, R. & Walker, D. (Eds.). (1985). Reflection: Turning experience into learning. London: Kogan Page.\\\"}, {\\\"key\\\": \\\"p_13_336\\\", \\\"unstructured\\\": \\\"Brown, A. & Campione, J. (1994). Guided discovery in a community of learners. In K. McGilly (Ed.), Classroom lessons: Integrating cognitive theory and classroom practice (pp. 229-270). Cambridge, MA: MIT Press.\\\"}, {\\\"key\\\": \\\"p_14_337\\\", \\\"first-page\\\": \\\"21\\\", \\\"volume\\\": \\\"31\\\", \\\"author\\\": \\\"Bruner J. S.\\\", \\\"year\\\": \\\"1961\\\", \\\"journal-title\\\": \\\"Harvard Educational Review\\\"}, {\\\"key\\\": \\\"p_15_338\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"129\\\", \\\"DOI\\\": \\\"10.1177/001872089203400201\\\", \\\"volume\\\": \\\"34\\\", \\\"author\\\": \\\"Carlson R. A.\\\", \\\"year\\\": \\\"1992\\\", \\\"journal-title\\\": \\\"Human Factors\\\"}, {\\\"key\\\": \\\"p_16_339\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0022-0663.86.3.360\\\"}, {\\\"key\\\": \\\"p_17_340\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"51\\\", \\\"DOI\\\": \\\"10.1080/03057267808559856\\\", \\\"volume\\\": \\\"5\\\", \\\"author\\\": \\\"Cawthron E. R.\\\", \\\"year\\\": \\\"1978\\\", \\\"journal-title\\\": \\\"Studies in Science Education\\\"}, {\\\"key\\\": \\\"p_18_341\\\", \\\"unstructured\\\": \\\"Chall, J. S. (2000). The academic achievement challenge. New York: Guilford.\\\"}, {\\\"key\\\": \\\"p_19_342\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0010-0285(73)90004-2\\\"}, {\\\"key\\\": \\\"p_20_343\\\", \\\"unstructured\\\": \\\"Chi, M., Glaser, R. & Rees, E. (1982). Expertise in problem solving. In R. Sternberg (Ed.), Advances in the psychology of human intelligence (pp. 7-75). Hillsdale, NJ: Lawrence Erlbaum Associates, Inc.\\\"}, {\\\"key\\\": \\\"p_21_344\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"92\\\", \\\"DOI\\\": \\\"10.1080/00461528209529247\\\", \\\"volume\\\": \\\"17\\\", \\\"author\\\": \\\"Clark R. E.\\\", \\\"year\\\": \\\"1982\\\", \\\"journal-title\\\": \\\"Educational Psychologist\\\"}, {\\\"key\\\": \\\"p_22_345\\\", \\\"unstructured\\\": \\\"Clark, R. E. (1989). When teaching kills learning: Research on mathemathantics. In H. N. Mandl, N. Bennett, E. de Corte, & H. F. Freidrich (Eds.), Learning and instruction: European research in an international context (Vol. 2, pp. 1-22). London: Pergamon.\\\"}, {\\\"issue\\\": \\\"5\\\", \\\"key\\\": \\\"p_23_346\\\", \\\"first-page\\\": \\\"5\\\", \\\"volume\\\": \\\"38\\\", \\\"author\\\": \\\"Clark R. E.\\\", \\\"year\\\": \\\"1998\\\", \\\"journal-title\\\": \\\"Educational Technology\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"p_24_347\\\", \\\"first-page\\\": \\\"5\\\", \\\"volume\\\": \\\"37\\\", \\\"author\\\": \\\"Clark R. E.\\\", \\\"year\\\": \\\"1999\\\", \\\"journal-title\\\": \\\"Educational Technology\\\"}, {\\\"key\\\": \\\"p_25_348\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"259\\\", \\\"DOI\\\": \\\"10.1097/00001888-200003000-00017\\\", \\\"volume\\\": \\\"75\\\", \\\"author\\\": \\\"Colliver J. A.\\\", \\\"year\\\": \\\"2000\\\", \\\"journal-title\\\": \\\"Academic Medicine\\\"}, {\\\"key\\\": \\\"p_26_349\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037//0022-0663.79.4.347\\\"}, {\\\"key\\\": \\\"p_27_350\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X01003922\\\"}, {\\\"key\\\": \\\"p_28_351\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"223\\\", \\\"DOI\\\": \\\"10.1037/h0046768\\\", \\\"volume\\\": \\\"47\\\", \\\"author\\\": \\\"Craig R.\\\", \\\"year\\\": \\\"1956\\\", \\\"journal-title\\\": \\\"Journal of Educational Psychology\\\"}, {\\\"key\\\": \\\"p_29_352\\\", \\\"unstructured\\\": \\\"Cronbach, L. J. & Snow, R. E. (1977). Aptitudes and instructional methods: A handbook for research on interactions. New York: Irvington.\\\"}, {\\\"key\\\": \\\"p_30_353\\\", \\\"unstructured\\\": \\\"De Groot, A. D. (1965). Thought and choice in chess. The Hague, Netherlands: Mouton. (Original work published 1946)\\\"}, {\\\"key\\\": \\\"p_31_354\\\", \\\"unstructured\\\": \\\"Dehoney, J. (1995). Cognitive task analysis: Implications for the theory and practice of instructional design. Proceedings of the Annual National Convention of the Association for Educational Communications and Technology (AECT), 113-123. (ERIC Document Reproduction Service No. ED 383 294)\\\"}, {\\\"key\\\": \\\"p_32_355\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"149\\\", \\\"DOI\\\": \\\"10.3758/BF03197595\\\", \\\"volume\\\": \\\"7\\\", \\\"author\\\": \\\"Egan D. E.\\\", \\\"year\\\": \\\"1979\\\", \\\"journal-title\\\": \\\"Memory and Cognition\\\"}, {\\\"key\\\": \\\"p_33_356\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"121\\\", \\\"DOI\\\": \\\"10.1080/10401339409539658\\\", \\\"volume\\\": \\\"6\\\", \\\"author\\\": \\\"Elstein A. S.\\\", \\\"year\\\": \\\"1994\\\", \\\"journal-title\\\": \\\"Teaching & Learning in Medicine\\\"}, {\\\"key\\\": \\\"p_34_357\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037//0033-295X.102.2.211\\\"}, {\\\"issue\\\": \\\"6\\\", \\\"key\\\": \\\"p_35_358\\\", \\\"first-page\\\": \\\"5\\\", \\\"volume\\\": \\\"37\\\", \\\"author\\\": \\\"Estes F.\\\", \\\"year\\\": \\\"1999\\\", \\\"journal-title\\\": \\\"Educational Technology\\\"}, {\\\"key\\\": \\\"p_36_359\\\", \\\"unstructured\\\": \\\"Glaser, R. (1987). Further notes toward a psychology of instruction. In R. Glaser (Ed.), Advances in instructional psychology (Vol. 3, pp. 1-39). Hillsdale, NJ: Lawrence Erlbaum Associates, Inc.\\\"}, {\\\"key\\\": \\\"p_37_360\\\", \\\"unstructured\\\": \\\"Gollub, J. P., Berthanthal, M., Labov, J. & Curtis, C. (Eds.). (2003). Learning and understanding: Improving advanced study of mathematics and science in U.S. high schools. Washington, DC: National Academies Press.\\\"}, {\\\"key\\\": \\\"p_38_361\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"521\\\", \\\"DOI\\\": \\\"10.1126/science.1096022\\\", \\\"volume\\\": \\\"304\\\", \\\"author\\\": \\\"Handelsman J.\\\", \\\"year\\\": \\\"2004\\\", \\\"journal-title\\\": \\\"Science\\\"}, {\\\"key\\\": \\\"p_39_362\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.1207/s1532690xci0301_3\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": \\\"Hardiman P.\\\", \\\"year\\\": \\\"1986\\\", \\\"journal-title\\\": \\\"Cognition and Instruction\\\"}, {\\\"key\\\": \\\"p_40_363\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1023/B:EDPR.0000034022.16470.f3\\\"}, {\\\"key\\\": \\\"p_41_364\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"53\\\", \\\"DOI\\\": \\\"10.1111/j.1469-5812.1988.tb00144.x\\\", \\\"volume\\\": \\\"20\\\", \\\"author\\\": \\\"Hodson D.\\\", \\\"year\\\": \\\"1988\\\", \\\"journal-title\\\": \\\"Educational Philosophy and Theory\\\"}, {\\\"key\\\": \\\"p_42_365\\\", \\\"unstructured\\\": \\\"Hurd, P. D. (1969). New directions in teaching secondary school science. Chicago, IL: Rand McNally.\\\"}, {\\\"key\\\": \\\"p_43_366\\\", \\\"unstructured\\\": \\\"Iliff, C. H. (1994). Kolb's learning style inventory: A meta-analysis. Unpublished doctoral dissertation, Boston University, Boston.\\\"}, {\\\"key\\\": \\\"p_44_367\\\", \\\"unstructured\\\": \\\"Jeffries, R., Turner, A., Polson, P. & Atwood, M. (1981). Processes involved in designing software. In J. R. Anderson (Ed.), Cognitive skills and their acquisition (pp. 255-283). Hillsdale, NJ: Lawrence Erlbaum Associates, Inc.\\\"}, {\\\"key\\\": \\\"p_45_368\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02296434\\\"}, {\\\"key\\\": \\\"p_46_369\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/S15326985EP3801_4\\\"}, {\\\"key\\\": \\\"p_47_370\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037//0022-0663.93.3.579\\\"}, {\\\"key\\\": \\\"p_48_371\\\", \\\"unstructured\\\": \\\"Kilpatrick, J., Swafford, J. & Findell, B. (Eds.). (2001). Adding it up: Helping children learn mathematics. Washington, DC: National Academies Press.\\\"}, {\\\"key\\\": \\\"p_49_372\\\", \\\"unstructured\\\": \\\"Kirschner, P. A. (1991). Practicals in higher science education. Utrecht, Netherlands: Lemma.\\\"}, {\\\"key\\\": \\\"p_50_373\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"273\\\", \\\"DOI\\\": \\\"10.1007/BF00430277\\\", \\\"volume\\\": \\\"1\\\", \\\"author\\\": \\\"Kirschner P. A.\\\", \\\"year\\\": \\\"1992\\\", \\\"journal-title\\\": \\\"Science\", \"excerpt_truncated\": true, \"source_sha256\": \"e0b7aa798a5ba44a219e1f7c193966b111fad6bdfd08019e839406c023181e7c\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1207/s15326985ep4102_1\", \"doi:10.1097/00001888-199301000-00012\", \"doi:10.1021/ed063p533\", \"doi:10.1037//0003-066x.51.4.355\", \"doi:10.1037/h0034585\", \"doi:10.1207/s15327809jls0404_1\", \"doi:10.1037/0022-0663.94.3.520\", \"doi:10.1097/00001888-199310000-00053\", \"doi:10.1177/001872089203400201\", \"doi:10.1037/0022-0663.86.3.360\", \"doi:10.1080/03057267808559856\", \"doi:10.1016/0010-0285(73)90004-2\"]}",
+  "id": "source-fb2f23f9caf94381",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1207%2Fs15326985ep4102_1",
+  "version": 77,
+  "time": "2026-09-25T09:55:22.422130+00:00"
+}
+```
+
+### `source-9f18870a5203464d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":72077,\\\"wordcount\\\":8768,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T08:45:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hamiltonian (quantum mechanics)\\\",\\\"pageid\\\":14381,\\\"size\\\":29436,\\\"wordcount\\\":5047,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, the Hamiltonian of a system is an operator corresponding to the total energy of that system, including both kinetic energy and potential\\\",\\\"timestamp\\\":\\\"2026-06-01T16:56:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8e20f68e66bb4973b85b0d8c0a23a45b2780a335745b5032c6200e6c6cfe57ee\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9f18870a5203464d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 77,
+  "time": "2026-09-25T09:55:23.311863+00:00"
+}
+```
+
+### `source-c53189b901a34c08`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108090,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-22T20:55:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fermat number\\\",\\\"pageid\\\":91127,\\\"size\\\":43237,\\\"wordcount\\\":3868,\\\"snippet\\\":\\\"(2001), \\\"Another note on the greatest\\nprime\\nfactors of Fermat\\nnumbers\\n\\\", Southeast Asian Bulletin of\\nMathematics\\n, 25 (1): 111\\\\u2013115, doi:10.1007/s10012-001-0111-4\\\",\\\"timestamp\\\":\\\"2026-09-21T16:11:11Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7dc878dbc6cf21d9ee1fb03c9d7b09bc9bdd46cdd5ccd89d912dc4c364dfc549\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\", \"doi:10.1007/s10012-001-0111-4\"]}",
+  "id": "source-c53189b901a34c08",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 77,
+  "time": "2026-09-25T09:55:24.143496+00:00"
+}
+```
+
+### `source-8eea51964a4f4bf9`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156497,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-13T04:15:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"448e44f56889a04b84100717b9780a3db5af6cb5656df1db3986e3a8d5318f60\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+  "id": "source-8eea51964a4f4bf9",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 77,
+  "time": "2026-09-25T09:55:24.810481+00:00"
+}
+```
+
+### `source-4284410a2fbd429a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4284410a2fbd429a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 77,
+  "time": "2026-09-25T09:55:25.383018+00:00"
+}
+```
+
+### `source-449413bacb984f26`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149388,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"26c1fb6fc17e2af7c0d3a00e2046073a8812500ead3d856a218c90c2e75375d1\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-449413bacb984f26",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 77,
+  "time": "2026-09-25T09:55:25.975222+00:00"
+}
+```
+
+### `r-8dd12c4be0fd49a1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":77,\"inherited_commitments\":[],\"invocation\":\"w-8dd12c4be0fd49a1\",\"previous_head\":\"67cf2a42ff9cc21a6684a894c02e1acaa4579ebf7a6d27cbc8d116ea74e84d2e\",\"process_id\":2277,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-8dd12c4be0fd49a1",
+  "source": "runtime:continuity",
+  "version": 77,
+  "time": "2026-09-25T09:55:27.580686+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -62582,6 +63120,17 @@ _None recorded._
   "invocation": "w-0237d6e289d24755",
   "title": "Initial Mapping of Epistemological Sources",
   "summary": "I have created a provisional notebook for the 'Justification under Incomplete Evidence' project. The current evidence is bibliographic only, so this notebook serves to document the existence of these sources while noting the absence of substantive content for analysis."
+}
+```
+
+### 078 · Epistemic Foundations: Instructional Guidance and Belief Justification
+
+```json
+{
+  "cycle": 78,
+  "invocation": "w-8dd12c4be0fd49a1",
+  "title": "Epistemic Foundations: Instructional Guidance and Belief Justification",
+  "summary": "This journal entry synthesizes current bibliographic evidence regarding the project on justification under incomplete evidence, while acknowledging the thematic distance between current sources and the project's core question. A new search is queued to improve literature specificity."
 }
 ```
 
@@ -63624,6 +64173,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-b27d16acbd254282",
   "evidence": "source-9efb3e00d9eb44b8"
+}
+```
+
+### `res-epistemic-justification-limited-info`
+
+```json
+{
+  "domain": "epistemology",
+  "id": "res-epistemic-justification-limited-info",
+  "project": "epistemology-belief-justification-incomplete-evidence",
+  "query": "epistemology justification incomplete evidence cognitive constraints",
+  "reason": "Current evidence is limited to educational psychology. This research seeks specific philosophical and epistemological literature addressing belief justification under epistemic uncertainty and cognitive constraints.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-8dd12c4be0fd49a1"
 }
 ```
 

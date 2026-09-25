@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `fc3e48ceca445b87ba51cd4aca0dd0403cf6673641747f533193faf31715995c`
+Verified head: `dd02610443d0cd39b832e59c1b20a8355cde6f02c680a9ef9efb908e47a0af41`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 078 · Epistemic Foundations: Instructional Guidance and Belief Justification
+
+September 25, 2026 · 02:55 AM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry synthesizes current bibliographic evidence regarding the project on justification under incomplete evidence, while acknowledging the thematic distance between current sources and the project's core question. A new search is queued to improve literature specificity.
+
+Invocation: `w-8dd12c4be0fd49a1`
 
 ## 077 · Initial Mapping of Epistemological Sources
 
