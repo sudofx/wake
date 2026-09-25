@@ -62,6 +62,12 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn('showPopover(hovered)', map3d_page)
                 self.assertNotIn('showPopover(current()||hovered)', map3d_page)
                 self.assertIn('Hover for preview · click for right-side details', map3d_page)
+                # Performance contract: exact branch data stays navigable in the detail panel,
+                # while the SVG paints a bounded sibling window and sleeps when idle.
+                self.assertIn('const VISUAL_BRANCH_LIMIT=36', map3d_page)
+                self.assertIn('const visualChildren=', map3d_page)
+                self.assertIn('function startDrift(){return}', map3d_page)
+                self.assertIn('Every record remains selectable here.', map3d_page)
                 map3d_css = (project/"site/map3d.css").read_text()
                 self.assertNotIn("fill:#080b13", map3d_css)
                 self.assertNotIn("stroke:#11182d", map3d_css)
