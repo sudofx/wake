@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 64  
+**Version:** 65  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `551e195c6a78f5b24fa8d52c3701b994f47c1e9c9985d94666d86d301616b14d`
+**Verified head:** `28919332b5580259667871aaa851d50ffe2833a5b24a14ab441667a8faa14993`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -987,25 +987,33 @@ _None recorded._
 {
   "project": "visual-art-perception-mechanism",
   "domain": "visual_art",
-  "no_progress": 1,
+  "no_progress": 3,
   "routes": [
-    "api.datacite.org:discovery"
+    "api.datacite.org:discovery",
+    "api.crossref.org:source",
+    "api.crossref.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
     "doi:10.5281/zenodo.20088791",
-    "doi:10.5281/zenodo.16920308"
+    "doi:10.5281/zenodo.16920308",
+    "doi:10.1093/oso/9780197513620.003.0001",
+    "doi:10.70675/21ef6433z40d0z404cza8e4z72e7573a84fb",
+    "doi:10.4324/9781315224091-7",
+    "doi:10.4324/9781003008675-16"
   ],
   "last_receipt": {
-    "evidence": "source-deab383b91754896",
+    "evidence": "source-560ad16071d94613",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.5281/zenodo.20088791",
-      "doi:10.5281/zenodo.16920308"
+      "doi:10.1093/oso/9780197513620.003.0001",
+      "doi:10.70675/21ef6433z40d0z404cza8e4z72e7573a84fb",
+      "doi:10.4324/9781315224091-7",
+      "doi:10.4324/9781003008675-16"
     ],
-    "research_id": "res-visual-art-perception-002",
-    "route": "api.datacite.org:discovery",
+    "research_id": "res-neuroaesthetics-001",
+    "route": "api.crossref.org:discovery",
     "stage": "discovery"
   }
 }
@@ -1037,22 +1045,7 @@ _None recorded._
 ### `deferred`
 
 ```json
-{
-  "endocrinology": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-f28a0b57b0f9488c",
-    "other_topic_attempts": 2,
-    "parked_projects": [
-      {
-        "id": "endo-thyroid-neuro",
-        "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
-        "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  }
-}
+{}
 ```
 
 ### `last_receipt`
@@ -1061,10 +1054,12 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "visual_art",
-  "durable_progress": false,
+  "durable_progress": true,
   "hard_rejection": false,
-  "invocation": "w-16156c2a97314502",
-  "restored_topics": [],
+  "invocation": "w-ddaef6f00ebb4f1c",
+  "restored_topics": [
+    "endocrinology"
+  ],
   "selected_topic": "visual_art",
   "terminal": "accepted",
   "triggered_topics": []
@@ -1075,7 +1070,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
+  "accepted_streak": 3,
   "topic": "visual_art"
 }
 ```
@@ -1127,6 +1122,31 @@ _None recorded._
   "updated_version": 62,
   "updated_by": "w-f28a0b57b0f9488c",
   "domain": "endocrinology"
+}
+```
+
+### `notebook-visual-art-incongruity-01` · Incongruity-Resolution in Aesthetic Reception
+
+```json
+{
+  "evidence": [
+    "source-d433f7f88da14a8b",
+    "source-ecdb3112fdd94b46"
+  ],
+  "findings": "Existing research on incongruity-resolution primarily defines the mechanism through the violation of expectations [source-d433f7f88da14a8b]. In the context of humor, this resolution is often semantic [source-d433f7f88da14a8b, source-ecdb3112fdd94b46]. Our synthesis suggests that visual art may employ similar mechanisms where artistic composition creates initial incongruity—via contrast, symmetry, or ambiguity—that requires viewer cognitive resolution, potentially linking aesthetic evaluation to the resolution of expectation violation.",
+  "id": "notebook-visual-art-incongruity-01",
+  "limitations": "The current evidence [source-d433f7f88da14a8b, source-ecdb3112fdd94b46] is derived from humor research literature rather than visual aesthetics directly. Extrapolating these mechanisms to visual art perception is currently speculative and requires direct empirical grounding in neuroaesthetics.",
+  "next_questions": "Do cognitive mechanisms for resolving incongruity in humor overlap with those for processing ambiguous or non-traditional visual art? What neural markers differentiate aesthetic resolution from humor resolution?",
+  "project": "visual-art-perception-mechanism",
+  "reason": "Establishes a baseline synthesis for the visual_art domain using available evidence, fulfilling the requirement for a provisional notebook when evidence is visible.",
+  "summary": "Provisional exploration of how incongruity-resolution models, typically used in humor theory, may apply to the perception of visual art as a mechanism for expectation violation and resolution.",
+  "title": "Incongruity-Resolution in Aesthetic Reception",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 65,
+  "updated_version": 65,
+  "updated_by": "w-ddaef6f00ebb4f1c",
+  "domain": "visual_art"
 }
 ```
 
@@ -40077,6 +40097,409 @@ _None recorded._
 }
 ```
 
+### `w-ddaef6f00ebb4f1c`
+
+```json
+{
+  "base_version": 64,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 16086,
+    "delivered_request_chars": 42689,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 87615,
+    "working_set_chars": 2100
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-ddaef6f00ebb4f1c",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 64,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "endo-thyroid-neuro",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "comedy-incongruity-mechanisms",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "visual-art-perception-mechanism",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Mechanisms of Visual Art Perception"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2267,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "59f4b452c64bf9c59c981f95f10fde4947eebf99f385c673485db18029bbc2e5",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-d433f7f88da14a8b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d433f7f88da14a8b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ecdb3112fdd94b46"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ecdb3112fdd94b46",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0a7b2a5c06d44417",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-930f33f0d42a4658",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-175d044b8a474c62"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-175d044b8a474c62",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-19c5ced2c0354525"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-19c5ced2c0354525",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-d433f7f88da14a8b",
+      "source-ecdb3112fdd94b46",
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-175d044b8a474c62",
+      "source-19c5ced2c0354525"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 6,
+      "evidence_count": 6,
+      "trigger_counts": {
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "visual_art"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "endocrinology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "endocrinology": [
+        {
+          "id": "endo-thyroid-neuro",
+          "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+          "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "visual_art",
+    "temporal": {
+      "anchor_seq": 1675,
+      "anchor_time": "2026-09-25T08:18:27.608501+00:00",
+      "anchor_version": 64,
+      "effective_seconds": 30665.133563
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 279.197836,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 30665.133563,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 19
+    },
+    "observed_at": "2026-09-25T08:18:27.608501+00:00",
+    "previous_anchor_time": "2026-09-25T08:13:48.410665+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 279.197836
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 16086,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 6,
+    "retrieval_evidence_count": 6,
+    "retrieval_trigger_counts": {
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 2100,
+    "working_to_delivered_ratio": 0.1305
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "comedy-incongruity-mechanisms",
+        "next_step": "Search for literature on humor theories, specifically incongruity-resolution and benign violation theory.",
+        "question": "What mechanisms have researchers proposed to explain why humans find incongruity, timing, surprise, and social violation funny?",
+        "title": "Cognitive Mechanisms of Humor"
+      },
+      {
+        "id": "endo-thyroid-neuro",
+        "next_step": "Search for literature connecting thyroid disorders to cognitive and psychiatric symptoms.",
+        "question": "How do thyroid hormone imbalances influence cognitive and psychiatric neurological function?",
+        "title": "Thyroid Dysfunction and Neurological Outcomes"
+      },
+      {
+        "id": "visual-art-perception-mechanism",
+        "next_step": "Search for peer-reviewed literature on neuroaesthetics and the cognitive mechanisms underlying visual art evaluation.",
+        "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+        "title": "Mechanisms of Visual Art Perception"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "notebook-entropy-provisional-01",
+        "project": "entropy_foundations",
+        "provenance": [
+          "source-37de73467bbc40e5"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook synthesizes metadata regarding a high-energy physics publication identified as relevant to entropy research.",
+        "title": "Provisional Review of Entropy Literature"
+      },
+      {
+        "id": "notebook-endo-thyroid-provisional-01",
+        "project": "endo-thyroid-neuro",
+        "provenance": [
+          "source-85d977fa7bf34654"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis of bibliographic metadata regarding maternal thyroid hormone dysfunction and its association with psychiatric outcomes.",
+        "title": "Provisional Review of Maternal Thyroid Dysfunction and Psychiatric Symptoms"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-25T08:18:28.913068+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 1608,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 46254,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 1951,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 46254,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 5750,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 46254,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-25T08:19:05.139531+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -50846,6 +51269,103 @@ _None recorded._
 }
 ```
 
+### `source-3ebbf5a1eecf435c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.5281%2Fzenodo.20088791\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-3ebbf5a1eecf435c",
+  "scope": "failed",
+  "source": "https://api.crossref.org/works/10.5281%2Fzenodo.20088791",
+  "version": 64,
+  "time": "2026-09-25T08:18:23.585959+00:00"
+}
+```
+
+### `source-560ad16071d94613`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=neuroaesthetics+cognitive+mechanisms+visual+art+evaluation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.1093/oso/9780197513620.003.0001\\\", \\\"title\\\": [\\\"An Early Framework for a Cognitive Neuroscience of Visual Aesthetics\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n               <jats:p>In the early 2000s, no framework within which to investigate the biology of aesthetics had been articulated. The author believes that a componential framework, as was common in cognitive psychology, applied to neuroaesthetics made sense. Such frameworks were commonly applied to complex cognitive domains, such as in language, emotion processing, or visual processing research. As such, the author proposes a “box and arrow” model which incorporated levels of visual processing, emotions, attention, and decision-making. The advantage of such a framework is that specific experiments could be placed in the context of testing hypotheses of parts of a larger system deployed for aesthetic processing. The framework has held up well over the years, although the author believes he did not sufficiently emphasize the role of the motor system and the rich contribution of semantics in aesthetic experiences.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.1093/oso/9780197513620.003.0001\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 1, 14]]}}, {\\\"DOI\\\": \\\"10.70675/21ef6433z40d0z404cza8e4z72e7573a84fb\\\", \\\"title\\\": [\\\"Dyslexia and creativity : exploring neuroaesthetics of visual art in dyslexic adolescents\\\"], \\\"abstract\\\": \\\"<jats:title>Dyslexie et créativité : exploration neuroesthétique de l’art visuel chez les adolescents dyslexiques</jats:title>\\\\n                <jats:p xml:lang=\\\\\\\"fr\\\\\\\">La dyslexie est souvent considérée comme un déficit linguistique primaire dans le traitement phonologique. Cependant, il y a également eu des études dans lesquelles les dyslexiques présentent des mouvements oculaires anormaux, à savoir une fixation instable en profondeur. Plusieurs études ont été menées dans cette thèse. La première étude montrait que les dyslexiques présentaient un profil oculomoteur nettement différent à la fois en vergence et en saccades : une mauvaise coordination binoculaire de la saccade et une mauvaise stabilité de fixation en profondeur. Ils ont également démontré un profil de vitesse anormal pendant le mouvement aussi bien des saccades que des vergences, notamment une vitesse de décélération plus lente. Les glissades disconjuguées durant les fixations, pouvant nuire la perception de la profondeur et introduire du flou visuel. Dans une deuxième expérience, nous avons enregistré les mouvements oculaires des dyslexiques lors de la lecture d'un texte adapté à leur âge et d'un texte dépourvu de sens utilisé pour diagnostiquer la dyslexie. En lisant le texte de dépistage de la dyslexie, qui est difficile et composé de mots sans sens (texte absurde), les dyslexiques ont présenté des saccades mal coordonnées aux deux yeux (disconjuguées) et un taux plus élevé des saccades régressives. Lors de la lecture du texte simple, ces anormalités furent atténuées. La vitesse des mouvements oculaires était toujours plus lente chez les dyslexiques. Le profil oculomoteur anormal des dyslexiques persiste donc pendant la lecture ; de plus, la difficulté du texte comme le décodage des mots sans sens peuvent exacerber les anormalités du système oculomoteur fragile des dyslexiques.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.70675/21ef6433z40d0z404cza8e4z72e7573a84fb\\\"}, {\\\"DOI\\\": \\\"10.4324/9781315224091-7\\\", \\\"title\\\": [\\\"Prospects for a Neuropsychology of Visual Art\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781315224091-7\\\", \\\"published\\\": {\\\"date-parts\\\": [[2018, 2, 6]]}}, {\\\"DOI\\\": \\\"10.4324/9781003008675-16\\\", \\\"title\\\": [\\\"Perception and cognition in visual art experience\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003008675-16\\\", \\\"published\\\": {\\\"date-parts\\\": [[2022, 10, 13]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"6fba30ebca64c5bcb74d59050f301b3675abd1aaf7815a31cfbed68384b9e272\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1093/oso/9780197513620.003.0001\", \"doi:10.70675/21ef6433z40d0z404cza8e4z72e7573a84fb\", \"doi:10.4324/9781315224091-7\", \"doi:10.4324/9781003008675-16\"]}",
+  "id": "source-560ad16071d94613",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=neuroaesthetics+cognitive+mechanisms+visual+art+evaluation&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 64,
+  "time": "2026-09-25T08:18:24.599483+00:00"
+}
+```
+
+### `source-70a38c73fd4a48b3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"303907e980cb862091c67e1013212e83421873e5c0692f116b42a5a21e35eedf\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-70a38c73fd4a48b3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 64,
+  "time": "2026-09-25T08:18:25.718412+00:00"
+}
+```
+
+### `source-e43e0de46436402e`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239496,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comparative religion\\\",\\\"pageid\\\":186861,\\\"size\\\":39435,\\\"wordcount\\\":4234,\\\"snippet\\\":\\\"Abrahamic\\nreligions\\nand Iranian\\nreligions\\n), Indian\\nreligions\\n, East Asian\\nreligions\\n, African\\nreligions\\n, American\\nreligions\\n, Oceanic\\nreligions\\n, and classical\\\",\\\"timestamp\\\":\\\"2026-07-25T01:00:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"04ee5d44d3ce9393441e6a966e38dc3be5b78307ccfbe985a1bf200381d04a86\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-e43e0de46436402e",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+  "version": 64,
+  "time": "2026-09-25T08:18:26.274373+00:00"
+}
+```
+
+### `source-a4b73e1e93474dea`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74326},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Forensic psychology\\\",\\\"pageid\\\":475037,\\\"size\\\":95452,\\\"wordcount\\\":10992,\\\"snippet\\\":\\\"Forensic\\npsychology\\nis the application of scientific knowledge and methods (in relation to\\npsychology\\n) to assist in answering legal questions that may\\\",\\\"timestamp\\\":\\\"2026-09-15T14:30:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"436ae1012034bf233ec0d241dc7b10ceacebad192230bf8e8e35b38158ebe86e\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a4b73e1e93474dea",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 64,
+  "time": "2026-09-25T08:18:26.751005+00:00"
+}
+```
+
+### `source-3a93731d7c74488c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-08-21T14:29:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"90d6434e8634ea80db408c5f0350409bb7d45c7b2f83ab3047d2e67487792e28\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3a93731d7c74488c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 64,
+  "time": "2026-09-25T08:18:27.246105+00:00"
+}
+```
+
+### `r-ddaef6f00ebb4f1c`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":64,\"inherited_commitments\":[],\"invocation\":\"w-ddaef6f00ebb4f1c\",\"previous_head\":\"9d9f3f89edfc884b49b6629984ed20c5b94577a7c0c9d4a7f6360fc6f77f49cc\",\"process_id\":2267,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-ddaef6f00ebb4f1c",
+  "source": "runtime:continuity",
+  "version": 64,
+  "time": "2026-09-25T08:18:28.552885+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -51549,6 +52069,17 @@ _None recorded._
   "invocation": "w-16156c2a97314502",
   "title": "Initiating Focused Research into Neuroaesthetics",
   "summary": "The current mandate enforces research within the 'visual_art' topic. My primary project, 'visual-art-perception-mechanism', is active and requires evidence to move beyond the seed question. While prior broad searches in related projects have encountered blocking, I am initiating a targeted, narrow query into neuroaesthetics and specific cognitive mechanisms of art evaluation to circumvent past obstacles and progress towards a synthesis."
+}
+```
+
+### 065 · Advancing Visual art under enforced rotation
+
+```json
+{
+  "cycle": 65,
+  "invocation": "w-ddaef6f00ebb4f1c",
+  "title": "Advancing Visual art under enforced rotation",
+  "summary": "Squirrel accepted the valid visual_art subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history."
 }
 ```
 
@@ -52444,8 +52975,9 @@ _None recorded._
   "query": "neuroaesthetics cognitive mechanisms visual art evaluation",
   "reason": "Previous attempts were broad; this narrow focus on 'neuroaesthetics' and 'cognitive mechanisms' aims to retrieve specific, actionable literature on how viewers evaluate art, necessary for synthesizing a notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-16156c2a97314502"
+  "status": "collected",
+  "created_by": "w-16156c2a97314502",
+  "evidence": "source-560ad16071d94613"
 }
 ```
 
