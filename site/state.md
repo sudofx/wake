@@ -5,7 +5,7 @@
 **Version:** 97  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d7c4a99c3a652d7e71c8da68763652441e3773eb5be5bcb733fe2b73fb57fb2d`
+**Verified head:** `91e9457d1b2b8de74aec36f2a103f2c3a45108a960dedee678a70895d9fca580`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1301,19 +1301,20 @@ _None recorded._
 {
   "project": "visual-art-composition-and-expectation",
   "domain": "visual_art",
-  "no_progress": 2,
+  "no_progress": 3,
   "routes": [
-    "api.semanticscholar.org:discovery"
+    "api.semanticscholar.org:discovery",
+    "api.datacite.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [],
   "last_receipt": {
-    "evidence": "source-4cc757b42f284074",
+    "evidence": "source-4fa66db747224d93",
     "outcome": "route_failure",
     "persistent_identifiers": [],
-    "research_id": "res-visual-expectation-empirical-002",
-    "route": "api.semanticscholar.org:discovery",
+    "research_id": "res-visual-art-expectation-violations",
+    "route": "api.datacite.org:discovery",
     "stage": "discovery"
   }
 }
@@ -1349,12 +1350,10 @@ _None recorded._
     "doi:10.1007/bf01397280.pdf"
   ],
   "last_receipt": {
-    "evidence": "source-4631a3225dc645cf",
+    "evidence": "source-276c1cb9540746f7",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1007/bf01397280",
-      "doi:10.1007/bf01397280/fulltext.html",
-      "doi:10.1007/bf01397280.pdf"
+      "doi:10.1038/121580a0"
     ],
     "research_id": "res-szilard-landauer-consensus",
     "route": "api.crossref.org:source",
@@ -62159,6 +62158,528 @@ _None recorded._
 }
 ```
 
+### `w-266ab772dc024cf1`
+
+```json
+{
+  "base_version": 97,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19583,
+    "delivered_request_chars": 44174,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "rich_context_chars": 96394,
+    "working_set_chars": 4002
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-266ab772dc024cf1",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 97,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "info-thermo-maxwell-demon",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Maxwell's Demon and Information Erasure"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "visual-art-composition-and-expectation",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2185,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "a1e7872f3596060c20403b28cbfe78de92cfc4dd7283e3384fdb1b8a70da4fb4",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [],
+        "reason": "An open commitment is approaching its due cycle.",
+        "record": {
+          "id": "commit-synthesize-demon-findings",
+          "kind": "commitment"
+        },
+        "trigger": "commitment_near_due"
+      },
+      {
+        "evidence": [
+          "source-81cb04e2a92a41c3"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-81cb04e2a92a41c3",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-f6d3dcb00a664271"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-f6d3dcb00a664271",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-eec6cdb470694f9f"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-eec6cdb470694f9f",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3a891df028d44931"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3a891df028d44931",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-4631a3225dc645cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-4631a3225dc645cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-276c1cb9540746f7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-276c1cb9540746f7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-81cb04e2a92a41c3",
+      "source-f6d3dcb00a664271",
+      "source-eec6cdb470694f9f",
+      "source-3a891df028d44931",
+      "source-4631a3225dc645cf",
+      "source-276c1cb9540746f7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 10,
+      "trigger_counts": {
+        "commitment_near_due": 1,
+        "notebook_revised": 2,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "visual_art"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "information_thermodynamics"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "information_thermodynamics": [
+        {
+          "id": "info-thermo-maxwell-demon",
+          "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+          "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurology",
+    "temporal": {
+      "anchor_seq": 2419,
+      "anchor_time": "2026-09-25T12:32:18.711163+00:00",
+      "anchor_version": 97,
+      "effective_seconds": 45896.236225
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-266ab772dc024cf1",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "prime_numbers",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 348.91862,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 45896.236225,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-25T12:32:18.711163+00:00",
+    "previous_anchor_time": "2026-09-25T12:26:29.792543+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 348.91862
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19583,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 10,
+    "retrieval_trigger_counts": {
+      "commitment_near_due": 1,
+      "notebook_revised": 2,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4002,
+    "working_to_delivered_ratio": 0.2044
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "visual-art-composition-and-expectation",
+        "next_step": "Queue search for empirical studies explicitly examining visual expectation violations and cognitive responses.",
+        "question": "How do compositional constraints and observer expectations interact to shape the perception of visual art, distinct from established neuroaesthetics models?",
+        "title": "Influence of Composition and Expectation on Visual Perception"
+      },
+      {
+        "id": "info-thermo-maxwell-demon",
+        "next_step": "Research the consensus on the physical implementation of Szilard's engine and its connection to Landauer's principle.",
+        "question": "How does the modern information-theoretic resolution of Maxwell's Demon relate to physical entropy production?",
+        "title": "Maxwell's Demon and Information Erasure"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [
+      {
+        "due_cycle": 97,
+        "id": "commit-synthesize-demon-findings",
+        "reason": "Ensures that the findings from the focused research on Szilard/Landauer are consolidated into the project record promptly.",
+        "task": "Synthesize findings from the search into a revised notebook for info-thermo-maxwell-demon"
+      }
+    ],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-epistemology-mapping-01",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-b2790f66d7984cbe",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "This provisional notebook maps the bibliographic availability of potential sources related to epistemology. Current evidence is limited to metadata.",
+        "title": "Initial Mapping of Epistemological Sources"
+      },
+      {
+        "id": "nb-epistemology-justification-001",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-fb2f23f9caf94381",
+          "source-0a7b2a5c06d44417"
+        ],
+        "revision": 1,
+        "summary": "Explores how the efficacy of minimal guidance in instruction offers a proxy for examining epistemic justification under conditions of limited information.",
+        "title": "Provisional Synthesis: Instructional Guidance as a Case for Epistemic Justification"
+      },
+      {
+        "id": "nb-epistemology-incongruity-002",
+        "project": "epistemology-belief-justification-incomplete-evidence",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Explores the analogy between linguistic incongruity-resolution models (humor theory) and epistemic belief justification under conflicting evidence.",
+        "title": "Synthesis: Incongruity Resolution as Epistemic Update"
+      },
+      {
+        "id": "nb-dance-rhythm-001",
+        "project": "dance-rhythm-cognition",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 2,
+        "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+        "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+      },
+      {
+        "id": "nb-visual-art-composition-001",
+        "project": "visual-art-composition-and-expectation",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "This synthesis explores the intersection of compositional analysis and incongruity-based models of perception, leveraging existing bibliographic frameworks for both visual art and joke analysis as proxies for understanding expectation.",
+        "title": "Provisional Synthesis: Compositional Constraints and Linguistic Incongruity in Art"
+      },
+      {
+        "id": "nb-info-thermo-demon-001",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+        "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "deferred",
+  "time": "2026-09-25T12:32:20.723387+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 17573,
+      "http_status": 503,
+      "model": "gemini-3.1-flash-lite",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 47522,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-25T12:32:55.549494+00:00",
+  "reason": "Gemini temporarily unavailable; wake deferred",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ],
+  "provider_error": {
+    "category": "server",
+    "elapsed_ms": 17573,
+    "http_status": 503,
+    "model": "gemini-3.1-flash-lite",
+    "provider_attempts": [
+      {
+        "category": "server",
+        "elapsed_ms": 17573,
+        "http_status": 503,
+        "model": "gemini-3.1-flash-lite",
+        "provider_error": {
+          "code": 503,
+          "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+          "status": "UNAVAILABLE"
+        },
+        "request_payload_bytes": 47522,
+        "response_bytes_captured": 198,
+        "result": "transient_failure"
+      }
+    ],
+    "provider_error": {
+      "code": 503,
+      "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+      "status": "UNAVAILABLE"
+    },
+    "provider_requests_sent": 1,
+    "request_payload_bytes": 47522,
+    "response_bytes_captured": 198,
+    "result": "transient_failure",
+    "skipped_models": [
+      {
+        "model": "gemini-3.8-flash",
+        "reason": "configured_daily_limit"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "reason": "configured_daily_limit"
+      }
+    ]
+  }
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -77875,6 +78396,103 @@ _None recorded._
 }
 ```
 
+### `source-276c1cb9540746f7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1038%2F121580a0\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T18:23:19Z\\\", \\\"timestamp\\\": 1790274199126, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 1, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"3050\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1928, 4, 14]], \\\"date-time\\\": \\\"1928-04-14T00:00:00Z\\\", \\\"timestamp\\\": -1316476800000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springernature.com/gp/researchers/text-and-data-mining\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[1928, 4, 14]], \\\"date-time\\\": \\\"1928-04-14T00:00:00Z\\\", \\\"timestamp\\\": -1316476800000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springernature.com/gp/researchers/text-and-data-mining\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Nature\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1928, 4, 14]]}, \\\"DOI\\\": \\\"10.1038/121580a0\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2008, 1, 2]], \\\"date-time\\\": \\\"2008-01-02T16:35:03Z\\\", \\\"timestamp\\\": 1199291703000}, \\\"page\\\": \\\"580-590\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1039, \\\"title\\\": [\\\"The Quantum Postulate and the Recent Development of Atomic Theory1\\\"], \\\"prefix\\\": \\\"10.1038\\\", \\\"volume\\\": \\\"121\\\", \\\"author\\\": [{\\\"given\\\": \\\"N.\\\", \\\"family\\\": \\\"BOHR\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"reference\\\": [{\\\"key\\\": \\\"BF121580a0_CR1\\\", \\\"unstructured\\\": \\\"The content of this paper is essentially the same as that of a lecture on the present state of the quantum theory delivered on Sept. 16, 1927, at the Volta celebration in Como. For a summary of the theory just previous to the development of the new methods the reader is referred to a lecture of the author, Atomic Theory and Mechanics,œ published In this periodical (NATURE, 116, 809; 1925). The rapid development which has taken place since has given rise to a considerable number of publications. The present paper is confined to a few references to recent articles which have a special bearing on the subject now under discussion.\\\"}], \\\"container-title\\\": [\\\"Nature\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://www.nature.com/articles/121580a0.pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://www.nature.com/articles/121580a0\\\", \\\"content-type\\\": \\\"text/html\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://www.nature.com/articles/121580a0.pdf\\\", \\\"content-type\\\": \\\"application/pdf\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2025, 4, 4]], \\\"date-time\\\": \\\"2025-04-04T16:54:37Z\\\", \\\"timestamp\\\": 1743785677000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.nature.com/articles/121580a0\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1928, 4, 14]]}, \\\"references-count\\\": 1, \\\"journal-issue\\\": {\\\"issue\\\": \\\"3050\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1928, 4, 14]]}}, \\\"alternative-id\\\": [\\\"BF121580a0\\\"], \\\"URL\\\": \\\"https://doi.org/10.1038/121580a0\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0028-0836\\\", \\\"1476-4687\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0028-0836\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1476-4687\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1928, 4, 14]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"eec22b14785d9412f48d4fe595588f324a260598b8f9b85c3d6a2bc9e7d2be1f\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1038/121580a0\"]}",
+  "id": "source-276c1cb9540746f7",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1038%2F121580a0",
+  "version": 97,
+  "time": "2026-09-25T12:32:09.239124+00:00"
+}
+```
+
+### `source-4fa66db747224d93`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=empirical+studies+visual+expectation+violation+art+perception+cognitive+response&page%5Bsize%5D=4\", \"error\": \"ValueError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-4fa66db747224d93",
+  "scope": "failed",
+  "source": "https://api.datacite.org/dois?query=empirical+studies+visual+expectation+violation+art+perception+cognitive+response&page%5Bsize%5D=4",
+  "version": 97,
+  "time": "2026-09-25T12:32:12.108576+00:00"
+}
+```
+
+### `source-89538242bf00471a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Other (philosophy)\\\",\\\"pageid\\\":972208,\\\"size\\\":49508,\\\"wordcount\\\":5797,\\\"snippet\\\":\\\"differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\",\\\"timestamp\\\":\\\"2026-09-20T02:59:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c477134389d85837e017c74cc2922d06b86f8802b611fe20b491dcf33fa3e7d3\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-89538242bf00471a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 97,
+  "time": "2026-09-25T12:32:15.985834+00:00"
+}
+```
+
+### `source-6c51e49b17a24441`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6bf5be8bd2bd4d7dd67c7be0de3be6bf8c12a2b2ddfabb3561ec687dc84960d3\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6c51e49b17a24441",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 97,
+  "time": "2026-09-25T12:32:16.728517+00:00"
+}
+```
+
+### `source-557069d401194394`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7079},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f9d952a5987e3e7b47e378abf5555500b3560bdfdf605750124edbf728fe76c0\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-557069d401194394",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 97,
+  "time": "2026-09-25T12:32:17.415931+00:00"
+}
+```
+
+### `source-cdb0cda03fa84caf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2769},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47316,\\\"wordcount\\\":4875,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-08-27T23:23:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Human resource management system\\\",\\\"pageid\\\":48708998,\\\"size\\\":14435,\\\"wordcount\\\":1758,\\\"snippet\\\":\\\"processing\\nsystems\\n, which eventually evolved into the standardized routines and packages of enterprise resource planning (ERP) software. ERP\\nsystems\\noriginated\\\",\\\"timestamp\\\":\\\"2026-08-08T08:16:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e34bf076e92e3700f2d98438de8089058b6dfbdfc4c5b68310c9db3c828fb62a\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-cdb0cda03fa84caf",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 97,
+  "time": "2026-09-25T12:32:18.176148+00:00"
+}
+```
+
+### `r-266ab772dc024cf1`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":97,\"inherited_commitments\":[\"commit-synthesize-demon-findings\"],\"invocation\":\"w-266ab772dc024cf1\",\"previous_head\":\"ba50b18ba844063fe3c50f6df5be0b6077c5afbc273417bfae918cf88412ef6a\",\"process_id\":2185,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-266ab772dc024cf1",
+  "source": "runtime:continuity",
+  "version": 97,
+  "time": "2026-09-25T12:32:20.177328+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -80172,8 +80790,9 @@ _None recorded._
   "query": "empirical studies visual expectation violation art perception cognitive response",
   "reason": "Following the project next_step to obtain empirical data on expectation violations, distinct from general neuroaesthetics literature.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-e53397c133614029"
+  "status": "failed",
+  "created_by": "w-e53397c133614029",
+  "evidence": "source-4fa66db747224d93"
 }
 ```
 
