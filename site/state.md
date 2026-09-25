@@ -5,7 +5,7 @@
 **Version:** 39  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `67d77d9f13c22a2d01f6e49e0eb3c8d128b64daedbf91ee5b050e9ceefd2fe3a`
+**Verified head:** `f6ad6b25892266dddc05d5b5f47c4a060e730110ca7d935ddc1a6378766098f4`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -629,20 +629,16 @@ _None recorded._
 {
   "project": "consciousness-scientific-theories",
   "domain": "consciousness",
-  "no_progress": 1,
+  "no_progress": 3,
   "routes": [
-    "api.crossref.org:source",
-    "api.semanticscholar.org:discovery",
     "api.openalex.org:source",
-    "api.datacite.org:discovery"
+    "api.datacite.org:discovery",
+    "export.arxiv.org:source",
+    "api.crossref.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "arxiv:2014.00020",
-    "arxiv:2013.00200",
-    "doi:10.13039/501100011730",
-    "doi:10.1371/journal.pone.corrections_policy",
     "doi:10.1093/acprof:oso/9780198524588.001.0001",
     "doi:10.1038/nn0203-119",
     "doi:10.7551/mitpress/11705.001.0001",
@@ -650,14 +646,23 @@ _None recorded._
     "doi:10.1126/science.abj3259",
     "doi:10.1037/0003-066x.58.9.723",
     "doi:10.3389/fnhum.2014.00020",
-    "doi:10.3389/fnhum.2014.00020/pdf"
+    "doi:10.3389/fnhum.2014.00020/pdf",
+    "doi:10.64898/2026.07.16.738188",
+    "doi:10.52044/hfsp.lt0003972020-c.pc.gr.165164",
+    "doi:10.54224/20389",
+    "doi:10.20944/preprints202308.0731.v1"
   ],
   "last_receipt": {
-    "evidence": "source-c692a583b6ae408b",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
-    "research_id": "res-consciousness-iit-gnwt-compare",
-    "route": "api.datacite.org:discovery",
+    "evidence": "source-a7aab5c6cb4a4158",
+    "outcome": "no_progress",
+    "persistent_identifiers": [
+      "doi:10.64898/2026.07.16.738188",
+      "doi:10.52044/hfsp.lt0003972020-c.pc.gr.165164",
+      "doi:10.54224/20389",
+      "doi:10.20944/preprints202308.0731.v1"
+    ],
+    "research_id": "res-consciousness-iit-gnwt-contrast-001",
+    "route": "api.crossref.org:discovery",
     "stage": "discovery"
   }
 }
@@ -30734,6 +30739,103 @@ _None recorded._
 }
 ```
 
+### `source-7cce54a2762c489d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://export.arxiv.org/api/query?id_list=2014.00020\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-7cce54a2762c489d",
+  "scope": "failed",
+  "source": "https://export.arxiv.org/api/query?id_list=2014.00020",
+  "version": 39,
+  "time": "2026-09-25T05:15:55.285788+00:00"
+}
+```
+
+### `source-a7aab5c6cb4a4158`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works?query=Integrated+Information+Theory+vs+Global+Neuronal+Workspace+Theory+comparative+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.64898/2026.07.16.738188\\\", \\\"title\\\": [\\\"Testing the Spatiotemporal Predictions of Global Neuronal Workspace Theory and Integrated Information Theory\\\"], \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                <jats:p>The neural mechanisms underlying conscious perception remain contested, with global neuronal workspace theory (GNWT) and integrated information theory (IIT) offering divergent predictions about the spatiotemporal dynamics of conscious processing. The Cogitate Consortium (2025) recently conducted a large-scale adversarial collaboration to arbitrate between GNWT and IIT; however, some of their analyses yielded mixed findings. As the original study relied on functional connectivity, it could not assess the directed neural influences required to directly test the mechanistic claims of these theories. Here, we re-examined the Cogitate Consortium’s MEG dataset (N = 100) using dynamic causal modelling (DCM) to test the effective connectivity profiles predicted by each theory during task-irrelevant face perception. We adopted a split discovery-validation procedure and an expanding time-window approach to track the temporal evolution of prototypical networks for each theory. Specifically, we evaluated GNWT’s prediction of phasic prefrontal “ignition” by testing the necessity of PFC feedback to category-selective areas at stimulus onset and offset, and then tested IIT’s prediction of sustained posterior integration by testing extrinsic feedback and intrinsic connectivity within content-specific regions. We found support for both GNWT predictions of prefrontal ignition at stimulus onset and offset; noting that the latter was not previously observed in the original Cogitate analyses. For IIT, whilst feedback connectivity between the fusiform gyrus and primary visual cortex was not sustained throughout the stimulus duration, intrinsic fusiform gyrus connectivity was broadly consistent with IIT’s prediction of sustained processing within a content-specific substrate. However, a post-hoc validation analysis comparing face- and object-specific DCM networks did not yield strong evidence for face selectivity at any time window (pp&lt; 0.95), warranting a conservative interpretation of the IIT findings in particular.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.64898/2026.07.16.738188\\\", \\\"published\\\": {\\\"date-parts\\\": [[2026, 7, 22]]}}, {\\\"DOI\\\": \\\"10.52044/hfsp.lt0003972020-c.pc.gr.165164\\\", \\\"URL\\\": \\\"https://doi.org/10.52044/hfsp.lt0003972020-c.pc.gr.165164\\\"}, {\\\"DOI\\\": \\\"10.54224/20389\\\", \\\"URL\\\": \\\"https://doi.org/10.54224/20389\\\"}, {\\\"DOI\\\": \\\"10.20944/preprints202308.0731.v1\\\", \\\"title\\\": [\\\"Carving Nature at its Joints: A Comparison of CEMI Field Theory with Integrated Information Theory and Global Workspace Theory\\\"], \\\"abstract\\\": \\\"<jats:p>The quest to comprehend the nature of consciousness has spurred the development of many theories that seek to explain its underlying mechanisms and account for its neural correlates. In this paper, I compare my own conscious electromagnetic information field (cemi field) theory with integrated information theory and global workspace theory for their ability to ‘carve nature at its joints’ in the sense of predicting the entities, structures, states and dynamics that are conventionally recognized as being conscious or nonconscious. I demonstrate the cemi field theory shares features with both integrated information theory and global workspace theory but consistently outperforms both by correctly predicting the entities, structures, states and dynamics that support consciousness. I argue that the simplest solution to the question of why cemi field theory consistently outperforms rival theories of consciousness is that the brain’s EM field is consciousness.</jats:p>\\\", \\\"URL\\\": \\\"https://doi.org/10.20944/preprints202308.0731.v1\\\", \\\"published\\\": {\\\"date-parts\\\": [[2023, 8, 9]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"411c5b2d5fa5de1d08e06840839de9be240aeaf672ebc293b4f7208eb43ef4be\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.64898/2026.07.16.738188\", \"doi:10.52044/hfsp.lt0003972020-c.pc.gr.165164\", \"doi:10.54224/20389\", \"doi:10.20944/preprints202308.0731.v1\"]}",
+  "id": "source-a7aab5c6cb4a4158",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works?query=Integrated+Information+Theory+vs+Global+Neuronal+Workspace+Theory+comparative+review&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+  "version": 39,
+  "time": "2026-09-25T05:15:55.913340+00:00"
+}
+```
+
+### `source-b28e9f2bd12f4d04`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2202},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bdd97c339e90fc88a038abcd42355cca9aebcb8bd83f820787a1f8e8a320e8ae\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b28e9f2bd12f4d04",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 39,
+  "time": "2026-09-25T05:15:56.605538+00:00"
+}
+```
+
+### `source-2736f8defc6c4070`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8e04bbbee74623993795fd028251f6054041209f005cf342274cbe4eeaaf1050\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2736f8defc6c4070",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 39,
+  "time": "2026-09-25T05:15:57.088854+00:00"
+}
+```
+
+### `source-247d8d5e536c4c01`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-247d8d5e536c4c01",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 39,
+  "time": "2026-09-25T05:15:57.442655+00:00"
+}
+```
+
+### `source-a531cdc4c1814c46`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"62be7f469f307005888c94f7198ec555cf7d3f9283af96c01c8fc89f45665f4c\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a531cdc4c1814c46",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 39,
+  "time": "2026-09-25T05:15:57.885920+00:00"
+}
+```
+
+### `r-8fba1cc10d694e9b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":39,\"inherited_commitments\":[],\"invocation\":\"w-8fba1cc10d694e9b\",\"previous_head\":\"2f49c77587992c474a89ce5bff3375cdd7acf31cd712c2b25241fc726656c4c7\",\"process_id\":2373,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-8fba1cc10d694e9b",
+  "source": "runtime:continuity",
+  "version": 39,
+  "time": "2026-09-25T05:15:58.629913+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -31705,8 +31807,9 @@ _None recorded._
   "query": "Integrated Information Theory vs Global Neuronal Workspace Theory comparative review",
   "reason": "Directly addresses the project question by seeking comparative literature that articulates the distinct empirical predictions and foundational disagreements between these two major theories.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-d73be0b2c28943a1"
+  "status": "collected",
+  "created_by": "w-d73be0b2c28943a1",
+  "evidence": "source-a7aab5c6cb4a4158"
 }
 ```
 
