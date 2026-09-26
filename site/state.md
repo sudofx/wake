@@ -5,7 +5,7 @@
 **Version:** 157  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `bc516b8ae7e23773704a40dc9492a53fc0dba79f88224bf993fb3bf38aa1527c`
+**Verified head:** `7578900188641d8b4f591fa723509ec239bf0ef00f5d9627b093f0d47c4571c5`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2059,40 +2059,44 @@ _None recorded._
 {
   "project": "vis-art-perception-001",
   "domain": "visual_art",
-  "no_progress": 1,
+  "no_progress": 2,
   "routes": [
-    "export.arxiv.org:source",
     "api.datacite.org:discovery",
     "api.crossref.org:discovery",
-    "api.crossref.org:source"
+    "api.crossref.org:source",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.4324/9781003646839-2",
-    "doi:10.4324/9781003646839-3",
-    "doi:10.2307/426441",
-    "doi:10.1017/cbo9781139030410.009",
-    "doi:10.1111/j.1467-8624.1968.tb04421.x",
-    "arxiv:8624.1968",
-    "doi:10.2307/1413798",
-    "doi:10.2307/1413080",
     "doi:10.1080/00221309.1928.9918018",
     "doi:10.2307/430376",
     "doi:10.2307/430029",
-    "doi:10.1111/1540_6245.jaac35.2.0189"
+    "doi:10.1111/1540_6245.jaac35.2.0189",
+    "doi:10.1146/annurev-psych-120710-100504",
+    "doi:10.26530/oapen_560010",
+    "doi:10.1080/0929821042000317813",
+    "doi:10.1017/s0140525x15000965",
+    "openalex:W2157899060",
+    "openalex:W1756642272",
+    "openalex:W1994477474",
+    "openalex:W2129245434"
   ],
   "last_receipt": {
-    "evidence": "source-e6722eef9e5c4c7a",
+    "evidence": "source-57617a95dbb04471",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.2307/430376",
-      "doi:10.4324/9781003646839-2",
-      "doi:10.2307/430029",
-      "doi:10.1111/1540_6245.jaac35.2.0189"
+      "doi:10.1146/annurev-psych-120710-100504",
+      "doi:10.26530/oapen_560010",
+      "doi:10.1080/0929821042000317813",
+      "doi:10.1017/s0140525x15000965",
+      "openalex:W2157899060",
+      "openalex:W1756642272",
+      "openalex:W1994477474",
+      "openalex:W2129245434"
     ],
-    "research_id": "res_vis_art_methods_156",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-vis-art-psychology-reviews-001",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -2104,33 +2108,46 @@ _None recorded._
 {
   "project": "rel-cross-cultural-001",
   "domain": "religion",
-  "no_progress": 4,
+  "no_progress": 0,
   "routes": [
     "api.semanticscholar.org:discovery",
     "export.arxiv.org:source",
     "api.datacite.org:discovery",
     "api.crossref.org:source"
   ],
-  "capability_blocked": true,
-  "retry_after_version": 168,
+  "capability_blocked": false,
+  "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1016/j.neulet.2004.10.057_bib1",
-    "doi:10.1046/j.0953-816x.2001.01527.x",
-    "doi:10.1016/j.neulet.2004.10.057_bib2",
-    "doi:10.1016/s1364-6613(99)01419-9",
-    "doi:10.1016/j.neulet.2004.10.057_bib3",
-    "doi:10.1016/j.neulet.2004.10.057_bib4",
-    "doi:10.1016/j.neulet.2004.10.057_bib5",
-    "doi:10.1016/j.neulet.2004.10.057_bib6",
-    "doi:10.2466/pms.2001.92.2.447",
-    "doi:10.1016/j.neulet.2004.10.057_bib7",
-    "doi:10.1111/j.1467-9744.1993.tb01026.x",
-    "doi:10.5281/zenodo.15669166"
+    "doi:10.5281/zenodo.15669166",
+    "doi:10.1002/crossmark_policy",
+    "doi:10.1126/science.275.5308.1940",
+    "doi:10.1007/bf00231461",
+    "doi:10.1126/science.289.5478.457",
+    "doi:10.1006/nimg.1995.1025",
+    "doi:10.1093/brain/121.7.1249",
+    "doi:10.1016/s0028-3932(99)00053-6",
+    "doi:10.1146/annurev.ne.11.030188.001033",
+    "doi:10.1017/s0140525x00071351",
+    "doi:10.1006/nimg.2000.0592",
+    "doi:10.1097/00004647-199607000-00015"
   ],
   "last_receipt": {
-    "evidence": "source-958aa927b6b040d2",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-5daa49b2bec14eed",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1046/j.0953-816x.2001.01527.x",
+      "doi:10.1002/crossmark_policy",
+      "doi:10.1126/science.275.5308.1940",
+      "doi:10.1007/bf00231461",
+      "doi:10.1126/science.289.5478.457",
+      "doi:10.1006/nimg.1995.1025",
+      "doi:10.1093/brain/121.7.1249",
+      "doi:10.1016/s0028-3932(99)00053-6",
+      "doi:10.1146/annurev.ne.11.030188.001033",
+      "doi:10.1017/s0140525x00071351",
+      "doi:10.1006/nimg.2000.0592",
+      "doi:10.1097/00004647-199607000-00015"
+    ],
     "research_id": "res-religion-cognitive-ritual-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -2156,7 +2173,7 @@ _None recorded._
   "evolutionary_biology": 5,
   "information_thermodynamics": 0,
   "music": 3,
-  "neurodivergence": 5,
+  "neurodivergence": 6,
   "neurology": 0,
   "prime_numbers": 8,
   "quantum_mechanics": 5,
@@ -2169,10 +2186,18 @@ _None recorded._
 
 ```json
 {
+  "neurodivergence": {
+    "cause": "hard_rejection",
+    "deferred_by": "w-2ce14f0b49094a8a",
+    "eligible_after_other_attempts": 3,
+    "other_topic_attempts": 0,
+    "parked_projects": [],
+    "reason": "five consecutive hard rejections without durable progress"
+  },
   "religion": {
     "cause": "attention_saturation",
     "deferred_by": "w-f86280e015f3437d",
-    "other_topic_attempts": 2,
+    "other_topic_attempts": 3,
     "parked_projects": [
       {
         "id": "rel-cross-cultural-001",
@@ -2191,14 +2216,16 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "visual_art",
+  "attention_topic": "neurodivergence",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-f59a942bb4d7489a",
+  "hard_rejection": true,
+  "invocation": "w-2ce14f0b49094a8a",
   "restored_topics": [],
-  "selected_topic": "visual_art",
-  "terminal": "accepted",
-  "triggered_topics": []
+  "selected_topic": "neurodivergence",
+  "terminal": "rejected",
+  "triggered_topics": [
+    "neurodivergence"
+  ]
 }
 ```
 
@@ -130046,6 +130073,535 @@ _None recorded._
 }
 ```
 
+### `w-2ce14f0b49094a8a`
+
+```json
+{
+  "base_version": 157,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 20268,
+    "delivered_request_chars": 44983,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3936,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 114284,
+    "working_set_chars": 3419
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-2ce14f0b49094a8a",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 157,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "vis-art-perception-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Visual Art Perception"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "rel-cross-cultural-001",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2265,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "fd06b9f9b02de0b8b3adb46b5386dd805c0e36fbbfb148a40380d8b3a74a715f",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-paradigm-comp-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-vis-art-perception-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-0f0f4fa8dae043d2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0f0f4fa8dae043d2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-63e6bbbc6f664757"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-63e6bbbc6f664757",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cff4b3269bfa4f41"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cff4b3269bfa4f41",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-573b6a4569924335"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-573b6a4569924335",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-592a6a7493914ac6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-592a6a7493914ac6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5daa49b2bec14eed"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5daa49b2bec14eed",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666",
+      "source-8defc56204704290",
+      "source-354dd04e6ba04d25",
+      "source-0f0f4fa8dae043d2",
+      "source-63e6bbbc6f664757",
+      "source-cff4b3269bfa4f41",
+      "source-573b6a4569924335",
+      "source-592a6a7493914ac6",
+      "source-5daa49b2bec14eed"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 12,
+      "evidence_count": 18,
+      "trigger_counts": {
+        "notebook_revised": 6,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.584,
+    "context_build_ms": 86.426,
+    "load_ms": 1094.937,
+    "receipt_ms": 605.374,
+    "start_total_before_record_ms": 3383.114,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 1157.015,
+      "cached_loads": 0,
+      "event_count": 4366,
+      "full_replays": 11,
+      "replay_ms": 8273.426,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1590.66
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "visual_art"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "religion"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "religion": [
+        {
+          "id": "rel-cross-cultural-001",
+          "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+          "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurodivergence",
+    "temporal": {
+      "anchor_seq": 4365,
+      "anchor_time": "2026-09-26T13:29:05.180999+00:00",
+      "anchor_version": 157,
+      "effective_seconds": 135702.706061
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-2ce14f0b49094a8a",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "prime_numbers",
+      "psychology",
+      "quantum_mechanics",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 541.773746,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 135702.706061,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-26T13:29:05.180999+00:00",
+    "previous_anchor_time": "2026-09-26T13:20:03.407253+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 541.773746
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20268,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 12,
+    "retrieval_evidence_count": 18,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 6,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3419,
+    "working_to_delivered_ratio": 0.1687
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "vis-art-perception-001",
+        "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+        "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+        "title": "Visual Art Perception"
+      },
+      {
+        "id": "rel-cross-cultural-001",
+        "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "revision": 2,
+        "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "id": "nb-vis-art-perception-001",
+        "project": "vis-art-perception-001",
+        "provenance": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "revision": 3,
+        "summary": "Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.",
+        "title": "Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks"
+      },
+      {
+        "id": "nb-rel-cross-cultural-001",
+        "project": "rel-cross-cultural-001",
+        "provenance": [
+          "source-e3eecc2fcc6e44ff"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of cognitive and structural factors in recurrent rituals across diverse cultures.",
+        "title": "Provisional Synthesis: Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-26T13:29:07.578050+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 9470,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 48590,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-26T13:29:43.473874+00:00",
+  "reason": "Existing projects cannot change title or research question; create a new project for a new question",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -158760,6 +159316,103 @@ _None recorded._
 }
 ```
 
+### `source-5daa49b2bec14eed`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1046%2Fj.0953-816x.2001.01527.x\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 7, 31]], \\\"date-time\\\": \\\"2026-07-31T21:35:02Z\\\", \\\"timestamp\\\": 1785533702259, \\\"version\\\": \\\"3.56.0\\\"}, \\\"reference-count\\\": 37, \\\"publisher\\\": \\\"Wiley\\\", \\\"issue\\\": \\\"8\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2001, 12, 20]], \\\"date-time\\\": \\\"2001-12-20T00:00:00Z\\\", \\\"timestamp\\\": 1008806400000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 263, \\\"URL\\\": \\\"http://onlinelibrary.wiley.com/termsAndConditions#vor\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"onlinelibrary.wiley.com\\\"], \\\"crossmark-restriction\\\": true}, \\\"short-container-title\\\": [\\\"Eur J of Neuroscience\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2001, 4]]}, \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title><jats:p>The commonsense view of religious experience is that it is a preconceptual, immediate affective event. Work in philosophy and psychology, however, suggest that religious experience is an attributional cognitive phenomenon. Here the neural correlates of a religious experience are investigated using functional neuroimaging. During religious recitation, self‐identified religious subjects activated a frontal–parietal circuit, composed of the dorsolateral prefrontal, dorsomedial frontal and medial parietal cortex. Prior studies indicate that these areas play a profound role in sustaining reflexive evaluation of thought. Thus, religious experience may be a cognitive process which, nonetheless, feels immediate.</jats:p>\\\", \\\"DOI\\\": \\\"10.1046/j.0953-816x.2001.01527.x\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2003, 3, 6]], \\\"date-time\\\": \\\"2003-03-06T14:39:05Z\\\", \\\"timestamp\\\": 1046961545000}, \\\"page\\\": \\\"1649-1652\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1002/crossmark_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 163, \\\"title\\\": [\\\"Neural correlates of religious experience\\\"], \\\"prefix\\\": \\\"10.1111\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": [{\\\"given\\\": \\\"Nina P.\\\", \\\"family\\\": \\\"Azari\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Janpeter\\\", \\\"family\\\": \\\"Nickel\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Gilbert\\\", \\\"family\\\": \\\"Wunderlich\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Michael\\\", \\\"family\\\": \\\"Niedeggen\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Harald\\\", \\\"family\\\": \\\"Hefter\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Lutz\\\", \\\"family\\\": \\\"Tellmann\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Hans\\\", \\\"family\\\": \\\"Herzog\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Petra\\\", \\\"family\\\": \\\"Stoerig\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Dieter\\\", \\\"family\\\": \\\"Birnbacher\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Rüdiger J.\\\", \\\"family\\\": \\\"Seitz\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"311\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2001, 12, 20]]}, \\\"reference\\\": [{\\\"key\\\": \\\"e_1_2_6_2_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.275.5308.1940\\\"}, {\\\"key\\\": \\\"e_1_2_6_3_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00231461\\\"}, {\\\"key\\\": \\\"e_1_2_6_4_1\\\", \\\"unstructured\\\": \\\"Deutsche Telekom A.G.(1996) Telefonbuch (1996/97) für Düsseldorf. Dienstleistungen rund ums Telefon: T‐Card.Deutsche Telekom AG Germany p.3.\\\"}, {\\\"key\\\": \\\"e_1_2_6_5_1\\\", \\\"first-page\\\": \\\"581\\\", \\\"volume-title\\\": \\\"Der gute Hirte\\\", \\\"author\\\": \\\"Die Bibel\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"e_1_2_6_6_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.289.5478.457\\\"}, {\\\"key\\\": \\\"e_1_2_6_7_1\\\", \\\"first-page\\\": \\\"1\\\", \\\"article-title\\\": \\\"Manual of the Eysenck Personality Questionaire\\\", \\\"volume\\\": \\\"20\\\", \\\"author\\\": \\\"Eysenck H.J.\\\", \\\"year\\\": \\\"1975\\\", \\\"journal-title\\\": \\\"Z Differentielle Diagnostische Psychologie\\\"}, {\\\"key\\\": \\\"e_1_2_6_8_1\\\", \\\"volume-title\\\": \\\"Das Freiburger Persoenlichkeitsinventar FPI\\\", \\\"author\\\": \\\"Fahrenberg J.\\\", \\\"year\\\": \\\"1984\\\"}, {\\\"key\\\": \\\"e_1_2_6_9_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/nimg.1995.1025\\\"}, {\\\"key\\\": \\\"e_1_2_6_10_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/brain/121.7.1249\\\"}, {\\\"key\\\": \\\"e_1_2_6_11_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/s0028-3932(99)00053-6\\\"}, {\\\"key\\\": \\\"e_1_2_6_12_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1146/annurev.ne.11.030188.001033\\\"}, {\\\"key\\\": \\\"e_1_2_6_13_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X00071351\\\"}, {\\\"key\\\": \\\"e_1_2_6_14_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/nimg.2000.0592\\\"}, {\\\"key\\\": \\\"e_1_2_6_15_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1097/00004647-199607000-00015\\\"}, {\\\"key\\\": \\\"e_1_2_6_16_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/brain/118.4.913\\\"}, {\\\"key\\\": \\\"e_1_2_6_17_1\\\", \\\"unstructured\\\": \\\"James W.(1902) Varieties of Religious Experience.Longs Greens New York.\\\"}, {\\\"key\\\": \\\"e_1_2_6_18_1\\\", \\\"first-page\\\": \\\"38.\\\", \\\"volume-title\\\": \\\"Das Grosse Buch der Kinderreime\\\", \\\"author\\\": \\\"Lange S.\\\", \\\"year\\\": \\\"1984\\\"}, {\\\"key\\\": \\\"e_1_2_6_19_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/cne.903380109\\\"}, {\\\"key\\\": \\\"e_1_2_6_20_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.284.5419.1531\\\"}, {\\\"key\\\": \\\"e_1_2_6_21_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/383812a0\\\"}, {\\\"key\\\": \\\"e_1_2_6_22_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0080749\\\"}, {\\\"key\\\": \\\"e_1_2_6_23_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1176/ajp.154.3.384\\\"}, {\\\"key\\\": \\\"e_1_2_6_24_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1097/00001756-199507100-00009\\\"}, {\\\"key\\\": \\\"e_1_2_6_25_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/cne.902280110\\\"}, {\\\"key\\\": \\\"e_1_2_6_26_1\\\", \\\"volume-title\\\": \\\"Religious Experience\\\", \\\"author\\\": \\\"Proudfoot W.\\\", \\\"year\\\": \\\"1985\\\"}, {\\\"key\\\": \\\"e_1_2_6_27_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1384404\\\"}, {\\\"key\\\": \\\"e_1_2_6_28_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/s0013-4694(98)00022-4\\\"}, {\\\"key\\\": \\\"e_1_2_6_29_1\\\", \\\"volume-title\\\": \\\"On Religion: Speeches to its Cultured Despisers\\\", \\\"author\\\": \\\"Schleiermacher F.D.E.\\\", \\\"year\\\": \\\"1958\\\"}, {\\\"key\\\": \\\"e_1_2_6_30_1\\\", \\\"first-page\\\": \\\"33\\\", \\\"volume-title\\\": \\\"Understanding Religion\\\", \\\"author\\\": \\\"Sharpe E.J.\\\", \\\"year\\\": \\\"1983\\\"}, {\\\"key\\\": \\\"e_1_2_6_31_1\\\", \\\"volume-title\\\": \\\"An Introduction to Attribution Theory.\\\", \\\"author\\\": \\\"Shaver K.G.\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"e_1_2_6_32_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15327582ijpr0204_4\\\"}, {\\\"key\\\": \\\"e_1_2_6_33_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15327582ijpr0602_3\\\"}, {\\\"key\\\": \\\"e_1_2_6_34_1\\\", \\\"first-page\\\": \\\"421\\\", \\\"volume-title\\\": \\\"Handbook of Religious Experience\\\", \\\"author\\\": \\\"Spilka B.\\\", \\\"year\\\": \\\"1995\\\"}, {\\\"key\\\": \\\"e_1_2_6_35_1\\\", \\\"volume-title\\\": \\\"Co‐Planar Atlas of the Human Brain\\\", \\\"author\\\": \\\"Talairach J.\\\", \\\"year\\\": \\\"1988\\\"}, {\\\"key\\\": \\\"e_1_2_6_36_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/s0926-6410(96)00047-x\\\"}, {\\\"key\\\": \\\"e_1_2_6_37_1\\\", \\\"volume-title\\\": \\\"Social Cognition\\\", \\\"author\\\": \\\"Taylor S.E.\\\", \\\"year\\\": \\\"1981\\\"}, {\\\"key\\\": \\\"e_1_2_6_38_1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0022-3514.54.6.1063\\\"}], \\\"container-title\\\": [\\\"European Journal of Neuroscience\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1046%2Fj.0953-816x.2001.01527.x\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://onlinelibrary.wiley.com/doi/pdf/10.1046/j.0953-816x.2001.01527.x\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2023, 10, 3]], \\\"date-time\\\": \\\"2023-10-03T08:03:04Z\\\", \\\"timestamp\\\": 1696320184000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://onlinelibrary.wiley.com/doi/10.1046/j.0953-816x.2001.01527.x\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2001, 4]]}, \\\"references-count\\\": 37, \\\"journal-issue\\\": {\\\"issue\\\": \\\"8\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[2001, 4]]}}, \\\"alternative-id\\\": [\\\"10.1046/j.0953-816x.2001.01527.x\\\"], \\\"URL\\\": \\\"https://doi.org/10.1046/j.0953-816x.2001.01527.x\\\", \\\"archive\\\": [\\\"Portico\\\"], \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0953-816X\\\", \\\"1460-9568\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0953-816X\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"1460-9568\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2001, 4]]}, \\\"assertion\\\": [{\\\"value\\\": \\\"2001-12-20\\\", \\\"order\\\": 2, \\\"name\\\": \\\"published\\\", \\\"label\\\": \\\"Published\\\", \\\"group\\\": {\\\"name\\\": \\\"publication_history\\\", \\\"label\\\": \\\"Publication History\\\"}}]}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e972dd8fd464f9f2ca7af29c2217468b6127b1912ebfd12e4cb64783e55f1214\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1046/j.0953-816x.2001.01527.x\", \"doi:10.1002/crossmark_policy\", \"doi:10.1126/science.275.5308.1940\", \"doi:10.1007/bf00231461\", \"doi:10.1126/science.289.5478.457\", \"doi:10.1006/nimg.1995.1025\", \"doi:10.1093/brain/121.7.1249\", \"doi:10.1016/s0028-3932(99)00053-6\", \"doi:10.1146/annurev.ne.11.030188.001033\", \"doi:10.1017/s0140525x00071351\", \"doi:10.1006/nimg.2000.0592\", \"doi:10.1097/00004647-199607000-00015\"]}",
+  "id": "source-5daa49b2bec14eed",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1046%2Fj.0953-816x.2001.01527.x",
+  "version": 157,
+  "time": "2026-09-26T13:28:57.325715+00:00"
+}
+```
+
+### `source-57617a95dbb04471`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=empirical+aesthetics+visual+art+perception+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2157899060\\\", \\\"doi\\\": \\\"https://doi.org/10.1146/annurev-psych-120710-100504\\\", \\\"title\\\": \\\"Visual Aesthetics and Human Preference\\\", \\\"publication_year\\\": 2011, \\\"type\\\": \\\"review\\\", \\\"cited_by_count\\\": 694, \\\"open_access\\\": {\\\"is_oa\\\": false, \\\"oa_status\\\": \\\"closed\\\", \\\"oa_url\\\": null, \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1146/annurev-psych-120710-100504\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1146/annurev-psych-120710-100504\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S90670110\\\", \\\"display_name\\\": \\\"Annual Review of Psychology\\\", \\\"issn_l\\\": \\\"0066-4308\\\", \\\"issn\\\": [\\\"0066-4308\\\", \\\"1545-2085\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"abdc-a-star\\\", \\\"cwts-core\\\", \\\"jufo-3\\\", \\\"ki-jl-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320373\\\", \\\"host_organization_name\\\": \\\"Annual Reviews\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320373\\\"], \\\"host_organization_lineage_names\\\": [\\\"Annual Reviews\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Annual Review of Psychology\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Human aesthetic preference in the visual domain is reviewed from definitional, methodological, empirical, and theoretical perspectives. Aesthetic science is distinguished from the perception of art and from philosophical treatments of aesthetics. The strengths and weaknesses of important behavioral techniques are presented and discussed, including two-alternative forced-choice, rank order, subjective rating, production/adjustment, indirect, and other tasks. Major findings are reviewed about preferences for colors (single colors, color combinations, and color harmony), spatial structure (low-level spatial properties, shape properties, and spatial composition within a frame), and individual differences in both color and spatial structure. Major theoretical accounts of aesthetic response are outlined and evaluated, including explanations in terms of mere exposure effects, arousal dynamics, categorical prototypes, ecological factors, perceptual and conceptual fluency, and the interaction of multiple components. The results of the review support the conclusion that aesthetic response can be studied rigorously and meaningfully within the framework of scientific psychology.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1756642272\\\", \\\"doi\\\": \\\"https://doi.org/10.26530/oapen_560010\\\", \\\"title\\\": \\\"Art in the Anthropocene: Encounters Among Aesthetics, Politics, Environments and Epistemologies\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"book\\\", \\\"cited_by_count\\\": 628, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"http://oapen.org/download?type=document&docid=560010\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.26530/oapen_560010\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.26530/oapen_560010\\\", \\\"pdf_url\\\": \\\"http://oapen.org/download?type=document&docid=560010\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306463698\\\", \\\"display_name\\\": \\\"Open Humanities Press eBooks\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/P4310320468\\\", \\\"host_organization_name\\\": \\\"Open Humanities Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320468\\\"], \\\"host_organization_lineage_names\\\": [\\\"Open Humanities Press\\\"], \\\"type\\\": \\\"ebook platform\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": null, \\\"raw_type\\\": \\\"monograph\\\"}, \\\"abstract\\\": \\\"The era of climate change involves the mutation of systems beyond 20th century anthropomorphic models and has stood, until recently, outside representation or address.Understood in a broad and critical sense, climate change concerns material agencies that impact on biomass and energy, erased borders and microbial invention, geological and nanographic time, and extinction events.The possibility of extinction has always been a latent figure in the textual production and archives; but the current sense of depletion, decay, mutation and exhaustion calls for new modes of address, new styles of publishing and authoring, and new formats and speeds of distribution.As the pressures and re-alignments of this re-arrangement occur, so must the critical languages and conceptual templates, political premises and definitions of \\\\\\\"life.\\\\\\\"There is a particular need to publish in a timely fashion experimental monographs that redefine the boundaries of disciplinary fields, rhetorical invasions, the interface of conceptual and scientific languages, and geomorphic and geopolitical interventions.Critical Climate Change is oriented, in this general manner, toward the epistemo-political mutations that correspond to the temporalities of terrestrial mutation.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1994477474\\\", \\\"doi\\\": \\\"https://doi.org/10.1080/0929821042000317813\\\", \\\"title\\\": \\\"Expression, Perception, and Induction of Musical Emotions: A Review and a Questionnaire Study of Everyday Listening\\\", \\\"publication_year\\\": 2004, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1149, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"http://www.tandfonline.com/doi/pdf/10.1080/0929821042000317813?needAccess=true&role=button\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1080/0929821042000317813\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1080/0929821042000317813\\\", \\\"pdf_url\\\": \\\"http://www.tandfonline.com/doi/pdf/10.1080/0929821042000317813?needAccess=true&role=button\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S102275153\\\", \\\"display_name\\\": \\\"Journal of New Music Research\\\", \\\"issn_l\\\": \\\"0929-8215\\\", \\\"issn\\\": [\\\"0929-8215\\\", \\\"1744-5027\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319847\\\", \\\"host_organization_name\\\": \\\"Routledge\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319847\\\", \\\"https://openalex.org/P4310320547\\\"], \\\"host_organization_lineage_names\\\": [\\\"Routledge\\\", \\\"Taylor & Francis\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of New Music Research\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"In this article, we provide an up-to-date overview of theory and research concerning expression, perception, and induction of emotion in music. We also provide a critique of this research, noting that previous studies have tended to neglect the social context of music listening. The most likely reason for this neglect, we argue, is that that most research on musical emotion has, implicitly or explicitly, taken the perspective of the musician in understanding responses to music. In contrast, we argue that a promising avenue toward a better understanding of emotional responses to music involves diary and questionnaire studies of how ordinary listeners actually use music in everyday life contexts. Accordingly, we present findings from an exploratory questionnaire study featuring 141 music listeners (between 17 and 74 years of age) that offers some novel insights. The results provide preliminary estimates of the occurrence of various emotions in listening to music, as well as clues to how music is used by listeners in a number of different emotional ways in various life contexts. These results confirm that emotion is strongly related to most people's primary motives for listening to music.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2129245434\\\", \\\"doi\\\": \\\"https://doi.org/10.1017/s0140525x15000965\\\", \\\"title\\\": \\\"Cognition does not affect perception: Evaluating the evidence for “top-down” effects\\\", \\\"publication_year\\\": 2015, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1249, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://philpapers.org/archive/FIRCDN.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1017/s0140525x15000965\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1017/s0140525x15000965\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S59628311\\\", \\\"display_name\\\": \\\"Behavioral and Brain Sciences\\\", \\\"issn_l\\\": \\\"0140-525X\\\", \\\"issn\\\": [\\\"0140-525X\\\", \\\"1469-1825\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doyens\\\", \\\"erih-plus\\\", \\\"jufo-2\\\", \\\"ki-jl-2\\\", \\\"medline\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310311721\\\", \\\"host_organization_name\\\": \\\"Cambridge University Press\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310311721\\\", \\\"https://openalex.org/P4310311702\\\"], \\\"host_organization_lineage_names\\\": [\\\"Cambridge University Press\\\", \\\"University of Cambridge\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Behavioral and Brain Sciences\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"What determines what we see? In contrast to the traditional \\\\\\\"modular\\\\\\\" understanding of perception, according to which visual processing is encapsulated from higher-level cognition, a tidal wave of recent research alleges that states such as beliefs, desires, emotions, motivations, intentions, and linguistic representations exert direct, top-down influences on what we see. There is a growing consensus that such effects are ubiquitous, and that the distinction between perception and cognition may itself be unsustainable. We argue otherwise: None of these hundreds of studies - either individually or collectively - provides compelling evidence for true top-down effects on perception, or \\\\\\\"cognitive penetrability.\\\\\\\" In particular, and despite their variety, we suggest that these studies all fall prey to only a handful of pitfalls. And whereas\", \"excerpt_truncated\": true, \"source_sha256\": \"1b1455b16cba21b30be25b10023849bdc15577fce4e7808706abc556039cd269\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1146/annurev-psych-120710-100504\", \"doi:10.26530/oapen_560010\", \"doi:10.1080/0929821042000317813\", \"doi:10.1017/s0140525x15000965\", \"openalex:W2157899060\", \"openalex:W1756642272\", \"openalex:W1994477474\", \"openalex:W2129245434\"]}",
+  "id": "source-57617a95dbb04471",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=empirical+aesthetics+visual+art+perception+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 157,
+  "time": "2026-09-26T13:28:59.424638+00:00"
+}
+```
+
+### `source-fdb33cd3848d48f5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6109},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88580,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-26T09:07:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"855ff1fc935d31b938df6bf6dc37bbecfa920c066b1636063cb80251bedca3a9\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fdb33cd3848d48f5",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 157,
+  "time": "2026-09-26T13:29:01.237775+00:00"
+}
+```
+
+### `source-98f71ade3b1f4ba1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a12febf70329e32d9a3bdb4cb1800741991a82b52c4cc28c6e195d8f7c956c2\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-98f71ade3b1f4ba1",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 157,
+  "time": "2026-09-26T13:29:02.063068+00:00"
+}
+```
+
+### `source-1147dc77fcc042a5`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3372},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vitamin D and neurology\\\",\\\"pageid\\\":37130699,\\\"size\\\":21444,\\\"wordcount\\\":2646,\\\"snippet\\\":\\\"been associated with many other conditions, including both\\nneurological\\nand non\\nneurological\\nconditions. These include but are not limited to autism, diabetes\\\",\\\"timestamp\\\":\\\"2025-09-15T21:51:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Pediatric neurology\\\",\\\"pageid\\\":76756342,\\\"size\\\":7037,\\\"wordcount\\\":529,\\\"snippet\\\":\\\"nervous\\nsystem\\nand peripheral\\nnervous\\nsystem\\nin children. While pediatric neurologists have many similarities to neurologists, the\\nneurological\\ndisorders\\nthey\\\",\\\"timestamp\\\":\\\"2024-11-25T06:14:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"af9063dc05b51e9eca952788ef86ac3a3491392bbfff1105e02a7de59ddc3329\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1147dc77fcc042a5",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 157,
+  "time": "2026-09-26T13:29:02.912527+00:00"
+}
+```
+
+### `source-77d95fcb800f4c5f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":21529,\\\"wordcount\\\":2154,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-26T04:07:36Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"89f37d6c1f9c6eea3f697dc8596b827c11fc09fdf413ee1449cf258c6694f793\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-77d95fcb800f4c5f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 157,
+  "time": "2026-09-26T13:29:03.687816+00:00"
+}
+```
+
+### `r-2ce14f0b49094a8a`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":157,\"inherited_commitments\":[],\"invocation\":\"w-2ce14f0b49094a8a\",\"previous_head\":\"ec36d71e80769003fb9f198081a24a5b0f813a8c9245540afe6d25acbe27938c\",\"process_id\":2265,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-2ce14f0b49094a8a",
+  "source": "runtime:continuity",
+  "version": 157,
+  "time": "2026-09-26T13:29:06.988876+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -162453,8 +163106,9 @@ _None recorded._
   "query": "empirical aesthetics visual art perception review",
   "reason": "Search for foundational reviews on the psychology of aesthetics and visual art perception to expand our empirical evidence base.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-f59a942bb4d7489a"
+  "status": "collected",
+  "created_by": "w-f59a942bb4d7489a",
+  "evidence": "source-57617a95dbb04471"
 }
 ```
 

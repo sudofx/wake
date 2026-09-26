@@ -1,7 +1,7 @@
 {
-  "status": "accepted",
-  "id": "w-f59a942bb4d7489a",
-  "cycle": 157,
+  "status": "rejected",
+  "id": "w-2ce14f0b49094a8a",
+  "reason": "Existing projects cannot change title or research question; create a new project for a new question",
   "wake_status": {
     "last_accepted": {
       "id": "w-f59a942bb4d7489a",
@@ -22,29 +22,29 @@
       "successful_model": "gemini-3.5-flash"
     },
     "latest_attempt": {
-      "id": "w-f59a942bb4d7489a",
-      "time": "2026-09-26T13:20:05.676228+00:00",
-      "finished": "2026-09-26T13:20:37.758995+00:00",
-      "status": "accepted",
-      "reason": "",
+      "id": "w-2ce14f0b49094a8a",
+      "time": "2026-09-26T13:29:07.578050+00:00",
+      "finished": "2026-09-26T13:29:43.473874+00:00",
+      "status": "rejected",
+      "reason": "Existing projects cannot change title or research question; create a new project for a new question",
       "provider_requests_sent": 1,
       "provider_attempts": [
         {
-          "elapsed_ms": 6448,
+          "elapsed_ms": 9470,
           "http_status": 200,
           "model": "gemini-3.5-flash",
-          "request_payload_bytes": 51245,
+          "request_payload_bytes": 48590,
           "result": "success"
         }
       ],
       "successful_model": "gemini-3.5-flash"
     },
     "accepted_cycles": 157,
-    "next_eligible": "2026-09-26T13:25:05.676228+00:00",
+    "next_eligible": "2026-09-26T13:34:07.578050+00:00",
     "pending": false,
-    "attempts_today": 26,
-    "provider_requests_today": 42,
-    "provider_request_slots_today": 42,
+    "attempts_today": 27,
+    "provider_requests_today": 43,
+    "provider_request_slots_today": 43,
     "provider_request_counts_incomplete": false,
     "daily_call_limit": null
   }
