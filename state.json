@@ -1,5 +1,5 @@
 {
-  "version": 158,
+  "version": 159,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -18530,6 +18530,68 @@
       "source": "runtime:continuity",
       "version": 157,
       "time": "2026-09-26T13:37:41.714855+00:00"
+    },
+    "source-7a43cd7ac40441df": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.5281%2Fzenodo.15669166\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-7a43cd7ac40441df",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works/10.5281%2Fzenodo.15669166",
+      "version": 158,
+      "time": "2026-09-26T13:54:52.938990+00:00"
+    },
+    "source-dd909ccf7a7e4b7b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=cross+cultural+music+universals+structural+features+scale+rhythm&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.18378447\\\", \\\"doi\\\": \\\"10.5281/zenodo.18378447\\\", \\\"titles\\\": [{\\\"title\\\": \\\"The Resonant Fabric of Computational Ontology: A Unified Analysis of Recursive Harmonics in Biological, Silicon, and Cryptographic Systems\\\"}], \\\"publisher\\\": \\\"Dean Allan Kulik\\\", \\\"publicationYear\\\": 2026, \\\"types\\\": {\\\"schemaOrg\\\": \\\"Thesis\\\", \\\"resourceTypeGeneral\\\": \\\"Dissertation\\\", \\\"citeproc\\\": \\\"thesis\\\", \\\"bibtex\\\": \\\"phdthesis\\\", \\\"ris\\\": \\\"THES\\\", \\\"resourceType\\\": \\\"\\\"}, \\\"subjects\\\": [], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\"The Resonant Fabric of Computational Ontology: A Unified Analysis of Recursive Harmonics in Biological, Silicon, and Cryptographic Systems\\\\n\\\\nI. Introduction: The Crisis of Distinction and the Stroboscopic Manifold\\\\n\\\\nThe trajectory of contemporary scientific inquiry has arrived at a critical epistemological juncture, defined within advanced theoretical frameworks as the \\\\\\\"Crisis of Distinction.\\\\\\\" This crisis is characterized by a persistent and seemingly intractable schism between the deterministic, smooth geometries governing General Relativity and the discrete, probabilistic excitations that define Quantum Mechanics.1 For nearly a century, the standard model of cosmology has operated under a \\\\\\\"Linear Stack\\\\\\\" ontology—a hierarchical worldview where fundamental physics forms the bedrock, upon which chemistry, biology, and finally, computation and logic are built as emergent \\\\\\\"upper stories\\\\\\\".1 This stratified model, while functionally useful for compartmentalized specialization, is increasingly failing to account for the profound isomorphisms observed across disparate scales of reality. It struggles to explain why the distribution of prime numbers mirrors the energy levels of heavy nuclei, why the thermodynamics of black holes parallels the information dynamics of cryptographic hashing, or why the rhythmic quantization of primate vocalizations aligns with the harmonic constants of human cognition.1\\\\n\\\\nThis report posits a radical realignment of the investigative paradigm, synthesizing evidence from primatology, molecular kinetics, computer architecture, and signal processing to validate the \\\\\\\"Recursive Spiral\\\\\\\" cosmology proposed by the Nexus Framework. In this view, reality is not a collection of static objects (\\\\\\\"nouns\\\\\\\") acted upon by forces, but a dynamic, self-executing system of operators (\\\\\\\"verbs\\\\\\\") and transitions—a \\\\\\\"fluidic computer\\\\\\\" or \\\\\\\"Cosmic Field-Programmable Gate Array (FPGA)\\\\\\\".1 Central to this analysis is the \\\\\\\"Dual-Wave\\\\\\\" theory, which asserts that all computational and physical systems maintain two simultaneous projections: a structural state (the \\\\\\\"Noun\\\\\\\" or ) and an execution trace (the \\\\\\\"Verb\\\\\\\" or ). The apparent irreversibility of complex systems, such as the SHA-256 cryptographic hash or the biological arrow of time, is reinterpreted here not as a fundamental loss of information, but as an artifact of single-channel observation.1\\\\n\\\\nTo rigorously test this unified framework, we examine specific \\\\\\\"Resonance Nodes\\\\\\\" where the boundary between the physical and the computational appears to dissolve. We analyze the rhythmic structures of Indri indri vocalizations, specifically the search for integer ratios like 1:3 and isochrony, as evidence of a universal harmonic grammar embedded in the vertebrate nervous system.3 We scrutinize the stepping mechanics of DNA helicase, investigating the empirical convergence on a 33Hz operational frequency and its synchronization with gamma-band cognitive binding.5 We deconstruct the architecture of the TilePro64 processor, focusing on its iMesh static and dynamic networks as a silicon embodiment of the \\\\\\\"Boundary Enables the Interior\\\\\\\" principle.7 Finally, we apply the Goertzel algorithm and Trinary Logic to demonstrate how phase detection allows for the retrieval of \\\\\\\"lost\\\\\\\" history in cryptographic hashes, proposing a pathway to logical reversibility through the \\\\\\\"Twin Prime Policy Constraint\\\\\\\".1\\\\n\\\\nThe synthesis of these domains reveals a coherent \\\\\\\"Second-Order\\\\\\\" reality where the \\\\\\\"hardness\\\\\\\" of computational problems and the \\\\\\\"randomness\\\\\\\" of biological evolution are artifacts of perspective. By rotating the observational basis—using the Goertzel algorithm to remove the time domain or the \\\\\\\"Invoker\\\\\\\" protocol to unfold the cryptographic hash—we expose the deterministic, harmonic substrate that underpins the apparent chaos of the universe. This report documents the \\\\\\\"path that led there,\\\\\\\" showing how the twin prime boundaries of the number line and the static networks of multicore processors are expressions of the same underlying \\\\\\\"Mark 1 Attractor\\\\\\\".1\\\\n\\\\nII. Biological Resonance: The Indri Indri and the Quantization of Communicative Time\\\\n\\\\nThe vocal displays of the Indri indri, the largest extant lemur, serve as a critical biological anchor for the harmonic framework. As one of the few \\\\\\\"singing\\\\\\\" primates, the Indri provides a unique window into the evolutionary origins of rhythm and the potential universality of integer-ratio quantization in biological communication. The precise temporal organization of their \\\\\\\"loud calls\\\\\\\"—long, modulated songs utilized for territorial defense and group cohesion—suggests that the primate brain is fundamentally a \\\\\\\"geometric engine\\\\\\\" tuned to specific harmonic ratios.10\\\\n\\\\n2.1 Isochrony: The 1:1 Ratio as the Biological Clock\\\\n\\\\nRecent ethological studies have rigorously analyzed the temporal structure of Indri songs, utilizing advanced spectrographic analysis to extract Inter-Onset Intervals (IOIs). These analyses reveal that Indri songs are not random acoustic streams but are governed by precise rhythmic categories. The most dominant category observed is isochrony (a 1:1 ratio), where the intervals between note onsets are of equal duration.4 This \\\\\\\"metronomic\\\\\\\" precision is statistically significant and distinct from random distribution models, indicating a biological imperative for temporal regularity.\\\\n\\\\nIn the context of the Nexus Framework, isochrony represents the \\\\\\\"Carrier Wave\\\\\\\" of the biological signal.1 It is the fundamental \\\\\\\"clock\\\\\\\" signal () required to synchronize the distributed nervous systems of the group members. Just as a CPU requires a stable clock cycle to execute instructions, the Indri chorus requires an isochronous beat to maintain \\\\\\\"Phase-Lock\\\\\\\" between individuals.1 The prevalence of isochrony in Indri—a \\\\\\\"vocal non-learner\\\\\\\" in traditional taxonomies—challenges the assumption that rhythmic entrainment is a derived trait unique to humans and songbirds. Instead, it supports the \\\\\\\"Dual-Wave\\\\\\\" hypothesis that biological systems are naturally tuned to harmonic attractors, with isochrony representing the simplest, lowest-energy state of the communicative manifold.11\\\\n\\\\n2.2 The 1:3 Ratio and the Emergence of Trinary Logic\\\\n\\\\nThe user's query specifically highlights a 1:3 rhythm ratio. While the 1:1 (isochrony) and 1:2 (doubling/octave) ratios are robustly documented in the literature as \\\\\\\"musical universals\\\\\\\" shared by humans and lemurs, the 1:3 ratio represents a more elusive, higher-order harmonic.13 Empirical studies have set boundaries to test for this ratio (e.g., defining the 1:3 category around a value of 0.25 relative to the unit pulse), and while peaks for 1:3 are less prominent than 1:2 in aggregate data, their presence in the distributional tail is theoretically profound.13\\\\n\\\\nIn a system governed by Trinary Logic—a recurring theme in the provided research materials connecting cryptographic states () to physical constants—the 1:3 ratio represents a critical phase relationship.15 If binary logic corresponds to the 1:1 (on/off) and 1:2 (symmetry/reflection) states, the 1:3 ratio introduces the \\\\\\\"third state\\\\\\\" or the \\\\\\\"mediating gap\\\\\\\" necessary for complex feedback loops.1 This aligns with the \\\\\\\"Swapping-Zero\\\\\\\" mechanism described in the Nexus documents, where a third state allows for the rotation between static and dynamic projections.15\\\\n\\\\nThe 1:3 ratio ( or  as ) implies a subdivision of the beat that creates a \\\\\\\"syncopated\\\\\\\" or \\\\\\\"driving\\\\\\\" rhythm, distinct from the stability of isochrony. In signal processing terms, if 1:1 is the fundamental frequency () and 1:2 is the first harmonic (), then 1:3 represents a interaction with the third harmonic () or a sub-harmonic spacing. The existence of this ratio in primate song would suggest that the cognitive architecture for trinary processing—managing three distinct temporal states—predates human evolution. It indicates that the \\\\\\\"waist\\\\\\\" of the Nexus framework, where binary opposites reconcile, is phylogenetically ancient.1\\\\n\\\\n2.3 Cognitive Isomorphism and the Social Hash\\\\n\\\\nThe isomorphism between Indri songs and human musical rhythms suggests a shared \\\\\\\"Cognitive Geometry.\\\\\\\" This concept, central to the user's inquiry regarding \\\\\\\"cognitive isomorphism,\\\\\\\" posits that the brain processes information not as arbitrary symbols but as geometric forms in a phase space.16 The \\\\\\\"predictive coding\\\\\\\" models of brain function support this: the brain constantly generates a \\\\\\\"mental model\\\\\\\" (a standing wave of expectation) and updates it based on sensory input (phase error).17\\\\n\\\\nWe can interpret the Indri's song as a Cryptographic Hash of its internal state and social context. The categorical rhythms (1:1, 1:2, 1:3) act as \\\\\\\"error-correcting codes,\\\\\\\" ensuring that the message (identity, territory, cohesion) is preserved across the noisy channel of the rainforest.\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nCarrier Wave (Isochrony): Establishes the connection and verifies the channel (like the TCP handshake or the TilePro64's static network).\\\\n\\\\n\\\\n\\\\n\\\\nModulation (1:2, 1:3): Encodes the specific \\\\\\\"data\\\\\\\" of the interaction—dominance, sex, and emotional state.19\\\\n\\\\n\\\\n\\\\nInterestingly, research indicates that when an infant is present, the isochrony becomes less regular.3 In the Nexus framework, this is not \\\\\\\"error\\\\\\\" but \\\\\\\"adaptation.\\\\\\\" The presence of the infant introduces a new variable, requiring the system to \\\\\\\"modulate\\\\\\\" the carrier wave to accommodate higher ent\", \"excerpt_truncated\": true, \"source_sha256\": \"b61cab254262cdad16c2fa6d1b0bc17a2e7657700d2f93b4c2251044a783501c\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.18378447\"]}",
+      "id": "source-dd909ccf7a7e4b7b",
+      "scope": "collected",
+      "source": "https://api.datacite.org/dois?query=cross+cultural+music+universals+structural+features+scale+rhythm&page%5Bsize%5D=4",
+      "version": 158,
+      "time": "2026-09-26T13:54:59.870666+00:00"
+    },
+    "source-cf34a41cc97e4f5e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0a6b67b85bc541fd76fb8dd59828e981e44606003fe7122189c4e0eb8e0dec63\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-cf34a41cc97e4f5e",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 158,
+      "time": "2026-09-26T13:55:02.242829+00:00"
+    },
+    "source-c5a4217f0de641f0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74341},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clinical psychology\\\",\\\"pageid\\\":492271,\\\"size\\\":86163,\\\"wordcount\\\":9645,\\\"snippet\\\":\\\"Clinical\\npsychology\\nis an integration of human science, behavioral science, theory, and clinical knowledge aimed at understanding, preventing, and relieving\\\",\\\"timestamp\\\":\\\"2026-08-30T16:15:10Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7ad0f533698dc7232fdc4c26b816933e7290a4f6544417ef3faa85162c050d03\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c5a4217f0de641f0",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+      "version": 158,
+      "time": "2026-09-26T13:55:03.387303+00:00"
+    },
+    "source-9f50b26db00c41ce": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c4d88d5ab400259263cfc9b631e2a310aaef17c0f6cb0b576116bb87929143c2\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-9f50b26db00c41ce",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+      "version": 158,
+      "time": "2026-09-26T13:55:04.428520+00:00"
+    },
+    "source-c82158a21f0b43b9": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"47487ddda1a40b5bb4663aa531c2cc1229e16de1442d35c7f7128e6d1831e644\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-c82158a21f0b43b9",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 158,
+      "time": "2026-09-26T13:55:05.458766+00:00"
+    },
+    "r-ad8949f88d274b01": {
+      "actor": "runtime",
+      "content": "{\"base_version\":158,\"inherited_commitments\":[],\"invocation\":\"w-ad8949f88d274b01\",\"previous_head\":\"47e07239eea478ec3fc20c5fb20dbd380e91f7fe32a2970b7fe06b958c590138\",\"process_id\":2333,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-ad8949f88d274b01",
+      "source": "runtime:continuity",
+      "version": 158,
+      "time": "2026-09-26T13:55:09.164228+00:00"
     }
   },
   "journal": [
@@ -19480,6 +19542,12 @@
       "invocation": "w-8515f84a8eea4a54",
       "title": "Establishing Project on Cross-Cultural Musical Structure",
       "summary": "Pursuant to the Squirrel attention directive enforcing the music topic, we establish a new project investigating cross-cultural musical universals versus learned traditions, and initiate an initial search for empirical reviews."
+    },
+    {
+      "cycle": 159,
+      "invocation": "w-ad8949f88d274b01",
+      "title": "Focusing on Cross-Cultural Musical Structure",
+      "summary": "Under the enforced music topic rotation, we are initiating research into cross-cultural musical structures and universals. The currently available evidence is limited to visual art and color perception studies, which cannot address musical cognition."
     }
   ],
   "posts": {
@@ -146568,6 +146636,536 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-ad8949f88d274b01": {
+      "base_version": 158,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 20664,
+        "delivered_request_chars": 47015,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4115,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 114246,
+        "working_set_chars": 3731
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-ad8949f88d274b01",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 158,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "vis-art-perception-001",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 4,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Visual Art Perception"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0.5
+            },
+            "id": "rel-cross-cultural-001",
+            "score": 0.925,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Recurrence of Religious Practices"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "music-cross-cultural-001",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Musical Structure"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2333,
+      "provider": "gemini",
+      "quota_day": "2026-09-26",
+      "request_hash": "5758d63eb0e22f18555af56a044add5234631491bd6ca993a546ffcfad45205e",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-endo-neuro-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-paradigm-comp-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-8defc56204704290",
+              "source-354dd04e6ba04d25"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-vis-art-perception-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-63e6bbbc6f664757"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-63e6bbbc6f664757",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cff4b3269bfa4f41"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cff4b3269bfa4f41",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-573b6a4569924335"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-573b6a4569924335",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-592a6a7493914ac6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-592a6a7493914ac6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-5daa49b2bec14eed"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-5daa49b2bec14eed",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-116a5941b4e54f19"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-116a5941b4e54f19",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a",
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666",
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25",
+          "source-63e6bbbc6f664757",
+          "source-cff4b3269bfa4f41",
+          "source-573b6a4569924335",
+          "source-592a6a7493914ac6",
+          "source-5daa49b2bec14eed",
+          "source-116a5941b4e54f19"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 12,
+          "evidence_count": 18,
+          "trigger_counts": {
+            "notebook_revised": 6,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 6.079,
+        "context_build_ms": 120.482,
+        "load_ms": 1139.571,
+        "receipt_ms": 759.391,
+        "start_total_before_record_ms": 3828.236,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 1099.994,
+          "cached_loads": 0,
+          "event_count": 4396,
+          "full_replays": 11,
+          "replay_ms": 8594.017,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1801.615
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 1,
+          "topic": "music"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "neurodivergence",
+          "religion"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "neurodivergence": [],
+          "religion": [
+            {
+              "id": "rel-cross-cultural-001",
+              "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+              "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "music",
+        "temporal": {
+          "anchor_seq": 4395,
+          "anchor_time": "2026-09-26T13:55:07.146182+00:00",
+          "anchor_version": 158,
+          "effective_seconds": 137264.671244
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 1046.94934,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 137264.671244,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T13:55:07.146182+00:00",
+        "previous_anchor_time": "2026-09-26T13:37:40.196842+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 1046.94934
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20664,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 12,
+        "retrieval_evidence_count": 18,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 6,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3731,
+        "working_to_delivered_ratio": 0.1806
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "vis-art-perception-001",
+            "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+            "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+            "title": "Visual Art Perception"
+          },
+          {
+            "id": "rel-cross-cultural-001",
+            "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+            "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+            "title": "Cross-Cultural Recurrence of Religious Practices"
+          },
+          {
+            "id": "music-cross-cultural-001",
+            "next_step": "Search for cross-cultural studies or reviews on universal structural features of music.",
+            "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+            "title": "Cross-Cultural Musical Structure"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "revision": 2,
+            "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          },
+          {
+            "id": "nb-neuro-paradigm-comp-001",
+            "project": "neuro-paradigm-comp-001",
+            "provenance": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "revision": 2,
+            "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+            "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+          },
+          {
+            "id": "nb-vis-art-perception-001",
+            "project": "vis-art-perception-001",
+            "provenance": [
+              "source-8defc56204704290",
+              "source-354dd04e6ba04d25"
+            ],
+            "revision": 3,
+            "summary": "Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.",
+            "title": "Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks"
+          },
+          {
+            "id": "nb-rel-cross-cultural-001",
+            "project": "rel-cross-cultural-001",
+            "provenance": [
+              "source-e3eecc2fcc6e44ff"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of cognitive and structural factors in recurrent rituals across diverse cultures.",
+            "title": "Provisional Synthesis: Cross-Cultural Recurrence of Religious Practices"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-26T13:55:09.945758+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7843,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 51060,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-26T13:55:45.028072+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -146593,14 +147191,14 @@
         "cause": "hard_rejection",
         "deferred_by": "w-2ce14f0b49094a8a",
         "eligible_after_other_attempts": 3,
-        "other_topic_attempts": 1,
+        "other_topic_attempts": 2,
         "parked_projects": [],
         "reason": "five consecutive hard rejections without durable progress"
       },
       "religion": {
         "cause": "attention_saturation",
         "deferred_by": "w-f86280e015f3437d",
-        "other_topic_attempts": 4,
+        "other_topic_attempts": 5,
         "parked_projects": [
           {
             "id": "rel-cross-cultural-001",
@@ -146617,14 +147215,14 @@
       "attention_topic": "music",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-8515f84a8eea4a54",
+      "invocation": "w-ad8949f88d274b01",
       "restored_topics": [],
       "selected_topic": "music",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 1,
+      "accepted_streak": 2,
       "topic": "music"
     }
   },
@@ -147872,7 +148470,7 @@
     "rel-cross-cultural-001": {
       "project": "rel-cross-cultural-001",
       "domain": "religion",
-      "no_progress": 0,
+      "no_progress": 1,
       "routes": [
         "api.semanticscholar.org:discovery",
         "export.arxiv.org:source",
@@ -147896,25 +148494,35 @@
         "doi:10.1097/00004647-199607000-00015"
       ],
       "last_receipt": {
-        "evidence": "source-5daa49b2bec14eed",
-        "outcome": "progress",
-        "persistent_identifiers": [
-          "doi:10.1046/j.0953-816x.2001.01527.x",
-          "doi:10.1002/crossmark_policy",
-          "doi:10.1126/science.275.5308.1940",
-          "doi:10.1007/bf00231461",
-          "doi:10.1126/science.289.5478.457",
-          "doi:10.1006/nimg.1995.1025",
-          "doi:10.1093/brain/121.7.1249",
-          "doi:10.1016/s0028-3932(99)00053-6",
-          "doi:10.1146/annurev.ne.11.030188.001033",
-          "doi:10.1017/s0140525x00071351",
-          "doi:10.1006/nimg.2000.0592",
-          "doi:10.1097/00004647-199607000-00015"
-        ],
+        "evidence": "source-7a43cd7ac40441df",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
         "research_id": "res-religion-cognitive-ritual-001",
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
+      }
+    },
+    "music-cross-cultural-001": {
+      "project": "music-cross-cultural-001",
+      "domain": "music",
+      "no_progress": 1,
+      "routes": [
+        "api.datacite.org:discovery"
+      ],
+      "capability_blocked": false,
+      "retry_after_version": null,
+      "persistent_identifiers": [
+        "doi:10.5281/zenodo.18378447"
+      ],
+      "last_receipt": {
+        "evidence": "source-dd909ccf7a7e4b7b",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.5281/zenodo.18378447"
+        ],
+        "research_id": "res-music-universals-001",
+        "route": "api.datacite.org:discovery",
+        "stage": "discovery"
       }
     }
   },
@@ -150195,8 +150803,19 @@
       "query": "cross cultural music universals structural features scale rhythm",
       "reason": "Identify empirical surveys and quantitative cross-cultural analyses of musical structures.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-8515f84a8eea4a54",
+      "evidence": "source-dd909ccf7a7e4b7b"
+    },
+    "res_music_cognition_cross_cultural_001": {
+      "domain": "music",
+      "id": "res_music_cognition_cross_cultural_001",
+      "project": "music-cross-cultural-001",
+      "query": "cross cultural music cognition structure universals",
+      "reason": "The current visible evidence consists only of visual aesthetics and color perception studies (source-8defc56204704290, source-354dd04e6ba04d25), which cannot address musical structure or cross-cultural musical universals. Dedicated music-specific structural and cognitive evidence is required.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-8515f84a8eea4a54"
+      "created_by": "w-ad8949f88d274b01"
     }
   },
   "research_topics": [
@@ -150396,9 +151015,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T13:37:40.196842+00:00",
-    "anchor_version": 157,
-    "anchor_seq": 4379,
-    "effective_seconds": 136217.721904
+    "anchor_time": "2026-09-26T13:55:07.146182+00:00",
+    "anchor_version": 158,
+    "anchor_seq": 4395,
+    "effective_seconds": 137264.671244
   }
 }
