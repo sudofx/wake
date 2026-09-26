@@ -38,10 +38,17 @@ jobs:
         run: bash scripts/regenerate-offline-fixture.sh
       - name: Commit refreshed fixture
         run: |
+          git fetch origin master
+          if [[ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]]; then
+            echo "Master advanced while the fixture was rendering; regenerating from the newest code."
+            git reset --hard origin/master
+            bash scripts/regenerate-offline-fixture.sh
+          fi
           git add examples/offline-fixture-journal
           if git diff --cached --quiet; then
             echo "Offline fixture already matches the current exporter."
             exit 0
           fi
-          git -c user.name=wake-bot -c user.email=wake-bot@users.noreply.github.com             commit -m "Refresh offline fixture journal"
+          git -c user.name=wake-bot -c user.email=wake-bot@users.noreply.github.com \
+            commit -m "Refresh offline fixture journal"
           git push origin HEAD:master
