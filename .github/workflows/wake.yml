@@ -47,7 +47,10 @@ jobs:
     # while preserving push refreshes and explicit workflow_dispatch batches.
     if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # A wake is bounded, but final export/persistence grows with the durable record.
+    # Ten minutes could cancel a successfully rejected/accepted wake while its
+    # receipt was being published, turning a normal outcome into a false failure.
+    timeout-minutes: 30
     outputs:
       report_ready: ${{ steps.report.outputs.ready }}
       artifact_name: ${{ steps.report.outputs.artifact_name }}
