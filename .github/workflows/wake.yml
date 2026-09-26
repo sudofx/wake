@@ -1,7 +1,6 @@
 # WAKE✳︎ MAINTAINER NOTE
-# Cloud execution pipeline for one wake. Permissions, branch checkout, and state publication are part of continuity; automation must not bypass the record.
-# Keep operational/configuration intent explicit for future human and AI maintainers.
-# Push-triggered runs are publication refreshes only; they never call Gemini.
+# Cloud execution separates read-only publication from authoritative state mutation.
+# Publication may run independently; research/reset remains one serialized writer.
 
 name: WAKE✳︎ — research & journal
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.event_name }}"
@@ -11,9 +10,6 @@ on:
     branches: [master]
     paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
   schedule:
-    # GitHub scheduled Actions are best effort and can be delayed or dropped.
-    # Ask at the platform's five-minute cadence; durable state remains the
-    # authority, so queued/delayed deliveries cannot create concurrent writers.
     - cron: '2-57/5 * * * *'
   workflow_dispatch:
     inputs:
@@ -31,27 +27,66 @@ on:
         required: false
         default: ''
 
-concurrency:
-  # Ordinary code pushes are read-only publication refreshes and use a separate
-  # lane. Scheduled/manual wakes keep the one serialized durable-state writer.
-  group: ${{ github.event_name == 'push' && 'wake-publication' || 'wake-durable-state' }}
-  cancel-in-progress: ${{ github.event_name == 'push' }}
-  queue: max
-
 permissions:
   contents: write
   pages: write
   id-token: write
 
 jobs:
-  wake:
-    # Set the repository variable WAKE_SCHEDULE_PAUSED=true to hold cron wakes
-    # while preserving push refreshes and explicit workflow_dispatch batches.
-    if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
+  publication:
+    # Code pushes and explicit publish-only dispatches are read-only consumers of
+    # wake-state. Newer refreshes replace older ones instead of queueing behind Gemini.
+    if: github.event_name == 'push' || inputs.publish_only == true
     runs-on: ubuntu-latest
-    # The model request itself is bounded by wake.toml. This outer ceiling only
-    # catches broken Python/GitHub state that fails to return control.
     timeout-minutes: 5
+    concurrency:
+      group: wake-publication
+      cancel-in-progress: true
+    outputs:
+      report_ready: ${{ steps.report.outputs.ready }}
+      artifact_name: ${{ steps.report.outputs.artifact_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render current durable record
+        id: cycle
+        run: python scripts/github_wake.py --publish-only
+      - name: Confirm report is ready
+        id: report
+        run: |
+          test -f site/index.html
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+          echo 'artifact_name=github-pages-${{ github.run_id }}-${{ github.run_attempt }}' >> "$GITHUB_OUTPUT"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Save the phone journal
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+          name: ${{ steps.report.outputs.artifact_name }}
+      - name: Record run summary
+        if: always()
+        run: |
+          if test -f site/operation.json; then
+            cat site/operation.json >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  wake:
+    # Only this lane may mutate the durable record. Keeping one writer preserves
+    # append-only ordering while publication no longer consumes this queue.
+    if: github.ref_name == github.event.repository.default_branch && github.event_name != 'push' && inputs.publish_only != true && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: wake-durable-state
+      cancel-in-progress: false
+      queue: max
     outputs:
       report_ready: ${{ steps.report.outputs.ready }}
       artifact_name: ${{ steps.report.outputs.artifact_name }}
@@ -67,21 +102,16 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        # Code updates refresh the record, scheduled ticks use the durable
-        # high-frequency eligibility guard, and manual wakes always run when requested.
         run: |
           if [[ "${{ inputs.reset }}" == "true" ]]; then
             python scripts/github_wake.py --reset --confirm-reset
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python scripts/github_wake.py --scheduled
-          elif [[ "${{ github.event_name }}" == "push" || "${{ inputs.publish_only }}" == "true" ]]; then
-            python scripts/github_wake.py --publish-only
           else
             python scripts/github_wake.py --record-only
           fi
       - name: Confirm report is ready
         id: report
-        # A handled provider failure still produces a valid public report.
         if: always() && steps.cycle.outputs.skipped != 'true' && steps.cycle.outputs.publication_skipped != 'true'
         run: |
           test -f site/index.html
@@ -104,16 +134,13 @@ jobs:
           if test -f site/operation.json; then
             cat site/operation.json >> "$GITHUB_STEP_SUMMARY"
           fi
-      # scripts/github_wake.py returns nonzero only for conditions that deserve
-      # operator attention. Expected provider pressure (429/quota exhaustion and
-      # transient cross-model availability deferrals) remains durably recorded without paging.
       - name: Fail only when operator attention is required
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1
 
-  publish:
-    needs: wake
-    if: always() && needs.wake.outputs.report_ready == 'true' && !cancelled()
+  publish-refresh:
+    needs: publication
+    if: needs.publication.outputs.report_ready == 'true' && !cancelled()
     runs-on: ubuntu-latest
     concurrency:
       group: pages
@@ -122,7 +149,24 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish the latest journal
+      - name: Publish latest journal
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.publication.outputs.artifact_name }}
+
+  publish-wake:
+    needs: wake
+    if: needs.wake.outputs.report_ready == 'true' && !cancelled()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish latest journal
         id: deployment
         uses: actions/deploy-pages@v4
         with:
