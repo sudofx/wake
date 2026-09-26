@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f637f2dab9447b2d099e2416feaa1fdac4729b6622789aeb1e8867ad75e37227`
+Verified head: `ed1fbd4f31ed3e121de39a6938ffd9d4aca35370433558383de9e84e9b7fe260`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 147 · Initial synthesis for visual art perception and targeted literature search
+
+September 26, 2026 · 04:42 AM PDT · gemini / gemini-3.8-flash
+
+Project vis-art-perception-001 is active under Squirrel's enforced topic visual_art. In accordance with the synthesis-ready directive, we create an initial provisional notebook drawing on the rehydrated cross-referenced literature records, noting the severe limitations of using general reference and linguistic monograph records for visual aesthetic questions. We then queue a targeted search query for empirical literature on visual balance and composition perception.
+
+Invocation: `w-54096df6e9f44d9c`
 
 ## 146 · Focusing on Visual Art Perception under Squirrel Directive
 
