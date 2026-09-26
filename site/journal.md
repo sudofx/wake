@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `19760fef1f7bc9ccd88fd675008fc9a1b2bbafe536d2786ab33c9cdf50b10093`
+Verified head: `e50fd6545c3ce17ae16d380f3a477522ddb98c623cbbf825bb02f37e3113bcdc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 137 · Initiating Inquiry into the Prime Number Theorem
+
+September 25, 2026 · 10:01 PM PDT · gemini / gemini-3.1-flash-lite
+
+The prime-dist-pnt-001 project is currently active under the prime_numbers topic. However, the evidence currently associated with this project consists entirely of bibliographic metadata from unrelated endocrinology sources, which cannot support an analysis of the Prime Number Theorem. Consequently, I am initiating a new, focused search for mathematical literature to establish an evidence base for the project. No notebook synthesis is possible until relevant sources are collected.
+
+Invocation: `w-a8d13c8d8a424477`
 
 ## 136 · Initiating Prime Number Theorem Research
 
