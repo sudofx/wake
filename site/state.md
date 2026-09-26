@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 126  
+**Version:** 127  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `e3edcd668c845834854b2cca2b2458f8b6fcd82f3f76c6c172e02be8ef7d6278`
+**Verified head:** `8949fa1c6bf0f9ebd049dadc7ea1d06a6864d7a460658e2499ef372c50ae322d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1716,35 +1716,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1126/science.1224820",
-    "doi:10.1002/tdm_license_1.1",
-    "doi:10.1002/crossmark_policy",
-    "doi:10.3389/fendo.2025.1639896",
-    "doi:10.1002/alz.13439",
-    "doi:10.1590/1980",
-    "doi:10.1002/alz.70060",
-    "doi:10.3389/fnagi.2024.1400589",
-    "doi:10.1038/s41392",
-    "doi:10.3233/jad",
-    "doi:10.1007/s13300",
-    "doi:10.1038/s41591"
+    "doi:10.1038/s41591",
+    "doi:10.1126/science.1229905",
+    "doi:10.1016/s0140-6736(00)04046-0",
+    "doi:10.1053/j.gastro.2011.01.057",
+    "doi:10.1172/jci31537",
+    "doi:10.1038/onc.2010.109",
+    "doi:10.1371/journal.pone.0006026",
+    "doi:10.1016/j.chom.2010.08.004",
+    "doi:10.1016/s1286-4579(01)01387-9",
+    "doi:10.4161/gmic.1.3.12360",
+    "doi:10.1001/jama.274.13.1064",
+    "doi:10.1016/s0016-5085(98)70194-5"
   ],
   "last_receipt": {
-    "evidence": "source-41ca3c26b29a473a",
+    "evidence": "source-284f83ce979a46ea",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1002/tdm_license_1.1",
-      "doi:10.1111/jne.70246",
-      "doi:10.1002/crossmark_policy",
-      "doi:10.3389/fendo.2025.1639896",
-      "doi:10.1002/alz.13439",
-      "doi:10.1590/1980",
-      "doi:10.1002/alz.70060",
-      "doi:10.3389/fnagi.2024.1400589",
-      "doi:10.1038/s41392",
-      "doi:10.3233/jad",
-      "doi:10.1007/s13300",
-      "doi:10.1038/s41591"
+      "doi:10.1126/science.1224820",
+      "doi:10.1126/science.1229905",
+      "doi:10.1016/s0140-6736(00)04046-0",
+      "doi:10.1053/j.gastro.2011.01.057",
+      "doi:10.1172/jci31537",
+      "doi:10.1038/onc.2010.109",
+      "doi:10.1371/journal.pone.0006026",
+      "doi:10.1016/j.chom.2010.08.004",
+      "doi:10.1016/s1286-4579(01)01387-9",
+      "doi:10.4161/gmic.1.3.12360",
+      "doi:10.1001/jama.274.13.1064",
+      "doi:10.1016/s0016-5085(98)70194-5"
     ],
     "research_id": "res-neuro-metabolic-002",
     "route": "api.crossref.org:source",
@@ -1768,7 +1768,7 @@ _None recorded._
   "endocrinology": 1,
   "entropy": 5,
   "epistemology": 0,
-  "evolutionary_biology": 9,
+  "evolutionary_biology": 0,
   "information_thermodynamics": 0,
   "music": 3,
   "neurodivergence": 1,
@@ -1783,22 +1783,7 @@ _None recorded._
 ### `deferred`
 
 ```json
-{
-  "neurology": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-a6eea847f8874612",
-    "other_topic_attempts": 2,
-    "parked_projects": [
-      {
-        "id": "neurology-metabolic-pathways",
-        "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
-        "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  }
-}
+{}
 ```
 
 ### `last_receipt`
@@ -1807,10 +1792,12 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "evolutionary_biology",
-  "durable_progress": false,
+  "durable_progress": true,
   "hard_rejection": false,
-  "invocation": "w-e189892f1fe4489e",
-  "restored_topics": [],
+  "invocation": "w-20b4d1c5de2f401d",
+  "restored_topics": [
+    "neurology"
+  ],
   "selected_topic": "evolutionary_biology",
   "terminal": "accepted",
   "triggered_topics": []
@@ -1821,7 +1808,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 1,
+  "accepted_streak": 2,
   "topic": "evolutionary_biology"
 }
 ```
@@ -2270,6 +2257,31 @@ _None recorded._
   "updated_version": 122,
   "updated_by": "w-e1e6eb934df84836",
   "domain": "neurology"
+}
+```
+
+### `nb-evo-foundations-001` · Provisional Synthesis: Evolutionary Mechanisms
+
+```json
+{
+  "evidence": [
+    "source-2cd2684377c54051",
+    "source-e2e41e9bcb594def"
+  ],
+  "findings": "Current bibliographic evidence for this domain includes broad foundational literature in psychology and language, such as grounded cognition [source-2cd2684377c54051] and memory research [source-e2e41e9bcb594def]. While these sources are distinct from core evolutionary biology, they provide a necessary methodological backdrop: recognizing that complex behavioral and cognitive traits require careful deconstruction of their developmental and functional origins. The literature cautions against simple modular or amodal interpretations, favoring approaches that consider situated, modal simulations [source-2cd2684377c54051]. This methodology is directly relevant to distinguishing evolutionary mechanisms like byproduct and adaptation in cognitive traits.",
+  "id": "nb-evo-foundations-001",
+  "limitations": "The evidence currently consists of bibliographic metadata and abstracts only. There is no direct access to full-text evolutionary biology literature or foundational theoretical reviews on biological constraints. This synthesis is highly provisional.",
+  "next_questions": "What are the primary theoretical distinctions between adaptation, drift, and exaptation in current evolutionary synthesis literature? How do these definitions change when applied to behavioral traits versus morphological traits?",
+  "project": "evolutionary-biology-foundations",
+  "reason": "This notebook establishes a provisional anchor for the evolutionary-biology-foundations project, converting metadata leads into a structured starting point for future research.",
+  "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+  "title": "Provisional Synthesis: Evolutionary Mechanisms",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 127,
+  "updated_version": 127,
+  "updated_by": "w-20b4d1c5de2f401d",
+  "domain": "evolutionary_biology"
 }
 ```
 
@@ -105910,6 +105922,500 @@ _None recorded._
 }
 ```
 
+### `w-20b4d1c5de2f401d`
+
+```json
+{
+  "base_version": 126,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 20788,
+    "delivered_request_chars": 47193,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4335,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 108861,
+    "working_set_chars": 3783
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-20b4d1c5de2f401d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 126,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurology-metabolic-pathways",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurological Impact of Metabolic Changes"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0.5
+        },
+        "id": "religion-cross-cultural-practices",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "evolutionary-biology-foundations",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Foundations of Evolutionary Biology"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2254,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "4b18e6bdc4fb098fe95dafca3554c7971af64cad80dc6167acd996871cc873fe",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-2cd2684377c54051"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2cd2684377c54051",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e2e41e9bcb594def"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e2e41e9bcb594def",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-10bb76ac99dc4e25"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-10bb76ac99dc4e25",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-16a38b8a6e2346cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-16a38b8a6e2346cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-41ca3c26b29a473a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-41ca3c26b29a473a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-284f83ce979a46ea"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-284f83ce979a46ea",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-2cd2684377c54051",
+      "source-e2e41e9bcb594def",
+      "source-10bb76ac99dc4e25",
+      "source-16a38b8a6e2346cf",
+      "source-41ca3c26b29a473a",
+      "source-284f83ce979a46ea"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.602,
+    "context_build_ms": 99.109,
+    "load_ms": 865.521,
+    "receipt_ms": 505.656,
+    "start_total_before_record_ms": 2778.6,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 826.327,
+      "cached_loads": 0,
+      "event_count": 3617,
+      "full_replays": 11,
+      "replay_ms": 6632.299,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1302.539
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "neurology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "neurology": [
+        {
+          "id": "neurology-metabolic-pathways",
+          "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+          "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "evolutionary_biology",
+    "temporal": {
+      "anchor_seq": 3616,
+      "anchor_time": "2026-09-26T02:52:07.252178+00:00",
+      "anchor_version": 126,
+      "effective_seconds": 97484.77724
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 445.831237,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 97484.77724,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-26T02:52:07.252178+00:00",
+    "previous_anchor_time": "2026-09-26T02:44:41.420941+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 445.831237
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20788,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3783,
+    "working_to_delivered_ratio": 0.182
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "religion-cross-cultural-practices",
+        "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "neurology-metabolic-pathways",
+        "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+        "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+        "title": "Neurological Impact of Metabolic Changes"
+      },
+      {
+        "id": "evolutionary-biology-foundations",
+        "next_step": "Search for foundational reviews on distinguishing evolutionary mechanisms like exaptation, drift, and adaptation.",
+        "question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?",
+        "title": "Foundations of Evolutionary Biology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      },
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T02:52:09.257320+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3259,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51242,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T02:52:35.142367+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -129968,6 +130474,103 @@ _None recorded._
 }
 ```
 
+### `source-284f83ce979a46ea`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1126%2Fscience.1224820\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 26]], \\\"date-time\\\": \\\"2026-09-26T01:16:22Z\\\", \\\"timestamp\\\": 1790385382492, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 38, \\\"publisher\\\": \\\"American Association for the Advancement of Science (AAAS)\\\", \\\"issue\\\": \\\"6103\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Science\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2012, 10, 5]]}, \\\"abstract\\\": \\\"<jats:title>Of Microbes and Cancer</jats:title>\\\\n                  <jats:p>\\\\n                    Inflammation is a well-established driver of tumorigenesis. For example, patients with inflammatory bowel disease have an elevated risk of developing colorectal cancer (CRC). Whether the gut microbiota also contributes to the development of CRC is less well understood.\\\\n                    <jats:bold>\\\\n                      Arthur\\\\n                      <jats:italic>et al.</jats:italic>\\\\n                    </jats:bold>\\\\n                    (p.\\\\n                    <jats:related-article xmlns:xlink=\\\\\\\"http://www.w3.org/1999/xlink\\\\\\\" ext-link-type=\\\\\\\"doi\\\\\\\" page=\\\\\\\"120\\\\\\\" related-article-type=\\\\\\\"in-this-issue\\\\\\\" vol=\\\\\\\"338\\\\\\\" xlink:href=\\\\\\\"10.1126/science.1224820\\\\\\\">120</jats:related-article>\\\\n                    , published online 16 August; see the Perspective by\\\\n                    <jats:bold>\\\\n                      <jats:related-article xmlns:xlink=\\\\\\\"http://www.w3.org/1999/xlink\\\\\\\" ext-link-type=\\\\\\\"doi\\\\\\\" issue=\\\\\\\"6103\\\\\\\" page=\\\\\\\"52\\\\\\\" related-article-type=\\\\\\\"in-this-issue\\\\\\\" vol=\\\\\\\"338\\\\\\\" xlink:href=\\\\\\\"10.1126/science.1229905\\\\\\\">\\\\n                        <jats:bold>Schwabe and Wang</jats:bold>\\\\n                      </jats:related-article>\\\\n                    </jats:bold>\\\\n                    ) now show that the microbiota does indeed promote tumorigenesis in an inflammation-driven model of CRC in mice. Although germ-free mice were protected against developing cancer, colonization of mice with\\\\n                    <jats:italic>Escherichia coli</jats:italic>\\\\n                    was sufficient to drive tumorigenesis.\\\\n                  </jats:p>\\\", \\\"DOI\\\": \\\"10.1126/science.1224820\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2012, 8, 17]], \\\"date-time\\\": \\\"2012-08-17T00:57:49Z\\\", \\\"timestamp\\\": 1345165069000}, \\\"page\\\": \\\"120-123\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 2086, \\\"title\\\": [\\\"Intestinal Inflammation Targets Cancer-Inducing Activity of the Microbiota\\\"], \\\"prefix\\\": \\\"10.1126\\\", \\\"volume\\\": \\\"338\\\", \\\"author\\\": [{\\\"given\\\": \\\"Janelle C.\\\", \\\"family\\\": \\\"Arthur\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ernesto\\\", \\\"family\\\": \\\"Perez-Chanona\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Marcus\\\", \\\"family\\\": \\\"Mühlbauer\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Sarah\\\", \\\"family\\\": \\\"Tomkovich\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Joshua M.\\\", \\\"family\\\": \\\"Uronis\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ting-Jia\\\", \\\"family\\\": \\\"Fan\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Barry J.\\\", \\\"family\\\": \\\"Campbell\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Gastroenterology, University of Liverpool, Liverpool L69 3BX, UK.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Turki\\\", \\\"family\\\": \\\"Abujamel\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Ottawa Institute of Systems Biology, Department of Biochemistry, Microbiology and Immunology, Faculty of Medicine, University of Ottawa, Ontario K1H 8M5, Canada.\\\"}, {\\\"name\\\": \\\"Department of Medical Technology, Faculty of Applied Medical Sciences, King Abdulaziz University, Jeddah 21589, Saudi Arabia.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Belgin\\\", \\\"family\\\": \\\"Dogan\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Clinical Sciences, Cornell University, Ithaca, NY 14853, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Arlin B.\\\", \\\"family\\\": \\\"Rogers\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Lineberger Comprehensive Cancer Center, Department of Pathology and Laboratory Medicine, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Jonathan M.\\\", \\\"family\\\": \\\"Rhodes\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Gastroenterology, University of Liverpool, Liverpool L69 3BX, UK.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Alain\\\", \\\"family\\\": \\\"Stintzi\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Ottawa Institute of Systems Biology, Department of Biochemistry, Microbiology and Immunology, Faculty of Medicine, University of Ottawa, Ontario K1H 8M5, Canada.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Kenneth W.\\\", \\\"family\\\": \\\"Simpson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Clinical Sciences, Cornell University, Ithaca, NY 14853, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Jonathan J.\\\", \\\"family\\\": \\\"Hansen\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Temitope O.\\\", \\\"family\\\": \\\"Keku\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Anthony A.\\\", \\\"family\\\": \\\"Fodor\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Bioinformatics and Genomics, University of North Carolina at Charlotte, Charlotte, NC 28223, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Christian\\\", \\\"family\\\": \\\"Jobin\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Medicine, Pharmacology and Immunology-Microbiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27599, USA.\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"221\\\", \\\"reference\\\": [{\\\"key\\\": \\\"e_1_3_2_2_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0140-6736(00)04046-0\\\"}, {\\\"key\\\": \\\"e_1_3_2_3_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1053/j.gastro.2011.01.057\\\"}, {\\\"key\\\": \\\"e_1_3_2_4_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1172/JCI31537\\\"}, {\\\"key\\\": \\\"e_1_3_2_5_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/onc.2010.109\\\"}, {\\\"key\\\": \\\"e_1_3_2_6_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pone.0006026\\\"}, {\\\"key\\\": \\\"e_1_3_2_7_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.chom.2010.08.004\\\"}, {\\\"key\\\": \\\"e_1_3_2_8_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S1286-4579(01)01387-9\\\"}, {\\\"key\\\": \\\"e_1_3_2_9_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4161/gmic.1.3.12360\\\"}, {\\\"key\\\": \\\"e_1_3_2_10_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1001/jama.274.13.1064\\\"}, {\\\"key\\\": \\\"e_1_3_2_11_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0016-5085(98)70194-5\\\"}, {\\\"key\\\": \\\"e_1_3_2_12_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1053/j.gastro.2004.03.054\\\"}, {\\\"key\\\": \\\"e_1_3_2_13_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0016-5085(98)70019-8\\\"}, {\\\"key\\\": \\\"e_1_3_2_14_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1136/gut.48.3.320\\\"}, {\\\"key\\\": \\\"e_1_3_2_15_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1053/j.gastro.2005.02.009\\\"}, {\\\"key\\\": \\\"e_1_3_2_16_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1127059\\\"}, {\\\"key\\\": \\\"e_1_3_2_17_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.1001261107\\\"}, {\\\"key\\\": \\\"e_1_3_2_18_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1574-6968.2007.00889.x\\\"}, {\\\"key\\\": \\\"e_1_3_2_19_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1128/IAI.00522-09\\\"}, {\\\"key\\\": \\\"e_1_3_2_20_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1074/jbc.273.10.5858\\\"}, {\\\"key\\\": \\\"e_1_3_2_21_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1083/jcb.146.5.905\\\"}, {\\\"key\\\": \\\"e_1_3_2_22_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1073/pnas.0830918100\\\"}, {\\\"key\\\": \\\"e_1_3_2_23_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/ibd.21253\\\"}, {\\\"key\\\": \\\"e_1_3_2_24_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1097/00054725-200411000-00016\\\"}, {\\\"key\\\": \\\"e_1_3_2_25_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S1471-4914(01)02194-3\\\"}, {\\\"key\\\": \\\"e_1_3_2_27_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4049/jimmunol.178.10.6522\\\"}, {\\\"key\\\": \\\"e_1_3_2_28_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/978-1-59745-447-6_11\\\"}, {\\\"key\\\": \\\"e_1_3_2_29_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/ibd.21366\\\"}, {\\\"key\\\": \\\"e_1_3_2_30_2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journ\", \"excerpt_truncated\": true, \"source_sha256\": \"08bc8c8798e2bbd4bfd043c5f38fe60f8cf5f9058f6af0d034eadde969f05f59\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1126/science.1224820\", \"doi:10.1126/science.1229905\", \"doi:10.1016/s0140-6736(00)04046-0\", \"doi:10.1053/j.gastro.2011.01.057\", \"doi:10.1172/jci31537\", \"doi:10.1038/onc.2010.109\", \"doi:10.1371/journal.pone.0006026\", \"doi:10.1016/j.chom.2010.08.004\", \"doi:10.1016/s1286-4579(01)01387-9\", \"doi:10.4161/gmic.1.3.12360\", \"doi:10.1001/jama.274.13.1064\", \"doi:10.1016/s0016-5085(98)70194-5\"]}",
+  "id": "source-284f83ce979a46ea",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1126%2Fscience.1224820",
+  "version": 126,
+  "time": "2026-09-26T02:52:02.139009+00:00"
+}
+```
+
+### `source-ea3c502f26404c70`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"58f621699166b4d8ba54d6016907832aa97a337e04148b78cc836af2b952cd84\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-ea3c502f26404c70",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 126,
+  "time": "2026-09-26T02:52:03.262918+00:00"
+}
+```
+
+### `source-a2c72a8fe24b4bdd`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6107,\\\"suggestion\\\":\\\"entry\\\",\\\"suggestionsnippet\\\":\\\"entry\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"28b868d4f72cc97ea651e715731c3df9a7f0957586ecae198490eaa0a90b074d\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a2c72a8fe24b4bdd",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 126,
+  "time": "2026-09-26T02:52:03.886900+00:00"
+}
+```
+
+### `source-1b530c321b7e48a7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"181f3d437cf15fbd8d6674357fa56d02bd217ae6204205f8a235202a13b135c2\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1b530c321b7e48a7",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 126,
+  "time": "2026-09-26T02:52:04.646414+00:00"
+}
+```
+
+### `source-00c5b0b31b7143fa`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74340},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Humanistic psychology\\\",\\\"pageid\\\":324180,\\\"size\\\":58187,\\\"wordcount\\\":6990,\\\"snippet\\\":\\\"Humanistic\\npsychology\\nis a psychological perspective that arose in the early- to mid-20th century in response to Sigmund Freud's psychoanalytic theory\\\",\\\"timestamp\\\":\\\"2026-08-08T17:40:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Engineering psychology\\\",\\\"pageid\\\":7578771,\\\"size\\\":12033,\\\"wordcount\\\":1396,\\\"snippet\\\":\\\"Engineering\\npsychology\\nis the science of human behavior and capability applied to the design and operation of systems and technology. As an applied field\\\",\\\"timestamp\\\":\\\"2026-08-02T18:08:28Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"dda66d2e82b594c76ee728212a334ff8276a383c0138a83ea386f0360cacef2c\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-00c5b0b31b7143fa",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 126,
+  "time": "2026-09-26T02:52:05.326202+00:00"
+}
+```
+
+### `source-42c3cdaa430a4101`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-25T20:49:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bayesian probability\\\",\\\"pageid\\\":4890,\\\"size\\\":33893,\\\"wordcount\\\":3450,\\\"snippet\\\":\\\"expectation representing a state of knowledge or as quantification of a personal\\nbelief\\n. The Bayesian interpretation of probability can be seen as an extension\\\",\\\"timestamp\\\":\\\"2026-07-22T06:31:12Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f03759d76cf2370f2177d541e805131d7330a23645c562b5cba967dc50ef00b9\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-42c3cdaa430a4101",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 126,
+  "time": "2026-09-26T02:52:06.067614+00:00"
+}
+```
+
+### `r-20b4d1c5de2f401d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":126,\"inherited_commitments\":[],\"invocation\":\"w-20b4d1c5de2f401d\",\"previous_head\":\"363c5a0dfb54a07bc2c5f048b89e85cee97a9852ce95b8ce8dd81d8c4b8a479b\",\"process_id\":2254,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-20b4d1c5de2f401d",
+  "source": "runtime:continuity",
+  "version": 126,
+  "time": "2026-09-26T02:52:08.745748+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -131353,6 +131956,17 @@ _None recorded._
   "invocation": "w-e189892f1fe4489e",
   "title": "Advancing Evolutionary biology under enforced rotation",
   "summary": "Squirrel accepted the valid evolutionary_biology subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history."
+}
+```
+
+### 127 · Evolutionary Foundations: Initial Synthesis
+
+```json
+{
+  "cycle": 127,
+  "invocation": "w-20b4d1c5de2f401d",
+  "title": "Evolutionary Foundations: Initial Synthesis",
+  "summary": "This cycle focuses on the evolutionary-biology-foundations project. Following the Squirrel directive, I am synthesizing existing evidence into a provisional notebook to establish an anchor for future research into evolutionary mechanisms."
 }
 ```
 
@@ -132891,6 +133505,21 @@ _None recorded._
   "status": "failed",
   "created_by": "w-a6eea847f8874612",
   "evidence": "source-6223e095835a4fff"
+}
+```
+
+### `res-evo-mechanisms-review-001`
+
+```json
+{
+  "domain": "evolutionary_biology",
+  "id": "res-evo-mechanisms-review-001",
+  "project": "evolutionary-biology-foundations",
+  "query": "foundational reviews evolutionary biology mechanisms adaptation byproduct drift",
+  "reason": "I need to move beyond general cognitive sources to specific evolutionary theory literature that defines adaptation, drift, and byproduct to properly address the project's question.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-20b4d1c5de2f401d"
 }
 ```
 

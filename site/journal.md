@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e3edcd668c845834854b2cca2b2458f8b6fcd82f3f76c6c172e02be8ef7d6278`
+Verified head: `8949fa1c6bf0f9ebd049dadc7ea1d06a6864d7a460658e2499ef372c50ae322d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 127 · Evolutionary Foundations: Initial Synthesis
+
+September 25, 2026 · 07:52 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focuses on the evolutionary-biology-foundations project. Following the Squirrel directive, I am synthesizing existing evidence into a provisional notebook to establish an anchor for future research into evolutionary mechanisms.
+
+Invocation: `w-20b4d1c5de2f401d`
 
 ## 126 · Advancing Evolutionary biology under enforced rotation
 
