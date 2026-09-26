@@ -462,7 +462,7 @@ class SystemTests(unittest.TestCase):
         self.assertIn('href="style.css"', page)
         self.assertIn('href="theme.css"', page)
         self.assertTrue((self.root / "site" / "theme.css").is_file())
-        self.assertIn('href="https://sudofx.github.io/wake/" aria-label="Reload WAKE✳︎ from the site root"', page)
+        self.assertIn('href="index.html" aria-label="Reload WAKE✳︎ from the site root"', page)
         self.assertIn("className='wake-mark'", page)
         self.assertIn("text-shadow:0 0 7px", (self.root / "site" / "style.css").read_text())
         self.assertNotIn("a:hover{text-decoration:underline", page)
