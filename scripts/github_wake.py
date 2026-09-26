@@ -122,7 +122,30 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
         branch.open()
         engine = Engine(branch.checkout/"data", settings)
         try:
-            # Initialize/recover and publish a valid empty or recovered journal even if setup fails.
+            # Publication refreshes are read-only consumers of the durable record.
+            # They may run concurrently with research because they never initialize,
+            # recover, append, repair, checkpoint, or push wake-state. Configuration
+            # adoption therefore remains part of the next serialized stateful wake.
+            if publish_only and not reset:
+                state = engine.store.load()
+                latest = next(reversed(state["invocations"].values()), None)
+                result = ({"status": latest["status"], "id": latest["id"], "reason": latest.get("reason", "")}
+                          if latest else {"status": "not_started", "reason": "Waiting for the first research wake"})
+                if latest and latest["status"] == "accepted":
+                    result["cycle"] = state["version"]
+                result["publication_only"] = True
+                result["wake_status"] = wake_status(
+                    state,
+                    None if settings.get("model_daily_call_limits") else settings["daily_call_limit"],
+                )
+                export(engine.store, ROOT / "site", operation=result)
+                atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
+                atomic_write(ROOT / "site/.nojekyll", "")
+                print(json.dumps(result))
+                return 0
+
+            # Stateful wakes remain serialized: initialize/recover may append
+            # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
                     engine.store.reset()
@@ -147,14 +170,6 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                               "reason": "WAKE reset to zero",
                               "reset": True,
                               "cycle": state["version"]}
-                elif publish_only:
-                    state = engine.store.load()
-                    latest = next(reversed(state["invocations"].values()), None)
-                    result = ({"status": latest["status"], "id": latest["id"], "reason": latest.get("reason", "")}
-                              if latest else {"status": "not_started", "reason": "Waiting for the first research wake"})
-                    if latest and latest["status"] == "accepted":
-                        result["cycle"] = state["version"]
-                    result["publication_only"] = True
                 else:
                     provider = Gemini(settings)
                     result = engine.run(provider, checkpoint=branch.checkpoint, collector=collect)
